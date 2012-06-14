@@ -19,7 +19,7 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {  
-    
+   //This is the beginning 
     NSMutableString *fileStr = [NSMutableString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"aseq" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
     [fileStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     fileString = calloc(fileStr.length, 1);
