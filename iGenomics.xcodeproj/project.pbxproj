@@ -16,11 +16,11 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
-		A310AF74158A5F9B00E892AA /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF6E158A5F9B00E892AA /* reeds.txt */; };
-		A310AF75158A5F9B00E892AA /* aseq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF6F158A5F9B00E892AA /* aseq.txt */; };
-		A310AF76158A5F9B00E892AA /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF70158A5F9B00E892AA /* shortSeqBWT.txt */; };
-		A310AF77158A5F9B00E892AA /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF71158A5F9B00E892AA /* Chunks.m */; };
-		A310AF78158A5F9B00E892AA /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF73158A5F9B00E892AA /* sequenceBWT.txt */; };
+		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
+		A3971B09158A634A001626F7 /* aseq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B08158A634A001626F7 /* aseq.txt */; };
+		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
+		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
+		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,12 +38,12 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		A310AF6E158A5F9B00E892AA /* reeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reeds.txt; path = "../../../Documents/Lab Projects/LabProject10/LabProject10/reeds.txt"; sourceTree = "<group>"; };
-		A310AF6F158A5F9B00E892AA /* aseq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = aseq.txt; path = "../../../Documents/Lab Projects/aseq.txt"; sourceTree = "<group>"; };
-		A310AF70158A5F9B00E892AA /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shortSeqBWT.txt; path = "../../../Documents/Lab Projects/shortSeqBWT.txt"; sourceTree = "<group>"; };
-		A310AF71158A5F9B00E892AA /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chunks.m; path = "../../../Documents/Lab Projects/LabProject7/LabProject7/Chunks.m"; sourceTree = "<group>"; };
-		A310AF72158A5F9B00E892AA /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chunks.h; path = "../../../Documents/Lab Projects/LabProject7/LabProject7/Chunks.h"; sourceTree = "<group>"; };
-		A310AF73158A5F9B00E892AA /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sequenceBWT.txt; path = "../../../Documents/Lab Projects/sequenceBWT.txt"; sourceTree = "<group>"; };
+		A3971B06158A6342001626F7 /* reeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reeds.txt; sourceTree = "<group>"; };
+		A3971B08158A634A001626F7 /* aseq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aseq.txt; sourceTree = "<group>"; };
+		A3971B0A158A635D001626F7 /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunks.m; sourceTree = "<group>"; };
+		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
+		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
+		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +104,12 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A310AF6E158A5F9B00E892AA /* reeds.txt */,
-				A310AF6F158A5F9B00E892AA /* aseq.txt */,
-				A310AF70158A5F9B00E892AA /* shortSeqBWT.txt */,
-				A310AF71158A5F9B00E892AA /* Chunks.m */,
-				A310AF72158A5F9B00E892AA /* Chunks.h */,
-				A310AF73158A5F9B00E892AA /* sequenceBWT.txt */,
+				A3971B06158A6342001626F7 /* reeds.txt */,
+				A3971B08158A634A001626F7 /* aseq.txt */,
+				A3971B0A158A635D001626F7 /* Chunks.m */,
+				A3971B0B158A635D001626F7 /* Chunks.h */,
+				A3971B0D158A6367001626F7 /* shortSeqBWT.txt */,
+				A3971B0F158A636F001626F7 /* sequenceBWT.txt */,
 				A310AF56158A5F7200E892AA /* iGenomics-Info.plist */,
 				A310AF57158A5F7200E892AA /* InfoPlist.strings */,
 				A310AF5A158A5F7200E892AA /* main.m */,
@@ -171,10 +171,10 @@
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
-				A310AF74158A5F9B00E892AA /* reeds.txt in Resources */,
-				A310AF75158A5F9B00E892AA /* aseq.txt in Resources */,
-				A310AF76158A5F9B00E892AA /* shortSeqBWT.txt in Resources */,
-				A310AF78158A5F9B00E892AA /* sequenceBWT.txt in Resources */,
+				A3971B07158A6342001626F7 /* reeds.txt in Resources */,
+				A3971B09158A634A001626F7 /* aseq.txt in Resources */,
+				A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */,
+				A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +188,7 @@
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
-				A310AF77158A5F9B00E892AA /* Chunks.m in Sources */,
+				A3971B0C158A635D001626F7 /* Chunks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +310,7 @@
 				A310AF6D158A5F7200E892AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
