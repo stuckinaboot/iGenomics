@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
+		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
+		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
+		A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A310AF57158A5F7200E892AA /* InfoPlist.strings */; };
+		A310AF5B158A5F7200E892AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF5A158A5F7200E892AA /* main.m */; };
+		A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF5E158A5F7200E892AA /* AppDelegate.m */; };
+		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
+		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
+		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A310AF74158A5F9B00E892AA /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF6E158A5F9B00E892AA /* reeds.txt */; };
+		A310AF75158A5F9B00E892AA /* aseq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF6F158A5F9B00E892AA /* aseq.txt */; };
+		A310AF76158A5F9B00E892AA /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF70158A5F9B00E892AA /* shortSeqBWT.txt */; };
+		A310AF77158A5F9B00E892AA /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF71158A5F9B00E892AA /* Chunks.m */; };
+		A310AF78158A5F9B00E892AA /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A310AF73158A5F9B00E892AA /* sequenceBWT.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A310AF4E158A5F7200E892AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A310AF50158A5F7200E892AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A310AF52158A5F7200E892AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A310AF56158A5F7200E892AA /* iGenomics-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGenomics-Info.plist"; sourceTree = "<group>"; };
+		A310AF58158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A310AF5A158A5F7200E892AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGenomics-Prefix.pch"; sourceTree = "<group>"; };
+		A310AF5D158A5F7200E892AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A310AF5E158A5F7200E892AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A310AF60158A5F7200E892AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A310AF6E158A5F9B00E892AA /* reeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reeds.txt; path = "../../../Documents/Lab Projects/LabProject10/LabProject10/reeds.txt"; sourceTree = "<group>"; };
+		A310AF6F158A5F9B00E892AA /* aseq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = aseq.txt; path = "../../../Documents/Lab Projects/aseq.txt"; sourceTree = "<group>"; };
+		A310AF70158A5F9B00E892AA /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shortSeqBWT.txt; path = "../../../Documents/Lab Projects/shortSeqBWT.txt"; sourceTree = "<group>"; };
+		A310AF71158A5F9B00E892AA /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Chunks.m; path = "../../../Documents/Lab Projects/LabProject7/LabProject7/Chunks.m"; sourceTree = "<group>"; };
+		A310AF72158A5F9B00E892AA /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chunks.h; path = "../../../Documents/Lab Projects/LabProject7/LabProject7/Chunks.h"; sourceTree = "<group>"; };
+		A310AF73158A5F9B00E892AA /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sequenceBWT.txt; path = "../../../Documents/Lab Projects/sequenceBWT.txt"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A310AF47158A5F7200E892AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */,
+				A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */,
+				A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A310AF3F158A5F7200E892AA = {
+			isa = PBXGroup;
+			children = (
+				A310AF54158A5F7200E892AA /* iGenomics */,
+				A310AF4D158A5F7200E892AA /* Frameworks */,
+				A310AF4B158A5F7200E892AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A310AF4B158A5F7200E892AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF4A158A5F7200E892AA /* iGenomics.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A310AF4D158A5F7200E892AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF4E158A5F7200E892AA /* UIKit.framework */,
+				A310AF50158A5F7200E892AA /* Foundation.framework */,
+				A310AF52158A5F7200E892AA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A310AF54158A5F7200E892AA /* iGenomics */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF5D158A5F7200E892AA /* AppDelegate.h */,
+				A310AF5E158A5F7200E892AA /* AppDelegate.m */,
+				A310AF60158A5F7200E892AA /* ViewController.h */,
+				A310AF61158A5F7200E892AA /* ViewController.m */,
+				A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */,
+				A310AF66158A5F7200E892AA /* ViewController_iPad.xib */,
+				A310AF55158A5F7200E892AA /* Supporting Files */,
+			);
+			path = iGenomics;
+			sourceTree = "<group>";
+		};
+		A310AF55158A5F7200E892AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF6E158A5F9B00E892AA /* reeds.txt */,
+				A310AF6F158A5F9B00E892AA /* aseq.txt */,
+				A310AF70158A5F9B00E892AA /* shortSeqBWT.txt */,
+				A310AF71158A5F9B00E892AA /* Chunks.m */,
+				A310AF72158A5F9B00E892AA /* Chunks.h */,
+				A310AF73158A5F9B00E892AA /* sequenceBWT.txt */,
+				A310AF56158A5F7200E892AA /* iGenomics-Info.plist */,
+				A310AF57158A5F7200E892AA /* InfoPlist.strings */,
+				A310AF5A158A5F7200E892AA /* main.m */,
+				A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A310AF49158A5F7200E892AA /* iGenomics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A310AF6B158A5F7200E892AA /* Build configuration list for PBXNativeTarget "iGenomics" */;
+			buildPhases = (
+				A310AF46158A5F7200E892AA /* Sources */,
+				A310AF47158A5F7200E892AA /* Frameworks */,
+				A310AF48158A5F7200E892AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iGenomics;
+			productName = iGenomics;
+			productReference = A310AF4A158A5F7200E892AA /* iGenomics.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A310AF41158A5F7200E892AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = A310AF44158A5F7200E892AA /* Build configuration list for PBXProject "iGenomics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A310AF3F158A5F7200E892AA;
+			productRefGroup = A310AF4B158A5F7200E892AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A310AF49158A5F7200E892AA /* iGenomics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A310AF48158A5F7200E892AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
+				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
+				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
+				A310AF74158A5F9B00E892AA /* reeds.txt in Resources */,
+				A310AF75158A5F9B00E892AA /* aseq.txt in Resources */,
+				A310AF76158A5F9B00E892AA /* shortSeqBWT.txt in Resources */,
+				A310AF78158A5F9B00E892AA /* sequenceBWT.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A310AF46158A5F7200E892AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A310AF5B158A5F7200E892AA /* main.m in Sources */,
+				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
+				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
+				A310AF77158A5F9B00E892AA /* Chunks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A310AF57158A5F7200E892AA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A310AF58158A5F7200E892AA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A310AF64158A5F7200E892AA /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		A310AF66158A5F7200E892AA /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A310AF67158A5F7200E892AA /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A310AF69158A5F7200E892AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A310AF6A158A5F7200E892AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A310AF6C158A5F7200E892AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
+				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A310AF6D158A5F7200E892AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
+				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A310AF44158A5F7200E892AA /* Build configuration list for PBXProject "iGenomics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A310AF69158A5F7200E892AA /* Debug */,
+				A310AF6A158A5F7200E892AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A310AF6B158A5F7200E892AA /* Build configuration list for PBXNativeTarget "iGenomics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A310AF6C158A5F7200E892AA /* Debug */,
+				A310AF6D158A5F7200E892AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A310AF41158A5F7200E892AA /* Project object */;
+}
