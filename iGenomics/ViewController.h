@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Chunks.h"
 
+//Find rev/forward for 0 mismatches. If some, choose at random. If none, add +1 and search. If none continues keep doing until you hit kmaxsubs
+
 #define kNumOfSubs 1
 
 #define kBytesForIndexer 10 
@@ -23,9 +25,13 @@
 
 #define kDebugON 1
 
+
+#define kHeteroAllowance 1 //Greater than 1
+//char* matrix ==== [pos][char pos]
+
 @interface ViewController : UIViewController {
     char *fileString;
-    char *foundGenome;
+    char *foundGenome[4];
     
     NSMutableArray *reedsArray;
     int posOccArray[kACGTLen][kBytesForIndexer*kMultipleToCountAt];
@@ -34,6 +40,8 @@
     char *acgt;
     int acgtTotalOccs[kACGTLen];
 }
+- (char*)getReverseComplementForSeq:(char*)seq;
+
 - (void)matchReedsArray:(NSArray *)array withLastCol:(char*)lastCol andFirstCol:(char*)firstCol;
 
 - (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andFirstCol:(char*)firstColumn andLastCol:(char*)lastColumn;
@@ -52,7 +60,10 @@
 - (int)charsBeforeChar:(char)c;
 
 //APPROXI MATCH
-- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol;
+- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs;
+
+- (int)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs;
+
 - (BOOL)isNotDuplicateAlignment:(NSArray*)subsArray andChunkNum:(int)chunkNum;
 - (void)updatePosOccsArrayWithRange:(NSRange)range andOriginalStr:(char*)originalStr andQuery:(char*)query;
 char *substr(const char *pstr, int start, int numchars);

@@ -19,8 +19,6 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {  
-   //This is the beginning 
-    
     
     NSMutableString *fileStr = [NSMutableString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"aseq" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
     [fileStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -29,7 +27,13 @@
     strcpy(fileString, [fileStr UTF8String]);
     [fileStr setString:@""];
     
-    foundGenome = strdup(fileString);
+    foundGenome[0] = strdup(fileString);
+    
+    int fileStrLen = strlen(fileString);
+    
+    for (int i = 1; i<kACGTLen; i++) {
+        foundGenome[i] = calloc(fileStrLen,1);
+    }
     
     [self setUpNumberOfOccurencesArray];
     
@@ -50,6 +54,7 @@
     for (int i = 0; i<kACGTLen; i++) {
         for (int x = 0; x<strlen(fileString); x++) {
             posOccArray[i][x] = 0;
+            foundGenome[i][x] = ' ';
         }
     }
     
@@ -94,14 +99,63 @@
      //    }
      */
     [self matchReedsArray:[self reedsArrayForFileName:@"reeds" andExt:@"txt"] withLastCol:lastCol andFirstCol:firstCol];
+    
     NSArray *mutations = [self findMutationsWithOriginalSeq:originalStr];
     
     [self buildOccTableWithUnravStr:originalStr];
     
     int mutPos;
-    for (int a = 0 ; a<mutations.count; a++) {
+    
+    int mutCounter = 0;
+    
+    char *mutStr[mutations.count];
+    char *heteroStr[mutations.count];
+    
+    for (int i = 0; i<mutations.count; i++) {
+        mutStr[i] = calloc(kACGTLen, 1);
+        heteroStr[i] = calloc(kACGTLen, 1);
+        strcpy(heteroStr[i], "    ");
+    }
+    
+    for (int i = 0; i<mutations.count; i++) {
+        int p = [[mutations objectAtIndex:i] intValue];
+        
+        for (int a = 0; a<kACGTLen; a++) {
+            if (posOccArray[a][p]>0) {
+                mutStr[i][mutCounter] = acgt[a];
+                mutCounter++;
+                if (posOccArray[a][p]>kHeteroAllowance) {
+                    //                    foundGenome[a][p] = acgt[a];
+                    heteroStr[i][a] = acgt[a];
+                }
+            }
+        }
+        
+        mutCounter = 0;
+    }
+    /*
+     for (int i = 0; i<kACGTLen; i++) {
+     for (int a = 0; a<fileStrLen; a++) {
+     if (foundGenome[i][a] != ' ') {
+     if (i>0) {
+     if (mutStr[i-1] != foundGenome[i][a]) {
+     mutStr[i] = foundGenome[i][a];
+     }
+     }
+     else {
+     mutStr[i] = foundGenome[i][a];
+     }
+     }
+     }
+     }*/
+    printf("\n");/*
+                  for (int i = 0; i<kACGTLen; i++) {
+                  printf("%s\n",foundGenome[i]);
+                  }*/
+    
+    for (int a = 0; a<mutations.count; a++) {
         mutPos = [[mutations objectAtIndex:a] intValue];
-        printf("\n%i-%c-%c",mutPos,originalStr[mutPos],foundGenome[mutPos]);//MutPos-Original-New
+        printf("\n%i-%c-%s",mutPos,originalStr[mutPos],mutStr[a]);//MutPos-Original-New//NEED TO DO HETERO (mutPos,originalStr[mutPos],mutStr[a],heteroStr[a])
     }
     
     //    printf("%i",[[[self approxiMatchForQuery:"TACC" withLastCol:lastCol andFirstCol:firstCol] objectAtIndex:0] intValue]);
@@ -110,9 +164,24 @@
 }
 
 - (void)matchReedsArray:(NSArray *)array withLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
+    char *reed;
+    
+    char *originalStr = calloc(strlen(lastCol), 1);
+    strcpy(originalStr,  [self unravelCharWithLastColumn:lastCol firstColumn:firstCol]);
+    
     for (int i = 0; i < array.count; i++) {
-        [self approxiMatchForQuery:(char*)[[array objectAtIndex:i] UTF8String] withLastCol:lastCol andFirstCol:firstCol];
+        reed = (char*)[[array objectAtIndex:i] UTF8String];
+        
+        int a = [self getBestMatchForQuery:reed withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:kNumOfSubs];
+        
+        if (a > -1) {
+            //a matched
+            [self updatePosOccsArrayWithRange:NSMakeRange(a, strlen(reed)) andOriginalStr:originalStr andQuery:reed];//a-1 because $ is first
+        }
+        
+        //        reed = (char*)[[array objectAtIndex:i] UTF8String];
     }
+    
 }
 
 - (NSArray*)findMutationsWithOriginalSeq:(char*)seq {
@@ -370,8 +439,9 @@
 }
 
 #pragma APPROXIMATE MATCH
-- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
-    int numOfChunks = kNumOfSubs+1;
+- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
+    
+    int numOfChunks = amtOfSubs+1;
     int sizeOfChunks = strlen(query)/numOfChunks;
     int queryLength = strlen(query);
     
@@ -394,7 +464,7 @@
     
     char *originalStr = [self unravelCharWithLastColumn:lastCol firstColumn:firstCol];
     
-    if (kNumOfSubs>0) {
+    if (amtOfSubs>0) {
         for (int i = 0; i<numOfChunks; i++) {
             //            chunks[i] = calloc(34, 1);
             if (i < numOfChunks-1) {
@@ -477,12 +547,12 @@
                         
                         subsInChunk[(int)floorf((float)l/sizeOfChunks)+1+i]++;
                         
-                        if (numOfSubstitutions > kNumOfSubs) {
+                        if (numOfSubstitutions > amtOfSubs) {
                             break;
                         }
                     }
                 }
-                if (numOfSubstitutions<=kNumOfSubs) {
+                if (numOfSubstitutions<=amtOfSubs) {
                     //                printf("\n%i",[[matchedChunks[i] objectAtIndex:x] intValue]);
                     NSMutableArray *array = [[NSMutableArray alloc] init];
                     for (int r = 0; r<numOfChunks; r++) {
@@ -495,7 +565,7 @@
                         if (pos+strlen(query)<=strlen(fileString)) {
                             [positionsArray addObject:[NSNumber numberWithInt:pos]];
                             
-                            [self updatePosOccsArrayWithRange:NSMakeRange(pos, strlen(query)) andOriginalStr:originalStr andQuery:query];
+                            //                            [self updatePosOccsArrayWithRange:NSMakeRange(pos, strlen(query)) andOriginalStr:originalStr andQuery:query];         COMMENTED SO THAT IT CAN BE UPDATE ABOVE
                         }
                     }
                 }
@@ -510,15 +580,34 @@
     }
     else {
         positionsArray = (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
-        int p = 0;
-        for (int i = 0; i<[positionsArray count]; i++) {
-            p = [[positionsArray objectAtIndex:i] intValue];
-            //            int a = strlen(query);
-            //            printf("%i",a);
-            [self updatePosOccsArrayWithRange:NSMakeRange(p, strlen(query)) andOriginalStr:originalStr andQuery:query];
+        /*int p = 0;
+         for (int i = 0; i<[positionsArray count]; i++) {
+         p = [[positionsArray objectAtIndex:i] intValue];
+         //            int a = strlen(query);
+         //            printf("%i",a);
+         [self updatePosOccsArrayWithRange:NSMakeRange(p, strlen(query)) andOriginalStr:originalStr andQuery:query]; ____________SAME HERE
+         }*/
+    }
+    //IN PROGRESS
+    //
+    return positionsArray;
+}
+
+- (int)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
+    
+    NSArray *arr = [[NSMutableArray alloc] init];
+    
+    for (int x = 0; x < amtOfSubs+1; x++) {
+        arr = [self approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x];
+        
+        arr = [arr arrayByAddingObjectsFromArray:[self approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x]];
+        
+        if ([arr count] > 0) {
+            int v = [[arr objectAtIndex:(int)arc4random()%[arr count]] intValue];
+            return v;
         }
     }
-    return positionsArray;
+    return -1;//No match
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -609,106 +698,64 @@ char *substr(const char *pstr, int start, int numchars)
     printf("\n\n");
     
     int charWMostOccs;//0,1,2,3 etc. -> A, C, G, T etc.
-    int numOfMostOccs;
-    int numOfOccs[kACGTLen];
-    for (int a = 0; a<strlen(fileString)-1; a++) {
-        for (int i = 0; i<kACGTLen; i++) {
-            numOfOccs[i] = posOccArray[i][a];
-        }
-        for (int i = 0; i<kACGTLen; i++) {
-            int occs = numOfOccs[i];
-            if (i == 0) {
-                charWMostOccs = i;
-                numOfMostOccs = occs;
+    int posInFoundGenomeCounter = 1;
+    
+    for (int i = 0; i<strlen(fileString)-1; i++) {
+        for (int a = 0; a < kACGTLen; a++) {
+            if (a == 0) {
+                charWMostOccs = 0;
             }
-            else if (i>0) {
-                if (occs>numOfMostOccs) {
-                    charWMostOccs = i;
-                    numOfMostOccs = occs;
+            else if (posOccArray[a][i]>posOccArray[charWMostOccs][i]) {//Greater
+                charWMostOccs = a;
+            }
+            else if (posOccArray[a][i] == posOccArray[charWMostOccs][i]) {
+                //Same = Pick at random
+                int r = arc4random()%2;//Pick between the 2
+                
+                if (r == 0) //Only change charWMostOccs if it is = to 0
+                    charWMostOccs = a;
+            }
+        }
+        if (i>0) {//0 is $ sign
+            foundGenome[0][i] = acgt[charWMostOccs];
+        }
+        for (int a = 0; a < kACGTLen; a++) { 
+            if (charWMostOccs != a) {
+                if (posOccArray[a][i]>kHeteroAllowance) {
+                    foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                    posInFoundGenomeCounter++;
                 }
             }
-            
-            if (numOfMostOccs == 0) {
-                charWMostOccs = kACGTLen;
-            }
         }
-        if (charWMostOccs != kACGTLen) {
-            printf("  %c",acgt[charWMostOccs]);
-            foundGenome[a] = acgt[charWMostOccs];
-        }
-        else {
-            printf("   ");
-        }
+        posInFoundGenomeCounter = 1;
     }
+    
+    /* for (int i = 0; i<strlen(fileString)-1; i++) {
+     printf("  %c",foundGenome[0][i]);
+     }*/
+    /*  for (int i = 1; i<kACGTLen; i++) {
+     for (int a = 0; a<strlen(fileString)-1; a++) {
+     printf("  %c",foundGenome[i][a]);
+     }
+     printf("\n");
+     }*/
 }
-/*
- for (int i = 0; i<strlen(fileString)-1; i++) {
- printf("  %c",unravStr[i]);
- }
- printf("\n");
- for (int i = 0; i<strlen(fileString)-1; i++) {
- printf("  %i",i);
- }
- printf("\n");
- for (int i = 0; i<kACGTLen; i++) {
- printf("\n%c ",acgt[i]);
- for (int a = 0; a<strlen(fileString)-1; a++) {
- printf("%i  ",posOccArray[i][a]);
- }
- }
- printf("\n\n");
- 
- int charWMostOccs;//0,1,2,3 etc. -> A, C, G, T etc.
- int numOfMostOccs;
- BOOL alreadyPrintedLoc = FALSE;
- 
- for (int a = 0; a<strlen(fileString)-1; a++) {
- for (int i = 0; i<kACGTLen; i++) {
- if (posOccArray[i][a]>kHeteroAllowance) {
- foundGenome[i][a] = acgt[i];
- printf("  %c",acgt[i]);
- alreadyPrintedLoc = TRUE;
- }
- else {
- if (i == 0) {
- charWMostOccs = i;
- numOfMostOccs = posOccArray[i][a];
- }
- else if (i>0) {
- if (posOccArray[i][a]>numOfMostOccs) {
- charWMostOccs = i;
- numOfMostOccs = posOccArray[i][a];
- }
- }
- 
- if (numOfMostOccs == 0) {
- charWMostOccs = kACGTLen;
- }
- }
- }
- if (!alreadyPrintedLoc) {
- if (charWMostOccs != kACGTLen) {
- printf("  %c",acgt[charWMostOccs]);
- foundGenome[0][a] = acgt[charWMostOccs];
- }
- else {
- printf("   ");
- }
- }
- alreadyPrintedLoc = FALSE;
- }
- printf("\n");
- for (int i = 1; i<kACGTLen; i++) {
- for (int a = 0; a<strlen(fileString)-1; a++) {
- printf("  %c",foundGenome[i][a]);
- }
- printf("\n");
- }*/
 
 - (NSArray*)reedsArrayForFileName:(NSString*)name andExt:(NSString*)ext {
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:ext];
     NSString *file = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     return [file componentsSeparatedByString:@"\n"];
+}
+
+- (char*)getReverseComplementForSeq:(char*)seq {
+    int len = strlen(seq);
+    char *revSeq = calloc(len, 1);
+    
+    for (int i = 0; i<len; i++) {
+        revSeq[len-i-1] = acgt[3-[self whichChar:seq[i] inContainer:acgt]];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
+    }
+    
+    return revSeq;
 }
 @end
