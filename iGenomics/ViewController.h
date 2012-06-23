@@ -25,13 +25,14 @@
 
 #define kDebugON 1
 
-
+#define kLowestAllowedCoverage 5
 #define kHeteroAllowance 1 //Greater than 1
 //char* matrix ==== [pos][char pos]
 
 @interface ViewController : UIViewController {
     char *fileString;
     char *foundGenome[4];
+    int *coverageArray;
     
     NSMutableArray *reedsArray;
     int posOccArray[kACGTLen][kBytesForIndexer*kMultipleToCountAt];

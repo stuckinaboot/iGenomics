@@ -35,6 +35,8 @@
         foundGenome[i] = calloc(fileStrLen,1);
     }
     
+    coverageArray = calloc(fileStrLen, 1);
+    
     [self setUpNumberOfOccurencesArray];
     
     char *lastCol = fileString;
@@ -119,18 +121,58 @@
     
     for (int i = 0; i<mutations.count; i++) {
         int p = [[mutations objectAtIndex:i] intValue];
+        int charWMostOccs = 0;
+        
+        BOOL lessThan5XCoverage = FALSE;
         
         for (int a = 0; a<kACGTLen; a++) {
+            printf("\n%i\n",coverageArray[p]);
+            if (coverageArray[p]<kLowestAllowedCoverage) {
+                lessThan5XCoverage = TRUE;
+                if (posOccArray[a][i]>0) {
+                    mutStr[i][mutCounter] = foundGenome[a][p];
+                    mutCounter++;
+                }
+            }
+            else {
+                lessThan5XCoverage = FALSE;
+                if (a == 0) {
+                    charWMostOccs = 0;
+                }
+                else if (posOccArray[a][i]>posOccArray[charWMostOccs][i]) {//Greater
+                    charWMostOccs = a;
+                }
+                else if (posOccArray[a][i] == posOccArray[charWMostOccs][i]) {
+                    //Same = Pick at random
+                    int r = arc4random()%2;//Pick between the 2
+                    
+                    if (r == 0) //Only change charWMostOccs if it is = to 0
+                        charWMostOccs = a;
+                }
+                
+//                mutStr[i][mutCounter] = foundGenome[0][p];
+//                mutCounter++;
+            }
             if (posOccArray[a][p]>0) {
-                mutStr[i][mutCounter] = acgt[a];
-                mutCounter++;
+//                mutStr[i][mutCounter] = acgt[a];
+//                mutCounter++;
                 if (posOccArray[a][p]>kHeteroAllowance) {
+                    mutStr[i][mutCounter] = acgt[a];
+                    mutCounter++;
                     //                    foundGenome[a][p] = acgt[a];
                     heteroStr[i][a] = acgt[a];
                 }
             }
         }
         
+        if (!lessThan5XCoverage) {
+            if (acgt[charWMostOccs] != originalStr[i]) {
+                mutStr[i][mutCounter] = acgt[charWMostOccs];
+                mutCounter++;
+            }
+        }
+        
+        charWMostOccs = 0;
         mutCounter = 0;
     }
     /*
@@ -699,6 +741,7 @@ char *substr(const char *pstr, int start, int numchars)
     
     int charWMostOccs;//0,1,2,3 etc. -> A, C, G, T etc.
     int posInFoundGenomeCounter = 1;
+    int coverageCounter = 0;
     
     for (int i = 0; i<strlen(fileString)-1; i++) {
         for (int a = 0; a < kACGTLen; a++) {
@@ -719,7 +762,11 @@ char *substr(const char *pstr, int start, int numchars)
         if (i>0) {//0 is $ sign
             foundGenome[0][i] = acgt[charWMostOccs];
         }
-        for (int a = 0; a < kACGTLen; a++) { 
+        
+        for (int a = 0; a < kACGTLen; a++) {
+            if (posOccArray[a][i]>0) { //Character did match, at least 1x coverage was found
+                coverageCounter += posOccArray[a][i];
+            }
             if (charWMostOccs != a) {
                 if (posOccArray[a][i]>kHeteroAllowance) {
                     foundGenome[posInFoundGenomeCounter][i] = acgt[a];
@@ -727,7 +774,22 @@ char *substr(const char *pstr, int start, int numchars)
                 }
             }
         }
+        
+        if (coverageCounter<kLowestAllowedCoverage) { //Less than 5x coverage, report all matches
+            for (int a = 0; a < kACGTLen; a++) {
+                if (charWMostOccs != a) {
+                    if (posOccArray[a][i]>0) {  //Character did match, report it
+                        foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                        posInFoundGenomeCounter++;
+                    }
+                }
+            }
+        }
+        
+        coverageArray[i] = coverageCounter;
+//        printf("\n%i\n",coverageArray[i]);
         posInFoundGenomeCounter = 1;
+        coverageCounter = 0;
     }
     
     /* for (int i = 0; i<strlen(fileString)-1; i++) {
