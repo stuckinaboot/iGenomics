@@ -11,19 +11,21 @@
 
 //Find rev/forward for 0 mismatches. If some, choose at random. If none, add +1 and search. If none continues keep doing until you hit kmaxsubs
 
-#define kNumOfSubs 1
+#define kNumOfSubs 2
 
-#define kBytesForIndexer 10 
+//#define kBytesForIndexer 10 
 //#define kBytesForIndexer 1000 //Num of possible amount of rows to be in index kBytes*kMult = total num of chars possible in array
+#define kBytesForIndexer 100
+#define kMultipleToCountAt 100
 //#define kMultipleToCountAt 100
-#define kMultipleToCountAt 3   
+//#define kMultipleToCountAt 3   
 
 //#define kACGTLen 26
 //#define kACGTStr "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define kACGTLen 4
 #define kACGTStr "ACGT"
 
-#define kDebugON 1
+#define kDebugON -4//4 is For Ecoli.5k reads.txt
 
 #define kLowestAllowedCoverage 5
 #define kHeteroAllowance 1 //Greater than 1
@@ -32,7 +34,7 @@
 @interface ViewController : UIViewController {
     char *fileString;
     char *foundGenome[4];
-    int *coverageArray;
+    int coverageArray[kBytesForIndexer*kMultipleToCountAt];
     
     NSMutableArray *reedsArray;
     int posOccArray[kACGTLen][kBytesForIndexer*kMultipleToCountAt];

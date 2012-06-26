@@ -21,6 +21,9 @@
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
 		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
+		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
+		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
+		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
 		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
+		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
+		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
+		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,9 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
+				A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */,
+				A3F41AF01599E74D00DE95C9 /* reads.txt */,
 				A3971B06158A6342001626F7 /* reeds.txt */,
 				A3971B08158A634A001626F7 /* aseq.txt */,
 				A3971B0A158A635D001626F7 /* Chunks.m */,
@@ -175,6 +184,9 @@
 				A3971B09158A634A001626F7 /* aseq.txt in Resources */,
 				A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */,
 				A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */,
+				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
+				A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */,
+				A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

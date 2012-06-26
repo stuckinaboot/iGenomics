@@ -14,7 +14,7 @@
 
 - (id)init {
     self = [super init];
-    string = calloc(30, 1);
+    string = calloc(50, 1);
         matchedPositions = [[NSMutableArray alloc] init];
 //        subsAtMatchedPositionsArray = [[NSMutableArray alloc] init];
     return self;
