@@ -1,0 +1,204 @@
+//
+//  BWT_MutationFilter.m
+//  LabProject7
+//
+//  Created by Stuckinaboot Inc. on 9/15/12.
+//
+//
+
+#import "BWT_MutationFilter.h"
+
+@implementation BWT_MutationFilter
+
+- (void)setUpMutationFilterWithPosOccArray:(NSString*)poa andOriginalStr:(char*)originalSeq {
+    acgt = strdup(kACGTStr);
+    refStr = strdup(originalSeq);
+    fileStrLen = strlen(refStr);
+    
+    for (int i = 0; i<kACGTLen; i++) {
+        foundGenome[i] = calloc(fileStrLen,1);
+    }
+    
+    for (int i = 0; i<kACGTLen; i++) {
+        for (int x = 0; x<fileStrLen; x++) {
+            foundGenome[i][x] = ' ';
+        }
+    }
+    
+    strcpy(foundGenome[0], refStr);
+    
+    [self setUpPosOccArray:poa];
+}
+
+- (void)setUpPosOccArray:(NSString*)poa {
+   
+    //PosOccArray
+    NSArray* poArray = [poa componentsSeparatedByString:@"\n"];
+    NSString *myString;
+    char c;
+    
+    for (int x = 0; x<[poArray count]; x++) {
+        myString = [poArray objectAtIndex:x];
+        for (int i = 0; i<myString.length; i+=2) {
+            c = [myString characterAtIndex:i];
+            
+            int o = i/2.0;
+            posOccArray[x][o] = [[NSString stringWithFormat:@"%c",c] intValue];
+        }
+    }
+}
+
+- (void)buildOccTableWithUnravStr:(char*)unravStr {
+    
+    for (int i = 0; i<fileStrLen-1; i++) {
+        printf("  %c",unravStr[i]);
+    }
+    
+    printf("\n");
+    for (int i = 0; i<fileStrLen-1; i++) {
+        printf("  %i",i);
+    }
+    printf("\n");
+    for (int i = 0; i<kACGTLen; i++) {
+        printf("\n%c ",acgt[i]);
+        for (int a = 0; a<fileStrLen-1; a++) {
+            printf("%i  ",posOccArray[i][a]);
+        }
+    }
+    printf("\n\n");
+    
+    int charWMostOccs;//0,1,2,3 etc. -> A, C, G, T etc.
+    int posInFoundGenomeCounter = 1;
+    int coverageCounter = 0;
+    
+    for (int i = 0; i<fileStrLen-1; i++) {
+        for (int a = 0; a < kACGTLen; a++) {
+            
+            if (posOccArray[a][i]>0) { //Character did match, at least 1x coverage was found
+                coverageCounter += posOccArray[a][i];
+            }
+            
+            if (a == 0) {
+                charWMostOccs = 0;
+            }
+            else if (posOccArray[a][i]>posOccArray[charWMostOccs][i]) {//Greater
+                charWMostOccs = a;
+            }
+            else if (posOccArray[a][i] == posOccArray[charWMostOccs][i]) {
+                //Same = Pick at random
+                int r = arc4random()%2;//Pick between the 2
+                
+                if (r == 0) //Only change charWMostOccs if it is = to 0
+                    charWMostOccs = a;
+            }
+        }
+        
+        if (coverageCounter>0)
+            foundGenome[0][i] = acgt[charWMostOccs];
+        
+        for (int a = 0; a < kACGTLen; a++) {
+            if (charWMostOccs != a) {
+                if (posOccArray[a][i]>kHeteroAllowance) {
+                    foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                    posInFoundGenomeCounter++;
+                }
+            }
+        }
+        
+        coverageArray[i] = coverageCounter;
+        
+        if (coverageCounter<kLowestAllowedCoverage) { //Less than 5x coverage, report all matches
+            for (int a = 0; a < kACGTLen; a++) {
+                if (charWMostOccs != a) {
+                    if (posOccArray[a][i]>0) {  //Character did match, report it
+                        foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                        posInFoundGenomeCounter++;
+                    }
+                }
+            }
+        }
+        
+        posInFoundGenomeCounter = 1;
+        coverageCounter = 0;
+    }
+    
+    for (int i = 0; i<fileStrLen-1; i++) {
+        printf("  %c",foundGenome[0][i]);
+    }
+}
+
+- (NSArray*)findMutationsWithOriginalSeq:(char*)seq {
+    NSMutableArray *mutationsArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < strlen(seq); i++) {
+        if (coverageArray[i]>=kLowestAllowedCoverage) {
+            for (int x = 0; x<kACGTLen; x++) {
+                if (posOccArray[x][i] > kHeteroAllowance && acgt[x] != seq[i]) {
+                    [mutationsArray addObject:[NSNumber numberWithInt:i]];
+                    break;
+                }
+            }
+        }
+        else {//Smaller than lowest allowed coverage(5)
+            for (int x = 0; x<kACGTLen; x++) {
+                if (posOccArray[x][i] > 0 && acgt[x] != seq[i]) {
+                    [mutationsArray addObject:[NSNumber numberWithInt:i]];
+                    break;
+                }
+            }
+        }
+    }
+    
+    return (NSArray*)mutationsArray;
+}
+
+- (NSArray*)filterMutationsForDetails {
+    NSArray *mutations = [self findMutationsWithOriginalSeq:refStr];
+    
+    int mutPos;
+    
+    int mutCounter = 0;
+    
+    char *mutStr[mutations.count];
+    char *heteroStr[mutations.count];
+    
+    for (int i = 0; i<mutations.count; i++) {
+        mutStr[i] = calloc(kACGTLen, 1);
+        heteroStr[i] = calloc(kACGTLen, 1);
+        strcpy(heteroStr[i], "    ");
+    }
+    
+    
+    for (int i = 0; i<mutations.count; i++) {
+        int p = [[mutations objectAtIndex:i] intValue];
+        if (coverageArray[p]<kLowestAllowedCoverage) {
+            for (int a = 0; a<kACGTLen; a++) {
+                if (posOccArray[a][p]>0) {
+                    mutStr[i][mutCounter] = acgt[a];
+                    mutCounter++;
+                }
+            }
+        }
+        else {
+            for (int a = 0; a<kACGTLen; a++) {
+                if (posOccArray[a][p]>kHeteroAllowance) {
+                    mutStr[i][mutCounter] = acgt[a];
+                    mutCounter++;
+                    heteroStr[i][a] = acgt[a];
+                }
+            }
+        }
+        mutCounter = 0;
+    }
+    
+    printf("\n");
+    
+    for (int a = 0; a<mutations.count; a++) {
+        mutPos = [[mutations objectAtIndex:a] intValue];
+        printf("\n%i-%c-%s",mutPos,refStr[mutPos],mutStr[a]);//MutPos-Original-New//NEED TO DO HETERO (mutPos,originalStr[mutPos],mutStr[a],heteroStr[a])
+    }
+    
+    return NULL;
+    //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
+}
+@end

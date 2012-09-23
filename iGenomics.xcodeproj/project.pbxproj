@@ -16,11 +16,18 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
 		A3971B09158A634A001626F7 /* aseq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B08158A634A001626F7 /* aseq.txt */; };
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
 		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
+		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
+		A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */; };
+		A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */; };
+		A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */; };
+		A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2C160FA5F600BC2168 /* MySeq.txt */; };
+		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
 		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
 		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
@@ -41,12 +48,23 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A34168561607B3A800ADA90B /* BasicReeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicReeds.txt; sourceTree = "<group>"; };
 		A3971B06158A6342001626F7 /* reeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reeds.txt; sourceTree = "<group>"; };
 		A3971B08158A634A001626F7 /* aseq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aseq.txt; sourceTree = "<group>"; };
 		A3971B0A158A635D001626F7 /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunks.m; sourceTree = "<group>"; };
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
 		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
+		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
+		A3C0FD1E160FA5AC00BC2168 /* BWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT.m; sourceTree = "<group>"; };
+		A3C0FD20160FA5AC00BC2168 /* BWT_Maker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Maker.h; sourceTree = "<group>"; };
+		A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Maker.m; sourceTree = "<group>"; };
+		A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher.h; sourceTree = "<group>"; };
+		A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher.m; sourceTree = "<group>"; };
+		A3C0FD26160FA5AC00BC2168 /* BWT_MutationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_MutationFilter.h; sourceTree = "<group>"; };
+		A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_MutationFilter.m; sourceTree = "<group>"; };
+		A3C0FD2C160FA5F600BC2168 /* MySeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MySeq.txt; path = "../../Lab Projects/LabProject5/MySeq.txt"; sourceTree = "<group>"; };
+		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
 		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
@@ -110,21 +128,64 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3C0FD1C160FA5AC00BC2168 /* BWT */,
 				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
 				A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */,
 				A3F41AF01599E74D00DE95C9 /* reads.txt */,
 				A3971B06158A6342001626F7 /* reeds.txt */,
+				A3C0FD2C160FA5F600BC2168 /* MySeq.txt */,
 				A3971B08158A634A001626F7 /* aseq.txt */,
 				A3971B0A158A635D001626F7 /* Chunks.m */,
 				A3971B0B158A635D001626F7 /* Chunks.h */,
+				A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */,
 				A3971B0D158A6367001626F7 /* shortSeqBWT.txt */,
 				A3971B0F158A636F001626F7 /* sequenceBWT.txt */,
+				A34168561607B3A800ADA90B /* BasicReeds.txt */,
 				A310AF56158A5F7200E892AA /* iGenomics-Info.plist */,
 				A310AF57158A5F7200E892AA /* InfoPlist.strings */,
 				A310AF5A158A5F7200E892AA /* main.m */,
 				A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3C0FD1C160FA5AC00BC2168 /* BWT */ = {
+			isa = PBXGroup;
+			children = (
+				A3C0FD1D160FA5AC00BC2168 /* BWT.h */,
+				A3C0FD1E160FA5AC00BC2168 /* BWT.m */,
+				A3C0FD1F160FA5AC00BC2168 /* BWT_Maker */,
+				A3C0FD22160FA5AC00BC2168 /* BWT_Matcher */,
+				A3C0FD25160FA5AC00BC2168 /* BWT_MutationFilter */,
+			);
+			path = BWT;
+			sourceTree = "<group>";
+		};
+		A3C0FD1F160FA5AC00BC2168 /* BWT_Maker */ = {
+			isa = PBXGroup;
+			children = (
+				A3C0FD20160FA5AC00BC2168 /* BWT_Maker.h */,
+				A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */,
+			);
+			path = BWT_Maker;
+			sourceTree = "<group>";
+		};
+		A3C0FD22160FA5AC00BC2168 /* BWT_Matcher */ = {
+			isa = PBXGroup;
+			children = (
+				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
+				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
+			);
+			path = BWT_Matcher;
+			sourceTree = "<group>";
+		};
+		A3C0FD25160FA5AC00BC2168 /* BWT_MutationFilter */ = {
+			isa = PBXGroup;
+			children = (
+				A3C0FD26160FA5AC00BC2168 /* BWT_MutationFilter.h */,
+				A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */,
+			);
+			path = BWT_MutationFilter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +248,9 @@
 				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
 				A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */,
 				A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */,
+				A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */,
+				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
+				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +265,10 @@
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
 				A3971B0C158A635D001626F7 /* Chunks.m in Sources */,
+				A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */,
+				A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */,
+				A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */,
+				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
