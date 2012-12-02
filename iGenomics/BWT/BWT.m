@@ -28,11 +28,18 @@
     BWT_Matcher *bwt_Matcher = [[BWT_Matcher alloc] init];
     [bwt_Matcher setUpReedsFile:fileName fileExt:fileExt refStrBWT:bwtString andMaxSubs:maxSubs];
     
-    posOccArray = [bwt_Matcher getPosOccArray];
-    [bwtMutationFilter setUpMutationFilterWithPosOccArray:posOccArray andOriginalStr:originalString];
+    /*TEMPORARYAYYARYRYAYRYYARYYR ----------- WILL EVENTUALLY BE DONE IN SetUpReedsFile*/
+//    NSArray *reads = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"];
+//    for (int i = 0; i<reads.count;i++) {
+//        [bwt_Matcher insertionDeletionMatchesForQuery:(char*)[[reads objectAtIndex:i] UTF8String] andLastCol:bwtString];
+//    }
+    
+//    posOccArray = [bwt_Matcher getPosOccArray];
+    [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString andMatcher:bwt_Matcher];
+    
 }
 
 - (void)setUpMutationFilter {
-    [bwtMutationFilter setUpMutationFilterWithPosOccArray:posOccArray andOriginalStr:originalString];
+//    [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString];
 }
 @end

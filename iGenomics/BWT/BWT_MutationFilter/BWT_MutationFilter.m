@@ -10,7 +10,7 @@
 
 @implementation BWT_MutationFilter
 
-- (void)setUpMutationFilterWithPosOccArray:(NSString*)poa andOriginalStr:(char*)originalSeq {
+- (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher {
     acgt = strdup(kACGTStr);
     refStr = strdup(originalSeq);
     fileStrLen = strlen(refStr);
@@ -27,11 +27,12 @@
     
     strcpy(foundGenome[0], refStr);
     
-    [self setUpPosOccArray:poa];
+    matcher = myMatcher;
+    [self setUpPosOccArray];
 }
 
-- (void)setUpPosOccArray:(NSString*)poa {
-   
+- (void)setUpPosOccArray {
+   /*
     //PosOccArray
     NSArray* poArray = [poa componentsSeparatedByString:@"\n"];
     NSString *myString;
@@ -45,36 +46,24 @@
             int o = i/2.0;
             posOccArray[x][o] = [[NSString stringWithFormat:@"%c",c] intValue];
         }
+    }*/
+    for (int i = 0; i<kACGTLen+2; i++) {
+        for (int a = 0; a<fileStrLen-1; a++) {
+            posOccArray[i][a] = [matcher getPosOccArrayObj:i :a];
+        }
     }
 }
 
 - (void)buildOccTableWithUnravStr:(char*)unravStr {
-    
-    for (int i = 0; i<fileStrLen-1; i++) {
-        printf("  %c",unravStr[i]);
-    }
-    
-    printf("\n");
-    for (int i = 0; i<fileStrLen-1; i++) {
-        printf("  %i",i);
-    }
-    printf("\n");
-    for (int i = 0; i<kACGTLen; i++) {
-        printf("\n%c ",acgt[i]);
-        for (int a = 0; a<fileStrLen-1; a++) {
-            printf("%i  ",posOccArray[i][a]);
-        }
-    }
-    printf("\n\n");
     
     int charWMostOccs;//0,1,2,3 etc. -> A, C, G, T etc.
     int posInFoundGenomeCounter = 1;
     int coverageCounter = 0;
     
     for (int i = 0; i<fileStrLen-1; i++) {
-        for (int a = 0; a < kACGTLen; a++) {
+        for (int a = 0; a < kACGTLen+2; a++) {
             
-            if (posOccArray[a][i]>0) { //Character did match, at least 1x coverage was found
+            if (posOccArray[a][i]>0 && a < kACGTLen+1) { //Character did match, at least 1x coverage was found, and not an insertion
                 coverageCounter += posOccArray[a][i];
             }
             
@@ -93,13 +82,23 @@
             }
         }
         
-        if (coverageCounter>0)
-            foundGenome[0][i] = acgt[charWMostOccs];
-        
-        for (int a = 0; a < kACGTLen; a++) {
+        if (coverageCounter>0) {
+            if (charWMostOccs<kACGTLen)
+                foundGenome[0][i] = acgt[charWMostOccs];
+            else if (charWMostOccs == kACGTLen)
+                foundGenome[0][i] = kDelMarker;
+            /*else if (charWMostOccs == kACGTLen+1)
+                foundGenome[0][i] = kInsMarker;*/
+        }
+        for (int a = 0; a < kACGTLen+2; a++) {
             if (charWMostOccs != a) {
                 if (posOccArray[a][i]>kHeteroAllowance) {
-                    foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                    if (a<kACGTLen)
+                        foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                    else if (a == kACGTLen)
+                        foundGenome[posInFoundGenomeCounter][i] = kDelMarker;
+                    /*else if (a == kACGTLen+1)
+                        foundGenome[posInFoundGenomeCounter][i] = kInsMarker;*/
                     posInFoundGenomeCounter++;
                 }
             }
@@ -108,10 +107,15 @@
         coverageArray[i] = coverageCounter;
         
         if (coverageCounter<kLowestAllowedCoverage) { //Less than 5x coverage, report all matches
-            for (int a = 0; a < kACGTLen; a++) {
+            for (int a = 0; a < kACGTLen+2; a++) {
                 if (charWMostOccs != a) {
                     if (posOccArray[a][i]>0) {  //Character did match, report it
-                        foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                        if (a<kACGTLen)
+                            foundGenome[posInFoundGenomeCounter][i] = acgt[a];
+                        else if (a == kACGTLen)
+                            foundGenome[posInFoundGenomeCounter][i] = kDelMarker;
+                        /*else if (a == kACGTLen+1)
+                            foundGenome[posInFoundGenomeCounter][i] = kInsMarker;*/
                         posInFoundGenomeCounter++;
                     }
                 }
@@ -122,10 +126,27 @@
         coverageCounter = 0;
     }
     
-    for (int i = 0; i<fileStrLen-1; i++) {
-        printf("  %c",foundGenome[0][i]);
+    if (kOnlyPrintFoundGenome == 0) {
+        for (int i = 0; i<fileStrLen-1; i++) {
+            printf("\nP: %i |R: %c F: %c|  ",i,unravStr[i],foundGenome[0][i]);
+            for (int t = 0; t<kACGTLen+2; t++) {
+                if (t<kACGTLen)
+                    printf("|%c: %i|  ",acgt[t],posOccArray[t][i]);
+                else if (t == kACGTLen)//Deletion (-) THIS IS WHERE IN/DELS ARE DISPLAYED
+                    printf("|%c: %i|  ",kDelMarker,posOccArray[t][i]);
+                else if (t == kACGTLen+1)//Insertion (+)
+                    printf("|%c: %i|",kInsMarker,posOccArray[t][i]);
+            }
+        }
+    }
+    if (kOnlyPrintFoundGenome>0) {
+        printf("\n");
+        for (int i = 0; i<fileStrLen-1; i++) {
+            printf("%c",foundGenome[0][i]);
+        }
     }
 }
+
 
 - (NSArray*)findMutationsWithOriginalSeq:(char*)seq {
     NSMutableArray *mutationsArray = [[NSMutableArray alloc] init];
@@ -193,11 +214,12 @@
     
     printf("\n");
     
-    for (int a = 0; a<mutations.count; a++) {
-        mutPos = [[mutations objectAtIndex:a] intValue];
-        printf("\n%i-%c-%s",mutPos,refStr[mutPos],mutStr[a]);//MutPos-Original-New//NEED TO DO HETERO (mutPos,originalStr[mutPos],mutStr[a],heteroStr[a])
+    if (kOnlyPrintFoundGenome == 0) {
+        for (int a = 0; a<mutations.count; a++) {
+            mutPos = [[mutations objectAtIndex:a] intValue];
+            printf("\n%i-%c-%s",mutPos,refStr[mutPos],mutStr[a]);//MutPos-Original-New//NEED TO DO HETERO (mutPos,originalStr[mutPos],mutStr[a],heteroStr[a])
+        }
     }
-    
     return NULL;
     //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
 }

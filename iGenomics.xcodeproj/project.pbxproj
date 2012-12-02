@@ -16,18 +16,32 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A33A7C161650397B00E39A6C /* ED_Info.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C151650397B00E39A6C /* ED_Info.m */; };
+		A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */; };
+		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
+		A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */; };
 		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
+		A34734CF166AC18500C4271E /* PreSequencing.m in Sources */ = {isa = PBXBuildFile; fileRef = A34734CE166AC18500C4271E /* PreSequencing.m */; };
+		A34734D7166AC56200C4271E /* FileChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = A34734D6166AC56200C4271E /* FileChooser.m */; };
+		A34734DA166AD5F600C4271E /* DefaultReadsList.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34734D9166AD5F600C4271E /* DefaultReadsList.txt */; };
+		A34734DC166AD60400C4271E /* DefualtSequencesList.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34734DB166AD60400C4271E /* DefualtSequencesList.txt */; };
+		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
+		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
 		A3971B09158A634A001626F7 /* aseq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B08158A634A001626F7 /* aseq.txt */; };
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
 		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
+		A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4C1665996E0023E961 /* TestRead.txt */; };
+		A3A18B5016659C320023E961 /* TestSeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4F16659C320023E961 /* TestSeq.txt */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
 		A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */; };
 		A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */; };
 		A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */; };
 		A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2C160FA5F600BC2168 /* MySeq.txt */; };
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
+		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
+		A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
 		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
 		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
@@ -48,13 +62,31 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
+		A33A7C151650397B00E39A6C /* ED_Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ED_Info.m; sourceTree = "<group>"; };
+		A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = InDelTestReads.txt; path = BWT/InDelTestReads.txt; sourceTree = "<group>"; };
+		A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InDelTestSequence.txt; sourceTree = "<group>"; };
+		A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher_InsertionDeletion_InsertionHolder.h; sourceTree = "<group>"; };
+		A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher_InsertionDeletion_InsertionHolder.m; sourceTree = "<group>"; };
 		A34168561607B3A800ADA90B /* BasicReeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicReeds.txt; sourceTree = "<group>"; };
+		A34734CD166AC18500C4271E /* PreSequencing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreSequencing.h; sourceTree = "<group>"; };
+		A34734CE166AC18500C4271E /* PreSequencing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreSequencing.m; sourceTree = "<group>"; };
+		A34734D5166AC56200C4271E /* FileChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileChooser.h; sourceTree = "<group>"; };
+		A34734D6166AC56200C4271E /* FileChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileChooser.m; sourceTree = "<group>"; };
+		A34734D9166AD5F600C4271E /* DefaultReadsList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultReadsList.txt; sourceTree = "<group>"; };
+		A34734DB166AD60400C4271E /* DefualtSequencesList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefualtSequencesList.txt; sourceTree = "<group>"; };
+		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
+		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
+		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
+		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3971B06158A6342001626F7 /* reeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reeds.txt; sourceTree = "<group>"; };
 		A3971B08158A634A001626F7 /* aseq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aseq.txt; sourceTree = "<group>"; };
 		A3971B0A158A635D001626F7 /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunks.m; sourceTree = "<group>"; };
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
 		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
+		A3A18B4C1665996E0023E961 /* TestRead.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead.txt; sourceTree = "<group>"; };
+		A3A18B4F16659C320023E961 /* TestSeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestSeq.txt; path = BWT/BWT_Matcher/TestSeq.txt; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
 		A3C0FD1E160FA5AC00BC2168 /* BWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT.m; sourceTree = "<group>"; };
 		A3C0FD20160FA5AC00BC2168 /* BWT_Maker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Maker.h; sourceTree = "<group>"; };
@@ -65,6 +97,8 @@
 		A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_MutationFilter.m; sourceTree = "<group>"; };
 		A3C0FD2C160FA5F600BC2168 /* MySeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MySeq.txt; path = "../../Lab Projects/LabProject5/MySeq.txt"; sourceTree = "<group>"; };
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
+		A3D81EBA1666EF3700BD5C07 /* newreads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newreads.txt; path = "../../../Downloads/snpchallenge1 3/newreads.txt"; sourceTree = "<group>"; };
+		A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NewEcoli.5k.txt; path = "../../../Downloads/snpchallenge1 3/NewEcoli.5k.txt"; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
 		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
@@ -114,12 +148,10 @@
 		A310AF54158A5F7200E892AA /* iGenomics */ = {
 			isa = PBXGroup;
 			children = (
-				A310AF5D158A5F7200E892AA /* AppDelegate.h */,
-				A310AF5E158A5F7200E892AA /* AppDelegate.m */,
-				A310AF60158A5F7200E892AA /* ViewController.h */,
-				A310AF61158A5F7200E892AA /* ViewController.m */,
-				A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */,
-				A310AF66158A5F7200E892AA /* ViewController_iPad.xib */,
+				A34734D3166AC19D00C4271E /* Delegate */,
+				A34734D2166AC19600C4271E /* HomeScreen */,
+				A34734D1166AC18900C4271E /* PreSequencing */,
+				A34734D4166AC1AB00C4271E /* XIBs */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
 			);
 			path = iGenomics;
@@ -128,15 +160,15 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A33A7C1C1650462300E39A6C /* InDel Test */,
 				A3C0FD1C160FA5AC00BC2168 /* BWT */,
 				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
 				A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */,
-				A3F41AF01599E74D00DE95C9 /* reads.txt */,
 				A3971B06158A6342001626F7 /* reeds.txt */,
 				A3C0FD2C160FA5F600BC2168 /* MySeq.txt */,
 				A3971B08158A634A001626F7 /* aseq.txt */,
-				A3971B0A158A635D001626F7 /* Chunks.m */,
 				A3971B0B158A635D001626F7 /* Chunks.h */,
+				A3971B0A158A635D001626F7 /* Chunks.m */,
 				A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */,
 				A3971B0D158A6367001626F7 /* shortSeqBWT.txt */,
 				A3971B0F158A636F001626F7 /* sequenceBWT.txt */,
@@ -147,6 +179,99 @@
 				A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A33A7C181650398200E39A6C /* In/Del Matcher */ = {
+			isa = PBXGroup;
+			children = (
+				A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */,
+				A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */,
+				A33A7C221650B5A000E39A6C /* Insertion Holder */,
+				A33A7C191650399200E39A6C /* EditDistance */,
+			);
+			name = "In/Del Matcher";
+			sourceTree = "<group>";
+		};
+		A33A7C191650399200E39A6C /* EditDistance */ = {
+			isa = PBXGroup;
+			children = (
+				A3645BC2162CA2FB00983291 /* EditDistance.h */,
+				A3645BC3162CA2FB00983291 /* EditDistance.m */,
+				A33A7C141650397B00E39A6C /* ED_Info.h */,
+				A33A7C151650397B00E39A6C /* ED_Info.m */,
+			);
+			name = EditDistance;
+			sourceTree = "<group>";
+		};
+		A33A7C1C1650462300E39A6C /* InDel Test */ = {
+			isa = PBXGroup;
+			children = (
+				A3A18B4C1665996E0023E961 /* TestRead.txt */,
+				A3A18B4F16659C320023E961 /* TestSeq.txt */,
+				A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */,
+				A3D81EBA1666EF3700BD5C07 /* newreads.txt */,
+				A3F41AF01599E74D00DE95C9 /* reads.txt */,
+				A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */,
+				A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */,
+			);
+			name = "InDel Test";
+			sourceTree = "<group>";
+		};
+		A33A7C221650B5A000E39A6C /* Insertion Holder */ = {
+			isa = PBXGroup;
+			children = (
+				A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */,
+				A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */,
+			);
+			name = "Insertion Holder";
+			sourceTree = "<group>";
+		};
+		A34734D1166AC18900C4271E /* PreSequencing */ = {
+			isa = PBXGroup;
+			children = (
+				A34734CD166AC18500C4271E /* PreSequencing.h */,
+				A34734CE166AC18500C4271E /* PreSequencing.m */,
+				A34734D8166AC56600C4271E /* FileChooser */,
+			);
+			name = PreSequencing;
+			sourceTree = "<group>";
+		};
+		A34734D2166AC19600C4271E /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF60158A5F7200E892AA /* ViewController.h */,
+				A310AF61158A5F7200E892AA /* ViewController.m */,
+			);
+			name = HomeScreen;
+			sourceTree = "<group>";
+		};
+		A34734D3166AC19D00C4271E /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF5D158A5F7200E892AA /* AppDelegate.h */,
+				A310AF5E158A5F7200E892AA /* AppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		A34734D4166AC1AB00C4271E /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */,
+				A310AF66158A5F7200E892AA /* ViewController_iPad.xib */,
+			);
+			name = XIBs;
+			sourceTree = "<group>";
+		};
+		A34734D8166AC56600C4271E /* FileChooser */ = {
+			isa = PBXGroup;
+			children = (
+				A34734D5166AC56200C4271E /* FileChooser.h */,
+				A34734D6166AC56200C4271E /* FileChooser.m */,
+				A34734D9166AD5F600C4271E /* DefaultReadsList.txt */,
+				A34734DB166AD60400C4271E /* DefualtSequencesList.txt */,
+			);
+			name = FileChooser;
 			sourceTree = "<group>";
 		};
 		A3C0FD1C160FA5AC00BC2168 /* BWT */ = {
@@ -175,6 +300,7 @@
 			children = (
 				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
 				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
+				A33A7C181650398200E39A6C /* In/Del Matcher */,
 			);
 			path = BWT_Matcher;
 			sourceTree = "<group>";
@@ -251,6 +377,14 @@
 				A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */,
 				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
+				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
+				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
+				A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */,
+				A3A18B5016659C320023E961 /* TestSeq.txt in Resources */,
+				A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */,
+				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
+				A34734DA166AD5F600C4271E /* DefaultReadsList.txt in Resources */,
+				A34734DC166AD60400C4271E /* DefualtSequencesList.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +403,12 @@
 				A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */,
 				A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */,
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
+				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
+				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
+				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,
+				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
+				A34734CF166AC18500C4271E /* PreSequencing.m in Sources */,
+				A34734D7166AC56200C4271E /* FileChooser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

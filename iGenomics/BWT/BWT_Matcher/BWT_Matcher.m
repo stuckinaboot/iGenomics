@@ -10,6 +10,8 @@
 
 @implementation BWT_Matcher
 
+@synthesize kBytesForIndexer, kMultipleToCountAt;
+
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs {
     NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
     reedsArray = [[NSArray alloc] initWithArray:[reedsString componentsSeparatedByString:kReedsArraySeperationStr]];
@@ -19,6 +21,9 @@
     maxSubs = subs;
     
     fileStrLen = strlen(refStrBWT);
+    
+    //kBytesForIndexer and kMultipleToCountAt Are Set here
+    [self setUpBytesForIndexerAndMultipleToCountAt:fileStrLen];
     
     [self setUpNumberOfOccurencesArray];
     
@@ -41,9 +46,12 @@
         }
     }
     
+    insertionsArray = [[NSMutableArray alloc] init];
+    
     char *originalStr = calloc(fileStrLen, 1);
     strcpy(originalStr, [self unravelCharWithLastColumn:lastCol firstColumn:firstCol]);
     
+//    [self matchForJustIndels:reedsArray withLastCol:lastCol];
     [self matchReedsArray:reedsArray withLastCol:lastCol andFirstCol:firstCol];
 }
 
@@ -75,6 +83,17 @@
             [self updatePosOccsArrayWithRange:NSMakeRange(abs(a), strlen(reed)) andOriginalStr:originalStr andQuery:[self getReverseComplementForSeq:reed]];
     }
     
+}
+
+- (void)matchForJustIndels:(NSArray*)array withLastCol:(char*)lastCol {
+    for (int i = 0; i<array.count; i++) {
+        ED_Info *info = [[ED_Info alloc] init];
+        NSArray *arr = [self insertionDeletionMatchesForQuery:(char*)[[array objectAtIndex:i] UTF8String] andLastCol:lastCol];
+        info = (arr.count>0) ? [arr objectAtIndex:0] : info;
+            
+        if (info.position>=0) 
+            printf("\n%i",info.position);
+    }
 }
 
 #pragma UNRAVEL
@@ -215,6 +234,12 @@
     
     return (NSArray*)positionsInBWTArray;
 }
+
+- (void)setUpBytesForIndexerAndMultipleToCountAt:(int)seqLen {
+    kBytesForIndexer = ceil(sqrt(seqLen));
+    kMultipleToCountAt = kBytesForIndexer;
+}
+
 - (void)setUpNumberOfOccurencesArray {
     int len = fileStrLen;
     
@@ -257,7 +282,7 @@
 
 
 - (int)whichChar:(char)c inContainer:(char*)container {
-    int which = 0;
+    int which = -1;//Not ACGT
     for (int i = 0; i<kACGTLen; i++) {
         if (acgt[i] == c) {
             which = i;
@@ -281,9 +306,6 @@
     if (amtOfSubs == 0) {
          return (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
     }
-    
-    if (strcmp(query,"ACT") == 0)
-        printf("");
     
     int numOfChunks = amtOfSubs+1;
     int sizeOfChunks = strlen(query)/numOfChunks;
@@ -468,6 +490,13 @@
 - (void)updatePosOccsArrayWithRange:(NSRange)range andOriginalStr:(char*)originalStr andQuery:(char*)query {
     for (int i = range.location; i<range.length+range.location; i++) {
         int c = [self whichChar:query[i-range.location] inContainer:acgt];
+        
+        if (c == -1) {//INS --- Not positive though
+            if (query[i-range.location] == kDelMarker) {
+                c = kACGTLen+1;
+            }
+        }
+        
         posOccArray[c][i]++;
         
     }
@@ -481,6 +510,96 @@ char *substr(const char *pstr, int start, int numchars)
     return pnew;
 }
 
+//INSERTION/DELETION
+- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol {
+//    Create first Column
+    char *firstCol = calloc(fileStrLen, 1);
+    firstCol[0] = '$';
+    
+    int pos = 1;
+    for (int x = 0; x<kACGTLen; x++) {
+        for (int i = 0; i<acgtTotalOccs[x]; i++) {
+            firstCol[pos] = acgt[x];
+            pos++;
+        }
+    }
+//    Create BWT Matcher for In/Del
+    BWT_Matcher_InsertionDeletion *bwtIDMatcher = [[BWT_Matcher_InsertionDeletion alloc] init];
+    
+//    Split read into chunks
+    int numOfChunks = kMaxEditDist+1;
+    int queryLength = strlen(query);
+    int sizeOfChunks = queryLength/numOfChunks;
+    
+    if (fmod(queryLength, 2) != 0) {
+        //Odd
+        queryLength++;
+        sizeOfChunks = (float)queryLength/numOfChunks;
+    }
+    
+//    Fill Chunks with their respective string, and then use exact match to match the chunks to the reference
+    int start = 0;
+    NSMutableArray *chunkArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i<numOfChunks; i++) {
+        Chunks *chunk = [[Chunks alloc] init];
+        if (i < numOfChunks-1) {
+            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks),"\0"));
+        }
+        else {
+            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
+        }
+        chunk.matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunk.string withLastCol:lastCol andFirstCol:firstCol];
+        [chunkArray addObject:chunk];
+        start += sizeOfChunks;
+    }
+    
+//  Find In/Del by using the matched positions of the chunks
+    NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andChunks:chunkArray andMaximumEditDist:kMaxEditDist]];
+    
+    for (int i = 0; i<[matchedInDels count]; i++) {
+        ED_Info *info = [matchedInDels objectAtIndex:i];
+        int aLen = strlen(info.gappedA);
+        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
+        
+        for (int a = 0; a<aLen; a++) {
+            if (info.gappedA[a] == kDelMarker) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
+                BOOL posPrevListed = FALSE;
+                for (int o = 0; o<[insertionsArray count]; o++) {
+                    BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [insertionsArray objectAtIndex:o];
+                    if (a == iH.position) {
+                        [iH appendChar:info.gappedB[a]];
+                        posPrevListed = TRUE;
+                        break;
+                    }
+                }
+                if (!posPrevListed) {
+                    BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
+                    [iH setUp];
+                    [iH appendChar:info.gappedB[a]];
+                    [insertionsArray addObject:iH];
+                }
+            }
+        }
+//        Go through gapped B checking for deletions
+        for (int a = 0; a<strlen(info.gappedB); a++) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
+            if (info.gappedB[a] == kDelMarker) {
+                posOccArray[kACGTLen][a]++;
+            }
+        }
+    }
+    
+    if (kDebugPrintInsertions>0) {
+        printf("\nINSERTIONS:");
+        for (int i = 0; i<insertionsArray.count; i++) {
+            BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [insertionsArray objectAtIndex:i];
+            printf("\nPOS: %i, CHAR(S): %s",iH.position,iH.c);
+        }
+    }
+    
+    return matchedInDels;
+}
+//INSERTION/DELETION END
 
 - (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos {
     int pivotPos = (arc4random() % (endpos-startPos))+startPos;//rand%amtofthings in array
@@ -532,16 +651,17 @@ char *substr(const char *pstr, int start, int numchars)
     return revSeq;
 }
 
-- (NSString*)getPosOccArray {
-    NSMutableString* myString = [[NSMutableString alloc] init];
+- (int)getPosOccArrayObj:(int)x:(int)y {
+    /*NSMutableString* myString = [[NSMutableString alloc] init];
     
-    for (int i = 0; i<kACGTLen; i++) {
+    for (int i = 0; i<kACGTLen+2; i++) {
         for (int a = 0; a<kBytesForIndexer*kMultipleToCountAt; a++) {
-            (i == kACGTLen-1 && a == kBytesForIndexer*kMultipleToCountAt) ? [myString appendFormat:@"%i",posOccArray[i][a]] : [myString appendFormat:@"%i,",posOccArray[i][a]];
+            (i == (kACGTLen-1)+2 && a == kBytesForIndexer*kMultipleToCountAt) ? [myString appendFormat:@"%i",posOccArray[i][a]] : [myString appendFormat:@"%i,",posOccArray[i][a]];
         }
         [myString appendFormat:@"\n"];
     }
     
-    return myString;
+    return myString;*/
+    return posOccArray[x][y];
 }
 @end

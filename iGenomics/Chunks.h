@@ -12,10 +12,8 @@
     int numOfSubs;
     char *string;
     NSMutableArray *matchedPositions;
-//    NSMutableArray *subsAtMatchedPositionsArray;
 }
 @property (nonatomic) char* string;
 @property (nonatomic) int numOfSubs;
 @property (nonatomic, retain) NSMutableArray *matchedPositions;
-//@property (nonatomic, retain) NSMutableArray *subsAtMatchedPositionsArray;
 @end

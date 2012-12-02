@@ -19,15 +19,31 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
+    
     bwt = [[BWT alloc] init];
-    [bwt setUpForRefFile:@"MySeq" fileExt:@"txt"];
-    [bwt matchReedsFile:@"reedsFile" fileExt:@"txt" withNumOfSubs:1];
+    [bwt setUpForRefFile:@"NewEcoli.5k" fileExt:@"txt"];
+    [bwt matchReedsFile:@"reads" fileExt:@"txt" withNumOfSubs:2];
     
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
+    if (kPrintIndevelopmentVars>0) {
+//        char *a = strdup(" ATA");
+//        char *b = strdup(" GATTACA");
+    
+//        EditDistance *ed = [[EditDistance alloc] init];
+//        [ed computeEditDistanceToReturnPositions:a andB:b lenA:strlen(a) andLenB:strlen(b)];
+//        [ed computeEditDistance:a andB:b lenA:strlen(a) andLenB:strlen(b) andEditDistForCell:CGPointMake(0, 0)];
+//        printf("\nEDITDISTANCE: %i\ncharA: %s\ncharB: %s",ed.distance,ed.charA,ed.charB);
+//        printf("\nEDIT DIST:%i",[ed simpleEditDistance:a andB:b]);
+    }
+    
     [super viewDidLoad];
+}
+
+- (IBAction)startSequencingStep1:(id)sender {
+    [self presentModalViewController:preSequencing animated:YES];
 }
 
 - (void)viewDidUnload

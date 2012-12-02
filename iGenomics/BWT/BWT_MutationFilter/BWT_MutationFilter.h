@@ -9,20 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "BWT_Matcher.h"
 
+//Format- P: R: F: #A: #C: #G: #T:
+//     Pos: Real: Found: # of A: # of C: # of G: # of T:
+
+#define kOnlyPrintFoundGenome 0
+
 @interface BWT_MutationFilter : NSObject {
-    int posOccArray[kACGTLen][kBytesForIndexer*kMultipleToCountAt];
-    int coverageArray[kBytesForIndexer*kMultipleToCountAt];
+    BWT_Matcher *matcher;
     
-    char *foundGenome[kACGTLen];
+    int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of Del/In
+    int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
+    
+    char *foundGenome[kACGTLen+2];
     char *refStr;
     
     char *acgt;
     
     int fileStrLen;
 }
-
-- (void)setUpMutationFilterWithPosOccArray:(NSString*)poa andOriginalStr:(char*)originalSeq;
-- (void)setUpPosOccArray:(NSString*)poa;
+- (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher;
+//- (void)setUpMutationFilterWithPosOccArray:(NSString*)poa andOriginalStr:(char*)originalSeq;
+- (void)setUpPosOccArray;
 
 - (void)buildOccTableWithUnravStr:(char*)unravStr;
 - (NSArray*)filterMutationsForDetails;
