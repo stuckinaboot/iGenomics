@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kMaxChunkSize 100
+
 @interface Chunks : NSObject {
     int numOfSubs;
     char *string;

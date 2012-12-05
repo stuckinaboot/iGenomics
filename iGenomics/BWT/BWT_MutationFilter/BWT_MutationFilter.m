@@ -15,11 +15,11 @@
     refStr = strdup(originalSeq);
     fileStrLen = strlen(refStr);
     
-    for (int i = 0; i<kACGTLen; i++) {
+    for (int i = 0; i<kACGTLen+2; i++) {
         foundGenome[i] = calloc(fileStrLen,1);
     }
     
-    for (int i = 0; i<kACGTLen; i++) {
+    for (int i = 0; i<kACGTLen+2; i++) {
         for (int x = 0; x<fileStrLen; x++) {
             foundGenome[i][x] = ' ';
         }
@@ -90,7 +90,7 @@
             /*else if (charWMostOccs == kACGTLen+1)
                 foundGenome[0][i] = kInsMarker;*/
         }
-        for (int a = 0; a < kACGTLen+2; a++) {
+        for (int a = 0; a < kACGTLen+1; a++) {
             if (charWMostOccs != a) {
                 if (posOccArray[a][i]>kHeteroAllowance) {
                     if (a<kACGTLen)
@@ -107,7 +107,7 @@
         coverageArray[i] = coverageCounter;
         
         if (coverageCounter<kLowestAllowedCoverage) { //Less than 5x coverage, report all matches
-            for (int a = 0; a < kACGTLen+2; a++) {
+            for (int a = 0; a < kACGTLen+1; a++) {
                 if (charWMostOccs != a) {
                     if (posOccArray[a][i]>0) {  //Character did match, report it
                         if (a<kACGTLen)
@@ -184,8 +184,8 @@
     char *heteroStr[mutations.count];
     
     for (int i = 0; i<mutations.count; i++) {
-        mutStr[i] = calloc(kACGTLen, 1);
-        heteroStr[i] = calloc(kACGTLen, 1);
+        mutStr[i] = calloc(kACGTLen+2, 1);
+        heteroStr[i] = calloc(kACGTLen+2, 1);
         strcpy(heteroStr[i], "    ");
     }
     
@@ -193,7 +193,7 @@
     for (int i = 0; i<mutations.count; i++) {
         int p = [[mutations objectAtIndex:i] intValue];
         if (coverageArray[p]<kLowestAllowedCoverage) {
-            for (int a = 0; a<kACGTLen; a++) {
+            for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>0) {
                     mutStr[i][mutCounter] = acgt[a];
                     mutCounter++;
@@ -201,7 +201,7 @@
             }
         }
         else {
-            for (int a = 0; a<kACGTLen; a++) {
+            for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>kHeteroAllowance) {
                     mutStr[i][mutCounter] = acgt[a];
                     mutCounter++;

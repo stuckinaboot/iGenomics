@@ -20,6 +20,9 @@
 - (void)viewDidLoad
 {
     
+//    EditDistance *ed = [[EditDistance alloc] init];
+//    [ed editDistanceForInfo:"GATTACATTCCA" andB:"GATACATTTCCA" andChunkNum:0 andChunkSize:5 andMaxED:5];
+    
     bwt = [[BWT alloc] init];
     [bwt setUpForRefFile:@"NewEcoli.5k" fileExt:@"txt"];
     [bwt matchReedsFile:@"reads" fileExt:@"txt" withNumOfSubs:2];

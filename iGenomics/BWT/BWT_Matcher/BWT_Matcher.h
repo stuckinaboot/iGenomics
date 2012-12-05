@@ -15,7 +15,7 @@
 //CONSTANTS
 #define kReedsArraySeperationStr @"\n"
 
-#define kMaxBytesForIndexer 100
+#define kMaxBytesForIndexer 101
 #define kMaxMultipleToCountAt 100
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50

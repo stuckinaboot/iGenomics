@@ -42,6 +42,8 @@
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
 		A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */; };
+		A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */; };
+		A3DE20A5166EC3DA00F23AD8 /* new.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
 		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
 		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
@@ -99,6 +101,8 @@
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
 		A3D81EBA1666EF3700BD5C07 /* newreads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newreads.txt; path = "../../../Downloads/snpchallenge1 3/newreads.txt"; sourceTree = "<group>"; };
 		A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NewEcoli.5k.txt; path = "../../../Downloads/snpchallenge1 3/NewEcoli.5k.txt"; sourceTree = "<group>"; };
+		A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = New.Ecoli.5k.txt; path = ../../../Downloads/snps2/New.Ecoli.5k.txt; sourceTree = "<group>"; };
+		A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = new.reads.txt; path = ../../../Downloads/snps2/new.reads.txt; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
 		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 		A33A7C1C1650462300E39A6C /* InDel Test */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
+				A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */,
 				A3A18B4C1665996E0023E961 /* TestRead.txt */,
 				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */,
@@ -385,6 +391,8 @@
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
 				A34734DA166AD5F600C4271E /* DefaultReadsList.txt in Resources */,
 				A34734DC166AD60400C4271E /* DefualtSequencesList.txt in Resources */,
+				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
+				A3DE20A5166EC3DA00F23AD8 /* new.reads.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

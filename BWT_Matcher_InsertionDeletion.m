@@ -106,7 +106,7 @@
         }
         else if (cNum>0) {
             matchedPos = matchedPos-(cNum*cSize);
-            matchedPos = matchedPos + (edInfo.position-maxEditDist) + 1;
+            matchedPos = matchedPos + (edInfo.position-maxEditDist-edInfo.distance) + 1;
 //                    Check To See If Match Has Already been recorded
             for (int i = 0; i<[matchedInDels count]; i++) {
                 ED_Info *edI = [matchedInDels objectAtIndex:i];

@@ -51,8 +51,8 @@
     char *originalStr = calloc(fileStrLen, 1);
     strcpy(originalStr, [self unravelCharWithLastColumn:lastCol firstColumn:firstCol]);
     
-//    [self matchForJustIndels:reedsArray withLastCol:lastCol];
-    [self matchReedsArray:reedsArray withLastCol:lastCol andFirstCol:firstCol];
+    [self matchForJustIndels:reedsArray withLastCol:lastCol];
+//    [self matchReedsArray:reedsArray withLastCol:lastCol andFirstCol:firstCol];
 }
 
 - (void)matchReedsArray:(NSArray *)array withLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
@@ -91,8 +91,8 @@
         NSArray *arr = [self insertionDeletionMatchesForQuery:(char*)[[array objectAtIndex:i] UTF8String] andLastCol:lastCol];
         info = (arr.count>0) ? [arr objectAtIndex:0] : info;
             
-        if (info.position>=0) 
-            printf("\n%i",info.position);
+//        if (info.position>=0) 
+//            printf("\n%i",info.position);
     }
 }
 
@@ -488,11 +488,15 @@
 }
 
 - (void)updatePosOccsArrayWithRange:(NSRange)range andOriginalStr:(char*)originalStr andQuery:(char*)query {
+    int defaultAddOne = 0;
+    if (query[0] == ' ') {//possible beginning of a gapped string
+        defaultAddOne = 1;
+    }
     for (int i = range.location; i<range.length+range.location; i++) {
-        int c = [self whichChar:query[i-range.location] inContainer:acgt];
+        int c = [self whichChar:query[i-range.location+defaultAddOne] inContainer:acgt];
         
         if (c == -1) {//INS --- Not positive though
-            if (query[i-range.location] == kDelMarker) {
+            if (query[i-range.location+defaultAddOne] == kDelMarker) {
                 c = kACGTLen+1;
             }
         }
@@ -547,8 +551,13 @@ char *substr(const char *pstr, int start, int numchars)
             strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks),"\0"));
         }
         else {
-            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
+            if (queryLength == sizeOfChunks)
+                strcpy(chunk.string, strcat(query,"\0"));
+            else
+                strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
+            
         }
+        
         chunk.matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunk.string withLastCol:lastCol andFirstCol:firstCol];
         [chunkArray addObject:chunk];
         start += sizeOfChunks;
@@ -588,7 +597,7 @@ char *substr(const char *pstr, int start, int numchars)
             }
         }
     }
-    
+
     if (kDebugPrintInsertions>0) {
         printf("\nINSERTIONS:");
         for (int i = 0; i<insertionsArray.count; i++) {
@@ -652,16 +661,6 @@ char *substr(const char *pstr, int start, int numchars)
 }
 
 - (int)getPosOccArrayObj:(int)x:(int)y {
-    /*NSMutableString* myString = [[NSMutableString alloc] init];
-    
-    for (int i = 0; i<kACGTLen+2; i++) {
-        for (int a = 0; a<kBytesForIndexer*kMultipleToCountAt; a++) {
-            (i == (kACGTLen-1)+2 && a == kBytesForIndexer*kMultipleToCountAt) ? [myString appendFormat:@"%i",posOccArray[i][a]] : [myString appendFormat:@"%i,",posOccArray[i][a]];
-        }
-        [myString appendFormat:@"\n"];
-    }
-    
-    return myString;*/
     return posOccArray[x][y];
 }
 @end
