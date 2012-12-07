@@ -132,7 +132,14 @@
 }
 
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED {
+    
     int lenA = strlen(a), lenB = strlen(b);
+    
+    char *newb = calloc(lenB+1, 1);
+    memcpy(newb+1, b, lenB);
+    newb[0] = ' ';//Add space to beginning of b
+    lenB++;//for the space
+    
     int editDistanceTable[lenA][lenB];
     int arrowTable[lenA][lenB];//0 is left, 1 is diag, 2 is up, 3 is created
     int gapsInA = 0, gapsInB = 0;
@@ -160,7 +167,7 @@
                     arrowTable[i][j] = 0;
                 }
                 
-                possibleMin = editDistanceTable[i-1][j-1] + ((a[i] == b[j]) ? 0 : 1);
+                possibleMin = editDistanceTable[i-1][j-1] + ((a[i] == newb[j]) ? 0 : 1);
                 if (possibleMin<=min) {
                     min = possibleMin;
                     arrowTable[i][j] = 1;
@@ -171,8 +178,23 @@
         }
     }
     
+    //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
+    int smallestED = editDistanceTable[lenA-1][0];//-2 to account for ' ' in beginning
+    int smallestEDPos = 0;
+    
+    for (int t = 0; t<lenB; t++) {
+        smallestED = MIN(editDistanceTable[lenA-1][t], smallestED);
+        if (smallestED == editDistanceTable[lenA-1][t]) {
+            smallestEDPos = t;
+        }
+        if (smallestED == 0) {
+            smallestEDPos = t;
+            break;
+        }
+    }
+    
     int i = lenA-1;
-    int j = lenB-1;
+    int j = smallestEDPos;
     
     while (i > 0 || j > 0) {
         if (arrowTable[i][j] == 0) {
@@ -191,26 +213,15 @@
             if (i>0) {
                 gapsInB += i;
             }
-            else if (j>0) {
-                gapsInA += j;
-            }
             break;
         }
     }
     
-    //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
-    int smallestED = editDistanceTable[lenA-1][0];//-2 to account for ' ' in beginning
-    int smallestEDPos = 0;
-    
-    for (int t = 0; t<lenB; t++) {
-        smallestED = MIN(editDistanceTable[lenA-1][t], smallestED);
-        if (smallestED == editDistanceTable[lenA-1][t]) {
-            smallestEDPos = t;
+    for (int r = 0; r<lenA; r++) {
+        for (int c = 0; c<lenB; c++) {
+            printf("%i ",arrowTable[r][c]);
         }
-        if (smallestED == 0) {
-            smallestEDPos = t;
-            break;
-        }
+        printf("\n");
     }
     
     int gappedLength =/* (lenA+gapsInA>lenB+gapsInB) ? lenA+gapsInA :*/ smallestEDPos+gapsInB;
@@ -240,7 +251,7 @@
     while (i > 0 || j > 0) {
         if (arrowTable[i][j] == 0) {
             charA[pos] = '-';
-            charB[pos] = b[j];
+            charB[pos] = newb[j];
             j -= 1;
         }
         else if (arrowTable[i][j] == 2) {
@@ -250,7 +261,7 @@
         }
         else if (arrowTable[i][j] == 1) {
             charA[pos] = a[i];
-            charB[pos] = b[j];
+            charB[pos] = newb[j];
             i -= 1;
             j -= 1;
         }

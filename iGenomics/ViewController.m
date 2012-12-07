@@ -24,8 +24,8 @@
 //    [ed editDistanceForInfo:" GATTACATTCCA" andB:" GATACATTTCCA" andChunkNum:0 andChunkSize:5 andMaxED:5];
     
     bwt = [[BWT alloc] init];
-    [bwt setUpForRefFile:@"TestSeq" fileExt:@"txt"];
-    [bwt matchReedsFile:@"TestRead" fileExt:@"txt" withNumOfSubs:2];
+    [bwt setUpForRefFile:@"New.Ecoli.5k" fileExt:@"txt"];
+    [bwt matchReedsFile:@"new.reads" fileExt:@"txt" withNumOfSubs:2];
     
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
