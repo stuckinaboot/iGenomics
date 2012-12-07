@@ -21,11 +21,11 @@
 {
     
 //    EditDistance *ed = [[EditDistance alloc] init];
-//    [ed editDistanceForInfo:"GATTACATTCCA" andB:"GATACATTTCCA" andChunkNum:0 andChunkSize:5 andMaxED:5];
+//    [ed editDistanceForInfo:" GATTACATTCCA" andB:" GATACATTTCCA" andChunkNum:0 andChunkSize:5 andMaxED:5];
     
     bwt = [[BWT alloc] init];
-    [bwt setUpForRefFile:@"NewEcoli.5k" fileExt:@"txt"];
-    [bwt matchReedsFile:@"reads" fileExt:@"txt" withNumOfSubs:2];
+    [bwt setUpForRefFile:@"TestSeq" fileExt:@"txt"];
+    [bwt matchReedsFile:@"TestRead" fileExt:@"txt" withNumOfSubs:2];
     
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];

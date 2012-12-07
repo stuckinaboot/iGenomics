@@ -213,7 +213,7 @@
         }
     }
     
-    int gappedLength =/* (lenA+gapsInA>lenB+gapsInB) ? lenA+gapsInA :*/ smallestEDPos+smallestED;//previously smallestEDPos+gapsInB
+    int gappedLength =/* (lenA+gapsInA>lenB+gapsInB) ? lenA+gapsInA :*/ smallestEDPos+gapsInB;
     charA[gappedLength] = '\0';
     charB[gappedLength] = '\0';
     int pos = gappedLength-1;//Check -2, but it is because subtracting the space in the beginning " GA..." and gets to the last position
@@ -258,11 +258,6 @@
             break;
         
         pos--;
-        
-        if (pos == 0 && !(i>0 || j>0)) {
-            charA[pos] = a[i];
-            charB[pos] = b[j];
-        }
     }
     
     

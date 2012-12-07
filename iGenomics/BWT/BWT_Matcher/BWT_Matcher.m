@@ -90,9 +90,9 @@
         ED_Info *info = [[ED_Info alloc] init];
         NSArray *arr = [self insertionDeletionMatchesForQuery:(char*)[[array objectAtIndex:i] UTF8String] andLastCol:lastCol];
         info = (arr.count>0) ? [arr objectAtIndex:0] : info;
-            
-//        if (info.position>=0) 
-//            printf("\n%i",info.position);
+        
+        if (info.position>=0)
+            printf("\n%i",info.position);
     }
 }
 
@@ -304,7 +304,7 @@
 - (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
     
     if (amtOfSubs == 0) {
-         return (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
+        return (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
     }
     
     int numOfChunks = amtOfSubs+1;
@@ -358,7 +358,7 @@
             
             if (kDebugOn>0)
                 printf("\nNUMBER OF MATCHED POSITIONS FOR CHUNK %i (%s): %i: 1st Matched Pos: %i",i,chunks[i].string,chunks[i].matchedPositions.count,(chunks[i].matchedPositions.count>0)?[[chunks[i].matchedPositions objectAtIndex:0] intValue]:-1);
-                
+            
             
             for (int x = 0; x<[chunks[i].matchedPositions count]; x++) {
                 counter++;
@@ -405,7 +405,7 @@
                         }
                     }
                 }
-
+                
                 if (numOfSubstitutions<=amtOfSubs) {
                     NSMutableArray *array = [[NSMutableArray alloc] init];
                     for (int r = 0; r<numOfChunks; r++) {
@@ -488,15 +488,11 @@
 }
 
 - (void)updatePosOccsArrayWithRange:(NSRange)range andOriginalStr:(char*)originalStr andQuery:(char*)query {
-    int defaultAddOne = 0;
-    if (query[0] == ' ') {//possible beginning of a gapped string
-        defaultAddOne = 1;
-    }
     for (int i = range.location; i<range.length+range.location; i++) {
-        int c = [self whichChar:query[i-range.location+defaultAddOne] inContainer:acgt];
+        int c = [self whichChar:query[i-range.location] inContainer:acgt];
         
         if (c == -1) {//INS --- Not positive though
-            if (query[i-range.location+defaultAddOne] == kDelMarker) {
+            if (query[i-range.location] == kDelMarker) {
                 c = kACGTLen+1;
             }
         }
@@ -516,7 +512,7 @@ char *substr(const char *pstr, int start, int numchars)
 
 //INSERTION/DELETION
 - (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol {
-//    Create first Column
+    //    Create first Column
     char *firstCol = calloc(fileStrLen, 1);
     firstCol[0] = '$';
     
@@ -527,10 +523,10 @@ char *substr(const char *pstr, int start, int numchars)
             pos++;
         }
     }
-//    Create BWT Matcher for In/Del
+    //    Create BWT Matcher for In/Del
     BWT_Matcher_InsertionDeletion *bwtIDMatcher = [[BWT_Matcher_InsertionDeletion alloc] init];
     
-//    Split read into chunks
+    //    Split read into chunks
     int numOfChunks = kMaxEditDist+1;
     int queryLength = strlen(query);
     int sizeOfChunks = queryLength/numOfChunks;
@@ -541,7 +537,7 @@ char *substr(const char *pstr, int start, int numchars)
         sizeOfChunks = (float)queryLength/numOfChunks;
     }
     
-//    Fill Chunks with their respective string, and then use exact match to match the chunks to the reference
+    //    Fill Chunks with their respective string, and then use exact match to match the chunks to the reference
     int start = 0;
     NSMutableArray *chunkArray = [[NSMutableArray alloc] init];
     
@@ -551,19 +547,14 @@ char *substr(const char *pstr, int start, int numchars)
             strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks),"\0"));
         }
         else {
-            if (queryLength == sizeOfChunks)
-                strcpy(chunk.string, strcat(query,"\0"));
-            else
-                strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
-            
+            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
         }
-        
         chunk.matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunk.string withLastCol:lastCol andFirstCol:firstCol];
         [chunkArray addObject:chunk];
         start += sizeOfChunks;
     }
     
-//  Find In/Del by using the matched positions of the chunks
+    //  Find In/Del by using the matched positions of the chunks
     NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andChunks:chunkArray andMaximumEditDist:kMaxEditDist]];
     
     for (int i = 0; i<[matchedInDels count]; i++) {
@@ -590,14 +581,14 @@ char *substr(const char *pstr, int start, int numchars)
                 }
             }
         }
-//        Go through gapped B checking for deletions
+        //        Go through gapped B checking for deletions
         for (int a = 0; a<strlen(info.gappedB); a++) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
             if (info.gappedB[a] == kDelMarker) {
                 posOccArray[kACGTLen][a]++;
             }
         }
     }
-
+    
     if (kDebugPrintInsertions>0) {
         printf("\nINSERTIONS:");
         for (int i = 0; i<insertionsArray.count; i++) {
@@ -661,6 +652,16 @@ char *substr(const char *pstr, int start, int numchars)
 }
 
 - (int)getPosOccArrayObj:(int)x:(int)y {
+    /*NSMutableString* myString = [[NSMutableString alloc] init];
+     
+     for (int i = 0; i<kACGTLen+2; i++) {
+     for (int a = 0; a<kBytesForIndexer*kMultipleToCountAt; a++) {
+     (i == (kACGTLen-1)+2 && a == kBytesForIndexer*kMultipleToCountAt) ? [myString appendFormat:@"%i",posOccArray[i][a]] : [myString appendFormat:@"%i,",posOccArray[i][a]];
+     }
+     [myString appendFormat:@"\n"];
+     }
+     
+     return myString;*/
     return posOccArray[x][y];
 }
 @end

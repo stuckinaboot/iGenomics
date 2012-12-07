@@ -15,7 +15,7 @@
     matchedInDels = [[NSMutableArray alloc] init];
     editDist = [[EditDistance alloc] init];
     
-//    Add space prior to the chars in "a" and prior to the chars in "b"
+    //    Add space prior to the chars in "a" and prior to the chars in "b"
     int alen = strlen(a);
     char *newa = calloc(alen+1, 1);
     memcpy(newa+1, a, alen);
@@ -30,7 +30,7 @@
     
     [self findInDels:newa andCharB:newb andChunks:chunkArray];
     
-//    Free memory---NEEDS TO BE DONE
+    //    Free memory---NEEDS TO BE DONE
     
     return matchedInDels;
 }
@@ -43,7 +43,7 @@
     int chunkSize = strlen(chunk.string);
     ED_Info *edInfo = [[ED_Info alloc] init];
     
-//    Finding InDels for Chunk 1
+    //    Finding InDels for Chunk 1
     for (int i = 0; i<chunk.matchedPositions.count; i++) {
         matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
         startPos = [self findStartPosForChunkNum:0 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
@@ -53,37 +53,41 @@
         }
     }
     
-//    Finding InDels for Chunk 2 through amtOfChunks-1
-    for (int cNum = 1; cNum<[chunkArray count]-1; cNum++) {
-        chunk = [chunkArray objectAtIndex:cNum];
-        for (int i = 0; i<chunk.matchedPositions.count; i++) {
-            matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
-            startPos = [self findStartPosForChunkNum:cNum andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
-            if (startPos>=0) {
-                if (startPos-maxEditDist>=0) {
-                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+(maxEditDist*2)+1) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
+    //    Finding InDels for Chunk 2 through amtOfChunks-1
+    if ([chunkArray count]>2) {
+        for (int cNum = 1; cNum<[chunkArray count]-1; cNum++) {
+            chunk = [chunkArray objectAtIndex:cNum];
+            for (int i = 0; i<chunk.matchedPositions.count; i++) {
+                matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
+                startPos = [self findStartPosForChunkNum:cNum andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
+                if (startPos>=0) {
+                    if (startPos-maxEditDist>=0) {
+                        edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+(maxEditDist*2)+1) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
+                    }
+                    else {
+                        edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+(maxEditDist)+1) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
+                    }
+                    [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:cNum andChunkSize:chunkSize];
                 }
-                else {
-                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+(maxEditDist)+1) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
-                }
-                [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:cNum andChunkSize:chunkSize];
             }
         }
     }
-
-//    Finding InDels for Final Chunk
-    chunk = [chunkArray objectAtIndex:[chunkArray count]-1];
-    for (int i = 0; i<chunk.matchedPositions.count; i++) {
-        matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
-        startPos = [self findStartPosForChunkNum:[chunkArray count]-1 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
-        if (startPos>=0) {
-            if (startPos-maxEditDist>=0) {
-                edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+maxEditDist+1) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
+    
+    //    Finding InDels for Final Chunk
+    if ([chunkArray count]>1) {
+        chunk = [chunkArray objectAtIndex:[chunkArray count]-1];
+        for (int i = 0; i<chunk.matchedPositions.count; i++) {
+            matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
+            startPos = [self findStartPosForChunkNum:[chunkArray count]-1 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
+            if (startPos>=0) {
+                if (startPos-maxEditDist>=0) {
+                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+maxEditDist+1) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
+                }
+                else {
+                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+1) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
+                }
+                [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize];
             }
-            else {
-                edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+1) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
-            }
-            [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize];
         }
     }
     
@@ -106,8 +110,8 @@
         }
         else if (cNum>0) {
             matchedPos = matchedPos-(cNum*cSize);
-            matchedPos = matchedPos + (edInfo.position-maxEditDist-edInfo.distance) + 1;
-//                    Check To See If Match Has Already been recorded
+            matchedPos = matchedPos + (edInfo.position-maxEditDist) + 1;
+            //                    Check To See If Match Has Already been recorded
             for (int i = 0; i<[matchedInDels count]; i++) {
                 ED_Info *edI = [matchedInDels objectAtIndex:i];
                 if (edI.position == matchedPos)

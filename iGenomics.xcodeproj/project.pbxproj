@@ -164,6 +164,8 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3A18B4C1665996E0023E961 /* TestRead.txt */,
+				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
 				A3C0FD1C160FA5AC00BC2168 /* BWT */,
 				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
@@ -212,8 +214,6 @@
 			children = (
 				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
 				A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */,
-				A3A18B4C1665996E0023E961 /* TestRead.txt */,
-				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */,
 				A3D81EBA1666EF3700BD5C07 /* newreads.txt */,
 				A3F41AF01599E74D00DE95C9 /* reads.txt */,

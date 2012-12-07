@@ -8,38 +8,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-         timestampString = "376364384.931069"
+         timestampString = "376533568.409415"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "496"
-         endingLineNumber = "496"
-         landmarkName = "-updatePosOccsArrayWithRange:andOriginalStr:andQuery:"
+         startingLineNumber = "558"
+         endingLineNumber = "558"
+         landmarkName = "-insertionDeletionMatchesForQuery:andLastCol:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-         timestampString = "376364384.931069"
+         filePath = "iGenomics/BWT/BWT_Matcher/EditDistance.m"
+         timestampString = "376533591.675052"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "498"
-         endingLineNumber = "498"
-         landmarkName = "-updatePosOccsArrayWithRange:andOriginalStr:andQuery:"
+         startingLineNumber = "281"
+         endingLineNumber = "281"
+         landmarkName = "-editDistanceForInfo:andB:andChunkNum:andChunkSize:andMaxED:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-         timestampString = "376364035.406762"
+         filePath = "BWT_Matcher_InsertionDeletion.m"
+         timestampString = "376533664.942038"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "286"
-         endingLineNumber = "286"
-         landmarkName = "-whichChar:inContainer:"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-findInDels:andCharB:andChunks:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BWT_Matcher_InsertionDeletion.m"
+         timestampString = "376533669.442501"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "65"
+         endingLineNumber = "65"
+         landmarkName = "-findInDels:andCharB:andChunks:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BWT_Matcher_InsertionDeletion.m"
+         timestampString = "376533673.745937"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
+         landmarkName = "-findInDels:andCharB:andChunks:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
