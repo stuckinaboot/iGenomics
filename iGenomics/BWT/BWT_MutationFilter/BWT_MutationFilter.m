@@ -32,21 +32,6 @@
 }
 
 - (void)setUpPosOccArray {
-   /*
-    //PosOccArray
-    NSArray* poArray = [poa componentsSeparatedByString:@"\n"];
-    NSString *myString;
-    char c;
-    
-    for (int x = 0; x<[poArray count]; x++) {
-        myString = [poArray objectAtIndex:x];
-        for (int i = 0; i<myString.length; i+=2) {
-            c = [myString characterAtIndex:i];
-            
-            int o = i/2.0;
-            posOccArray[x][o] = [[NSString stringWithFormat:@"%c",c] intValue];
-        }
-    }*/
     for (int i = 0; i<kACGTLen+2; i++) {
         for (int a = 0; a<fileStrLen-1; a++) {
             posOccArray[i][a] = [matcher getPosOccArrayObj:i :a];
@@ -153,7 +138,7 @@
     
     for (int i = 0; i < strlen(seq); i++) {
         if (coverageArray[i]>=kLowestAllowedCoverage) {
-            for (int x = 0; x<kACGTLen; x++) {
+            for (int x = 0; x<kACGTLen+1; x++) {
                 if (posOccArray[x][i] > kHeteroAllowance && acgt[x] != seq[i]) {
                     [mutationsArray addObject:[NSNumber numberWithInt:i]];
                     break;
@@ -161,7 +146,7 @@
             }
         }
         else {//Smaller than lowest allowed coverage(5)
-            for (int x = 0; x<kACGTLen; x++) {
+            for (int x = 0; x<kACGTLen+1; x++) {
                 if (posOccArray[x][i] > 0 && acgt[x] != seq[i]) {
                     [mutationsArray addObject:[NSNumber numberWithInt:i]];
                     break;
@@ -196,6 +181,10 @@
             for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>0) {
                     mutStr[i][mutCounter] = acgt[a];
+                    
+                    if (a == kACGTLen)
+                        mutStr[i][mutCounter] = kDelMarker;
+                    
                     mutCounter++;
                 }
             }
@@ -204,6 +193,10 @@
             for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>kHeteroAllowance) {
                     mutStr[i][mutCounter] = acgt[a];
+                    
+                    if (a == kACGTLen)
+                        mutStr[i][mutCounter] = kDelMarker;
+                    
                     mutCounter++;
                     heteroStr[i][a] = acgt[a];
                 }

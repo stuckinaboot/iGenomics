@@ -10,14 +10,9 @@
 
 @implementation BWT_Matcher_InsertionDeletion_InsertionHolder
 
-@synthesize position, c;
+@synthesize seq;
 
 - (void)setUp {
-    c = calloc(kMaxInsertionSeqLen, 1);
-    currPos = 0;
-}
-- (void)appendChar:(char)ch {
-    c[currPos] = ch;
-    currPos++;
+    seq = calloc(kMaxInsertionSeqLen, 1);
 }
 @end

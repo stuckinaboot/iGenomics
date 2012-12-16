@@ -91,8 +91,8 @@
         NSArray *arr = [self insertionDeletionMatchesForQuery:(char*)[[array objectAtIndex:i] UTF8String] andLastCol:lastCol];
         info = (arr.count>0) ? [arr objectAtIndex:0] : info;
         
-        if (info.position>=0)
-            printf("\n%i",info.position);
+//        if (info.position>=0)
+//            printf("\n%i",info.position);
     }
 }
 
@@ -491,9 +491,9 @@
     for (int i = range.location; i<range.length+range.location; i++) {
         int c = [self whichChar:query[i-range.location] inContainer:acgt];
         
-        if (c == -1) {//INS --- Not positive though
+        if (c == -1) {//DEL --- Not positive though
             if (query[i-range.location] == kDelMarker) {
-                c = kACGTLen+1;
+                c = kACGTLen;
             }
         }
         
@@ -560,9 +560,23 @@ char *substr(const char *pstr, int start, int numchars)
     for (int i = 0; i<[matchedInDels count]; i++) {
         ED_Info *info = [matchedInDels objectAtIndex:i];
         int aLen = strlen(info.gappedA);
+        
+        if (kPrintReadInfo == 1) {
+            printf("\nGAPPED A: %s , POS: %i , LEN: %i",info.gappedA,info.position,aLen);
+        }
+        
+//        DELETIONS
         [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
         
-        for (int a = 0; a<aLen; a++) {
+//        INSERTIONS
+        int bLen = strlen(info.gappedB);
+        
+        for (int a = 0; a<bLen; a++) {
+            if (info.gappedB[a] == kDelMarker) {
+                
+            }
+        }
+       /* for (int a = 0; a<aLen; a++) {
             if (info.gappedA[a] == kDelMarker) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
                 BOOL posPrevListed = FALSE;
                 for (int o = 0; o<[insertionsArray count]; o++) {
@@ -580,20 +594,20 @@ char *substr(const char *pstr, int start, int numchars)
                     [insertionsArray addObject:iH];
                 }
             }
-        }
+        }*/ //INSERTIONS -- JUSt DOING DELETIONS FOR NOW
         //        Go through gapped B checking for deletions
-        for (int a = 0; a<strlen(info.gappedB); a++) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
+        /*for (int a = 0; a<strlen(info.gappedB); a++) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
             if (info.gappedB[a] == kDelMarker) {
                 posOccArray[kACGTLen][a]++;
             }
-        }
+        }*/
     }
     
     if (kDebugPrintInsertions>0) {
         printf("\nINSERTIONS:");
         for (int i = 0; i<insertionsArray.count; i++) {
             BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [insertionsArray objectAtIndex:i];
-            printf("\nPOS: %i, CHAR(S): %s",iH.position,iH.c);
+//            printf("\nPOS: %i, CHAR(S): %s",iH.position,iH.c);
         }
     }
     
@@ -652,16 +666,6 @@ char *substr(const char *pstr, int start, int numchars)
 }
 
 - (int)getPosOccArrayObj:(int)x:(int)y {
-    /*NSMutableString* myString = [[NSMutableString alloc] init];
-     
-     for (int i = 0; i<kACGTLen+2; i++) {
-     for (int a = 0; a<kBytesForIndexer*kMultipleToCountAt; a++) {
-     (i == (kACGTLen-1)+2 && a == kBytesForIndexer*kMultipleToCountAt) ? [myString appendFormat:@"%i",posOccArray[i][a]] : [myString appendFormat:@"%i,",posOccArray[i][a]];
-     }
-     [myString appendFormat:@"\n"];
-     }
-     
-     return myString;*/
     return posOccArray[x][y];
 }
 @end

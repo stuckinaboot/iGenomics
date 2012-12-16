@@ -10,6 +10,6 @@
 
 @implementation ED_Info
 
-@synthesize gappedA, gappedB, position, distance;
+@synthesize gappedA, gappedB, position, distance, insertion;
 
 @end

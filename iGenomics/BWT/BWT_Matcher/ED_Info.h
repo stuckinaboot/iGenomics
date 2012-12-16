@@ -15,7 +15,9 @@
     char *gappedB;
     int position;
     int distance;
+    BOOL insertion;
 }
 @property (nonatomic) char *gappedA, *gappedB;
 @property (nonatomic) int position, distance;
+@property (nonatomic) BOOL insertion;
 @end

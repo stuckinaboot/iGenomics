@@ -34,6 +34,8 @@
 #define kDebugPrintInsertions 0
 #define kDebugOn 0
 
+#define kPrintReadInfo 1
+
 @interface BWT_Matcher : NSObject {
     
     int kBytesForIndexer;

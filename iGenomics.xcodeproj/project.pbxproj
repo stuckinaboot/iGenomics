@@ -34,6 +34,7 @@
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
 		A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4C1665996E0023E961 /* TestRead.txt */; };
 		A3A18B5016659C320023E961 /* TestSeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4F16659C320023E961 /* TestSeq.txt */; };
+		A3AB48871676931200EA087D /* TestRead2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AB48861676931200EA087D /* TestRead2.txt */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
 		A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */; };
 		A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */; };
@@ -89,6 +90,7 @@
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
 		A3A18B4C1665996E0023E961 /* TestRead.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead.txt; sourceTree = "<group>"; };
 		A3A18B4F16659C320023E961 /* TestSeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestSeq.txt; path = BWT/BWT_Matcher/TestSeq.txt; sourceTree = "<group>"; };
+		A3AB48861676931200EA087D /* TestRead2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead2.txt; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
 		A3C0FD1E160FA5AC00BC2168 /* BWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT.m; sourceTree = "<group>"; };
 		A3C0FD20160FA5AC00BC2168 /* BWT_Maker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Maker.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3AB48861676931200EA087D /* TestRead2.txt */,
 				A3A18B4C1665996E0023E961 /* TestRead.txt */,
 				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
@@ -393,6 +396,7 @@
 				A34734DC166AD60400C4271E /* DefualtSequencesList.txt in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
 				A3DE20A5166EC3DA00F23AD8 /* new.reads.txt in Resources */,
+				A3AB48871676931200EA087D /* TestRead2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

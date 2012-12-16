@@ -12,10 +12,11 @@
 
 @interface BWT_Matcher_InsertionDeletion_InsertionHolder : NSObject //Used to keep track of insertions
 {
-    int currPos;//in c
+    char* seq;
+    int count;
+    BWT_Matcher_InsertionDeletion_InsertionHolder *iH;
 }
-@property (nonatomic) int position;
-@property (nonatomic) char *c;
+@property (nonatomic) int count;
+@property (nonatomic) char *seq;
 - (void)setUp;
-- (void)appendChar:(char)ch;
 @end

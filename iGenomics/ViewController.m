@@ -21,7 +21,7 @@
 {
     
 //    EditDistance *ed = [[EditDistance alloc] init];
-//    [ed editDistanceForInfo:" GATTACATTCCA" andB:" GATACATTTCCA" andChunkNum:0 andChunkSize:5 andMaxED:5];
+//    [ed editDistanceForInfo:" GATTACACA" andB:"GAATTACATA" andChunkNum:0 andChunkSize:5 andMaxED:5];
     
     bwt = [[BWT alloc] init];
     [bwt setUpForRefFile:@"New.Ecoli.5k" fileExt:@"txt"];
