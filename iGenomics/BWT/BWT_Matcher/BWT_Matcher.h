@@ -17,6 +17,7 @@
 
 #define kMaxBytesForIndexer 101
 #define kMaxMultipleToCountAt 100
+
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
 
@@ -29,9 +30,9 @@
 #define kLowestAllowedCoverage 5
 #define kHeteroAllowance 1 //Greater than 1
 
-#define kMaxEditDist 2
+#define kMaxEditDist 4
 
-#define kDebugPrintInsertions 0
+#define kDebugPrintInsertions 1
 #define kDebugOn 0
 
 #define kPrintReadInfo 1
@@ -47,15 +48,17 @@
     char *refStrBWT;
     int fileStrLen;
     
+    NSMutableArray *insertionsArray;
+    
     //Old Vars
     int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+)
-    NSMutableArray *insertionsArray;
     int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
     char *acgt;
     int acgtTotalOccs[kACGTLen];
     
     int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 }
+@property (nonatomic) NSMutableArray *insertionsArray;
 @property (nonatomic) int kBytesForIndexer, kMultipleToCountAt;
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 

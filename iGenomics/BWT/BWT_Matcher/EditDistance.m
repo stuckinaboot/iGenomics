@@ -174,33 +174,6 @@
         }
     }
     
-    int i = lenA-1;
-    int j = lenB-1;
-    
-    while (i > 0 || j > 0) {
-        if (arrowTable[i][j] == 0) {
-            j -= 1;
-            gapsInA++;
-        }
-        else if (arrowTable[i][j] == 2) {
-            i -= 1;
-            gapsInB++;
-        }
-        else if (arrowTable[i][j] == 1) {
-            i -= 1;
-            j -= 1;
-        }
-        else if (arrowTable[i][j] == 3) {
-            if (i>0) {
-                gapsInB += i;
-            }
-            else if (j>0) {
-                gapsInA += j;
-            }
-            break;
-        }
-    }
-    
     //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
     int smallestED = editDistanceTable[lenA-1][0];//-2 to account for ' ' in beginning
     int smallestEDPos = 0;
@@ -216,10 +189,38 @@
         }
     }
     
-    int gappedLength =/* (lenA+gapsInA>lenB+gapsInB) ? lenA+gapsInA :*/ smallestEDPos+gapsInB;
+    ED_Info *edInfo = [[ED_Info alloc] init];
+    
+    int i = lenA-1;
+    int j = smallestEDPos;
+    
+    while (i > 0 || j > 0) {
+        if (arrowTable[i][j] == 0) {
+            j -= 1;
+            gapsInA++;
+        }
+        else if (arrowTable[i][j] == 2) {
+            edInfo.insertion = TRUE;
+            i -= 1;
+            gapsInB++;
+        }
+        else if (arrowTable[i][j] == 1) {
+            i -= 1;
+            j -= 1;
+        }
+        else if (arrowTable[i][j] == 3) {
+            if (i>0) {
+                gapsInB += i;
+            }
+            break;
+        }
+    }
+    
+    int gappedLength = lenA+gapsInA-1;
     charA[gappedLength] = '\0';
     charB[gappedLength] = '\0';
     int pos = gappedLength-1;//Check -2, but it is because subtracting the space in the beginning " GA..." and gets to the last position
+    
     /*
      for (int r = 0; r<lenA; r++) {
      for (int c = 0; c<lenB; c++) {
@@ -237,7 +238,6 @@
      }
      printf("\n");
      */
-    ED_Info *edInfo = [[ED_Info alloc] init];
     
     i = lenA-1;
     j = smallestEDPos;
@@ -249,8 +249,6 @@
             j -= 1;
         }
         else if (arrowTable[i][j] == 2) {
-            edInfo.insertion = TRUE;//Because a - is added to charB
-            
             charB[pos] = '-';
             charA[pos] = a[i];
             i -= 1;
@@ -267,20 +265,31 @@
         pos--;
     }
     
-    if (chunkNum == 0) {
-        edInfo.position = pos;//0
-    }
-    else {
-        edInfo.position = pos;//Not positive about this
-    }
-    
     edInfo.distance = smallestED;
     
     //    Properly shift gappedA and gappedB to remove extra chars
-    edInfo.gappedA = calloc(gappedLength-j, 1);
-    memcpy(edInfo.gappedA, charA+j, gappedLength-j);
-    edInfo.gappedB = calloc(gappedLength-j, 1);
-    memcpy(edInfo.gappedB, charB+j, gappedLength-j);
+    //if (!edInfo.insertion) {
+    
+    edInfo.position = j;
+    edInfo.gappedA = calloc(gappedLength, 1);
+    memcpy(edInfo.gappedA, charA, gappedLength);
+    edInfo.gappedB = calloc(gappedLength, 1);
+    memcpy(edInfo.gappedB, charB, gappedLength);
+    
+    
+    
+    
+    
+    /*}
+    else {
+        edInfo.position = pos + j;
+        
+        edInfo.gappedA = calloc(gappedLength-gapsInB, 1);
+        memcpy(edInfo.gappedA, charA+gapsInA, gappedLength);
+        edInfo.gappedB = calloc(gappedLength-gapsInB, 1);
+        memcpy(edInfo.gappedB, charB+gapsInA, gappedLength);
+    }
+     */
     
     return edInfo;
 }

@@ -14,9 +14,10 @@
 {
     char* seq;
     int count;
-    BWT_Matcher_InsertionDeletion_InsertionHolder *iH;
+    int pos;
 }
 @property (nonatomic) int count;
 @property (nonatomic) char *seq;
+@property (nonatomic) int pos;
 - (void)setUp;
 @end

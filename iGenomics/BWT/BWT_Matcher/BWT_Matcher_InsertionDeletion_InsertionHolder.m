@@ -10,9 +10,10 @@
 
 @implementation BWT_Matcher_InsertionDeletion_InsertionHolder
 
-@synthesize seq;
+@synthesize seq, pos, count;
 
 - (void)setUp {
     seq = calloc(kMaxInsertionSeqLen, 1);
+    count = 1;
 }
 @end

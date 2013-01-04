@@ -4,68 +4,42 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/EditDistance.m"
-         timestampString = "376633873.576815"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "285"
-         endingLineNumber = "285"
-         landmarkName = "-editDistanceForInfo:andB:andChunkNum:andChunkSize:andMaxED:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/EditDistance.m"
-         timestampString = "376633887.928545"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "142"
-         endingLineNumber = "142"
-         landmarkName = "-editDistanceForInfo:andB:andChunkNum:andChunkSize:andMaxED:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/EditDistance.m"
-         timestampString = "376634086.601581"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "284"
-         endingLineNumber = "284"
-         landmarkName = "-editDistanceForInfo:andB:andChunkNum:andChunkSize:andMaxED:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iGenomics/ViewController.m"
-         timestampString = "376635745.258318"
+         timestampString = "377753349.186917"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BWT_Matcher_InsertionDeletion.m"
-         timestampString = "376972782.624236"
+         filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
+         timestampString = "377754740.133587"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
-         landmarkName = "-checkForInDelMatch:andMatchedPos:andChunkNum:andChunkSize:"
+         startingLineNumber = "610"
+         endingLineNumber = "610"
+         landmarkName = "-insertionDeletionMatchesForQuery:andLastCol:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
+         timestampString = "377754740.133587"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "609"
+         endingLineNumber = "609"
+         landmarkName = "-insertionDeletionMatchesForQuery:andLastCol:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

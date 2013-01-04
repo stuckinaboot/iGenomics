@@ -171,21 +171,9 @@
 				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
 				A3C0FD1C160FA5AC00BC2168 /* BWT */,
-				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
-				A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */,
-				A3971B06158A6342001626F7 /* reeds.txt */,
-				A3C0FD2C160FA5F600BC2168 /* MySeq.txt */,
-				A3971B08158A634A001626F7 /* aseq.txt */,
-				A3971B0B158A635D001626F7 /* Chunks.h */,
-				A3971B0A158A635D001626F7 /* Chunks.m */,
-				A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */,
-				A3971B0D158A6367001626F7 /* shortSeqBWT.txt */,
-				A3971B0F158A636F001626F7 /* sequenceBWT.txt */,
-				A34168561607B3A800ADA90B /* BasicReeds.txt */,
-				A310AF56158A5F7200E892AA /* iGenomics-Info.plist */,
-				A310AF57158A5F7200E892AA /* InfoPlist.strings */,
-				A310AF5A158A5F7200E892AA /* main.m */,
-				A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */,
+				A3A3D9C1167E6F1600CE98DC /* Test Files */,
+				A3A3D9BE167E6EFD00CE98DC /* Chunk Class */,
+				A3A3D9C0167E6F0E00CE98DC /* Ohter files */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -281,6 +269,42 @@
 				A34734DB166AD60400C4271E /* DefualtSequencesList.txt */,
 			);
 			name = FileChooser;
+			sourceTree = "<group>";
+		};
+		A3A3D9BE167E6EFD00CE98DC /* Chunk Class */ = {
+			isa = PBXGroup;
+			children = (
+				A3971B0B158A635D001626F7 /* Chunks.h */,
+				A3971B0A158A635D001626F7 /* Chunks.m */,
+			);
+			name = "Chunk Class";
+			sourceTree = "<group>";
+		};
+		A3A3D9C0167E6F0E00CE98DC /* Ohter files */ = {
+			isa = PBXGroup;
+			children = (
+				A310AF56158A5F7200E892AA /* iGenomics-Info.plist */,
+				A310AF57158A5F7200E892AA /* InfoPlist.strings */,
+				A310AF5A158A5F7200E892AA /* main.m */,
+				A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */,
+			);
+			name = "Ohter files";
+			sourceTree = "<group>";
+		};
+		A3A3D9C1167E6F1600CE98DC /* Test Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
+				A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */,
+				A3971B06158A6342001626F7 /* reeds.txt */,
+				A3C0FD2C160FA5F600BC2168 /* MySeq.txt */,
+				A3971B08158A634A001626F7 /* aseq.txt */,
+				A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */,
+				A3971B0D158A6367001626F7 /* shortSeqBWT.txt */,
+				A3971B0F158A636F001626F7 /* sequenceBWT.txt */,
+				A34168561607B3A800ADA90B /* BasicReeds.txt */,
+			);
+			name = "Test Files";
 			sourceTree = "<group>";
 		};
 		A3C0FD1C160FA5AC00BC2168 /* BWT */ = {

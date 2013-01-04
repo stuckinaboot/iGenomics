@@ -10,7 +10,7 @@
 
 @implementation BWT_Matcher
 
-@synthesize kBytesForIndexer, kMultipleToCountAt;
+@synthesize kBytesForIndexer, kMultipleToCountAt, insertionsArray;
 
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs {
     NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
@@ -26,6 +26,8 @@
     [self setUpBytesForIndexerAndMultipleToCountAt:fileStrLen];
     
     [self setUpNumberOfOccurencesArray];
+    
+    self.insertionsArray = [[NSMutableArray alloc] init];
     
     char *lastCol = refStrBWT;
     char *firstCol = calloc(fileStrLen, 1);
@@ -43,15 +45,24 @@
     for (int i = 0; i<kACGTLen; i++) {
         for (int x = 0; x<fileStrLen; x++) {
             posOccArray[i][x] = 0;
+//            if (i == 0) {//Only do Insertion Array one time
+//                insertionsArray[x] = NULL;
+//            }
         }
     }
-    
-    insertionsArray = [[NSMutableArray alloc] init];
     
     char *originalStr = calloc(fileStrLen, 1);
     strcpy(originalStr, [self unravelCharWithLastColumn:lastCol firstColumn:firstCol]);
     
     [self matchForJustIndels:reedsArray withLastCol:lastCol];
+    
+    if (kDebugPrintInsertions>0) {
+        printf("\nINSERTIONS:");
+        for (int i = 0; i<[insertionsArray count]; i++) {
+            BWT_Matcher_InsertionDeletion_InsertionHolder *h = [self.insertionsArray objectAtIndex:i];
+            printf("\nPos: %i, Count: %i, Seq: %s",h.pos,h.count,h.seq);
+        }
+    }
 //    [self matchReedsArray:reedsArray withLastCol:lastCol andFirstCol:firstCol];
 }
 
@@ -547,7 +558,7 @@ char *substr(const char *pstr, int start, int numchars)
             strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks),"\0"));
         }
         else {
-            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
+            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+(int)(float)queryLength % numOfChunks),"\0"));
         }
         chunk.matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunk.string withLastCol:lastCol andFirstCol:firstCol];
         [chunkArray addObject:chunk];
@@ -566,17 +577,59 @@ char *substr(const char *pstr, int start, int numchars)
         }
         
 //        DELETIONS
-        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
+        if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
+            [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
         
 //        INSERTIONS
-        int bLen = strlen(info.gappedB);
-        
-        for (int a = 0; a<bLen; a++) {
-            if (info.gappedB[a] == kDelMarker) {
-                
+        else if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
+            int bLen = strlen(info.gappedB);
+            int insCount = 0;
+            char *smallSeq = calloc(kMaxInsertionSeqLen, 1);
+            
+            for (int a = 0; a<bLen; a++) {
+                if (info.gappedB[a] == kDelMarker) {
+                    BWT_Matcher_InsertionDeletion_InsertionHolder *tID = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
+                    [tID setUp];
+                    tID.seq[0] = info.gappedA[a];
+                    tID.seq[1] = '\0';
+                    tID.pos = info.position+a-insCount;
+                    
+                    int tIDSeqLen = strlen(tID.seq);
+                    
+                    while (info.gappedB[a+1] == kDelMarker) {
+                        tID.seq[tIDSeqLen] = info.gappedA[a+1];
+                        tID.seq[tIDSeqLen+1] = '\0';
+                        insCount++;
+                        a++;
+                    }
+                    //Check if insertions array already has it
+                    BOOL alreadyRec = FALSE;
+                    for (int l = 0; l<self.insertionsArray.count; l++) {
+                        BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
+                        if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
+                            tt.count++;
+                            alreadyRec = TRUE;
+                            /*if (info.gappedB[a-1] == kDelMarker) {//Add to the previous one
+                                int ttLen = strlen(tt.seq);
+                                tt.seq[ttLen] = info.gappedA[a];
+                                tt.seq[ttLen+1] = '\0';
+                            }
+                            alreadyRec = TRUE;*/
+                        }
+                    }
+                    if (!alreadyRec) {
+                        [self.insertionsArray addObject:tID];
+                    }
+                    insCount++;
+                }
+                else {
+                    smallSeq[0] = info.gappedA[a];
+                    smallSeq[1] = '\0';
+                    [self updatePosOccsArrayWithRange:NSMakeRange(info.position+a-insCount, 1) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:smallSeq];
+                }
             }
         }
-       /* for (int a = 0; a<aLen; a++) {
+        /*for (int a = 0; a<aLen; a++) {
             if (info.gappedA[a] == kDelMarker) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
                 BOOL posPrevListed = FALSE;
                 for (int o = 0; o<[insertionsArray count]; o++) {
@@ -602,15 +655,6 @@ char *substr(const char *pstr, int start, int numchars)
             }
         }*/
     }
-    
-    if (kDebugPrintInsertions>0) {
-        printf("\nINSERTIONS:");
-        for (int i = 0; i<insertionsArray.count; i++) {
-            BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [insertionsArray objectAtIndex:i];
-//            printf("\nPOS: %i, CHAR(S): %s",iH.position,iH.c);
-        }
-    }
-    
     return matchedInDels;
 }
 //INSERTION/DELETION END

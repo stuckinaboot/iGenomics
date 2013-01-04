@@ -21,14 +21,14 @@
     memcpy(newa+1, a, alen);
     newa[0] = ' ';
     
-    int blen = strlen(b);
+    /*int blen = strlen(b);
     char *newb = calloc(blen+1, 1);
     memcpy(newb+1, b, blen);
-    newb[0] = ' ';
+    newb[0] = ' ';*/
     
     maxEditDist = maxED;
     
-    [self findInDels:newa andCharB:newb andChunks:chunkArray];
+    [self findInDels:newa andCharB:b andChunks:chunkArray];
     
     //    Free memory---NEEDS TO BE DONE
     
@@ -45,11 +45,11 @@
     
     //    Finding InDels for Chunk 1
     for (int i = 0; i<chunk.matchedPositions.count; i++) {
-        matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue]+1;
+        matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
         startPos = [self findStartPosForChunkNum:0 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
         if (startPos>=0) {
             edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+maxEditDist) andChunkNum:0 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1 yet
-            [self checkForInDelMatch:edInfo andMatchedPos:matchedPos-1 andChunkNum:0 andChunkSize:chunkSize];
+            [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:0 andChunkSize:chunkSize];
         }
     }
     
@@ -58,7 +58,7 @@
         for (int cNum = 1; cNum<[chunkArray count]-1; cNum++) {
             chunk = [chunkArray objectAtIndex:cNum];
             for (int i = 0; i<chunk.matchedPositions.count; i++) {
-                matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue]+1;
+                matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
                 startPos = [self findStartPosForChunkNum:cNum andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
                 if (startPos>=0) {
                     if (startPos-maxEditDist>=0) {
@@ -67,7 +67,7 @@
                     else {
                         edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+(maxEditDist)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
                     }
-                    [self checkForInDelMatch:edInfo andMatchedPos:matchedPos-1 andChunkNum:cNum andChunkSize:chunkSize];
+                    [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:cNum andChunkSize:chunkSize];
                 }
             }
         }
@@ -77,7 +77,7 @@
     if ([chunkArray count]>1) {
         chunk = [chunkArray objectAtIndex:[chunkArray count]-1];
         for (int i = 0; i<chunk.matchedPositions.count; i++) {
-            matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue]+1;
+            matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
             startPos = [self findStartPosForChunkNum:[chunkArray count]-1 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
             if (startPos>=0) {
                 if (startPos-maxEditDist>=0) {
@@ -86,7 +86,7 @@
                 else {
                     edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
                 }
-                [self checkForInDelMatch:edInfo andMatchedPos:matchedPos-1 andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize];
+                [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize];
             }
         }
     }
@@ -106,27 +106,22 @@
         BOOL alreadyRecorded = FALSE;
         //First matchPos needs to be set to the matchedPos w/o gaps, then use edInfo.position to account for gaps
         if (cNum == 0) {
-            matchedPos = matchedPos + edInfo.position + 1;//NOT SURE ABOUT WHY +1 yet
+            matchedPos = matchedPos + edInfo.position;
         }
         else if (cNum>0) {
             matchedPos = matchedPos-(cNum*cSize);
-            matchedPos = matchedPos + (edInfo.position-maxEditDist) + 1;
+            matchedPos = matchedPos + (edInfo.position-maxEditDist);
             //                    Check To See If Match Has Already been recorded
             for (int i = 0; i<[matchedInDels count]; i++) {
                 ED_Info *edI = [matchedInDels objectAtIndex:i];
-                if (edI.position == matchedPos)
+                if (edI.position == matchedPos) //If pos is the same
                     alreadyRecorded = TRUE;
             }
         }
         
-        if (matchedPos<259 && matchedPos+100>259) {
-            printf("");
-        }
-        
         if (!alreadyRecorded) {
             edInfo.position = matchedPos;
-            if (!edInfo.insertion)//Just for now
-                [matchedInDels addObject:edInfo];
+            [matchedInDels addObject:edInfo];
         }
     }
 }
