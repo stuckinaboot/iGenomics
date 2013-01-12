@@ -1,0 +1,1 @@
+Ecoli.5k.reads.txt

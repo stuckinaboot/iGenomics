@@ -20,8 +20,9 @@
 - (void)viewDidLoad
 {
     
-//    EditDistance *ed = [[EditDistance alloc] init];
-//    [ed editDistanceForInfo:" GATTACACA" andB:"GAATTACATA" andChunkNum:0 andChunkSize:5 andMaxED:5];
+    filePickerController = [[FilePickerController alloc] init];
+    [filePickerController setUpDefaultFiles];
+    /*
     
     bwt = [[BWT alloc] init];
     [bwt setUpForRefFile:@"New.Ecoli.5k" fileExt:@"txt"];
@@ -31,23 +32,19 @@
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-    if (kPrintIndevelopmentVars>0) {
-//        char *a = strdup(" ATA");
-//        char *b = strdup(" GATTACA");
+    */
     
-//        EditDistance *ed = [[EditDistance alloc] init];
-//        [ed computeEditDistanceToReturnPositions:a andB:b lenA:strlen(a) andLenB:strlen(b)];
-//        [ed computeEditDistance:a andB:b lenA:strlen(a) andLenB:strlen(b) andEditDistForCell:CGPointMake(0, 0)];
-//        printf("\nEDITDISTANCE: %i\ncharA: %s\ncharB: %s",ed.distance,ed.charA,ed.charB);
-//        printf("\nEDIT DIST:%i",[ed simpleEditDistance:a andB:b]);
+    if (kPrintIndevelopmentVars>0) {
     }
     
     [super viewDidLoad];
 }
 
-- (IBAction)startSequencingStep1:(id)sender {
-    [self presentModalViewController:preSequencing animated:YES];
+- (IBAction)showFilePickerPressed:(id)sender {
+    [self presentModalViewController:filePickerController animated:YES];
 }
+
+- (IBAction)showAboutPressed:(id)sender {}
 
 - (void)viewDidUnload
 {

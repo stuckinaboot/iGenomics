@@ -4,42 +4,42 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iGenomics/FilePicker/FilePickerController.m"
+         timestampString = "379655681.193664"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
+         landmarkName = "-showParametersPressed:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/ViewController.m"
-         timestampString = "377753349.186917"
+         filePath = "iGenomics/Computing/ComputingController.m"
+         timestampString = "379655806.874612"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-viewDidLoad"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-setUpWithReads:andSeq:andParameters:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-         timestampString = "377754740.133587"
+         filePath = "iGenomics/Computing/ComputingController.m"
+         timestampString = "379655848.786412"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "610"
-         endingLineNumber = "610"
-         landmarkName = "-insertionDeletionMatchesForQuery:andLastCol:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-         timestampString = "377754740.133587"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "609"
-         endingLineNumber = "609"
-         landmarkName = "-insertionDeletionMatchesForQuery:andLastCol:"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
+         landmarkName = "-setUpWithReads:andSeq:andParameters:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -16,15 +16,13 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
+		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A33A7C161650397B00E39A6C /* ED_Info.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C151650397B00E39A6C /* ED_Info.m */; };
 		A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */; };
 		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
 		A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */; };
 		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
-		A34734CF166AC18500C4271E /* PreSequencing.m in Sources */ = {isa = PBXBuildFile; fileRef = A34734CE166AC18500C4271E /* PreSequencing.m */; };
-		A34734D7166AC56200C4271E /* FileChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = A34734D6166AC56200C4271E /* FileChooser.m */; };
-		A34734DA166AD5F600C4271E /* DefaultReadsList.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34734D9166AD5F600C4271E /* DefaultReadsList.txt */; };
-		A34734DC166AD60400C4271E /* DefualtSequencesList.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34734DB166AD60400C4271E /* DefualtSequencesList.txt */; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
@@ -35,6 +33,12 @@
 		A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4C1665996E0023E961 /* TestRead.txt */; };
 		A3A18B5016659C320023E961 /* TestSeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4F16659C320023E961 /* TestSeq.txt */; };
 		A3AB48871676931200EA087D /* TestRead2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AB48861676931200EA087D /* TestRead2.txt */; };
+		A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49B6169791EF00DD9266 /* FilePickerController.m */; };
+		A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49B7169791EF00DD9266 /* FilePickerController.xib */; };
+		A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49BC1697936100DD9266 /* ParametersController.m */; };
+		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
+		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
+		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
 		A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */; };
 		A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */; };
@@ -44,7 +48,7 @@
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
 		A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */; };
 		A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */; };
-		A3DE20A5166EC3DA00F23AD8 /* new.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */; };
+		A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
 		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
 		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
@@ -65,6 +69,9 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
+		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
+		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
 		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
 		A33A7C151650397B00E39A6C /* ED_Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ED_Info.m; sourceTree = "<group>"; };
 		A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = InDelTestReads.txt; path = BWT/InDelTestReads.txt; sourceTree = "<group>"; };
@@ -72,12 +79,6 @@
 		A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher_InsertionDeletion_InsertionHolder.h; sourceTree = "<group>"; };
 		A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher_InsertionDeletion_InsertionHolder.m; sourceTree = "<group>"; };
 		A34168561607B3A800ADA90B /* BasicReeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicReeds.txt; sourceTree = "<group>"; };
-		A34734CD166AC18500C4271E /* PreSequencing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreSequencing.h; sourceTree = "<group>"; };
-		A34734CE166AC18500C4271E /* PreSequencing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreSequencing.m; sourceTree = "<group>"; };
-		A34734D5166AC56200C4271E /* FileChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileChooser.h; sourceTree = "<group>"; };
-		A34734D6166AC56200C4271E /* FileChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileChooser.m; sourceTree = "<group>"; };
-		A34734D9166AD5F600C4271E /* DefaultReadsList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultReadsList.txt; sourceTree = "<group>"; };
-		A34734DB166AD60400C4271E /* DefualtSequencesList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefualtSequencesList.txt; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
@@ -91,6 +92,14 @@
 		A3A18B4C1665996E0023E961 /* TestRead.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead.txt; sourceTree = "<group>"; };
 		A3A18B4F16659C320023E961 /* TestSeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestSeq.txt; path = BWT/BWT_Matcher/TestSeq.txt; sourceTree = "<group>"; };
 		A3AB48861676931200EA087D /* TestRead2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead2.txt; sourceTree = "<group>"; };
+		A3AC49B5169791EF00DD9266 /* FilePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilePickerController.h; path = FilePicker/FilePickerController.h; sourceTree = "<group>"; };
+		A3AC49B6169791EF00DD9266 /* FilePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilePickerController.m; path = FilePicker/FilePickerController.m; sourceTree = "<group>"; };
+		A3AC49B7169791EF00DD9266 /* FilePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilePickerController.xib; path = FilePicker/FilePickerController.xib; sourceTree = "<group>"; };
+		A3AC49BB1697936100DD9266 /* ParametersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParametersController.h; path = Parameters/ParametersController.h; sourceTree = "<group>"; };
+		A3AC49BC1697936100DD9266 /* ParametersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParametersController.m; path = Parameters/ParametersController.m; sourceTree = "<group>"; };
+		A3AC49BD1697936100DD9266 /* ParametersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ParametersController.xib; path = Parameters/ParametersController.xib; sourceTree = "<group>"; };
+		A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReferenceFiles.txt; sourceTree = "<group>"; };
+		A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReadsFiles.txt; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
 		A3C0FD1E160FA5AC00BC2168 /* BWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT.m; sourceTree = "<group>"; };
 		A3C0FD20160FA5AC00BC2168 /* BWT_Maker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Maker.h; sourceTree = "<group>"; };
@@ -104,7 +113,7 @@
 		A3D81EBA1666EF3700BD5C07 /* newreads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newreads.txt; path = "../../../Downloads/snpchallenge1 3/newreads.txt"; sourceTree = "<group>"; };
 		A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NewEcoli.5k.txt; path = "../../../Downloads/snpchallenge1 3/NewEcoli.5k.txt"; sourceTree = "<group>"; };
 		A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = New.Ecoli.5k.txt; path = ../../../Downloads/snps2/New.Ecoli.5k.txt; sourceTree = "<group>"; };
-		A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = new.reads.txt; path = ../../../Downloads/snps2/new.reads.txt; sourceTree = "<group>"; };
+		A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.5k.reads.txt; path = ../../../Downloads/snps2/Ecoli.5k.reads.txt; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
 		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
@@ -156,7 +165,9 @@
 			children = (
 				A34734D3166AC19D00C4271E /* Delegate */,
 				A34734D2166AC19600C4271E /* HomeScreen */,
-				A34734D1166AC18900C4271E /* PreSequencing */,
+				A3AC49BA169791F200DD9266 /* File Picker */,
+				A3AC49C01697936400DD9266 /* Parameters */,
+				A3382FC716A111E30042F59B /* Computing */,
 				A34734D4166AC1AB00C4271E /* XIBs */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
 			);
@@ -166,6 +177,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3AC49C316979B1B00DD9266 /* REAL FILES */,
 				A3AB48861676931200EA087D /* TestRead2.txt */,
 				A3A18B4C1665996E0023E961 /* TestRead.txt */,
 				A3A18B4F16659C320023E961 /* TestSeq.txt */,
@@ -176,6 +188,17 @@
 				A3A3D9C0167E6F0E00CE98DC /* Ohter files */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3382FC716A111E30042F59B /* Computing */ = {
+			isa = PBXGroup;
+			children = (
+				A3382FC216A111DB0042F59B /* ComputingController.h */,
+				A3382FC316A111DB0042F59B /* ComputingController.m */,
+				A3382FC416A111DB0042F59B /* ComputingController.xib */,
+			);
+			name = Computing;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		A33A7C181650398200E39A6C /* In/Del Matcher */ = {
@@ -204,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
-				A3DE20A3166EC3DA00F23AD8 /* new.reads.txt */,
+				A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */,
 				A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */,
 				A3D81EBA1666EF3700BD5C07 /* newreads.txt */,
 				A3F41AF01599E74D00DE95C9 /* reads.txt */,
@@ -221,16 +244,6 @@
 				A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */,
 			);
 			name = "Insertion Holder";
-			sourceTree = "<group>";
-		};
-		A34734D1166AC18900C4271E /* PreSequencing */ = {
-			isa = PBXGroup;
-			children = (
-				A34734CD166AC18500C4271E /* PreSequencing.h */,
-				A34734CE166AC18500C4271E /* PreSequencing.m */,
-				A34734D8166AC56600C4271E /* FileChooser */,
-			);
-			name = PreSequencing;
 			sourceTree = "<group>";
 		};
 		A34734D2166AC19600C4271E /* HomeScreen */ = {
@@ -258,17 +271,6 @@
 				A310AF66158A5F7200E892AA /* ViewController_iPad.xib */,
 			);
 			name = XIBs;
-			sourceTree = "<group>";
-		};
-		A34734D8166AC56600C4271E /* FileChooser */ = {
-			isa = PBXGroup;
-			children = (
-				A34734D5166AC56200C4271E /* FileChooser.h */,
-				A34734D6166AC56200C4271E /* FileChooser.m */,
-				A34734D9166AD5F600C4271E /* DefaultReadsList.txt */,
-				A34734DB166AD60400C4271E /* DefualtSequencesList.txt */,
-			);
-			name = FileChooser;
 			sourceTree = "<group>";
 		};
 		A3A3D9BE167E6EFD00CE98DC /* Chunk Class */ = {
@@ -305,6 +307,51 @@
 				A34168561607B3A800ADA90B /* BasicReeds.txt */,
 			);
 			name = "Test Files";
+			sourceTree = "<group>";
+		};
+		A3AC49BA169791F200DD9266 /* File Picker */ = {
+			isa = PBXGroup;
+			children = (
+				A3AC49B5169791EF00DD9266 /* FilePickerController.h */,
+				A3AC49B6169791EF00DD9266 /* FilePickerController.m */,
+				A3AC49B7169791EF00DD9266 /* FilePickerController.xib */,
+			);
+			name = "File Picker";
+			sourceTree = "<group>";
+		};
+		A3AC49C01697936400DD9266 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				A3AC49BB1697936100DD9266 /* ParametersController.h */,
+				A3AC49BC1697936100DD9266 /* ParametersController.m */,
+				A3AC49BD1697936100DD9266 /* ParametersController.xib */,
+			);
+			name = Parameters;
+			sourceTree = "<group>";
+		};
+		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
+			isa = PBXGroup;
+			children = (
+				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
+				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
+				A3AC49C616979B4600DD9266 /* Default Ref Files */,
+				A3AC49C716979B5500DD9266 /* Default Read Files */,
+			);
+			name = "REAL FILES";
+			sourceTree = "<group>";
+		};
+		A3AC49C616979B4600DD9266 /* Default Ref Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Default Ref Files";
+			sourceTree = "<group>";
+		};
+		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Default Read Files";
 			sourceTree = "<group>";
 		};
 		A3C0FD1C160FA5AC00BC2168 /* BWT */ = {
@@ -373,7 +420,7 @@
 		A310AF41158A5F7200E892AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = A310AF44158A5F7200E892AA /* Build configuration list for PBXProject "iGenomics" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -416,11 +463,14 @@
 				A3A18B5016659C320023E961 /* TestSeq.txt in Resources */,
 				A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */,
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
-				A34734DA166AD5F600C4271E /* DefaultReadsList.txt in Resources */,
-				A34734DC166AD60400C4271E /* DefualtSequencesList.txt in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
-				A3DE20A5166EC3DA00F23AD8 /* new.reads.txt in Resources */,
+				A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */,
 				A3AB48871676931200EA087D /* TestRead2.txt in Resources */,
+				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
+				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
+				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
+				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
+				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,8 +493,9 @@
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
 				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,
 				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
-				A34734CF166AC18500C4271E /* PreSequencing.m in Sources */,
-				A34734D7166AC56200C4271E /* FileChooser.m in Sources */,
+				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,
+				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
+				A3382FC516A111DB0042F59B /* ComputingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
