@@ -8,6 +8,8 @@
 
 #import "BWT_Matcher.h"
 
+int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+)
+
 @implementation BWT_Matcher
 
 @synthesize kBytesForIndexer, kMultipleToCountAt, insertionsArray;
@@ -629,31 +631,6 @@ char *substr(const char *pstr, int start, int numchars)
                 }
             }
         }
-        /*for (int a = 0; a<aLen; a++) {
-            if (info.gappedA[a] == kDelMarker) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
-                BOOL posPrevListed = FALSE;
-                for (int o = 0; o<[insertionsArray count]; o++) {
-                    BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [insertionsArray objectAtIndex:o];
-                    if (a == iH.position) {
-                        [iH appendChar:info.gappedB[a]];
-                        posPrevListed = TRUE;
-                        break;
-                    }
-                }
-                if (!posPrevListed) {
-                    BWT_Matcher_InsertionDeletion_InsertionHolder *iH = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
-                    [iH setUp];
-                    [iH appendChar:info.gappedB[a]];
-                    [insertionsArray addObject:iH];
-                }
-            }
-        }*/ //INSERTIONS -- JUSt DOING DELETIONS FOR NOW
-        //        Go through gapped B checking for deletions
-        /*for (int a = 0; a<strlen(info.gappedB); a++) {//NOT POSITIVE ABOUT THIS, and EVERYTHING IN THIS FOR LOOP
-            if (info.gappedB[a] == kDelMarker) {
-                posOccArray[kACGTLen][a]++;
-            }
-        }*/
     }
     return matchedInDels;
 }

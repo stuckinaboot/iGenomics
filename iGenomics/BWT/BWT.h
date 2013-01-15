@@ -30,7 +30,6 @@
 
 @interface BWT : NSObject {
     BWT_MutationFilter *bwtMutationFilter;//CREATED AS AN OBJECT SO THAT DATA CAN BE EASILY RETRIEVED FROM THE FILTER
-//    NSString* posOccArray;//Used to faciliate transfering posOccArray to BWT_MutationFilter class
     
     char* originalString;
     char* bwtString;

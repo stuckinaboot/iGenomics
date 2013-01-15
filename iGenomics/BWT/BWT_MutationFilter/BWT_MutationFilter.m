@@ -8,6 +8,8 @@
 
 #import "BWT_MutationFilter.h"
 
+char *foundGenome[kACGTLen+2];
+
 @implementation BWT_MutationFilter
 
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher {
@@ -28,16 +30,17 @@
     strcpy(foundGenome[0], refStr);
     
     matcher = myMatcher;
-    [self setUpPosOccArray];
+//    [self setUpPosOccArray];
 }
 
+/*
 - (void)setUpPosOccArray {
     for (int i = 0; i<kACGTLen+2; i++) {
         for (int a = 0; a<fileStrLen-1; a++) {
             posOccArray[i][a] = [matcher getPosOccArrayObj:i :a];
         }
     }
-}
+}*/
 
 - (void)buildOccTableWithUnravStr:(char*)unravStr {
     

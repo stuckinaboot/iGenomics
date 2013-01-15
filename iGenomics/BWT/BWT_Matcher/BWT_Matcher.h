@@ -37,6 +37,8 @@
 
 #define kPrintReadInfo 1
 
+extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+) __________________I----- GLOBAL ------I
+
 @interface BWT_Matcher : NSObject {
     
     int kBytesForIndexer;
@@ -51,12 +53,11 @@
     NSMutableArray *insertionsArray;
     
     //Old Vars
-    int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+)
     int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
     char *acgt;
     int acgtTotalOccs[kACGTLen];
     
-    int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
+//    int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 }
 @property (nonatomic) NSMutableArray *insertionsArray;
 @property (nonatomic) int kBytesForIndexer, kMultipleToCountAt;

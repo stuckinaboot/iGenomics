@@ -30,13 +30,37 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (IBAction)matchTypeChanged:(id)sender {
+    if (matchTypeCtrl.selectedSegmentIndex > 0) {
+        //Show ED picker
+        enterMaxEDLbl.hidden = FALSE;
+        maxEDTxtFld.hidden = FALSE;
+    }
+    else {
+        enterMaxEDLbl.hidden = TRUE;
+        maxEDTxtFld.hidden = TRUE;
+    }
+}
+
+- (IBAction)trimmingStateChanged:(id)sender {
+    if (trimmingSwitch.on) {
+        //Show Num of chars to trim
+        enterTrimmingLbl.hidden = FALSE;
+        trimmmingTxtFld.hidden = FALSE;
+    }
+    else {
+        enterTrimmingLbl.hidden = TRUE;
+        trimmmingTxtFld.hidden = TRUE;
+    }
+}
+
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads {
     seq = mySeq;
     reads = myReads;
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
-    [computingController setUpWithReads:reads andSeq:seq andParameters:NULL];
+    [computingController setUpWithReads:reads andSeq:seq andParameters:[NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? [maxEDTxtFld.text intValue] : 0], [NSNumber numberWithInt:alignmentTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:[mutationSupportTxtFld.text intValue]], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil]];
     [self presentModalViewController:computingController animated:YES];
 }
 

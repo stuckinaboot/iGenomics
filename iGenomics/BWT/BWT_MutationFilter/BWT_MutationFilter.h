@@ -14,13 +14,14 @@
 
 #define kOnlyPrintFoundGenome 0
 
+extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
+
 @interface BWT_MutationFilter : NSObject {
     BWT_Matcher *matcher;
     
-    int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of Del/In
+//    int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of Del/In
     int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
-    
-    char *foundGenome[kACGTLen+2];
+
     char *refStr;
     
     char *acgt;
@@ -29,7 +30,7 @@
 }
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher;
 //- (void)setUpMutationFilterWithPosOccArray:(NSString*)poa andOriginalStr:(char*)originalSeq;
-- (void)setUpPosOccArray;
+//- (void)setUpPosOccArray;
 
 - (void)buildOccTableWithUnravStr:(char*)unravStr;
 - (NSArray*)filterMutationsForDetails;

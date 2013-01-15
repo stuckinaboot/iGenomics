@@ -18,6 +18,10 @@
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
 		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
+		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
+		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
+		A3382FD016A118D50042F59B /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCF16A118D50042F59B /* GridView.m */; };
+		A3382FD416A118FC0042F59B /* GridPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FD316A118FC0042F59B /* GridPoint.m */; };
 		A33A7C161650397B00E39A6C /* ED_Info.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C151650397B00E39A6C /* ED_Info.m */; };
 		A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */; };
 		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
@@ -72,6 +76,13 @@
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
+		A3382FC916A118A20042F59B /* AnalysisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisController.h; path = iGenomics/Analysis/AnalysisController.h; sourceTree = "<group>"; };
+		A3382FCA16A118A20042F59B /* AnalysisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisController.m; path = iGenomics/Analysis/AnalysisController.m; sourceTree = "<group>"; };
+		A3382FCB16A118A20042F59B /* AnalysisController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnalysisController.xib; path = iGenomics/Analysis/AnalysisController.xib; sourceTree = "<group>"; };
+		A3382FCE16A118D50042F59B /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridView.h; path = iGenomics/Analysis/Grid/GridView.h; sourceTree = "<group>"; };
+		A3382FCF16A118D50042F59B /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridView.m; path = iGenomics/Analysis/Grid/GridView.m; sourceTree = "<group>"; };
+		A3382FD216A118FC0042F59B /* GridPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridPoint.h; path = iGenomics/Analysis/Grid/GridPoint.h; sourceTree = "<group>"; };
+		A3382FD316A118FC0042F59B /* GridPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridPoint.m; path = iGenomics/Analysis/Grid/GridPoint.m; sourceTree = "<group>"; };
 		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
 		A33A7C151650397B00E39A6C /* ED_Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ED_Info.m; sourceTree = "<group>"; };
 		A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = InDelTestReads.txt; path = BWT/InDelTestReads.txt; sourceTree = "<group>"; };
@@ -168,6 +179,7 @@
 				A3AC49BA169791F200DD9266 /* File Picker */,
 				A3AC49C01697936400DD9266 /* Parameters */,
 				A3382FC716A111E30042F59B /* Computing */,
+				A3382FC816A118640042F59B /* Analysis */,
 				A34734D4166AC1AB00C4271E /* XIBs */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
 			);
@@ -178,9 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
-				A3AB48861676931200EA087D /* TestRead2.txt */,
-				A3A18B4C1665996E0023E961 /* TestRead.txt */,
-				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
 				A3C0FD1C160FA5AC00BC2168 /* BWT */,
 				A3A3D9C1167E6F1600CE98DC /* Test Files */,
@@ -199,6 +208,29 @@
 			);
 			name = Computing;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		A3382FC816A118640042F59B /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				A3382FC916A118A20042F59B /* AnalysisController.h */,
+				A3382FCA16A118A20042F59B /* AnalysisController.m */,
+				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
+				A3382FD116A118D80042F59B /* Grid */,
+			);
+			name = Analysis;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		A3382FD116A118D80042F59B /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				A3382FCE16A118D50042F59B /* GridView.h */,
+				A3382FCF16A118D50042F59B /* GridView.m */,
+				A3382FD216A118FC0042F59B /* GridPoint.h */,
+				A3382FD316A118FC0042F59B /* GridPoint.m */,
+			);
+			name = Grid;
 			sourceTree = "<group>";
 		};
 		A33A7C181650398200E39A6C /* In/Del Matcher */ = {
@@ -296,6 +328,9 @@
 		A3A3D9C1167E6F1600CE98DC /* Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3AB48861676931200EA087D /* TestRead2.txt */,
+				A3A18B4C1665996E0023E961 /* TestRead.txt */,
+				A3A18B4F16659C320023E961 /* TestSeq.txt */,
 				A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */,
 				A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */,
 				A3971B06158A6342001626F7 /* reeds.txt */,
@@ -471,6 +506,7 @@
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
+				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +532,9 @@
 				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,
 				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
 				A3382FC516A111DB0042F59B /* ComputingController.m in Sources */,
+				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
+				A3382FD016A118D50042F59B /* GridView.m in Sources */,
+				A3382FD416A118FC0042F59B /* GridPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
