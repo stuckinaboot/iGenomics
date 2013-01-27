@@ -10,6 +10,8 @@
 
 @implementation GridView
 
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -32,6 +34,7 @@
     for (int i = 0; i<rows; i++) {
         for (int j = 0; j<cols; j++) {
             points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, i*boxHeight, kIpadBoxWidth, boxHeight)];
+            [points[i][j] setDelegate:self];
             points[i][j].coord = CGPointMake(i, j);
             [points[i][j] setUpLabel];//Sets up the label propery
             [scrollView addSubview:points[i][j]];
@@ -41,6 +44,11 @@
 
 - (GridPoint*)getGridPoint:(int)row :(int)col {
     return points[row][col];
+}
+
+//Grid Point Delegate
+- (void)gridPointClickedWithCoord:(CGPoint)c {
+    [delegate gridPointClickedWithCoordInGrid:c andOriginInGrid:[scrollView convertPoint:points[(int)c.x][(int)c.y].frame.origin toView:self]];
 }
 
 @end

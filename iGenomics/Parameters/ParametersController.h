@@ -39,7 +39,7 @@
     
     IBOutlet UISegmentedControl *alignmentTypeCtrl;
     
-    IBOutlet UITextField *mutationSupportTxtFld;
+    IBOutlet UITextField *mutationSupportTxtFld;//call it "Minimum Mutation Coverage"
     
     IBOutlet UISwitch *trimmingSwitch;
     IBOutlet UILabel *enterTrimmingLbl;

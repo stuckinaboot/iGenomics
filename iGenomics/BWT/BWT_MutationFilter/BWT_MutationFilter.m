@@ -12,6 +12,8 @@ char *foundGenome[kACGTLen+2];
 
 @implementation BWT_MutationFilter
 
+@synthesize kHeteroAllowance;
+
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher {
     acgt = strdup(kACGTStr);
     refStr = strdup(originalSeq);

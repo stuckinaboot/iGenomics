@@ -23,11 +23,33 @@
         printf("\n%s",bwtString);
 }
 
-- (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withNumOfSubs:(int)subs {
-    maxSubs = subs;
+- (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray *)parameters {
+//    maxSubs = subs;
     BWT_Matcher *bwt_Matcher = [[BWT_Matcher alloc] init];
+    
+    /*
+     SET OF PARAMETERS:
+     
+     0-Exact match (0), substitution (1), subs + indels (2) | TYPE: int (exact,sub,subs+indels), int (ED)
+     +Max ED
+     
+     1-Forward alignment(0), forward and reverse alignments (1) | TYPE: int
+     
+     2-Mutation support (num of disagreements before a position is reported as a mutation): (inputted by user) | TYPE: int
+     
+     3-Trimming (if selected, chop off last x (user is allowed to chose num) bases) | TYPE: int
+     
+     4-Seed (chunk) length: automatic, manual (user inputs seed length)  | TYPE: int
+     +(Advanced feature)       -------NOT IMPLEMENTED YET
+     
+     */
+    bwt_Matcher.matchType = [[parameters objectAtIndex:0] intValue];
+    maxSubs = [[parameters objectAtIndex:1] intValue];
+    bwt_Matcher.alignmentType = [[parameters objectAtIndex:2] intValue];
+    
     [bwt_Matcher setUpReedsFile:fileName fileExt:fileExt refStrBWT:bwtString andMaxSubs:maxSubs];
     
+    insertions = bwt_Matcher.insertionsArray;
     /*TEMPORARYAYYARYRYAYRYYARYYR ----------- WILL EVENTUALLY BE DONE IN SetUpReedsFile*/
 //    NSArray *reads = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"];
 //    for (int i = 0; i<reads.count;i++) {
@@ -35,8 +57,14 @@
 //    }
     
 //    posOccArray = [bwt_Matcher getPosOccArray];
+    bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:3] intValue]-1;//-1 because kHeteroAllowance is for one lower than what is allowed to be considered a mutation.
+    
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString andMatcher:bwt_Matcher];
     
+}
+
+- (NSMutableArray*)getInsertionsArray {
+    return insertions;
 }
 
 - (void)setUpMutationFilter {

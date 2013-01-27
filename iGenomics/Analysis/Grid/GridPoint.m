@@ -10,7 +10,7 @@
 
 @implementation GridPoint
 
-@synthesize coord, label, view, btn;
+@synthesize coord, label, view, btn, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,6 +39,6 @@
 }
 
 - (IBAction)btnTapped:(id)sender {
-    
+    [delegate gridPointClickedWithCoord:coord];
 }
 @end

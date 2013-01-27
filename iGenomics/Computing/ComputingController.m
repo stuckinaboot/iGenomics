@@ -30,24 +30,6 @@
 }
 
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
-    
-    /*
-     SET OF PARAMETERS:
-     
-     0-Exact match (0), substitution (1), subs + indels (2) | TYPE: int (exact,sub,subs+indels), int (ED)
-     +Max ED
-     
-     1-Forward alignment(0), forward and reverse alignments (1) | TYPE: int
-     
-     2-Mutation support (num of disagreements before a position is reported as a mutation): (inputted by user) | TYPE: int
-     
-     3-Trimming (if selected, chop off last x (user is allowed to chose num) bases) | TYPE: int
-     
-     4-Seed (chunk) length: automatic, manual (user inputs seed length)  | TYPE: int
-     +(Advanced feature)       -------NOT IMPLEMENTED YET
-     
-     */
-    
     analysisController = [[AnalysisController alloc] init];
     
     NSArray *a = [myReads componentsSeparatedByString:@"."];
@@ -60,13 +42,15 @@
     bwt = [[BWT alloc] init];
     [bwt setUpForRefFile:[mySeq substringToIndex:(mySeq.length)-(refFileExt.length)-1] fileExt:refFileExt];
     
-    [bwt matchReedsFile:[myReads substringToIndex:(myReads.length)-(readsFileExt.length)-1] fileExt:readsFileExt withNumOfSubs:2];//Obviously make this variable
+    //Set up parameters
+    
+    [bwt matchReedsFile:[myReads substringToIndex:(myReads.length)-(readsFileExt.length)-1] fileExt:readsFileExt withParameters:myParameterArray];//Obviously make this variable
     
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-    [analysisController readyViewForDisplay:bwt.originalString];
+    [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

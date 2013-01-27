@@ -27,6 +27,8 @@
 		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
 		A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */; };
 		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
+		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
+		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
@@ -56,6 +58,9 @@
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
 		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
 		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
+		A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FF3AD016AB17F80095EACF /* GlobalVars.m */; };
+		A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FF3AD516AB26730095EACF /* AnalysisPopoverController.m */; };
+		A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FF3AD616AB26730095EACF /* AnalysisPopoverController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +95,9 @@
 		A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher_InsertionDeletion_InsertionHolder.h; sourceTree = "<group>"; };
 		A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher_InsertionDeletion_InsertionHolder.m; sourceTree = "<group>"; };
 		A34168561607B3A800ADA90B /* BasicReeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicReeds.txt; sourceTree = "<group>"; };
+		A34E8B9516B5EF0C002F3AB7 /* InsertionsPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertionsPopoverController.h; sourceTree = "<group>"; };
+		A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertionsPopoverController.m; sourceTree = "<group>"; };
+		A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsertionsPopoverController.xib; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
@@ -128,6 +136,11 @@
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
 		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
+		A3FF3ACF16AB17F80095EACF /* GlobalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVars.h; sourceTree = "<group>"; };
+		A3FF3AD016AB17F80095EACF /* GlobalVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalVars.m; sourceTree = "<group>"; };
+		A3FF3AD416AB26730095EACF /* AnalysisPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisPopoverController.h; path = iGenomics/Analysis/Popover/AnalysisPopoverController.h; sourceTree = SOURCE_ROOT; };
+		A3FF3AD516AB26730095EACF /* AnalysisPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisPopoverController.m; path = iGenomics/Analysis/Popover/AnalysisPopoverController.m; sourceTree = SOURCE_ROOT; };
+		A3FF3AD616AB26730095EACF /* AnalysisPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnalysisPopoverController.xib; path = iGenomics/Analysis/Popover/AnalysisPopoverController.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +194,8 @@
 				A3382FC716A111E30042F59B /* Computing */,
 				A3382FC816A118640042F59B /* Analysis */,
 				A34734D4166AC1AB00C4271E /* XIBs */,
+				A3C0FD1C160FA5AC00BC2168 /* BWT */,
+				A3FF3AD316AB17FC0095EACF /* Globals */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
 			);
 			path = iGenomics;
@@ -191,7 +206,6 @@
 			children = (
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
-				A3C0FD1C160FA5AC00BC2168 /* BWT */,
 				A3A3D9C1167E6F1600CE98DC /* Test Files */,
 				A3A3D9BE167E6EFD00CE98DC /* Chunk Class */,
 				A3A3D9C0167E6F0E00CE98DC /* Ohter files */,
@@ -216,6 +230,8 @@
 				A3382FC916A118A20042F59B /* AnalysisController.h */,
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
+				A34E8B9416B5EEF1002F3AB7 /* Insertions Popover */,
+				A3FF3AD916AB26870095EACF /* Normal Popover */,
 				A3382FD116A118D80042F59B /* Grid */,
 			);
 			name = Analysis;
@@ -258,8 +274,6 @@
 		A33A7C1C1650462300E39A6C /* InDel Test */ = {
 			isa = PBXGroup;
 			children = (
-				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
-				A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */,
 				A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */,
 				A3D81EBA1666EF3700BD5C07 /* newreads.txt */,
 				A3F41AF01599E74D00DE95C9 /* reads.txt */,
@@ -303,6 +317,16 @@
 				A310AF66158A5F7200E892AA /* ViewController_iPad.xib */,
 			);
 			name = XIBs;
+			sourceTree = "<group>";
+		};
+		A34E8B9416B5EEF1002F3AB7 /* Insertions Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A34E8B9516B5EF0C002F3AB7 /* InsertionsPopoverController.h */,
+				A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */,
+				A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */,
+			);
+			name = "Insertions Popover";
 			sourceTree = "<group>";
 		};
 		A3A3D9BE167E6EFD00CE98DC /* Chunk Class */ = {
@@ -378,6 +402,7 @@
 		A3AC49C616979B4600DD9266 /* Default Ref Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
 			);
 			name = "Default Ref Files";
 			sourceTree = "<group>";
@@ -385,6 +410,7 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */,
 			);
 			name = "Default Read Files";
 			sourceTree = "<group>";
@@ -427,6 +453,27 @@
 				A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */,
 			);
 			path = BWT_MutationFilter;
+			sourceTree = "<group>";
+		};
+		A3FF3AD316AB17FC0095EACF /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				A3FF3ACF16AB17F80095EACF /* GlobalVars.h */,
+				A3FF3AD016AB17F80095EACF /* GlobalVars.m */,
+			);
+			name = Globals;
+			path = BWT/BWT_Matcher;
+			sourceTree = "<group>";
+		};
+		A3FF3AD916AB26870095EACF /* Normal Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A3FF3AD416AB26730095EACF /* AnalysisPopoverController.h */,
+				A3FF3AD516AB26730095EACF /* AnalysisPopoverController.m */,
+				A3FF3AD616AB26730095EACF /* AnalysisPopoverController.xib */,
+			);
+			name = "Normal Popover";
+			path = iGenomics/BWT/BWT_Matcher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,6 +554,8 @@
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
+				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
+				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +584,9 @@
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
 				A3382FD016A118D50042F59B /* GridView.m in Sources */,
 				A3382FD416A118FC0042F59B /* GridPoint.m in Sources */,
+				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
+				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,
+				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

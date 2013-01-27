@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GlobalVars.h"
+
 #import "BWT_Matcher_InsertionDeletion.h"
 #import "BWT_Matcher_InsertionDeletion_InsertionHolder.h"
 #import "ED_Info.h"
@@ -28,7 +30,6 @@
 #define kInsMarker '+'
 
 #define kLowestAllowedCoverage 5
-#define kHeteroAllowance 1 //Greater than 1
 
 #define kMaxEditDist 4
 
@@ -41,8 +42,13 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 
 @interface BWT_Matcher : NSObject {
     
+    //Constants made variable
     int kBytesForIndexer;
     int kMultipleToCountAt;
+    
+    //Parameters
+    int matchType;
+    int alignmentType;
     
     //New Vars
     int maxSubs;
@@ -56,15 +62,12 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
     int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
     char *acgt;
     int acgtTotalOccs[kACGTLen];
-    
-//    int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 }
 @property (nonatomic) NSMutableArray *insertionsArray;
-@property (nonatomic) int kBytesForIndexer, kMultipleToCountAt;
+@property (nonatomic) int kBytesForIndexer, kMultipleToCountAt, alignmentType, matchType;
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 
 - (int)getPosOccArrayObj:(int)x:(int)y;
-//- (NSString*)getPosOccArray; //FORMAT: 2,3,5,4,3,3\n3,3,2,3,6\n3,3,2,1,1\n5,5,3,2,3
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 
@@ -97,5 +100,5 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 char *substr(const char *pstr, int start, int numchars);
 
 //INSERTION/DELETION MATCH
-- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol;
+- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs;
 @end

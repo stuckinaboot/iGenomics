@@ -33,13 +33,15 @@
     
     char* originalString;
     char* bwtString;
+    NSMutableArray *insertions;
     int maxSubs;
 }
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
 @property (nonatomic) char* originalString;
 
 - (void)setUpForRefFile:(NSString*)fileName fileExt:(NSString*)fileExt;
-- (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withNumOfSubs:(int)subs;
+- (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray*)parameters;
 
+- (NSMutableArray*)getInsertionsArray;
 - (void)setUpMutationFilter;//Sets up the mutation filter. Do this after matching reeds
 @end

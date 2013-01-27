@@ -13,6 +13,7 @@
 //     Pos: Real: Found: # of A: # of C: # of G: # of T:
 
 #define kOnlyPrintFoundGenome 0
+//#define kHeteroAllowance 1 //Greater than 1
 
 extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
 
@@ -28,6 +29,7 @@ extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
     
     int fileStrLen;
 }
+@property (nonatomic) int kHeteroAllowance;
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher;
 //- (void)setUpMutationFilterWithPosOccArray:(NSString*)poa andOriginalStr:(char*)originalSeq;
 //- (void)setUpPosOccArray;

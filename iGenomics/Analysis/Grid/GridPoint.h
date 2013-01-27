@@ -13,9 +13,16 @@
 
 #define kGridPointImgViewAlpha 0.5
 
+
+@protocol GridPointDelegate <NSObject>
+- (void)gridPointClickedWithCoord:(CGPoint)c;
+@end
+
 @interface GridPoint : UIView {
-    
+    id delegate;
 }
+@property (nonatomic) id <GridPointDelegate> delegate;
+
 @property (nonatomic) CGPoint coord;
 
 @property (nonatomic, retain) UILabel *label;

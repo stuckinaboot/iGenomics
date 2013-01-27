@@ -14,12 +14,19 @@
 
 #define kIpadBoxWidth 30
 
-@interface GridView : UIView {
+@protocol GridViewDelegate <NSObject>
+- (void)gridPointClickedWithCoordInGrid:(CGPoint)c andOriginInGrid:(CGPoint)o;
+@end
+
+@interface GridView : UIView <GridPointDelegate> {
     UIScrollView *scrollView;
     GridPoint *points[kMaxRows][kMaxColumns];
     
     double boxHeight;
+    
+    id delegate;
 }
+@property (nonatomic) id <GridViewDelegate> delegate;
 - (void)firstSetUp;
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols;
 

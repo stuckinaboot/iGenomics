@@ -42,11 +42,9 @@
 #pragma Button Actions
 
 - (IBAction)showParametersPressed:(id)sender {
-    NSString *s = [defaultRefFilesNames objectAtIndex:[referenceFilePicker selectedRowInComponent:0]];
-//    NSString *s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[defaultRefFilesNames objectAtIndex:[referenceFilePicker selectedRowInComponent:0]] ofType:kTxt] encoding:NSUTF8StringEncoding error:nil]];//Component 0 for default files for now
+    NSString *s = [defaultRefFilesNames objectAtIndex:[referenceFilePicker selectedRowInComponent:0]];//Component 0 for default files for now
     
     NSString *r = [defaultReadsFilesNames objectAtIndex:[readsFilePicker selectedRowInComponent:0]];
-//    NSString *r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[defaultReadsFilesNames objectAtIndex:[readsFilePicker selectedRowInComponent:0]] ofType:kTxt] encoding:NSUTF8StringEncoding error:nil]];
     
     [parametersController passInSeq:s andReads:r];
     [self presentModalViewController:parametersController animated:YES];
