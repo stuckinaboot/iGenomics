@@ -77,6 +77,8 @@ char *foundGenome[kACGTLen+2];
                 foundGenome[0][i] = acgt[charWMostOccs];
             else if (charWMostOccs == kACGTLen)
                 foundGenome[0][i] = kDelMarker;
+            else if (charWMostOccs == kACGTLen+1)
+                foundGenome[0][i] = kInsMarker;
             /*else if (charWMostOccs == kACGTLen+1)
                 foundGenome[0][i] = kInsMarker;*/
         }
@@ -87,8 +89,8 @@ char *foundGenome[kACGTLen+2];
                         foundGenome[posInFoundGenomeCounter][i] = acgt[a];
                     else if (a == kACGTLen)
                         foundGenome[posInFoundGenomeCounter][i] = kDelMarker;
-                    /*else if (a == kACGTLen+1)
-                        foundGenome[posInFoundGenomeCounter][i] = kInsMarker;*/
+                    else if (a == kACGTLen+1)
+                        foundGenome[posInFoundGenomeCounter][i] = kInsMarker;
                     posInFoundGenomeCounter++;
                 }
             }
@@ -104,8 +106,8 @@ char *foundGenome[kACGTLen+2];
                             foundGenome[posInFoundGenomeCounter][i] = acgt[a];
                         else if (a == kACGTLen)
                             foundGenome[posInFoundGenomeCounter][i] = kDelMarker;
-                        /*else if (a == kACGTLen+1)
-                            foundGenome[posInFoundGenomeCounter][i] = kInsMarker;*/
+                        else if (a == kACGTLen+1)
+                            foundGenome[posInFoundGenomeCounter][i] = kInsMarker;
                         posInFoundGenomeCounter++;
                     }
                 }

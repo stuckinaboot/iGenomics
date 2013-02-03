@@ -50,7 +50,7 @@
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-    [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray]];
+    [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray] andBWT:bwt];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

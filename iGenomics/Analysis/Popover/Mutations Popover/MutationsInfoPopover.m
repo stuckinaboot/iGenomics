@@ -1,18 +1,20 @@
 //
-//  InsertionsPopoverController.m
+//  MutationsInfoPopover.m
 //  iGenomics
 //
-//  Created by Stuckinaboot Inc. on 1/27/13.
+//  Created by Stuckinaboot Inc. on 2/3/13.
 //
 //
 
-#import "InsertionsPopoverController.h"
+#import "MutationsInfoPopover.h"
 
-@interface InsertionsPopoverController ()
+@interface MutationsInfoPopover ()
 
 @end
 
-@implementation InsertionsPopoverController
+@implementation MutationsInfoPopover
+
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,24 +31,14 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)setInsArr:(NSArray *)array forPos:(int)pos {
-    arr = [[NSMutableArray alloc] init];
-    
-    //Find the insertions at that position
-    for (int i = 0; i<array.count; i++) {
-        BWT_Matcher_InsertionDeletion_InsertionHolder *info = [array objectAtIndex:i];
-        
-        if (info.pos == pos) {
-            [arr addObject:info];
-        }
-    }
+- (void)setUpWithMutationsArr:(NSArray *)arr {
+    mutationsArray = arr;
 }
 
-#pragma TABLEVIEW DELEGATE
-
+#pragma TableView Delegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [arr count];
+    return [mutationsArray count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,18 +50,24 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    BWT_Matcher_InsertionDeletion_InsertionHolder *info = [arr objectAtIndex:indexPath.row];
-    
-    [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i, Seq: %s, Count: %i",info.pos,info.seq,info.count]];//Not positive about gappedA
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row > 0) {
+        int pos = [[mutationsArray objectAtIndex:indexPath.row-1] intValue];//-1 because first row shows total # of muts
+        [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i",pos]];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//Show the little arrow
+    }
+    else {
+        //Show total number of mutations
+        [cell.textLabel setText:[NSString stringWithFormat:@"Total Mutations: %i",[mutationsArray count]]];
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.row>0)//didn't select "Total Mutations" row
+        [delegate mutationAtPosPressedInPopover:[[mutationsArray objectAtIndex:indexPath.row-1] intValue]];//-1 because first row shows total # of muts
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

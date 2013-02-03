@@ -42,6 +42,24 @@
     }
 }
 
+- (void)scrollToPos:(double)p {
+    CGSize s = self.frame.size;
+    CGRect frame = CGRectMake(kIpadBoxWidth*p, s.height/2, s.width, s.height);
+    
+    [UIView animateWithDuration:kScrollSpeed animations:^{
+        [scrollView scrollRectToVisible:frame animated:NO];
+    } completion:^(BOOL finished){
+        CGPoint c = CGPointMake(0, 0);
+        
+        [delegate gridPointClickedWithCoordInGrid:CGPointMake(0, p) andOriginInGrid:c];//Display info
+    }];
+//    [scrollView scrollRectToVisible:frame animated:YES];
+    
+//    CGPoint c = CGPointMake(0, 0);
+    
+//    [delegate gridPointClickedWithCoordInGrid:CGPointMake(0, p) andOriginInGrid:c];//Display info
+}
+
 - (GridPoint*)getGridPoint:(int)row :(int)col {
     return points[row][col];
 }

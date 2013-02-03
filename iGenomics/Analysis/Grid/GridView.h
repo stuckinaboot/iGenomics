@@ -14,6 +14,8 @@
 
 #define kIpadBoxWidth 30
 
+#define kScrollSpeed 0.5
+
 @protocol GridViewDelegate <NSObject>
 - (void)gridPointClickedWithCoordInGrid:(CGPoint)c andOriginInGrid:(CGPoint)o;
 @end
@@ -29,6 +31,8 @@
 @property (nonatomic) id <GridViewDelegate> delegate;
 - (void)firstSetUp;
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols;
+
+- (void)scrollToPos:(double)p;
 
 - (GridPoint*)getGridPoint:(int)row :(int)col;
 @end

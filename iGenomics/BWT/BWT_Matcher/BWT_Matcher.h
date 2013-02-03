@@ -67,7 +67,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 @property (nonatomic) int kBytesForIndexer, kMultipleToCountAt, alignmentType, matchType;
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 
-- (int)getPosOccArrayObj:(int)x:(int)y;
+- (int)getPosOccArrayObj:(int)x :(int)y;
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 
@@ -89,6 +89,8 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 - (int)whichChar:(char)c inContainer:(char*)container;
 
 - (int)charsBeforeChar:(char)c;
+
+- (char*)getSortedSeq;
 
 //APPROXI MATCH
 - (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs;

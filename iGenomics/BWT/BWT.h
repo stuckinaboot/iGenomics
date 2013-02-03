@@ -30,6 +30,7 @@
 
 @interface BWT : NSObject {
     BWT_MutationFilter *bwtMutationFilter;//CREATED AS AN OBJECT SO THAT DATA CAN BE EASILY RETRIEVED FROM THE FILTER
+    BWT_Matcher *bwt_Matcher;
     
     char* originalString;
     char* bwtString;
@@ -41,6 +42,8 @@
 
 - (void)setUpForRefFile:(NSString*)fileName fileExt:(NSString*)fileExt;
 - (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray*)parameters;
+
+- (NSArray*)simpleSearchForQuery:(char*)query;//searches for the query using exact match, returns all matches
 
 - (NSMutableArray*)getInsertionsArray;
 - (void)setUpMutationFilter;//Sets up the mutation filter. Do this after matching reeds

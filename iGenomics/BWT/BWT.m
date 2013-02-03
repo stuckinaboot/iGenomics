@@ -25,7 +25,7 @@
 
 - (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray *)parameters {
 //    maxSubs = subs;
-    BWT_Matcher *bwt_Matcher = [[BWT_Matcher alloc] init];
+     bwt_Matcher = [[BWT_Matcher alloc] init];
     
     /*
      SET OF PARAMETERS:
@@ -61,6 +61,10 @@
     
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString andMatcher:bwt_Matcher];
     
+}
+
+- (NSArray*)simpleSearchForQuery:(char*)query {
+    return [bwt_Matcher exactMatchForQuery:query withLastCol:bwtString andFirstCol:[bwt_Matcher getSortedSeq]];
 }
 
 - (NSMutableArray*)getInsertionsArray {

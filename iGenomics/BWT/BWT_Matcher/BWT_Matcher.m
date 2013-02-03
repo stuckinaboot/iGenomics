@@ -751,7 +751,22 @@ char *substr(const char *pstr, int start, int numchars)
     return revSeq;
 }
 
-- (int)getPosOccArrayObj:(int)x:(int)y {
+- (int)getPosOccArrayObj:(int)x :(int)y {
     return posOccArray[x][y];
+}
+
+- (char*)getSortedSeq {
+    char *firstCol = calloc(fileStrLen, 1);
+    firstCol[0] = '$';
+    
+    int pos = 1;
+    for (int x = 0; x<kACGTLen; x++) {
+        for (int i = 0; i<acgtTotalOccs[x]; i++) {
+            firstCol[pos] = acgt[x];
+            pos++;
+        }
+    }
+    
+    return  firstCol;
 }
 @end

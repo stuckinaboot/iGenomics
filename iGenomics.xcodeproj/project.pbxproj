@@ -16,6 +16,8 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */; };
+		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
@@ -29,6 +31,8 @@
 		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
+		A3531EA716BEFF3800768A31 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
+		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
@@ -78,6 +82,8 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
+		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -98,6 +104,9 @@
 		A34E8B9516B5EF0C002F3AB7 /* InsertionsPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertionsPopoverController.h; sourceTree = "<group>"; };
 		A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertionsPopoverController.m; sourceTree = "<group>"; };
 		A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsertionsPopoverController.xib; sourceTree = "<group>"; };
+		A3531EA416BEFF3800768A31 /* MutationsInfoPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutationsInfoPopover.h; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.h"; sourceTree = "<group>"; };
+		A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutationsInfoPopover.m; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.m"; sourceTree = "<group>"; };
+		A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MutationsInfoPopover.xib; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.xib"; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
@@ -232,6 +241,7 @@
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
 				A34E8B9416B5EEF1002F3AB7 /* Insertions Popover */,
 				A3FF3AD916AB26870095EACF /* Normal Popover */,
+				A3531EA916BEFF3C00768A31 /* Mutations Popover */,
 				A3382FD116A118D80042F59B /* Grid */,
 			);
 			name = Analysis;
@@ -329,6 +339,16 @@
 			name = "Insertions Popover";
 			sourceTree = "<group>";
 		};
+		A3531EA916BEFF3C00768A31 /* Mutations Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A3531EA416BEFF3800768A31 /* MutationsInfoPopover.h */,
+				A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */,
+				A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */,
+			);
+			name = "Mutations Popover";
+			sourceTree = "<group>";
+		};
 		A3A3D9BE167E6EFD00CE98DC /* Chunk Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
+				A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */,
 			);
 			name = "Default Ref Files";
 			sourceTree = "<group>";
@@ -411,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */,
+				A3181A7116B7465500A2B700 /* TESTREADS.txt */,
 			);
 			name = "Default Read Files";
 			sourceTree = "<group>";
@@ -502,7 +524,7 @@
 		A310AF41158A5F7200E892AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = A310AF44158A5F7200E892AA /* Build configuration list for PBXProject "iGenomics" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -556,6 +578,9 @@
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
+				A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */,
+				A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */,
+				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +612,7 @@
 				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
 				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,
 				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
+				A3531EA716BEFF3800768A31 /* MutationsInfoPopover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +652,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -639,6 +669,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
@@ -652,12 +683,17 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
