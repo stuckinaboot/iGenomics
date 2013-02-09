@@ -1,2 +1,2 @@
-Ecoli.5k.reads.txt
 TESTREADS.txt
+Ecoli.5k.reads.txt

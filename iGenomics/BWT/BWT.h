@@ -40,6 +40,8 @@
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
 @property (nonatomic) char* originalString;
 
+@property (nonatomic) int readLen, refSeqLen, numOfReads;
+
 - (void)setUpForRefFile:(NSString*)fileName fileExt:(NSString*)fileExt;
 - (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray*)parameters;
 

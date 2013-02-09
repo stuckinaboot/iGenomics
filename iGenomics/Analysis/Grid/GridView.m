@@ -10,7 +10,7 @@
 
 @implementation GridView
 
-@synthesize delegate;
+@synthesize delegate, boxHeight;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -36,7 +36,8 @@
             points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, i*boxHeight, kIpadBoxWidth, boxHeight)];
             [points[i][j] setDelegate:self];
             points[i][j].coord = CGPointMake(i, j);
-            [points[i][j] setUpLabel];//Sets up the label propery
+            [points[i][j] setUpView];//Sets up the img view property
+            [points[i][j] setUpLabel];//Sets up the label property
             [scrollView addSubview:points[i][j]];
         }
     }
@@ -49,15 +50,12 @@
     [UIView animateWithDuration:kScrollSpeed animations:^{
         [scrollView scrollRectToVisible:frame animated:NO];
     } completion:^(BOOL finished){
-        CGPoint c = CGPointMake(0, 0);
+        
+        CGPoint rc = [scrollView convertPoint:points[0][(int)p].frame.origin toView:self];
+        CGPoint c = rc;
         
         [delegate gridPointClickedWithCoordInGrid:CGPointMake(0, p) andOriginInGrid:c];//Display info
     }];
-//    [scrollView scrollRectToVisible:frame animated:YES];
-    
-//    CGPoint c = CGPointMake(0, 0);
-    
-//    [delegate gridPointClickedWithCoordInGrid:CGPointMake(0, p) andOriginInGrid:c];//Display info
 }
 
 - (GridPoint*)getGridPoint:(int)row :(int)col {

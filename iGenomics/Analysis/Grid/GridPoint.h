@@ -11,8 +11,9 @@
 
 #define kBorderW 1
 
-#define kGridPointImgViewAlpha 0.5
+#define kGridPointImgViewAlpha 1.0
 
+#define kDefFontSize 30
 
 @protocol GridPointDelegate <NSObject>
 - (void)gridPointClickedWithCoord:(CGPoint)c;

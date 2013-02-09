@@ -65,6 +65,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 }
 @property (nonatomic) NSMutableArray *insertionsArray;
 @property (nonatomic) int kBytesForIndexer, kMultipleToCountAt, alignmentType, matchType;
+@property (nonatomic) int readLen, refSeqLen, numOfReads;
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 
 - (int)getPosOccArrayObj:(int)x :(int)y;

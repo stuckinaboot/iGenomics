@@ -13,16 +13,22 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 @implementation BWT_Matcher
 
 @synthesize kBytesForIndexer, kMultipleToCountAt, matchType, alignmentType, insertionsArray;
+@synthesize readLen, refSeqLen, numOfReads;
 
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs {
     NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
     reedsArray = [[NSArray alloc] initWithArray:[reedsString componentsSeparatedByString:kReedsArraySeperationStr]];
+    numOfReads = [reedsArray count];
+    
+    NSString *firstRead = [reedsArray objectAtIndex:0];
+    readLen = firstRead.length;
     
     refStrBWT = strdup(bwt);
     
     maxSubs = subs;
     
     fileStrLen = strlen(refStrBWT);
+    refSeqLen = fileStrLen;
     
     //kBytesForIndexer and kMultipleToCountAt Are Set here
     [self setUpBytesForIndexerAndMultipleToCountAt:fileStrLen];

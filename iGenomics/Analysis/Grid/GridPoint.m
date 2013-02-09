@@ -17,6 +17,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.layer.borderWidth = kBorderW;
+        [self.layer setBorderColor:[UIColor whiteColor].CGColor];
     }
     return self;
 }
@@ -24,6 +25,9 @@
 - (void)setUpLabel {
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     label.textAlignment = NSTextAlignmentCenter;
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setFont:[UIFont systemFontOfSize:kDefFontSize]];//Until A different font is used
+    [label setAdjustsFontSizeToFitWidth:YES];
     [self addSubview:label];
 }
 - (void)setUpView {

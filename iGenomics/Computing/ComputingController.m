@@ -50,7 +50,10 @@
     [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-    [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray] andBWT:bwt];
+    //genome file name, reads file name, read length, genome length, number of reads
+    NSArray *basicInf = [NSArray arrayWithObjects:mySeq, myReads, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen], [NSNumber numberWithInt:bwt.numOfReads],nil];
+    
+    [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray] andBWT:bwt andBasicInfo:basicInf];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
