@@ -106,25 +106,25 @@
     
     [gridView firstSetUp];
     [gridView setDelegate:self];
-    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len];
+    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:kGraphRowHeight];
     
     GridPoint *point[kNumOfRowsInGridView];
     for (int i = 0; i<len; i++) {
-        point[0] = [gridView getGridPoint:0 :i];
-        [point[0] setUpBtn];//Sets up the btn property
-        [point[0].label setText:[NSString stringWithFormat:@"%c",originalStr[i]]];
-        [point[0].label setTextColor:[UIColor whiteColor]];
-        [point[0].view setBackgroundColor:colors[kStartOfRefInRGBVals]];
-        
-        point[1] = [gridView getGridPoint:1 :i];
+        point[1] = [gridView getGridPoint:0 :i];
         [point[1] setUpBtn];//Sets up the btn property
-        [point[1].label setText:[NSString stringWithFormat:@"%c",foundGenome[0][i]]];
-        [point[1].label setTextColor:[UIColor blackColor]];
-        [point[1].view setBackgroundColor:colors[kStartOfRefInRGBVals+1]];
+        [point[1].label setText:[NSString stringWithFormat:@"%c",originalStr[i]]];
+        [point[1].label setTextColor:[UIColor whiteColor]];
+        [point[1].view setBackgroundColor:colors[kStartOfRefInRGBVals]];
+        
+        point[2] = [gridView getGridPoint:1 :i];
+        [point[2] setUpBtn];//Sets up the btn property
+        [point[2].label setText:[NSString stringWithFormat:@"%c",foundGenome[0][i]]];
+        [point[2].label setTextColor:[UIColor blackColor]];
+        [point[2].view setBackgroundColor:colors[kStartOfRefInRGBVals+1]];
         
         if (posOccArray[kACGTLen+1][i]>0) {
-            point[7] = [gridView getGridPoint:7 :i];
-            [point[7] setUpBtn];
+            point[kNumOfRowsInGridView-1] = [gridView getGridPoint:kNumOfRowsInGridView-1 :i];
+            [point[kNumOfRowsInGridView-1] setUpBtn];
         }
         if (originalStr[i] != foundGenome[0][i]) {//Mutation
 //            [point[0] setUpView];
@@ -145,7 +145,7 @@
                 }
             }
             
-            [point[1].label setTextColor:colors[kStartOfAInRGBVals+v]];
+            [point[2].label setTextColor:colors[kStartOfAInRGBVals+v]];
 //            [point[0].view setBackgroundColor:[UIColor blueColor]];
 //            [point[1].view setBackgroundColor:[UIColor blueColor]];
             
@@ -153,7 +153,7 @@
         }
         
         //Highlight for hetero?
-        for (int t = 2; t<8; t++) {
+        for (int t = 2; t<kNumOfRowsInGridView-1; t++) {
             point[t] = [gridView getGridPoint:t :i];
             [point[t].label setText:[NSString stringWithFormat:@"%i",posOccArray[t-2][i]]];
             point[t].label.textColor = [UIColor colorWithRed:rgbVals[1][0] green:rgbVals[1][1] blue:rgbVals[1][2] alpha:1.0];
@@ -269,7 +269,7 @@
         
         apc.heteroLbl.text = heteroStr;
     }
-    else if (c.x == 7) {
+    else if (c.x == kNumOfRowsInGridView-1) {
         InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
         [ipc setInsArr:insertionsArr forPos:(int)c.y];
         

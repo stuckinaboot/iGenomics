@@ -29,27 +29,26 @@
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight {
     [scrollView setContentSize:CGSizeMake(cols*kIpadBoxWidth, self.frame.size.height)];
     
-    boxHeight = (double)self.frame.size.height/rows;
     graphBoxHeight = gbHeight;
+    boxHeight = (double)(self.frame.size.height-graphBoxHeight)/(rows-1);//Finds the boxHeight for the remaining rows
     
     for (int i = 0; i<rows; i++) {
         for (int j = 0; j<cols; j++) {
-            if (i > 0) {//Not Graph Row
-                points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, gbHeight, kIpadBoxWidth, gbHeight)];
+//            if (i > 0) {//Not Graph Row
+                points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, gbHeight+(i*boxHeight), kIpadBoxWidth, boxHeight)];
                 [points[i][j] setDelegate:self];
                 points[i][j].coord = CGPointMake(i, j);
                 [points[i][j] setUpView];//Sets up the img view property
                 [points[i][j] setUpLabel];//Sets up the label property
                 [scrollView addSubview:points[i][j]];
-            }
-            else {//Graph Row
-                points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, i*boxHeight, kIpadBoxWidth, boxHeight)];
+//            }
+            /*else {//Graph Row
+                points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, 0, kIpadBoxWidth, gbHeight)];
                 [points[i][j] setDelegate:self];
                 points[i][j].coord = CGPointMake(i, j);
                 [points[i][j] setUpView];//Sets up the img view property
-                [points[i][j] setUpLabel];//Sets up the label property
                 [scrollView addSubview:points[i][j]];
-            }
+            }*/
         }
     }
 }

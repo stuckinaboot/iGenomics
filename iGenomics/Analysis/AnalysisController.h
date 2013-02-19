@@ -18,7 +18,9 @@
 #import "BWT_MutationFilter.h"
 #import "BWT.h"
 
-#define kNumOfRowsInGridView 8 //0 ref, 1 found, 2 A, 3 C, 4 G, 5 T, 6 -, 7 +
+#define kGraphRowHeight 0
+
+#define kNumOfRowsInGridView 9 //1 ref, 2 found, 3 A, 4 C, 5 G, 6 T, 7 -, 8 +
 
 #define kSetUpGridLblsDelay 0.7 //Eventually labels will need to be created programatically rather in IB
 
