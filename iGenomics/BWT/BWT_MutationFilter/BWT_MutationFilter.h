@@ -16,6 +16,7 @@
 //#define kHeteroAllowance 1 //Greater than 1
 
 extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
+extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------GLOBAL-------I
 
 @interface BWT_MutationFilter : NSObject {
     BWT_Matcher *matcher;

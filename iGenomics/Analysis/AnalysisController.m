@@ -122,6 +122,10 @@
         [point[1].label setTextColor:[UIColor blackColor]];
         [point[1].view setBackgroundColor:colors[kStartOfRefInRGBVals+1]];
         
+        if (posOccArray[kACGTLen+1][i]>0) {
+            point[7] = [gridView getGridPoint:7 :i];
+            [point[7] setUpBtn];
+        }
         if (originalStr[i] != foundGenome[0][i]) {//Mutation
 //            [point[0] setUpView];
 //            [point[1] setUpView];

@@ -9,6 +9,7 @@
 #import "BWT_MutationFilter.h"
 
 char *foundGenome[kACGTLen+2];
+extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 
 @implementation BWT_MutationFilter
 
@@ -53,7 +54,7 @@ char *foundGenome[kACGTLen+2];
     for (int i = 0; i<fileStrLen-1; i++) {
         for (int a = 0; a < kACGTLen+2; a++) {
             
-            if (posOccArray[a][i]>0 && a < kACGTLen+1) { //Character did match, at least 1x coverage was found, and not an insertion
+            if (posOccArray[a][i]>0 /*&& a < kACGTLen+1*/) { //Character did match, at least 1x coverage was found, and not an insertion
                 coverageCounter += posOccArray[a][i];
             }
             
@@ -82,7 +83,7 @@ char *foundGenome[kACGTLen+2];
             /*else if (charWMostOccs == kACGTLen+1)
                 foundGenome[0][i] = kInsMarker;*/
         }
-        for (int a = 0; a < kACGTLen+1; a++) {
+        for (int a = 0; a <= kACGTLen+1; a++) {
             if (charWMostOccs != a) {
                 if (posOccArray[a][i]>kHeteroAllowance) {
                     if (a<kACGTLen)
