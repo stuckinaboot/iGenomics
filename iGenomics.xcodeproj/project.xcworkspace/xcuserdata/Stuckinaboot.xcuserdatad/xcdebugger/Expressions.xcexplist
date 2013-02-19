@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[BWT_Matcher_InsertionDeletion checkForInDelMatch:andMatchedPos:andChunkNum:andChunkSize:]:BWT_Matcher_InsertionDeletion.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EditDistance editDistanceForInfo:andB:andChunkNum:andChunkSize:andMaxED:]:EditDistance.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
