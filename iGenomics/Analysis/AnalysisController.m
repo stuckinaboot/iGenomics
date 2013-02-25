@@ -25,6 +25,11 @@
 
 - (void)viewDidLoad
 {
+    zoomLevel = kPinchZoomStartingLevel;
+    gridView.kIpadBoxWidth = kDefaultIpadBoxWidth;
+    
+    mutationSupportStpr.maximumValue = kMutationSupportMax;
+    
     [self resetDisplay];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -35,6 +40,8 @@
     insertionsArr = iArr;
     bwt = myBwt;
     
+    mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
+    
     //genome file name, reads file name, read length, genome length, number of reads
     genomeFileName = [basicInfArr objectAtIndex:0];
     readsFileName = [basicInfArr objectAtIndex:1];
@@ -44,6 +51,7 @@
 }
 
 - (void)resetDisplay {
+    
     //Set up info lbls
     [genomeNameLbl setText:[NSString stringWithFormat:@"%@",genomeFileName]];
     [genomeLenLbl setText:[NSString stringWithFormat:@"%@%i",kLengthLblStart,genomeLen]];
@@ -53,10 +61,12 @@
     
     double coverage = (double)((double)numOfReads * readLen)/(double)genomeLen;
     
-    [genomeCoverageLbl setText:[NSString stringWithFormat:@"%@%1.0f",kGenomeCoverageLblStart,coverage]];
+    [genomeCoverageLbl setText:[NSString stringWithFormat:@"%@%.02fx",kGenomeCoverageLblStart,coverage]];
     mutPosArray = [[NSMutableArray alloc] init];
     
     [readNumOfLbl setText:[NSString stringWithFormat:@"%@%i",kNumOfReadsLblStart,numOfReads]];
+    
+    [mutationSupportNumLbl setText:[NSString stringWithFormat:@"%i",(int)mutationSupportStpr.value]];
     
     //Set up letters for the gridView
     nLbl[0] = refLbl;
@@ -110,17 +120,17 @@
     
     GridPoint *point[kNumOfRowsInGridView];
     for (int i = 0; i<len; i++) {
-        point[1] = [gridView getGridPoint:0 :i];
-        [point[1] setUpBtn];//Sets up the btn property
-        [point[1].label setText:[NSString stringWithFormat:@"%c",originalStr[i]]];
-        [point[1].label setTextColor:[UIColor whiteColor]];
-        [point[1].view setBackgroundColor:colors[kStartOfRefInRGBVals]];
+        point[kRefN] = [gridView getGridPoint:kRefN :i];
+        [point[kRefN] setUpBtn];//Sets up the btn property
+        [point[kRefN].label setText:[NSString stringWithFormat:@"%c",originalStr[i]]];
+        [point[kRefN].label setTextColor:[UIColor whiteColor]];
+        [point[kRefN].view setBackgroundColor:colors[kStartOfRefInRGBVals]];
         
-        point[2] = [gridView getGridPoint:1 :i];
-        [point[2] setUpBtn];//Sets up the btn property
-        [point[2].label setText:[NSString stringWithFormat:@"%c",foundGenome[0][i]]];
-        [point[2].label setTextColor:[UIColor blackColor]];
-        [point[2].view setBackgroundColor:colors[kStartOfRefInRGBVals+1]];
+        point[kFndN] = [gridView getGridPoint:kFndN :i];
+        [point[kFndN] setUpBtn];//Sets up the btn property
+        [point[kFndN].label setText:[NSString stringWithFormat:@"%c",foundGenome[0][i]]];
+        [point[kFndN].label setTextColor:[UIColor blackColor]];
+        [point[kFndN].view setBackgroundColor:colors[kStartOfRefInRGBVals+1]];
         
         if (posOccArray[kACGTLen+1][i]>0) {
             point[kNumOfRowsInGridView-1] = [gridView getGridPoint:kNumOfRowsInGridView-1 :i];
@@ -145,7 +155,7 @@
                 }
             }
             
-            [point[2].label setTextColor:colors[kStartOfAInRGBVals+v]];
+            [point[kFndN].label setTextColor:colors[kStartOfAInRGBVals+v]];
 //            [point[0].view setBackgroundColor:[UIColor blueColor]];
 //            [point[1].view setBackgroundColor:[UIColor blueColor]];
             
@@ -153,15 +163,15 @@
         }
         
         //Highlight for hetero?
-        for (int t = 2; t<kNumOfRowsInGridView-1; t++) {
+        for (int t = 3; t<kNumOfRowsInGridView; t++) {
             point[t] = [gridView getGridPoint:t :i];
-            [point[t].label setText:[NSString stringWithFormat:@"%i",posOccArray[t-2][i]]];
+            [point[t].label setText:[NSString stringWithFormat:@"%i",posOccArray[t-3][i]]];
             point[t].label.textColor = [UIColor colorWithRed:rgbVals[1][0] green:rgbVals[1][1] blue:rgbVals[1][2] alpha:1.0];
             [point[t].view setBackgroundColor:colors[0]];
             
 //            if (t == 2) {//A
-                if (posOccArray[t-2][i]>0)
-                    [point[t].label setTextColor:colors[kStartOfAInRGBVals+(t-2)]];
+                if (posOccArray[t-3][i]>0)
+                    [point[t].label setTextColor:colors[kStartOfAInRGBVals+(t-3)]];
             /*}
             else if (t == 3) {//C
                 if (posOccArray[t-2][i]>0)
@@ -186,9 +196,61 @@
         }
     }
     
+    [self setUpGridGraph];
+    
+    pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
+    [gridView addGestureRecognizer:pinchRecognizer];
+    
     mutsPopover = [[MutationsInfoPopover alloc] init];
     [mutsPopover setDelegate:self];
     [mutsPopover setUpWithMutationsArr:mutPosArray];
+}
+
+//Sets up the Graph in the top row of the grid
+- (void)setUpGridGraph {
+    
+    int len = strlen(originalStr);
+    
+    //First find highest value to make the max scale
+    double maxVal = 0;
+    
+    for (int i = 0; i<len; i++) {
+        if (coverageArray[i]>maxVal) {
+            maxVal = coverageArray[i];
+        }
+    }
+    
+    //Next go through each grid point inserting a bar graph
+    GridPoint *point;
+    CGRect rect;
+    CGRect newRect;
+    float newHeight = 0;
+    int currCoverage = 0;
+    
+    for (int i = 0; i<len-1; i++) {//len-1 cause we don't want $ sign
+        point = [gridView getGridPoint:kGraphN :i];
+        rect = point.view.frame;
+        currCoverage = coverageArray[i];
+        
+        UIGraphicsBeginImageContext(rect.size);
+        [point.view.image drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), kGraphRGB[0], kGraphRGB[1], kGraphRGB[2], 1.0f);
+        newHeight = (currCoverage*rect.size.height)/maxVal;
+        /* That kinda formula thing comes from this:
+         Coverage                X Height
+         ________       =     _________
+         Max Val		Max Height
+         
+         X = (Coverage*Max Height)/ Max Val
+         */
+        
+        newRect = CGRectMake(0, rect.size.height-newHeight, rect.size.width, newHeight);
+        CGContextFillRect(UIGraphicsGetCurrentContext(), newRect);
+        point.view.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    
+    //Then say we did it! and can always add gradients!
 }
 
 - (void)setUpGridLbls {
@@ -237,6 +299,23 @@
     [popoverController presentPopoverFromRect:showMutTBViewBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
+//Mutation Support Stepper
+- (IBAction)mutationSupportStepperChanged:(id)sender {
+    UIStepper *stepper = (UIStepper*)sender;
+    int val = (int)stepper.value;
+    
+    mutationSupportNumLbl.text = [NSString stringWithFormat:@"%i",val];
+    
+    [mutPosArray removeAllObjects];
+    bwt.bwtMutationFilter.kHeteroAllowance = val;
+    
+    [bwt.bwtMutationFilter filterMutationsForDetails];
+    
+    
+    [gridView clearAllPoints];
+    [self resetDisplay];
+}
+
 //Mutation Info Popover Delegate
 - (void)mutationAtPosPressedInPopover:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
@@ -247,6 +326,30 @@
 - (void)queryResultPosPicked:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
     [gridView scrollToPos:pos];
+}
+
+//Grid View zoom in/out
+-(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
+    if ([sender state] == UIGestureRecognizerStateEnded) {
+        double s = [sender scale];
+        
+        if (s > 1.0f) {//Zoom in
+            if (zoomLevel>kPinchZoomMaxLevel) {
+                gridView.kIpadBoxWidth += kPinchZoomFactor;
+                zoomLevel--;
+                [gridView clearAllPoints];
+                [self resetDisplay];
+            }
+        }
+        else if (s < 1.0f) {//Zoom out
+            if (zoomLevel<kPinchZoomMinLevel) {
+                gridView.kIpadBoxWidth -= kPinchZoomFactor;
+                zoomLevel++;
+                [gridView clearAllPoints];
+                [self resetDisplay];
+            }
+        }
+    }
 }
 
 //Grid view delegate

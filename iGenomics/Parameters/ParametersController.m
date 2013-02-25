@@ -60,8 +60,8 @@
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
-    [computingController setUpWithReads:reads andSeq:seq andParameters:[NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? [maxEDTxtFld.text intValue] : 0], [NSNumber numberWithInt:alignmentTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:[mutationSupportTxtFld.text intValue]], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil]];
     [self presentModalViewController:computingController animated:YES];
+    [computingController setUpWithReads:reads andSeq:seq andParameters:[NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? [maxEDTxtFld.text intValue] : 0], [NSNumber numberWithInt:alignmentTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:[mutationSupportTxtFld.text intValue]], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil]];
 }
 
 - (IBAction)backPressed:(id)sender {

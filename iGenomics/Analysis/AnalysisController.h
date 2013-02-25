@@ -18,9 +18,19 @@
 #import "BWT_MutationFilter.h"
 #import "BWT.h"
 
-#define kGraphRowHeight 0
+#define kGraphRowHeight 50
+static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept seperate from the rgbVals variable so I don't confuse them because those objects will eventually be created dynamically
 
 #define kNumOfRowsInGridView 9 //1 ref, 2 found, 3 A, 4 C, 5 G, 6 T, 7 -, 8 +
+
+#define kGraphN 0 //Index of Graph in rows in gridView
+#define kRefN 1 //Index of Ref in rows in gridView
+#define kFndN 2 //Index of Found in rows in gridView
+
+#define kPinchZoomMaxLevel 1
+#define kPinchZoomMinLevel 5
+#define kPinchZoomStartingLevel 3
+#define kPinchZoomFactor 10 //(in pixels)
 
 #define kSetUpGridLblsDelay 0.7 //Eventually labels will need to be created programatically rather in IB
 
@@ -31,13 +41,15 @@
 
 #define kLengthLblStart @"Len: "
 
-#define kGenomeCoverageLblStart @"Coverage: "
+#define kGenomeCoverageLblStart @"Cov: "
 
 #define kNumOfReadsLblStart @"Num: "
 
 #define kNumOfRGBVals 10
 #define kStartOfAInRGBVals 4
 #define kStartOfRefInRGBVals 2
+
+#define kMutationSupportMax 8
 
 static double rgbVals[kNumOfRGBVals][3] = {{203/255.0f,203/255.0f,203/255.0f},//defBackground
 {191/255.0f,191/255.0f,191/255.0f},//defLbl
@@ -62,13 +74,26 @@ static double tRGB[3] = {254/255.0f,250/255.0f,80/255.0f};
 static double delRGB[3] = {0/255.0f,0/255.0f,0/255.0f};
 static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
 
+// GET NASAL SPRAY--DONE
+//DON"T INCLUDE $ SIGN IN LEN
+//SHOW LOADING SCREEN THE INSTANT BEFORE SEQUENCING STARTS (START SEQUENCING FROM LOADING SCREEN)
+//IN UIPOPOVER THAT SHOWS UP FOR A POSITION THAT IS A MUTATION (ALSO SHOW THIS IN THE SHOW ALL MUTATIONS UITABLEVIEW CELLS), EX. for G to - supported by 5 reads, G > - 5 Reads
+//ADD ABILITY TO PINCH ZOOM, WOULD MAKE THE COLUMNS SMALLER/LARGER, BUT VERTICAL SPACING WOULD REMAIN THE SAME**MOST PRIORITIZED
+//FOR DISPLAYING FILE NAMES, "Ref: " and "Reads: "
+//ADD UITEXTFIELD FOR MUTATION SUPPORT**MOST PRIORITIZED
+//BUTTON TO SEND TABLE OF MUTATIONS TO AN EMAIL ADDRESS AS A TEXT FILE**MOST PRIORITIZED
+//EVERY THE POSITION ABOVE THE GRID VIEW EVERY 10TH BASE**MOST PRIORITIZED
+//ADD BUTTONS TO SCROLL +/- 10,000 BASES
+
+//MAKE TIMER CLASS
+
 //DISPLAY INSERTIONS IN TABLE VIEW POPOVER IF AN INSERTION GRID BOX IS CLICKED--DONE
 //SHOW + IN FOUND SECTION IF THE INSERTION PASSES THE MINIMUM MUTATION COVERAGE THRESHOLD--DONE
 //ADD SEARCH BOX FOR POSITION--DONE
-//ADD SEARCH BOX FOR A CUSTOM SEQUENCE (EXACT MATCH TO FIND IT, THEN SCROLL TO IT)--DONE (EXCEPT NEEDS A WAY TO HANDLE IF THE QUERY IS NEAR THE END OF THE SEQUENCE, CURRENTLY IT DOES NOT SCROLL ALL THE WAY
-//ARROWS TO JUMP TO NEXT MUTATION --IN PROGRESS (OR POSSIBLY A POPOVER WITH A LIST?)
-//MUTATION SUMMARY (DISPLAY ALL MUTATION IN A TABLE VIEW POPOVER, ALONG WITH A LABEL SAYING THE TOTAL NUMBER OF MUTATIONS) - TAPPING A MUTATION WILL SCROLL YOU TO IT--DONE
-//BUTTON TO SEND TABLE OF MUTATIONS TO AN EMAIL ADDRESS AS A TEXT FILE
+//ADD SEARCH BOX FOR A CUSTOM SEQUENCE (EXACT MATCH TO FIND IT, THEN SCROLL TO IT)--DONE
+//POPOVER TO JUMP TO NEXT MUTATION --IN PROGRESS (POPOVER WITH A LIST, SORTED ASCENDING?)---MAKE IT ASCENDING
+//MUTATION SUMMARY (DISPLAY ALL MUTATION IN A TABLE VIEW POPOVER, ALONG WITH A LABEL SAYING THE TOTAL NUMBER OF MUTATIONS) - TAPPING A MUTATION WILL SCROLL YOU TO IT--(((ALSO ADD INSERTIONS TO THIS MUTATION LIST????))))--IF SO STILL IN PROGRESS
+
 
 @interface AnalysisController : UIViewController <GridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate> {
     //Interactive Interface Elements
@@ -76,6 +101,8 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UITextField *seqSearchTxtFld;
     IBOutlet UIButton *showMutTBViewBtn;
     IBOutlet UIButton *showQueryResultsBtn;
+    IBOutlet UILabel *mutationSupportNumLbl;
+    IBOutlet UIStepper *mutationSupportStpr;//Mutation Support Stepper
     
     //Non-interactive Interface Elements
     IBOutlet UILabel *refLbl;
@@ -87,6 +114,9 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UILabel *delLbl;
     IBOutlet UILabel *insLbl;
     UILabel *nLbl[kNumOfRowsInGridView];
+    
+    UIPinchGestureRecognizer *pinchRecognizer;
+    int zoomLevel;
     
     IBOutlet UIImageView *gridViewTitleLblHolder;
     
@@ -117,15 +147,23 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     NSMutableArray *mutPosArray;//Keeps the positions of all the mutations
     NSArray *querySeqPosArr;//Keeps the positions of the found query sequence (from seqSearch)
 }
+-(void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 
 - (IBAction)posSearch:(id)sender;
 
 - (IBAction)seqSearch:(id)sender;
 - (IBAction)showSeqSearchResults:(id)sender;
 
+- (IBAction)mutationSupportStepperChanged:(id)sender;
+
 - (IBAction)showMutTBView:(id)sender;
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andBasicInfo:(NSArray*)basicInfArr;//genome file name, reads file name, read length, genome length, number of reads
 - (void)resetDisplay;
+
+- (void)resetDisplayAfterGridHasBeenCreated;
+
+- (void)setUpGridGraph;
+
 - (void)setUpGridLbls;
 @end

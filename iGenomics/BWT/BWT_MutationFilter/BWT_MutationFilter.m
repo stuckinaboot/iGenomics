@@ -9,7 +9,7 @@
 #import "BWT_MutationFilter.h"
 
 char *foundGenome[kACGTLen+2];
-extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
+int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 
 @implementation BWT_MutationFilter
 

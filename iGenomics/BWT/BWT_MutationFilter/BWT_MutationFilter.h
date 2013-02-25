@@ -22,7 +22,7 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
     BWT_Matcher *matcher;
     
 //    int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of Del/In
-    int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
+//    int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 
     char *refStr;
     
