@@ -25,6 +25,7 @@
 - (void)setUpLabel {
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     label.textAlignment = NSTextAlignmentCenter;
+//    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [label setBackgroundColor:[UIColor clearColor]];
     [label setFont:[UIFont systemFontOfSize:kDefFontSize]];//Until A different font is used
     [label setAdjustsFontSizeToFitWidth:YES];
@@ -33,11 +34,13 @@
 - (void)setUpView {
     view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     view.alpha = kGridPointImgViewAlpha;
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:view];
 }
 - (void)setUpBtn {
     btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    btn.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [btn addTarget:self action:@selector(btnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
 }

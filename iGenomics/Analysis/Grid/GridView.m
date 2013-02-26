@@ -28,7 +28,7 @@
 }
 
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight {
-    [scrollView setContentSize:CGSizeMake(cols*kIpadBoxWidth, self.frame.size.height)];
+    [scrollView setContentSize:CGSizeMake(cols*kIpadBoxWidth, scrollView.frame.size.height)];
     
     totalRows = rows;
     totalCols = cols;
@@ -38,6 +38,8 @@
     
     for (int i = 0; i<rows; i++) {
         for (int j = 0; j<cols; j++) {
+            [points[i][j] removeFromSuperview];//See below
+            points[i][j] = NULL;//Clears/Removes the point in case it was previously there, should eliminate need for clear all points
             if (i > 0) {//Not Graph Row
                 points[i][j] = [[GridPoint alloc] initWithFrame:CGRectMake(j*kIpadBoxWidth, graphBoxHeight+((i-1)*boxHeight), kIpadBoxWidth, boxHeight)];//-1 because i is equal to 1 when it is first going through for the 1st box that is not a graph, and it was being put too far down on the y axis
                 [points[i][j] setDelegate:self];
@@ -52,6 +54,21 @@
                 points[i][j].coord = CGPointMake(i, j);
                 [points[i][j] setUpView];//Sets up the img view property
                 [scrollView addSubview:points[i][j]];
+            }
+        }
+    }
+}
+
+- (void)refreshGrid {
+    [scrollView setContentSize:CGSizeMake(totalCols*kIpadBoxWidth, scrollView.frame.size.height)];
+    
+    for (int i = 0; i<totalRows; i++) {
+        for (int j = 0; j<totalCols; j++) {
+            if (i > 0) {//Not Graph Row
+                points[i][j].frame = CGRectMake(j*kIpadBoxWidth, graphBoxHeight+((i-1)*boxHeight), kIpadBoxWidth, boxHeight);//-1 because i is equal to 1 when it is first going through for the 1st box that is not a graph, and it was being put too far down on the y axis
+            }
+            else {//Graph Row
+                points[i][j].frame = CGRectMake(j*kIpadBoxWidth, 0, kIpadBoxWidth, graphBoxHeight);
             }
         }
     }

@@ -72,28 +72,17 @@
     nLbl[0] = refLbl;
     nLbl[1] = foundLbl;
     
-//    UIColor *aCol = [UIColor colorWithRed:aRGB[0] green:aRGB[1] blue:aRGB[2] alpha:1.0];
-//    [aLbl setTextColor:aCol];
+
     nLbl[2] = aLbl;
-    
-//    UIColor *cCol = [UIColor colorWithRed:cRGB[0] green:cRGB[1] blue:cRGB[2] alpha:1.0];
-//    [cLbl setTextColor:cCol];
+
     nLbl[3] = cLbl;
     
-//    UIColor *gCol = [UIColor colorWithRed:gRGB[0] green:gRGB[1] blue:gRGB[2] alpha:1.0];
-//    [gLbl setTextColor:gCol];
     nLbl[4] = gLbl;
     
-//    UIColor *tCol = [UIColor colorWithRed:tRGB[0] green:tRGB[1] blue:tRGB[2] alpha:1.0];
-//    [tLbl setTextColor:tCol];
     nLbl[5] = tLbl;
     
-//    UIColor *delCol = [UIColor colorWithRed:delRGB[0] green:delRGB[1] blue:delRGB[2] alpha:1.0];
-//    [delLbl setTextColor:delCol];
     nLbl[6] = delLbl;
     
-//    UIColor *insCol = [UIColor colorWithRed:insRGB[0] green:insRGB[1] blue:insRGB[2] alpha:1.0];
-//    [insLbl setTextColor:insCol];
     nLbl[7] = insLbl;
     
     UIColor *colors[kNumOfRGBVals];
@@ -137,8 +126,7 @@
             [point[kNumOfRowsInGridView-1] setUpBtn];
         }
         if (originalStr[i] != foundGenome[0][i]) {//Mutation
-//            [point[0] setUpView];
-//            [point[1] setUpView];
+
             int v = 0;
             for (int t = 0; t<kACGTLen; t++) {
                 if (kACGTStr[t] == foundGenome[0][i]) {
@@ -156,8 +144,6 @@
             }
             
             [point[kFndN].label setTextColor:colors[kStartOfAInRGBVals+v]];
-//            [point[0].view setBackgroundColor:[UIColor blueColor]];
-//            [point[1].view setBackgroundColor:[UIColor blueColor]];
             
             [mutPosArray addObject:[NSNumber numberWithInt:i]];
         }
@@ -169,30 +155,8 @@
             point[t].label.textColor = [UIColor colorWithRed:rgbVals[1][0] green:rgbVals[1][1] blue:rgbVals[1][2] alpha:1.0];
             [point[t].view setBackgroundColor:colors[0]];
             
-//            if (t == 2) {//A
-                if (posOccArray[t-3][i]>0)
-                    [point[t].label setTextColor:colors[kStartOfAInRGBVals+(t-3)]];
-            /*}
-            else if (t == 3) {//C
-                if (posOccArray[t-2][i]>0)
-                    [point[t].label setTextColor:cCol];
-            }
-            else if (t == 4) {//G
-                if (posOccArray[t-2][i]>0)
-                    [point[t].label setTextColor:gCol];
-            }
-            else if (t == 5) {//T
-                if (posOccArray[t-2][i]>0)
-                    [point[t].label setTextColor:tCol];
-            }
-            else if (t == 6) {//-
-                if (posOccArray[t-2][i]>0)
-                    [point[t].label setTextColor:delCol];
-            }
-            else if (t == 7) {//+
-                if (posOccArray[t-2][i]>0)
-                    [point[t].label setTextColor:insCol];
-            }*/
+            if (posOccArray[t-3][i]>0)
+                [point[t].label setTextColor:colors[kStartOfAInRGBVals+(t-3)]];
         }
     }
     
@@ -204,6 +168,82 @@
     mutsPopover = [[MutationsInfoPopover alloc] init];
     [mutsPopover setDelegate:self];
     [mutsPopover setUpWithMutationsArr:mutPosArray];
+}
+
+- (void)resetDisplayAfterGridHasBeenCreated {
+    
+    /*UIColor *colors[kNumOfRGBVals];
+    
+    for (int i = 0; i<kNumOfRGBVals; i++) {
+        colors[i] = [UIColor colorWithRed:rgbVals[i][0] green:rgbVals[i][1] blue:rgbVals[i][2] alpha:1.0];
+        if (i >= kStartOfRefInRGBVals+2) {
+            nLbl[i-kStartOfRefInRGBVals].textColor = colors[i];
+        }
+        else if (i >= kStartOfRefInRGBVals) {
+            nLbl[i-kStartOfRefInRGBVals].textColor = [UIColor blackColor];
+        }
+    }*/
+    
+    //Set up gridView
+   /* int len = strlen(originalStr)-1;//-1 so to not include $ sign*/
+    
+//    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:kGraphRowHeight];
+    [gridView refreshGrid];
+    
+    /*GridPoint *point[kNumOfRowsInGridView];
+    for (int i = 0; i<len; i++) {
+        point[kRefN] = [gridView getGridPoint:kRefN :i];
+        [point[kRefN] setUpBtn];//Sets up the btn property
+        [point[kRefN].label setText:[NSString stringWithFormat:@"%c",originalStr[i]]];
+        [point[kRefN].label setTextColor:[UIColor whiteColor]];
+        [point[kRefN].view setBackgroundColor:colors[kStartOfRefInRGBVals]];
+        
+        point[kFndN] = [gridView getGridPoint:kFndN :i];
+        [point[kFndN] setUpBtn];//Sets up the btn property
+        [point[kFndN].label setText:[NSString stringWithFormat:@"%c",foundGenome[0][i]]];
+        [point[kFndN].label setTextColor:[UIColor blackColor]];
+        [point[kFndN].view setBackgroundColor:colors[kStartOfRefInRGBVals+1]];
+        
+        if (posOccArray[kACGTLen+1][i]>0) {
+            point[kNumOfRowsInGridView-1] = [gridView getGridPoint:kNumOfRowsInGridView-1 :i];
+            [point[kNumOfRowsInGridView-1] setUpBtn];
+        }
+        if (originalStr[i] != foundGenome[0][i]) {//Mutation
+            
+            int v = 0;
+            for (int t = 0; t<kACGTLen; t++) {
+                if (kACGTStr[t] == foundGenome[0][i]) {
+                    v = t;
+                    break;
+                }
+                else if (kDelMarker == foundGenome[0][i]) {
+                    v = kACGTLen;
+                    break;
+                }
+                else if (kInsMarker == foundGenome[0][i]) {
+                    v = kACGTLen+1;
+                    break;
+                }
+            }
+            
+            [point[kFndN].label setTextColor:colors[kStartOfAInRGBVals+v]];
+            
+            [mutPosArray addObject:[NSNumber numberWithInt:i]];
+        }
+        
+        //Highlight for hetero?
+        for (int t = 3; t<kNumOfRowsInGridView; t++) {
+            point[t] = [gridView getGridPoint:t :i];
+            [point[t].label setText:[NSString stringWithFormat:@"%i",posOccArray[t-3][i]]];
+            point[t].label.textColor = [UIColor colorWithRed:rgbVals[1][0] green:rgbVals[1][1] blue:rgbVals[1][2] alpha:1.0];
+            [point[t].view setBackgroundColor:colors[0]];
+            
+            if (posOccArray[t-3][i]>0)
+                [point[t].label setTextColor:colors[kStartOfAInRGBVals+(t-3)]];
+        }
+    }*/
+    
+//    [self setUpGridGraph];
 }
 
 //Sets up the Graph in the top row of the grid
@@ -311,8 +351,7 @@
     
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-    
-    [gridView clearAllPoints];
+//    [gridView clearAllPoints];
     [self resetDisplay];
 }
 
@@ -337,16 +376,14 @@
             if (zoomLevel>kPinchZoomMaxLevel) {
                 gridView.kIpadBoxWidth += kPinchZoomFactor;
                 zoomLevel--;
-                [gridView clearAllPoints];
-                [self resetDisplay];
+                [self resetDisplayAfterGridHasBeenCreated];
             }
         }
         else if (s < 1.0f) {//Zoom out
             if (zoomLevel<kPinchZoomMinLevel) {
                 gridView.kIpadBoxWidth -= kPinchZoomFactor;
                 zoomLevel++;
-                [gridView clearAllPoints];
-                [self resetDisplay];
+                [self resetDisplayAfterGridHasBeenCreated];
             }
         }
     }

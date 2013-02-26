@@ -28,7 +28,7 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 #define kFndN 2 //Index of Found in rows in gridView
 
 #define kPinchZoomMaxLevel 1
-#define kPinchZoomMinLevel 5
+#define kPinchZoomMinLevel 8
 #define kPinchZoomStartingLevel 3
 #define kPinchZoomFactor 10 //(in pixels)
 

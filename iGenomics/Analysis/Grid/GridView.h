@@ -42,6 +42,7 @@
 - (void)firstSetUp;
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight;
 - (void)clearAllPoints;
+- (void)refreshGrid;//Called when the boxWidth is changed
 
 - (void)scrollToPos:(double)p;
 
