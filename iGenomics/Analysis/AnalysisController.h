@@ -8,17 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+
 #import "AnalysisPopoverController.h"
 #import "InsertionsPopoverController.h"
 #import "MutationsInfoPopover.h"
 #import "SearchQueryResultsPopover.h"
 
-#import "GridView.h"
+#import "QuickGridView.h"
+
 #import "BWT_Matcher.h"
 #import "BWT_MutationFilter.h"
 #import "BWT.h"
 
-#define kGraphRowHeight 50
+#import "DNAColors.h"
+
+#define kGraphRowHeight 80
 static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept seperate from the rgbVals variable so I don't confuse them because those objects will eventually be created dynamically
 
 #define kNumOfRowsInGridView 9 //1 ref, 2 found, 3 A, 4 C, 5 G, 6 T, 7 -, 8 +
@@ -27,10 +31,12 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 #define kRefN 1 //Index of Ref in rows in gridView
 #define kFndN 2 //Index of Found in rows in gridView
 
-#define kPinchZoomMaxLevel 1
-#define kPinchZoomMinLevel 8
+#define kPinchZoomMaxLevel 2
+#define kPinchZoomMinLevel 20
 #define kPinchZoomStartingLevel 3
-#define kPinchZoomFactor 10 //(in pixels)
+#define kPinchZoomFactor 2 //(in pixels)
+
+#define kPinchZoomFontSizeFactor 10 //(font size)
 
 #define kSetUpGridLblsDelay 0.7 //Eventually labels will need to be created programatically rather in IB
 
@@ -51,6 +57,14 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 
 #define kMutationSupportMax 8
 
+#define kNumOfSideLbls 9
+#define kSideLblFontSize 20
+#define kSideLblStartingX 10
+#define kSideLblY 20
+#define kSideLblW 20
+#define kSideLblH 20
+#define kSideLblCovLblTxt @"COV"
+/*
 static double rgbVals[kNumOfRGBVals][3] = {{203/255.0f,203/255.0f,203/255.0f},//defBackground
 {191/255.0f,191/255.0f,191/255.0f},//defLbl
 {95/255.0f,150/255.0f,197/255.0f},//ref
@@ -62,7 +76,7 @@ static double rgbVals[kNumOfRGBVals][3] = {{203/255.0f,203/255.0f,203/255.0f},//
 {0/255.0f,0/255.0f,0/255.0f},//del
 {0/255.0f,0/255.0f,0/255.0f}};//ins
 
-
+*/
 /*static double defBackgroundRGB[3] = {203/255.0f,203/255.0f,203/255.0f};
 static double defLblRGB[3] = {191/255.0f,191/255.0f,191/255.0f};
 static double refRGB[3] = {95/255.0f,150/255.0f,197/255.0f};
@@ -95,7 +109,9 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
 //MUTATION SUMMARY (DISPLAY ALL MUTATION IN A TABLE VIEW POPOVER, ALONG WITH A LABEL SAYING THE TOTAL NUMBER OF MUTATIONS) - TAPPING A MUTATION WILL SCROLL YOU TO IT--(((ALSO ADD INSERTIONS TO THIS MUTATION LIST????))))--IF SO STILL IN PROGRESS
 
 
-@interface AnalysisController : UIViewController <GridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate> {
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate> {
+    DNAColors *dnaColors;
+    
     //Interactive Interface Elements
     IBOutlet UITextField *posSearchTxtFld;
     IBOutlet UITextField *seqSearchTxtFld;
@@ -105,6 +121,7 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UIStepper *mutationSupportStpr;//Mutation Support Stepper
     
     //Non-interactive Interface Elements
+    IBOutlet UILabel *covLbl;
     IBOutlet UILabel *refLbl;
     IBOutlet UILabel *foundLbl;
     IBOutlet UILabel *aLbl;
@@ -113,10 +130,12 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UILabel *tLbl;
     IBOutlet UILabel *delLbl;
     IBOutlet UILabel *insLbl;
-    UILabel *nLbl[kNumOfRowsInGridView];
+    UILabel *nLbl[kNumOfRowsInGridView];//cov, ref, found, a, c, g, t, del, ins
     
     UIPinchGestureRecognizer *pinchRecognizer;
     int zoomLevel;
+    
+    UITapGestureRecognizer *tapRecognizer;
     
     IBOutlet UIImageView *gridViewTitleLblHolder;
     
@@ -128,10 +147,12 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UILabel *readLenLbl;
     IBOutlet UILabel *readNumOfLbl;//Num of reads lbl, I like having read in front though
     
-    IBOutlet GridView *gridView;
+    IBOutlet QuickGridView *gridView;
+    IBOutlet UISlider *pxlOffsetSlider;
     UIPopoverController *popoverController;
     MutationsInfoPopover *mutsPopover;
     
+    BOOL mutsPopoverAlreadyUpdated;
     //Passed in
     char *originalStr;
     NSMutableArray *insertionsArr;
@@ -147,7 +168,9 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     NSMutableArray *mutPosArray;//Keeps the positions of all the mutations
     NSArray *querySeqPosArr;//Keeps the positions of the found query sequence (from seqSearch)
 }
--(void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
+- (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
+- (void)singleTapOccured:(UITapGestureRecognizer*)sender;
+- (void)gridPointClickedWithCoordInGrid:(CGPoint)c andClickedPt:(CGPoint)o;
 
 - (IBAction)posSearch:(id)sender;
 
@@ -160,10 +183,6 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andBasicInfo:(NSArray*)basicInfArr;//genome file name, reads file name, read length, genome length, number of reads
 - (void)resetDisplay;
-
-- (void)resetDisplayAfterGridHasBeenCreated;
-
-- (void)setUpGridGraph;
 
 - (void)setUpGridLbls;
 @end

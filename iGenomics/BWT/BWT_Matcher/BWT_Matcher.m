@@ -105,8 +105,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 
 - (void)matchForJustIndels:(NSArray*)array withLastCol:(char*)lastCol {
+    ED_Info *info = [[ED_Info alloc] init];
     for (int i = 0; i<array.count; i++) {
-        ED_Info *info = [[ED_Info alloc] init];
         NSArray *arr = [self insertionDeletionMatchesForQuery:(char*)[[array objectAtIndex:i] UTF8String] andLastCol:lastCol andNumOfSubs:kMaxEditDist];
         info = (arr.count>0) ? [arr objectAtIndex:0] : info;
         
@@ -505,10 +505,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             }
             else {
                 if (matchType == MatchTypeExactAndSubs) {
-                    arr = [arr arrayByAddingObjectsFromArray:[self approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x]];
+                    arr = [arr arrayByAddingObjectsFromArray:[self approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x]];
                 }
                 else if (matchType == MatchTypeSubsAndIndels) {
-                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:x]];
+                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:x]];
                 }
             }
             
@@ -649,7 +649,7 @@ char *substr(const char *pstr, int start, int numchars)
             printf("\nGAPPED A: %s , POS: %i , LEN: %i",info.gappedA,info.position,aLen);
         }
         
-//        DELETIONS
+//        DELETIONS AND SUBSTITUTIONS
         if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
             [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
         

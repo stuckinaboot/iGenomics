@@ -18,6 +18,7 @@
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
 		A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
+		A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31AA7CB16E3072100D3D808 /* QuickGridView.m */; };
 		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
@@ -35,6 +36,7 @@
 		A3531EA716BEFF3800768A31 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
+		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
@@ -60,6 +62,7 @@
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
 		A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */; };
+		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
 		A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */; };
 		A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
@@ -87,6 +90,8 @@
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
+		A31AA7CA16E3072100D3D808 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.h; sourceTree = "<group>"; };
+		A31AA7CB16E3072100D3D808 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.m; sourceTree = "<group>"; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -113,6 +118,8 @@
 		A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MutationsInfoPopover.xib; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.xib"; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
+		A3669B3316F689750034A1CC /* DNAColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNAColors.h; path = iGenomics/Analysis/Grid/DNAColors.h; sourceTree = "<group>"; };
+		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
@@ -147,6 +154,8 @@
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
 		A3D81EBA1666EF3700BD5C07 /* newreads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newreads.txt; path = "../../../Downloads/snpchallenge1 3/newreads.txt"; sourceTree = "<group>"; };
 		A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NewEcoli.5k.txt; path = "../../../Downloads/snpchallenge1 3/NewEcoli.5k.txt"; sourceTree = "<group>"; };
+		A3DB376F170214B9007F0B9E /* RGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RGB.h; path = iGenomics/RGB.h; sourceTree = "<group>"; };
+		A3DB3770170214B9007F0B9E /* RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RGB.m; path = iGenomics/RGB.m; sourceTree = "<group>"; };
 		A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = New.Ecoli.5k.txt; path = ../../../Downloads/snps2/New.Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.5k.reads.txt; path = ../../../Downloads/snps2/Ecoli.5k.reads.txt; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
@@ -230,6 +239,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A31AA7CD16E30BD700D3D808 /* Popovers */ = {
+			isa = PBXGroup;
+			children = (
+				A34E8B9416B5EEF1002F3AB7 /* Insertions Popover */,
+				A3FF3AD916AB26870095EACF /* Normal Popover */,
+				A3531EA916BEFF3C00768A31 /* Mutations Popover */,
+				A39316E216C08C5F0041BF4B /* Search Query Popover */,
+			);
+			name = Popovers;
+			sourceTree = "<group>";
+		};
 		A3382FC716A111E30042F59B /* Computing */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,11 +267,8 @@
 				A3382FC916A118A20042F59B /* AnalysisController.h */,
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
-				A34E8B9416B5EEF1002F3AB7 /* Insertions Popover */,
-				A3FF3AD916AB26870095EACF /* Normal Popover */,
-				A3531EA916BEFF3C00768A31 /* Mutations Popover */,
-				A39316E216C08C5F0041BF4B /* Search Query Popover */,
 				A3382FD116A118D80042F59B /* Grid */,
+				A31AA7CD16E30BD700D3D808 /* Popovers */,
 			);
 			name = Analysis;
 			path = ..;
@@ -260,10 +277,10 @@
 		A3382FD116A118D80042F59B /* Grid */ = {
 			isa = PBXGroup;
 			children = (
-				A3382FCE16A118D50042F59B /* GridView.h */,
-				A3382FCF16A118D50042F59B /* GridView.m */,
-				A3382FD216A118FC0042F59B /* GridPoint.h */,
-				A3382FD316A118FC0042F59B /* GridPoint.m */,
+				A31AA7CA16E3072100D3D808 /* QuickGridView.h */,
+				A31AA7CB16E3072100D3D808 /* QuickGridView.m */,
+				A3669B3616F689780034A1CC /* Colors */,
+				A3669B3716F6897E0034A1CC /* Old Grid */,
 			);
 			name = Grid;
 			sourceTree = "<group>";
@@ -356,6 +373,27 @@
 				A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */,
 			);
 			name = "Mutations Popover";
+			sourceTree = "<group>";
+		};
+		A3669B3616F689780034A1CC /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				A3669B3316F689750034A1CC /* DNAColors.h */,
+				A3669B3416F689750034A1CC /* DNAColors.m */,
+				A3DB3772170214BC007F0B9E /* RGB */,
+			);
+			name = Colors;
+			sourceTree = "<group>";
+		};
+		A3669B3716F6897E0034A1CC /* Old Grid */ = {
+			isa = PBXGroup;
+			children = (
+				A3382FCE16A118D50042F59B /* GridView.h */,
+				A3382FCF16A118D50042F59B /* GridView.m */,
+				A3382FD216A118FC0042F59B /* GridPoint.h */,
+				A3382FD316A118FC0042F59B /* GridPoint.m */,
+			);
+			name = "Old Grid";
 			sourceTree = "<group>";
 		};
 		A39316E216C08C5F0041BF4B /* Search Query Popover */ = {
@@ -496,6 +534,15 @@
 			path = BWT_MutationFilter;
 			sourceTree = "<group>";
 		};
+		A3DB3772170214BC007F0B9E /* RGB */ = {
+			isa = PBXGroup;
+			children = (
+				A3DB376F170214B9007F0B9E /* RGB.h */,
+				A3DB3770170214B9007F0B9E /* RGB.m */,
+			);
+			name = RGB;
+			sourceTree = "<group>";
+		};
 		A3FF3AD316AB17FC0095EACF /* Globals */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */,
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
@@ -635,6 +683,8 @@
 				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
 				A3531EA716BEFF3800768A31 /* MutationsInfoPopover.m in Sources */,
 				A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */,
+				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
+				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
