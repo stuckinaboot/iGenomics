@@ -751,7 +751,7 @@ char *substr(const char *pstr, int start, int numchars)
     char *revSeq = calloc(len, 1);
     
     for (int i = 0; i<len; i++) {
-        revSeq[i] = acgt[kACGTLen-[self whichChar:seq[i] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
+        revSeq[i] = acgt[kACGTLen-[self whichChar:seq[len-i-1] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
     }
     
     return revSeq;

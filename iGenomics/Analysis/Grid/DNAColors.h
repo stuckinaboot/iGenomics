@@ -14,6 +14,7 @@
 }
 @property (nonatomic) RGB *defaultBackground,
                         *defaultLbl,
+                        *covLbl,
                         *refLbl,
                         *foundLbl,
                         *aLbl,
@@ -22,6 +23,8 @@
                         *tLbl,
                         *delLbl,
                         *insLbl,
-                        *mutHighlight;
+                        *mutHighlight,
+                        *black,
+                        *white;
 - (void)setUp;
 @end

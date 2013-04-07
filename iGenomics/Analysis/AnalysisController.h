@@ -36,9 +36,7 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 #define kPinchZoomStartingLevel 3
 #define kPinchZoomFactor 2 //(in pixels)
 
-#define kPinchZoomFontSizeFactor 10 //(font size)
-
-#define kSetUpGridLblsDelay 0.7 //Eventually labels will need to be created programatically rather in IB
+#define kPinchZoomFontSizeFactor 15 //(font size)
 
 #define kGridViewTitleLblHolderBorderWidth 7
 
@@ -57,13 +55,11 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 
 #define kMutationSupportMax 8
 
-#define kNumOfSideLbls 9
 #define kSideLblFontSize 20
-#define kSideLblStartingX 10
+#define kSideLblStartingX 26
 #define kSideLblY 20
-#define kSideLblW 20
-#define kSideLblH 20
-#define kSideLblCovLblTxt @"COV"
+#define kSideLblW 30
+#define kSideLblH 30
 /*
 static double rgbVals[kNumOfRGBVals][3] = {{203/255.0f,203/255.0f,203/255.0f},//defBackground
 {191/255.0f,191/255.0f,191/255.0f},//defLbl
@@ -97,9 +93,6 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
 //ADD UITEXTFIELD FOR MUTATION SUPPORT**MOST PRIORITIZED
 //BUTTON TO SEND TABLE OF MUTATIONS TO AN EMAIL ADDRESS AS A TEXT FILE**MOST PRIORITIZED
 //EVERY THE POSITION ABOVE THE GRID VIEW EVERY 10TH BASE**MOST PRIORITIZED
-//ADD BUTTONS TO SCROLL +/- 10,000 BASES
-
-//MAKE TIMER CLASS
 
 //DISPLAY INSERTIONS IN TABLE VIEW POPOVER IF AN INSERTION GRID BOX IS CLICKED--DONE
 //SHOW + IN FOUND SECTION IF THE INSERTION PASSES THE MINIMUM MUTATION COVERAGE THRESHOLD--DONE
@@ -121,7 +114,7 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UIStepper *mutationSupportStpr;//Mutation Support Stepper
     
     //Non-interactive Interface Elements
-    IBOutlet UILabel *covLbl;
+    /*IBOutlet UILabel *covLbl;
     IBOutlet UILabel *refLbl;
     IBOutlet UILabel *foundLbl;
     IBOutlet UILabel *aLbl;
@@ -129,7 +122,7 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UILabel *gLbl;
     IBOutlet UILabel *tLbl;
     IBOutlet UILabel *delLbl;
-    IBOutlet UILabel *insLbl;
+    IBOutlet UILabel *insLbl;*/
     UILabel *nLbl[kNumOfRowsInGridView];//cov, ref, found, a, c, g, t, del, ins
     
     UIPinchGestureRecognizer *pinchRecognizer;

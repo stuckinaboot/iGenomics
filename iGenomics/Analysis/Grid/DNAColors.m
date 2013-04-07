@@ -10,11 +10,12 @@
 
 @implementation DNAColors
 
-@synthesize defaultBackground, defaultLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight;
+@synthesize defaultBackground, defaultLbl, covLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight, black, white;
 
 - (void)setUp {
     defaultBackground = [[RGB alloc] initWithVals:203/255.0f :203/255.0f :203/255.0f];
     defaultLbl = [[RGB alloc] initWithVals:191/255.0f :191/255.0f :191/255.0f];
+    covLbl = [[RGB alloc] initWithVals:0 :0 :0];
     refLbl = [[RGB alloc] initWithVals:95/255.0f :150/255.0f :197/255.0f];
     foundLbl = [[RGB alloc] initWithVals:197/255.0f :215/255.0f :233/255.0f];
     aLbl = [[RGB alloc] initWithVals:78/255.0f :130/255.0f :185/255.0f];
@@ -24,6 +25,8 @@
     delLbl = [[RGB alloc] initWithVals:0/255.0f :0/255.0f :0/255.0f];
     insLbl = [[RGB alloc] initWithVals:0/255.0f :0/255.0f :0/255.0f];
     mutHighlight = [[RGB alloc] initWithVals:255/255.0f :165/255.0f :0/255.0f];
+    black = [[RGB alloc] initWithVals:0 :0 :0];
+    white = [[RGB alloc] initWithVals:1 :1 :1];
 }
 
 @end

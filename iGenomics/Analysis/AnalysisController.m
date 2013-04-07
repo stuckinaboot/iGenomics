@@ -81,7 +81,7 @@
     [mutationSupportNumLbl setText:[NSString stringWithFormat:@"%i",(int)mutationSupportStpr.value]];
     
     //Set up letters for the gridView
-    nLbl[0] = covLbl;
+    /*nLbl[0] = covLbl;
     nLbl[1] = refLbl;
     nLbl[2] = foundLbl;
     nLbl[3] = aLbl;
@@ -101,9 +101,9 @@
         else if (i >= kStartOfRefInRGBVals) {
             nLbl[i-kStartOfRefInRGBVals].textColor = [UIColor blackColor];
         }
-    }
+    }*/
     
-    [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:kSetUpGridLblsDelay];
+    [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
     //Set up gridView
@@ -117,13 +117,61 @@
 }
 
 - (void)setUpGridLbls {
+    CGRect rect = CGRectMake(0, 0, kSideLblW, kSideLblH);
+    
+    NSArray *txtArr = [[NSArray alloc] initWithObjects:@"Cov",@"Ref",@"Fnd",@"A",@"C",@"G",@"T",@"-",@"+", nil];
+    
     int yPos = gridView.frame.origin.y+kPosLblHeight+(gridView.graphBoxHeight/2);
+    
     for (int i  = 0; i<kNumOfRowsInGridView; i++) {
-        nLbl[i].center = CGPointMake(nLbl[i].center.x, yPos);
+        nLbl[i] = [[UILabel alloc] initWithFrame:rect];
+        [nLbl[i] setFont:[UIFont systemFontOfSize:kSideLblFontSize]];
+        [nLbl[i] setAdjustsFontSizeToFitWidth:YES];
+        [nLbl[i] setBackgroundColor:[UIColor clearColor]];
+        [nLbl[i] setText:[txtArr objectAtIndex:i]];
+        [nLbl[i] setTextAlignment:NSTextAlignmentCenter];
+        nLbl[i].center = CGPointMake(kSideLblStartingX, yPos);
+        
+        RGB *rgb;
+        
+        switch (i) {
+            case 0:
+                rgb = dnaColors.covLbl;
+                break;
+            case 1:
+                rgb = dnaColors.black;
+                break;
+            case 2:
+                rgb = dnaColors.black;
+                break;
+            case 3:
+                rgb = dnaColors.aLbl;
+                break;
+            case 4:
+                rgb = dnaColors.cLbl;
+                break;       
+            case 5:
+                rgb = dnaColors.gLbl;
+                break;
+            case 6:
+                rgb = dnaColors.tLbl;
+                break;
+            case 7:
+                rgb = dnaColors.delLbl;
+                break;
+            case 8:
+                rgb = dnaColors.insLbl;
+                break;
+        }
+        
+        [nLbl[i] setTextColor:[UIColor colorWithRed:rgb.r green:rgb.g blue:rgb.b alpha:1.0f]];
+        
         if (i == 0)//graph row
             yPos += gridView.graphBoxHeight/2 + kGridLineWidthRow + gridView.boxHeight/2;
         else
             yPos += gridView.boxHeight + kGridLineWidthRow;
+        
+        [self.view addSubview:nLbl[i]];
     }
 }
 
