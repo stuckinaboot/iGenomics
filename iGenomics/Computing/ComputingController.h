@@ -10,9 +10,13 @@
 #import "AnalysisController.h"
 #import "BWT.h"
 
-@interface ComputingController : UIViewController {
-    BWT *bwt;
+#define kPrintReadProcessedInConsole 1
+
+@interface ComputingController : UIViewController <BWT_Delegate> {
+    IBOutlet UIProgressView *readProgressView;
+    int readsProcessed;
     
+    BWT *bwt;
     AnalysisController *analysisController;
 }
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray;

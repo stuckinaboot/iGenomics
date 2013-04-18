@@ -28,7 +28,10 @@
 
 //OTHER CONSTANTS
 
-@interface BWT : NSObject {
+@protocol BWT_Delegate <NSObject>
+- (void)readProccesed;
+@end
+@interface BWT : NSObject <BWT_MatcherDelegate> {
     BWT_MutationFilter *bwtMutationFilter;//CREATED AS AN OBJECT SO THAT DATA CAN BE EASILY RETRIEVED FROM THE FILTER
     BWT_Matcher *bwt_Matcher;
     
@@ -37,6 +40,7 @@
     NSMutableArray *insertions;
     int maxSubs;
 }
+@property (nonatomic) id <BWT_Delegate> delegate;
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
 @property (nonatomic) char* originalString;
 

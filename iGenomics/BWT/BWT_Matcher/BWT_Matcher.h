@@ -36,10 +36,13 @@
 #define kDebugPrintInsertions 1
 #define kDebugOn 0
 
-#define kPrintReadInfo 1
+#define kPrintReadInfo 0
 
 extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+) __________________I----- GLOBAL ------I
 
+@protocol BWT_MatcherDelegate <NSObject>
+- (void)readProccesed;
+@end
 @interface BWT_Matcher : NSObject {
     
     //Constants made variable
@@ -63,6 +66,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
     char *acgt;
     int acgtTotalOccs[kACGTLen];
 }
+@property (nonatomic) id <BWT_MatcherDelegate> delegate;
 @property (nonatomic) NSMutableArray *insertionsArray;
 @property (nonatomic) int kBytesForIndexer, kMultipleToCountAt, alignmentType, matchType;
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
@@ -104,4 +108,6 @@ char *substr(const char *pstr, int start, int numchars);
 
 //INSERTION/DELETION MATCH
 - (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs;
+- (void)recordInDel:(ED_Info*)info forLastCol:(char*)lastCol andFirstCol:(char*)firstCol;
+- (void)recordInDelExactMatchForPos:(int)pos andReed:(char*)reed andOriginalStr:(char*)originalStr;
 @end

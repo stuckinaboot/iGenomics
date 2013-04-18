@@ -12,6 +12,7 @@
 
 @synthesize bwtMutationFilter, originalString;
 @synthesize readLen, refSeqLen, numOfReads;
+@synthesize delegate;
 
 - (void)setUpForRefFile:(NSString*)fileName fileExt:(NSString*)fileExt {
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
@@ -48,6 +49,7 @@
     maxSubs = [[parameters objectAtIndex:1] intValue];
     bwt_Matcher.alignmentType = [[parameters objectAtIndex:2] intValue];
     
+    [bwt_Matcher setDelegate:self];
     [bwt_Matcher setUpReedsFile:fileName fileExt:fileExt refStrBWT:bwtString andMaxSubs:maxSubs];
     
     readLen = bwt_Matcher.readLen;
@@ -78,5 +80,10 @@
 
 - (void)setUpMutationFilter {
 //    [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString];
+}
+
+//BWT_MatcherDelegate
+- (void)readProccesed {
+    [delegate readProccesed];
 }
 @end

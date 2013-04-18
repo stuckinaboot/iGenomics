@@ -14,6 +14,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 @synthesize kBytesForIndexer, kMultipleToCountAt, matchType, alignmentType, insertionsArray;
 @synthesize readLen, refSeqLen, numOfReads;
+@synthesize delegate;
 
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs {
     NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
@@ -100,6 +101,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             else if (a < -1)
                 [self updatePosOccsArrayWithRange:NSMakeRange(abs(a), strlen(reed)) andOriginalStr:originalStr andQuery:[self getReverseComplementForSeq:reed]];
         }
+        
+        [delegate readProccesed];
     }
     
 }
@@ -539,17 +542,33 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         
         if ([arr count] > 0) {
             int rand = (int)arc4random()%[arr count];
+            int v;
 //            int v = [[finalMatchArray objectAtIndex:rand] intValue];
             if (matchType != MatchTypeSubsAndIndels) {
-                int v = [[arr objectAtIndex:rand] intValue];
+                v = [[arr objectAtIndex:rand] intValue];
                 v = (rand>forwardMatches-1) ? -v : v;
                 return v;
             }
-            else
-                return ([arr count]>0) ? 1 : 0;//1 for matched, 0 for no match for indels
+            else if (x>0) {
+                ED_Info *inf = [arr objectAtIndex:rand];
+                [self recordInDel:inf forLastCol:lastCol andFirstCol:firstCol];
+                return ([arr count]>0) ? 1 : -1;//1 for matched, -1 for no match for indels
+            }
+            else {
+                v = [[arr objectAtIndex:rand] intValue];
+                v = (rand>forwardMatches-1) ? -v : v;
+                [self recordInDelExactMatchForPos:v andReed:query andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol]];
+            }
         }
     }
     return -1;//No match
+}
+
+- (void)recordInDelExactMatchForPos:(int)pos andReed:(char*)reed andOriginalStr:(char*)originalStr {
+    if (matchType == MatchTypeSubsAndIndels && pos >= 0)/////SOMETHING OVER HERE, POSSIBLY REVERSE COMP ALSO?
+        [self updatePosOccsArrayWithRange:NSMakeRange(pos, strlen(reed)) andOriginalStr:originalStr andQuery:reed];
+    else
+        [self updatePosOccsArrayWithRange:NSMakeRange(abs(pos), strlen(reed)) andOriginalStr:originalStr andQuery:[self getReverseComplementForSeq:reed]];
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -638,8 +657,9 @@ char *substr(const char *pstr, int start, int numchars)
     NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andChunks:chunkArray andMaximumEditDist:kMaxEditDist]];
     
     //Peform the whole best match for indels in here
+    int i = 0;
     if ([matchedInDels count]>0) {
-        int i = (int)arc4random() % [matchedInDels count];//Picks at random
+        i = (int)arc4random() % [matchedInDels count];//Picks at random
     
 //    for (int i = 0; i<[matchedInDels count]; i++) {
         ED_Info *info = [matchedInDels objectAtIndex:i];
@@ -649,8 +669,10 @@ char *substr(const char *pstr, int start, int numchars)
             printf("\nGAPPED A: %s , POS: %i , LEN: %i",info.gappedA,info.position,aLen);
         }
         
+        return [NSMutableArray arrayWithObject:info];//Something found
+        
 //        DELETIONS AND SUBSTITUTIONS
-        if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
+       /* if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
             [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
         
 //        INSERTIONS
@@ -696,14 +718,66 @@ char *substr(const char *pstr, int start, int numchars)
                     [self updatePosOccsArrayWithRange:NSMakeRange(info.position+a-insCount, 1) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:smallSeq];
                 }
             }
-        }
+        }*/
     }
 
-    if ([matchedInDels count]>0)
-        return [NSMutableArray arrayWithObject:[matchedInDels objectAtIndex:0]];//Something found
-    else
+//    if ([matchedInDels count]>0)
+//        return [NSMutableArray arrayWithObject:[matchedInDels objectAtIndex:i]];//Something found
+//    else
         return NULL;
 //    return matchedInDels;
+}
+
+- (void)recordInDel:(ED_Info*)info forLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
+    int aLen = strlen(info.gappedA);
+    
+    if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
+        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
+    
+    //        INSERTIONS
+    else if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
+        int bLen = strlen(info.gappedB);
+        int insCount = 0;
+        char *smallSeq = calloc(kMaxInsertionSeqLen, 1);
+        
+        for (int a = 0; a<bLen; a++) {
+            if (info.gappedB[a] == kDelMarker) {
+                BWT_Matcher_InsertionDeletion_InsertionHolder *tID = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
+                [tID setUp];
+                tID.seq[0] = info.gappedA[a];
+                tID.seq[1] = '\0';
+                tID.pos = info.position+a-insCount;
+                
+                int tIDSeqLen = strlen(tID.seq);
+                
+                while (info.gappedB[a+1] == kDelMarker) {
+                    tID.seq[tIDSeqLen] = info.gappedA[a+1];
+                    tID.seq[tIDSeqLen+1] = '\0';
+                    insCount++;
+                    a++;
+                }
+                //Check if insertions array already has it
+                BOOL alreadyRec = FALSE;
+                for (int l = 0; l<self.insertionsArray.count; l++) {
+                    BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
+                    if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
+                        tt.count++;
+                        alreadyRec = TRUE;
+                    }
+                }
+                if (!alreadyRec) {
+                    [self.insertionsArray addObject:tID];
+                }
+                posOccArray[kACGTLen+1][tID.pos]++;//Insertions add one
+                insCount++;
+            }
+            else {
+                smallSeq[0] = info.gappedA[a];
+                smallSeq[1] = '\0';
+                [self updatePosOccsArrayWithRange:NSMakeRange(info.position+a-insCount, 1) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:smallSeq];
+            }
+        }
+    }
 }
 //INSERTION/DELETION END
 

@@ -28,6 +28,8 @@
  
  */
 
+#define kStartSeqDelay 0.2
+
 @interface ParametersController : UIViewController {
     NSString *seq;
     NSString *reads;
@@ -52,6 +54,7 @@
 - (IBAction)trimmingStateChanged:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
+- (void)beginActualSequencing;
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads;
 - (IBAction)backPressed:(id)sender;
 @end

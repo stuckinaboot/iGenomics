@@ -62,6 +62,10 @@
 - (IBAction)startSequencingPressed:(id)sender {
     [self presentModalViewController:computingController animated:YES];
     
+    [self performSelector:@selector(beginActualSequencing) withObject:nil afterDelay:kStartSeqDelay];
+}
+
+- (void)beginActualSequencing {
     int i = (alignmentTypeCtrl.selectedSegmentIndex>0) ? alignmentTypeCtrl.selectedSegmentIndex-1 : alignmentTypeCtrl.selectedSegmentIndex+1;//Because I switched the two in the uisegmentedcontrol and this would require me to change the least amt of code
     
     [computingController setUpWithReads:reads andSeq:seq andParameters:[NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? [maxEDTxtFld.text intValue] : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:[mutationSupportTxtFld.text intValue]], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil]];

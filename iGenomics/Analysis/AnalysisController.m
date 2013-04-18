@@ -254,6 +254,7 @@
                 zoomLevel--;
                 
                 [gridView resetScrollViewContentSize];
+                [gridView resetTickMarkInterval];
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
                 gridView.currOffset = [gridView offsetOfPt:pt];
                 [gridView setUpGridViewForPixelOffset:gridView.currOffset];
@@ -268,6 +269,7 @@
                 zoomLevel++;
                 
                 [gridView resetScrollViewContentSize];
+                [gridView resetTickMarkInterval];
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
                 gridView.currOffset = [gridView offsetOfPt:pt];
                 [gridView setUpGridViewForPixelOffset:gridView.currOffset];

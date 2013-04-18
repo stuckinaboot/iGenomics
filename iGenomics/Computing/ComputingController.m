@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    readProgressView.progress = 0;
+    readsProcessed = 0;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -40,10 +42,10 @@
     
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
+    [bwt setDelegate:self];
     [bwt setUpForRefFile:[mySeq substringToIndex:(mySeq.length)-(refFileExt.length)-1] fileExt:refFileExt];
     
-    //Set up parameters
-    
+    //Set up parameters    
     [bwt matchReedsFile:[myReads substringToIndex:(myReads.length)-(readsFileExt.length)-1] fileExt:readsFileExt withParameters:myParameterArray];//Obviously make this variable
     
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
@@ -64,6 +66,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//BWT_Delegate
+- (void)readProccesed {
+    readsProcessed++;
+    readProgressView.progress += (1.0f/bwt.numOfReads);//This is 0 and everything is on main thread, this needs to change
+    if (kPrintReadProcessedInConsole>0)
+        printf("\n%i reads processed",readsProcessed);
 }
 
 @end
