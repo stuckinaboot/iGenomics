@@ -60,6 +60,8 @@
 		A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */; };
 		A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2C160FA5F600BC2168 /* MySeq.txt */; };
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
+		A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */; };
+		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
 		A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */; };
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
@@ -152,6 +154,10 @@
 		A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_MutationFilter.m; sourceTree = "<group>"; };
 		A3C0FD2C160FA5F600BC2168 /* MySeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MySeq.txt; path = "../../Lab Projects/LabProject5/MySeq.txt"; sourceTree = "<group>"; };
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
+		A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_Approxi.h; path = "Approxi Matcher/BWT_Matcher_Approxi.h"; sourceTree = "<group>"; };
+		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
+		A3D3F3B3172333650045A586 /* BWT_MatcherSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_MatcherSC.h; path = ../../../BWT_MatcherSC.h; sourceTree = "<group>"; };
+		A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_MatcherSC.m; path = ../../../BWT_MatcherSC.m; sourceTree = "<group>"; };
 		A3D81EBA1666EF3700BD5C07 /* newreads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newreads.txt; path = "../../../Downloads/snpchallenge1 3/newreads.txt"; sourceTree = "<group>"; };
 		A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NewEcoli.5k.txt; path = "../../../Downloads/snpchallenge1 3/NewEcoli.5k.txt"; sourceTree = "<group>"; };
 		A3DB376F170214B9007F0B9E /* RGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RGB.h; path = iGenomics/RGB.h; sourceTree = "<group>"; };
@@ -518,8 +524,8 @@
 		A3C0FD22160FA5AC00BC2168 /* BWT_Matcher */ = {
 			isa = PBXGroup;
 			children = (
-				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
-				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
+				A3D3F3B2172330CD0045A586 /* Matcher */,
+				A3D3F3AD17232FEB0045A586 /* Approxi Matcher */,
 				A33A7C181650398200E39A6C /* In/Del Matcher */,
 			);
 			path = BWT_Matcher;
@@ -532,6 +538,26 @@
 				A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */,
 			);
 			path = BWT_MutationFilter;
+			sourceTree = "<group>";
+		};
+		A3D3F3AD17232FEB0045A586 /* Approxi Matcher */ = {
+			isa = PBXGroup;
+			children = (
+				A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */,
+				A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */,
+			);
+			name = "Approxi Matcher";
+			sourceTree = "<group>";
+		};
+		A3D3F3B2172330CD0045A586 /* Matcher */ = {
+			isa = PBXGroup;
+			children = (
+				A3D3F3B3172333650045A586 /* BWT_MatcherSC.h */,
+				A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */,
+				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
+				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
+			);
+			name = Matcher;
 			sourceTree = "<group>";
 		};
 		A3DB3772170214BC007F0B9E /* RGB */ = {
@@ -685,6 +711,8 @@
 				A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */,
 				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
+				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
+				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,7 +27,7 @@
 
 - (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray *)parameters {
 //    maxSubs = subs;
-     bwt_Matcher = [[BWT_Matcher alloc] init];
+     bwt_Matcher = [[BWT_Matcher alloc] initWithOriginalStr:originalString];
     
     /*
      SET OF PARAMETERS:
@@ -57,13 +57,7 @@
     numOfReads = bwt_Matcher.numOfReads;
     
     insertions = bwt_Matcher.insertionsArray;
-    /*TEMPORARYAYYARYRYAYRYYARYYR ----------- WILL EVENTUALLY BE DONE IN SetUpReedsFile*/
-//    NSArray *reads = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"];
-//    for (int i = 0; i<reads.count;i++) {
-//        [bwt_Matcher insertionDeletionMatchesForQuery:(char*)[[reads objectAtIndex:i] UTF8String] andLastCol:bwtString];
-//    }
-    
-//    posOccArray = [bwt_Matcher getPosOccArray];
+
     bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:3] intValue]-1;//-1 because kHeteroAllowance is for one lower than what is allowed to be considered a mutation.
     
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString andMatcher:bwt_Matcher];
@@ -71,15 +65,12 @@
 }
 
 - (NSArray*)simpleSearchForQuery:(char*)query {
-    return [bwt_Matcher exactMatchForQuery:query withLastCol:bwtString andFirstCol:[bwt_Matcher getSortedSeq]];
+    bwt_MatcherSC = [[BWT_MatcherSC alloc] init];
+    return [bwt_MatcherSC exactMatchForQuery:query withLastCol:bwtString andFirstCol:[bwt_Matcher getSortedSeq]];
 }
 
 - (NSMutableArray*)getInsertionsArray {
     return insertions;
-}
-
-- (void)setUpMutationFilter {
-//    [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString];
 }
 
 //BWT_MatcherDelegate

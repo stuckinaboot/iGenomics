@@ -23,7 +23,6 @@
 #import "DNAColors.h"
 
 #define kGraphRowHeight 80
-static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept seperate from the rgbVals variable so I don't confuse them because those objects will eventually be created dynamically
 
 #define kNumOfRowsInGridView 9 //1 ref, 2 found, 3 A, 4 C, 5 G, 6 T, 7 -, 8 +
 
@@ -49,7 +48,7 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 
 #define kNumOfReadsLblStart @"Num: "
 
-#define kNumOfRGBVals 10
+//#define kNumOfRGBVals 10
 #define kStartOfAInRGBVals 4
 #define kStartOfRefInRGBVals 2
 
@@ -60,44 +59,13 @@ static double kGraphRGB[3] = {130/255.0f,17/255.0f,243/255.0f};//Should be kept 
 #define kSideLblY 20
 #define kSideLblW 30
 #define kSideLblH 30
-/*
-static double rgbVals[kNumOfRGBVals][3] = {{203/255.0f,203/255.0f,203/255.0f},//defBackground
-{191/255.0f,191/255.0f,191/255.0f},//defLbl
-{95/255.0f,150/255.0f,197/255.0f},//ref
-{197/255.0f,215/255.0f,233/255.0f},//found
-{78/255.0f,130/255.0f,185/255.0f},//a
-{194/255.0f,77/255.0f,78/255.0f},//c
-{117/255.0f,147/255.0f,72/255.0f},//g
-{254/255.0f,250/255.0f,80/255.0f},//t
-{0/255.0f,0/255.0f,0/255.0f},//del
-{0/255.0f,0/255.0f,0/255.0f}};//ins
 
-*/
-/*static double defBackgroundRGB[3] = {203/255.0f,203/255.0f,203/255.0f};
-static double defLblRGB[3] = {191/255.0f,191/255.0f,191/255.0f};
-static double refRGB[3] = {95/255.0f,150/255.0f,197/255.0f};
-static double foundRGB[3] = {197/255.0f,215/255.0f,233/255.0f};
-static double aRGB[3] = {78/255.0f,130/255.0f,185/255.0f};
-static double cRGB[3] = {194/255.0f,77/255.0f,78/255.0f};
-static double gRGB[3] = {117/255.0f,147/255.0f,72/255.0f};
-static double tRGB[3] = {254/255.0f,250/255.0f,80/255.0f};
-static double delRGB[3] = {0/255.0f,0/255.0f,0/255.0f};
-static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
-
-// GET NASAL SPRAY--DONE
 //DON"T INCLUDE $ SIGN IN LEN
 //SHOW LOADING SCREEN THE INSTANT BEFORE SEQUENCING STARTS (START SEQUENCING FROM LOADING SCREEN)
 //IN UIPOPOVER THAT SHOWS UP FOR A POSITION THAT IS A MUTATION (ALSO SHOW THIS IN THE SHOW ALL MUTATIONS UITABLEVIEW CELLS), EX. for G to - supported by 5 reads, G > - 5 Reads
-//ADD ABILITY TO PINCH ZOOM, WOULD MAKE THE COLUMNS SMALLER/LARGER, BUT VERTICAL SPACING WOULD REMAIN THE SAME**MOST PRIORITIZED
-//FOR DISPLAYING FILE NAMES, "Ref: " and "Reads: "
 //ADD UITEXTFIELD FOR MUTATION SUPPORT**MOST PRIORITIZED
 //BUTTON TO SEND TABLE OF MUTATIONS TO AN EMAIL ADDRESS AS A TEXT FILE**MOST PRIORITIZED
-//EVERY THE POSITION ABOVE THE GRID VIEW EVERY 10TH BASE**MOST PRIORITIZED
 
-//DISPLAY INSERTIONS IN TABLE VIEW POPOVER IF AN INSERTION GRID BOX IS CLICKED--DONE
-//SHOW + IN FOUND SECTION IF THE INSERTION PASSES THE MINIMUM MUTATION COVERAGE THRESHOLD--DONE
-//ADD SEARCH BOX FOR POSITION--DONE
-//ADD SEARCH BOX FOR A CUSTOM SEQUENCE (EXACT MATCH TO FIND IT, THEN SCROLL TO IT)--DONE
 //POPOVER TO JUMP TO NEXT MUTATION --IN PROGRESS (POPOVER WITH A LIST, SORTED ASCENDING?)---MAKE IT ASCENDING
 //MUTATION SUMMARY (DISPLAY ALL MUTATION IN A TABLE VIEW POPOVER, ALONG WITH A LABEL SAYING THE TOTAL NUMBER OF MUTATIONS) - TAPPING A MUTATION WILL SCROLL YOU TO IT--(((ALSO ADD INSERTIONS TO THIS MUTATION LIST????))))--IF SO STILL IN PROGRESS
 
@@ -114,15 +82,6 @@ static double insRGB[3] = {0/255.0f,0/255.0f,0/255.0f};*/
     IBOutlet UIStepper *mutationSupportStpr;//Mutation Support Stepper
     
     //Non-interactive Interface Elements
-    /*IBOutlet UILabel *covLbl;
-    IBOutlet UILabel *refLbl;
-    IBOutlet UILabel *foundLbl;
-    IBOutlet UILabel *aLbl;
-    IBOutlet UILabel *cLbl;
-    IBOutlet UILabel *gLbl;
-    IBOutlet UILabel *tLbl;
-    IBOutlet UILabel *delLbl;
-    IBOutlet UILabel *insLbl;*/
     UILabel *nLbl[kNumOfRowsInGridView];//cov, ref, found, a, c, g, t, del, ins
     
     UIPinchGestureRecognizer *pinchRecognizer;

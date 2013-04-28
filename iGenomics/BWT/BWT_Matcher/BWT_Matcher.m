@@ -12,10 +12,17 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 @implementation BWT_Matcher
 
-@synthesize kBytesForIndexer, kMultipleToCountAt, matchType, alignmentType, insertionsArray;
+@synthesize kBytesForIndexer, /*kMultipleToCountAt,*/ matchType, alignmentType, insertionsArray;
 @synthesize readLen, refSeqLen, numOfReads;
 @synthesize delegate;
 
+- (id)initWithOriginalStr:(char*)orgStr {
+    if (self == [super init]) {
+        originalStr = orgStr;
+        exactMatcher = [[BWT_MatcherSC alloc] init];
+    }
+    return self;
+}
 - (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs {
     NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
     reedsArray = [[NSArray alloc] initWithArray:[reedsString componentsSeparatedByString:kReedsArraySeperationStr]];
@@ -52,13 +59,9 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     }
     
     for (int i = 0; i<kACGTLen; i++) {
-        for (int x = 0; x<fileStrLen; x++) {
+        for (int x = 0; x<fileStrLen; x++)
             posOccArray[i][x] = 0;
-        }
     }
-    
-    char *originalStr = calloc(fileStrLen, 1);
-    strcpy(originalStr, [self unravelCharWithLastColumn:lastCol firstColumn:firstCol]);
     
 //    [self matchForJustIndels:reedsArray withLastCol:lastCol];
     
@@ -76,12 +79,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 - (void)matchReedsArray:(NSArray *)array withLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
     char *reed;
     
-    char *originalStr = calloc(strlen(lastCol), 1);
-    strcpy(originalStr,  [self unravelCharWithLastColumn:lastCol firstColumn:firstCol]);
-    
-    if (kDebugOn == 2) {
+    if (kDebugOn == 2)
         printf("%s\n",originalStr);
-    }
     
     for (int i = 0; i < array.count; i++) {
         reed = (char*)[[array objectAtIndex:i] UTF8String];
@@ -90,16 +89,15 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         
         if (matchType != MatchTypeSubsAndIndels) {
             if (kDebugOn == -1) {
-                for (int t = 0; t<a; t++) {
+                for (int t = 0; t<a; t++)
                     printf(" ");
-                }
                 printf("%s\n",reed);
             }
             
             if (a > -1)//var a matched
-                [self updatePosOccsArrayWithRange:NSMakeRange(a, strlen(reed)) andOriginalStr:originalStr andQuery:reed];//a-1 because $ is first
+                [self updatePosOccsArrayWithRange:NSMakeRange(a, strlen(reed)) andQuery:reed];//a-1 because $ is first
             else if (a < -1)
-                [self updatePosOccsArrayWithRange:NSMakeRange(abs(a), strlen(reed)) andOriginalStr:originalStr andQuery:[self getReverseComplementForSeq:reed]];
+                [self updatePosOccsArrayWithRange:NSMakeRange(abs(a), strlen(reed)) andQuery:[self getReverseComplementForSeq:reed]];
         }
         
         [delegate readProccesed];
@@ -112,14 +110,11 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     for (int i = 0; i<array.count; i++) {
         NSArray *arr = [self insertionDeletionMatchesForQuery:(char*)[[array objectAtIndex:i] UTF8String] andLastCol:lastCol andNumOfSubs:kMaxEditDist];
         info = (arr.count>0) ? [arr objectAtIndex:0] : info;
-        
-//        if (info.position>=0)
-//            printf("\n%i",info.position);
     }
 }
 
 #pragma UNRAVEL
-
+/*
 - (char*)unravelCharWithLastColumn:(char*)lastColumn firstColumn:(char*)firstColumn {
     
     int i = 0;//index
@@ -145,14 +140,15 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     
     strcpy(unraveledChar, unraveledChar+1);
     return unraveledChar;
-}
+}*/
 
+
+/*
 - (int)getIndexOfNth:(int)n OccurenceOfChar:(char)c inChar:(char*)container {
     int loc = 1;
     int whichChar = [self whichChar:c inContainer:acgt];
-    for (int i = 0; i<whichChar; i++) {
+    for (int i = 0; i<whichChar; i++)
         loc+=acgtTotalOccs[i];
-    }
     loc+=n;
     return loc-1;
     
@@ -160,27 +156,23 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 - (int)whichOccurenceOfChar:(char)c inChar:(char*)container atPos:(int)pos {
     int topMultiple = 0;
     for (int i = 0; i<pos; i++) {
-        if (topMultiple<pos) {
+        if (topMultiple<pos)
             topMultiple+=kMultipleToCountAt;
-        }
         if (topMultiple>pos) {
             topMultiple-=kMultipleToCountAt;
             break;
         }
-        if (topMultiple == pos) {
+        if (topMultiple == pos)
             break;
-        }
     }
     int whichChar = [self whichChar:c inContainer:acgt];
     int occurences = 0;
-    for (int i = 0; i<(float)topMultiple/kMultipleToCountAt; i++) {
+    for (int i = 0; i<(float)topMultiple/kMultipleToCountAt; i++)
         occurences+=acgtOccurences[i][whichChar];
-    }
     if (topMultiple<pos) {
         for (int i = topMultiple; i<pos; i++) {
-            if (container[i] == acgt[whichChar]) {
+            if (container[i] == acgt[whichChar])
                 occurences++;
-            }
         }
     }
     occurences++;
@@ -195,9 +187,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     int whichChar = [self whichChar:c inContainer:acgt]+1;
     int endPos = [self charsBeforeChar:acgt[whichChar]];
     
-    if (whichChar == kACGTLen) {
+    if (whichChar == kACGTLen)
         endPos = fileStrLen;
-    }
     i--;
     while (startPos<endPos && i >= 0) {
         c = query[i];
@@ -208,9 +199,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     
     NSMutableArray *posArray = [[NSMutableArray alloc] init];
     
-    for (int l = 0; l<endPos-startPos; l++) {
+    for (int l = 0; l<endPos-startPos; l++)
         [posArray addObject:[NSNumber numberWithInt:startPos+l]];
-    }
     
     return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andFirstCol:firstCol andLastCol:lastCol]];
 }
@@ -232,9 +222,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
     
     for (int l = 0; l<[posArray count]; l++) {
-        if ([[posArray objectAtIndex:l] intValue] == i) {
+        if ([[posArray objectAtIndex:l] intValue] == i)
             [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
-        }
     }
     
     while (pos>=0) {
@@ -244,19 +233,17 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         occurence = [self whichOccurenceOfChar:lastChar inChar:lastColumn atPos:i];
         i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
         
-        if ([posArray count] == [positionsInBWTArray count]) {
+        if ([posArray count] == [positionsInBWTArray count])
             break;
-        }
         for (int l = 0; l<[posArray count]; l++) {
-            if ([[posArray objectAtIndex:l] intValue] == i) {
+            if ([[posArray objectAtIndex:l] intValue] == i)
                 [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
-            }
         }
     }
     
     return (NSArray*)positionsInBWTArray;
 }
-
+*/
 - (void)setUpBytesForIndexerAndMultipleToCountAt:(int)seqLen {
     kBytesForIndexer = ceil(sqrt(seqLen));
     kMultipleToCountAt = kBytesForIndexer;
@@ -279,30 +266,26 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     if (len>kMultipleToCountAt) {
         for (int i = 0; i<len; i++) {
             for (int x = 0; x<kACGTLen; x++) {
-                if (acgt[x] == refStrBWT[i]) {
+                if (acgt[x] == refStrBWT[i])
                     occurences[x]++;
-                }
             }
             if (i == pos) {
-                for (int l = 0; l<kACGTLen; l++) {
+                for (int l = 0; l<kACGTLen; l++)
                     acgtOccurences[spotInACGTOccurences][l] = occurences[l];
-                }
                 spotInACGTOccurences++;
-                for (int x = 0; x<kACGTLen; x++) {
+                for (int x = 0; x<kACGTLen; x++)
                     occurences[x] = 0;
-                }
                 pos += kMultipleToCountAt;
             }
             for (int x = 0; x<kACGTLen; x++) {
-                if (acgt[x] == refStrBWT[i]) {
+                if (acgt[x] == refStrBWT[i])
                     acgtTotalOccs[x]++;
-                }
             }
         }
     }
 }
 
-
+/*
 - (int)whichChar:(char)c inContainer:(char*)container {
     int which = -1;//Not ACGT
     for (int i = 0; i<kACGTLen; i++) {
@@ -316,18 +299,17 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 - (int)charsBeforeChar:(char)c {
     int which = [self whichChar:c inContainer:acgt];
     int num = 0;
-    for (int i = 0; i<which; i++) {
+    for (int i = 0; i<which; i++)
         num+=acgtTotalOccs[i];
-    }
+    
     return num+1;
-}
+}*/
 
-#pragma APPROXIMATE MATCH
+#pragma APPROXIMATE MATCH/*
 - (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
     
-    if (amtOfSubs == 0) {
+    if (amtOfSubs == 0)
         return (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
-    }
     
     int numOfChunks = amtOfSubs+1;
     int sizeOfChunks = strlen(query)/numOfChunks;
@@ -341,32 +323,26 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     
     Chunks *chunks[numOfChunks];
     
-    for (int i = 0; i<numOfChunks; i++) {
+    for (int i = 0; i<numOfChunks; i++)
         chunks[i] = [[Chunks alloc] init];
-    }
     
     int subsInChunk[numOfChunks];
     int start = 0;
     
     NSMutableArray *positionsArray = [[NSMutableArray alloc] init];
     
-    char *originalStr = [self unravelCharWithLastColumn:lastCol firstColumn:firstCol];
-    
     if (amtOfSubs>0) {
         for (int i = 0; i<numOfChunks; i++) {
-            if (i < numOfChunks-1) {
+            if (i < numOfChunks-1)
                 strcpy(chunks[i].string, strcat(substr(query, start, sizeOfChunks),"\0"));
-            }
-            else {
+            else
                 strcpy(chunks[i].string, strcat(substr(query, start, sizeOfChunks+1),"\0"));
-            }
             start += sizeOfChunks;
         }
         
         if (kDebugOn > 0) {
-            for (int i = 0; i<numOfChunks; i++) {
+            for (int i = 0; i<numOfChunks; i++)
                 printf("\nCHUNK: %s, %i",chunks[i].string, i);
-            }
         }
         int charsToCheckRight = 0;
         int charsToCheckLeft = 0;
@@ -392,9 +368,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                 else if (i == 0) {
                     charsToCheckLeft = 0;
                     charsToCheckRight = (numOfChunks-1)*sizeOfChunks;
-                    if (strlen(query)%2 != 0) {
+                    if (strlen(query)%2 != 0)
                         charsToCheckRight -= 1;//originally ++
-                    }
                 }
                 else if (i == numOfChunks-1) {
                     charsToCheckLeft = (numOfChunks-1)*sizeOfChunks;
@@ -412,9 +387,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                     }
                 }
                 
-                if (rightStrStart>=fileStrLen-1) {
+                if (rightStrStart>=fileStrLen-1)
                     charsToCheckRight = 0;
-                }
                 for (int l = 0; l<charsToCheckRight; l++) {
                     
                     if (originalStr[l+rightStrStart] != query[(i+1)*sizeOfChunks+l]) {//-1
@@ -422,9 +396,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                         
                         subsInChunk[(int)floorf((float)l/sizeOfChunks)+1+i]++;
                         
-                        if (numOfSubstitutions > amtOfSubs) {
+                        if (numOfSubstitutions > amtOfSubs)
                             break;
-                        }
                     }
                 }
                 
@@ -439,8 +412,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                         
                         if (pos+strlen(query)<=strlen(refStrBWT) && pos>-1) {
                             [positionsArray addObject:[NSNumber numberWithInt:pos]];
-                            
-                            //                            [self updatePosOccsArrayWithRange:NSMakeRange(pos, strlen(query)) andOriginalStr:originalStr andQuery:query];         COMMENTED SO THAT IT CAN BE UPDATE ABOVE
                         }
                     }
                 }
@@ -454,102 +425,66 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         }
     }
     return positionsArray;
-}
+}*/
 
 - (int)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
     
     NSArray *arr = [[NSMutableArray alloc] init];
-//    NSArray *indelsArr;
-    
-//    NSArray *finalMatchArray = [[NSArray alloc] init];
-    
-//    if (matchType > 1) {
-        //match for indels also
-//        indelsArr = [[NSMutableArray alloc] init];
-//    }
     
     int forwardMatches = 0;//EX. ACA
     int reverseMatches = 0;//EX. TGT
     
-    for (int x = 0; x < amtOfSubs+1; x++) {
-        if (x == 0 || matchType == MatchTypeExactOnly) {
-            arr = [self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
+    BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];
+    
+    for (int subs = 0; subs < amtOfSubs+1; subs++) {
+        if (subs == 0 || matchType == MatchTypeExactOnly) {
+            arr = [exactMatcher exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
         }
         else {
             if (matchType == MatchTypeExactAndSubs) {
-                arr = [self approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x];
+                arr = [approxiMatcher approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:subs];
+//                arr = [self approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x];
             }
             else if (matchType == MatchTypeSubsAndIndels) {
-                arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:x];
+                arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs];
             }
         }
         
-//        arr = (x>0) ? [self approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x] : [self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
-        
-        /*if (matchType > 0) {
-            //Approxi match
-            arr = (x>0) ? [self approxiMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x] : [self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
-            if (matchType > 1) {
-                //Indels match
-                indelsArr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:x];
-            }
-        }
-        else {
-            //Exact match
-            arr = [self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
-        }*/
-//        forwardMatches = [arr count] + ((matchType > 1) ? [indelsArr count] : 0);
         forwardMatches = [arr count];
         
         if (alignmentType > 0) {//Reverse also
-            
-            if (x == 0 || matchType == MatchTypeExactOnly) {
-                arr = [arr arrayByAddingObjectsFromArray:[self exactMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol]];
-            }
+            if (subs == 0 || matchType == MatchTypeExactOnly)
+                arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol]];
             else {
-                if (matchType == MatchTypeExactAndSubs) {
-                    arr = [arr arrayByAddingObjectsFromArray:[self approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x]];
-                }
-                else if (matchType == MatchTypeSubsAndIndels) {
-                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:x]];
-                }
+                if (matchType == MatchTypeExactAndSubs)
+                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:subs]];
+                    //arr = [arr arrayByAddingObjectsFromArray:[self approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x]];
+                else if (matchType == MatchTypeSubsAndIndels)
+                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs]];
             }
-            
-//              arr = [arr arrayByAddingObjectsFromArray:(x>0) ? [self approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x] : [self exactMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol]];
-            
-            /*if (matchType > 1) {
-                //indels match
-                indelsArr = [indelsArr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:x]];
-            }*/
-//            arr = [arr arrayByAddingObjectsFromArray:[self approxiMatchForQuery:[self getReverseComplementForSeq:query] withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:x]];
         }
         
-//        reverseMatches = ([arr count] + ((matchType > 1) ? [indelsArr count] : 0)) - forwardMatches;
         reverseMatches = [arr count]-forwardMatches;
         if (kDebugOn>0) {
-            for (int o = 0; o<arr.count; o++) {
-                printf("\nMATCH[%i] FOR QUERY: %s WITH NUMOFSUBS: %i ::: %i",o,query,x,[[arr objectAtIndex:o] intValue]);
-            }
+            for (int o = 0; o<arr.count; o++)
+                printf("\nMATCH[%i] FOR QUERY: %s WITH NUMOFSUBS: %i ::: %i",o,query,subs,[[arr objectAtIndex:o] intValue]);
         }
         
         if (kDebugOn == -1) {
-            for (int o = 0; o<[arr count]; o++) {
+            for (int o = 0; o<[arr count]; o++)
                 printf("\n%i\n",[[arr objectAtIndex:o] intValue]);
-            }
         }
-        
-//        finalMatchArray = [arr arrayByAddingObjectsFromArray:indelsArr];
         
         if ([arr count] > 0) {
             int rand = (int)arc4random()%[arr count];
             int v;
-//            int v = [[finalMatchArray objectAtIndex:rand] intValue];
+            
             if (matchType != MatchTypeSubsAndIndels) {
                 v = [[arr objectAtIndex:rand] intValue];
                 v = (rand>forwardMatches-1) ? -v : v;
                 return v;
             }
-            else if (x>0) {
+            else if (subs>0) {
                 ED_Info *inf = [arr objectAtIndex:rand];
                 [self recordInDel:inf forLastCol:lastCol andFirstCol:firstCol];
                 return ([arr count]>0) ? 1 : -1;//1 for matched, -1 for no match for indels
@@ -557,43 +492,41 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             else {
                 v = [[arr objectAtIndex:rand] intValue];
                 v = (rand>forwardMatches-1) ? -v : v;
-                [self recordInDelExactMatchForPos:v andReed:query andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol]];
+                [self recordInDelExactMatchForPos:v andReed:query];
+                return 0;
             }
         }
     }
     return -1;//No match
 }
 
-- (void)recordInDelExactMatchForPos:(int)pos andReed:(char*)reed andOriginalStr:(char*)originalStr {
+- (void)recordInDelExactMatchForPos:(int)pos andReed:(char*)reed {
     if (matchType == MatchTypeSubsAndIndels && pos >= 0)/////SOMETHING OVER HERE, POSSIBLY REVERSE COMP ALSO?
-        [self updatePosOccsArrayWithRange:NSMakeRange(pos, strlen(reed)) andOriginalStr:originalStr andQuery:reed];
+        [self updatePosOccsArrayWithRange:NSMakeRange(pos, strlen(reed)) andQuery:reed];
     else
-        [self updatePosOccsArrayWithRange:NSMakeRange(abs(pos), strlen(reed)) andOriginalStr:originalStr andQuery:[self getReverseComplementForSeq:reed]];
+        [self updatePosOccsArrayWithRange:NSMakeRange(abs(pos), strlen(reed)) andQuery:[self getReverseComplementForSeq:reed]];
 }
-
+/*
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
     
-    if (chunkNum == 0) {//No Duplicates If it is first chunk (nothing come before it)
+    if (chunkNum == 0) //No Duplicates If it is first chunk (nothing come before it)
         return TRUE;
-    }
     
     for (int i = 0; i<[subsArray count]-([subsArray count]-chunkNum); i++) {
-        if ([[subsArray objectAtIndex:i] intValue] == 0) {
+        if ([[subsArray objectAtIndex:i] intValue] == 0)
             return FALSE;
-        }
     }
     
     return TRUE;
-}
+}*/
 
-- (void)updatePosOccsArrayWithRange:(NSRange)range andOriginalStr:(char*)originalStr andQuery:(char*)query {
+- (void)updatePosOccsArrayWithRange:(NSRange)range andQuery:(char*)query {
     for (int i = range.location; i<range.length+range.location; i++) {
-        int c = [self whichChar:query[i-range.location] inContainer:acgt];
+        int c = [BWT_MatcherSC whichChar:query[i-range.location] inContainer:acgt];
         
         if (c == -1) {//DEL --- Not positive though
-            if (query[i-range.location] == kDelMarker) {
+            if (query[i-range.location] == kDelMarker)
                 c = kACGTLen;
-            }
         }
         
         posOccArray[c][i]++;
@@ -642,97 +575,41 @@ char *substr(const char *pstr, int start, int numchars)
     
     for (int i = 0; i<numOfChunks; i++) {
         Chunks *chunk = [[Chunks alloc] init];
-        if (i < numOfChunks-1) {
+        if (i < numOfChunks-1)
             strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks),"\0"));
-        }
-        else {
+        else
             strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+(int)(float)queryLength % numOfChunks),"\0"));
-        }
-        chunk.matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunk.string withLastCol:lastCol andFirstCol:firstCol];
+        
+        chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForQuery:chunk.string withLastCol:lastCol andFirstCol:firstCol];
         [chunkArray addObject:chunk];
         start += sizeOfChunks;
     }
     
     //  Find In/Del by using the matched positions of the chunks
-    NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andChunks:chunkArray andMaximumEditDist:kMaxEditDist]];
+    NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:kMaxEditDist]];
     
     //Peform the whole best match for indels in here
     int i = 0;
     if ([matchedInDels count]>0) {
         i = (int)arc4random() % [matchedInDels count];//Picks at random
     
-//    for (int i = 0; i<[matchedInDels count]; i++) {
         ED_Info *info = [matchedInDels objectAtIndex:i];
         int aLen = strlen(info.gappedA);
         
-        if (kPrintReadInfo == 1) {
+        if (kPrintReadInfo == 1)
             printf("\nGAPPED A: %s , POS: %i , LEN: %i",info.gappedA,info.position,aLen);
-        }
         
         return [NSMutableArray arrayWithObject:info];//Something found
-        
-//        DELETIONS AND SUBSTITUTIONS
-       /* if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
-            [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
-        
-//        INSERTIONS
-        else if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
-            int bLen = strlen(info.gappedB);
-            int insCount = 0;
-            char *smallSeq = calloc(kMaxInsertionSeqLen, 1);
-            
-            for (int a = 0; a<bLen; a++) {
-                if (info.gappedB[a] == kDelMarker) {
-                    BWT_Matcher_InsertionDeletion_InsertionHolder *tID = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
-                    [tID setUp];
-                    tID.seq[0] = info.gappedA[a];
-                    tID.seq[1] = '\0';
-                    tID.pos = info.position+a-insCount;
-                    
-                    int tIDSeqLen = strlen(tID.seq);
-                    
-                    while (info.gappedB[a+1] == kDelMarker) {
-                        tID.seq[tIDSeqLen] = info.gappedA[a+1];
-                        tID.seq[tIDSeqLen+1] = '\0';
-                        insCount++;
-                        a++;
-                    }
-                    //Check if insertions array already has it
-                    BOOL alreadyRec = FALSE;
-                    for (int l = 0; l<self.insertionsArray.count; l++) {
-                        BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
-                        if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
-                            tt.count++;
-                            alreadyRec = TRUE;
-                        }
-                    }
-                    if (!alreadyRec) {
-                        [self.insertionsArray addObject:tID];
-                    }
-                    posOccArray[kACGTLen+1][tID.pos]++;//Insertions add one
-                    insCount++;
-                }
-                else {
-                    smallSeq[0] = info.gappedA[a];
-                    smallSeq[1] = '\0';
-                    [self updatePosOccsArrayWithRange:NSMakeRange(info.position+a-insCount, 1) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:smallSeq];
-                }
-            }
-        }*/
     }
 
-//    if ([matchedInDels count]>0)
-//        return [NSMutableArray arrayWithObject:[matchedInDels objectAtIndex:i]];//Something found
-//    else
-        return NULL;
-//    return matchedInDels;
+    return NULL;
 }
 
 - (void)recordInDel:(ED_Info*)info forLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
     int aLen = strlen(info.gappedA);
     
     if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
-        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:info.gappedA];//Not positive about - for in/del in the actual method
+        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andQuery:info.gappedA];
     
     //        INSERTIONS
     else if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
@@ -774,7 +651,7 @@ char *substr(const char *pstr, int start, int numchars)
             else {
                 smallSeq[0] = info.gappedA[a];
                 smallSeq[1] = '\0';
-                [self updatePosOccsArrayWithRange:NSMakeRange(info.position+a-insCount, 1) andOriginalStr:[self unravelCharWithLastColumn:lastCol firstColumn:firstCol] andQuery:smallSeq];
+                [self updatePosOccsArrayWithRange:NSMakeRange(info.position+a-insCount, 1) andQuery:smallSeq];
             }
         }
     }
@@ -824,15 +701,10 @@ char *substr(const char *pstr, int start, int numchars)
     int len = strlen(seq);
     char *revSeq = calloc(len, 1);
     
-    for (int i = 0; i<len; i++) {
-        revSeq[i] = acgt[kACGTLen-[self whichChar:seq[len-i-1] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
-    }
+    for (int i = 0; i<len; i++)
+        revSeq[i] = acgt[kACGTLen-[BWT_MatcherSC whichChar:seq[len-i-1] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
     
     return revSeq;
-}
-
-- (int)getPosOccArrayObj:(int)x :(int)y {
-    return posOccArray[x][y];
 }
 
 - (char*)getSortedSeq {

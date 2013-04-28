@@ -4,16 +4,16 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/Computing/ComputingController.m"
-         timestampString = "387933054.31739"
+         filePath = "BWT_MatcherSC.m"
+         timestampString = "388186923.876747"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "74"
-         endingLineNumber = "74"
-         landmarkName = "-readProccesed"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "-exactMatchForQuery:withLastCol:andFirstCol:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

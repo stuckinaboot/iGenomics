@@ -22,20 +22,6 @@
     
     filePickerController = [[FilePickerController alloc] init];
     [filePickerController setUpDefaultFiles];
-    /*
-    
-    bwt = [[BWT alloc] init];
-    [bwt setUpForRefFile:@"New.Ecoli.5k" fileExt:@"txt"];
-    [bwt matchReedsFile:@"new.reads" fileExt:@"txt" withNumOfSubs:2];
-    
-    [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
-    [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
-    [bwt.bwtMutationFilter filterMutationsForDetails];
-    
-    */
-    
-    if (kPrintIndevelopmentVars>0) {
-    }
     
     [super viewDidLoad];
 }
@@ -52,9 +38,6 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
-
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
