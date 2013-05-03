@@ -11,10 +11,10 @@
 
 @implementation BWT_Matcher_InsertionDeletion
 
-- (NSMutableArray*)setUpWithCharA:(char*)a andCharB:(char*)b andChunks:(NSMutableArray*)chunkArray andMaximumEditDist:(int)maxED {
+- (NSMutableArray*)setUpWithCharA:(char*)a andCharB:(char*)b andChunks:(NSMutableArray*)chunkArray andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR {
     matchedInDels = [[NSMutableArray alloc] init];
     editDist = [[EditDistance alloc] init];
-    
+    isRev = isR;
     //    Add space prior to the chars in "a" and prior to the chars in "b"
     int alen = strlen(a);
     char *newa = calloc(alen+1, 1);
@@ -113,7 +113,8 @@
             matchedPos = matchedPos + (edInfo.position-maxEditDist);
             //                    Check To See If Match Has Already been recorded
             for (int i = 0; i<[matchedInDels count]; i++) {
-                ED_Info *edI = [matchedInDels objectAtIndex:i];
+                MatchedReadData *data = [matchedInDels objectAtIndex:i];
+                ED_Info *edI = data.info;
                 if (edI.position == matchedPos) //If pos is the same
                     alreadyRecorded = TRUE;
             }
@@ -121,7 +122,7 @@
         
         if (!alreadyRecorded) {
             edInfo.position = matchedPos;
-            [matchedInDels addObject:edInfo];
+            [matchedInDels addObject:[[MatchedReadData alloc] initWithPos:0 isReverse:isRev andEDInfo:edInfo]];
         }
     }
 }

@@ -23,13 +23,12 @@
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
 		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
-		A3382FD016A118D50042F59B /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCF16A118D50042F59B /* GridView.m */; };
-		A3382FD416A118FC0042F59B /* GridPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FD316A118FC0042F59B /* GridPoint.m */; };
 		A33A7C161650397B00E39A6C /* ED_Info.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C151650397B00E39A6C /* ED_Info.m */; };
 		A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */; };
 		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
 		A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */; };
 		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
+		A342B600172D7507001608DF /* MatchedReadData.m in Sources */ = {isa = PBXBuildFile; fileRef = A342B5FF172D7507001608DF /* MatchedReadData.m */; };
 		A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A34E6BB316C4753C00753D7C /* CSHLabIcon.png */; };
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
@@ -100,10 +99,6 @@
 		A3382FC916A118A20042F59B /* AnalysisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisController.h; path = iGenomics/Analysis/AnalysisController.h; sourceTree = "<group>"; };
 		A3382FCA16A118A20042F59B /* AnalysisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisController.m; path = iGenomics/Analysis/AnalysisController.m; sourceTree = "<group>"; };
 		A3382FCB16A118A20042F59B /* AnalysisController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnalysisController.xib; path = iGenomics/Analysis/AnalysisController.xib; sourceTree = "<group>"; };
-		A3382FCE16A118D50042F59B /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridView.h; path = iGenomics/Analysis/Grid/GridView.h; sourceTree = "<group>"; };
-		A3382FCF16A118D50042F59B /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridView.m; path = iGenomics/Analysis/Grid/GridView.m; sourceTree = "<group>"; };
-		A3382FD216A118FC0042F59B /* GridPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridPoint.h; path = iGenomics/Analysis/Grid/GridPoint.h; sourceTree = "<group>"; };
-		A3382FD316A118FC0042F59B /* GridPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GridPoint.m; path = iGenomics/Analysis/Grid/GridPoint.m; sourceTree = "<group>"; };
 		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
 		A33A7C151650397B00E39A6C /* ED_Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ED_Info.m; sourceTree = "<group>"; };
 		A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = InDelTestReads.txt; path = BWT/InDelTestReads.txt; sourceTree = "<group>"; };
@@ -111,6 +106,8 @@
 		A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher_InsertionDeletion_InsertionHolder.h; sourceTree = "<group>"; };
 		A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher_InsertionDeletion_InsertionHolder.m; sourceTree = "<group>"; };
 		A34168561607B3A800ADA90B /* BasicReeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicReeds.txt; sourceTree = "<group>"; };
+		A342B5FE172D7507001608DF /* MatchedReadData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchedReadData.h; path = "Matched Read Class/MatchedReadData.h"; sourceTree = "<group>"; };
+		A342B5FF172D7507001608DF /* MatchedReadData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchedReadData.m; path = "Matched Read Class/MatchedReadData.m"; sourceTree = "<group>"; };
 		A34E6BB316C4753C00753D7C /* CSHLabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CSHLabIcon.png; sourceTree = "<group>"; };
 		A34E8B9516B5EF0C002F3AB7 /* InsertionsPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertionsPopoverController.h; sourceTree = "<group>"; };
 		A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertionsPopoverController.m; sourceTree = "<group>"; };
@@ -286,7 +283,6 @@
 				A31AA7CA16E3072100D3D808 /* QuickGridView.h */,
 				A31AA7CB16E3072100D3D808 /* QuickGridView.m */,
 				A3669B3616F689780034A1CC /* Colors */,
-				A3669B3716F6897E0034A1CC /* Old Grid */,
 			);
 			name = Grid;
 			sourceTree = "<group>";
@@ -332,6 +328,15 @@
 				A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */,
 			);
 			name = "Insertion Holder";
+			sourceTree = "<group>";
+		};
+		A342B601172D750A001608DF /* Matched Read */ = {
+			isa = PBXGroup;
+			children = (
+				A342B5FE172D7507001608DF /* MatchedReadData.h */,
+				A342B5FF172D7507001608DF /* MatchedReadData.m */,
+			);
+			name = "Matched Read";
 			sourceTree = "<group>";
 		};
 		A34734D2166AC19600C4271E /* HomeScreen */ = {
@@ -389,17 +394,6 @@
 				A3DB3772170214BC007F0B9E /* RGB */,
 			);
 			name = Colors;
-			sourceTree = "<group>";
-		};
-		A3669B3716F6897E0034A1CC /* Old Grid */ = {
-			isa = PBXGroup;
-			children = (
-				A3382FCE16A118D50042F59B /* GridView.h */,
-				A3382FCF16A118D50042F59B /* GridView.m */,
-				A3382FD216A118FC0042F59B /* GridPoint.h */,
-				A3382FD316A118FC0042F59B /* GridPoint.m */,
-			);
-			name = "Old Grid";
 			sourceTree = "<group>";
 		};
 		A39316E216C08C5F0041BF4B /* Search Query Popover */ = {
@@ -556,6 +550,7 @@
 				A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */,
 				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
 				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
+				A342B601172D750A001608DF /* Matched Read */,
 			);
 			name = Matcher;
 			sourceTree = "<group>";
@@ -702,8 +697,6 @@
 				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
 				A3382FC516A111DB0042F59B /* ComputingController.m in Sources */,
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
-				A3382FD016A118D50042F59B /* GridView.m in Sources */,
-				A3382FD416A118FC0042F59B /* GridPoint.m in Sources */,
 				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
 				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,
 				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
@@ -713,6 +706,7 @@
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
+				A342B600172D7507001608DF /* MatchedReadData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

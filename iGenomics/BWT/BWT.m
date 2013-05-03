@@ -66,7 +66,13 @@
 
 - (NSArray*)simpleSearchForQuery:(char*)query {
     bwt_MatcherSC = [[BWT_MatcherSC alloc] init];
-    return [bwt_MatcherSC exactMatchForQuery:query withLastCol:bwtString andFirstCol:[bwt_Matcher getSortedSeq]];
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[bwt_MatcherSC exactMatchForQuery:query withLastCol:bwtString andFirstCol:[bwt_Matcher getSortedSeq] andIsReverse:NO andForOnlyPos:YES]];
+//    MatchedReadData *data;
+//    for (int i = 0; i<[arr count]; i++) {
+//        data = [arr objectAtIndex:i];
+//        [arr replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:data.pos]];
+//    }
+    return arr;
 }
 
 - (NSMutableArray*)getInsertionsArray {

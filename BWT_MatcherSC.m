@@ -18,7 +18,7 @@ int kMultipleToCountAt;
 
 @implementation BWT_MatcherSC
 
-- (NSArray*)exactMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol {
+- (NSArray*)exactMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
     int i = strlen(query)-1;
     char c = query[i];
     int startPos = [self charsBeforeChar:c];
@@ -41,7 +41,7 @@ int kMultipleToCountAt;
     for (int l = 0; l<endPos-startPos; l++)
         [posArray addObject:[NSNumber numberWithInt:startPos+l]];
     
-    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andFirstCol:firstCol andLastCol:lastCol]];
+    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andFirstCol:firstCol andLastCol:lastCol andIsReverse:isRev andForOnlyPos:forOnlyPos]];
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -57,7 +57,7 @@ int kMultipleToCountAt;
     return TRUE;
 }
 
-- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andFirstCol:(char *)firstColumn andLastCol:(char *)lastColumn {
+- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andFirstCol:(char *)firstColumn andLastCol:(char *)lastColumn andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
     
     NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
     
@@ -84,8 +84,12 @@ int kMultipleToCountAt;
         if ([posArray count] == [positionsInBWTArray count])
             break;
         for (int l = 0; l<[posArray count]; l++) {
-            if ([[posArray objectAtIndex:l] intValue] == i)
-                [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
+            if ([[posArray objectAtIndex:l] intValue] == i) {
+                if (!forOnlyPos)
+                    [positionsInBWTArray addObject:[[MatchedReadData alloc] initWithPos:pos-1 isReverse:isRev andEDInfo:NULL]];
+                else
+                    [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
+            }
         }
     }
     
@@ -151,4 +155,33 @@ int kMultipleToCountAt;
     occurences++;
     return occurences;
 }
+
+#pragma UNRAVEL
+
+ - (char*)unravelCharWithLastColumn:(char*)lastColumn firstColumn:(char*)firstColumn {
+ 
+     int i = 0;//index
+     int pos = fileStrLen-1;
+     int occurence = 1;//1 = 1st, etc.
+     char *unraveledChar = calloc(fileStrLen, 1);
+     char lastChar = lastColumn[i];
+     
+     unraveledChar[pos] = lastChar;
+     
+     i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
+     
+     while (strlen(unraveledChar)<fileStrLen) {
+         pos--;
+         //Add lastChar to beginning of unraveledChar
+         lastChar = lastColumn[i];
+         
+         unraveledChar[pos] = lastChar;
+         
+         occurence = [self whichOccurenceOfChar:lastChar inChar:lastColumn atPos:i];
+         i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
+     }
+     
+     strcpy(unraveledChar, unraveledChar+1);
+     return unraveledChar;
+ }
 @end

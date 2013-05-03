@@ -10,10 +10,10 @@
 
 @implementation BWT_Matcher_Approxi
 
-- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
+- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andIsReverse:(BOOL)isRev {
     
     if (amtOfSubs == 0)
-        return (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol];
+        return (NSMutableArray*)[self exactMatchForQuery:query withLastCol:lastCol andFirstCol:firstCol andIsReverse:isRev andForOnlyPos:NO];
     
     int numOfChunks = amtOfSubs+1;
     int sizeOfChunks = strlen(query)/numOfChunks;
@@ -56,7 +56,7 @@
         int numOfSubstitutions = 0;
         
         for (int i = 0; i<numOfChunks; i++) {
-            chunks[i].matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunks[i].string withLastCol:lastCol andFirstCol:firstCol];
+            chunks[i].matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunks[i].string withLastCol:lastCol andFirstCol:firstCol andIsReverse:isRev andForOnlyPos:YES];
             
             if (kDebugOn>0)
                 printf("\nNUMBER OF MATCHED POSITIONS FOR CHUNK %i (%s): %i: 1st Matched Pos: %i",i,chunks[i].string,chunks[i].matchedPositions.count,(chunks[i].matchedPositions.count>0)?[[chunks[i].matchedPositions objectAtIndex:0] intValue]:-1);
@@ -112,10 +112,10 @@
                     }
                     
                     if ([self isNotDuplicateAlignment:array andChunkNum:i]) {
-                        int pos = [[chunks[i].matchedPositions objectAtIndex:x] intValue] - i*sizeOfChunks;//QUESTIONABLE HERE
+                        int pos = [[chunks[i].matchedPositions objectAtIndex:x] intValue] - i*sizeOfChunks;
                         
                         if (pos+strlen(query)<=strlen(refStrBWT) && pos>-1) {
-                            [positionsArray addObject:[NSNumber numberWithInt:pos]];
+                            [positionsArray addObject:[[MatchedReadData alloc] initWithPos:pos isReverse:isRev andEDInfo:NULL]];
                         }
                     }
                 }
