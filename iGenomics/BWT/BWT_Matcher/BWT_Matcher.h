@@ -38,8 +38,10 @@
 
 #define kMaxEditDist 4
 
-#define kDebugPrintInsertions 1
+#define kDebugPrintInsertions 0
 #define kDebugOn 0
+
+#define kDebugAllInfo 1
 
 #define kPrintReadInfo 0
 
@@ -86,7 +88,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 - (char*)getSortedSeq;
 
 //APPROXI MATCH
-- (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs;//returns >-1 for a match, -1 for no match, and <-1 for a rev comp match
+- (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently
 
 - (void)updatePosOccsArrayWithRange:(NSRange)range andQuery:(char*)query andED_Info:(ED_Info *)info andIsReverse:(BOOL)isRev;//info is NULL for a non indel match
 char *substr(const char *pstr, int start, int numchars);

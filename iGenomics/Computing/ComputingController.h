@@ -10,7 +10,7 @@
 #import "AnalysisController.h"
 #import "BWT.h"
 
-#define kPrintReadProcessedInConsole 1
+#define kPrintReadProcessedInConsole 0
 
 @interface ComputingController : UIViewController <BWT_Delegate> {
     IBOutlet UIProgressView *readProgressView;

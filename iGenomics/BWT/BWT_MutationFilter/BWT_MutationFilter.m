@@ -132,7 +132,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
         }
     }
-    if (kOnlyPrintFoundGenome<0) {
+    if (kOnlyPrintFoundGenome == -3) {
         printf("\n");
         for (int i = 0; i<fileStrLen-1; i++) {
             printf("%c",foundGenome[0][i]);

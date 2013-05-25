@@ -21,4 +21,20 @@
     return self;
 }
 
+- (void)printToConsole:(char*)read andReadNum:(int)readNum {
+    NSString *gappedA = @"";
+    NSString *gappedB = @"";
+    if (info == NULL) {
+        gappedA = [NSString stringWithFormat:@"%s",read];
+        gappedB = @"N/A";
+    }
+    else {
+        gappedA = [NSString stringWithFormat:@"%s",info.gappedA];
+        gappedB = [NSString stringWithFormat:@"%s",info.gappedB];
+        
+    }
+    NSString *strToPrint = [NSString stringWithFormat:@"\n%i,%s,%i,%@,%@",readNum,read,pos,gappedA,gappedB];
+    printf("%s",[strToPrint UTF8String]);
+}
+
 @end

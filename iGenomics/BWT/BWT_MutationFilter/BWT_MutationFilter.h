@@ -12,7 +12,7 @@
 //Format- P: R: F: #A: #C: #G: #T:
 //     Pos: Real: Found: # of A: # of C: # of G: # of T:
 
-#define kOnlyPrintFoundGenome 0
+#define kOnlyPrintFoundGenome -111
 //#define kHeteroAllowance 1 //Greater than 1
 
 extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I

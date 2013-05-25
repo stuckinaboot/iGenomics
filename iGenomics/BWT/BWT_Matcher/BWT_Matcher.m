@@ -84,7 +84,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     for (int i = 0; i < array.count; i++) {
         reed = (char*)[[array objectAtIndex:i] UTF8String];
         
-        MatchedReadData* a = [self getBestMatchForQuery:reed withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:maxSubs];
+        MatchedReadData* a = [self getBestMatchForQuery:reed withLastCol:lastCol andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:i];
         
         if (a != NULL)
             [self updatePosOccsArrayWithRange:NSMakeRange(a.pos, strlen(reed)) andQuery:reed andED_Info:a.info andIsReverse:a.isReverse];
@@ -95,7 +95,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 
 
-- (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs {
+- (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum {
     
     NSArray *arr = [[NSMutableArray alloc] init];
     
@@ -128,6 +128,16 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         }
         
         reverseMatches = [arr count]-forwardMatches;
+        
+        if (kDebugAllInfo>0) {
+            //prints all objects of arr to the console
+            for (int i = 0; i<[arr count]; i++) {
+                MatchedReadData *d = [arr objectAtIndex:i];
+                if (d.isReverse)
+                    [d printToConsole:[self getReverseComplementForSeq:query] andReadNum:readNum];
+            }
+        }
+        
         if (kDebugOn>0) {
             for (int o = 0; o<arr.count; o++)
                 printf("\nMATCH[%i] FOR QUERY: %s WITH NUMOFSUBS: %i ::: %i",o,query,subs,[[arr objectAtIndex:o] intValue]);
