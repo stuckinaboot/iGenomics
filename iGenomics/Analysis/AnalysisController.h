@@ -118,7 +118,8 @@
     int numOfReads;
     
     //Data elements
-    NSMutableArray *mutPosArray;//Keeps the positions of all the mutations
+    NSMutableArray *mutPosArray;//Keeps the positions of the mutations for the selected mutation support
+    NSMutableArray *allMutPosArray;//Keeps the positions of ALL mutations
     NSArray *querySeqPosArr;//Keeps the positions of the found query sequence (from seqSearch)
 }
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;

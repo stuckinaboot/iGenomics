@@ -12,5 +12,5 @@
 #import "MatchedReadData.h"
 
 @interface BWT_Matcher_Approxi : BWT_MatcherSC
-- (NSArray*)approxiMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andIsReverse:(BOOL)isRev;
+- (NSArray*)approxiMatchForQuery:(char*)query andNumOfSubs:(int)amtOfSubs andIsReverse:(BOOL)isRev andReadLen:(int)queryLength;
 @end

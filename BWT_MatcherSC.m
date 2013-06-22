@@ -8,17 +8,9 @@
 
 #import "BWT_MatcherSC.h"
 
- int fileStrLen;
- char *originalStr;
- char *refStrBWT;
- char *acgt;
- int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
- int acgtTotalOccs[kACGTLen];
-int kMultipleToCountAt;
-
 @implementation BWT_MatcherSC
 
-- (NSArray*)exactMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
+- (NSArray*)exactMatchForQuery:(char*)query andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
     int i = strlen(query)-1;
     char c = query[i];
     int startPos = [self charsBeforeChar:c];
@@ -31,8 +23,8 @@ int kMultipleToCountAt;
     i--;
     while (startPos<endPos && i >= 0) {
         c = query[i];
-        startPos = [self LFC:startPos andChar:c withLastCol:lastCol]-1;
-        endPos = [self LFC:endPos andChar:c withLastCol:lastCol]-1;
+        startPos = [self LFC:startPos andChar:c]-1;
+        endPos = [self LFC:endPos andChar:c]-1;
         i--;
     }
     
@@ -41,7 +33,7 @@ int kMultipleToCountAt;
     for (int l = 0; l<endPos-startPos; l++)
         [posArray addObject:[NSNumber numberWithInt:startPos+l]];
     
-    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andFirstCol:firstCol andLastCol:lastCol andIsReverse:isRev andForOnlyPos:forOnlyPos]];
+    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos]];
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -57,17 +49,17 @@ int kMultipleToCountAt;
     return TRUE;
 }
 
-- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andFirstCol:(char *)firstColumn andLastCol:(char *)lastColumn andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
+- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
     
     NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
     
     int i;//index
     int pos = fileStrLen-1;
     int occurence = 1;//1 = 1st, etc.
-    char lastChar = lastColumn[0];
+    char lastChar = refStrBWT[0];
     
     
-    i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
+    i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
     
     for (int l = 0; l<[posArray count]; l++) {
         if ([[posArray objectAtIndex:l] intValue] == i)
@@ -76,17 +68,17 @@ int kMultipleToCountAt;
     
     while (pos>=0) {
         pos--;
-        lastChar = lastColumn[i];
+        lastChar = refStrBWT[i];
         
-        occurence = [self whichOccurenceOfChar:lastChar inChar:lastColumn atPos:i];
-        i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
+        occurence = [self whichOccurenceOfChar:lastChar inChar:refStrBWT atPos:i];
+        i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
         
         if ([posArray count] == [positionsInBWTArray count])
             break;
         for (int l = 0; l<[posArray count]; l++) {
             if ([[posArray objectAtIndex:l] intValue] == i) {
                 if (!forOnlyPos)
-                    [positionsInBWTArray addObject:[[MatchedReadData alloc] initWithPos:pos-1 isReverse:isRev andEDInfo:NULL]];
+                    [positionsInBWTArray addObject:[[MatchedReadData alloc] initWithPos:pos-1 isReverse:isRev andEDInfo:NULL andDistance:-2-1]];
                 else
                     [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
             }
@@ -115,8 +107,8 @@ int kMultipleToCountAt;
     return which;
 }
 
-- (int)LFC:(int)r andChar:(char)c withLastCol:(char*)lastCol {
-    int occ = [self whichOccurenceOfChar:c inChar:lastCol atPos:r];
+- (int)LFC:(int)r andChar:(char)c {
+    int occ = [self whichOccurenceOfChar:c inChar:refStrBWT atPos:r];
     return [self charsBeforeChar:c]+occ;
 }
 
@@ -164,13 +156,14 @@ int kMultipleToCountAt;
      int pos = fileStrLen-1;
      int occurence = 1;//1 = 1st, etc.
      char *unraveledChar = calloc(fileStrLen, 1);
+     int unravCharSize = 0;
      char lastChar = lastColumn[i];
      
      unraveledChar[pos] = lastChar;
      
      i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
      
-     while (strlen(unraveledChar)<fileStrLen) {
+     while (/*strlen(unraveledChar)*/unravCharSize<fileStrLen) {
          pos--;
          //Add lastChar to beginning of unraveledChar
          lastChar = lastColumn[i];
@@ -179,6 +172,7 @@ int kMultipleToCountAt;
          
          occurence = [self whichOccurenceOfChar:lastChar inChar:lastColumn atPos:i];
          i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
+         unravCharSize++;
      }
      
      strcpy(unraveledChar, unraveledChar+1);

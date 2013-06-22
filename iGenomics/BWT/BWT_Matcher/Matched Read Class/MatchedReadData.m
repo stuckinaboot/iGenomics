@@ -10,13 +10,14 @@
 
 @implementation MatchedReadData
 
-@synthesize pos, isReverse, info;
+@synthesize pos, isReverse, info, distance;
 
-- (id)initWithPos:(int)p isReverse:(BOOL)isRev andEDInfo:(ED_Info*)inf {
+- (id)initWithPos:(int)p isReverse:(BOOL)isRev andEDInfo:(ED_Info*)inf andDistance:(int)dist {
     if (self = [super init]) {
         pos = p;
         isReverse = isRev;
         info = inf;
+        distance = dist;
     }
     return self;
 }

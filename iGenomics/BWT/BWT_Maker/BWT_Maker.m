@@ -18,7 +18,7 @@
     
     indexArray = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i<strlen(sequence); i++) {
+    for (int i = 0; i<sequenceLength; i++) {
         [indexArray addObject:[NSNumber numberWithInt:i]];
     }
     
@@ -84,13 +84,12 @@
 }
 
 - (char*)bwtFinalProduct {
-    char *bwt = calloc(strlen(sequence), 1);
+    char *bwt = calloc(sequenceLength, 1);
     int num;
-    int length = strlen(sequence);
     for (int i = 0; i<[indexArray count]; i++) {
         num = [[indexArray objectAtIndex:i] intValue]-1;
         if (num<0) {
-            num = length-1;
+            num = sequenceLength-1;
         }
         bwt[i] = sequence[num];
     }

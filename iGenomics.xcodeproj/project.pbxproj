@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A306E17E17754644003BAA18 /* MatchedReadData.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3A92617754453004A7D72 /* MatchedReadData.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -19,6 +20,7 @@
 		A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31AA7CB16E3072100D3D808 /* QuickGridView.m */; };
+		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
@@ -28,7 +30,6 @@
 		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
 		A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */; };
 		A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A34168561607B3A800ADA90B /* BasicReeds.txt */; };
-		A342B600172D7507001608DF /* MatchedReadData.m in Sources */ = {isa = PBXBuildFile; fileRef = A342B5FF172D7507001608DF /* MatchedReadData.m */; };
 		A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A34E6BB316C4753C00753D7C /* CSHLabIcon.png */; };
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
@@ -93,6 +94,7 @@
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31AA7CA16E3072100D3D808 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.h; sourceTree = "<group>"; };
 		A31AA7CB16E3072100D3D808 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.m; sourceTree = "<group>"; };
+		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -106,8 +108,6 @@
 		A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher_InsertionDeletion_InsertionHolder.h; sourceTree = "<group>"; };
 		A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher_InsertionDeletion_InsertionHolder.m; sourceTree = "<group>"; };
 		A34168561607B3A800ADA90B /* BasicReeds.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicReeds.txt; sourceTree = "<group>"; };
-		A342B5FE172D7507001608DF /* MatchedReadData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchedReadData.h; path = "Matched Read Class/MatchedReadData.h"; sourceTree = "<group>"; };
-		A342B5FF172D7507001608DF /* MatchedReadData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchedReadData.m; path = "Matched Read Class/MatchedReadData.m"; sourceTree = "<group>"; };
 		A34E6BB316C4753C00753D7C /* CSHLabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CSHLabIcon.png; sourceTree = "<group>"; };
 		A34E8B9516B5EF0C002F3AB7 /* InsertionsPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertionsPopoverController.h; sourceTree = "<group>"; };
 		A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertionsPopoverController.m; sourceTree = "<group>"; };
@@ -151,6 +151,8 @@
 		A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_MutationFilter.m; sourceTree = "<group>"; };
 		A3C0FD2C160FA5F600BC2168 /* MySeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MySeq.txt; path = "../../Lab Projects/LabProject5/MySeq.txt"; sourceTree = "<group>"; };
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
+		A3D3A92517754453004A7D72 /* MatchedReadData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MatchedReadData.h; path = "Matched Read Class/MatchedReadData.h"; sourceTree = "<group>"; };
+		A3D3A92617754453004A7D72 /* MatchedReadData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MatchedReadData.m; path = "Matched Read Class/MatchedReadData.m"; sourceTree = "<group>"; };
 		A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_Approxi.h; path = "Approxi Matcher/BWT_Matcher_Approxi.h"; sourceTree = "<group>"; };
 		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
 		A3D3F3B3172333650045A586 /* BWT_MatcherSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_MatcherSC.h; path = ../../../BWT_MatcherSC.h; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		A310AF3F158A5F7200E892AA = {
 			isa = PBXGroup;
 			children = (
+				A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */,
 				A310AF54158A5F7200E892AA /* iGenomics */,
 				A310AF4D158A5F7200E892AA /* Frameworks */,
 				A310AF4B158A5F7200E892AA /* Products */,
@@ -221,10 +224,10 @@
 				A3AC49C01697936400DD9266 /* Parameters */,
 				A3382FC716A111E30042F59B /* Computing */,
 				A3382FC816A118640042F59B /* Analysis */,
-				A34734D4166AC1AB00C4271E /* XIBs */,
 				A3C0FD1C160FA5AC00BC2168 /* BWT */,
 				A3FF3AD316AB17FC0095EACF /* Globals */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
+				A34734D4166AC1AB00C4271E /* XIBs */,
 			);
 			path = iGenomics;
 			sourceTree = "<group>";
@@ -328,15 +331,6 @@
 				A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */,
 			);
 			name = "Insertion Holder";
-			sourceTree = "<group>";
-		};
-		A342B601172D750A001608DF /* Matched Read */ = {
-			isa = PBXGroup;
-			children = (
-				A342B5FE172D7507001608DF /* MatchedReadData.h */,
-				A342B5FF172D7507001608DF /* MatchedReadData.m */,
-			);
-			name = "Matched Read";
 			sourceTree = "<group>";
 		};
 		A34734D2166AC19600C4271E /* HomeScreen */ = {
@@ -534,6 +528,15 @@
 			path = BWT_MutationFilter;
 			sourceTree = "<group>";
 		};
+		A3D3A92417754434004A7D72 /* MatchedReadData */ = {
+			isa = PBXGroup;
+			children = (
+				A3D3A92517754453004A7D72 /* MatchedReadData.h */,
+				A3D3A92617754453004A7D72 /* MatchedReadData.m */,
+			);
+			name = MatchedReadData;
+			sourceTree = "<group>";
+		};
 		A3D3F3AD17232FEB0045A586 /* Approxi Matcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,7 +553,7 @@
 				A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */,
 				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
 				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
-				A342B601172D750A001608DF /* Matched Read */,
+				A3D3A92417754434004A7D72 /* MatchedReadData */,
 			);
 			name = Matcher;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
+				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A306E17E17754644003BAA18 /* MatchedReadData.m in Sources */,
 				A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */,
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
@@ -706,7 +711,6 @@
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
-				A342B600172D7507001608DF /* MatchedReadData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,8 +13,9 @@
 
 }
 @property (nonatomic) int pos;
+@property (nonatomic) int distance;
 @property (nonatomic) BOOL isReverse;
 @property (nonatomic) ED_Info *info;
-- (id)initWithPos:(int)p isReverse:(BOOL)isRev andEDInfo:(ED_Info*)inf;//inf is NULL if not an indel match
+- (id)initWithPos:(int)p isReverse:(BOOL)isRev andEDInfo:(ED_Info*)inf andDistance:(int)dist;//inf is NULL if not an indel match
 - (void)printToConsole:(char*)read andReadNum:(int)readNum;
 @end

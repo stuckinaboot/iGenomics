@@ -14,6 +14,21 @@ typedef enum {
     MatchTypeSubsAndIndels
 } MatchType;
 
-@interface GlobalVars : NSObject
+#define kMaxBytesForIndexer 101
+#define kMaxMultipleToCountAt 100
 
+#define kACGTLen 4
+#define kACGTStr "ACGT"
+
+extern int fileStrLen;
+extern char *originalStr;
+extern char *refStrBWT;
+extern char *firstCol;
+extern char *acgt;
+extern int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
+extern int acgtTotalOccs[kACGTLen];
+extern int kMultipleToCountAt;
+
+@interface GlobalVars : NSObject
++ (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;
 @end

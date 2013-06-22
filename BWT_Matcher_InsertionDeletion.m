@@ -31,6 +31,7 @@
     [self findInDels:newa andCharB:b andChunks:chunkArray];
     
     //    Free memory---NEEDS TO BE DONE
+    free(newa);
     
     return matchedInDels;
 }
@@ -122,7 +123,7 @@
         
         if (!alreadyRecorded) {
             edInfo.position = matchedPos;
-            [matchedInDels addObject:[[MatchedReadData alloc] initWithPos:0 isReverse:isRev andEDInfo:edInfo]];
+            [matchedInDels addObject:[[MatchedReadData alloc] initWithPos:0 isReverse:isRev andEDInfo:edInfo andDistance:edInfo.distance]];
         }
     }
 }

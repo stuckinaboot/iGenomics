@@ -22,14 +22,8 @@
 //CONSTANTS
 #define kReedsArraySeperationStr @"\n"
 
-#define kMaxBytesForIndexer 101
-#define kMaxMultipleToCountAt 100
-
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
-
-#define kACGTLen 4
-#define kACGTStr "ACGT"
 
 #define kDelMarker '-'
 #define kInsMarker '+'
@@ -65,6 +59,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
     //New Vars
     int maxSubs;
     NSArray *reedsArray;
+    int readNum;
     
     NSMutableArray *insertionsArray;
     
@@ -80,12 +75,10 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 
-- (void)matchReedsArray:(NSArray *)array withLastCol:(char*)lastCol andFirstCol:(char*)firstCol;
+- (void)matchReeds;
 
 - (void)setUpNumberOfOccurencesArray;
 - (void)setUpBytesForIndexerAndMultipleToCountAt:(int)seqLen;//This can be modified if necessary
-
-- (char*)getSortedSeq;
 
 //APPROXI MATCH
 - (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently

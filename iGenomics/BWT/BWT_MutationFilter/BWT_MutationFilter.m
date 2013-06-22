@@ -58,12 +58,10 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 coverageCounter += posOccArray[a][i];
             }
             
-            if (a == 0) {
+            if (a == 0)
                 charWMostOccs = 0;
-            }
-            else if (posOccArray[a][i]>posOccArray[charWMostOccs][i]) {//Greater
+            else if (posOccArray[a][i]>posOccArray[charWMostOccs][i]) //Greater
                 charWMostOccs = a;
-            }
             else if (posOccArray[a][i] == posOccArray[charWMostOccs][i]) {
                 //Same = Pick at random
                 int r = arc4random()%2;//Pick between the 2
@@ -80,8 +78,6 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 foundGenome[0][i] = kDelMarker;
             else if (charWMostOccs == kACGTLen+1)
                 foundGenome[0][i] = kInsMarker;
-            /*else if (charWMostOccs == kACGTLen+1)
-                foundGenome[0][i] = kInsMarker;*/
         }
         for (int a = 0; a <= kACGTLen+1; a++) {
             if (charWMostOccs != a) {
@@ -222,6 +218,44 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         }
     }
     return NULL;
+    //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
+}
+
++ (NSMutableArray*)filteredMutations:(NSArray*)arr forHeteroAllowance:(int)heteroAllowance {
+    NSMutableArray *finalArr = [[NSMutableArray alloc] init];
+    
+    int diffCharsAtPos = 0;
+    
+    for (int i = 0; i<arr.count; i++) {
+        diffCharsAtPos = 0;
+        int p = [[arr objectAtIndex:i] intValue];
+        for (int a = 0; a<kACGTLen+2; a++)
+            if (posOccArray[a][p]>0)
+                diffCharsAtPos++;
+        if (diffCharsAtPos == 1)
+            [finalArr addObject:[NSNumber numberWithInt:p]];
+        else if (coverageArray[p]<kLowestAllowedCoverage) {
+            diffCharsAtPos = 0;
+            for (int a = 0; a<kACGTLen+2; a++)
+                if (posOccArray[a][p]>0)
+                    diffCharsAtPos++;
+                else if (diffCharsAtPos > 1) {
+                    [finalArr addObject:[NSNumber numberWithInt:p]];
+                    break;
+                }
+        }
+        else {
+            diffCharsAtPos = 0;
+            for (int a = 0; a<kACGTLen+2; a++)
+                if (posOccArray[a][p]>heteroAllowance)
+                    diffCharsAtPos++;
+                else if (diffCharsAtPos > 1) {
+                    [finalArr addObject:[NSNumber numberWithInt:p]];
+                    break;
+                }
+        }
+    }
+    return finalArr;
     //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
 }
 @end

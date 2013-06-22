@@ -75,45 +75,23 @@
     
     [genomeCoverageLbl setText:[NSString stringWithFormat:@"%@%.02fx",kGenomeCoverageLblStart,coverage]];
     mutPosArray = [[NSMutableArray alloc] init];
+    allMutPosArray = [[NSMutableArray alloc] init];
     
     [readNumOfLbl setText:[NSString stringWithFormat:@"%@%i",kNumOfReadsLblStart,numOfReads]];
     
     [mutationSupportNumLbl setText:[NSString stringWithFormat:@"%i",(int)mutationSupportStpr.value]];
     
-    //Set up letters for the gridView
-    /*nLbl[0] = covLbl;
-    nLbl[1] = refLbl;
-    nLbl[2] = foundLbl;
-    nLbl[3] = aLbl;
-    nLbl[4] = cLbl;
-    nLbl[5] = gLbl;
-    nLbl[6] = tLbl;
-    nLbl[7] = delLbl;
-    nLbl[8] = insLbl;
-    
-    UIColor *colors[kNumOfRGBVals];
-    
-    for (int i = 0; i<kNumOfRGBVals; i++) {
-        colors[i] = [UIColor colorWithRed:rgbVals[i][0] green:rgbVals[i][1] blue:rgbVals[i][2] alpha:1.0];
-        if (i >= kStartOfRefInRGBVals+2) {
-            nLbl[i-kStartOfRefInRGBVals].textColor = colors[i];
-        }
-        else if (i >= kStartOfRefInRGBVals) {
-            nLbl[i-kStartOfRefInRGBVals].textColor = [UIColor blackColor];
-        }
-    }*/
-    
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
     //Set up gridView
-    int len = strlen(originalStr)-1;//-1 so to not include $ sign
+    int len = fileStrLen-1;//-1 so to not include $ sign
     
-    //[gridView firstSetUp];
     [gridView setDelegate:self];
     gridView.refSeq = originalStr;
     [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:kGraphRowHeight];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
+//    [self mutationSupportStepperChanged:nil];
 }
 
 - (void)setUpGridLbls {
@@ -178,7 +156,7 @@
 //Interactive UI Elements besides gridview
 - (IBAction)posSearch:(id)sender {
     int i = [posSearchTxtFld.text doubleValue];
-    if (i > 0 && i<= strlen(originalStr)) {//is a valid number
+    if (i > 0 && i<= fileStrLen) {//is a valid number
         [gridView scrollToPos:i-1];//converts it to the normal scale where pos 0 is 0
     }
     [posSearchTxtFld resignFirstResponder];
@@ -223,7 +201,10 @@
     [mutPosArray removeAllObjects];
     bwt.bwtMutationFilter.kHeteroAllowance = val;
     
-    [bwt.bwtMutationFilter filterMutationsForDetails];
+//    [bwt.bwtMutationFilter filterMutationsForDetails];
+    mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray forHeteroAllowance:val];
+//    [gridView initialMutationFind];
+    [mutsPopover setUpWithMutationsArr:mutPosArray];
     
 //    [gridView clearAllPoints];
     [self resetDisplay];
@@ -286,15 +267,14 @@
     double xCoord = gridView.currOffset+pt.x;
     
     //Find the box that was clicked
-    CGPoint box = CGPointMake([gridView firstPtToDrawForOffset:xCoord],(int)(pt.y/(kGridLineWidthRow+gridView.boxHeight)));//Get the tapped box
+    CGPoint box = CGPointMake([gridView firstPtToDrawForOffset:xCoord],(int)((pt.y-(kPosLblHeight+kGraphRowHeight))/(kGridLineWidthRow+gridView.boxHeight)));//Get the tapped box
     
     [self gridPointClickedWithCoordInGrid:box andClickedPt:pt];
 }
 
 //Grid view delegate
 - (void)gridPointClickedWithCoordInGrid:(CGPoint)c andClickedPt:(CGPoint)o {
-    
-    if (c.y < 3 && c.y > 0) {
+    if (c.y < 2 && c.y >= 0) {
         AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
         apc.contentSizeForViewInPopover = CGSizeMake(kAnalysisPopoverW, kAnalysisPopoverH);
         
@@ -310,7 +290,7 @@
         
         apc.heteroLbl.text = heteroStr;
     }
-    else if (c.y == kNumOfRowsInGridView-1 && posOccArray[kACGTLen+2][(int)c.x] > 0/*there is at least one insertion there*/) {//NEED TO CONFIRM THIS WORKS
+    else if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1*/ && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there*/) {
         InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
         [ipc setInsArr:insertionsArr forPos:(int)c.x];
         
@@ -320,20 +300,22 @@
     }
     else
         return;
-    CGRect rect = CGRectMake(c.x*(gridView.kIpadBoxWidth+kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow), gridView.kIpadBoxWidth, gridView.boxHeight);
+    CGRect rect = CGRectMake(c.x*(gridView.kIpadBoxWidth+kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+kGraphRowHeight+kPosLblHeight, gridView.kIpadBoxWidth, gridView.boxHeight);
     
     [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
 
 - (void)mutationFoundAtPos:(int)pos {
-    [mutPosArray addObject:[NSNumber numberWithInt:pos]];
+    [allMutPosArray addObject:[NSNumber numberWithInt:pos]];
 }
 
 - (void)gridFinishedUpdatingWithOffset:(double)currOffset {
     if (!mutsPopoverAlreadyUpdated) {
         mutsPopover = [[MutationsInfoPopover alloc] init];
         [mutsPopover setDelegate:self];
-        [mutsPopover setUpWithMutationsArr:mutPosArray];
+        if ([mutPosArray count] == 0)
+            mutPosArray = [[NSMutableArray alloc] initWithArray:allMutPosArray];
+        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value]];
         mutsPopoverAlreadyUpdated = !mutsPopoverAlreadyUpdated;
     }
     
