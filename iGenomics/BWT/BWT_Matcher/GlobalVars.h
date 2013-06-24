@@ -20,6 +20,8 @@ typedef enum {
 #define kACGTLen 4
 #define kACGTStr "ACGT"
 
+#define kNoGappedBChar "X"
+
 extern int fileStrLen;
 extern char *originalStr;
 extern char *refStrBWT;

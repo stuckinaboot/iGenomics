@@ -33,7 +33,7 @@
     for (int l = 0; l<endPos-startPos; l++)
         [posArray addObject:[NSNumber numberWithInt:startPos+l]];
     
-    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos]];
+    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -49,7 +49,7 @@
     return TRUE;
 }
 
-- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
+- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char*)query {
     
     NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
     
@@ -78,7 +78,7 @@
         for (int l = 0; l<[posArray count]; l++) {
             if ([[posArray objectAtIndex:l] intValue] == i) {
                 if (!forOnlyPos)
-                    [positionsInBWTArray addObject:[[MatchedReadData alloc] initWithPos:pos-1 isReverse:isRev andEDInfo:NULL andDistance:-2-1]];
+                    [positionsInBWTArray addObject:[[ED_Info alloc] initWithPos:pos-1 editDistance:ed gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
                 else
                     [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
             }

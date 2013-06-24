@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MutationInfo.h"
+
+#define kIsHeteroStr "(Hetero)"
+#define kIsNotHeteroStr ""
 
 @protocol MutationsInfoPopoverDelegate <NSObject>
 - (void)mutationAtPosPressedInPopover:(int)pos;

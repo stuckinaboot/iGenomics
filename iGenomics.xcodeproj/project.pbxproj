@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A306E17E17754644003BAA18 /* MatchedReadData.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3A92617754453004A7D72 /* MatchedReadData.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -60,6 +59,7 @@
 		A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */; };
 		A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2C160FA5F600BC2168 /* MySeq.txt */; };
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
+		A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C215171777F72600B0C6D5 /* MutationInfo.m */; };
 		A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */; };
 		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
@@ -151,8 +151,8 @@
 		A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_MutationFilter.m; sourceTree = "<group>"; };
 		A3C0FD2C160FA5F600BC2168 /* MySeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MySeq.txt; path = "../../Lab Projects/LabProject5/MySeq.txt"; sourceTree = "<group>"; };
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
-		A3D3A92517754453004A7D72 /* MatchedReadData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MatchedReadData.h; path = "Matched Read Class/MatchedReadData.h"; sourceTree = "<group>"; };
-		A3D3A92617754453004A7D72 /* MatchedReadData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MatchedReadData.m; path = "Matched Read Class/MatchedReadData.m"; sourceTree = "<group>"; };
+		A3C215161777F72600B0C6D5 /* MutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutationInfo.h; sourceTree = "<group>"; };
+		A3C215171777F72600B0C6D5 /* MutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutationInfo.m; sourceTree = "<group>"; };
 		A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_Approxi.h; path = "Approxi Matcher/BWT_Matcher_Approxi.h"; sourceTree = "<group>"; };
 		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
 		A3D3F3B3172333650045A586 /* BWT_MatcherSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_MatcherSC.h; path = ../../../BWT_MatcherSC.h; sourceTree = "<group>"; };
@@ -376,6 +376,7 @@
 				A3531EA416BEFF3800768A31 /* MutationsInfoPopover.h */,
 				A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */,
 				A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */,
+				A3C215151777F70800B0C6D5 /* Mutation */,
 			);
 			name = "Mutations Popover";
 			sourceTree = "<group>";
@@ -528,13 +529,13 @@
 			path = BWT_MutationFilter;
 			sourceTree = "<group>";
 		};
-		A3D3A92417754434004A7D72 /* MatchedReadData */ = {
+		A3C215151777F70800B0C6D5 /* Mutation */ = {
 			isa = PBXGroup;
 			children = (
-				A3D3A92517754453004A7D72 /* MatchedReadData.h */,
-				A3D3A92617754453004A7D72 /* MatchedReadData.m */,
+				A3C215161777F72600B0C6D5 /* MutationInfo.h */,
+				A3C215171777F72600B0C6D5 /* MutationInfo.m */,
 			);
-			name = MatchedReadData;
+			name = Mutation;
 			sourceTree = "<group>";
 		};
 		A3D3F3AD17232FEB0045A586 /* Approxi Matcher */ = {
@@ -553,7 +554,6 @@
 				A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */,
 				A3C0FD23160FA5AC00BC2168 /* BWT_Matcher.h */,
 				A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */,
-				A3D3A92417754434004A7D72 /* MatchedReadData */,
 			);
 			name = Matcher;
 			sourceTree = "<group>";
@@ -684,7 +684,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A306E17E17754644003BAA18 /* MatchedReadData.m in Sources */,
 				A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */,
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
@@ -711,6 +710,7 @@
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
+				A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

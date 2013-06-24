@@ -233,14 +233,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             if (posOccArray[a][p]>0)
                 diffCharsAtPos++;
         if (diffCharsAtPos == 1)
-            [finalArr addObject:[NSNumber numberWithInt:p]];
+            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andIsHetero:NO]];
         else if (coverageArray[p]<kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
             for (int a = 0; a<kACGTLen+2; a++)
                 if (posOccArray[a][p]>0)
                     diffCharsAtPos++;
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[NSNumber numberWithInt:p]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andIsHetero:YES]];
                     break;
                 }
         }
@@ -250,7 +250,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 if (posOccArray[a][p]>heteroAllowance)
                     diffCharsAtPos++;
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[NSNumber numberWithInt:p]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andIsHetero:YES]];
                     break;
                 }
         }

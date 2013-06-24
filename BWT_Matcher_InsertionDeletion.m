@@ -114,16 +114,16 @@
             matchedPos = matchedPos + (edInfo.position-maxEditDist);
             //                    Check To See If Match Has Already been recorded
             for (int i = 0; i<[matchedInDels count]; i++) {
-                MatchedReadData *data = [matchedInDels objectAtIndex:i];
-                ED_Info *edI = data.info;
-                if (edI.position == matchedPos) //If pos is the same
+                ED_Info *data = [matchedInDels objectAtIndex:i];
+                if (data.position == matchedPos) //If pos is the same
                     alreadyRecorded = TRUE;
             }
         }
         
         if (!alreadyRecorded) {
             edInfo.position = matchedPos;
-            [matchedInDels addObject:[[MatchedReadData alloc] initWithPos:0 isReverse:isRev andEDInfo:edInfo andDistance:edInfo.distance]];
+            edInfo.isRev = isRev;
+            [matchedInDels addObject:edInfo];
         }
     }
 }

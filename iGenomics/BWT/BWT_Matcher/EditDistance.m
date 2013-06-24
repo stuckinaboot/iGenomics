@@ -128,7 +128,6 @@
         }
         pos--;
     }
-    printf("");
 }
 
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED {

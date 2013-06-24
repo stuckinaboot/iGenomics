@@ -52,8 +52,6 @@
     insertionsArr = iArr;
     bwt = myBwt;
     
-    mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
-    
     //genome file name, reads file name, read length, genome length, number of reads
     genomeFileName = [basicInfArr objectAtIndex:0];
     readsFileName = [basicInfArr objectAtIndex:1];
@@ -79,6 +77,7 @@
     
     [readNumOfLbl setText:[NSString stringWithFormat:@"%@%i",kNumOfReadsLblStart,numOfReads]];
     
+    mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
     [mutationSupportNumLbl setText:[NSString stringWithFormat:@"%i",(int)mutationSupportStpr.value]];
     
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
@@ -91,7 +90,7 @@
     gridView.refSeq = originalStr;
     [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:kGraphRowHeight];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
-//    [self mutationSupportStepperChanged:nil];
+    [self mutationSupportStepperChanged:mutationSupportStpr];
 }
 
 - (void)setUpGridLbls {
@@ -207,13 +206,13 @@
     [mutsPopover setUpWithMutationsArr:mutPosArray];
     
 //    [gridView clearAllPoints];
-    [self resetDisplay];
+    [gridView setUpGridViewForPixelOffset:gridView.currOffset];
 }
 
 //Mutation Info Popover Delegate
 - (void)mutationAtPosPressedInPopover:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
-    [gridView scrollToPos:pos];
+    [gridView scrollToPos:pos-1];
 }
 
 //Search Query Results Delegate

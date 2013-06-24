@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "EditDistance.h"
-#import "MatchedReadData.h"
+//#import "MatchedReadData.h"
 #import "Chunks.h"
 
 #define kPrintInDelPos 0

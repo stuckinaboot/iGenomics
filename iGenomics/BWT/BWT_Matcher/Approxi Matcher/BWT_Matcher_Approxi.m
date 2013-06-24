@@ -68,7 +68,7 @@
                     for (int r = 0; r<numOfChunks; r++)
                         [array addObject:[NSNumber numberWithInt:subsInChunk[r]]];
                     
-                    [self addAlignmentsToPosArray:positionsArray fullSubsArr:array chunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev];
+                    [self addAlignmentsToPosArray:positionsArray fullSubsArr:array chunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev andED:numOfSubstitutions andQuery:query];
                 }
                 
                 numOfSubstitutions = 0;
@@ -80,12 +80,12 @@
     return positionsArray;
 }
 
-- (void)addAlignmentsToPosArray:(NSMutableArray*)positionsArray fullSubsArr:(NSArray*)subsArr chunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev {
+- (void)addAlignmentsToPosArray:(NSMutableArray*)positionsArray fullSubsArr:(NSArray*)subsArr chunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev andED:(int)distance andQuery:(char*)query {
     if ([self isNotDuplicateAlignment:subsArr andChunkNum:cNum]) {
         int pos = [[chunk.matchedPositions objectAtIndex:x] intValue] - cNum*len;
         
         if (pos+qLen<=fileStrLen && pos>-1)
-            [positionsArray addObject:[[MatchedReadData alloc] initWithPos:pos isReverse:isRev andEDInfo:NULL andDistance:-2-1]];
+            [positionsArray addObject:[[ED_Info alloc] initWithPos:pos editDistance:distance gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
     }
 }
 

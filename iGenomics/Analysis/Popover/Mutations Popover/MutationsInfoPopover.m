@@ -51,8 +51,9 @@
     }
     
     if (indexPath.row > 0) {
-        int pos = [[mutationsArray objectAtIndex:indexPath.row-1] intValue];//-1 because first row shows total # of muts
-        [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i",pos]];
+        MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];
+        int pos = info.pos;//-1 because first row shows total # of muts
+        [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i %s",pos+1, (info.isHetero) ? kIsHeteroStr : kIsNotHeteroStr]];//+1 because the first pos is considered 0
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//Show the little arrow
     }
@@ -66,8 +67,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row>0)//didn't select "Total Mutations" row
-        [delegate mutationAtPosPressedInPopover:[[mutationsArray objectAtIndex:indexPath.row-1] intValue]];//-1 because first row shows total # of muts
+    if (indexPath.row>0) {//didn't select "Total Mutations" row
+        MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];//-1 because first row shows total # of muts
+        [delegate mutationAtPosPressedInPopover:info.pos+1];//+1 because it starts at 0
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

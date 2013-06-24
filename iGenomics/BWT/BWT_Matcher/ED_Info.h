@@ -22,4 +22,5 @@
 @property (nonatomic) char *gappedA, *gappedB;
 @property (nonatomic) int position, distance;
 @property (nonatomic) BOOL insertion;
+- (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse;
 @end

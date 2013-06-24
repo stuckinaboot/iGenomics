@@ -17,7 +17,7 @@
 #import "ED_Info.h"
 #import "Chunks.h"
 #import "BWT_MatcherSC.h"
-#import "MatchedReadData.h"
+//#import "MatchedReadData.h"
 
 //CONSTANTS
 #define kReedsArraySeperationStr @"\n"
@@ -81,9 +81,9 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 - (void)setUpBytesForIndexerAndMultipleToCountAt:(int)seqLen;//This can be modified if necessary
 
 //APPROXI MATCH
-- (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently
+- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently
 
-- (void)updatePosOccsArrayWithRange:(NSRange)range andQuery:(char*)query andED_Info:(ED_Info *)info andIsReverse:(BOOL)isRev;//info is NULL for a non indel match
+- (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info;//info is NULL for a non indel match
 char *substr(const char *pstr, int start, int numchars);
 
 //INSERTION/DELETION MATCH

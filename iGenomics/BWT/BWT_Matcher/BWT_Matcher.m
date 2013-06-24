@@ -84,10 +84,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
         reed = (char*)[[reedsArray objectAtIndex:readNum] UTF8String];
         
-        MatchedReadData* a = [self getBestMatchForQuery:reed withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
+        ED_Info* a = [self getBestMatchForQuery:reed withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
         
         if (a != NULL)
-            [self updatePosOccsArrayWithRange:NSMakeRange(a.pos, readLen) andQuery:reed andED_Info:a.info andIsReverse:a.isReverse];
+            [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen) andED_Info:a];
         
         [delegate readProccesed];
     }
@@ -95,7 +95,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 
 
-- (MatchedReadData*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum {
+- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum {
     
     NSArray *arr = [[NSMutableArray alloc] init];
     
@@ -134,26 +134,12 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             int refPos = INT32_MAX;
             int smallestRefPosIndex = -1;
             for (int i = 0; i<[arr count]; i++) {
-                MatchedReadData *d = [arr objectAtIndex:i];
-                if (d.pos <= refPos) {
-                    refPos = d.pos;
+                ED_Info *d = [arr objectAtIndex:i];
+                if (d.position <= refPos) {
+                    refPos = d.position;
                     smallestRefPosIndex = i;
                 }
             }
-            /*for (int i = 0; i<[arr count]; i++) {
-                MatchedReadData *d = [arr objectAtIndex:i];
-                if (d.isReverse)
-                    [d printToConsole:[self getReverseComplementForSeq:query] andReadNum:readNum];
-                else
-                    [d printToConsole:query andReadNum:readNum];
-            }
-            if (smallestRefPosIndex > -1) {
-                MatchedReadData *d = [arr objectAtIndex:smallestRefPosIndex];
-                if (d.isReverse)
-                    [d printToConsole:[self getReverseComplementForSeq:query] andReadNum:readNum];
-                else
-                    [d printToConsole:query andReadNum:readNum];
-            }*/
         }
 
         if (kDebugOn>0)
@@ -170,16 +156,16 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     return NULL;//No match
 }
 
-- (void)updatePosOccsArrayWithRange:(NSRange)range andQuery:(char*)query andED_Info:(ED_Info *)info andIsReverse:(BOOL)isRev {
-    if (isRev)
-        query = [self getReverseComplementForSeq:query];
+- (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info {
+//    if (info.isRev)
+//        query = [self getReverseComplementForSeq:query];
     
-    if (info == NULL) {
+    if (!info.insertion && info.distance > 0) {
         for (int i = range.location; i<range.length+range.location; i++) {
-            int c = [BWT_MatcherSC whichChar:query[i-range.location] inContainer:acgt];
+            int c = [BWT_MatcherSC whichChar:info.gappedA[i-range.location] inContainer:acgt];
             
             if (c == -1) {//DEL --- Not positive though
-                if (query[i-range.location] == kDelMarker)
+                if (info.gappedA[i-range.location] == kDelMarker)
                     c = kACGTLen;
             }
             
@@ -188,10 +174,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     }
     else if (info.distance == 0) {
         for (int i = info.position; i<range.length+info.position; i++) {
-            int c = [BWT_MatcherSC whichChar:query[i-info.position] inContainer:acgt];
+            int c = [BWT_MatcherSC whichChar:info.gappedA[i-info.position] inContainer:acgt];
             
             if (c == -1) {//DEL --- Not positive though
-                if (query[i-info.position] == kDelMarker)
+                if (info.gappedA[i-info.position] == kDelMarker)
                     c = kACGTLen;
             }
             
@@ -204,9 +190,9 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     
     if (kDebugAllInfo > 0) {
         if (info != NULL)
-            printf("\n%i,%i,%c,%i,%s,%s", readNum,info.position,(isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA);
-        else
-            printf("\n%i,%i,%c,%i,%s,%s", readNum,range.location,(isRev) ? '-' : '+', -2-1,"N/A",query);
+            printf("\n%i,%i,%c,%i,%s,%s", readNum,info.position,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA);
+//        else
+//            printf("\n%i,%i,%c,%i,%s,%s", readNum,range.location,(isRev) ? '-' : '+', -2-1,"N/A",query);
     }
 }
 
@@ -243,7 +229,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     }
     
     //  Find In/Del by using the matched positions of the chunks
-    NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:kMaxEditDist andIsReverse:isRev]];
+    NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev]];
 
     return matchedInDels;
 }
@@ -251,11 +237,11 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 - (void)recordInDel:(ED_Info*)info {
     int aLen = strlen(info.gappedA);
     
-    if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
-        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andQuery:info.gappedA andED_Info:NULL andIsReverse:NO];
+//    if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
+//        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andQuery:info.gappedA andED_Info:NULL andIsReverse:NO];
     
     //        INSERTIONS
-    else if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
+    if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
         int bLen = strlen(info.gappedB);
         int insCount = 0;
         char *smallSeq = calloc(kMaxInsertionSeqLen, 1);

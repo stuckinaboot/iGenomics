@@ -12,4 +12,14 @@
 
 @synthesize gappedA, gappedB, position, distance, insertion, isRev;
 
+- (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse {
+    self = [super init];
+    position = pos;
+    distance = dist;
+    gappedA = gA;
+    gappedB = gB;
+    insertion = ins;
+    return self;
+}
+
 @end
