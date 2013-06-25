@@ -20,6 +20,11 @@
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31AA7CB16E3072100D3D808 /* QuickGridView.m */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
+		A321162117796229002A1678 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162017796229002A1678 /* dropbox.framework */; };
+		A32116231779623F002A1678 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32116221779623F002A1678 /* CFNetwork.framework */; };
+		A321162517796247002A1678 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162417796247002A1678 /* QuartzCore.framework */; };
+		A32116271779624E002A1678 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32116261779624E002A1678 /* Security.framework */; };
+		A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162817796259002A1678 /* SystemConfiguration.framework */; };
 		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
@@ -95,6 +100,11 @@
 		A31AA7CA16E3072100D3D808 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.h; sourceTree = "<group>"; };
 		A31AA7CB16E3072100D3D808 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.m; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A321162017796229002A1678 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = dropbox.framework; sourceTree = "<group>"; };
+		A32116221779623F002A1678 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A321162417796247002A1678 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A32116261779624E002A1678 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A321162817796259002A1678 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -181,6 +191,11 @@
 				A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */,
 				A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */,
 				A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */,
+				A321162117796229002A1678 /* dropbox.framework in Frameworks */,
+				A32116231779623F002A1678 /* CFNetwork.framework in Frameworks */,
+				A321162517796247002A1678 /* QuartzCore.framework in Frameworks */,
+				A32116271779624E002A1678 /* Security.framework in Frameworks */,
+				A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +223,11 @@
 		A310AF4D158A5F7200E892AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A321162817796259002A1678 /* SystemConfiguration.framework */,
+				A32116261779624E002A1678 /* Security.framework */,
+				A321162417796247002A1678 /* QuartzCore.framework */,
+				A32116221779623F002A1678 /* CFNetwork.framework */,
+				A321162017796229002A1678 /* dropbox.framework */,
 				A310AF4E158A5F7200E892AA /* UIKit.framework */,
 				A310AF50158A5F7200E892AA /* Foundation.framework */,
 				A310AF52158A5F7200E892AA /* CoreGraphics.framework */,
@@ -804,6 +824,12 @@
 		A310AF6C158A5F7200E892AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../App Stuff/dropbox-ios-sdk-1.1\"",
+					"\"$(SRCROOT)/../../Downloads/dropbox-ios-sync-sdk-1.0.8\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
@@ -815,6 +841,12 @@
 		A310AF6D158A5F7200E892AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../App Stuff/dropbox-ios-sdk-1.1\"",
+					"\"$(SRCROOT)/../../Downloads/dropbox-ios-sync-sdk-1.0.8\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";

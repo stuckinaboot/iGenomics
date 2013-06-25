@@ -4,68 +4,68 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_MutationFilter/BWT_MutationFilter.m"
-         timestampString = "393738863.638465"
+         filePath = "iGenomics/FilePicker/FilePickerController.m"
+         timestampString = "393873614.161811"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "258"
-         endingLineNumber = "258"
-         landmarkName = "+filteredMutations:forHeteroAllowance:"
+         startingLineNumber = "372"
+         endingLineNumber = "372"
+         landmarkName = "-getFileNameAndExtForFullName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iGenomics/FilePicker/FilePickerController.m"
+         timestampString = "393873631.765531"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "371"
+         endingLineNumber = "371"
+         landmarkName = "-getFileNameAndExtForFullName:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/Analysis/AnalysisController.m"
-         timestampString = "393738956.552872"
+         filePath = "iGenomics/Parameters/ParametersController.m"
+         timestampString = "393873693.510028"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
-         landmarkName = "-mutationSupportStepperChanged:"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
+         landmarkName = "-passInSeq:andReads:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_MutationFilter/BWT_MutationFilter.m"
-         timestampString = "393739057.981837"
+         filePath = "iGenomics/Parameters/ParametersController.m"
+         timestampString = "393873824.710251"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "253"
-         endingLineNumber = "253"
-         landmarkName = "+filteredMutations:forHeteroAllowance:"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
+         landmarkName = "-beginActualSequencing"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/BWT/BWT_MutationFilter/BWT_MutationFilter.m"
-         timestampString = "393739061.144521"
+         filePath = "iGenomics/Parameters/ParametersController.m"
+         timestampString = "393873836.117736"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "243"
-         endingLineNumber = "243"
-         landmarkName = "+filteredMutations:forHeteroAllowance:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iGenomics/Analysis/AnalysisController.m"
-         timestampString = "393739109.746902"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "204"
-         endingLineNumber = "204"
-         landmarkName = "-mutationSupportStepperChanged:"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-beginActualSequencing"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

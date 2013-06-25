@@ -34,19 +34,19 @@
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
     analysisController = [[AnalysisController alloc] init];
     
-    NSArray *a = [myReads componentsSeparatedByString:@"."];
-    NSString *readsFileExt = [a objectAtIndex:[a count]-1];
+//    NSArray *a = [myReads componentsSeparatedByString:@"."];
+//    NSString *readsFileExt = [a objectAtIndex:[a count]-1];
     
-    a = [mySeq componentsSeparatedByString:@"."];
-    NSString *refFileExt = [a objectAtIndex:[a count]-1];
+//    a = [mySeq componentsSeparatedByString:@"."];
+//    NSString *refFileExt = [a objectAtIndex:[a count]-1];
     
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];
-    [bwt setUpForRefFile:[mySeq substringToIndex:(mySeq.length)-(refFileExt.length)-1] fileExt:refFileExt];
+    [bwt setUpForRefFileContents:mySeq];
     
     //Set up parameters    
-    [bwt matchReedsFile:[myReads substringToIndex:(myReads.length)-(readsFileExt.length)-1] fileExt:readsFileExt withParameters:myParameterArray];//Obviously make this variable
+    [bwt matchReedsFileContents:myReads withParameters:myParameterArray];//Obviously make this variable
     
     bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:3] intValue];
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];

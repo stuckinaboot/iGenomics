@@ -71,7 +71,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
 
 - (id)initWithOriginalStr:(char*)orgStr;
-- (void)setUpReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt refStrBWT:(char*)bwt andMaxSubs:(int)subs;
+- (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 

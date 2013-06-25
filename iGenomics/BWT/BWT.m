@@ -14,9 +14,9 @@
 @synthesize readLen, refSeqLen, numOfReads;
 @synthesize delegate;
 
-- (void)setUpForRefFile:(NSString*)fileName fileExt:(NSString*)fileExt {
+- (void)setUpForRefFileContents:(NSString *)contents {
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
-    bwtString = strdup([bwt_Maker createBWTFromResFile:fileName andFileExt:fileExt]);
+    bwtString = strdup([bwt_Maker createBWTFromResFileContents:contents]);
     originalString = strdup([bwt_Maker getOriginalString]);
     
     bwtMutationFilter = [[BWT_MutationFilter alloc] init];
@@ -25,7 +25,7 @@
         printf("\n%s",bwtString);
 }
 
-- (void)matchReedsFile:(NSString*)fileName fileExt:(NSString*)fileExt withParameters:(NSArray *)parameters {
+- (void)matchReedsFileContents:(NSString*)contents withParameters:(NSArray *)parameters {
 //    maxSubs = subs;
      bwt_Matcher = [[BWT_Matcher alloc] initWithOriginalStr:originalString];
     
@@ -50,7 +50,7 @@
     bwt_Matcher.alignmentType = [[parameters objectAtIndex:2] intValue];
     
     [bwt_Matcher setDelegate:self];
-    [bwt_Matcher setUpReedsFile:fileName fileExt:fileExt refStrBWT:bwtString andMaxSubs:maxSubs];
+    [bwt_Matcher setUpReedsFileContents:contents refStrBWT:bwtString andMaxSubs:maxSubs];
     
     readLen = bwt_Matcher.readLen;
     refSeqLen = bwt_Matcher.refSeqLen;

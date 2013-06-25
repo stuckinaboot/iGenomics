@@ -13,7 +13,7 @@
     char *sequence;
     int sequenceLength;
 }
-- (char*)createBWTFromResFile:(NSString*)fileName andFileExt:(NSString*)fileExt;
+- (char*)createBWTFromResFileContents:(NSString*)contents;
 - (char*)getOriginalString;
 
 - (void)sortIndexArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;

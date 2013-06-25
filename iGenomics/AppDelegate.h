@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <dropbox/dropbox.h>
+
+#define kDropboxKey @"z7srp09ctjcw53l"
+#define kDropboxSecret @"959puepnqbppevh"
 
 @class ViewController;
 

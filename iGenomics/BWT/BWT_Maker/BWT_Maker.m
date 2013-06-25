@@ -10,10 +10,10 @@
 
 @implementation BWT_Maker
 
-- (char*)createBWTFromResFile:(NSString*)fileName andFileExt:(NSString*)fileExt {
-    NSString *resFileStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
+- (char*)createBWTFromResFileContents:(NSString *)contents {
+//    NSString *resFileStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
     
-    sequence = strdup([resFileStr UTF8String]);
+    sequence = strdup([contents UTF8String]);
     sequenceLength = strlen(sequence);
     
     indexArray = [[NSMutableArray alloc] init];
