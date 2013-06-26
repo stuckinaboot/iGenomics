@@ -53,9 +53,12 @@
 
 - (IBAction)showParametersPressed:(id)sender {
     NSString *s = @"";
+    NSString *sName = @"";
     NSString *r = @"";
+    NSString *rName = @"";
     if (selectedOptionRef == kSavedFilesIndex) {
         s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
+        sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
         NSArray *arr = [self getFileNameAndExtForFullName:s];
         s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
@@ -63,9 +66,11 @@
         DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         s = [file readString:nil];
+        sName = [info.path name];
     }
     if (selectedOptionReads == kSavedFilesIndex) {
         r = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        rName = [filteredReadFileNames objectAtIndex:selectedRowReads];
         NSArray *arr = [self getFileNameAndExtForFullName:r];
         r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
@@ -73,8 +78,9 @@
         DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         r = [file readString:nil];
+        rName = [info.path name];
     }
-    [parametersController passInSeq:s andReads:r];
+    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName];
     [self presentModalViewController:parametersController animated:YES];
 }
 
@@ -153,7 +159,7 @@
     if (selectedOptionReads == kDropboxFilesIndex) {
         DBFileInfo *info = [filteredReadFileNames objectAtIndex:0];
         DBPath *parent = [info.path parent];
-        if ([parent isEqual:[info.path parent]])
+        if ([parent isEqual:[DBPath root]])
             selectedOptionReads = -1;
         else
             filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parent error:nil]];
@@ -192,6 +198,10 @@
         else if (selectedOptionRef == kDropboxFilesIndex) {
             DBFileInfo *info = [filteredRefFileNames objectAtIndex:indexPath.row];
             [cell.textLabel setText:[info.path name]];//names of dropbox files
+            if (info.isFolder)
+                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
     else if ([tableView isEqual:readsFilePicker]) {
@@ -206,6 +216,10 @@
         else if (selectedOptionReads == kDropboxFilesIndex) {
             DBFileInfo *info = [filteredReadFileNames objectAtIndex:indexPath.row];
             [cell.textLabel setText:[info.path name]];//names of dropbox files
+            if (info.isFolder)
+                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
     
@@ -240,6 +254,8 @@
                     [[DBAccountManager sharedManager] linkFromController:self];
                 DBAccount *account = [DBAccountManager sharedManager].linkedAccount;
                 if (account) {
+                    if (!dbFileSys)
+                        dbFileSys = [DBFilesystem sharedFilesystem];
                     [self setUpAllDropboxFiles];
                     filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
                 }
@@ -279,6 +295,8 @@
                     [[DBAccountManager sharedManager] linkFromController:self];
                 DBAccount *account = [DBAccountManager sharedManager].linkedAccount;
                 if (account) {
+                    if (!dbFileSys)
+                        dbFileSys = [DBFilesystem sharedFilesystem];
                     [self setUpAllDropboxFiles];
                     filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
                 }

@@ -4,68 +4,68 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iGenomics/FilePicker/FilePickerController.m"
-         timestampString = "393873614.161811"
+         timestampString = "393903581.523427"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "372"
-         endingLineNumber = "372"
-         landmarkName = "-getFileNameAndExtForFullName:"
+         startingLineNumber = "257"
+         endingLineNumber = "257"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iGenomics/FilePicker/FilePickerController.m"
-         timestampString = "393873631.765531"
+         timestampString = "393903581.523427"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "371"
-         endingLineNumber = "371"
-         landmarkName = "-getFileNameAndExtForFullName:"
+         startingLineNumber = "258"
+         endingLineNumber = "258"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/Parameters/ParametersController.m"
-         timestampString = "393873693.510028"
+         filePath = "iGenomics/FilePicker/FilePickerController.m"
+         timestampString = "393903581.523427"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "60"
-         endingLineNumber = "60"
-         landmarkName = "-passInSeq:andReads:"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/Parameters/ParametersController.m"
-         timestampString = "393873824.710251"
+         filePath = "iGenomics/FilePicker/FilePickerController.m"
+         timestampString = "393903581.523427"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "69"
-         endingLineNumber = "69"
-         landmarkName = "-beginActualSequencing"
+         startingLineNumber = "316"
+         endingLineNumber = "316"
+         landmarkName = "-setUpAllDropboxFiles"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/Parameters/ParametersController.m"
-         timestampString = "393873836.117736"
+         filePath = "iGenomics/FilePicker/FilePickerController.m"
+         timestampString = "393885740.515289"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
-         landmarkName = "-beginActualSequencing"
+         startingLineNumber = "202"
+         endingLineNumber = "202"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

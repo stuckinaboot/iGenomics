@@ -48,7 +48,7 @@
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
 
 - (void)setUpForRefFileContents:(NSString*)contents;
-- (void)matchReedsFileContents:(NSString*)contents withParameters:(NSArray*)parameters;
+- (void)matchReedsFileContentsAndParametersArr:(NSArray*)arr;//The arr - index 0 is read file contents, index 1 is parameters arr
 
 - (NSArray*)simpleSearchForQuery:(char*)query;//searches for the query using exact match, returns all matches
 

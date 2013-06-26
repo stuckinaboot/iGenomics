@@ -26,6 +26,9 @@
  4-Seed (chunk) length: automatic, manual (user inputs seed length)  | TYPE: int
      +(Advanced feature)       -------NOT IMPLEMENTED YET
  
+ 5-Ref File Name
+ 6-Read File Name
+ 
  */
 
 #define kStartSeqDelay 0.2
@@ -49,12 +52,15 @@
     //Parameters end
     
     ComputingController *computingController;
+    
+    NSString *refFileName;
+    NSString *readFileName;
 }
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)trimmingStateChanged:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;
-- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads;
+- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN;
 - (IBAction)backPressed:(id)sender;
 @end

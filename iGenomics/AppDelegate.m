@@ -39,10 +39,8 @@
     DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
     if (account) {
         NSLog(@"App linked successfully!");
-        if (account) {
-            DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
-            [DBFilesystem setSharedFilesystem:filesystem];
-        }
+        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+        [DBFilesystem setSharedFilesystem:filesystem];
         return YES;
     }
     return NO;

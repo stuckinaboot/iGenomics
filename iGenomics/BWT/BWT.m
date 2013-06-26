@@ -25,10 +25,11 @@
         printf("\n%s",bwtString);
 }
 
-- (void)matchReedsFileContents:(NSString*)contents withParameters:(NSArray *)parameters {
-//    maxSubs = subs;
-     bwt_Matcher = [[BWT_Matcher alloc] initWithOriginalStr:originalString];
+- (void)matchReedsFileContentsAndParametersArr:(NSArray *)arr {
+    NSString *contents = [arr objectAtIndex:0];
+    NSArray *parameters = [arr objectAtIndex:1];
     
+     bwt_Matcher = [[BWT_Matcher alloc] initWithOriginalStr:originalString];
     /*
      SET OF PARAMETERS:
      
