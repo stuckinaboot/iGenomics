@@ -14,6 +14,7 @@
 //     Pos: Real: Found: # of A: # of C: # of G: # of T:
 
 #define kOnlyPrintFoundGenome -111
+#define kFoundGenomeDefaultChar ' '
 
 extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
 extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------GLOBAL-------I

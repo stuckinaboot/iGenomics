@@ -47,10 +47,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andBasicInfo:(NSArray*)basicInfArr {
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr {
     originalStr = unraveledStr;
     insertionsArr = iArr;
     bwt = myBwt;
+    exportDataStr = exportDataString;
     
     //genome file name, reads file name, read length, genome length, number of reads
     genomeFileName = [basicInfArr objectAtIndex:0];
@@ -58,6 +59,7 @@
     readLen = [[basicInfArr objectAtIndex:2] intValue];
     genomeLen = [[basicInfArr objectAtIndex:3] intValue];
     numOfReads = [[basicInfArr objectAtIndex:4] intValue];
+    editDistance = [[basicInfArr objectAtIndex:5] intValue];
 }
 
 - (void)resetDisplay {
@@ -320,6 +322,53 @@
     
     pxlOffsetSlider.value = currOffset;//a little bit of a prob here
 }
+
+//Exports data
+- (IBAction)exportDataPressed:(id)sender {
+    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:kExportASEmailMutations, kExportASEmailData, nil];
+    [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([actionSheet isEqual:exportActionSheet]) {
+        if (buttonIndex == kExportASEmailMutsIndex) {
+            [self emailInfoForOption:EmailInfoOptionMutations];
+        }
+        else if (buttonIndex == kExportASEmailDataIndex) {
+            [self emailInfoForOption:EmailInfoOptionData];
+        }
+    }
+}
+
+- (void)emailInfoForOption:(EmailInfoOption)option {
+    exportMailController = [[MFMailComposeViewController alloc] init];
+    exportMailController.mailComposeDelegate = self;
+    
+    if (option == EmailInfoOptionMutations) {
+        [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Mutations for Aligning %@ to %@",readsFileName, genomeFileName]];
+        [exportMailController setMessageBody:[NSString stringWithFormat:@"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a postion to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance, (int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
+        
+        NSMutableString *mutString = [[NSMutableString alloc] init];
+        [mutString appendFormat:@"Total Mutations: %i\n",[mutPosArray count]];
+        for (MutationInfo *info in mutPosArray) {
+            [mutString appendFormat:kMutationFormat,info.pos,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars]];
+        }
+        [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"Mutations"];
+        [self presentModalViewController:exportMailController animated:YES];
+    }
+    else if (option == EmailInfoOptionData) {
+        [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Export Data for Aligning %@ to %@",readsFileName, genomeFileName]];
+        [exportMailController setMessageBody:[NSString stringWithFormat:@"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
+        
+        [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"ExportData"];
+        [self presentModalViewController:exportMailController animated:YES];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 //Memory warning
 - (void)didReceiveMemoryWarning
 {

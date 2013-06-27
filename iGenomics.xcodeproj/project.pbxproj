@@ -25,6 +25,8 @@
 		A321162517796247002A1678 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162417796247002A1678 /* QuartzCore.framework */; };
 		A32116271779624E002A1678 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32116261779624E002A1678 /* Security.framework */; };
 		A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162817796259002A1678 /* SystemConfiguration.framework */; };
+		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
+		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
@@ -105,6 +107,8 @@
 		A321162417796247002A1678 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A32116261779624E002A1678 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A321162817796259002A1678 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
+		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				A321162517796247002A1678 /* QuartzCore.framework in Frameworks */,
 				A32116271779624E002A1678 /* Security.framework in Frameworks */,
 				A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */,
+				A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +210,7 @@
 		A310AF3F158A5F7200E892AA = {
 			isa = PBXGroup;
 			children = (
+				A321162C177B3EBE002A1678 /* IconIdea1.png */,
 				A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */,
 				A310AF54158A5F7200E892AA /* iGenomics */,
 				A310AF4D158A5F7200E892AA /* Frameworks */,
@@ -223,6 +229,7 @@
 		A310AF4D158A5F7200E892AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A321162E177BA493002A1678 /* MessageUI.framework */,
 				A321162817796259002A1678 /* SystemConfiguration.framework */,
 				A32116261779624E002A1678 /* Security.framework */,
 				A321162417796247002A1678 /* QuartzCore.framework */,
@@ -694,6 +701,7 @@
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
+				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

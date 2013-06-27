@@ -14,16 +14,16 @@
 /*
  SET OF PARAMETERS:
  
- 0-Exact match (0), substitution (1), subs + indels (2) | TYPE: int (exact,sub,subs+indels), int (ED)
+ 0-Exact match (0), substitution (1), subs + indels (2) | TYPE: int (exact,sub,subs+indels), 1-int (ED)
       +Max ED
  
- 1-Forward alignment(0), forward and reverse alignments (1) | TYPE: int
+ 2-Forward alignment(0), forward and reverse alignments (1) | TYPE: int
  
- 2-Mutation support (num of disagreements before a position is reported as a mutation): (inputted by user) | TYPE: int
+ 3-Mutation support (num of disagreements before a position is reported as a mutation): (inputted by user) | TYPE: int
  
- 3-Trimming (if selected, chop off last x (user is allowed to chose num) bases) | TYPE: int
+ 4-Trimming (if selected, chop off last x (user is allowed to chose num) bases) | TYPE: int
  
- 4-Seed (chunk) length: automatic, manual (user inputs seed length)  | TYPE: int
+ -Seed (chunk) length: automatic, manual (user inputs seed length)  | TYPE: int
      +(Advanced feature)       -------NOT IMPLEMENTED YET
  
  5-Ref File Name

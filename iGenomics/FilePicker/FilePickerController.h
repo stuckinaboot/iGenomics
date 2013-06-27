@@ -29,6 +29,9 @@
 
 #define kExtDot '.'
 
+//Eventually we can use - (NSFileHandle *)readHandle:(DBError **)error to read x lines (or megabytes) at a time
+//fasta is standard format for genome, fastq is standard format for reads
+
 @interface FilePickerController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
     ParametersController *parametersController;
     

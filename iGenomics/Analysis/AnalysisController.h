@@ -6,8 +6,14 @@
 //
 //
 
+typedef enum {
+    EmailInfoOptionMutations,
+    EmailInfoOptionData
+} EmailInfoOption;
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <MessageUI/MessageUI.h>
 
 #import "AnalysisPopoverController.h"
 #import "InsertionsPopoverController.h"
@@ -61,6 +67,14 @@
 #define kSideLblW 30
 #define kSideLblH 30
 
+#define kExportASTitle @"Export Data"
+#define kExportASEmailMutations @"Email Mutations"
+#define kExportASEmailMutsIndex 1 //Index 0 is the cancel button
+#define kExportASEmailData @"Email Data"
+#define kExportASEmailDataIndex 2
+
+#define kMutationFormat @"Pos: %i, %s\n"
+
 //DON"T INCLUDE $ SIGN IN LEN
 //SHOW LOADING SCREEN THE INSTANT BEFORE SEQUENCING STARTS (START SEQUENCING FROM LOADING SCREEN)
 //IN UIPOPOVER THAT SHOWS UP FOR A POSITION THAT IS A MUTATION (ALSO SHOW THIS IN THE SHOW ALL MUTATIONS UITABLEVIEW CELLS), EX. for G to - supported by 5 reads, G > - 5 Reads
@@ -73,7 +87,13 @@
 
 //!!!!!NEED TO CREATE LOADING THING WHILE MUTATATION SUPPORT UPDATES (SPINNING ACTIVITY INDICATOR) or a crash will occur
 
-@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate> {
+//Display the actual mutation when show mutations is pressed : first
+
+//Need to look through all mutations array at any spot where a mutation is present so that the mutation support is fully functional : third
+
+//Add some save options (such as save actual BWT, save export info to dropbox, email exportinfo (second-highest priority), email list of mutations as a file (highest priority)) : second
+
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> {
     DNAColors *dnaColors;
     
     //Interactive Interface Elements
@@ -118,11 +138,17 @@
     int readLen;
     int genomeLen;
     int numOfReads;
+    int editDistance;
     
     //Data elements
     NSMutableArray *mutPosArray;//Keeps the positions of the mutations for the selected mutation support
     NSMutableArray *allMutPosArray;//Keeps the positions of ALL mutations
     NSArray *querySeqPosArr;//Keeps the positions of the found query sequence (from seqSearch)
+    
+    //Used to display data export options
+    UIActionSheet *exportActionSheet;
+    MFMailComposeViewController *exportMailController;
+    NSString *exportDataStr;
 }
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 - (void)singleTapOccured:(UITapGestureRecognizer*)sender;
@@ -136,8 +162,10 @@
 - (IBAction)mutationSupportStepperChanged:(id)sender;
 
 - (IBAction)showMutTBView:(id)sender;
+- (IBAction)exportDataPressed:(id)sender;
+- (void)emailInfoForOption:(EmailInfoOption)option;
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andBasicInfo:(NSArray*)basicInfArr;//genome file name, reads file name, read length, genome length, number of reads
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;
 
 - (void)setUpGridLbls;

@@ -10,6 +10,8 @@
 
 @interface MutationInfo : NSObject
 @property (nonatomic) int pos;
-@property (nonatomic) BOOL isHetero;
-- (id)initWithPos:(int)p andIsHetero:(BOOL)isH;
+@property (nonatomic) char refChar;
+@property (nonatomic) char* foundChars;
+- (id)initWithPos:(int)p andRefChar:(char)refC andFoundChars:(char*)foundC;
++ (char*)createMutStrFromOriginalChar:(char)originalC andFoundChars:(char*)fc;
 @end

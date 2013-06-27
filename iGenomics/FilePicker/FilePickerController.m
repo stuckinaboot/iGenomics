@@ -56,6 +56,7 @@
     NSString *sName = @"";
     NSString *r = @"";
     NSString *rName = @"";
+    
     if (selectedOptionRef == kSavedFilesIndex) {
         s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
         sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
@@ -191,9 +192,11 @@
                 [cell.textLabel setText:kSavedFilesTitle];
             else if (indexPath.row == kDropboxFilesIndex)
                 [cell.textLabel setText:kDropboxFilesTitle];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         else if (selectedOptionRef == kSavedFilesIndex) {
             [cell.textLabel setText:[filteredRefFileNames objectAtIndex:indexPath.row]];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         else if (selectedOptionRef == kDropboxFilesIndex) {
             DBFileInfo *info = [filteredRefFileNames objectAtIndex:indexPath.row];
@@ -210,9 +213,12 @@
                 [cell.textLabel setText:kSavedFilesTitle];
             else if (indexPath.row == kDropboxFilesIndex)
                 [cell.textLabel setText:kDropboxFilesTitle];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        else if (selectedOptionReads == kSavedFilesIndex)
+        else if (selectedOptionReads == kSavedFilesIndex) {
             [cell.textLabel setText:[filteredReadFileNames objectAtIndex:indexPath.row]];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
         else if (selectedOptionReads == kDropboxFilesIndex) {
             DBFileInfo *info = [filteredReadFileNames objectAtIndex:indexPath.row];
             [cell.textLabel setText:[info.path name]];//names of dropbox files

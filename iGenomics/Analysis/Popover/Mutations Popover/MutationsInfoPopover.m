@@ -53,7 +53,7 @@
     if (indexPath.row > 0) {
         MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];
         int pos = info.pos;//-1 because first row shows total # of muts
-        [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i %s",pos+1, (info.isHetero) ? kIsHeteroStr : kIsNotHeteroStr]];//+1 because the first pos is considered 0
+        [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i %s",pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars]]];//+1 because the first pos is considered 0
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//Show the little arrow
     }

@@ -19,6 +19,7 @@ typedef enum {
 
 #define kACGTLen 4
 #define kACGTStr "ACGT"
+#define kACGTwithInDels "ACGT-+"
 
 #define kNoGappedBChar "X"
 

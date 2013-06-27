@@ -60,7 +60,7 @@
     
     BWT_Matcher_InsertionDeletion_InsertionHolder *info = [arr objectAtIndex:indexPath.row];
     
-    [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i, Seq: %s, Count: %i",info.pos,info.seq,info.count]];//Not positive about gappedA
+    [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i, Seq: %s, Count: %i",info.pos+1,info.seq,info.count]];//Not positive about gappedA, info.pos + 1 because position 0 is considered 1
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

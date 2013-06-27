@@ -29,7 +29,7 @@
 //OTHER CONSTANTS
 
 @protocol BWT_Delegate <NSObject>
-- (void)readProccesed;
+- (void)readProccesed:(NSString*)readData;
 @end
 @interface BWT : NSObject <BWT_MatcherDelegate> {
     BWT_MutationFilter *bwtMutationFilter;//CREATED AS AN OBJECT SO THAT DATA CAN BE EASILY RETRIEVED FROM THE FILTER

@@ -63,7 +63,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         for (int x = 0; x<fileStrLen; x++)
             posOccArray[i][x] = 0;
     }
-    
+    /*
     [self matchReeds];
     
     if (kDebugPrintInsertions>0) {
@@ -72,12 +72,12 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             BWT_Matcher_InsertionDeletion_InsertionHolder *h = [self.insertionsArray objectAtIndex:i];
             printf("\nPos: %i, Count: %i, Seq: %s",h.pos,h.count,h.seq);
         }
-    }
+    }*/
 }
 
 - (void)matchReeds {
     char *reed;
-    
+    readDataStr = [[NSMutableString alloc] init];
     if (kDebugOn == 2)
         printf("%s\n",originalStr);
     
@@ -89,7 +89,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         if (a != NULL)
             [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen) andED_Info:a];
         
-        [delegate readProccesed];
+        [delegate readProccesed:readDataStr];
+        [readDataStr setString:@""];
     }
     
 }
@@ -194,6 +195,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 //        else
 //            printf("\n%i,%i,%c,%i,%s,%s", readNum,range.location,(isRev) ? '-' : '+', -2-1,"N/A",query);
     }
+    [readDataStr setString:@""];
+    [readDataStr appendFormat:@"\n%i,%i,%c,%i,%s,%s", readNum,info.position,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
 }
 
 //INSERTION/DELETION

@@ -34,38 +34,40 @@
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
     analysisController = [[AnalysisController alloc] init];
     
-//    NSArray *a = [myReads componentsSeparatedByString:@"."];
-//    NSString *readsFileExt = [a objectAtIndex:[a count]-1];
-    
-//    a = [mySeq componentsSeparatedByString:@"."];
-//    NSString *refFileExt = [a objectAtIndex:[a count]-1];
-    
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];
     [bwt setUpForRefFileContents:mySeq];
+    exportDataStr = [[NSMutableString alloc] init];
     
-    //Set up parameters    
-//    [bwt matchReedsFileContents:myReads withParameters:myParameterArray];//Obviously make this variable
-    [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
-//    [bwt performSelectorInBackground:@selector(matchReedsFileContentsAndParametersArr:) withObject:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
-    
-    bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:3] intValue];
-    [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
-    [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
-    [bwt.bwtMutationFilter filterMutationsForDetails];
-    
-    NSString *refFileName = [myParameterArray objectAtIndex:5];
-    NSString *readFileName = [myParameterArray objectAtIndex:6];
-    
-    //genome file name, reads file name, read length, genome length, number of reads
-    NSArray *basicInf = [NSArray arrayWithObjects:refFileName, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen], [NSNumber numberWithInt:bwt.numOfReads],nil];
-    
-    [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray] andBWT:bwt andBasicInfo:basicInf];
+    //Set up parameters
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
+    dispatch_async(queue, ^{//Opens up a background thread
+        [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
+        dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
+            bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:3] intValue];
+            [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
+            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
+            [bwt.bwtMutationFilter filterMutationsForDetails];
+            
+            NSString *refFileName = [myParameterArray objectAtIndex:5];
+            NSString *readFileName = [myParameterArray objectAtIndex:6];
+            
+            //genome file name, reads file name, read length, genome length, number of reads
+            NSArray *basicInf = [NSArray arrayWithObjects:refFileName, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen], [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:1] intValue]], nil];
+            
+            [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf];
+            [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
+        });
+    });
+}
+
+- (void)showAnalysisController {
+    [self presentModalViewController:analysisController animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self presentModalViewController:analysisController animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,10 +77,10 @@
 }
 
 //BWT_Delegate
-- (void)readProccesed {
+- (void)readProccesed:(NSString *)readData {
     readsProcessed++;
-    [self updateProgressView];
-//    [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
+    [exportDataStr appendFormat:@"%@",readData];
 }
 
 - (void)updateProgressView {

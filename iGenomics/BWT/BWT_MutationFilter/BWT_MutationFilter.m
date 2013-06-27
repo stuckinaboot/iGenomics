@@ -26,7 +26,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     
     for (int i = 0; i<kACGTLen+2; i++) {
         for (int x = 0; x<fileStrLen; x++) {
-            foundGenome[i][x] = ' ';
+            foundGenome[i][x] = kFoundGenomeDefaultChar;
         }
     }
     
@@ -226,35 +226,63 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     
     int diffCharsAtPos = 0;
     
+    char *foundChars = calloc(kACGTLen+3, 1);
+    foundChars[kACGTLen+2] = '\0';
+    int posInFoundChars = 0;
     for (int i = 0; i<arr.count; i++) {
         diffCharsAtPos = 0;
         int p = [[arr objectAtIndex:i] intValue];
-        for (int a = 0; a<kACGTLen+2; a++)
-            if (posOccArray[a][p]>0)
+        for (int a = 0; a<kACGTLen+2; a++) {
+            if (posOccArray[a][p]>0) {
                 diffCharsAtPos++;
+                foundChars[posInFoundChars] = kACGTwithInDels[a];
+                posInFoundChars++;
+            }
+            foundChars[posInFoundChars] = '\0';
+        }
         if (diffCharsAtPos == 1)
-            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andIsHetero:NO]];
+            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];//Duplicates it so it doesn't overwrite it (same for below)
         else if (coverageArray[p]<kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
-            for (int a = 0; a<kACGTLen+2; a++)
+            for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>0)
                     diffCharsAtPos++;
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andIsHetero:YES]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
                     break;
                 }
+            }
         }
         else {
             diffCharsAtPos = 0;
-            for (int a = 0; a<kACGTLen+2; a++)
-                if (posOccArray[a][p]>heteroAllowance)
+            posInFoundChars = 0;
+            for (int a = 0; a<kACGTLen+2; a++) {
+                if (posOccArray[a][p]>heteroAllowance) {
                     diffCharsAtPos++;
+                    foundChars[posInFoundChars] = kACGTwithInDels[a];
+                    posInFoundChars++;
+                }
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andIsHetero:YES]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
                     break;
                 }
+            }
+            foundChars[posInFoundChars] = '\0';
+            if (diffCharsAtPos > 1) {//In case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
+                [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
+            }
         }
+        for (int t = 0; t < kACGTLen + 2; t++) {
+            if (foundChars[t] == 0)
+                break;
+            else
+                foundChars[t] = 0;
+        }
+        
+        posInFoundChars = 0;
     }
+
+    free(foundChars);
     return finalArr;
     //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
 }

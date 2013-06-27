@@ -98,8 +98,8 @@
 
 + (int)whichChar:(char)c inContainer:(char*)container {
     int which = -1;//Not ACGT
-    for (int i = 0; i<kACGTLen; i++) {
-        if (acgt[i] == c) {
+    for (int i = 0; i<kACGTLen+2; i++) {
+        if (kACGTwithInDels[i] == c) {
             which = i;
             break;
         }
