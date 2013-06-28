@@ -32,6 +32,7 @@
     selectedRowRef = 0;
     selectedOptionReads = -1;
     selectedRowReads = 0;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -143,13 +144,13 @@
 
 - (IBAction)backRefTbl:(id)sender {
     if (selectedOptionRef == kDropboxFilesIndex) {
-        DBFileInfo *info = [filteredRefFileNames objectAtIndex:0];
-        DBPath *parent = [info.path parent];
-        if ([parent isEqual:[DBPath root]])
+        DBPath *parentPath = [parentFolderPathRef parent];
+        if ([parentFolderPathRef isEqual:[DBPath root]])
             selectedOptionRef = -1;
         else {
-            filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parent error:nil]];
+            filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentPath error:nil]];
         }
+        parentFolderPathRef = parentPath;
         [self searchBar:refPickerSearchBar textDidChange:@""];
     }
     else
@@ -158,12 +159,12 @@
 }
 - (IBAction)backReadsTbl:(id)sender {
     if (selectedOptionReads == kDropboxFilesIndex) {
-        DBFileInfo *info = [filteredReadFileNames objectAtIndex:0];
-        DBPath *parent = [info.path parent];
-        if ([parent isEqual:[DBPath root]])
+        DBPath *parentPath = [parentFolderPathReads parent];
+        if ([parentFolderPathReads isEqual:[DBPath root]])
             selectedOptionReads = -1;
         else
-            filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parent error:nil]];
+            filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentPath error:nil]];
+        parentFolderPathReads = parentPath;
         [self searchBar:readsPickerSearchBar textDidChange:@""];
     }
     else
@@ -239,13 +240,16 @@
             selectedRowRef = indexPath.row;
             if (selectedOptionRef == kDropboxFilesIndex) {
                 if ([filteredRefFileNames count] > 0) {
-                    if (![[filteredRefFileNames objectAtIndex:0] isKindOfClass:[DBFileInfo class]])
+                    if (![[filteredRefFileNames objectAtIndex:0] isKindOfClass:[DBFileInfo class]]) {
                         filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                        parentFolderPathRef = [DBPath root];
+                    }
                     else {
                         DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-                        if (info.isFolder)
-                            if ([self folderIsNotEmptyAtPath:info.path])
-                                filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
+                        if (info.isFolder) {
+                            filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
+                            parentFolderPathRef = info.path;
+                        }
                     }
                 }
                 else
@@ -280,13 +284,16 @@
             selectedRowReads = indexPath.row;
             if (selectedOptionReads == kDropboxFilesIndex) {
                 if ([filteredReadFileNames count] > 0) {
-                    if (![[filteredReadFileNames objectAtIndex:0] isKindOfClass:[DBFileInfo class]])
+                    if (![[filteredReadFileNames objectAtIndex:0] isKindOfClass:[DBFileInfo class]]) {
                         filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                        parentFolderPathReads = [DBPath root];
+                    }
                     else {
                         DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
-                        if (info.isFolder)
-                            if ([self folderIsNotEmptyAtPath:info.path])
-                                filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
+                        if (info.isFolder) {
+                            filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
+                            parentFolderPathReads = info.path;
+                        }
                     }
                 }
                 else
@@ -320,6 +327,8 @@
 
 - (void)setUpAllDropboxFiles {
     allDropboxFiles = [[NSMutableArray alloc] initWithArray:[dbFileSys listFolder:[DBPath root] error:nil]];
+    parentFolderPathRef = [DBPath root];
+    parentFolderPathReads = [DBPath root];
 }
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
@@ -329,7 +338,7 @@
             if (selectedOptionRef == kSavedFilesIndex)
                 filteredRefFileNames = [[NSMutableArray alloc] initWithArray:defaultRefFilesNames];
             else if (selectedOptionRef == kDropboxFilesIndex) {
-                filteredRefFileNames = allDropboxFiles;
+                filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentFolderPathRef error:nil]];
             }
         }
         else {
@@ -342,7 +351,7 @@
                 }
             }
             else {
-                for (DBFileInfo* info in allDropboxFiles) {
+                for (DBFileInfo* info in [dbFileSys listFolder:parentFolderPathRef error:nil]) {
                     NSString *s = [info.path name];
                     NSRange nameRange = [s rangeOfString:text options:NSCaseInsensitiveSearch];
                     if(nameRange.location != NSNotFound)
@@ -358,7 +367,7 @@
             if (selectedOptionReads == kSavedFilesIndex)
                 filteredReadFileNames = [[NSMutableArray alloc] initWithArray:defaultReadsFilesNames];
             else if (selectedOptionReads == kDropboxFilesIndex)
-                filteredReadFileNames = allDropboxFiles;
+                filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentFolderPathReads error:nil]];
         }
         else {
             [filteredReadFileNames removeAllObjects];
@@ -370,7 +379,7 @@
                 }
             }
             else {
-                for (DBFileInfo* info in allDropboxFiles) {
+                for (DBFileInfo* info in [dbFileSys listFolder:parentFolderPathReads error:nil]) {
                     NSString *s = [info.path name];
                     NSRange nameRange = [s rangeOfString:text options:NSCaseInsensitiveSearch];
                     if(nameRange.location != NSNotFound)
@@ -381,11 +390,6 @@
         }
         [readsFilePicker reloadData];
     }
-}
-
-- (BOOL)folderIsNotEmptyAtPath:(DBPath *)path {
-    NSArray *arr = [dbFileSys listFolder:path error:nil];
-    return [arr count] > 0;
 }
 
 - (NSArray*)getFileNameAndExtForFullName:(NSString *)fileName {

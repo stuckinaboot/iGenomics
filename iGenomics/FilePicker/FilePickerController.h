@@ -50,8 +50,10 @@
     
     int selectedOptionRef;
     int selectedRowRef;
+    DBPath *parentFolderPathRef;
     int selectedOptionReads;
     int selectedRowReads;
+    DBPath *parentFolderPathReads;
 }
 - (IBAction)showParametersPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
@@ -61,8 +63,6 @@
 
 - (void)setUpDefaultFiles;
 - (void)setUpAllDropboxFiles;
-
-- (BOOL)folderIsNotEmptyAtPath:(DBPath*)path;//!!CURRENTLY!!: folder is not opened if it is empty, maybe a notification should be shown?
 
 - (NSArray*)getFileNameAndExtForFullName:(NSString*)fileName;//returns array with two NSStrings, fileName and fileExt
 @end
