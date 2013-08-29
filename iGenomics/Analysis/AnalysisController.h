@@ -14,6 +14,7 @@ typedef enum {
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
+#import <dropbox/dropbox.h>
 
 #import "AnalysisPopoverController.h"
 #import "InsertionsPopoverController.h"
@@ -29,6 +30,9 @@ typedef enum {
 
 #import "DNAColors.h"
 
+#define kShowAllMutsBtnTxtNormal @"Show All Mutations"
+#define kShowAllMutsBtnTxtUpdating @"Updating..."
+
 #define kGraphRowHeight 80
 
 #define kNumOfRowsInGridView 9 //1 ref, 2 found, 3 A, 4 C, 5 G, 6 T, 7 -, 8 +
@@ -42,7 +46,7 @@ typedef enum {
 #define kPinchZoomStartingLevel 3
 #define kPinchZoomFactor 2 //(in pixels)
 
-#define kPinchZoomFontSizeFactor 15 //(font size)
+#define kPinchZoomFontSizeFactor 1.2 //(font size)
 
 #define kGridViewTitleLblHolderBorderWidth 7
 
@@ -72,8 +76,22 @@ typedef enum {
 #define kExportASEmailMutsIndex 1 //Index 0 is the cancel button
 #define kExportASEmailData @"Email Data"
 #define kExportASEmailDataIndex 2
+#define kExportASDropboxMuts @"Save Mutations to Dropbox"
+#define kExportASDropboxMutsIndex 3
+#define kExportASDropboxData @"Save Data to Dropbox"
+#define kExportASDropboxDataIndex 4
+
+#define kExportDropboxSaveFileFormatMuts @"%@-%@-Muts.txt"//reads-ref-...
+#define kExportDropboxSaveFileFormatData @"%@-%@-Data.txt"//reads-ref-...
 
 #define kMutationFormat @"Pos: %i, %s\n"
+
+#define kConfirmDoneAlertTitle @"iGenomics: Analysis"
+#define kConfirmDoneAlertMsg @"Would you like to return to the main menu? Note that any unsaved data will be lost."
+#define kConfirmDoneAlertGoBtn @"Yes"
+#define kConfirmDoneAlertCancelBtn @"No"
+
+#define kReturnToHomeAnimationDuration 10
 
 //DON"T INCLUDE $ SIGN IN LEN
 //SHOW LOADING SCREEN THE INSTANT BEFORE SEQUENCING STARTS (START SEQUENCING FROM LOADING SCREEN)
@@ -93,7 +111,7 @@ typedef enum {
 
 //Add some save options (such as save actual BWT, save export info to dropbox, email exportinfo (second-highest priority), email list of mutations as a file (highest priority)) : second
 
-@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> {
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
     DNAColors *dnaColors;
     
     //Interactive Interface Elements
@@ -126,6 +144,7 @@ typedef enum {
     IBOutlet UISlider *pxlOffsetSlider;
     UIPopoverController *popoverController;
     MutationsInfoPopover *mutsPopover;
+    IBOutlet UIButton *showAllMutsBtn;
     
     BOOL mutsPopoverAlreadyUpdated;
     //Passed in
@@ -149,6 +168,9 @@ typedef enum {
     UIActionSheet *exportActionSheet;
     MFMailComposeViewController *exportMailController;
     NSString *exportDataStr;
+    
+    //Return to home screen comfirmation alert
+    UIAlertView *confirmDoneAlert;
 }
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 - (void)singleTapOccured:(UITapGestureRecognizer*)sender;
@@ -163,7 +185,10 @@ typedef enum {
 
 - (IBAction)showMutTBView:(id)sender;
 - (IBAction)exportDataPressed:(id)sender;
+- (IBAction)donePressed:(id)sender;
 - (void)emailInfoForOption:(EmailInfoOption)option;
+
+- (NSMutableString*)getMutationsExportStr;//Don't need the same method for exportDataStr bc it is a passed in object
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;

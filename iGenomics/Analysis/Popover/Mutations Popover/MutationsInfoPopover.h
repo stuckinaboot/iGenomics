@@ -14,6 +14,7 @@
 
 @protocol MutationsInfoPopoverDelegate <NSObject>
 - (void)mutationAtPosPressedInPopover:(int)pos;
+- (void)mutationsPopoverDidFinishUpdating;
 @end
 
 @interface MutationsInfoPopover : UIViewController <UITableViewDelegate, UITableViewDataSource> {

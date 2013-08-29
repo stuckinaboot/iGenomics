@@ -33,6 +33,8 @@
 
 - (void)setUpWithMutationsArr:(NSArray *)arr {
     mutationsArray = arr;
+    [mutationsTBView reloadData];
+    [delegate mutationsPopoverDidFinishUpdating];
 }
 
 #pragma TableView Delegate Methods

@@ -30,6 +30,7 @@
  6-Read File Name
  
  */
+#define kLastUsedParamsSaveKey @"LastUsedParamsKey"
 
 #define kStartSeqDelay 0.2
 
@@ -56,6 +57,7 @@
     NSString *refFileName;
     NSString *readFileName;
 }
+@property (nonatomic) ComputingController *computingController;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)trimmingStateChanged:(id)sender;
 

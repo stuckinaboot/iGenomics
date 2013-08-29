@@ -197,6 +197,9 @@
     UIStepper *stepper = (UIStepper*)sender;
     int val = (int)stepper.value;
     
+    [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];
+    showAllMutsBtn.enabled = FALSE;
+    
     mutationSupportNumLbl.text = [NSString stringWithFormat:@"%i",val];
     
     [mutPosArray removeAllObjects];
@@ -217,6 +220,11 @@
     [gridView scrollToPos:pos-1];
 }
 
+- (void)mutationsPopoverDidFinishUpdating {
+    [showAllMutsBtn setTitle:kShowAllMutsBtnTxtNormal forState:UIControlStateNormal];
+    showAllMutsBtn.enabled = TRUE;
+}
+
 //Search Query Results Delegate
 - (void)queryResultPosPicked:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
@@ -232,13 +240,14 @@
             if (zoomLevel>kPinchZoomMaxLevel) {
                 int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
                 gridView.kIpadBoxWidth *= kPinchZoomFactor;
-                gridView.kTxtFontSize += kPinchZoomFontSizeFactor;
+                gridView.kTxtFontSize *= kPinchZoomFontSizeFactor;
                 zoomLevel--;
                 
                 [gridView resetScrollViewContentSize];
                 [gridView resetTickMarkInterval];
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
                 gridView.currOffset = [gridView offsetOfPt:pt];
+                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
                 [gridView setUpGridViewForPixelOffset:gridView.currOffset];
             }
         }
@@ -246,7 +255,7 @@
             if (zoomLevel<kPinchZoomMinLevel) {
                 int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
                 gridView.kIpadBoxWidth /= kPinchZoomFactor;
-                gridView.kTxtFontSize -= kPinchZoomFontSizeFactor;
+                gridView.kTxtFontSize /= kPinchZoomFontSizeFactor;
 
                 zoomLevel++;
                 
@@ -254,6 +263,7 @@
                 [gridView resetTickMarkInterval];
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
                 gridView.currOffset = [gridView offsetOfPt:pt];
+                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
                 [gridView setUpGridViewForPixelOffset:gridView.currOffset];
             }
         }
@@ -325,7 +335,7 @@
 
 //Exports data
 - (IBAction)exportDataPressed:(id)sender {
-    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:kExportASEmailMutations, kExportASEmailData, nil];
+    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:kExportASEmailMutations, kExportASEmailData, kExportASDropboxMuts, kExportASDropboxData, nil];
     [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
 }
 
@@ -336,6 +346,16 @@
         }
         else if (buttonIndex == kExportASEmailDataIndex) {
             [self emailInfoForOption:EmailInfoOptionData];
+        }
+        else if (buttonIndex == kExportASDropboxMutsIndex) {
+            DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+            DBFile *file = [sys createFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,genomeFileName]] error:nil];
+            [file writeString:[self getMutationsExportStr] error:nil];
+        }
+        else if (buttonIndex == kExportASEmailDataIndex) {
+            DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+            DBFile *file = [sys createFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName,genomeFileName]] error:nil];
+            [file writeString:exportDataStr error:nil];
         }
     }
 }
@@ -348,11 +368,7 @@
         [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Mutations for Aligning %@ to %@",readsFileName, genomeFileName]];
         [exportMailController setMessageBody:[NSString stringWithFormat:@"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a postion to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance, (int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
         
-        NSMutableString *mutString = [[NSMutableString alloc] init];
-        [mutString appendFormat:@"Total Mutations: %i\n",[mutPosArray count]];
-        for (MutationInfo *info in mutPosArray) {
-            [mutString appendFormat:kMutationFormat,info.pos,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars]];
-        }
+        NSMutableString *mutString = [self getMutationsExportStr];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"Mutations"];
         [self presentModalViewController:exportMailController animated:YES];
     }
@@ -366,7 +382,30 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [self dismissModalViewControllerAnimated:YES];
+    [[self parentViewController] dismissModalViewControllerAnimated:YES];
+}
+
+- (NSMutableString*)getMutationsExportStr {
+    NSMutableString *mutString = [[NSMutableString alloc] init];
+    [mutString appendFormat:@"Total Mutations: %i\n",[mutPosArray count]];
+    for (MutationInfo *info in mutPosArray) {
+        [mutString appendFormat:kMutationFormat,info.pos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars]];//+1 so it doesn't start at 0
+    }
+    return mutString;
+}
+
+//Return to main menu
+- (IBAction)donePressed:(id)sender {
+    confirmDoneAlert = [[UIAlertView alloc] initWithTitle:kConfirmDoneAlertTitle message:kConfirmDoneAlertMsg delegate:self cancelButtonTitle:kConfirmDoneAlertCancelBtn otherButtonTitles:kConfirmDoneAlertGoBtn, nil];
+    [confirmDoneAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:confirmDoneAlert]) {
+        if (buttonIndex == 1) {
+            [self.view.window.rootViewController dismissModalViewControllerAnimated:YES];
+        }
+    }
 }
 
 //Memory warning

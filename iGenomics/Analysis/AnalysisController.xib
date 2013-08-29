@@ -117,7 +117,7 @@
 						<string key="NSFrame">{{528, 60}, {35, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="909313122"/>
+						<reference key="NSNextKeyView" ref="614202210"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -214,7 +214,7 @@
 						<string key="NSFrame">{{504, 110}, {59, 26}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="842891832"/>
+						<reference key="NSNextKeyView" ref="516194223"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -258,7 +258,7 @@
 						<string key="NSFrame">{{739, 137}, {71, 31}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="400018596"/>
+						<reference key="NSNextKeyView" ref="1017116817"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -348,7 +348,7 @@
 						<string key="NSFrame">{{335, 82}, {118, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="646612816"/>
+						<reference key="NSNextKeyView" ref="909313122"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -370,7 +370,7 @@
 						<string key="NSFrame">{{335, 139}, {142, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1017116817"/>
+						<reference key="NSNextKeyView" ref="842891832"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -414,7 +414,7 @@
 						<string key="NSFrame">{{168, 113}, {159, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="516194223"/>
+						<reference key="NSNextKeyView" ref="646612816"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -436,7 +436,7 @@
 						<string key="NSFrame">{{20, 57}, {103, 103}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="614202210"/>
+						<reference key="NSNextKeyView" ref="60606626"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -451,7 +451,7 @@
 						<string key="NSFrame">{{824, 74}, {77, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="277113586"/>
+						<reference key="NSNextKeyView" ref="400018596"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -489,7 +489,6 @@
 						<string key="NSFrame">{{74, 735}, {927, 23}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -503,6 +502,7 @@
 						<string key="NSFrameSize">{1024, 44}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="277113586"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -514,13 +514,24 @@
 								<reference key="IBUIToolbar" ref="895123377"/>
 								<int key="IBUISystemItemIdentifier">9</int>
 							</object>
+							<object class="IBUIBarButtonItem" id="968469619">
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<reference key="IBUIToolbar" ref="895123377"/>
+								<int key="IBUISystemItemIdentifier">5</int>
+							</object>
+							<object class="IBUIBarButtonItem" id="424187211">
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIStyle">2</int>
+								<reference key="IBUIToolbar" ref="895123377"/>
+								<int key="IBUISystemItemIdentifier">0</int>
+							</object>
 						</array>
 					</object>
 				</array>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="60606626"/>
+				<reference key="NSNextKeyView" ref="895123377"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -665,6 +676,14 @@
 					<int key="connectionID">1183</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">showAllMutsBtn</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="1017116817"/>
+					</object>
+					<int key="connectionID">1629</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">posSearch:</string>
 						<reference key="source" ref="810370774"/>
@@ -725,6 +744,14 @@
 						<reference key="destination" ref="841351856"/>
 					</object>
 					<int key="connectionID">1608</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">donePressed:</string>
+						<reference key="source" ref="424187211"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">1628</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2336,6 +2363,8 @@
 						<reference key="object" ref="895123377"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="902751744"/>
+							<reference ref="424187211"/>
+							<reference ref="968469619"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -2373,6 +2402,16 @@
 						<int key="objectID">1624</int>
 						<reference key="object" ref="842696190"/>
 						<reference key="parent" ref="766721923"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1625</int>
+						<reference key="object" ref="424187211"/>
+						<reference key="parent" ref="895123377"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1626</int>
+						<reference key="object" ref="968469619"/>
+						<reference key="parent" ref="895123377"/>
 					</object>
 				</array>
 			</object>
@@ -2463,6 +2502,8 @@
 				<string key="1611.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1623.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1624.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="1625.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="1626.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array class="NSMutableArray" key="2.IBViewMetadataConstraints">
 					<reference ref="374122540"/>
@@ -2598,7 +2639,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1624</int>
+			<int key="maxID">1629</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2606,6 +2647,7 @@
 					<string key="className">AnalysisController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="donePressed:">id</string>
 						<string key="exportDataPressed:">id</string>
 						<string key="mutationSupportStepperChanged:">id</string>
 						<string key="posSearch:">id</string>
@@ -2614,6 +2656,10 @@
 						<string key="showSeqSearchResults:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="donePressed:">
+							<string key="name">donePressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="exportDataPressed:">
 							<string key="name">exportDataPressed:</string>
 							<string key="candidateClassName">id</string>
@@ -2653,6 +2699,7 @@
 						<string key="readNumOfLbl">UILabel</string>
 						<string key="readsNameLbl">UILabel</string>
 						<string key="seqSearchTxtFld">UITextField</string>
+						<string key="showAllMutsBtn">UIButton</string>
 						<string key="showMutTBViewBtn">UIButton</string>
 						<string key="showQueryResultsBtn">UIButton</string>
 					</dictionary>
@@ -2708,6 +2755,10 @@
 						<object class="IBToOneOutletInfo" key="seqSearchTxtFld">
 							<string key="name">seqSearchTxtFld</string>
 							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="showAllMutsBtn">
+							<string key="name">showAllMutsBtn</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="showMutTBViewBtn">
 							<string key="name">showMutTBViewBtn</string>

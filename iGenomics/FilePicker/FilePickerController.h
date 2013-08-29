@@ -29,6 +29,8 @@
 
 #define kExtDot '.'
 
+#define kLockedBtnAlpha 0.5
+
 //Eventually we can use - (NSFileHandle *)readHandle:(DBError **)error to read x lines (or megabytes) at a time
 //fasta is standard format for genome, fastq is standard format for reads
 
@@ -39,6 +41,11 @@
     IBOutlet UISearchBar *refPickerSearchBar;
     IBOutlet UITableView *readsFilePicker;
     IBOutlet UISearchBar *readsPickerSearchBar;
+    
+    IBOutlet UIButton *analyzeBtn;
+    IBOutlet UIButton *configBtn;
+    BOOL refSelected;
+    BOOL readsSelected;
     
     NSMutableArray *defaultRefFilesNames;
     NSMutableArray *filteredRefFileNames;
@@ -56,6 +63,7 @@
     DBPath *parentFolderPathReads;
 }
 - (IBAction)showParametersPressed:(id)sender;
+- (IBAction)analyzePressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
 - (IBAction)backRefTbl:(id)sender;
@@ -63,6 +71,11 @@
 
 - (void)setUpDefaultFiles;
 - (void)setUpAllDropboxFiles;
+
+- (void)beginActualSequencingPredefinedParameters;
+
+- (void)lockContinueBtns;
+- (void)unlockContinueBtns;
 
 - (NSArray*)getFileNameAndExtForFullName:(NSString*)fileName;//returns array with two NSStrings, fileName and fileExt
 @end

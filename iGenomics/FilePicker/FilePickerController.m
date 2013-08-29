@@ -46,8 +46,10 @@
     
     filteredReadFileNames = [[NSMutableArray alloc] initWithArray:defaultReadsFilesNames];
     
-    if ([DBAccountManager sharedManager].linkedAccount)
+    if ([DBAccountManager sharedManager].linkedAccount) {
         dbFileSys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
+        [DBFilesystem setSharedFilesystem:dbFileSys];
+    }
 }
 
 #pragma Button Actions
@@ -84,6 +86,69 @@
     }
     [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName];
     [self presentModalViewController:parametersController animated:YES];
+}
+
+- (IBAction)analyzePressed:(id)sender {
+    parametersController.computingController = [[ComputingController alloc] init];
+    
+    [self presentModalViewController:parametersController.computingController animated:NO];
+    [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
+}
+
+- (void)lockContinueBtns {
+    [analyzeBtn setAlpha:kLockedBtnAlpha];
+    analyzeBtn.enabled = FALSE;
+    [configBtn setAlpha:kLockedBtnAlpha];
+    configBtn.enabled = FALSE;
+}
+- (void)unlockContinueBtns {
+    [analyzeBtn setAlpha:1.0f];
+    analyzeBtn.enabled = TRUE;
+    [configBtn setAlpha:1.0f];
+    configBtn.enabled = TRUE;
+}
+
+- (void)beginActualSequencingPredefinedParameters {
+    NSString *s = @"";
+    NSString *sName = @"";
+    NSString *r = @"";
+    NSString *rName = @"";
+    
+    if (selectedOptionRef == kSavedFilesIndex) {
+        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
+        sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        NSArray *arr = [self getFileNameAndExtForFullName:s];
+        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+    }
+    else if (selectedOptionRef == kDropboxFilesIndex) {
+        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        DBFile *file = [dbFileSys openFile:info.path error:nil];
+        s = [file readString:nil];
+        sName = [info.path name];
+    }
+    if (selectedOptionReads == kSavedFilesIndex) {
+        r = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        rName = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        NSArray *arr = [self getFileNameAndExtForFullName:r];
+        r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+    }
+    else if (selectedOptionReads == kDropboxFilesIndex) {
+        DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        DBFile *file = [dbFileSys openFile:info.path error:nil];
+        r = [file readString:nil];
+        rName = [info.path name];
+    }
+    
+    //Loads past parameters, if they are null set a default set of parameters
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
+    if (arr == NULL) {
+        arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:0] /*Trimming*/, nil];//Contains everything except refFileName and readFileName
+        [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
+        [defaults synchronize];
+    }
+    
+    [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]]];
 }
 
 - (IBAction)backPressed:(id)sender {
@@ -155,6 +220,9 @@
     }
     else
         selectedOptionRef = -1;
+    refSelected = FALSE;
+    if (analyzeBtn.enabled)//Currently unlocked
+        [self lockContinueBtns];
     [referenceFilePicker reloadData];
 }
 - (IBAction)backReadsTbl:(id)sender {
@@ -169,6 +237,9 @@
     }
     else
         selectedOptionReads = -1;
+    readsSelected = FALSE;
+    if (analyzeBtn.enabled)//Currently unlocked
+        [self lockContinueBtns];
     [readsFilePicker reloadData];
 }
 
@@ -234,7 +305,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    BOOL showSelectedRow = TRUE; //Used to prevent user from accidentally selecting wrong item
     if ([tableView isEqual:referenceFilePicker]) {
         if (selectedOptionRef > -1) {
             selectedRowRef = indexPath.row;
@@ -249,7 +320,11 @@
                         if (info.isFolder) {
                             filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
                             parentFolderPathRef = info.path;
+                            refSelected = FALSE;
+                            showSelectedRow = FALSE;
                         }
+                        else
+                            refSelected = TRUE;
                     }
                 }
                 else
@@ -272,12 +347,16 @@
                 else
                     selectedOptionRef = -1;
             }
-            else if (selectedOptionRef == kSavedFilesIndex)
+            else if (selectedOptionRef == kSavedFilesIndex) {
                 filteredRefFileNames = [NSMutableArray arrayWithArray:defaultRefFilesNames];
+                refSelected = TRUE;
+            }
             [tableView reloadData];
         }
         NSIndexPath *path = [NSIndexPath indexPathForRow:selectedRowRef inSection:0];
         [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (!showSelectedRow)
+            [tableView deselectRowAtIndexPath:path animated:YES];
     }
     else if ([tableView isEqual:readsFilePicker]) {
         if (selectedOptionReads > -1) {
@@ -293,7 +372,11 @@
                         if (info.isFolder) {
                             filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
                             parentFolderPathReads = info.path;
+                            readsSelected = FALSE;
+                            showSelectedRow = FALSE;
                         }
+                        else
+                            readsSelected = TRUE;
                     }
                 }
                 else
@@ -316,13 +399,21 @@
                 else
                     selectedOptionReads = -1;
             }
-            else if (selectedOptionReads == kSavedFilesIndex)
+            else if (selectedOptionReads == kSavedFilesIndex) {
                 filteredReadFileNames = [NSMutableArray arrayWithArray:defaultReadsFilesNames];
+                readsSelected = TRUE;
+            }
             [tableView reloadData];
         }
         NSIndexPath *path = [NSIndexPath indexPathForRow:selectedRowReads inSection:0];
         [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (!showSelectedRow)
+            [tableView deselectRowAtIndexPath:path animated:YES];
     }
+    if (readsSelected && refSelected)
+        [self unlockContinueBtns];
+    else if (analyzeBtn.enabled)//Currently unlocked
+        [self lockContinueBtns];
 }
 
 - (void)setUpAllDropboxFiles {
@@ -390,7 +481,7 @@
         }
         [readsFilePicker reloadData];
     }
-}
+} 
 
 - (NSArray*)getFileNameAndExtForFullName:(NSString *)fileName {
     //Search for first . starting from the end

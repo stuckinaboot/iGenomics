@@ -35,7 +35,7 @@
 #define kDebugPrintInsertions 0
 #define kDebugOn 0
 
-#define kDebugAllInfo 1 //THIS IS THE ONLY ONE NEEDED TO KEEP
+#define kDebugAllInfo 0 //THIS IS THE ONLY ONE NEEDED TO KEEP
 
 #define kPrintReadInfo 0
 
