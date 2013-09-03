@@ -131,7 +131,6 @@
 }
 
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED {
-    [APTimer start];
     int lenA = strlen(a), lenB = strlen(b);
     
     char *newb = calloc(lenB+1, 1);
@@ -290,7 +289,6 @@
         memcpy(edInfo.gappedB, charB+gapsInA, gappedLength);
     }
      */
-    [APTimer stopAndLog];
     return edInfo;
 }
 
