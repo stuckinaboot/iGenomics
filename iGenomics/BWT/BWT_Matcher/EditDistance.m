@@ -442,7 +442,7 @@
  - (ED_Info*)simpleEditDistance:(char *)a andB:(char *)b {
  int lenA = strlen(a);
  int lenB = strlen(b);
- 
+ //
  int editDistanceTable[lenA][lenB];
  
  for (int i = 0; i<lenA; i++) {
