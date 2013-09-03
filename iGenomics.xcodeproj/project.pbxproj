@@ -31,6 +31,7 @@
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
 		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
+		A338F5A017CFC7650075FAE3 /* SuccessBox.png in Resources */ = {isa = PBXBuildFile; fileRef = A338F59F17CFC7650075FAE3 /* SuccessBox.png */; };
 		A33A7C161650397B00E39A6C /* ED_Info.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C151650397B00E39A6C /* ED_Info.m */; };
 		A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */; };
 		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
@@ -51,6 +52,7 @@
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
 		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
+		A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BB5DC17D65C1400B5FE7F /* APTimer.m */; };
 		A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4C1665996E0023E961 /* TestRead.txt */; };
 		A3A18B5016659C320023E961 /* TestSeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4F16659C320023E961 /* TestSeq.txt */; };
 		A3AB48871676931200EA087D /* TestRead2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AB48861676931200EA087D /* TestRead2.txt */; };
@@ -115,6 +117,7 @@
 		A3382FC916A118A20042F59B /* AnalysisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisController.h; path = iGenomics/Analysis/AnalysisController.h; sourceTree = "<group>"; };
 		A3382FCA16A118A20042F59B /* AnalysisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisController.m; path = iGenomics/Analysis/AnalysisController.m; sourceTree = "<group>"; };
 		A3382FCB16A118A20042F59B /* AnalysisController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnalysisController.xib; path = iGenomics/Analysis/AnalysisController.xib; sourceTree = "<group>"; };
+		A338F59F17CFC7650075FAE3 /* SuccessBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SuccessBox.png; path = ../../SuccessBox.png; sourceTree = "<group>"; };
 		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
 		A33A7C151650397B00E39A6C /* ED_Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ED_Info.m; sourceTree = "<group>"; };
 		A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = InDelTestReads.txt; path = BWT/InDelTestReads.txt; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
 		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
+		A39BB5DB17D65C1400B5FE7F /* APTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APTimer.h; path = iGenomics/APTimer.h; sourceTree = SOURCE_ROOT; };
+		A39BB5DC17D65C1400B5FE7F /* APTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTimer.m; path = iGenomics/APTimer.m; sourceTree = SOURCE_ROOT; };
 		A3A18B4C1665996E0023E961 /* TestRead.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead.txt; sourceTree = "<group>"; };
 		A3A18B4F16659C320023E961 /* TestSeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestSeq.txt; path = BWT/BWT_Matcher/TestSeq.txt; sourceTree = "<group>"; };
 		A3AB48861676931200EA087D /* TestRead2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead2.txt; sourceTree = "<group>"; };
@@ -262,6 +267,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A338F59F17CFC7650075FAE3 /* SuccessBox.png */,
 				A34E6BB316C4753C00753D7C /* CSHLabIcon.png */,
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
@@ -426,6 +432,15 @@
 				A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */,
 			);
 			name = "Search Query Popover";
+			sourceTree = "<group>";
+		};
+		A39BB5DE17D65C1900B5FE7F /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				A39BB5DB17D65C1400B5FE7F /* APTimer.h */,
+				A39BB5DC17D65C1400B5FE7F /* APTimer.m */,
+			);
+			name = Timer;
 			sourceTree = "<group>";
 		};
 		A3A3D9BE167E6EFD00CE98DC /* Chunk Class */ = {
@@ -599,6 +614,7 @@
 			children = (
 				A3FF3ACF16AB17F80095EACF /* GlobalVars.h */,
 				A3FF3AD016AB17F80095EACF /* GlobalVars.m */,
+				A39BB5DE17D65C1900B5FE7F /* Timer */,
 			);
 			name = Globals;
 			path = BWT/BWT_Matcher;
@@ -702,6 +718,7 @@
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
+				A338F5A017CFC7650075FAE3 /* SuccessBox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +756,7 @@
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
 				A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */,
+				A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

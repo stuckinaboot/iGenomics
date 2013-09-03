@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ComputingController.h"
+#import "APTimer.h"
 
 //------------Max ED is 10-----------------
 

@@ -12,6 +12,7 @@
 
 #import "BWT.h"
 #import "EditDistance.h"
+#import "APTimer.h"
 
 #define kPrintIndevelopmentVars 1
 

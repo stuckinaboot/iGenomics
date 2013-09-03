@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "EditDistance.h"
+#import "APTimer.h"
 //#import "MatchedReadData.h"
 #import "Chunks.h"
 

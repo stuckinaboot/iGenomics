@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <dropbox/dropbox.h>
+#import "APTimer.h"
 
 #import "ParametersController.h"
 

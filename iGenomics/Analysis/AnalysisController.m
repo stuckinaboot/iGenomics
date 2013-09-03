@@ -339,6 +339,57 @@
     [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
 }
 
+- (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents {
+    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+    path = [self fixChosenExportPathExt:path];
+    DBFile *file = [sys createFile:[[DBPath alloc] initWithString:path] error:nil];
+    if ([file writeString:contents error:nil]) {
+        [self displaySuccessBox];
+        return YES;
+    }
+    else {
+        //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
+        return NO;
+    }
+}
+
+- (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice {
+    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+    if (choice == 0) {//muts
+        DBFile *file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName, @""]] error:nil];
+        int i = 0;
+        while (file) {
+            i++;
+            file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName, [NSString stringWithFormat:@"(%i)",i]]] error:nil];
+        }
+        return i;
+    }
+    else if (choice == 1) {//data
+        DBFile *file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName, @""]] error:nil];
+        int i = 0;
+        while (file) {
+            i++;
+            file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName, [NSString stringWithFormat:@"(%i)",i]]] error:nil];
+        }
+        return i;
+    }
+    return -1;
+}
+
+- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents {
+    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+    path = [self fixChosenExportPathExt:path];
+    DBFile *file = [sys openFile:[[DBPath alloc] initWithString:path] error:nil];
+    if ([file writeString:contents error:nil]) {
+        [self displaySuccessBox];
+        return YES;
+    }
+    else {
+        //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
+        return NO;
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([actionSheet isEqual:exportActionSheet]) {
         if (buttonIndex == kExportASEmailMutsIndex) {
@@ -348,14 +399,20 @@
             [self emailInfoForOption:EmailInfoOptionData];
         }
         else if (buttonIndex == kExportASDropboxMutsIndex) {
-            DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-            DBFile *file = [sys createFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,genomeFileName]] error:nil];
-            [file writeString:[self getMutationsExportStr] error:nil];
+            exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Export", nil];
+            [exportMutsDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            UITextField *txtField = [exportMutsDropboxAlert textFieldAtIndex:0];
+            int i = [self firstAvailableDefaultFileNameForMutsOrData:0];
+            [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
+            [exportMutsDropboxAlert show];
         }
-        else if (buttonIndex == kExportASEmailDataIndex) {
-            DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-            DBFile *file = [sys createFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName,genomeFileName]] error:nil];
-            [file writeString:exportDataStr error:nil];
+        else if (buttonIndex == kExportASDropboxDataIndex) {
+            exportDataDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Export", nil];
+            [exportDataDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            UITextField *txtField = [exportDataDropboxAlert textFieldAtIndex:0];
+            int i = [self firstAvailableDefaultFileNameForMutsOrData:1];
+            [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatData, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
+            [exportDataDropboxAlert show];
         }
     }
 }
@@ -406,8 +463,64 @@
             [self.view.window.rootViewController dismissModalViewControllerAnimated:YES];
         }
     }
+    else if ([alertView isEqual:exportMutsDropboxAlert]) {
+        if (buttonIndex == 1) {
+            NSString *txt = [alertView textFieldAtIndex:0].text;
+            if ([txt isEqualToString:@""]) {
+                [self actionSheet:exportActionSheet didDismissWithButtonIndex:kExportASDropboxMutsIndex];
+            }
+            else if (![self saveFileAtPath:txt andContents:[self getMutationsExportStr]]) {
+                chosenMutsExportPath = txt;
+                exportMutsDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Overwrite", nil];
+                [exportMutsDropboxErrorAlert show];
+            }
+        }
+    }
+    else if ([alertView isEqual:exportMutsDropboxErrorAlert]) {
+        if (buttonIndex == 1) {
+            [self overwriteFileAtPath:chosenMutsExportPath andContents:[self getMutationsExportStr]];
+        }
+    }
+    else if ([alertView isEqual:exportDataDropboxAlert]) {
+        if (buttonIndex == 1) {
+            NSString *txt = [alertView textFieldAtIndex:0].text;
+            if ([txt isEqualToString:@""]) {
+                [self actionSheet:exportActionSheet didDismissWithButtonIndex:kExportASDropboxDataIndex];
+            }
+            else if (![self saveFileAtPath:txt andContents:exportDataStr]) {
+                chosenDataExportPath = txt;
+                exportDataDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Overwrite", nil];
+                [exportDataDropboxErrorAlert show];
+            }
+        }
+    }
+    else if ([alertView isEqual:exportDataDropboxErrorAlert]) {
+        if (buttonIndex == 1) {
+            [self overwriteFileAtPath:chosenDataExportPath andContents:exportDataStr];
+        }
+    }
 }
 
+- (NSString*)fixChosenExportPathExt:(NSString*)path {
+    int s = kExportDropboxSaveFileExt.length;
+    if (![[path substringFromIndex:path.length-s] isEqualToString:kExportDropboxSaveFileExt])
+        return [NSString stringWithFormat:@"%@%@",path,kExportDropboxSaveFileExt];
+    return path;
+}
+
+//Success box
+- (void)displaySuccessBox {
+    UIImageView *successBox = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kSuccessBoxImgName]];
+    successBox.frame = CGRectMake(0, 0, successBox.image.size.width, successBox.image.size.height);
+    successBox.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
+    successBox.alpha = kSuccessBoxAlpha;
+    [self.view addSubview:successBox];
+    [UIView animateWithDuration:kSuccessBoxDuration animations:^{
+        [successBox setAlpha:0.0f];
+    } completion:^(BOOL finished){
+        [successBox removeFromSuperview];
+    }];
+}
 //Memory warning
 - (void)didReceiveMemoryWarning
 {

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AnalysisController.h"
 #import "BWT.h"
+#import "APTimer.h"
 
 #define kPrintReadProcessedInConsole 0
 

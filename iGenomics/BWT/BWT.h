@@ -20,6 +20,7 @@
 #import "BWT_Maker.h"
 #import "BWT_Matcher.h"
 #import "BWT_MutationFilter.h"
+#import "APTimer.h"
 //BWT_ Imports End
 
 //DEBUGGING CONSTANT 0 = nothing, 1 = print created BWT

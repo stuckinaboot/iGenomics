@@ -33,6 +33,8 @@
     selectedOptionReads = -1;
     selectedRowReads = 0;
     
+    [self lockContinueBtns];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

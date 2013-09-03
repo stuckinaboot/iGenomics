@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ED_Info.h"
 #import "Chunks.h"
+#import "APTimer.h"
 
 #define kDefaultEditDistStrSize 1000
 #define kAllowedNumOfDiffs 10

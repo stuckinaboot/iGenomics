@@ -20,7 +20,7 @@ typedef enum {
 #import "InsertionsPopoverController.h"
 #import "MutationsInfoPopover.h"
 #import "SearchQueryResultsPopover.h"
-//#import "MatchedReadData.h"
+#import "APTimer.h"
 
 #import "QuickGridView.h"
 
@@ -32,6 +32,16 @@ typedef enum {
 
 #define kShowAllMutsBtnTxtNormal @"Show All Mutations"
 #define kShowAllMutsBtnTxtUpdating @"Updating..."
+
+#define kSuccessBoxImgName @"SuccessBox.png"
+#define kSuccessBoxAlpha 0.8
+#define kSuccessBoxDuration 1.8f
+
+#define kErrorAlertExportTitle @"iGenomics: Error"
+#define kErrorAlertExportBody @"An error occurred exporting the file."
+#define kErrorAlertExportBodyFileNameAlreadyInUse @"File name already used. Would you like to overwrite or cancel?"
+
+#define kExportNameCustomOption @"Export"
 
 #define kGraphRowHeight 80
 
@@ -81,8 +91,12 @@ typedef enum {
 #define kExportASDropboxData @"Save Data to Dropbox"
 #define kExportASDropboxDataIndex 4
 
-#define kExportDropboxSaveFileFormatMuts @"%@-%@-Muts.txt"//reads-ref-...
-#define kExportDropboxSaveFileFormatData @"%@-%@-Data.txt"//reads-ref-...
+#define kExportAlertTitle @"File Export"
+#define kExportAlertBody @"Enter file name here:"
+
+#define kExportDropboxSaveFileFormatMuts @"%@%@.var.txt"//reads(1..2..3 or no ()).var...
+#define kExportDropboxSaveFileFormatData @"%@%@.data.txt"//reads(1..2..3 or no ()).data...
+#define kExportDropboxSaveFileExt @".txt"
 
 #define kMutationFormat @"Pos: %i, %s\n"
 
@@ -171,6 +185,14 @@ typedef enum {
     
     //Return to home screen comfirmation alert
     UIAlertView *confirmDoneAlert;
+    
+    //Select Export Save File Name Alert
+    UIAlertView *exportMutsDropboxAlert;
+    UIAlertView *exportMutsDropboxErrorAlert;
+    UIAlertView *exportDataDropboxAlert;
+    UIAlertView *exportDataDropboxErrorAlert;
+    NSString *chosenMutsExportPath;
+    NSString *chosenDataExportPath;
 }
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 - (void)singleTapOccured:(UITapGestureRecognizer*)sender;
@@ -187,6 +209,12 @@ typedef enum {
 - (IBAction)exportDataPressed:(id)sender;
 - (IBAction)donePressed:(id)sender;
 - (void)emailInfoForOption:(EmailInfoOption)option;
+- (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents;
+- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents;
+- (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
+- (NSString*)fixChosenExportPathExt:(NSString*)path;
+
+- (void)displaySuccessBox;
 
 - (NSMutableString*)getMutationsExportStr;//Don't need the same method for exportDataStr bc it is a passed in object
 

@@ -10,6 +10,7 @@
 //#import "MatchedReadData.h"
 #import "ED_Info.h"
 #import "GlobalVars.h"
+#import "APTimer.h"
 
 @interface BWT_MatcherSC : NSObject
 
