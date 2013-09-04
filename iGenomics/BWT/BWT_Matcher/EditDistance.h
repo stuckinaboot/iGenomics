@@ -11,7 +11,7 @@
 #import "Chunks.h"
 #import "APTimer.h"
 
-#define kDefaultEditDistStrSize 1000
+#define kDefaultEditDistStrSize 150
 #define kAllowedNumOfDiffs 10
 #define kCharsToLookForAfter 2
 

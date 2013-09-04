@@ -16,5 +16,18 @@
          landmarkName = "-fixChosenExportPathExt:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "BWT_Matcher_InsertionDeletion.m"
+         timestampString = "400018285.500159"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "143"
+         endingLineNumber = "143"
+         landmarkName = "-getCountOfLargestChunkMatchedPosArrayFromChunkArr:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

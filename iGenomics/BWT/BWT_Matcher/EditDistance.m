@@ -13,8 +13,8 @@
 @synthesize charA,charB, distance;
 
 - (id)init {
-    charA = calloc(kDefaultEditDistStrSize, 1);
-    charB = calloc(kDefaultEditDistStrSize, 1);
+//    charA = calloc(kDefaultEditDistStrSize, 1);
+//    charB = calloc(kDefaultEditDistStrSize, 1);
     return self;
 }
 
@@ -138,6 +138,11 @@
     newb[0] = ' ';
     lenB++;
     
+    ED_Info *edInfo = [[ED_Info alloc] init];
+    edInfo.gappedA = calloc(kDefaultEditDistStrSize, 1);
+    edInfo.gappedB = calloc(kDefaultEditDistStrSize, 1);
+    
+    
     int editDistanceTable[lenA][lenB];
     int arrowTable[lenA][lenB];//0 is left, 1 is diag, 2 is up, 3 is created
     int gapsInA = 0, gapsInB = 0;
@@ -188,8 +193,6 @@
         }
     }
     
-    ED_Info *edInfo = [[ED_Info alloc] init];
-    
     int i = lenA-1;
     int j = smallestEDPos;
     
@@ -216,8 +219,8 @@
     }
     
     int gappedLength = lenA+gapsInA-1;
-    charA[gappedLength] = '\0';
-    charB[gappedLength] = '\0';
+    edInfo.gappedA[gappedLength] = '\0';
+    edInfo.gappedB[gappedLength] = '\0';
     int pos = gappedLength-1;//Check -2, but it is because subtracting the space in the beginning " GA..." and gets to the last position
     
     /*
@@ -243,18 +246,18 @@
     
     while (i > 0 || j > 0) {
         if (arrowTable[i][j] == 0) {
-            charA[pos] = '-';
-            charB[pos] = newb[j];
+            edInfo.gappedA[pos] = '-';
+            edInfo.gappedB[pos] = newb[j];
             j -= 1;
         }
         else if (arrowTable[i][j] == 2) {
-            charB[pos] = '-';
-            charA[pos] = a[i];
+            edInfo.gappedB[pos] = '-';
+            edInfo.gappedA[pos] = a[i];
             i -= 1;
         }
         else if (arrowTable[i][j] == 1) {
-            charA[pos] = a[i];
-            charB[pos] = newb[j];
+            edInfo.gappedA[pos] = a[i];
+            edInfo.gappedB[pos] = newb[j];
             i -= 1;
             j -= 1;
         }
@@ -270,25 +273,7 @@
     //if (!edInfo.insertion) {
     
     edInfo.position = j;
-    edInfo.gappedA = calloc(gappedLength, 1);
-    memcpy(edInfo.gappedA, charA, gappedLength);
-    edInfo.gappedB = calloc(gappedLength, 1);
-    memcpy(edInfo.gappedB, charB, gappedLength);
     
-    
-    
-    
-    
-    /*}
-    else {
-        edInfo.position = pos + j;
-        
-        edInfo.gappedA = calloc(gappedLength-gapsInB, 1);
-        memcpy(edInfo.gappedA, charA+gapsInA, gappedLength);
-        edInfo.gappedB = calloc(gappedLength-gapsInB, 1);
-        memcpy(edInfo.gappedB, charB+gapsInA, gappedLength);
-    }
-     */
     return edInfo;
 }
 

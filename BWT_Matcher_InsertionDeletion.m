@@ -37,6 +37,7 @@
 }
 
 - (void)findInDels:(char*)a andCharB:(char*)b andChunks:(NSMutableArray*)chunkArray {//REMEMBER TO REMOVE SPACE
+    [APTimer start];
     int matchedPos = 0;
     int startPos = 0;//+1 is added during substring to account for the space when finding the pos
     int lenA = strlen(a)-1;
@@ -44,7 +45,9 @@
     int chunkSize = strlen(chunk.string);
     ED_Info *edInfo = [[ED_Info alloc] init];
     
+    
     //    Finding InDels for Chunk 1
+    
     for (int i = 0; i<chunk.matchedPositions.count; i++) {
         matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
         startPos = [self findStartPosForChunkNum:0 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
@@ -101,6 +104,7 @@
                 printf("\nPOS: %i",info.position);
         }
     }
+    [APTimer stop];
 }
 - (void)checkForInDelMatch:(ED_Info*)edInfo andMatchedPos:(int)matchedPos andChunkNum:(int)cNum andChunkSize:(int)cSize {
     if (edInfo.distance<=maxEditDist) {//Match Occurred
@@ -126,6 +130,17 @@
             [matchedInDels addObject:edInfo];
         }
     }
+}
+
+- (int)getCountOfLargestChunkMatchedPosArrayFromChunkArr:(NSMutableArray *)arr {
+    int max = 0;
+    int c = 0;
+    for (Chunks *chunk in arr) {
+        c = [chunk.matchedPositions count];
+        if (c > max)
+            max = c;
+    }
+    return max;
 }
 
 - (int)findStartPosForChunkNum:(int)cNum andSizeOfChunks:(int)cSize andMatchedPos:(int)mPos {
