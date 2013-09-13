@@ -24,7 +24,7 @@
     NSMutableArray *insertionPositions;
 }
 - (void)computeEditDistance:(char *)a andB:(char *)b lenA:(int)lenA andLenB:(int)lenB andEditDistForCell:(CGPoint)cellpos;
-//- (void)findInDels:(char *)a andB:(char *)b lenA:(int)lenA andLenB:(int)lenB andChunks:(NSMutableArray*)chunkArray;
+- (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
 @property (nonatomic) char *charA;
 @property (nonatomic) char *charB;

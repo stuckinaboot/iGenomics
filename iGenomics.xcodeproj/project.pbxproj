@@ -18,7 +18,6 @@
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
 		A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
-		A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31AA7CB16E3072100D3D808 /* QuickGridView.m */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A321162117796229002A1678 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162017796229002A1678 /* dropbox.framework */; };
 		A32116231779623F002A1678 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32116221779623F002A1678 /* CFNetwork.framework */; };
@@ -101,8 +100,6 @@
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
-		A31AA7CA16E3072100D3D808 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.h; sourceTree = "<group>"; };
-		A31AA7CB16E3072100D3D808 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = ../../Dropbox/Apps/CompletelyCustomDNAGrid/QuickGridView.m; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A321162017796229002A1678 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = dropbox.framework; sourceTree = "<group>"; };
 		A32116221779623F002A1678 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -138,6 +135,8 @@
 		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
+		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
+		A3700F4817E3A955007C2CC7 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = iGenomics/Analysis/Grid/QuickGridView.m; sourceTree = "<group>"; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
 		A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQueryResultsPopover.xib; sourceTree = "<group>"; };
@@ -316,8 +315,8 @@
 		A3382FD116A118D80042F59B /* Grid */ = {
 			isa = PBXGroup;
 			children = (
-				A31AA7CA16E3072100D3D808 /* QuickGridView.h */,
-				A31AA7CB16E3072100D3D808 /* QuickGridView.m */,
+				A3700F4717E3A955007C2CC7 /* QuickGridView.h */,
+				A3700F4817E3A955007C2CC7 /* QuickGridView.m */,
 				A3669B3616F689780034A1CC /* Colors */,
 			);
 			name = Grid;
@@ -729,7 +728,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A31AA7CC16E30B7600D3D808 /* QuickGridView.m in Sources */,
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
