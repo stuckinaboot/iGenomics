@@ -11,6 +11,9 @@
 @implementation BWT_MatcherSC
 
 - (NSArray*)exactMatchForQuery:(char*)query andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
+    if (timer == NULL)
+        timer = [[APTimer alloc] init];
+    [timer start];
     int i = strlen(query)-1;
     char c = query[i];
     int startPos = [self charsBeforeChar:c];
@@ -30,10 +33,19 @@
     
     NSMutableArray *posArray = [[NSMutableArray alloc] init];
     
-    for (int l = 0; l<endPos-startPos; l++)
-        [posArray addObject:[NSNumber numberWithInt:startPos+l]];
-    
-    return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWM:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
+    if (!forOnlyPos)
+    {
+        for (int l = 0; l<endPos-startPos; l++)
+            [posArray addObject:[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
+        [timer stop];
+        return posArray;
+    }
+    else
+    {
+        for (int l = 0; l<endPos-startPos; l++)
+            [posArray addObject:[NSNumber numberWithInt:startPos+l]];
+        return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWMForArr:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
+    }
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -48,8 +60,35 @@
     
     return TRUE;
 }
+- (ED_Info*)positionInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char *)query {
+    
+    NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
+    
+    int i;//index
+    int pos = fileStrLen-1;
+    int occurence = 1;//1 = 1st, etc.
+    char lastChar = refStrBWT[0];
+    
+    
+    i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
+    
+        if (position == i)
+            [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
+    
+    while (pos>=0) {
+        pos--;
+        lastChar = refStrBWT[i];
+        
+        occurence = [self whichOccurenceOfChar:lastChar inChar:refStrBWT atPos:i];
+        i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
+        
+        if (position == i)
+            return [[ED_Info alloc] initWithPos:pos-1 editDistance:ed gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev];
+    }
+    return [[ED_Info alloc] initWithPos:pos-1 editDistance:ed gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev];
+}
 
-- (NSArray*)positionInBWTwithPosInBWM:(NSArray*)posArray andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char*)query {
+- (NSArray*)positionInBWTwithPosInBWMForArr:(NSArray*)posArray andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char*)query {
     
     NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
     
@@ -84,7 +123,6 @@
             }
         }
     }
-    
     return (NSArray*)positionsInBWTArray;
 }
 - (int)charsBeforeChar:(char)c {
@@ -123,7 +161,7 @@
 }
 
 - (int)whichOccurenceOfChar:(char)c inChar:(char*)container atPos:(int)pos {
-    int topMultiple = 0;
+    /*int topMultiple = 0;
     for (int i = 0; i<pos; i++) {
         if (topMultiple<pos)
             topMultiple+=kMultipleToCountAt;
@@ -133,13 +171,14 @@
         }
         if (topMultiple == pos)
             break;
-    }
+    }*/
     int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt];
     int occurences = 0;
-    for (int i = 0; i<(float)topMultiple/kMultipleToCountAt; i++)
+    int val = ((int)pos/kMultipleToCountAt)*kMultipleToCountAt;
+    for (int i = 0; i<(int)val/kMultipleToCountAt; i++)
         occurences+=acgtOccurences[i][whichChar];
-    if (topMultiple<pos) {
-        for (int i = topMultiple; i<pos; i++) {
+    if (val<pos) {
+        for (int i = val; i<pos; i++) {
             if (container[i] == acgt[whichChar])
                 occurences++;
         }
@@ -178,4 +217,8 @@
      strcpy(unraveledChar, unraveledChar+1);
      return unraveledChar;
  }
+
+- (void)timerPrint {
+    [timer printTotalRecTime];
+}
 @end

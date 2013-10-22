@@ -10,11 +10,16 @@
 
 //Add function that sums up all of the times
 
-double recordedTime;
 @interface APTimer : NSObject {
-    
+    double recordedTime;
+    double totalRecordedTime;
+    double totalTrials;
 }
-+ (void)start;
-+ (double)stop;
-+ (double)stopAndLog;
+- (void)start;
+- (double)stop;
+- (double)stopAndLog;
+- (double)getAverageTime;
+- (double)getTotalTrials;
+- (double)getTotalRecordedTime;
+- (void)printTotalRecTime;
 @end

@@ -37,7 +37,6 @@
 }
 
 - (void)findInDels:(char*)a andCharB:(char*)b andChunks:(NSMutableArray*)chunkArray {//REMEMBER TO REMOVE SPACE
-    [APTimer start];
     int matchedPos = 0;
     int startPos = 0;//+1 is added during substring to account for the space when finding the pos
     int lenA = strlen(a)-1;
@@ -109,7 +108,6 @@
                 printf("\nPOS: %i",info.position);
         }
     }
-    [APTimer stop];
 }
 - (void)checkForInDelMatch:(ED_Info*)edInfo andMatchedPos:(int)matchedPos andChunkNum:(int)cNum andChunkSize:(int)cSize {
     if (edInfo.distance<=maxEditDist) {//Match Occurred

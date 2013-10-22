@@ -1,2 +1,3 @@
 TESTREADS.txt
 Ecoli.5k.reads.txt
+Ecoli.50k.reads.txt

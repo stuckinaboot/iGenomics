@@ -13,6 +13,8 @@
 @synthesize boxHeight, kIpadBoxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, graphBoxHeight;
 
 - (void)firstSetUp {
+    prevOffset = -1;
+    
     dnaColors = [[DNAColors alloc] init];
     [dnaColors setUp];
     
@@ -68,10 +70,13 @@
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
+    NSLog(@"\nPrev: %f Curr: %f Width: %f",prevOffset,offSet, self.frame.size.width);
+    prevOffset = offSet;
     currOffset = offSet;
     drawingView.image = NULL;
     
     UIGraphicsBeginImageContext(self.frame.size);
+
     [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
     if (kTxtFontSize >= kMinTxtFontSize)
@@ -80,7 +85,7 @@
     int firstPtToDraw = [self firstPtToDrawForOffset:offSet];
     double firstPtOffset = [self firstPtToDrawOffset:offSet];//Will be 0 or negative
     
-//    [self drawTickMarksForStartingPos:firstPtToDraw];
+//    NSLog(@"\nFirst Pt To Draw: %f First pt offset: %f",firstPtOffset, firstPtOffset);
     
     if (kTxtFontSize > kMinTxtFontSize) //If it is 0, there is no need for them
         [self drawGridLinesForOffset:firstPtOffset];
@@ -356,9 +361,6 @@
 //Actual Drawing Code
 - (void)drawText:(NSString*)txt atPoint:(CGPoint)point withRGB:(double[3])rgb {
     //point is the center of where the txt is to be drawn
-    
-//    UIGraphicsBeginImageContext(self.frame.size);
-//    [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     if (kTxtFontSize >= kMinTxtFontSize) {
         CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], 1.0f);
         UIFont *font = [UIFont systemFontOfSize:kTxtFontSize];
@@ -377,22 +379,16 @@
             }
             [txt drawInRect:CGRectMake(point.x, point.y+yOffset, kIpadBoxWidth, font.pointSize) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
-//    drawingView.image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
 }
 
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb {
-//    UIGraphicsBeginImageContext(self.frame.size);
-//    [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], 1.0f);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
-//    drawingView.image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
 }
 
 //ScrollView Delegate
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [drawingView setFrame:CGRectMake(scrollingView.contentOffset.x, 0, self.frame.size.width, self.frame.size.height)];
     [self setUpGridViewForPixelOffset:scrollView.contentOffset.x];
 }
 

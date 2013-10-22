@@ -64,7 +64,7 @@
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
-    [self presentModalViewController:computingController animated:YES];
+    [self presentViewController:computingController animated:YES completion:nil];
     
     [self performSelector:@selector(beginActualSequencing) withObject:nil afterDelay:kStartSeqDelay];
 }
@@ -82,7 +82,7 @@
 }
 
 - (IBAction)backPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

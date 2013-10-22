@@ -10,18 +10,42 @@
 
 @implementation APTimer
 
-+ (void)start {
+- (void)start {
     recordedTime = CFAbsoluteTimeGetCurrent();
 }
 
-+ (double)stop {
+- (double)stop {
     recordedTime = CFAbsoluteTimeGetCurrent()-recordedTime;
+    totalRecordedTime += recordedTime;
+    totalTrials++;
     return recordedTime;
 }
 
-+ (double)stopAndLog {
+- (double)stopAndLog {
     recordedTime = CFAbsoluteTimeGetCurrent()-recordedTime;
     printf("%f\n",recordedTime);
+    totalRecordedTime += recordedTime;
+    totalTrials++;
     return recordedTime;
+}
+
+- (void)resetTotalRecordedTime {
+    totalRecordedTime = 0;
+}
+
+- (double)getTotalRecordedTime {
+    return totalRecordedTime;
+}
+
+- (double)getTotalTrials {
+    return totalTrials;
+}
+
+- (double)getAverageTime {
+    return totalRecordedTime/totalTrials;
+}
+
+- (void)printTotalRecTime {
+    printf("%f",[self getTotalRecordedTime]);
 }
 @end

@@ -63,7 +63,7 @@
 }
 
 - (void)showAnalysisController {
-    [self presentModalViewController:analysisController animated:YES];
+    [self presentViewController:analysisController animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

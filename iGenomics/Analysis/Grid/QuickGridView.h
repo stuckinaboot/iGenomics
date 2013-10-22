@@ -120,6 +120,9 @@
     int maxCoverageVal;
     
     id delegate;
+    
+    //Temp variable
+    float prevOffset;
 }
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, graphBoxHeight;
 @property (nonatomic) double kIpadBoxWidth;

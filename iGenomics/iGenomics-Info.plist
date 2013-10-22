@@ -8,8 +8,12 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>IconIdea1.png</string>

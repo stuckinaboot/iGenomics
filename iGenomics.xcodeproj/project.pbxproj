@@ -39,11 +39,12 @@
 		A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A34E6BB316C4753C00753D7C /* CSHLabIcon.png */; };
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
-		A3531EA716BEFF3800768A31 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
+		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
+		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
@@ -54,6 +55,8 @@
 		A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BB5DC17D65C1400B5FE7F /* APTimer.m */; };
 		A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4C1665996E0023E961 /* TestRead.txt */; };
 		A3A18B5016659C320023E961 /* TestSeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4F16659C320023E961 /* TestSeq.txt */; };
+		A3A7212818023A1600F4E229 /* Ecoli.50k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A7212718023A1600F4E229 /* Ecoli.50k.txt */; };
+		A3A7212A18023A3100F4E229 /* Ecoli.50k.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A7212918023A3100F4E229 /* Ecoli.50k.reads.txt */; };
 		A3AB48871676931200EA087D /* TestRead2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AB48861676931200EA087D /* TestRead2.txt */; };
 		A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49B6169791EF00DD9266 /* FilePickerController.m */; };
 		A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49B7169791EF00DD9266 /* FilePickerController.xib */; };
@@ -150,6 +153,8 @@
 		A39BB5DC17D65C1400B5FE7F /* APTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTimer.m; path = iGenomics/APTimer.m; sourceTree = SOURCE_ROOT; };
 		A3A18B4C1665996E0023E961 /* TestRead.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead.txt; sourceTree = "<group>"; };
 		A3A18B4F16659C320023E961 /* TestSeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TestSeq.txt; path = BWT/BWT_Matcher/TestSeq.txt; sourceTree = "<group>"; };
+		A3A7212718023A1600F4E229 /* Ecoli.50k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.50k.txt; sourceTree = "<group>"; };
+		A3A7212918023A3100F4E229 /* Ecoli.50k.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.reads.txt; path = ../../../Downloads/ecoli.50k/Ecoli.50k.reads.txt; sourceTree = "<group>"; };
 		A3AB48861676931200EA087D /* TestRead2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead2.txt; sourceTree = "<group>"; };
 		A3AC49B5169791EF00DD9266 /* FilePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilePickerController.h; path = FilePicker/FilePickerController.h; sourceTree = "<group>"; };
 		A3AC49B6169791EF00DD9266 /* FilePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilePickerController.m; path = FilePicker/FilePickerController.m; sourceTree = "<group>"; };
@@ -515,6 +520,7 @@
 		A3AC49C616979B4600DD9266 /* Default Ref Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3A7212718023A1600F4E229 /* Ecoli.50k.txt */,
 				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
 				A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */,
 			);
@@ -524,6 +530,7 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3A7212918023A3100F4E229 /* Ecoli.50k.reads.txt */,
 				A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */,
 				A3181A7116B7465500A2B700 /* TESTREADS.txt */,
 			);
@@ -656,7 +663,12 @@
 		A310AF41158A5F7200E892AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					A310AF49158A5F7200E892AA = {
+						DevelopmentTeam = TJ5N8Q8272;
+					};
+				};
 			};
 			buildConfigurationList = A310AF44158A5F7200E892AA /* Build configuration list for PBXProject "iGenomics" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -680,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A7212A18023A3100F4E229 /* Ecoli.50k.reads.txt in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
@@ -692,6 +705,7 @@
 				A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */,
 				A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */,
 				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
+				A3A7212818023A1600F4E229 /* Ecoli.50k.txt in Resources */,
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
@@ -728,6 +742,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */,
+				A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */,
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
@@ -747,7 +763,6 @@
 				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
 				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,
 				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
-				A3531EA716BEFF3800768A31 /* MutationsInfoPopover.m in Sources */,
 				A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */,
 				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
@@ -792,9 +807,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -809,11 +825,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -823,9 +843,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -833,11 +854,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -848,6 +872,8 @@
 		A310AF6C158A5F7200E892AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../App Stuff/dropbox-ios-sdk-1.1\"",
@@ -858,6 +884,7 @@
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -865,6 +892,8 @@
 		A310AF6D158A5F7200E892AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../App Stuff/dropbox-ios-sdk-1.1\"",
@@ -875,6 +904,7 @@
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -87,13 +87,13 @@
         rName = [info.path name];
     }
     [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName];
-    [self presentModalViewController:parametersController animated:YES];
+    [self presentViewController:parametersController animated:YES completion:nil];
 }
 
 - (IBAction)analyzePressed:(id)sender {
     parametersController.computingController = [[ComputingController alloc] init];
     
-    [self presentModalViewController:parametersController.computingController animated:NO];
+    [self presentViewController:parametersController.computingController animated:NO completion:nil];
     [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
 }
 
@@ -154,7 +154,7 @@
 }
 
 - (IBAction)backPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma Table View Delegate

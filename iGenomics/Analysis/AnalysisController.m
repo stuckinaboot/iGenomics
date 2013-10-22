@@ -166,9 +166,25 @@
 - (IBAction)seqSearch:(id)sender {
     if (![seqSearchTxtFld.text isEqualToString:@""]) {//is not an empty query
         querySeqPosArr = [[NSArray alloc] initWithArray:[bwt simpleSearchForQuery:(char*)[seqSearchTxtFld.text UTF8String]]];
-        if ([querySeqPosArr count]>0) {//At least one match
-            int firstPos = [[querySeqPosArr objectAtIndex:0] intValue];
-            [gridView scrollToPos:firstPos];
+        int c = [querySeqPosArr count];
+        if (c>0) {//At least one match
+            
+            int diff = INT_MAX;
+            int closestPos = INT_MAX;
+            int possiblePos;
+            int currPos = [gridView firstPtToDrawForOffset:gridView.currOffset];
+            for (int i = 0; i < c; i++) {
+                possiblePos = [[querySeqPosArr objectAtIndex:i] intValue];
+                if (possiblePos < currPos)
+                    diff = (genomeLen-currPos-1)+possiblePos;
+                else
+                    diff = possiblePos-currPos;
+                if (diff<abs(closestPos-currPos) && diff != 0)//lowest diff and Not same exact pos
+                    closestPos = possiblePos;
+                if (diff == 1 || (possiblePos<currPos && diff > abs(closestPos-currPos)))
+                    break;
+            }
+            [gridView scrollToPos:closestPos];
         }
         else {
             //Show an error
@@ -427,19 +443,19 @@
         
         NSMutableString *mutString = [self getMutationsExportStr];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"Mutations"];
-        [self presentModalViewController:exportMailController animated:YES];
+        [self presentViewController:exportMailController animated:YES completion:nil];
     }
     else if (option == EmailInfoOptionData) {
         [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Export Data for Aligning %@ to %@",readsFileName, genomeFileName]];
         [exportMailController setMessageBody:[NSString stringWithFormat:@"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
         
         [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"ExportData"];
-        [self presentModalViewController:exportMailController animated:YES];
+        [self presentViewController:exportMailController animated:YES completion:nil];
     }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [[self parentViewController] dismissModalViewControllerAnimated:YES];
+    [exportMailController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (NSMutableString*)getMutationsExportStr {
@@ -460,7 +476,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([alertView isEqual:confirmDoneAlert]) {
         if (buttonIndex == 1) {
-            [self.view.window.rootViewController dismissModalViewControllerAnimated:YES];
+            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         }
     }
     else if ([alertView isEqual:exportMutsDropboxAlert]) {

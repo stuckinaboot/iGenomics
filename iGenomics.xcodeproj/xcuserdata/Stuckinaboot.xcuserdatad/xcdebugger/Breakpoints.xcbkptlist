@@ -7,13 +7,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iGenomics/Analysis/AnalysisController.m"
-         timestampString = "399923928.820312"
+         filePath = "iGenomics/APTimer.m"
+         timestampString = "400811244.455343"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "507"
-         endingLineNumber = "507"
-         landmarkName = "-fixChosenExportPathExt:"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-printAVG"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

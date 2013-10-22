@@ -201,6 +201,7 @@ typedef enum {
 - (IBAction)posSearch:(id)sender;
 
 - (IBAction)seqSearch:(id)sender;
+
 - (IBAction)showSeqSearchResults:(id)sender;
 
 - (IBAction)mutationSupportStepperChanged:(id)sender;

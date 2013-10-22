@@ -1,2 +1,3 @@
 TESTSEQ.txt
 New.Ecoli.5k.txt
+Ecoli.50k.txt

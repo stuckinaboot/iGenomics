@@ -131,7 +131,6 @@
 }
 
 - (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED {
-    [APTimer start];
     int lenA = strlen(a), lenB = range.length+1;//First char (range.location-1) will be a "space"
     
     ED_Info *edInfo = [[ED_Info alloc] init];
@@ -248,7 +247,6 @@
     edInfo.distance = smallestED;
     edInfo.position = j;
     
-    [APTimer stopAndLog];
     return edInfo;
 }
 

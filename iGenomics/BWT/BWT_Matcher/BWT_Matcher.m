@@ -92,7 +92,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         [delegate readProccesed:readDataStr];
         [readDataStr setString:@""];
     }
-    
+    [exactMatcher timerPrint];
 }
 
 

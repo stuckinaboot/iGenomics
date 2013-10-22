@@ -27,7 +27,7 @@
 }
 
 - (IBAction)showFilePickerPressed:(id)sender {
-    [self presentModalViewController:filePickerController animated:YES];
+    [self presentViewController:filePickerController animated:YES completion:nil];
 }
 
 - (IBAction)showAboutPressed:(id)sender {}
