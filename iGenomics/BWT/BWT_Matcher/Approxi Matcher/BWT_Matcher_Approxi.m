@@ -15,12 +15,12 @@
     if (amtOfSubs == 0)
         return (NSMutableArray*)[self exactMatchForQuery:query andIsReverse:isRev andForOnlyPos:NO];
     
-    int numOfChunks = amtOfSubs+1;
+    numOfChunks = amtOfSubs+1;
     
     if (fmod(queryLength, 2) != 0) //Odd
         queryLength++;
     
-    int sizeOfChunks = queryLength/numOfChunks;
+    sizeOfChunks = queryLength/numOfChunks;
     
     Chunks *chunks[numOfChunks];
     int subsInChunk[numOfChunks], start = 0;
@@ -28,13 +28,13 @@
     for (int i = 0; i<numOfChunks; i++)
         chunks[i] = [[Chunks alloc] init];
     
-    NSMutableArray *positionsArray = [[NSMutableArray alloc] init];
+    positionsArray = [[NSMutableArray alloc] init];
     
     if (amtOfSubs>0) {
         for (int i = 0; i<numOfChunks; i++, start += sizeOfChunks)
             [self setUpChunk:chunks[i] forQuery:query numOfChunks:numOfChunks chunkLen:sizeOfChunks start:start andChunkNum:i];
         
-        int charsToCheckRight = 0, charsToCheckLeft = 0, numOfSubstitutions = 0;
+        charsToCheckRight = 0, charsToCheckLeft = 0, numOfSubstitutions = 0;
         
         for (int i = 0; i<numOfChunks; i++) {
             chunks[i].matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunks[i].string andIsReverse:isRev andForOnlyPos:YES];
@@ -44,8 +44,8 @@
                 charsToCheckLeft = [self figureOutCharsToCheckLeftForI:i andChunkLen:sizeOfChunks andQueryLen:queryLength andNumOfChunks:numOfChunks];
                 charsToCheckRight = [self figureOutCharsToCheckRightForI:i andChunkLen:sizeOfChunks andQueryLen:queryLength andNumOfChunks:numOfChunks];
         
-                int leftStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue] - charsToCheckLeft;
-                int rightStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue]+strlen(chunks[i].string);
+                leftStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue] - charsToCheckLeft;
+                rightStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue]+strlen(chunks[i].string);
                 
                 for (int l = 0; l<charsToCheckLeft; l++) {
                     if (originalStr[l+leftStrStart] != query[l]) {
@@ -68,7 +68,7 @@
                     for (int r = 0; r<numOfChunks; r++)
                         [array addObject:[NSNumber numberWithInt:subsInChunk[r]]];
                     
-                    [self addAlignmentsToPosArray:positionsArray fullSubsArr:array chunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev andED:numOfSubstitutions andQuery:query];
+                    [self addAlignmentsToPosArrayForFullSubsArr:array chunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev andED:numOfSubstitutions andQuery:query];
                 }
                 
                 numOfSubstitutions = 0;
@@ -80,7 +80,7 @@
     return positionsArray;
 }
 
-- (void)addAlignmentsToPosArray:(NSMutableArray*)positionsArray fullSubsArr:(NSArray*)subsArr chunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev andED:(int)distance andQuery:(char*)query {
+- (void)addAlignmentsToPosArrayForFullSubsArr:(NSArray*)subsArr chunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev andED:(int)distance andQuery:(char*)query {
     if ([self isNotDuplicateAlignment:subsArr andChunkNum:cNum]) {
         int pos = [[chunk.matchedPositions objectAtIndex:x] intValue] - cNum*len;
         

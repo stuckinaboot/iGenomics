@@ -14,8 +14,8 @@ typedef enum {
     MatchTypeSubsAndIndels
 } MatchType;
 
-#define kMaxBytesForIndexer 1001
 #define kMaxMultipleToCountAt 64
+#define kMaxBytesForIndexer 10000
 
 #define kACGTLen 4
 #define kACGTStr "ACGT"
@@ -23,6 +23,7 @@ typedef enum {
 
 #define kNoGappedBChar "X"
 
+extern int bytesForIndexer;
 extern int fileStrLen;
 extern char *originalStr;
 extern char *refStrBWT;

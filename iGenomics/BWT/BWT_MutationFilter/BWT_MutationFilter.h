@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BWT_Matcher.h"
 #import "MutationInfo.h"
+#import "GlobalVars.h"
 
 //Format- P: R: F: #A: #C: #G: #T:
 //     Pos: Real: Found: # of A: # of C: # of G: # of T:

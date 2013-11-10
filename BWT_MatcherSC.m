@@ -52,8 +52,8 @@
     
     if (chunkNum == 0) //No Duplicates If it is first chunk (nothing come before it)
         return TRUE;
-    
-    for (int i = 0; i<[subsArray count]-([subsArray count]-chunkNum); i++) {
+    int s = [subsArray count];
+    for (int i = 0; i<s-(s-chunkNum); i++) {
         if ([[subsArray objectAtIndex:i] intValue] == 0)
             return FALSE;
     }

@@ -13,6 +13,7 @@
     NSMutableArray *indexArray;
     char *sequence;
     int sequenceLength;
+    APTimer *bwtCreationTimer;
 }
 - (char*)createBWTFromResFileContents:(NSString*)contents;
 - (char*)getOriginalString;

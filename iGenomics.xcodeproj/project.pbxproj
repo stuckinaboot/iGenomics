@@ -26,7 +26,6 @@
 		A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162817796259002A1678 /* SystemConfiguration.framework */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
-		A3382FC516A111DB0042F59B /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
 		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
@@ -64,6 +63,7 @@
 		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
 		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
 		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
+		A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
 		A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */; };
 		A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD24160FA5AC00BC2168 /* BWT_Matcher.m */; };
@@ -758,7 +758,7 @@
 				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
 				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,
 				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
-				A3382FC516A111DB0042F59B /* ComputingController.m in Sources */,
+				A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */,
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
 				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
 				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,

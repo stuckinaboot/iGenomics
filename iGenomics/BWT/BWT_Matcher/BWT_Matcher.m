@@ -76,6 +76,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 
 - (void)matchReeds {
+    
+    if (!matchingTimer)
+        matchingTimer = [[APTimer alloc] init];
+    [matchingTimer start];
     char *reed;
     readDataStr = [[NSMutableString alloc] init];
     if (kDebugOn == 2)
@@ -92,7 +96,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         [delegate readProccesed:readDataStr];
         [readDataStr setString:@""];
     }
-    [exactMatcher timerPrint];
+//    [exactMatcher timerPrint];
+    [matchingTimer stopAndLog];
 }
 
 

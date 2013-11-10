@@ -34,6 +34,8 @@
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
     analysisController = [[AnalysisController alloc] init];
     
+    bytesForIndexer = ceilf((double)fileStrLen/kMaxMultipleToCountAt);
+    
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];

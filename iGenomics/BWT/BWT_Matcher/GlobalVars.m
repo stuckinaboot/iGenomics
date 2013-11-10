@@ -8,6 +8,7 @@
 
 #import "GlobalVars.h"
 
+int bytesForIndexer;
 int fileStrLen;
 char *originalStr;
 char *refStrBWT;

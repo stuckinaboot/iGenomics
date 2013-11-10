@@ -11,6 +11,9 @@
 @implementation BWT_Maker
 
 - (char*)createBWTFromResFileContents:(NSString *)contents {
+    if (!bwtCreationTimer)
+        bwtCreationTimer = [[APTimer alloc] init];
+    [bwtCreationTimer start];
 //    NSString *resFileStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
     
     sequence = strdup([contents UTF8String]);
@@ -93,6 +96,8 @@
         }
         bwt[i] = sequence[num];
     }
+    
+    [bwtCreationTimer stopAndLog];
 
     return bwt;
 }

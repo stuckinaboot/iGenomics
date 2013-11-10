@@ -11,6 +11,15 @@
 #import "BWT_Matcher.h"
 //#import "MatchedReadData.h"
 
-@interface BWT_Matcher_Approxi : BWT_MatcherSC
+@interface BWT_Matcher_Approxi : BWT_MatcherSC {
+    APTimer *approxTimer;
+    int charsToCheckRight, charsToCheckLeft;
+    int leftStrStart, rightStrStart;
+    int numOfSubstitutions;
+    int numOfChunks;
+    int sizeOfChunks;
+    
+    NSMutableArray *positionsArray;
+}
 - (NSArray*)approxiMatchForQuery:(char*)query andNumOfSubs:(int)amtOfSubs andIsReverse:(BOOL)isRev andReadLen:(int)queryLength;
 @end

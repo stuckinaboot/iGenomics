@@ -61,6 +61,8 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
     NSArray *reedsArray;
     int readNum;
     
+    APTimer *matchingTimer;
+    
     NSMutableArray *insertionsArray;
     
     BWT_MatcherSC *exactMatcher;
