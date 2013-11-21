@@ -15,7 +15,7 @@ typedef enum {
 } MatchType;
 
 #define kMaxMultipleToCountAt 64
-#define kMaxBytesForIndexer 10000
+#define kMaxBytesForIndexer 100000
 
 #define kACGTLen 4
 #define kACGTStr "ACGT"

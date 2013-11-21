@@ -75,6 +75,8 @@
 - (int)whichIndex:(int)index1 isSmaller:(int)index2 {
     
     NSAssert(sequence[sequenceLength-1] == '$', @"Expected $ at the end of the sequence");
+    if (index1 == index2)
+        return 0;//NEW CHANGE, THIS DOES WORK, MAKES THE BWT COMPUTING 10x faster
     for (int i = 0; i<sequenceLength; i++) {
         if (sequence[index1+i]<sequence[index2+i]) {
             return 1;
@@ -98,7 +100,6 @@
     }
     
     [bwtCreationTimer stopAndLog];
-
     return bwt;
 }
 

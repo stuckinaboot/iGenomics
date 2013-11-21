@@ -10,13 +10,12 @@
 
 @implementation Chunks
 
-@synthesize numOfSubs, matchedPositions, string;
+@synthesize numOfSubs, matchedPositions, str, range;
 
-- (id)init {
+- (id)initWithString:(char*)string {
     self = [super init];
-    string = calloc(kMaxChunkSize, 1);
+    str = string;
     matchedPositions = [[NSMutableArray alloc] init];
-//        subsAtMatchedPositionsArray = [[NSMutableArray alloc] init];
     return self;
 }
 

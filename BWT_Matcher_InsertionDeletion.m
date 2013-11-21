@@ -41,7 +41,7 @@
     int startPos = 0;//+1 is added during substring to account for the space when finding the pos
     int lenA = strlen(a)-1;
     Chunks *chunk = [chunkArray objectAtIndex:0];
-    int chunkSize = strlen(chunk.string);
+    int chunkSize = chunk.range.length;
     ED_Info *edInfo = [[ED_Info alloc] init];
     
     

@@ -15,6 +15,11 @@
 #define kAllowedNumOfDiffs 10
 #define kCharsToLookForAfter 2
 
+#define kLeft 0
+#define kDiag 1
+#define kUp 2
+#define kInitialize 3
+
 @interface EditDistance : NSObject {
     char *charA;//gappedA
     char *charB;//gappedB
@@ -23,7 +28,6 @@
     NSMutableArray *deletionPositions;
     NSMutableArray *insertionPositions;
 }
-- (void)computeEditDistance:(char *)a andB:(char *)b lenA:(int)lenA andLenB:(int)lenB andEditDistForCell:(CGPoint)cellpos;
 - (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
 @property (nonatomic) char *charA;

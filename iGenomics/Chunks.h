@@ -12,10 +12,13 @@
 
 @interface Chunks : NSObject {
     int numOfSubs;
-    char *string;
+    char *str;
+    NSRange range;
     NSMutableArray *matchedPositions;
 }
-@property (nonatomic) char* string;
+@property (nonatomic) NSRange range;
+@property (nonatomic) char* str;
 @property (nonatomic) int numOfSubs;
 @property (nonatomic, retain) NSMutableArray *matchedPositions;
+- (id)initWithString:(char*)string;
 @end

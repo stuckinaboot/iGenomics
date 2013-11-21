@@ -26,7 +26,7 @@
     int subsInChunk[numOfChunks], start = 0;
     
     for (int i = 0; i<numOfChunks; i++)
-        chunks[i] = [[Chunks alloc] init];
+        chunks[i] = [[Chunks alloc] initWithString:query];
     
     positionsArray = [[NSMutableArray alloc] init];
     
@@ -37,7 +37,7 @@
         charsToCheckRight = 0, charsToCheckLeft = 0, numOfSubstitutions = 0;
         
         for (int i = 0; i<numOfChunks; i++) {
-            chunks[i].matchedPositions = (NSMutableArray*)[self exactMatchForQuery:chunks[i].string andIsReverse:isRev andForOnlyPos:YES];
+            chunks[i].matchedPositions = (NSMutableArray*)[self exactMatchForChunk:chunks[i] andIsReverse:isRev andForOnlyPos:YES];
             
             for (int x = 0; x<[chunks[i].matchedPositions count]; x++) {
                 
@@ -45,7 +45,7 @@
                 charsToCheckRight = [self figureOutCharsToCheckRightForI:i andChunkLen:sizeOfChunks andQueryLen:queryLength andNumOfChunks:numOfChunks];
         
                 leftStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue] - charsToCheckLeft;
-                rightStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue]+strlen(chunks[i].string);
+                rightStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue]+chunks[i].range.length;
                 
                 for (int l = 0; l<charsToCheckLeft; l++) {
                     if (originalStr[l+leftStrStart] != query[l]) {
@@ -91,9 +91,9 @@
 
 - (void)setUpChunk:(Chunks*)chunk forQuery:(char*)query numOfChunks:(int)num chunkLen:(int)len start:(int)start andChunkNum:(int)cNum {
     if (cNum < num-1)
-        strcpy(chunk.string, strcat(substr(query, start, len),"\0"));
+        chunk.range = NSMakeRange(start, len);
     else
-        strcpy(chunk.string, strcat(substr(query, start, len+1),"\0"));
+        chunk.range = NSMakeRange(start, len+1);
     start += len;
 }
 

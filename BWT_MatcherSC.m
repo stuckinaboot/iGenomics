@@ -11,9 +11,6 @@
 @implementation BWT_MatcherSC
 
 - (NSArray*)exactMatchForQuery:(char*)query andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
-    if (timer == NULL)
-        timer = [[APTimer alloc] init];
-    [timer start];
     int i = strlen(query)-1;
     char c = query[i];
     int startPos = [self charsBeforeChar:c];
@@ -35,17 +32,43 @@
     
     if (!forOnlyPos)
     {
-        for (int l = 0; l<endPos-startPos; l++)
+        for (int l = 0; l<endPos-startPos; l++) {
             [posArray addObject:[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
-        [timer stop];
+        }
         return posArray;
     }
     else
     {
         for (int l = 0; l<endPos-startPos; l++)
-            [posArray addObject:[NSNumber numberWithInt:startPos+l]];
-        return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWMForArr:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
+            [posArray addObject:[NSNumber numberWithInteger:((ED_Info*)[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]).position]];
+        return posArray;
+//        return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWMForArr:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
     }
+}
+
+- (NSArray*)exactMatchForChunk:(Chunks*)chunk andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
+    
+    int i = chunk.range.length-1;
+    char c = chunk.str[chunk.range.location+i];
+    int startPos = [self charsBeforeChar:c];
+    
+    int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt]+1;
+    int endPos = [self charsBeforeChar:acgt[whichChar]];
+    
+    if (whichChar == kACGTLen)
+        endPos = fileStrLen;
+    i--;
+    while (startPos<endPos && i >= 0) {
+        c = chunk.str[chunk.range.location+i];
+        startPos = [self LFC:startPos andChar:c]-1;
+        endPos = [self LFC:endPos andChar:c]-1;
+        i--;
+    }
+    
+    NSMutableArray *posArray = [[NSMutableArray alloc] init];
+    for (int l = 0; l<endPos-startPos; l++)
+        [posArray addObject:[NSNumber numberWithInteger:[self positionOfChunkInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0]]];
+    return posArray;
 }
 
 - (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
@@ -60,10 +83,8 @@
     
     return TRUE;
 }
-- (ED_Info*)positionInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char *)query {
-    
-    NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
-    
+
+- (int)positionOfChunkInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed {
     int i;//index
     int pos = fileStrLen-1;
     int occurence = 1;//1 = 1st, etc.
@@ -72,8 +93,29 @@
     
     i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
     
-        if (position == i)
-            [positionsInBWTArray addObject:[NSNumber numberWithInt:pos-1]];
+    while (pos>=0) {
+        pos--;
+        lastChar = refStrBWT[i];
+        
+        occurence = [self whichOccurenceOfChar:lastChar inChar:refStrBWT atPos:i];
+        i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
+        
+        if (position == i) {
+            return pos-1;
+        }
+    }
+    return pos-1;
+}
+
+- (ED_Info*)positionInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char *)query {
+    
+    int i;//index
+    int pos = fileStrLen-1;
+    int occurence = 1;//1 = 1st, etc.
+    char lastChar = refStrBWT[0];
+    
+    
+    i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
     
     while (pos>=0) {
         pos--;

@@ -106,8 +106,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     NSArray *arr = [[NSMutableArray alloc] init];
     
     int forwardMatches = 0;//EX. ACA
-    int reverseMatches = 0;//EX. TGT
-    
+
     BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];
     
     for (int subs = 0; subs < amtOfSubs+1; subs++) {
@@ -123,8 +122,17 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         forwardMatches = [arr count];
         
         if (alignmentType > 0) {//Reverse also
-            if (subs == 0 || matchType == MatchTypeExactOnly)
+            if (subs == 0 || matchType == MatchTypeExactOnly) {
                 arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query] andIsReverse:YES andForOnlyPos:NO]];
+//                if ([arr count] > forwardMatches) {
+//                    int counter = 0;
+//                    for (ED_Info *info in arr) {
+//                        counter++;
+//                        if (counter >= forwardMatches)
+//                            printf("\n%i",info.isRev);
+//                    }
+//                }
+            }
             else {
                 if (matchType == MatchTypeExactAndSubs)
                     arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] andNumOfSubs:subs andIsReverse:YES andReadLen:readLen]];
@@ -132,8 +140,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                     arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES]];
             }
         }
-        
-        reverseMatches = [arr count]-forwardMatches;
         
         if (kDebugAllInfo>0) {
             //prints all objects of arr to the console
@@ -201,7 +207,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 //            printf("\n%i,%i,%c,%i,%s,%s", readNum,range.location,(isRev) ? '-' : '+', -2-1,"N/A",query);
     }
     [readDataStr setString:@""];
-    [readDataStr appendFormat:@"\n%i,%i,%c,%i,%s,%s", readNum,info.position,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
+    [readDataStr appendFormat:@"%i,%i,%c,%i,%s,%s\n", readNum,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
 }
 
 //INSERTION/DELETION
@@ -225,13 +231,13 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     NSMutableArray *chunkArray = [[NSMutableArray alloc] init];
     
     for (int i = 0; i<numOfChunks; i++) {
-        Chunks *chunk = [[Chunks alloc] init];
+        Chunks *chunk = [[Chunks alloc] initWithString:query];
         if (i < numOfChunks-1)
-            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks),"\0"));
+            chunk.range = NSMakeRange(start, sizeOfChunks);
         else
-            strcpy(chunk.string, strcat(substr(query, start, sizeOfChunks+(int)(float)queryLength % numOfChunks),"\0"));
+            chunk.range = NSMakeRange(start, sizeOfChunks+(int)(float)queryLength % numOfChunks);
         
-        chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForQuery:chunk.string andIsReverse:isRev andForOnlyPos:YES];
+        chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForChunk:chunk andIsReverse:isRev andForOnlyPos:YES];
         [chunkArray addObject:chunk];
         start += sizeOfChunks;
     }

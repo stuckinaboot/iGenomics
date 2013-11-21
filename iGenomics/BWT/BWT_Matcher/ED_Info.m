@@ -19,6 +19,7 @@
     gappedA = gA;
     gappedB = gB;
     insertion = ins;
+    isRev = isReverse;
     return self;
 }
 
