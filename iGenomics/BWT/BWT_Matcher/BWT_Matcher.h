@@ -17,6 +17,7 @@
 #import "ED_Info.h"
 #import "Chunks.h"
 #import "BWT_MatcherSC.h"
+#import "Read.h"
 //#import "MatchedReadData.h"
 
 //CONSTANTS
@@ -58,7 +59,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
     
     //New Vars
     int maxSubs;
-    NSArray *reedsArray;
+    NSMutableArray *reedsArray;
     int readNum;
     
     APTimer *matchingTimer;

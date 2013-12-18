@@ -23,6 +23,9 @@ typedef enum {
 
 #define kNoGappedBChar "X"
 
+#define kLineBreak @"\n"
+#define kTxt @"txt"
+
 extern int bytesForIndexer;
 extern int fileStrLen;
 extern char *originalStr;

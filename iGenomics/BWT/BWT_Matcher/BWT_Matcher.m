@@ -26,7 +26,15 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs {
 //    NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
-    reedsArray = [[NSArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
+    /*NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
+    reedsArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i<[preReadsArray count]; i+= 2) {
+        Read *read = [[Read alloc] initWithString:[preReadsArray objectAtIndex:i+1]];
+        read.readName = [preReadsArray objectAtIndex:i];
+        [reedsArray addObject:read];
+    }*/
+    reedsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
     numOfReads = [reedsArray count];
     
     NSString *firstRead = [reedsArray objectAtIndex:0];

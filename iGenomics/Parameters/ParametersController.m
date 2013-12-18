@@ -61,6 +61,8 @@
     reads = myReads;
     refFileName = refN;
     readFileName = readN;
+    [self fixGenomeForGenomeFileName:refFileName];
+    [self fixReadsForReadsFileName:readFileName];
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
@@ -83,6 +85,51 @@
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)fixReadsForReadsFileName:(NSString *)name {
+    NSString *ext = [self extFromFileName:name];
+    
+    if ([ext isEqualToString:kTxt])
+        return;
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[reads componentsSeparatedByString:kLineBreak]];
+    NSMutableString *newReads = [[NSMutableString alloc] init];
+    
+    int interval = 0;
+    BOOL isFq = FALSE;
+    
+    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame)
+        interval = 1;//Look at .fa file and this makes sense
+    if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame)
+//        isFq = TRUE;
+        interval = 1;//Look at .fq file and this makes sense
+    
+    for (int i = 0; i < [arr count]; i++) {
+        [newReads appendFormat:@"%@\n",[arr objectAtIndex:i]];
+        /*if (isFq) {
+            i++;
+            [newReads appendFormat:@"%@\n",[arr objectAtIndex:i]];
+            i+=2;
+        }*///uncomment when readName is done
+    }
+    reads = [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the trailing line break
+}
+- (void)fixGenomeForGenomeFileName:(NSString *)name {
+    NSString *ext = [self extFromFileName:name];
+    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
+        //Remove every line break, and remove the first line because it just has random stuff
+        //Finds first line break and removes characters up to and including that point
+        int index = [seq rangeOfString:kLineBreak].location;
+        seq = [seq stringByReplacingCharactersInRange:NSMakeRange(0, index+1) withString:@""];
+        seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
+    }
+    int len = seq.length;
+    if ([seq characterAtIndex:len-1] != '$')
+        seq = [NSString stringWithFormat:@"%@$",seq];
+}
+- (NSString*)extFromFileName:(NSString *)name {
+    return [name substringFromIndex:[name rangeOfString:@"." options:NSBackwardsSearch].location+1];
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <dropbox/dropbox.h>
 #import "APTimer.h"
+#import "GlobalVars.h"
 
 #import "ParametersController.h"
-
-#define kTxt @"txt"
 
 #define kDefaultRefFilesNamesFile @"NamesOfDefaultReferenceFiles"
 #define kDefaultReadsFilesNamesFile @"NamesOfDefaultReadsFiles"

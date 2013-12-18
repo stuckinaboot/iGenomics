@@ -87,6 +87,7 @@
 //BWT_Delegate
 - (void)readProccesed:(NSString *)readData {
     readsProcessed++;
+    NSLog(@"%i",readsProcessed);
     [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
     [exportDataStr appendFormat:@"%@",readData];
 }

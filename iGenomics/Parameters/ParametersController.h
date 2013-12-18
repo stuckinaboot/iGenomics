@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ComputingController.h"
 #import "APTimer.h"
+#import "Read.h"
 
 //------------Max ED is 10-----------------
 
@@ -31,6 +32,12 @@
  6-Read File Name
  
  */
+
+//Special File Types
+#define kFa @"fa"
+#define kFq @"fq"
+//Special File Types End
+
 #define kLastUsedParamsSaveKey @"LastUsedParamsKey"
 
 #define kStartSeqDelay 0.2
@@ -66,4 +73,8 @@
 - (void)beginActualSequencing;
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN;
 - (IBAction)backPressed:(id)sender;
+
+- (void)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq
+- (void)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
+- (NSString*)extFromFileName:(NSString*)name;
 @end
