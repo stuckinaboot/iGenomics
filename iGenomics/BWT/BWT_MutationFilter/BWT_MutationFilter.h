@@ -24,7 +24,6 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
     BWT_Matcher *matcher;
 
     char *refStr;
-    
     char *acgt;
     
     int fileStrLen;

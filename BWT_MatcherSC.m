@@ -97,7 +97,7 @@
         pos--;
         lastChar = refStrBWT[i];
         
-        occurence = [self whichOccurenceOfChar:lastChar inChar:refStrBWT atPos:i];
+        occurence = [self whichOccurenceOfChar:lastChar inBWT:refStrBWT atPos:i];
         i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
         
         if (position == i) {
@@ -121,7 +121,7 @@
         pos--;
         lastChar = refStrBWT[i];
         
-        occurence = [self whichOccurenceOfChar:lastChar inChar:refStrBWT atPos:i];
+        occurence = [self whichOccurenceOfChar:lastChar inBWT:refStrBWT atPos:i];
         i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
         
         if (position == i)
@@ -151,7 +151,7 @@
         pos--;
         lastChar = refStrBWT[i];
         
-        occurence = [self whichOccurenceOfChar:lastChar inChar:refStrBWT atPos:i];
+        occurence = [self whichOccurenceOfChar:lastChar inBWT:refStrBWT atPos:i];
         i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
         
         if ([posArray count] == [positionsInBWTArray count])
@@ -188,7 +188,7 @@
 }
 
 - (int)LFC:(int)r andChar:(char)c {
-    int occ = [self whichOccurenceOfChar:c inChar:refStrBWT atPos:r];
+    int occ = [self whichOccurenceOfChar:c inBWT:refStrBWT atPos:r];
     return [self charsBeforeChar:c]+occ;
 }
 
@@ -202,18 +202,19 @@
     
 }
 
-- (int)whichOccurenceOfChar:(char)c inChar:(char*)container atPos:(int)pos {
-    /*int topMultiple = 0;
-    for (int i = 0; i<pos; i++) {
-        if (topMultiple<pos)
-            topMultiple+=kMultipleToCountAt;
-        if (topMultiple>pos) {
-            topMultiple-=kMultipleToCountAt;
-            break;
-        }
-        if (topMultiple == pos)
-            break;
-    }*/
+/*
+- (int)whichOccurenceOfChar:(char)c inBWT:(char*)container atPos:(int)pos {
+    int topMultiple = 0;
+     for (int i = 0; i<pos; i++) {
+     if (topMultiple<pos)
+     topMultiple+=kMultipleToCountAt;
+     if (topMultiple>pos) {
+     topMultiple-=kMultipleToCountAt;
+     break;
+     }
+     if (topMultiple == pos)
+     break;
+     }
     int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt];
     int occurences = 0;
     int val = ((int)pos/kMultipleToCountAt)*kMultipleToCountAt;
@@ -226,6 +227,38 @@
         }
     }
     occurences++;
+    
+//    printf("%i, %c, %i\n",occurences,c,pos);
+    
+    return occurences;
+}
+*/
+
+- (int)whichOccurenceOfChar:(char)c inBWT:(char*)bwt atPos:(int)pos {
+    int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt];
+    int occurences = 0;
+    if (pos >= kMultipleToCountAt-1) {
+        int index = ((int)pos/kMultipleToCountAt)-1;
+        occurences = acgtOccurences[index][whichChar];
+        int startPos = (index+1)*kMultipleToCountAt;
+        for (int i = startPos; i<pos; i++)
+            if (c == refStrBWT[i])
+                occurences++;
+//        int acgtOccurencesIdx = (int)floor((pos-1)/kMultipleToCountAt);
+//        int val = acgtOccurencesIdx*kMultipleToCountAt;
+//        occurences = acgtOccurences[acgtOccurencesIdx][whichChar];
+        
+//        for (int i = val+1; i < pos-1; i++)
+//            if (bwt[i] == acgt[whichChar])
+//                occurences++;
+    }
+    else
+        for (int i = 0; i<pos; i++)
+            if (c == refStrBWT[i])
+                occurences++;
+    //This is because we know what character is at pos and that it will occur
+    occurences++;
+//    printf("%i, %c, %i\n",occur ences,c,pos);
     return occurences;
 }
 
@@ -251,7 +284,7 @@
          
          unraveledChar[pos] = lastChar;
          
-         occurence = [self whichOccurenceOfChar:lastChar inChar:lastColumn atPos:i];
+         occurence = [self whichOccurenceOfChar:lastChar inBWT:lastColumn atPos:i];
          i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
          unravCharSize++;
      }

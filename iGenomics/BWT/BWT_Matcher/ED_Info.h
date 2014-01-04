@@ -13,13 +13,14 @@
 @interface ED_Info : NSObject {
     char *gappedA;
     char *gappedB;
+    char *readName;
     int position;
     int distance;
     BOOL insertion;
     BOOL isRev;
 }
 @property (nonatomic) BOOL isRev;
-@property (nonatomic) char *gappedA, *gappedB;
+@property (nonatomic) char *gappedA, *gappedB, *readName;
 @property (nonatomic) int position, distance;
 @property (nonatomic) BOOL insertion;
 - (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse;

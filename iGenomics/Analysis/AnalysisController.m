@@ -412,7 +412,10 @@
             [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASEmailDataIndex) {
-            [self emailInfoForOption:EmailInfoOptionData];
+            if (kPrintExportStrToConsole == 0)
+                [self emailInfoForOption:EmailInfoOptionData];
+            else
+                printf("%s",[exportDataStr UTF8String]);
         }
         else if (buttonIndex == kExportASDropboxMutsIndex) {
             exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Export", nil];

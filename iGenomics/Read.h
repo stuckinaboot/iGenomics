@@ -12,4 +12,6 @@
     char *sequence;
     char *name;
 }
+@property (nonatomic) char *sequence, *name;
+- (id)initWithSeq:(char*)s andName:(char*)n;
 @end

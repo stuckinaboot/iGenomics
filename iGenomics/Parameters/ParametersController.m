@@ -94,26 +94,28 @@
         return;
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[reads componentsSeparatedByString:kLineBreak]];
+    [arr removeLastObject];//Need to make sure is correct for all files
     NSMutableString *newReads = [[NSMutableString alloc] init];
     
     int interval = 0;
-    BOOL isFq = FALSE;
     
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame)
-        interval = 1;//Look at .fa file and this makes sense
-    if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame)
-//        isFq = TRUE;
-        interval = 1;//Look at .fq file and this makes sense
+        interval = 2;//Look at .fa file and this makes sense
+    else if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame)
+        interval = 4;//Look at .fq file and this makes sense
     
-    for (int i = 0; i < [arr count]; i++) {
-        [newReads appendFormat:@"%@\n",[arr objectAtIndex:i]];
-        /*if (isFq) {
-            i++;
-            [newReads appendFormat:@"%@\n",[arr objectAtIndex:i]];
-            i+=2;
-        }*///uncomment when readName is done
+    if (interval > 0) {
+        for (int i = 0; i < [arr count]; i+= interval) {
+            [newReads appendFormat:@"%@\n",[[arr objectAtIndex:i] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""]];//Read name, takes away the '>' or '@'
+            [newReads appendFormat:@"%@\n",[arr objectAtIndex:i+1]];//Read
+            /*if (isFq) {
+                i++;
+                [newReads appendFormat:@"%@\n",[arr objectAtIndex:i]];
+                i+=2;
+            }*///uncomment when readName is done
+        }
+        reads = [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the trailing line break
     }
-    reads = [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the trailing line break
 }
 - (void)fixGenomeForGenomeFileName:(NSString *)name {
     NSString *ext = [self extFromFileName:name];

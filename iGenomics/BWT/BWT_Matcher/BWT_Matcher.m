@@ -26,19 +26,26 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs {
 //    NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
-    /*NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
+    
+    NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
     reedsArray = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i<[preReadsArray count]; i+= 2) {
-        Read *read = [[Read alloc] initWithString:[preReadsArray objectAtIndex:i+1]];
-        read.readName = [preReadsArray objectAtIndex:i];
-        [reedsArray addObject:read];
-    }*/
-    reedsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
+    if ([preReadsArray count] % 2 == 0) {//Means is possible, means is not a txt file
+        for (int i = 0; i<[preReadsArray count]; i+= 2) {
+            Read *read = [[Read alloc] initWithSeq:(char*)[[preReadsArray objectAtIndex:i+1] UTF8String] andName:(char*)[[preReadsArray objectAtIndex:i] UTF8String]];
+            [reedsArray addObject:read];
+        }
+    }
+    else
+        for (int i = 0; i < [preReadsArray count]; i++) {
+            NSString *n = [NSString stringWithFormat:@"%i",i];//More efficient way to do this?
+            Read *read = [[Read alloc] initWithSeq:(char*)[[preReadsArray objectAtIndex:i] UTF8String] andName:(char*)[n UTF8String]];
+            [reedsArray addObject:read];
+        }
     numOfReads = [reedsArray count];
     
-    NSString *firstRead = [reedsArray objectAtIndex:0];
-    readLen = firstRead.length;
+    Read *firstRead = [reedsArray objectAtIndex:0];
+    readLen = strlen(firstRead.sequence);
     
     refStrBWT = strdup(bwt);
     
@@ -51,7 +58,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     //kBytesForIndexer and kMultipleToCountAt Are Set here
     [self setUpBytesForIndexerAndMultipleToCountAt:fileStrLen];
     
-    [self setUpNumberOfOccurencesArray];
+//    [self setUpNumberOfOccurencesArray];
+    [self setUpNumberOfOccurencesArrayFast];
     
     self.insertionsArray = [[NSMutableArray alloc] init];
     
@@ -88,19 +96,21 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     if (!matchingTimer)
         matchingTimer = [[APTimer alloc] init];
     [matchingTimer start];
-    char *reed;
+    Read *reed;
     readDataStr = [[NSMutableString alloc] init];
     if (kDebugOn == 2)
         printf("%s\n",originalStr);
     
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
-        reed = (char*)[[reedsArray objectAtIndex:readNum] UTF8String];
+        reed = [reedsArray objectAtIndex:readNum];
         
-        ED_Info* a = [self getBestMatchForQuery:reed withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
+        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
         
-        if (a != NULL)
+        if (a != NULL) {
+            a.readName = reed.name;
             [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen) andED_Info:a];
-        
+            
+        }
         [delegate readProccesed:readDataStr];
         [readDataStr setString:@""];
     }
@@ -215,7 +225,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 //            printf("\n%i,%i,%c,%i,%s,%s", readNum,range.location,(isRev) ? '-' : '+', -2-1,"N/A",query);
     }
     [readDataStr setString:@""];
-    [readDataStr appendFormat:@"%i,%i,%c,%i,%s,%s\n", readNum,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
+    [readDataStr appendFormat:@"%s,%i,%c,%i,%s,%s\n", info.readName,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
 }
 
 //INSERTION/DELETION
@@ -315,6 +325,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     kMultipleToCountAt = kBytesForIndexer;
 }
 
+
 - (void)setUpNumberOfOccurencesArray {
     int len = fileStrLen;
     
@@ -341,6 +352,42 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                 spotInACGTOccurences++;
                 for (int x = 0; x<kACGTLen; x++)
                     occurences[x] = 0;
+                pos += kMultipleToCountAt;
+            }
+            for (int x = 0; x<kACGTLen; x++) {
+                if (acgt[x] == refStrBWT[i])
+                    acgtTotalOccs[x]++;
+            }
+        }
+    }
+}
+
+
+
+- (void)setUpNumberOfOccurencesArrayFast {
+    int len = fileStrLen;
+    
+    int spotInACGTOccurences = 0;
+    
+    acgt = calloc(kACGTLen, 1);
+    strcpy(acgt, kACGTStr);
+    
+    int occurences[kACGTLen];//0 = a, 1 = c, 2 = g, t = 3
+    for (int i = 0; i<kACGTLen; i++) {
+        occurences[i] = 0;
+        acgtTotalOccs[i] = 0;
+    }
+    int pos = kMultipleToCountAt-1;
+    if (len>kMultipleToCountAt) {
+        for (int i = 0; i<len; i++) {
+            for (int x = 0; x<kACGTLen; x++) {
+                if (acgt[x] == refStrBWT[i])
+                    occurences[x]++;
+            }
+            if (i == pos) {
+                for (int l = 0; l<kACGTLen; l++)
+                    acgtOccurences[spotInACGTOccurences][l] = occurences[l];
+                spotInACGTOccurences++;
                 pos += kMultipleToCountAt;
             }
             for (int x = 0; x<kACGTLen; x++) {

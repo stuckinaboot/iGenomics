@@ -14,6 +14,11 @@ typedef enum {
     MatchTypeSubsAndIndels
 } MatchType;
 
+//Debugging constants
+#define kPrintExportStrToConsole 1
+
+//End debugging constants
+
 #define kMaxMultipleToCountAt 64
 #define kMaxBytesForIndexer 100000
 

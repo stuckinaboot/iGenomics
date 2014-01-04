@@ -10,7 +10,7 @@
 
 @implementation ED_Info
 
-@synthesize gappedA, gappedB, position, distance, insertion, isRev;
+@synthesize gappedA, gappedB, readName, position, distance, insertion, isRev;
 
 - (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse {
     self = [super init];

@@ -16,7 +16,6 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
-		A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A321162117796229002A1678 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162017796229002A1678 /* dropbox.framework */; };
@@ -39,7 +38,9 @@
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
+		A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A358B82B187601A700076CB1 /* TESTSEQ.txt */; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
+		A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */ = {isa = PBXBuildFile; fileRef = A364B409186246E10052625C /* Ecoli.50k.testread.txt */; };
 		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
 		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
 		A36CCDFC184A8632004B9327 /* reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF9184A8632004B9327 /* reads.fa */; };
@@ -105,7 +106,6 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A321162017796229002A1678 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = dropbox.framework; sourceTree = "<group>"; };
@@ -136,8 +136,10 @@
 		A3531EA416BEFF3800768A31 /* MutationsInfoPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutationsInfoPopover.h; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.h"; sourceTree = "<group>"; };
 		A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutationsInfoPopover.m; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.m"; sourceTree = "<group>"; };
 		A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MutationsInfoPopover.xib; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.xib"; sourceTree = "<group>"; };
+		A358B82B187601A700076CB1 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
+		A364B409186246E10052625C /* Ecoli.50k.testread.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.50k.testread.txt; sourceTree = "<group>"; };
 		A3669B3316F689750034A1CC /* DNAColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNAColors.h; path = iGenomics/Analysis/Grid/DNAColors.h; sourceTree = "<group>"; };
 		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
 		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
@@ -532,7 +534,7 @@
 				A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */,
 				A3A7212718023A1600F4E229 /* Ecoli.50k.txt */,
 				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
-				A3181A6F16B7464B00A2B700 /* TESTSEQ.txt */,
+				A358B82B187601A700076CB1 /* TESTSEQ.txt */,
 			);
 			name = "Default Ref Files";
 			sourceTree = "<group>";
@@ -543,6 +545,7 @@
 				A36CCDF9184A8632004B9327 /* reads.fa */,
 				A36CCDFA184A8632004B9327 /* reads.fq */,
 				A3A7212918023A3100F4E229 /* Ecoli.50k.reads.txt */,
+				A364B409186246E10052625C /* Ecoli.50k.testread.txt */,
 				A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */,
 				A3181A7116B7465500A2B700 /* TESTREADS.txt */,
 			);
@@ -742,16 +745,17 @@
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
+				A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
-				A3181A7016B7464B00A2B700 /* TESTSEQ.txt in Resources */,
 				A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
+				A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,

@@ -1,5 +1,6 @@
 TESTREADS.txt
 Ecoli.5k.reads.txt
 Ecoli.50k.reads.txt
+Ecoli.50k.testread.txt
 reads.fa
 reads.fq
