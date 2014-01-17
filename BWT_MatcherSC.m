@@ -19,7 +19,7 @@
     int endPos = [self charsBeforeChar:acgt[whichChar]];
     
     if (whichChar == kACGTLen)
-        endPos = fileStrLen;
+        endPos = dgenomeLen;
     i--;
     while (startPos<endPos && i >= 0) {
         c = query[i];
@@ -33,7 +33,8 @@
     if (!forOnlyPos)
     {
         for (int l = 0; l<endPos-startPos; l++) {
-            [posArray addObject:[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
+            [posArray addObject:[[ED_Info alloc] initWithPos:benchmarkPositions[l+startPos] editDistance:0 gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
+//            [posArray addObject:[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
         }
         return posArray;
     }
@@ -56,7 +57,7 @@
     int endPos = [self charsBeforeChar:acgt[whichChar]];
     
     if (whichChar == kACGTLen)
-        endPos = fileStrLen;
+        endPos = dgenomeLen;
     i--;
     while (startPos<endPos && i >= 0) {
         c = chunk.str[chunk.range.location+i];
@@ -66,8 +67,10 @@
     }
     
     NSMutableArray *posArray = [[NSMutableArray alloc] init];
+//    for (int l = 0; l<endPos-startPos; l++)
+//        [posArray addObject:[NSNumber numberWithInteger:[self positionOfChunkInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0]]];
     for (int l = 0; l<endPos-startPos; l++)
-        [posArray addObject:[NSNumber numberWithInteger:[self positionOfChunkInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0]]];
+        [posArray addObject:[NSNumber numberWithInteger:benchmarkPositions[l+startPos]]];
     return posArray;
 }
 
@@ -86,31 +89,7 @@
 
 - (int)positionOfChunkInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed {
     int i;//index
-    int pos = fileStrLen-1;
-    int occurence = 1;//1 = 1st, etc.
-    char lastChar = refStrBWT[0];
-    
-    
-    i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
-    
-    while (pos>=0) {
-        pos--;
-        lastChar = refStrBWT[i];
-        
-        occurence = [self whichOccurenceOfChar:lastChar inBWT:refStrBWT atPos:i];
-        i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
-        
-        if (position == i) {
-            return pos-1;
-        }
-    }
-    return pos-1;
-}
-
-- (ED_Info*)positionInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char *)query {
-    
-    int i;//index
-    int pos = fileStrLen-1;
+    int pos = dgenomeLen-1;
     int occurence = 1;//1 = 1st, etc.
     char lastChar = refStrBWT[0];
     
@@ -125,6 +104,30 @@
         i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
         
         if (position == i)
+            return pos-1;
+    }
+    return pos-1;
+}
+
+- (ED_Info*)positionInBWTwithPosInBWM:(int)position andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos andForED:(int)ed andForQuery:(char *)query {
+    
+    int i;//index
+    int pos = dgenomeLen-1;
+    int occurence = 1;//1 = 1st, etc.
+    char lastChar = refStrBWT[0];
+    
+    
+    i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
+    
+    while (pos>=0) {
+        pos--;
+        lastChar = refStrBWT[i];
+        
+        occurence = [self whichOccurenceOfChar:lastChar inBWT:refStrBWT atPos:i];
+        
+        i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstCol];
+        
+        if (position == i)
             return [[ED_Info alloc] initWithPos:pos-1 editDistance:ed gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev];
     }
     return [[ED_Info alloc] initWithPos:pos-1 editDistance:ed gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev];
@@ -135,7 +138,7 @@
     NSMutableArray *positionsInBWTArray = [[NSMutableArray alloc] init];
     
     int i;//index
-    int pos = fileStrLen-1;
+    int pos = dgenomeLen-1;
     int occurence = 1;//1 = 1st, etc.
     char lastChar = refStrBWT[0];
     
@@ -237,20 +240,13 @@
 - (int)whichOccurenceOfChar:(char)c inBWT:(char*)bwt atPos:(int)pos {
     int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt];
     int occurences = 0;
-    if (pos >= kMultipleToCountAt-1) {
-        int index = ((int)pos/kMultipleToCountAt)-1;
+    if (pos >= kMultipleToCountAt) {//pos needs to be at a min kMultipleToCountAt so when they are divided it would be 1
+        int index = ((int)pos/kMultipleToCountAt)-1;//Index in the acgtOccurences array, is - 1 because should be getting the index before the character and all arrays start at index 0
         occurences = acgtOccurences[index][whichChar];
-        int startPos = (index+1)*kMultipleToCountAt;
-        for (int i = startPos; i<pos; i++)
+        int startPos = (index+1)*kMultipleToCountAt;//The appropriate way to get the startPos
+        for (int i = startPos; i < pos; i++)
             if (c == refStrBWT[i])
-                occurences++;
-//        int acgtOccurencesIdx = (int)floor((pos-1)/kMultipleToCountAt);
-//        int val = acgtOccurencesIdx*kMultipleToCountAt;
-//        occurences = acgtOccurences[acgtOccurencesIdx][whichChar];
-        
-//        for (int i = val+1; i < pos-1; i++)
-//            if (bwt[i] == acgt[whichChar])
-//                occurences++;
+                occurences++;//Occurences adds 1 for each occurence of that character btw the last benchmark and the position
     }
     else
         for (int i = 0; i<pos; i++)
@@ -267,9 +263,9 @@
  - (char*)unravelCharWithLastColumn:(char*)lastColumn firstColumn:(char*)firstColumn {
  
      int i = 0;//index
-     int pos = fileStrLen-1;
+     int pos = dgenomeLen-1;
      int occurence = 1;//1 = 1st, etc.
-     char *unraveledChar = calloc(fileStrLen, 1);
+     char *unraveledChar = calloc(dgenomeLen, 1);
      int unravCharSize = 0;
      char lastChar = lastColumn[i];
      
@@ -277,7 +273,7 @@
      
      i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
      
-     while (/*strlen(unraveledChar)*/unravCharSize<fileStrLen) {
+     while (/*strlen(unraveledChar)*/unravCharSize<dgenomeLen) {
          pos--;
          //Add lastChar to beginning of unraveledChar
          lastChar = lastColumn[i];

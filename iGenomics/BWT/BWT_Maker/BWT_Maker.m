@@ -14,7 +14,6 @@
     if (!bwtCreationTimer)
         bwtCreationTimer = [[APTimer alloc] init];
     [bwtCreationTimer start];
-//    NSString *resFileStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
     
     sequence = strdup([contents UTF8String]);
     sequenceLength = strlen(sequence);
@@ -93,6 +92,7 @@
     int num;
     for (int i = 0; i<[indexArray count]; i++) {
         num = [[indexArray objectAtIndex:i] intValue]-1;
+        benchmarkPositions[i] = num+1;//Not sure why + 1
         if (num<0) {
             num = sequenceLength-1;
         }

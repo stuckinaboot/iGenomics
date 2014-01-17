@@ -50,9 +50,6 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 @end
 @interface BWT_Matcher : NSObject {
     
-    //Constants made variable
-    int kBytesForIndexer;
-    
     //Parameters
     int matchType;
     int alignmentType;
@@ -83,7 +80,6 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 - (void)matchReeds;
 
 - (void)setUpNumberOfOccurencesArray;
-- (void)setUpBytesForIndexerAndMultipleToCountAt:(int)seqLen;//This can be modified if necessary
 
 //APPROXI MATCH
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently

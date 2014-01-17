@@ -23,6 +23,8 @@
     filePickerController = [[FilePickerController alloc] init];
     [filePickerController setUpDefaultFiles];
     
+    abtSectController = [[AboutSectionViewController alloc] init];
+    
     [super viewDidLoad];
 }
 
@@ -30,7 +32,9 @@
     [self presentViewController:filePickerController animated:YES completion:nil];
 }
 
-- (IBAction)showAboutPressed:(id)sender {}
+- (IBAction)showAboutPressed:(id)sender {
+    [self presentViewController:abtSectController animated:YES completion:nil];
+}
 
 - (void)viewDidUnload
 {

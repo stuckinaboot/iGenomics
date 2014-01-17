@@ -86,7 +86,7 @@
     
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
     //Set up gridView
-    int len = fileStrLen-1;//-1 so to not include $ sign
+    int len = dgenomeLen-1;//-1 so to not include $ sign
     
     [gridView setDelegate:self];
     gridView.refSeq = originalStr;
@@ -157,7 +157,7 @@
 //Interactive UI Elements besides gridview
 - (IBAction)posSearch:(id)sender {
     int i = [posSearchTxtFld.text doubleValue];
-    if (i > 0 && i<= fileStrLen) {//is a valid number
+    if (i > 0 && i<= dgenomeLen) {//is a valid number
         [gridView scrollToPos:i-1];//converts it to the normal scale where pos 0 is 0
     }
     [posSearchTxtFld resignFirstResponder];
@@ -407,6 +407,8 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (![GlobalVars internetAvailable])
+        return;
     if ([actionSheet isEqual:exportActionSheet]) {
         if (buttonIndex == kExportASEmailMutsIndex) {
             [self emailInfoForOption:EmailInfoOptionMutations];

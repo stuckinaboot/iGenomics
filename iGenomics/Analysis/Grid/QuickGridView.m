@@ -70,7 +70,7 @@
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
-    NSLog(@"\nPrev: %f Curr: %f Width: %f",prevOffset,offSet, self.frame.size.width);
+//    NSLog(@"\nPrev: %f Curr: %f Width: %f",prevOffset,offSet, self.frame.size.width);
     prevOffset = offSet;
     currOffset = offSet;
     drawingView.image = NULL;
@@ -172,17 +172,6 @@
                     }
                     else
                         [self drawText:[NSString stringWithFormat:@"%i",posOccArray[i-3][j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.defaultLbl.r, dnaColors.defaultLbl.g, dnaColors.defaultLbl.b}];
-                    
-                    /*if (i == totalRows-1) {//Insertions row
-                        //Put the posLbl above the graph if it should be there
-                        if ((j+1) % kPosLblInterval == 0) {//Multiple of kPosLblInterval
-                            NSNumberFormatter *num = [[NSNumberFormatter alloc] init];
-                            [num setNumberStyle: NSNumberFormatterDecimalStyle];
-                            
-                            CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, 0, 0, 1.0f);
-                            [[num stringFromNumber:[NSNumber numberWithInt:j+1]] drawInRect:CGRectMake(x+kPosLblOffsetX, y+kPosLblOffsetY, kIpadBoxWidth, boxHeight) withFont:[UIFont systemFontOfSize:kPosLblFontSize] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
-                        }
-                    }*/
                 }
             }
             else {//Graph Row
@@ -227,7 +216,8 @@
             y += kGridLineWidthRow+graphBoxHeight;
     }
     
-    drawingView.image = UIGraphicsGetImageFromCurrentImageContext();
+    [drawingView performSelectorInBackground:@selector(setImage:) withObject:UIGraphicsGetImageFromCurrentImageContext()];
+//    drawingView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     [delegate gridFinishedUpdatingWithOffset:currOffset];
@@ -389,13 +379,18 @@
 //ScrollView Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self setUpGridViewForPixelOffset:scrollView.contentOffset.x];
+    [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {
     UISlider* s = (UISlider*)sender;
+    [scrollingView setContentOffset:scrollingView.contentOffset animated:NO];
+    [self performSelector:@selector(updateScrollView:) withObject:s afterDelay:kScrollViewSliderUpdateInterval];
+//    [scrollingView setContentOffset:CGPointMake(s.value, 0)];
+}
+
+- (void)updateScrollView:(UISlider*)s {
     [scrollingView setContentOffset:CGPointMake(s.value, 0)];
-    [self setUpGridViewForPixelOffset:s.value];
 }
 
 /*

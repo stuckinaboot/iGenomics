@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Reachability.h"
 
 typedef enum {
     MatchTypeExactOnly,
@@ -19,8 +20,9 @@ typedef enum {
 
 //End debugging constants
 
-#define kMaxMultipleToCountAt 64
+#define kMaxMultipleToCountAt 16
 #define kMaxBytesForIndexer 100000
+#define kMultipleToCountAt 16
 
 #define kACGTLen 4
 #define kACGTStr "ACGT"
@@ -31,16 +33,23 @@ typedef enum {
 #define kLineBreak @"\n"
 #define kTxt @"txt"
 
+#define kScrollViewSliderUpdateInterval 0.001
+
+#define kNoInternetAlertTitle @"Error"
+#define kNoInternetAlertMsg @"No Internet Connection Available"
+#define kNoInternetAlertBtn @"Ok"
+
 extern int bytesForIndexer;
-extern int fileStrLen;
+extern int dgenomeLen; //d means including dollar sign
 extern char *originalStr;
 extern char *refStrBWT;
 extern char *firstCol;
 extern char *acgt;
 extern int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
+extern int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 extern int acgtTotalOccs[kACGTLen];
-extern int kMultipleToCountAt;
 
 @interface GlobalVars : NSObject
 + (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;
++ (BOOL)internetAvailable;
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "FilePickerController.h"
+#import "AboutSectionViewController.h"
 
 #import "BWT.h"
 #import "EditDistance.h"
@@ -18,6 +19,7 @@
 
 @interface ViewController : UIViewController {
     FilePickerController *filePickerController;
+    AboutSectionViewController *abtSectController;
     
     BWT *bwt;
 }

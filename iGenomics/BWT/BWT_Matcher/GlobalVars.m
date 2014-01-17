@@ -9,14 +9,14 @@
 #import "GlobalVars.h"
 
 int bytesForIndexer;
-int fileStrLen;
+int dgenomeLen;
 char *originalStr;
 char *refStrBWT;
 char *firstCol;
 char *acgt;
 int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
+int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 int acgtTotalOccs[kACGTLen];
-int kMultipleToCountAt;
 
 @implementation GlobalVars
 
@@ -55,6 +55,18 @@ int kMultipleToCountAt;
     }
     if (firstPos<endpos) {//firstpos is one to right of median
         [self sortArrayUsingQuicksort:array withStartPos:firstPos andEndPos:endpos];
+    }
+}
+
++ (BOOL)internetAvailable {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus != NotReachable)
+        return YES;
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kNoInternetAlertTitle message:kNoInternetAlertMsg delegate:self cancelButtonTitle:kNoInternetAlertBtn otherButtonTitles:nil];
+        [alert show];
+        return NO;
     }
 }
 

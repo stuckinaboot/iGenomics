@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController;
+@synthesize computingController, seq, reads;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,11 +87,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)fixReadsForReadsFileName:(NSString *)name {
+- (NSString*)fixReadsForReadsFileName:(NSString *)name {
     NSString *ext = [self extFromFileName:name];
     
     if ([ext isEqualToString:kTxt])
-        return;
+        return reads;
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[reads componentsSeparatedByString:kLineBreak]];
     [arr removeLastObject];//Need to make sure is correct for all files
@@ -116,8 +116,9 @@
         }
         reads = [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the trailing line break
     }
+    return reads;
 }
-- (void)fixGenomeForGenomeFileName:(NSString *)name {
+- (NSString*)fixGenomeForGenomeFileName:(NSString *)name {
     NSString *ext = [self extFromFileName:name];
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
         //Remove every line break, and remove the first line because it just has random stuff
@@ -129,6 +130,7 @@
     int len = seq.length;
     if ([seq characterAtIndex:len-1] != '$')
         seq = [NSString stringWithFormat:@"%@$",seq];
+    return seq;
 }
 - (NSString*)extFromFileName:(NSString *)name {
     return [name substringFromIndex:[name rangeOfString:@"." options:NSBackwardsSearch].location+1];

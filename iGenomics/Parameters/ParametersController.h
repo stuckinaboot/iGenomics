@@ -43,8 +43,6 @@
 #define kStartSeqDelay 0.2
 
 @interface ParametersController : UIViewController {
-    NSString *seq;
-    NSString *reads;
     
     //Parameters
     IBOutlet UISegmentedControl *matchTypeCtrl;
@@ -66,6 +64,7 @@
     NSString *readFileName;
 }
 @property (nonatomic) ComputingController *computingController;
+@property (nonatomic) NSString *seq, *reads;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)trimmingStateChanged:(id)sender;
 
@@ -74,7 +73,7 @@
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN;
 - (IBAction)backPressed:(id)sender;
 
-- (void)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq
-- (void)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
+- (NSString*)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
+- (NSString*)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
 - (NSString*)extFromFileName:(NSString*)name;
 @end

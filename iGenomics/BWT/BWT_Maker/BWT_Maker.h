@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "APTimer.h"
+#import "GlobalVars.h"
 
 @interface BWT_Maker : NSObject {
     NSMutableArray *indexArray;

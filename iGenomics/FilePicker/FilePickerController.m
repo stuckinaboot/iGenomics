@@ -69,6 +69,8 @@
         s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
     else if (selectedOptionRef == kDropboxFilesIndex) {
+        if (![GlobalVars internetAvailable])
+            return;
         DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         s = [file readString:nil];
@@ -81,6 +83,8 @@
         r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
     else if (selectedOptionReads == kDropboxFilesIndex) {
+        if (![GlobalVars internetAvailable])
+            return;
         DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         r = [file readString:nil];
@@ -91,6 +95,10 @@
 }
 
 - (IBAction)analyzePressed:(id)sender {
+    if (selectedOptionReads == kDropboxFilesIndex || selectedOptionRef == kDropboxFilesIndex)
+        if (![GlobalVars internetAvailable])
+            return;
+    
     parametersController.computingController = [[ComputingController alloc] init];
     
     [self presentViewController:parametersController.computingController animated:NO completion:nil];
@@ -140,6 +148,11 @@
         r = [file readString:nil];
         rName = [info.path name];
     }
+    
+    parametersController.seq = s;
+    parametersController.reads = r;
+    s = [parametersController fixGenomeForGenomeFileName:sName];
+    r = [parametersController fixReadsForReadsFileName:rName];
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -337,6 +350,10 @@
         else {
             selectedOptionRef = indexPath.row;
             if (selectedOptionRef == kDropboxFilesIndex) {
+                if (![GlobalVars internetAvailable]) {
+                    selectedOptionRef = -1;
+                    return;
+                }
                 if ([DBAccountManager sharedManager].linkedAccount == NULL)
                     [[DBAccountManager sharedManager] linkFromController:self];
                 DBAccount *account = [DBAccountManager sharedManager].linkedAccount;
@@ -389,6 +406,10 @@
         else {
             selectedOptionReads = indexPath.row;
             if (selectedOptionReads == kDropboxFilesIndex) {
+                if (![GlobalVars internetAvailable]) {
+                    selectedOptionReads = -1;
+                    return;
+                }
                 if ([DBAccountManager sharedManager].linkedAccount == NULL)
                     [[DBAccountManager sharedManager] linkFromController:self];
                 DBAccount *account = [DBAccountManager sharedManager].linkedAccount;

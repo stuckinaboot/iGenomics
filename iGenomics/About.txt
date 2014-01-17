@@ -1,0 +1,5 @@
+iGenomics: Mobile DNA Sequence Analysis
+Developed by Aspyn Palatnick and Dr. Michael Schatz
+of the Cold Spring Harbor Laboratory
+
+Application Version Number: %@

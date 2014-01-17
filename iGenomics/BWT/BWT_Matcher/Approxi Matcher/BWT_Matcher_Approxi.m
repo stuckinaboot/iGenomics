@@ -54,7 +54,7 @@
                     }
                 }
                 
-                if (rightStrStart>=fileStrLen-1)
+                if (rightStrStart>=dgenomeLen-1)
                     charsToCheckRight = 0;
                 for (int l = 0; l<charsToCheckRight && numOfSubstitutions <= amtOfSubs; l++) {
                     if (originalStr[l+rightStrStart] != query[(i+1)*sizeOfChunks+l]) {
@@ -84,7 +84,7 @@
     if ([self isNotDuplicateAlignment:subsArr andChunkNum:cNum]) {
         int pos = [[chunk.matchedPositions objectAtIndex:x] intValue] - cNum*len;
         
-        if (pos+qLen<=fileStrLen && pos>-1)
+        if (pos+qLen<=dgenomeLen && pos>-1)
             [positionsArray addObject:[[ED_Info alloc] initWithPos:pos editDistance:distance gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
     }
 }

@@ -12,7 +12,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 @implementation BWT_Matcher
 
-@synthesize kBytesForIndexer, /*kMultipleToCountAt,*/ matchType, alignmentType, insertionsArray;
+@synthesize /*kMultipleToCountAt,*/ matchType, alignmentType, insertionsArray;
 @synthesize readLen, refSeqLen, numOfReads;
 @synthesize delegate;
 
@@ -25,8 +25,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs {
-//    NSString* reedsString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:fileExt] encoding:NSUTF8StringEncoding error:nil];
-    
     NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
     reedsArray = [[NSMutableArray alloc] init];
     
@@ -52,18 +50,15 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     maxSubs = subs;
     readNum = 0;
     
-    fileStrLen = strlen(refStrBWT);
-    refSeqLen = fileStrLen;
-    
-    //kBytesForIndexer and kMultipleToCountAt Are Set here
-    [self setUpBytesForIndexerAndMultipleToCountAt:fileStrLen];
+    dgenomeLen = strlen(refStrBWT);
+    refSeqLen = dgenomeLen;
     
 //    [self setUpNumberOfOccurencesArray];
     [self setUpNumberOfOccurencesArrayFast];
     
     self.insertionsArray = [[NSMutableArray alloc] init];
     
-    firstCol = calloc(fileStrLen, 1);
+    firstCol = calloc(dgenomeLen, 1);
     
     firstCol[0] = '$';
     
@@ -76,12 +71,11 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     }
     
     for (int i = 0; i<kACGTLen; i++) {
-        for (int x = 0; x<fileStrLen; x++)
+        for (int x = 0; x<dgenomeLen; x++)
             posOccArray[i][x] = 0;
     }
-    /*
-    [self matchReeds];
     
+    /*
     if (kDebugPrintInsertions>0) {
         printf("\nINSERTIONS:");
         for (int i = 0; i<[insertionsArray count]; i++) {
@@ -273,7 +267,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 //        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andQuery:info.gappedA andED_Info:NULL andIsReverse:NO];
     
     //        INSERTIONS
-    if (info.position >= 0 && info.position+aLen<=fileStrLen) {//ISN'T Negative and doesn't go over
+    if (info.position >= 0 && info.position+aLen<=dgenomeLen) {//ISN'T Negative and doesn't go over
         int bLen = strlen(info.gappedB);
         int insCount = 0;
         char *smallSeq = calloc(kMaxInsertionSeqLen, 1);
@@ -320,14 +314,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 //INSERTION/DELETION END
 
-- (void)setUpBytesForIndexerAndMultipleToCountAt:(int)seqLen {
-    kBytesForIndexer = ceil(sqrt(seqLen));
-    kMultipleToCountAt = kBytesForIndexer;
-}
-
-
 - (void)setUpNumberOfOccurencesArray {
-    int len = fileStrLen;
+    int len = dgenomeLen;
     
     int spotInACGTOccurences = 0;
     
@@ -343,8 +331,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     if (len>kMultipleToCountAt) {
         for (int i = 0; i<len; i++) {
             for (int x = 0; x<kACGTLen; x++) {
-                if (acgt[x] == refStrBWT[i])
+                if (acgt[x] == refStrBWT[i]) {
                     occurences[x]++;
+                    acgtTotalOccs[x]++;
+                }
             }
             if (i == pos) {
                 for (int l = 0; l<kACGTLen; l++)
@@ -354,10 +344,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                     occurences[x] = 0;
                 pos += kMultipleToCountAt;
             }
-            for (int x = 0; x<kACGTLen; x++) {
+            /*for (int x = 0; x<kACGTLen; x++) {
                 if (acgt[x] == refStrBWT[i])
                     acgtTotalOccs[x]++;
-            }
+            }*/
         }
     }
 }
@@ -365,7 +355,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 
 - (void)setUpNumberOfOccurencesArrayFast {
-    int len = fileStrLen;
+    int len = dgenomeLen;
     
     int spotInACGTOccurences = 0;
     

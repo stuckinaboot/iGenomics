@@ -153,4 +153,5 @@
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb;
 
 - (void)scrollToPos:(double)p;
+- (void)updateScrollView:(UISlider*)s;
 @end

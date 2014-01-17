@@ -39,6 +39,7 @@
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
 		A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A358B82B187601A700076CB1 /* TESTSEQ.txt */; };
+		A35E39B41885FB7500651C41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E39B31885FB7500651C41 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */ = {isa = PBXBuildFile; fileRef = A364B409186246E10052625C /* Ecoli.50k.testread.txt */; };
 		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
@@ -55,6 +56,9 @@
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
 		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
+		A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */; };
+		A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */; };
+		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
 		A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BB5DC17D65C1400B5FE7F /* APTimer.m */; };
 		A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4C1665996E0023E961 /* TestRead.txt */; };
 		A3A18B5016659C320023E961 /* TestSeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3A18B4F16659C320023E961 /* TestSeq.txt */; };
@@ -137,6 +141,8 @@
 		A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutationsInfoPopover.m; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.m"; sourceTree = "<group>"; };
 		A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MutationsInfoPopover.xib; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.xib"; sourceTree = "<group>"; };
 		A358B82B187601A700076CB1 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
+		A35E39B21885FB7500651C41 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		A35E39B31885FB7500651C41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
 		A364B409186246E10052625C /* Ecoli.50k.testread.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.50k.testread.txt; sourceTree = "<group>"; };
@@ -158,6 +164,10 @@
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
 		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
+		A398B3CB1889ED2200EC43B8 /* AboutSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSectionViewController.h; sourceTree = "<group>"; };
+		A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSectionViewController.m; sourceTree = "<group>"; };
+		A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSectionViewController.xib; sourceTree = "<group>"; };
+		A398B3D11889EFA700EC43B8 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
 		A39BB5DB17D65C1400B5FE7F /* APTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APTimer.h; path = iGenomics/APTimer.h; sourceTree = SOURCE_ROOT; };
 		A39BB5DC17D65C1400B5FE7F /* APTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTimer.m; path = iGenomics/APTimer.m; sourceTree = SOURCE_ROOT; };
 		A3A18B4C1665996E0023E961 /* TestRead.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestRead.txt; sourceTree = "<group>"; };
@@ -282,13 +292,15 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A35E39B51885FB7B00651C41 /* Reachability */,
 				A338F59F17CFC7650075FAE3 /* SuccessBox.png */,
+				A398B3D11889EFA700EC43B8 /* About.txt */,
 				A34E6BB316C4753C00753D7C /* CSHLabIcon.png */,
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
 				A3A3D9C1167E6F1600CE98DC /* Test Files */,
 				A3A3D9BE167E6EFD00CE98DC /* Chunk Class */,
-				A3A3D9C0167E6F0E00CE98DC /* Ohter files */,
+				A3A3D9C0167E6F0E00CE98DC /* Other files */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -386,6 +398,7 @@
 			children = (
 				A310AF60158A5F7200E892AA /* ViewController.h */,
 				A310AF61158A5F7200E892AA /* ViewController.m */,
+				A398B3D01889ED2800EC43B8 /* About Section */,
 			);
 			name = HomeScreen;
 			sourceTree = "<group>";
@@ -429,6 +442,15 @@
 			name = "Mutations Popover";
 			sourceTree = "<group>";
 		};
+		A35E39B51885FB7B00651C41 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				A35E39B21885FB7500651C41 /* Reachability.h */,
+				A35E39B31885FB7500651C41 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		A3669B3616F689780034A1CC /* Colors */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +471,16 @@
 			name = "Search Query Popover";
 			sourceTree = "<group>";
 		};
+		A398B3D01889ED2800EC43B8 /* About Section */ = {
+			isa = PBXGroup;
+			children = (
+				A398B3CB1889ED2200EC43B8 /* AboutSectionViewController.h */,
+				A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */,
+				A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */,
+			);
+			name = "About Section";
+			sourceTree = "<group>";
+		};
 		A39BB5DE17D65C1900B5FE7F /* Timer */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,7 +499,7 @@
 			name = "Chunk Class";
 			sourceTree = "<group>";
 		};
-		A3A3D9C0167E6F0E00CE98DC /* Ohter files */ = {
+		A3A3D9C0167E6F0E00CE98DC /* Other files */ = {
 			isa = PBXGroup;
 			children = (
 				A310AF56158A5F7200E892AA /* iGenomics-Info.plist */,
@@ -475,7 +507,7 @@
 				A310AF5A158A5F7200E892AA /* main.m */,
 				A310AF5C158A5F7200E892AA /* iGenomics-Prefix.pch */,
 			);
-			name = "Ohter files";
+			name = "Other files";
 			sourceTree = "<group>";
 		};
 		A3A3D9C1167E6F1600CE98DC /* Test Files */ = {
@@ -719,6 +751,7 @@
 			files = (
 				A3A7212A18023A3100F4E229 /* Ecoli.50k.reads.txt in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
+				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
@@ -737,6 +770,7 @@
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
 				A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */,
 				A3A18B5016659C320023E961 /* TestSeq.txt in Resources */,
+				A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */,
 				A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */,
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
@@ -775,6 +809,7 @@
 				A3DA1CBB1859609300C10C22 /* Read.m in Sources */,
 				A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */,
 				A310AF5B158A5F7200E892AA /* main.m in Sources */,
+				A35E39B41885FB7500651C41 /* Reachability.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
 				A3971B0C158A635D001626F7 /* Chunks.m in Sources */,
@@ -784,6 +819,7 @@
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
+				A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */,
 				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,
 				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
 				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,

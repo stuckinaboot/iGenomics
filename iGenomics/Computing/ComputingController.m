@@ -32,12 +32,13 @@
 }
 
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
+    
     readProgressView.progress = 0;
     readsProcessed = 0;//In case view loaded late
     
     analysisController = [[AnalysisController alloc] init];
     
-    bytesForIndexer = ceilf((double)fileStrLen/kMaxMultipleToCountAt);
+    bytesForIndexer = ceilf((double)dgenomeLen/kMaxMultipleToCountAt);
     
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
@@ -71,6 +72,7 @@
     [self presentViewController:analysisController animated:YES completion:^{
         readProgressView.progress = 0;
         readsProcessed = 0;//In case view loaded late (backup protection for the ones uptop)
+        readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     }];
 }
 
@@ -87,13 +89,13 @@
 //BWT_Delegate
 - (void)readProccesed:(NSString *)readData {
     readsProcessed++;
-    NSLog(@"%i",readsProcessed);
     [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
     [exportDataStr appendFormat:@"%@",readData];
 }
 
 - (void)updateProgressView {
     readProgressView.progress += (1.0f/bwt.numOfReads);//This is 0 and everything is on main thread, this needs to change
+    readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     if (kPrintReadProcessedInConsole>0)
         printf("\n%i reads processed",readsProcessed);
 }
