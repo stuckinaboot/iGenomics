@@ -4,3 +4,7 @@ Ecoli.50k.reads.txt
 Ecoli.50k.testread.txt
 reads.fa
 reads.fq
+anthrax.capsule.reads.fa
+flu.H1N1.reads.fa
+lambdaphage.reads.fa
+phix174.reads.fa

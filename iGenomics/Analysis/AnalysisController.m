@@ -179,9 +179,11 @@
                     diff = (genomeLen-currPos-1)+possiblePos;
                 else
                     diff = possiblePos-currPos;
-                if (diff<abs(closestPos-currPos) && diff != 0)//lowest diff and Not same exact pos
+                if (closestPos > currPos && diff<abs(closestPos-currPos) && diff != 0)//lowest diff and Not same exact pos
                     closestPos = possiblePos;
-                if (diff == 1 || (possiblePos<currPos && diff > abs(closestPos-currPos)))
+                else if (closestPos < currPos && diff<abs(closestPos+(genomeLen-currPos-1)) && diff != 0)
+                    closestPos = possiblePos;
+                if (diff == 1/* || (possiblePos<currPos && diff > abs(closestPos-currPos))*/)
                     break;
             }
             [gridView scrollToPos:closestPos];
@@ -541,6 +543,10 @@
     } completion:^(BOOL finished){
         [successBox removeFromSuperview];
     }];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationLandscapeRight;
 }
 //Memory warning
 - (void)didReceiveMemoryWarning

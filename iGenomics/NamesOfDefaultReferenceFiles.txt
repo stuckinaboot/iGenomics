@@ -2,3 +2,7 @@ TESTSEQ.txt
 New.Ecoli.5k.txt
 Ecoli.50k.txt
 Ecoli.50k.fa
+anthrax.capsule.fa
+flu.H1N1.fa
+lambdaphage.fa
+phix174.fa

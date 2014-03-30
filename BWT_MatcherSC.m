@@ -34,7 +34,6 @@
     {
         for (int l = 0; l<endPos-startPos; l++) {
             [posArray addObject:[[ED_Info alloc] initWithPos:benchmarkPositions[l+startPos] editDistance:0 gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
-//            [posArray addObject:[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
         }
         return posArray;
     }
@@ -43,7 +42,6 @@
         for (int l = 0; l<endPos-startPos; l++)
             [posArray addObject:[NSNumber numberWithInteger:((ED_Info*)[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]).position]];
         return posArray;
-//        return (NSArray*)[[NSMutableArray alloc] initWithArray:[self positionInBWTwithPosInBWMForArr:posArray andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]];
     }
 }
 
@@ -204,38 +202,6 @@
     return loc-1;
     
 }
-
-/*
-- (int)whichOccurenceOfChar:(char)c inBWT:(char*)container atPos:(int)pos {
-    int topMultiple = 0;
-     for (int i = 0; i<pos; i++) {
-     if (topMultiple<pos)
-     topMultiple+=kMultipleToCountAt;
-     if (topMultiple>pos) {
-     topMultiple-=kMultipleToCountAt;
-     break;
-     }
-     if (topMultiple == pos)
-     break;
-     }
-    int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt];
-    int occurences = 0;
-    int val = ((int)pos/kMultipleToCountAt)*kMultipleToCountAt;
-    for (int i = 0; i<(int)val/kMultipleToCountAt; i++)
-        occurences+=acgtOccurences[i][whichChar];
-    if (val<pos) {
-        for (int i = val; i<pos; i++) {
-            if (container[i] == acgt[whichChar])
-                occurences++;
-        }
-    }
-    occurences++;
-    
-//    printf("%i, %c, %i\n",occurences,c,pos);
-    
-    return occurences;
-}
-*/
 
 - (int)whichOccurenceOfChar:(char)c inBWT:(char*)bwt atPos:(int)pos {
     int whichChar = [BWT_MatcherSC whichChar:c inContainer:acgt];

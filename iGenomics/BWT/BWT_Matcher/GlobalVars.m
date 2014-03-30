@@ -70,4 +70,8 @@ int acgtTotalOccs[kACGTLen];
     }
 }
 
++ (BOOL)isIpad {
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+}
+
 @end

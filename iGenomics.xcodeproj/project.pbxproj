@@ -25,6 +25,14 @@
 		A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162817796259002A1678 /* SystemConfiguration.framework */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
+		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
+		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
+		A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */; };
+		A337B19718E781B800919612 /* IPhonePopoverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A337B19618E781B800919612 /* IPhonePopoverHandler.m */; };
+		A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19818E7866700919612 /* ParametersController~iphone.xib */; };
+		A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19A18E78A3500919612 /* ComputingController~iphone.xib */; };
+		A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */; };
+		A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = A337B19F18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
 		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
@@ -79,6 +87,14 @@
 		A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2C160FA5F600BC2168 /* MySeq.txt */; };
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C215171777F72600B0C6D5 /* MutationInfo.m */; };
+		A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */; };
+		A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */; };
+		A3C9C9CC189E01480001EF64 /* flu.H1N1.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C2189E01480001EF64 /* flu.H1N1.fa */; };
+		A3C9C9CD189E01480001EF64 /* flu.H1N1.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C3189E01480001EF64 /* flu.H1N1.reads.fa */; };
+		A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C5189E01480001EF64 /* lambdaphage.fa */; };
+		A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */; };
+		A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C8189E01480001EF64 /* phix174.fa */; };
+		A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C9189E01480001EF64 /* phix174.reads.fa */; };
 		A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */; };
 		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
@@ -119,6 +135,17 @@
 		A321162817796259002A1678 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
+		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
+		A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilePreviewPopoverController.xib; sourceTree = "<group>"; };
+		A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FilePickerController~iphone.xib"; path = "FilePicker/FilePickerController~iphone.xib"; sourceTree = "<group>"; };
+		A337B19518E781B800919612 /* IPhonePopoverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPhonePopoverHandler.h; sourceTree = "<group>"; };
+		A337B19618E781B800919612 /* IPhonePopoverHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPhonePopoverHandler.m; sourceTree = "<group>"; };
+		A337B19818E7866700919612 /* ParametersController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ParametersController~iphone.xib"; path = "Parameters/ParametersController~iphone.xib"; sourceTree = "<group>"; };
+		A337B19A18E78A3500919612 /* ComputingController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ComputingController~iphone.xib"; path = "iGenomics/Computing/ComputingController~iphone.xib"; sourceTree = "<group>"; };
+		A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "AnalysisController~iphone.xib"; path = "iGenomics/Analysis/AnalysisController~iphone.xib"; sourceTree = "<group>"; };
+		A337B19E18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisControllerIPhoneToolbar.h; sourceTree = "<group>"; };
+		A337B19F18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisControllerIPhoneToolbar.m; sourceTree = "<group>"; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -195,6 +222,14 @@
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
 		A3C215161777F72600B0C6D5 /* MutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutationInfo.h; sourceTree = "<group>"; };
 		A3C215171777F72600B0C6D5 /* MutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutationInfo.m; sourceTree = "<group>"; };
+		A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.fa; sourceTree = "<group>"; };
+		A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.reads.fa; sourceTree = "<group>"; };
+		A3C9C9C2189E01480001EF64 /* flu.H1N1.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.fa; sourceTree = "<group>"; };
+		A3C9C9C3189E01480001EF64 /* flu.H1N1.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.reads.fa; sourceTree = "<group>"; };
+		A3C9C9C5189E01480001EF64 /* lambdaphage.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lambdaphage.fa; sourceTree = "<group>"; };
+		A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lambdaphage.reads.fa; sourceTree = "<group>"; };
+		A3C9C9C8189E01480001EF64 /* phix174.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.fa; sourceTree = "<group>"; };
+		A3C9C9C9189E01480001EF64 /* phix174.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.reads.fa; sourceTree = "<group>"; };
 		A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_Approxi.h; path = "Approxi Matcher/BWT_Matcher_Approxi.h"; sourceTree = "<group>"; };
 		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
 		A3D3F3B3172333650045A586 /* BWT_MatcherSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_MatcherSC.h; path = ../../../BWT_MatcherSC.h; sourceTree = "<group>"; };
@@ -312,8 +347,38 @@
 				A3FF3AD916AB26870095EACF /* Normal Popover */,
 				A3531EA916BEFF3C00768A31 /* Mutations Popover */,
 				A39316E216C08C5F0041BF4B /* Search Query Popover */,
+				A3304A0818BC70B600D8B0AC /* File Preview Popover */,
+				A337B19418E77F5800919612 /* iPhone Popover */,
 			);
 			name = Popovers;
+			sourceTree = "<group>";
+		};
+		A3304A0818BC70B600D8B0AC /* File Preview Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */,
+				A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */,
+				A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */,
+			);
+			name = "File Preview Popover";
+			sourceTree = "<group>";
+		};
+		A337B19418E77F5800919612 /* iPhone Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A337B19518E781B800919612 /* IPhonePopoverHandler.h */,
+				A337B19618E781B800919612 /* IPhonePopoverHandler.m */,
+			);
+			name = "iPhone Popover";
+			sourceTree = "<group>";
+		};
+		A337B1A118E78D1E00919612 /* iPhone Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				A337B19E18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.h */,
+				A337B19F18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m */,
+			);
+			name = "iPhone Toolbar";
 			sourceTree = "<group>";
 		};
 		A3382FC716A111E30042F59B /* Computing */ = {
@@ -322,6 +387,7 @@
 				A3382FC216A111DB0042F59B /* ComputingController.h */,
 				A3382FC316A111DB0042F59B /* ComputingController.m */,
 				A3382FC416A111DB0042F59B /* ComputingController.xib */,
+				A337B19A18E78A3500919612 /* ComputingController~iphone.xib */,
 			);
 			name = Computing;
 			path = ..;
@@ -333,6 +399,8 @@
 				A3382FC916A118A20042F59B /* AnalysisController.h */,
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
+				A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */,
+				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
 				A3382FD116A118D80042F59B /* Grid */,
 				A31AA7CD16E30BD700D3D808 /* Popovers */,
 			);
@@ -535,6 +603,7 @@
 				A3AC49B5169791EF00DD9266 /* FilePickerController.h */,
 				A3AC49B6169791EF00DD9266 /* FilePickerController.m */,
 				A3AC49B7169791EF00DD9266 /* FilePickerController.xib */,
+				A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */,
 			);
 			name = "File Picker";
 			sourceTree = "<group>";
@@ -545,6 +614,7 @@
 				A3AC49BB1697936100DD9266 /* ParametersController.h */,
 				A3AC49BC1697936100DD9266 /* ParametersController.m */,
 				A3AC49BD1697936100DD9266 /* ParametersController.xib */,
+				A337B19818E7866700919612 /* ParametersController~iphone.xib */,
 			);
 			name = Parameters;
 			sourceTree = "<group>";
@@ -556,6 +626,10 @@
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
 				A3AC49C616979B4600DD9266 /* Default Ref Files */,
 				A3AC49C716979B5500DD9266 /* Default Read Files */,
+				A3C9C9BE189E01480001EF64 /* anthrax.capsule */,
+				A3C9C9C1189E01480001EF64 /* flu.H1N1 */,
+				A3C9C9C4189E01480001EF64 /* lambdaphage */,
+				A3C9C9C7189E01480001EF64 /* phix174 */,
 			);
 			name = "REAL FILES";
 			sourceTree = "<group>";
@@ -633,6 +707,42 @@
 			);
 			name = Mutation;
 			sourceTree = "<group>";
+		};
+		A3C9C9BE189E01480001EF64 /* anthrax.capsule */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */,
+				A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */,
+			);
+			path = anthrax.capsule;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3C9C9C1189E01480001EF64 /* flu.H1N1 */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9C9C2189E01480001EF64 /* flu.H1N1.fa */,
+				A3C9C9C3189E01480001EF64 /* flu.H1N1.reads.fa */,
+			);
+			path = flu.H1N1;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3C9C9C4189E01480001EF64 /* lambdaphage */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9C9C5189E01480001EF64 /* lambdaphage.fa */,
+				A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */,
+			);
+			path = lambdaphage;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3C9C9C7189E01480001EF64 /* phix174 */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9C9C8189E01480001EF64 /* phix174.fa */,
+				A3C9C9C9189E01480001EF64 /* phix174.reads.fa */,
+			);
+			path = phix174;
+			sourceTree = SOURCE_ROOT;
 		};
 		A3D3F3AD17232FEB0045A586 /* Approxi Matcher */ = {
 			isa = PBXGroup;
@@ -751,30 +861,38 @@
 			files = (
 				A3A7212A18023A3100F4E229 /* Ecoli.50k.reads.txt in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
+				A3C9C9CD189E01480001EF64 /* flu.H1N1.reads.fa in Resources */,
 				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3971B07158A6342001626F7 /* reeds.txt in Resources */,
 				A3971B09158A634A001626F7 /* aseq.txt in Resources */,
+				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
 				A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */,
 				A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */,
 				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
 				A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */,
 				A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */,
 				A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */,
+				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
 				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
+				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A3A7212818023A1600F4E229 /* Ecoli.50k.txt in Resources */,
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
+				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
+				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
 				A3A18B4D1665996F0023E961 /* TestRead.txt in Resources */,
+				A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */,
 				A3A18B5016659C320023E961 /* TestSeq.txt in Resources */,
 				A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */,
 				A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */,
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
 				A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */,
+				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
 				A3AB48871676931200EA087D /* TestRead2.txt in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
@@ -785,6 +903,7 @@
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
+				A3C9C9CC189E01480001EF64 /* flu.H1N1.fa in Resources */,
 				A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
@@ -792,9 +911,13 @@
 				A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
+				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
+				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
+				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
 				A338F5A017CFC7650075FAE3 /* SuccessBox.png in Resources */,
+				A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,7 +938,9 @@
 				A3971B0C158A635D001626F7 /* Chunks.m in Sources */,
 				A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */,
 				A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */,
+				A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */,
 				A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */,
+				A337B19718E781B800919612 /* IPhonePopoverHandler.m in Sources */,
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
@@ -833,6 +958,7 @@
 				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
+				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
 				A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */,
 				A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */,

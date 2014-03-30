@@ -44,6 +44,8 @@ typedef enum {
 #define kExportNameCustomOption @"Export"
 
 #define kGraphRowHeight 80
+#define kGraphRowHeightIPhone 20
+#define kGraphRowHeightIPad 80
 
 #define kNumOfRowsInGridView 9 //1 ref, 2 found, 3 A, 4 C, 5 G, 6 T, 7 -, 8 +
 

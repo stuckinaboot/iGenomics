@@ -14,6 +14,8 @@
 
 @implementation FilePickerController
 
+@synthesize previewPopoverController;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,6 +34,7 @@
     selectedRowRef = 0;
     selectedOptionReads = -1;
     selectedRowReads = 0;
+    
     
     [self lockContinueBtns];
     
@@ -269,6 +272,13 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:MyIdentifier];
+        UITapGestureRecognizer *recognizer;
+        if ([tableView isEqual:referenceFilePicker])
+            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongPressedRef:)];
+        else if ([tableView isEqual:readsFilePicker])
+            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongPressedReads:)];
+        [recognizer setNumberOfTapsRequired:kMinTapsRequired];
+        [cell addGestureRecognizer:recognizer];
     }
     
     // Here we use the provided setImageWithURL: method to load the web image
@@ -317,6 +327,54 @@
     }
     
     return cell;
+}
+
+- (IBAction)cellLongPressedRef:(id)sender {
+    NSString *s = @"";
+    
+    if (selectedOptionRef == kSavedFilesIndex) {
+        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
+        NSArray *arr = [self getFileNameAndExtForFullName:s];
+        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+    }
+    else if (selectedOptionRef == kDropboxFilesIndex) {
+        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        DBFile *file = [dbFileSys openFile:info.path error:nil];
+        s = [file readString:nil];
+    }
+    [self displayPopoverOutOfCellWithContents:s atLocation:[(UIGestureRecognizer*)sender locationInView:self.view]];
+}
+
+- (IBAction)cellLongPressedReads:(id)sender {
+    NSString *r = @"";
+    
+    if (selectedOptionReads == kSavedFilesIndex) {
+        r = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        NSArray *arr = [self getFileNameAndExtForFullName:r];
+        r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+    }
+    else if (selectedOptionReads == kDropboxFilesIndex) {
+        DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        DBFile *file = [dbFileSys openFile:info.path error:nil];
+        r = [file readString:nil];
+    }
+    [self displayPopoverOutOfCellWithContents:r atLocation:[(UIGestureRecognizer*)sender locationInView:self.view]];
+}
+
+- (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc {
+    if (previewPopoverController.isPopoverVisible)
+        return;
+    FilePreviewPopoverController *controller = [[FilePreviewPopoverController alloc] init];
+    [controller updateTxtViewContents:contents];
+    
+    if ([GlobalVars isIpad]) {
+        previewPopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+        [previewPopoverController setPopoverContentSize:controller.txtView.frame.size];
+        [previewPopoverController presentPopoverFromRect:CGRectMake(loc.x, loc.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    else {
+        [self presentViewController:controller animated:YES completion:nil];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -515,6 +573,10 @@
         }
     }
     return [NSArray arrayWithObjects:[fileName substringToIndex:index], [fileName substringFromIndex:index+1],nil];
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    
 }
 
 - (void)didReceiveMemoryWarning

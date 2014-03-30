@@ -70,7 +70,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         }
     }
     
-    for (int i = 0; i<kACGTLen; i++) {
+    for (int i = 0; i<kACGTLen+2; i++) {
         for (int x = 0; x<dgenomeLen; x++)
             posOccArray[i][x] = 0;
     }

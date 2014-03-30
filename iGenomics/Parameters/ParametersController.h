@@ -42,6 +42,9 @@
 
 #define kStartSeqDelay 0.2
 
+#define kKeyboardToolbarHeight 50
+#define kKeyboardDoneBtnTxt @"Done"
+
 @interface ParametersController : UIViewController {
     
     //Parameters
@@ -67,6 +70,7 @@
 @property (nonatomic) NSString *seq, *reads;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)trimmingStateChanged:(id)sender;
+- (IBAction)dismissKeyboard:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;

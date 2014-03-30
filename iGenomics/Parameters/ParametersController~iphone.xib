@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParametersController">
+            <connections>
+                <outlet property="alignmentTypeCtrl" destination="102" id="300"/>
+                <outlet property="enterMaxEDLbl" destination="64" id="298"/>
+                <outlet property="matchTypeCtrl" destination="30" id="297"/>
+                <outlet property="maxEDTxtFld" destination="56" id="299"/>
+                <outlet property="mutationSupportTxtFld" destination="144" id="301"/>
+                <outlet property="view" destination="2" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                    <rect key="frame" x="16" y="477" width="288" height="71"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.47753894181568546" green="0.73597507688284047" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="71" id="2QV-Jj-MhE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <state key="normal" title="Start Sequencing"/>
+                    <connections>
+                        <action selector="startSequencingPressed:" destination="-1" eventType="touchUpInside" id="19"/>
+                    </connections>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="30">
+                    <rect key="frame" x="5" y="106" width="310" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Exact Only"/>
+                        <segment title="Subs"/>
+                        <segment title="Subs/In/Dels"/>
+                    </segments>
+                    <connections>
+                        <action selector="matchTypeChanged:" destination="-1" eventType="valueChanged" id="305"/>
+                    </connections>
+                </segmentedControl>
+                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="56">
+                    <rect key="frame" x="247" y="150" width="64" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="RaK-fW-E89"/>
+                        <constraint firstAttribute="height" constant="23" id="wRy-YS-W4O"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="144">
+                    <rect key="frame" x="246" y="225" width="64" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="1QM-WC-dRc"/>
+                        <constraint firstAttribute="height" constant="21" id="bff-EH-c6F"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Enter Max Edit Distance (10 is Max):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                    <rect key="frame" x="9" y="151" width="278" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select Type of Matching:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74">
+                    <rect key="frame" x="9" y="68" width="302" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="vWv-FX-3Pn"/>
+                        <constraint firstAttribute="width" constant="302" id="vf3-6u-rOc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Select Alignment Type:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92">
+                    <rect key="frame" x="22" y="304" width="277" height="56"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="277" id="DgK-1K-gDZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="102">
+                    <rect key="frame" x="17" y="356" width="287" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Forward and Reverse"/>
+                        <segment title="Forward"/>
+                    </segments>
+                </segmentedControl>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mutation support:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="107">
+                    <rect key="frame" x="11" y="202" width="215" height="62"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="215" id="TwN-d5-hlh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-rT-1VO">
+                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Parameters Selector" id="0ku-fB-XBf"/>
+                    </items>
+                </navigationBar>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fFN-tw-cMk">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Parameter Selector" id="Vvv-SR-BL3">
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="9Su-mV-eYE">
+                                <connections>
+                                    <action selector="backPressed:" destination="-1" id="rKd-DA-FBX"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ymc-rT-1VO" firstAttribute="leading" secondItem="fFN-tw-cMk" secondAttribute="leading" id="0iw-lv-MYl"/>
+                <constraint firstItem="64" firstAttribute="leading" secondItem="74" secondAttribute="leading" id="6zI-5I-SnM"/>
+                <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" constant="20" id="72E-aR-NhE"/>
+                <constraint firstItem="102" firstAttribute="leading" secondItem="30" secondAttribute="leading" constant="12" id="7Fz-hP-sQC"/>
+                <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="9" id="84S-aJ-9Xe"/>
+                <constraint firstItem="107" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="11" id="CLL-JR-8wn"/>
+                <constraint firstItem="fFN-tw-cMk" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Ej6-oH-CwL"/>
+                <constraint firstItem="7" firstAttribute="trailing" secondItem="102" secondAttribute="trailing" id="IuO-Lc-qAg"/>
+                <constraint firstItem="56" firstAttribute="baseline" secondItem="64" secondAttribute="baseline" constant="-2" id="J7o-mg-B8T"/>
+                <constraint firstItem="74" firstAttribute="top" secondItem="30" secondAttribute="top" constant="-38" id="NpP-j0-Q5O"/>
+                <constraint firstItem="107" firstAttribute="top" secondItem="92" secondAttribute="bottom" constant="-158" id="Nsd-29-Z3p"/>
+                <constraint firstItem="30" firstAttribute="leading" secondItem="74" secondAttribute="trailing" constant="-306" id="Oay-ir-sw4"/>
+                <constraint firstItem="144" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" constant="-48.5" id="PbZ-rL-Cg5"/>
+                <constraint firstItem="56" firstAttribute="leading" secondItem="64" secondAttribute="trailing" constant="-40" id="Pf0-eF-yOK"/>
+                <constraint firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="5" id="Uj8-BU-sxW"/>
+                <constraint firstItem="144" firstAttribute="top" secondItem="102" secondAttribute="bottom" constant="-159" id="UtX-E6-97i"/>
+                <constraint firstItem="fFN-tw-cMk" firstAttribute="top" secondItem="Ymc-rT-1VO" secondAttribute="top" id="VLI-TL-NJk"/>
+                <constraint firstItem="fFN-tw-cMk" firstAttribute="top" secondItem="2" secondAttribute="top" id="bqs-IG-bew"/>
+                <constraint firstItem="144" firstAttribute="leading" secondItem="107" secondAttribute="trailing" constant="20" id="dIu-xD-7zy"/>
+                <constraint firstItem="fFN-tw-cMk" firstAttribute="leading" secondItem="Ymc-rT-1VO" secondAttribute="trailing" id="eFY-Ez-egw"/>
+                <constraint firstItem="fFN-tw-cMk" firstAttribute="centerX" secondItem="74" secondAttribute="centerX" id="fiO-8v-jBo"/>
+                <constraint firstItem="144" firstAttribute="centerY" secondItem="107" secondAttribute="centerY" constant="2" id="g6v-NG-zue"/>
+                <constraint firstItem="102" firstAttribute="top" secondItem="64" secondAttribute="bottom" constant="184" id="gQJ-c3-Mue"/>
+                <constraint firstItem="74" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="9" id="hs0-Fd-oBG"/>
+                <constraint firstItem="7" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="k78-Gz-qgb"/>
+                <constraint firstItem="107" firstAttribute="top" secondItem="102" secondAttribute="bottom" constant="-182" id="kSP-KX-VXz"/>
+                <constraint firstItem="92" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="22" id="kvl-9j-bd5"/>
+                <constraint firstItem="64" firstAttribute="centerY" secondItem="56" secondAttribute="centerY" id="rIc-ZC-neN"/>
+                <constraint firstItem="30" firstAttribute="centerX" secondItem="74" secondAttribute="centerX" id="sC1-cb-iB8"/>
+                <constraint firstItem="56" firstAttribute="top" secondItem="30" secondAttribute="bottom" constant="16" id="sLm-54-X9T"/>
+                <constraint firstItem="92" firstAttribute="top" secondItem="74" secondAttribute="bottom" constant="200" id="sjU-CU-HIE"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

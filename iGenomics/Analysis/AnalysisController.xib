@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -144,7 +144,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="CSHLabIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="916">
-                    <rect key="frame" x="20" y="57" width="103" height="103"/>
+                    <rect key="frame" x="20" y="49" width="103" height="103"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="103" id="48x-Y2-Wxx"/>
@@ -228,8 +228,8 @@
                 <constraint firstItem="916" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="9Ka-jT-JvN"/>
                 <constraint firstItem="886" firstAttribute="leading" secondItem="894" secondAttribute="trailing" constant="56" id="9bl-fQ-vqf"/>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="41" id="9hn-1u-WP9"/>
-                <constraint firstItem="1017" firstAttribute="top" secondItem="916" secondAttribute="bottom" constant="21" id="DmZ-9E-tKu"/>
-                <constraint firstItem="916" firstAttribute="top" secondItem="873" secondAttribute="top" id="FZT-YO-o9v"/>
+                <constraint firstItem="1017" firstAttribute="top" secondItem="916" secondAttribute="bottom" constant="29" id="DmZ-9E-tKu"/>
+                <constraint firstItem="916" firstAttribute="top" secondItem="873" secondAttribute="top" constant="-8" id="FZT-YO-o9v"/>
                 <constraint firstItem="542" firstAttribute="leading" secondItem="559" secondAttribute="leading" id="IPM-Nl-fdp"/>
                 <constraint firstItem="791" firstAttribute="centerX" secondItem="873" secondAttribute="centerX" id="IjF-ud-lxJ"/>
                 <constraint firstItem="904" firstAttribute="centerX" secondItem="799" secondAttribute="centerX" id="JMu-MB-gM1"/>
@@ -249,7 +249,7 @@
                 <constraint firstItem="904" firstAttribute="baseline" secondItem="542" secondAttribute="baseline" id="YUo-tB-NQk"/>
                 <constraint firstItem="799" firstAttribute="leading" secondItem="791" secondAttribute="trailing" constant="13" id="Ym6-AM-KVF"/>
                 <constraint firstItem="799" firstAttribute="trailing" secondItem="886" secondAttribute="trailing" id="ZVV-DC-CFj"/>
-                <constraint firstItem="916" firstAttribute="top" secondItem="791" secondAttribute="bottom" constant="25" id="abj-ps-bIJ"/>
+                <constraint firstItem="916" firstAttribute="top" secondItem="791" secondAttribute="bottom" constant="17" id="abj-ps-bIJ"/>
                 <constraint firstItem="886" firstAttribute="baseline" secondItem="894" secondAttribute="baseline" id="b3Q-Zz-2eG"/>
                 <constraint firstItem="1172" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="bV6-VQ-1nR"/>
                 <constraint firstItem="557" firstAttribute="baseline" secondItem="588" secondAttribute="baseline" id="eF9-hH-A7w"/>

@@ -32,6 +32,23 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (![GlobalVars isIpad]) {
+        UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
+        
+        keyboardToolbar.items = [NSArray arrayWithObjects:
+                               [[UIBarButtonItem alloc]initWithTitle:kKeyboardDoneBtnTxt style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)],
+                               nil];
+        maxEDTxtFld.inputAccessoryView = keyboardToolbar;
+        mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
+    }
+}
+
+- (IBAction)dismissKeyboard:(id)sender {
+    [mutationSupportTxtFld resignFirstResponder];
+    [maxEDTxtFld resignFirstResponder];
+}
+
 - (IBAction)matchTypeChanged:(id)sender {
     if (matchTypeCtrl.selectedSegmentIndex > 0) {
         //Show ED picker

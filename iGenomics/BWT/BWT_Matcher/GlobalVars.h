@@ -52,4 +52,5 @@ extern int acgtTotalOccs[kACGTLen];
 @interface GlobalVars : NSObject
 + (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;
 + (BOOL)internetAvailable;
++ (BOOL)isIpad;
 @end
