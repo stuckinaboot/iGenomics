@@ -21,6 +21,7 @@ typedef enum {
 #import "MutationsInfoPopover.h"
 #import "SearchQueryResultsPopover.h"
 #import "APTimer.h"
+#import "AnalysisControllerIPhoneToolbar.h"
 
 #import "QuickGridView.h"
 
@@ -43,7 +44,7 @@ typedef enum {
 
 #define kExportNameCustomOption @"Export"
 
-#define kGraphRowHeight 80
+//#define kGraphRowHeight 80
 #define kGraphRowHeightIPhone 20
 #define kGraphRowHeightIPad 80
 
@@ -53,8 +54,8 @@ typedef enum {
 #define kRefN 1 //Index of Ref in rows in gridView
 #define kFndN 2 //Index of Found in rows in gridView
 
-#define kPinchZoomMaxLevel 2
-#define kPinchZoomMinLevel 20
+#define kPinchZoomMaxLevel 3
+#define kPinchZoomMinLevel 10
 #define kPinchZoomStartingLevel 3
 #define kPinchZoomFactor 2 //(in pixels)
 
@@ -82,6 +83,8 @@ typedef enum {
 #define kSideLblY 20
 #define kSideLblW 30
 #define kSideLblH 30
+
+#define kAnalysisNavBarHeightIPhone 44
 
 #define kExportASTitle @"Export Data"
 #define kExportASEmailMutations @"Email Mutations"
@@ -140,6 +143,7 @@ typedef enum {
     
     //Non-interactive Interface Elements
     UILabel *nLbl[kNumOfRowsInGridView];//cov, ref, found, a, c, g, t, del, ins
+    int graphRowHeight;
     
     UIPinchGestureRecognizer *pinchRecognizer;
     int zoomLevel;
@@ -195,7 +199,11 @@ typedef enum {
     UIAlertView *exportDataDropboxErrorAlert;
     NSString *chosenMutsExportPath;
     NSString *chosenDataExportPath;
+    
+    IBOutlet AnalysisControllerIPhoneToolbar *analysisControllerIPhoneToolbar;
 }
+- (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
+
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 - (void)singleTapOccured:(UITapGestureRecognizer*)sender;
 - (void)gridPointClickedWithCoordInGrid:(CGPoint)c andClickedPt:(CGPoint)o;

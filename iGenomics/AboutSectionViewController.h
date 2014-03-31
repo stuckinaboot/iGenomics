@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GlobalVars.h"
 
 #define kAboutSectionFileName @"About"
 #define kAboutSectionFileExt @"txt"

@@ -579,6 +579,13 @@
     
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    if (![GlobalVars isIpad])
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskLandscape;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

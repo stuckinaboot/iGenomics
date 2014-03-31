@@ -30,6 +30,11 @@
     
     zoomLevel = kPinchZoomStartingLevel;
     
+    if ([GlobalVars isIpad])
+        graphRowHeight = kGraphRowHeightIPad;
+    else
+        graphRowHeight = kGraphRowHeightIPhone;
+    
     pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
     [gridView addGestureRecognizer:pinchRecognizer];
     
@@ -38,7 +43,10 @@
     
     [gridView firstSetUp];
     
-    gridView.kIpadBoxWidth = kDefaultIpadBoxWidth;
+    if ([GlobalVars isIpad])
+        gridView.kIpadBoxWidth = kDefaultIpadBoxWidth;
+    else
+        gridView.kIpadBoxWidth = kDefaultIphoneBoxWidth;
     
     mutationSupportStpr.maximumValue = kMutationSupportMax;
     
@@ -63,7 +71,6 @@
 }
 
 - (void)resetDisplay {
-    
     //Set up info lbls
     [genomeNameLbl setText:[NSString stringWithFormat:@"%@",genomeFileName]];
     [genomeLenLbl setText:[NSString stringWithFormat:@"%@%i",kLengthLblStart,genomeLen]];
@@ -90,7 +97,7 @@
     
     [gridView setDelegate:self];
     gridView.refSeq = originalStr;
-    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:kGraphRowHeight];
+    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
 }
@@ -161,6 +168,8 @@
         [gridView scrollToPos:i-1];//converts it to the normal scale where pos 0 is 0
     }
     [posSearchTxtFld resignFirstResponder];
+    if (![GlobalVars isIpad])
+        [analysisControllerIPhoneToolbar removeFromSuperview];
 }
 
 - (IBAction)seqSearch:(id)sender {
@@ -193,6 +202,8 @@
         }
     }
     [seqSearchTxtFld resignFirstResponder];
+    if (![GlobalVars isIpad])
+        [analysisControllerIPhoneToolbar removeFromSuperview];
 }
 
 - (IBAction)showSeqSearchResults:(id)sender {
@@ -206,8 +217,13 @@
 }
 
 - (IBAction)showMutTBView:(id)sender {
-    popoverController = [[UIPopoverController alloc] initWithContentViewController:mutsPopover];
-    [popoverController presentPopoverFromRect:showMutTBViewBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    if ([GlobalVars isIpad]) {
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:mutsPopover];
+        [popoverController presentPopoverFromRect:showMutTBViewBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    else {
+        [self presentViewController:mutsPopover animated:YES completion:nil];
+    }
 }
 
 //Mutation Support Stepper
@@ -296,18 +312,22 @@
     double xCoord = gridView.currOffset+pt.x;
     
     //Find the box that was clicked
-    CGPoint box = CGPointMake([gridView firstPtToDrawForOffset:xCoord],(int)((pt.y-(kPosLblHeight+kGraphRowHeight))/(kGridLineWidthRow+gridView.boxHeight)));//Get the tapped box
+    CGPoint box = CGPointMake([gridView firstPtToDrawForOffset:xCoord],(int)((pt.y-(kPosLblHeight+graphRowHeight))/(kGridLineWidthRow+gridView.boxHeight)));//Get the tapped box
     
     [self gridPointClickedWithCoordInGrid:box andClickedPt:pt];
 }
 
 //Grid view delegate
 - (void)gridPointClickedWithCoordInGrid:(CGPoint)c andClickedPt:(CGPoint)o {
+    UIViewController *vc;
     if (c.y < 2 && c.y >= 0) {
         AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
         apc.contentSizeForViewInPopover = CGSizeMake(kAnalysisPopoverW, kAnalysisPopoverH);
         
-        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
+        vc = apc;
+        if (![GlobalVars isIpad])
+            [self presentViewController:apc animated:YES completion:nil];
+//        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
         
         apc.posLbl.text = [NSString stringWithFormat:@"Position: %1.0f",c.x+1];//+1 so doesn't start at 0
         
@@ -325,13 +345,17 @@
         
         ipc.contentSizeForViewInPopover = CGSizeMake(kInsPopoverW, kInsPopoverH);
         
-        popoverController = [[UIPopoverController alloc] initWithContentViewController:ipc];
+        vc = ipc;
+        if (![GlobalVars isIpad])
+            [self presentViewController:ipc animated:YES completion:nil];
+//        popoverController = [[UIPopoverController alloc] initWithContentViewController:ipc];
     }
-    else
-        return;
-    CGRect rect = CGRectMake(c.x*(gridView.kIpadBoxWidth+kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+kGraphRowHeight+kPosLblHeight, gridView.kIpadBoxWidth, gridView.boxHeight);
-    
-    [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    if ([GlobalVars isIpad]) {
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
+        CGRect rect = CGRectMake(c.x*(gridView.kIpadBoxWidth+kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.kIpadBoxWidth, gridView.boxHeight);
+
+        [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    }
 }
 
 - (void)mutationFoundAtPos:(int)pos {
@@ -545,9 +569,17 @@
     }];
 }
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationLandscapeRight;
+//Iphone Support
+
+- (IBAction)displayAnalysisIPhoneToolbar:(id)sender {
+    [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
+    [self.view addSubview:analysisControllerIPhoneToolbar];
 }
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 //Memory warning
 - (void)didReceiveMemoryWarning
 {

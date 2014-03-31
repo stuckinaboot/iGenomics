@@ -41,9 +41,17 @@
     totalRows = rows;
     totalCols = cols;
     
-    kIpadBoxWidth = kDefaultIpadBoxWidth;
-    kTxtFontSize = kDefaultTxtFontSize;
-                                      
+    if ([GlobalVars isIpad]) {
+        kIpadBoxWidth = kDefaultIpadBoxWidth;
+        kTxtFontSize = kDefaultTxtFontSizeIPad;
+        kMinTxtFontSize = kMinTxtFontSizeIPad;
+    }
+    else {
+        kIpadBoxWidth = kDefaultIphoneBoxWidth;
+        kTxtFontSize = kDefaultTxtFontSizeIPhone;
+        kMinTxtFontSize = kMinTxtFontSizeIPhone;
+    }
+    
     [self resetScrollViewContentSize];
     [self addSubview:drawingView];
     [self addSubview:scrollingView];
@@ -216,11 +224,17 @@
             y += kGridLineWidthRow+graphBoxHeight;
     }
     
-    [drawingView performSelectorInBackground:@selector(setImage:) withObject:UIGraphicsGetImageFromCurrentImageContext()];
+    newDrawingViewImg = UIGraphicsGetImageFromCurrentImageContext();
+    [self setNeedsDisplay];
+//    [drawingView performSelectorInBackground:@selector(setImage:) withObject:UIGraphicsGetImageFromCurrentImageContext()];
 //    drawingView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     [delegate gridFinishedUpdatingWithOffset:currOffset];
+}
+
+- (void)drawRect:(CGRect)rect {
+    drawingView.image = newDrawingViewImg;
 }
 
 - (void)resetScrollViewContentSize {

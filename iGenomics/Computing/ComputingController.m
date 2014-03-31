@@ -75,11 +75,6 @@
         readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     }];
 }
-
-- (void)viewDidAppear:(BOOL)animated {
-
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -99,4 +94,13 @@
     if (kPrintReadProcessedInConsole>0)
         printf("\n%i reads processed",readsProcessed);
 }
+
+//Supported Orientations
+- (NSUInteger)supportedInterfaceOrientations {
+    if (![GlobalVars isIpad])
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskLandscape;
+}
+
 @end

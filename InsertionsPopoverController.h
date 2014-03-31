@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BWT_Matcher_InsertionDeletion_InsertionHolder.h"
+#import "IPhonePopoverHandler.h"
 
 #define kInsPopoverW 450
 #define kInsPopoverH 250
 
-@interface InsertionsPopoverController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface InsertionsPopoverController : IPhonePopoverHandler <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *insTBView;
     
     NSMutableArray *arr;

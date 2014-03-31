@@ -33,6 +33,8 @@
 		A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19A18E78A3500919612 /* ComputingController~iphone.xib */; };
 		A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */; };
 		A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = A337B19F18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m */; };
+		A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A337B1A218E7D2A200919612 /* settingsIcon.png */; };
+		A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B1A418E7DC5400919612 /* AboutSectionViewController~iphone.xib */; };
 		A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FC416A111DB0042F59B /* ComputingController.xib */; };
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
 		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
@@ -146,6 +148,8 @@
 		A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "AnalysisController~iphone.xib"; path = "iGenomics/Analysis/AnalysisController~iphone.xib"; sourceTree = "<group>"; };
 		A337B19E18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisControllerIPhoneToolbar.h; sourceTree = "<group>"; };
 		A337B19F18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisControllerIPhoneToolbar.m; sourceTree = "<group>"; };
+		A337B1A218E7D2A200919612 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsIcon.png; sourceTree = "<group>"; };
+		A337B1A418E7DC5400919612 /* AboutSectionViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutSectionViewController~iphone.xib"; sourceTree = "<group>"; };
 		A3382FC216A111DB0042F59B /* ComputingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComputingController.h; path = iGenomics/Computing/ComputingController.h; sourceTree = "<group>"; };
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A337B1A218E7D2A200919612 /* settingsIcon.png */,
 				A35E39B51885FB7B00651C41 /* Reachability */,
 				A338F59F17CFC7650075FAE3 /* SuccessBox.png */,
 				A398B3D11889EFA700EC43B8 /* About.txt */,
@@ -545,6 +550,7 @@
 				A398B3CB1889ED2200EC43B8 /* AboutSectionViewController.h */,
 				A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */,
 				A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */,
+				A337B1A418E7DC5400919612 /* AboutSectionViewController~iphone.xib */,
 			);
 			name = "About Section";
 			sourceTree = "<group>";
@@ -880,6 +886,7 @@
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A3A7212818023A1600F4E229 /* Ecoli.50k.txt in Resources */,
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
+				A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */,
 				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
@@ -907,6 +914,7 @@
 				A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
+				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
 				A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,

@@ -74,6 +74,12 @@
         [delegate mutationAtPosPressedInPopover:info.pos+1];//+1 because it starts at 0
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (![GlobalVars isIpad])
+        [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 - (void)didReceiveMemoryWarning

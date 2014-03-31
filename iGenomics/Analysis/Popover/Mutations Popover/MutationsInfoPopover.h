@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MutationInfo.h"
+#import "IPhonePopoverHandler.h"
+#import "GlobalVars.h"
 
 #define kIsHeteroStr "(Hetero)"
 #define kIsNotHeteroStr ""
@@ -17,7 +19,7 @@
 - (void)mutationsPopoverDidFinishUpdating;
 @end
 
-@interface MutationsInfoPopover : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface MutationsInfoPopover : IPhonePopoverHandler <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *mutationsTBView;
     
     NSArray *mutationsArray;

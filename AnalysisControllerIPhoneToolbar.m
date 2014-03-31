@@ -14,18 +14,33 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void)addDoneBtnForTxtFields:(NSArray*)txtFields {
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
+    
+    keyboardToolbar.items = [NSArray arrayWithObjects:
+                             [[UIBarButtonItem alloc]initWithTitle:kKeyboardDoneBtnTxt style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)],
+                             nil];
+    
+    UITextField *txtField;
+    for (int i = 0; i < [txtFields count]; i++) {
+        txtField = [txtFields objectAtIndex:i];
+        txtField.inputAccessoryView = keyboardToolbar;
+    }
 }
-*/
+
+- (IBAction)dismissKeyboard:(id)sender {
+    for (UITextField* field in [self subviews]) {
+        [field resignFirstResponder];
+    }
+}
+
+- (IBAction)donePressed:(id)sender {
+    [self removeFromSuperview];
+}
 
 @end

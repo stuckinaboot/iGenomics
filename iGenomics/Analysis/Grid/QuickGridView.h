@@ -15,9 +15,13 @@
 #define kMaxColumns 10000 //Every 10,000 columns, ask user if they would like to view next 10,000
 
 #define kDefaultIpadBoxWidth 64
+#define kDefaultIphoneBoxWidth 64
 
-#define kDefaultTxtFontSize 50
-#define kMinTxtFontSize 40
+
+#define kDefaultTxtFontSizeIPad 50
+#define kMinTxtFontSizeIPad 40
+#define kDefaultTxtFontSizeIPhone 20
+#define kMinTxtFontSizeIPhone 15
 
 #define kScrollSpeed 0.5
 
@@ -109,6 +113,7 @@
     //Constants made into a variable for pinch zoom
     double kIpadBoxWidth;
     double kTxtFontSize;
+    double kMinTxtFontSize;
     int kPosLblInterval;
     
     double graphBoxHeight;
@@ -123,6 +128,8 @@
     
     //Temp variable
     float prevOffset;
+    
+    UIImage *newDrawingViewImg;
 }
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, graphBoxHeight;
 @property (nonatomic) double kIpadBoxWidth;

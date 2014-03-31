@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GlobalVars.h"
 
-@interface AnalysisControllerIPhoneToolbar : UIView
+@interface AnalysisControllerIPhoneToolbar : UIView {
 
+}
+- (IBAction)donePressed:(id)sender;
+- (void)addDoneBtnForTxtFields:(NSArray*)txtFields;
 @end

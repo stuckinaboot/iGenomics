@@ -42,9 +42,6 @@
 
 #define kStartSeqDelay 0.2
 
-#define kKeyboardToolbarHeight 50
-#define kKeyboardDoneBtnTxt @"Done"
-
 @interface ParametersController : UIViewController {
     
     //Parameters

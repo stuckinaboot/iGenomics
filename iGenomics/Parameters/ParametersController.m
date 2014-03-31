@@ -153,6 +153,13 @@
     return [name substringFromIndex:[name rangeOfString:@"." options:NSBackwardsSearch].location+1];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    if (![GlobalVars isIpad])
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskLandscape;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

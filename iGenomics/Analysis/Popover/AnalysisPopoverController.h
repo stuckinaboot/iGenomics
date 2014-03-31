@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IPhonePopoverHandler.h"
 
 #define kAnalysisPopoverW 150
 #define kAnalysisPopoverH 250
 
-@interface AnalysisPopoverController : UIViewController {
+@interface AnalysisPopoverController : IPhonePopoverHandler {
     IBOutlet UILabel *posLbl;
     IBOutlet UILabel *heteroLbl;
 }

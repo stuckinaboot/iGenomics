@@ -39,6 +39,9 @@ typedef enum {
 #define kNoInternetAlertMsg @"No Internet Connection Available"
 #define kNoInternetAlertBtn @"Ok"
 
+#define kKeyboardToolbarHeight 50
+#define kKeyboardDoneBtnTxt @"Done"
+
 extern int bytesForIndexer;
 extern int dgenomeLen; //d means including dollar sign
 extern char *originalStr;
