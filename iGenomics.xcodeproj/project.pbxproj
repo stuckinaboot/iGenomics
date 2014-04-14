@@ -59,6 +59,7 @@
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
 		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
+		A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A38C320918EB6E040070F49E /* ThreeLines.png */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
 		A3971B07158A6342001626F7 /* reeds.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B06158A6342001626F7 /* reeds.txt */; };
@@ -105,6 +106,11 @@
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
 		A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */; };
 		A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */; };
+		A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE881F18FC79CE00F9D682 /* CopyLabel.m */; };
+		A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882218FC7DC000F9D682 /* IconIdea2.png */; };
+		A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882418FC7EA800F9D682 /* Images.xcassets */; };
+		A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */; };
+		A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
 		A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */; };
 		A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */; };
@@ -186,6 +192,7 @@
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
 		A3700F4817E3A955007C2CC7 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = iGenomics/Analysis/Grid/QuickGridView.m; sourceTree = "<group>"; };
+		A38C320918EB6E040070F49E /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
 		A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQueryResultsPopover.xib; sourceTree = "<group>"; };
@@ -246,6 +253,12 @@
 		A3DB3770170214B9007F0B9E /* RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RGB.m; path = iGenomics/RGB.m; sourceTree = "<group>"; };
 		A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = New.Ecoli.5k.txt; path = ../../../Downloads/snps2/New.Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.5k.reads.txt; path = ../../../Downloads/snps2/Ecoli.5k.reads.txt; sourceTree = "<group>"; };
+		A3EE881E18FC79CE00F9D682 /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
+		A3EE881F18FC79CE00F9D682 /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
+		A3EE882218FC7DC000F9D682 /* IconIdea2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconIdea2.png; path = iGenomics/IconIdea2.png; sourceTree = "<group>"; };
+		A3EE882418FC7EA800F9D682 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iGenomicsLogo.png; path = iGenomics/iGenomicsLogo.png; sourceTree = "<group>"; };
+		A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconIdea2-ExtraLarge.png"; path = "iGenomics/IconIdea2-ExtraLarge.png"; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
 		A3F41AF31599E75400DE95C9 /* Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3F41B041599EB7B00DE95C9 /* Ecoli.5k.BWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.5k.BWT.txt; sourceTree = "<group>"; };
@@ -280,7 +293,10 @@
 			isa = PBXGroup;
 			children = (
 				A321162C177B3EBE002A1678 /* IconIdea1.png */,
+				A3EE882218FC7DC000F9D682 /* IconIdea2.png */,
+				A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */,
 				A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */,
+				A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */,
 				A310AF54158A5F7200E892AA /* iGenomics */,
 				A310AF4D158A5F7200E892AA /* Frameworks */,
 				A310AF4B158A5F7200E892AA /* Products */,
@@ -324,6 +340,7 @@
 				A3FF3AD316AB17FC0095EACF /* Globals */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
 				A34734D4166AC1AB00C4271E /* XIBs */,
+				A3EE882418FC7EA800F9D682 /* Images.xcassets */,
 			);
 			path = iGenomics;
 			sourceTree = "<group>";
@@ -331,6 +348,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A38C320918EB6E040070F49E /* ThreeLines.png */,
 				A337B1A218E7D2A200919612 /* settingsIcon.png */,
 				A35E39B51885FB7B00651C41 /* Reachability */,
 				A338F59F17CFC7650075FAE3 /* SuccessBox.png */,
@@ -341,6 +359,7 @@
 				A3A3D9C1167E6F1600CE98DC /* Test Files */,
 				A3A3D9BE167E6EFD00CE98DC /* Chunk Class */,
 				A3A3D9C0167E6F0E00CE98DC /* Other files */,
+				A3EE882118FC79D200F9D682 /* Copy Label */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -788,6 +807,15 @@
 			name = RGB;
 			sourceTree = "<group>";
 		};
+		A3EE882118FC79D200F9D682 /* Copy Label */ = {
+			isa = PBXGroup;
+			children = (
+				A3EE881E18FC79CE00F9D682 /* CopyLabel.h */,
+				A3EE881F18FC79CE00F9D682 /* CopyLabel.m */,
+			);
+			name = "Copy Label";
+			sourceTree = "<group>";
+		};
 		A3FF3AD316AB17FC0095EACF /* Globals */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3A7212A18023A3100F4E229 /* Ecoli.50k.reads.txt in Resources */,
+				A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A3C9C9CD189E01480001EF64 /* flu.H1N1.reads.fa in Resources */,
 				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
@@ -881,8 +910,10 @@
 				A3F41AF41599E75400DE95C9 /* Ecoli.5k.txt in Resources */,
 				A3F41B051599EB7B00DE95C9 /* Ecoli.5k.BWT.txt in Resources */,
 				A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */,
+				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
 				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
 				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
+				A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */,
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A3A7212818023A1600F4E229 /* Ecoli.50k.txt in Resources */,
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
@@ -897,9 +928,11 @@
 				A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */,
 				A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */,
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
+				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
 				A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
+				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
 				A3AB48871676931200EA087D /* TestRead2.txt in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
@@ -952,6 +985,7 @@
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
+				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
 				A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */,
 				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,
 				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
@@ -1072,6 +1106,8 @@
 		A310AF6C158A5F7200E892AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1092,6 +1128,8 @@
 		A310AF6D158A5F7200E892AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

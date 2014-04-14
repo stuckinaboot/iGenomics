@@ -10,7 +10,7 @@
 
 @implementation QuickGridView
 
-@synthesize boxHeight, kIpadBoxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, graphBoxHeight;
+@synthesize boxHeight, kIpadBoxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
 
 - (void)firstSetUp {
     prevOffset = -1;
@@ -417,3 +417,4 @@
 */
 
 @end
+ 

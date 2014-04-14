@@ -38,6 +38,13 @@
     
     [self lockContinueBtns];
     
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
+    
+    keyboardToolbar.items = [NSArray arrayWithObjects:
+                             [[UIBarButtonItem alloc]initWithTitle:kKeyboardDoneBtnTxt style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)],
+                             nil];
+    readsPickerSearchBar.inputAccessoryView = keyboardToolbar;
+    refPickerSearchBar.inputAccessoryView = keyboardToolbar;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -55,6 +62,10 @@
         dbFileSys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
         [DBFilesystem setSharedFilesystem:dbFileSys];
     }
+}
+
+- (void)resetScrollViewOffset {
+    [scrollView setContentOffset:CGPointZero animated:NO];
 }
 
 #pragma Button Actions
@@ -106,6 +117,10 @@
     
     [self presentViewController:parametersController.computingController animated:NO completion:nil];
     [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
+}
+
+- (IBAction)nextPressedOnIPhone:(id)sender {
+    [scrollView setContentOffset:CGPointMake(0, scrollView.contentSize.height/2) animated:YES];
 }
 
 - (void)lockContinueBtns {
@@ -170,7 +185,13 @@
 }
 
 - (IBAction)backPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([GlobalVars isIpad])
+        [self dismissViewControllerAnimated:YES completion:nil];
+    else
+        if (scrollView.contentOffset.y > 0)
+            [scrollView setContentOffset:CGPointZero animated:YES];
+        else
+            [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma Table View Delegate
@@ -579,12 +600,18 @@
     
 }
 
+- (IBAction)dismissKeyboard:(id)sender {
+    [refPickerSearchBar resignFirstResponder];
+    [readsPickerSearchBar resignFirstResponder];
+}
+
 - (NSUInteger)supportedInterfaceOrientations {
     if (![GlobalVars isIpad])
         return UIInterfaceOrientationMaskPortrait;
     else
         return UIInterfaceOrientationMaskLandscape;
 }
+
 
 - (void)didReceiveMemoryWarning
 {

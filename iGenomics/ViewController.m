@@ -29,6 +29,7 @@
 }
 
 - (IBAction)showFilePickerPressed:(id)sender {
+    [filePickerController resetScrollViewOffset];
     [self presentViewController:filePickerController animated:YES completion:nil];
 }
 

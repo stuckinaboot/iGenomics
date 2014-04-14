@@ -112,7 +112,7 @@
     for (int i  = 0; i<kNumOfRowsInGridView; i++) {
         nLbl[i] = [[UILabel alloc] initWithFrame:rect];
         [nLbl[i] setFont:[UIFont systemFontOfSize:kSideLblFontSize]];
-        [nLbl[i] setAdjustsFontSizeToFitWidth:YES];
+        [nLbl[i] setAdjustsFontSizeToFitWidth:NO];
         [nLbl[i] setBackgroundColor:[UIColor clearColor]];
         [nLbl[i] setText:[txtArr objectAtIndex:i]];
         [nLbl[i] setTextAlignment:NSTextAlignmentCenter];
@@ -252,6 +252,8 @@
 - (void)mutationAtPosPressedInPopover:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
     [gridView scrollToPos:pos-1];
+    if (![GlobalVars isIpad])
+        [analysisControllerIPhoneToolbar removeFromSuperview];
 }
 
 - (void)mutationsPopoverDidFinishUpdating {
@@ -277,6 +279,10 @@
                 gridView.kTxtFontSize *= kPinchZoomFontSizeFactor;
                 zoomLevel--;
                 
+                if (nLbl[0].hidden)
+                    for (int i = 0; i < kNumOfRowsInGridView; i++)
+                        nLbl[i].hidden = NO;
+                
                 [gridView resetScrollViewContentSize];
                 [gridView resetTickMarkInterval];
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
@@ -290,9 +296,13 @@
                 int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
                 gridView.kIpadBoxWidth /= kPinchZoomFactor;
                 gridView.kTxtFontSize /= kPinchZoomFontSizeFactor;
-
+                
                 zoomLevel++;
                 
+                if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize))
+                    for (int i = 0; i < kNumOfRowsInGridView; i++)
+                        nLbl[i].hidden = YES;
+                    
                 [gridView resetScrollViewContentSize];
                 [gridView resetTickMarkInterval];
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
@@ -328,8 +338,8 @@
         if (![GlobalVars isIpad])
             [self presentViewController:apc animated:YES completion:nil];
 //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
-        
-        apc.posLbl.text = [NSString stringWithFormat:@"Position: %1.0f",c.x+1];//+1 so doesn't start at 0
+        apc.position = c.x+1;
+        [apc updateLbls];
         
         NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
         
@@ -337,6 +347,7 @@
             [heteroStr appendFormat:@" %c",foundGenome[i][(int)c.x]];
         }
         
+        apc.heteroStr = heteroStr;
         apc.heteroLbl.text = heteroStr;
     }
     else if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1*/ && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there*/) {

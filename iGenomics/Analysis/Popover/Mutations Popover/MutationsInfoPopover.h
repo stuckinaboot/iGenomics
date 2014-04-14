@@ -10,6 +10,7 @@
 #import "MutationInfo.h"
 #import "IPhonePopoverHandler.h"
 #import "GlobalVars.h"
+#import "AnalysisControllerIPhoneToolbar.h"
 
 #define kIsHeteroStr "(Hetero)"
 #define kIsNotHeteroStr ""

@@ -7,32 +7,98 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnalysisPopoverController">
             <connections>
+                <outlet property="aLbl" destination="TKO-Ag-kAv" id="8fj-NX-pGY"/>
+                <outlet property="cLbl" destination="TWp-CY-G6h" id="mHC-8O-EZw"/>
+                <outlet property="delLbl" destination="eME-sn-Lin" id="EE9-Zq-c2G"/>
+                <outlet property="gLbl" destination="0a7-Jm-3Jm" id="iSy-Gd-Uag"/>
                 <outlet property="heteroLbl" destination="12" id="20"/>
+                <outlet property="insLbl" destination="BhD-DU-yHa" id="vhY-90-UkQ"/>
                 <outlet property="posLbl" destination="4" id="11"/>
+                <outlet property="tLbl" destination="ItV-nz-BoL" id="bEn-TR-JOr"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="334" height="213"/>
+            <rect key="frame" x="0.0" y="0.0" width="334" height="320"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Position:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="33" y="20" width="272" height="27"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Position:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="20" width="150" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="272" id="7"/>
+                        <constraint firstAttribute="width" constant="150" id="7"/>
                         <constraint firstAttribute="height" constant="27" id="8"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hetero:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                    <rect key="frame" x="33" y="70" width="272" height="27"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hetero:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="70" width="150" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="14"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKO-Ag-kAv" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="111" width="150" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="l9c-fW-R3w"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="C:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWp-CY-G6h" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="146" width="150" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="36F-u6-D27"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="G:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0a7-Jm-3Jm" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="181" width="150" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="xkB-Nt-XbW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ItV-nz-BoL" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="216" width="150" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="SFi-TV-c0w"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eME-sn-Lin" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="251" width="150" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="dhn-LM-EoM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="+:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhD-DU-yHa" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="286" width="150" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="kYk-hC-xHd"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -46,6 +112,24 @@
                 <constraint firstItem="12" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="17"/>
                 <constraint firstItem="12" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="18"/>
                 <constraint firstItem="12" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="19"/>
+                <constraint firstItem="eME-sn-Lin" firstAttribute="top" secondItem="ItV-nz-BoL" secondAttribute="bottom" constant="8" symbolic="YES" id="2mN-uN-n6K"/>
+                <constraint firstItem="TWp-CY-G6h" firstAttribute="top" secondItem="TKO-Ag-kAv" secondAttribute="bottom" constant="8" symbolic="YES" id="7mV-KM-V8h"/>
+                <constraint firstItem="TWp-CY-G6h" firstAttribute="trailing" secondItem="TKO-Ag-kAv" secondAttribute="trailing" id="9k6-zu-EVq"/>
+                <constraint firstItem="TKO-Ag-kAv" firstAttribute="leading" secondItem="TWp-CY-G6h" secondAttribute="leading" id="AgZ-7G-MKy"/>
+                <constraint firstItem="ItV-nz-BoL" firstAttribute="trailing" secondItem="0a7-Jm-3Jm" secondAttribute="trailing" id="GOg-YR-Ais"/>
+                <constraint firstItem="BhD-DU-yHa" firstAttribute="trailing" secondItem="eME-sn-Lin" secondAttribute="trailing" id="HuA-I6-qoS"/>
+                <constraint firstItem="ItV-nz-BoL" firstAttribute="leading" secondItem="0a7-Jm-3Jm" secondAttribute="leading" id="JiC-nv-oIf"/>
+                <constraint firstItem="TKO-Ag-kAv" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="JrP-hz-be5"/>
+                <constraint firstItem="0a7-Jm-3Jm" firstAttribute="trailing" secondItem="TWp-CY-G6h" secondAttribute="trailing" id="MCe-CS-Lzg"/>
+                <constraint firstItem="eME-sn-Lin" firstAttribute="trailing" secondItem="ItV-nz-BoL" secondAttribute="trailing" id="SNQ-Ri-Vuh"/>
+                <constraint firstItem="0a7-Jm-3Jm" firstAttribute="top" secondItem="TWp-CY-G6h" secondAttribute="bottom" constant="8" symbolic="YES" id="cQe-Uc-1RA"/>
+                <constraint firstItem="TKO-Ag-kAv" firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="iGe-0y-dK5"/>
+                <constraint firstItem="TKO-Ag-kAv" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="14" id="nAj-4Y-VyD"/>
+                <constraint firstItem="eME-sn-Lin" firstAttribute="leading" secondItem="ItV-nz-BoL" secondAttribute="leading" id="qYM-9G-LjQ"/>
+                <constraint firstItem="BhD-DU-yHa" firstAttribute="leading" secondItem="eME-sn-Lin" secondAttribute="leading" id="tc4-Hm-Ca4"/>
+                <constraint firstItem="BhD-DU-yHa" firstAttribute="top" secondItem="eME-sn-Lin" secondAttribute="bottom" constant="8" symbolic="YES" id="u2u-su-xF2"/>
+                <constraint firstItem="0a7-Jm-3Jm" firstAttribute="leading" secondItem="TWp-CY-G6h" secondAttribute="leading" id="wUP-22-OLB"/>
+                <constraint firstItem="ItV-nz-BoL" firstAttribute="top" secondItem="0a7-Jm-3Jm" secondAttribute="bottom" constant="8" symbolic="YES" id="yJv-IB-1rn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

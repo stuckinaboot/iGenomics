@@ -21,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -42,6 +43,9 @@
         maxEDTxtFld.inputAccessoryView = keyboardToolbar;
         mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
     }
+    
+    [self mutationSupportValueChanged:nil];
+    [self maxEDValueChanged:nil];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -52,11 +56,13 @@
 - (IBAction)matchTypeChanged:(id)sender {
     if (matchTypeCtrl.selectedSegmentIndex > 0) {
         //Show ED picker
-        enterMaxEDLbl.hidden = FALSE;
+        maxEDLbl.hidden = FALSE;
+        maxEDStpr.hidden = FALSE;
         maxEDTxtFld.hidden = FALSE;
     }
     else {
-        enterMaxEDLbl.hidden = TRUE;
+        maxEDLbl.hidden = TRUE;
+        maxEDStpr.hidden = TRUE;
         maxEDTxtFld.hidden = TRUE;
     }
 }
@@ -71,6 +77,13 @@
         enterTrimmingLbl.hidden = TRUE;
         trimmmingTxtFld.hidden = TRUE;
     }
+}
+
+- (IBAction)mutationSupportValueChanged:(id)sender {
+    mutationSupportLbl.text = [NSString stringWithFormat:kMutSupportLblTxt,(int)mutationSupportStpr.value];
+}
+- (IBAction)maxEDValueChanged:(id)sender {
+    maxEDLbl.text = [NSString stringWithFormat:kMaxEDLblTxt,(int)maxEDStpr.value];
 }
 
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString *)refN andReadFileName:(NSString *)readN {
@@ -91,7 +104,7 @@
 - (void)beginActualSequencing {
     int i = (alignmentTypeCtrl.selectedSegmentIndex>0) ? alignmentTypeCtrl.selectedSegmentIndex-1 : alignmentTypeCtrl.selectedSegmentIndex+1;//Because I switched the two in the uisegmentedcontrol and this would require me to change the least amt of code
     
-    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? [maxEDTxtFld.text intValue] : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:[mutationSupportTxtFld.text intValue]], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil];//contains everything except refFilename and readsFileName
+    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? (int)maxEDStpr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil];//contains everything except refFilename and readsFileName
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];

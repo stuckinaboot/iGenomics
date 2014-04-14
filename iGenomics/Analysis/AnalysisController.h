@@ -78,10 +78,10 @@ typedef enum {
 
 #define kMutationSupportMax 8
 
-#define kSideLblFontSize 20
+#define kSideLblFontSize 16
 #define kSideLblStartingX 26
 #define kSideLblY 20
-#define kSideLblW 30
+#define kSideLblW 40
 #define kSideLblH 30
 
 #define kAnalysisNavBarHeightIPhone 44

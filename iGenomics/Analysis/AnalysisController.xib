@@ -143,12 +143,12 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="CSHLabIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="916">
-                    <rect key="frame" x="20" y="49" width="103" height="103"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="IconIdea2-ExtraLarge.png" translatesAutoresizingMaskIntoConstraints="NO" id="916">
+                    <rect key="frame" x="13" y="49" width="128" height="103"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="103" id="48x-Y2-Wxx"/>
-                        <constraint firstAttribute="width" constant="103" id="K8c-7z-ATF"/>
+                        <constraint firstAttribute="width" constant="128" id="K8c-7z-ATF"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="MUTATION SUPPORT NUM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1131">
@@ -214,7 +214,7 @@
             <constraints>
                 <constraint firstItem="1017" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="4" id="0HU-gt-cHS"/>
                 <constraint firstItem="873" firstAttribute="baseline" secondItem="904" secondAttribute="baseline" id="0PE-6L-PUr"/>
-                <constraint firstItem="894" firstAttribute="leading" secondItem="916" secondAttribute="trailing" constant="33" id="3a8-Wm-Tcj"/>
+                <constraint firstItem="894" firstAttribute="leading" secondItem="916" secondAttribute="trailing" constant="15" id="3a8-Wm-Tcj"/>
                 <constraint firstAttribute="bottom" secondItem="1172" secondAttribute="bottom" constant="11" id="4Td-bq-elM"/>
                 <constraint firstItem="558" firstAttribute="top" secondItem="557" secondAttribute="top" id="4WI-Xm-wY6"/>
                 <constraint firstItem="1599" firstAttribute="top" secondItem="2" secondAttribute="top" id="5Pr-fW-WQv"/>
@@ -225,7 +225,7 @@
                 <constraint firstItem="588" firstAttribute="trailing" secondItem="1134" secondAttribute="trailing" id="7Pn-av-skV"/>
                 <constraint firstItem="1599" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="8Uk-7P-GGb"/>
                 <constraint firstAttribute="bottom" secondItem="1017" secondAttribute="bottom" constant="20" symbolic="YES" id="93Q-fd-ZJt"/>
-                <constraint firstItem="916" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="9Ka-jT-JvN"/>
+                <constraint firstItem="916" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="13" id="9Ka-jT-JvN"/>
                 <constraint firstItem="886" firstAttribute="leading" secondItem="894" secondAttribute="trailing" constant="56" id="9bl-fQ-vqf"/>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="41" id="9hn-1u-WP9"/>
                 <constraint firstItem="1017" firstAttribute="top" secondItem="916" secondAttribute="bottom" constant="29" id="DmZ-9E-tKu"/>
@@ -255,7 +255,7 @@
                 <constraint firstItem="557" firstAttribute="baseline" secondItem="588" secondAttribute="baseline" id="eF9-hH-A7w"/>
                 <constraint firstItem="558" firstAttribute="baseline" secondItem="557" secondAttribute="baseline" id="hJs-2u-dVb"/>
                 <constraint firstItem="518" firstAttribute="leading" secondItem="527" secondAttribute="trailing" constant="8" symbolic="YES" id="lKs-7i-97a"/>
-                <constraint firstItem="873" firstAttribute="leading" secondItem="916" secondAttribute="trailing" constant="11" id="nvL-ZV-nGr"/>
+                <constraint firstItem="873" firstAttribute="leading" secondItem="916" secondAttribute="trailing" constant="-7" id="nvL-ZV-nGr"/>
                 <constraint firstItem="1134" firstAttribute="top" secondItem="1599" secondAttribute="bottom" constant="8" id="pmP-xH-TD0"/>
                 <constraint firstItem="1131" firstAttribute="baseline" secondItem="518" secondAttribute="baseline" id="rU5-oS-sAS"/>
                 <constraint firstItem="886" firstAttribute="leading" secondItem="799" secondAttribute="leading" id="skT-aC-UgF"/>
@@ -272,6 +272,6 @@
         <pinchGestureRecognizer id="1163"/>
     </objects>
     <resources>
-        <image name="CSHLabIcon.png" width="418" height="418"/>
+        <image name="IconIdea2-ExtraLarge.png" width="1000" height="1000"/>
     </resources>
 </document>

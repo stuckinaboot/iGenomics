@@ -52,6 +52,8 @@
     BOOL refSelected;
     BOOL readsSelected;
     
+    IBOutlet UIScrollView *scrollView;
+    
     NSMutableArray *defaultRefFilesNames;
     NSMutableArray *filteredRefFileNames;
     NSMutableArray *defaultReadsFilesNames;
@@ -71,6 +73,7 @@
 @property (nonatomic, strong) UIPopoverController *previewPopoverController;
 - (IBAction)showParametersPressed:(id)sender;
 - (IBAction)analyzePressed:(id)sender;
+- (IBAction)nextPressedOnIPhone:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
 - (IBAction)backRefTbl:(id)sender;
@@ -78,6 +81,8 @@
 
 - (void)setUpDefaultFiles;
 - (void)setUpAllDropboxFiles;
+
+- (void)resetScrollViewOffset;
 
 - (IBAction)cellLongPressedRef:(id)sender;
 - (IBAction)cellLongPressedReads:(id)sender;

@@ -38,12 +38,13 @@
                     </textAttributes>
                     <items>
                         <navigationItem id="Jq7-CV-bCa">
-                            <barButtonItem key="leftBarButtonItem" systemItem="add" id="w7U-rA-6l7">
+                            <barButtonItem key="leftBarButtonItem" image="ThreeLines.png" id="w7U-rA-6l7">
+                                <color key="tintColor" white="0.66666666666666663" alpha="0.62" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="displayAnalysisIPhoneToolbar:" destination="-1" id="FrB-Ie-2qC"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" systemItem="done" id="Mmi-x0-oAf">
+                            <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Mmi-x0-oAf">
                                 <connections>
                                     <action selector="donePressed:" destination="-1" id="zDw-LJ-Gem"/>
                                 </connections>
@@ -201,18 +202,18 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="MUTATION SUPPORT NUM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2x-7e-ZTk">
-                    <rect key="frame" x="31" y="121" width="77" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2x-7e-ZTk">
+                    <rect key="frame" x="38" y="140" width="70" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="77" id="DOg-IJ-gYQ"/>
+                        <constraint firstAttribute="width" constant="70" id="DOg-IJ-gYQ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="m5H-LO-2E3">
-                    <rect key="frame" x="109" y="117" width="94" height="29"/>
+                    <rect key="frame" x="109" y="136" width="94" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="94" id="eaf-4L-8VB"/>
@@ -225,7 +226,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Title" id="Lql-DU-oG8">
+                        <navigationItem title="Options" id="Lql-DU-oG8">
                             <barButtonItem key="leftBarButtonItem" systemItem="action" id="h84-mU-vMc">
                                 <connections>
                                     <action selector="exportDataPressed:" destination="-1" id="irV-ow-fmC"/>
@@ -239,6 +240,13 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mutation Coverage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpW-wq-NBR">
+                    <rect key="frame" x="60" y="102" width="147" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -261,23 +269,26 @@
                 <constraint firstItem="JY3-pN-A5x" firstAttribute="leading" secondItem="B2S-AH-Rrx" secondAttribute="trailing" constant="-224" id="Wfu-in-mhC"/>
                 <constraint firstItem="7rv-Gs-LBD" firstAttribute="leading" secondItem="B2S-AH-Rrx" secondAttribute="leading" constant="9" id="XW7-TH-Uhx"/>
                 <constraint firstItem="RjP-Gk-prd" firstAttribute="top" secondItem="l8G-Vi-qm9" secondAttribute="bottom" constant="54" id="Zz0-79-cQE"/>
-                <constraint firstItem="m5H-LO-2E3" firstAttribute="top" secondItem="7rv-Gs-LBD" secondAttribute="top" constant="-67" id="b3f-6s-uMi"/>
+                <constraint firstItem="m5H-LO-2E3" firstAttribute="top" secondItem="7rv-Gs-LBD" secondAttribute="top" constant="-48" id="b3f-6s-uMi"/>
                 <constraint firstItem="yt4-R7-U5O" firstAttribute="leading" secondItem="aw8-Kg-sxM" secondAttribute="trailing" constant="14" id="d8M-sf-GJ9"/>
                 <constraint firstItem="A2F-mb-BND" firstAttribute="top" secondItem="RjP-Gk-prd" secondAttribute="bottom" constant="-223" id="dUg-gO-ktL"/>
                 <constraint firstItem="7rv-Gs-LBD" firstAttribute="leading" secondItem="l8G-Vi-qm9" secondAttribute="trailing" constant="143" id="eb2-a9-1Z5"/>
                 <constraint firstItem="B2S-AH-Rrx" firstAttribute="leading" secondItem="RjP-Gk-prd" secondAttribute="trailing" constant="156" id="gdm-bA-dOW"/>
                 <constraint firstItem="yt4-R7-U5O" firstAttribute="top" secondItem="aw8-Kg-sxM" secondAttribute="top" id="hij-db-8W3"/>
-                <constraint firstItem="q2x-7e-ZTk" firstAttribute="leading" secondItem="7rv-Gs-LBD" secondAttribute="trailing" constant="-451" id="iob-ge-Q4w"/>
+                <constraint firstItem="q2x-7e-ZTk" firstAttribute="leading" secondItem="7rv-Gs-LBD" secondAttribute="trailing" constant="-444" id="iob-ge-Q4w"/>
                 <constraint firstItem="MTl-R7-CzM" firstAttribute="leading" secondItem="A2F-mb-BND" secondAttribute="trailing" constant="8" id="lgf-Wi-aEG"/>
                 <constraint firstItem="HGO-Mu-8j2" firstAttribute="trailing" secondItem="MTl-R7-CzM" secondAttribute="trailing" constant="76" id="nRI-J9-LS3"/>
                 <constraint firstItem="7rv-Gs-LBD" firstAttribute="baseline" secondItem="l8G-Vi-qm9" secondAttribute="baseline" id="s87-Cq-axd"/>
                 <constraint firstItem="HGO-Mu-8j2" firstAttribute="baseline" secondItem="aw8-Kg-sxM" secondAttribute="baseline" id="udG-7n-P7o"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="leading" secondItem="CYU-Yi-vjy" secondAttribute="leading" id="vC5-gz-9Uy"/>
-                <constraint firstItem="JY3-pN-A5x" firstAttribute="top" secondItem="m5H-LO-2E3" secondAttribute="bottom" constant="-29" id="w0L-45-wCG"/>
+                <constraint firstItem="JY3-pN-A5x" firstAttribute="top" secondItem="m5H-LO-2E3" secondAttribute="bottom" constant="-48" id="w0L-45-wCG"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="top" secondItem="CYU-Yi-vjy" secondAttribute="top" id="x0Y-bi-ZMs"/>
             </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="ThreeLines.png" width="22" height="22"/>
+    </resources>
 </document>

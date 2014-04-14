@@ -39,6 +39,8 @@
 //Special File Types End
 
 #define kLastUsedParamsSaveKey @"LastUsedParamsKey"
+#define kMaxEDLblTxt @"Max Edit Distance: %i"
+#define kMutSupportLblTxt @"Mutation Coverage: %i"
 
 #define kStartSeqDelay 0.2
 
@@ -46,12 +48,15 @@
     
     //Parameters
     IBOutlet UISegmentedControl *matchTypeCtrl;
-    IBOutlet UILabel *enterMaxEDLbl;
+    IBOutlet UILabel *maxEDLbl;
     IBOutlet UITextField *maxEDTxtFld;
+    IBOutlet UIStepper *maxEDStpr;
     
     IBOutlet UISegmentedControl *alignmentTypeCtrl;
     
     IBOutlet UITextField *mutationSupportTxtFld;//call it "Minimum Mutation Coverage"
+    IBOutlet UIStepper *mutationSupportStpr;
+    IBOutlet UILabel *mutationSupportLbl;
     
     IBOutlet UISwitch *trimmingSwitch;
     IBOutlet UILabel *enterTrimmingLbl;
@@ -68,6 +73,8 @@
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)trimmingStateChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
+- (IBAction)mutationSupportValueChanged:(id)sender;
+- (IBAction)maxEDValueChanged:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;

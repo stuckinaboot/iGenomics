@@ -31,8 +31,6 @@
 
 #define kLowestAllowedCoverage 5
 
-#define kMaxEditDist 4
-
 #define kDebugPrintInsertions 0
 #define kDebugOn 0
 

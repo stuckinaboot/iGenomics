@@ -131,7 +131,7 @@
     
     UIImage *newDrawingViewImg;
 }
-@property (nonatomic) double boxHeight, currOffset, kTxtFontSize, graphBoxHeight;
+@property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
 @property (nonatomic) double kIpadBoxWidth;
 @property (nonatomic) int totalRows, totalCols;
 @property (nonatomic) UIScrollView *scrollingView;
