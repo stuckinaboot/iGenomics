@@ -28,6 +28,9 @@
     [super viewDidLoad];
     abtView.text = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kAboutSectionFileName ofType:kAboutSectionFileExt] encoding:NSUTF8StringEncoding error:nil];
     abtView.text = [NSString stringWithFormat:abtView.text,[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]];
+    abtView.font = [UIFont systemFontOfSize:kAboutSectionFontSize];
+    abtView.textAlignment = NSTextAlignmentCenter;
+    
     // Do any additional setup after loading the view from its nib.
 }
 

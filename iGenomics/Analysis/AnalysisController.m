@@ -279,7 +279,7 @@
                 gridView.kTxtFontSize *= kPinchZoomFontSizeFactor;
                 zoomLevel--;
                 
-                if (nLbl[0].hidden)
+                if (nLbl[0].hidden && gridView.kTxtFontSize >= gridView.kMinTxtFontSize)
                     for (int i = 0; i < kNumOfRowsInGridView; i++)
                         nLbl[i].hidden = NO;
                 
