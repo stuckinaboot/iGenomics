@@ -16,10 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-0O-qB6">
-                    <rect key="frame" x="8" y="489" width="304" height="65"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-0O-qB6">
+                    <rect key="frame" x="8" y="489" width="305" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="LuG-bg-plY"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                     <state key="normal" title="Done">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,7 +31,7 @@
                         <action selector="done:" destination="-1" eventType="touchUpInside" id="un4-z1-YdR"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vk-zG-g94">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vk-zG-g94">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,6 +40,15 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="VZH-0O-qB6" firstAttribute="top" secondItem="7vk-zG-g94" secondAttribute="bottom" constant="6" id="8Rn-jW-9si"/>
+                <constraint firstItem="7vk-zG-g94" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="NtG-i1-3BL"/>
+                <constraint firstItem="7vk-zG-g94" firstAttribute="top" secondItem="2" secondAttribute="top" id="WeW-fY-cWx"/>
+                <constraint firstAttribute="trailing" secondItem="7vk-zG-g94" secondAttribute="trailing" id="bQ2-uO-6gm"/>
+                <constraint firstItem="VZH-0O-qB6" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="8" id="i4g-oe-kyA"/>
+                <constraint firstAttribute="bottom" secondItem="VZH-0O-qB6" secondAttribute="bottom" constant="14" id="miv-hy-n0f"/>
+                <constraint firstItem="7vk-zG-g94" firstAttribute="centerX" secondItem="VZH-0O-qB6" secondAttribute="centerX" id="qL1-mZ-oUI"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
