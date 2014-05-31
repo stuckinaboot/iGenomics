@@ -36,11 +36,16 @@
 
 #define kMinTapsRequired 2
 
+#define kOldIphoneTblViewScaleFactor 1.4
+#define kFilePickerDistBwtBtnAndTblView 8
+
 //Eventually we can use - (NSFileHandle *)readHandle:(DBError **)error to read x lines (or megabytes) at a time
 //fasta is standard format for genome, fastq is standard format for reads
 
 @interface FilePickerController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPopoverControllerDelegate> {
     ParametersController *parametersController;
+    
+    IBOutlet UIView *contentView;
     
     IBOutlet UITableView *referenceFilePicker;
     IBOutlet UISearchBar *refPickerSearchBar;
@@ -49,6 +54,8 @@
     
     IBOutlet UIButton *analyzeBtn;
     IBOutlet UIButton *configBtn;
+    IBOutlet UIButton *nextBtn;
+    IBOutlet UINavigationBar *secondDataSelectionBarIPhoneOnly;
     BOOL refSelected;
     BOOL readsSelected;
     

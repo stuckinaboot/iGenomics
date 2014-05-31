@@ -2,6 +2,7 @@
 
 #import "DBAccountManager.h"
 #import "DBAccountInfo.h"
+#import "DBUtil.h"
 
 /** The account represents a particular user who has linked his account to your app. You can get
  account objects from the [account manager](DBAccountManager).*/
@@ -11,7 +12,7 @@
 /** @name Unlinking an account */
 
 /** This method unlinks a user's account from your app.
- 
+
  Once an account is unlinked, the local cache is deleted. If there is a
  [filesystem](DBFilesystem) object created with this account it will stop running. */
 - (void)unlink;
@@ -26,14 +27,16 @@
  method or from the Dropbox website. */
 @property (nonatomic, readonly, getter=isLinked) BOOL linked;
 
-/** Information about the user of this account. */
+/** Information about the user of this account, or `nil` if no info is available.
+ * Account info is fetched in the background.  To be notified when account info is
+ * available or updated, use <addObserver:block:>.*/
 @property (nonatomic, readonly) DBAccountInfo *info;
 
 
 /** @name Watching for changes */
 
-/** Add `block` as an observer of an account to get notified whenever it's <linked> or
- <info> properties change. */
+/** Add `block` as an observer of an account to get notified whenever the account's
+ <linked> or <info> properties change. */
 - (void)addObserver:(id)observer block:(DBObserver)block;
 
 /** Remove all blocks associated with `observer` by the <addObserver:block:> method. */

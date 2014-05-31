@@ -135,6 +135,7 @@
 @property (nonatomic) double kIpadBoxWidth;
 @property (nonatomic) int totalRows, totalCols;
 @property (nonatomic) UIScrollView *scrollingView;
+@property (nonatomic) UIImageView *drawingView;
 @property (nonatomic) id <QuickGridViewDelegate> delegate;
 @property (nonatomic) char *refSeq;
 

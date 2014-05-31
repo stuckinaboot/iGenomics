@@ -45,8 +45,28 @@
                              nil];
     readsPickerSearchBar.inputAccessoryView = keyboardToolbar;
     refPickerSearchBar.inputAccessoryView = keyboardToolbar;
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if ([GlobalVars isOldIPhone]) {
+        scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+        
+        CGRect rect = referenceFilePicker.frame;
+        referenceFilePicker.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height/kOldIphoneTblViewScaleFactor);
+        rect = referenceFilePicker.frame;
+        CGRect rect2 = nextBtn.frame;
+        nextBtn.frame = CGRectMake(rect2.origin.x, rect.origin.y+rect.size.height+kFilePickerDistBwtBtnAndTblView, rect2.size.width, rect2.size.height);
+        CGRect rect3 = readsFilePicker.frame;
+        readsFilePicker.frame = CGRectMake(rect3.origin.x, rect3.origin.y, rect3.size.width, rect3.size.height/kOldIphoneTblViewScaleFactor);
+        rect3 = readsFilePicker.frame;
+        CGRect rect4 = analyzeBtn.frame;
+        analyzeBtn.frame = CGRectMake(rect4.origin.x, rect3.origin.y+rect3.size.height+kFilePickerDistBwtBtnAndTblView, rect4.size.width, rect4.size.height);
+        rect4 = configBtn.frame;
+        configBtn.frame = CGRectMake(rect4.origin.x, rect3.origin.y+rect3.size.height+kFilePickerDistBwtBtnAndTblView, rect4.size.width, rect4.size.height);
+    }
 }
 
 - (void)setUpDefaultFiles {
@@ -109,18 +129,31 @@
 }
 
 - (IBAction)analyzePressed:(id)sender {
-    if (selectedOptionReads == kDropboxFilesIndex || selectedOptionRef == kDropboxFilesIndex)
-        if (![GlobalVars internetAvailable])
-            return;
-    
-    parametersController.computingController = [[ComputingController alloc] init];
-    
-    [self presentViewController:parametersController.computingController animated:NO completion:nil];
-    [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
+    @try {
+        NSLog(@"Try Block Entered");
+        if (selectedOptionReads == kDropboxFilesIndex || selectedOptionRef == kDropboxFilesIndex)
+            if (![GlobalVars internetAvailable])
+                return;
+        
+        NSLog(@"About to set computing controller");
+        parametersController.computingController = [[ComputingController alloc] init];
+        
+        NSLog(@"About to present View Controller");
+        [self presentViewController:parametersController.computingController animated:NO completion:nil];
+        NSLog(@"About to perform selector");
+        [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
+        NSLog(@"Try Block Finished");
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Analyze Pressed Exception: %@, %@",exception.debugDescription, exception.description);
+    }
+    @finally {
+        NSLog(@"Finally Reached");
+    }
 }
 
 - (IBAction)nextPressedOnIPhone:(id)sender {
-    [scrollView setContentOffset:CGPointMake(0, scrollView.contentSize.height/2) animated:YES];
+    [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y) animated:YES];
 }
 
 - (void)lockContinueBtns {
@@ -137,6 +170,8 @@
 }
 
 - (void)beginActualSequencingPredefinedParameters {
+    NSLog(@"Entered beginActualSequencingPredefinedParameters");
+    
     NSString *s = @"";
     NSString *sName = @"";
     NSString *r = @"";
@@ -167,10 +202,14 @@
         rName = [info.path name];
     }
     
+    NSLog(@"beginActualSequencingPredefinedParameters... Files Loaded");
+    
     parametersController.seq = s;
     parametersController.reads = r;
     s = [parametersController fixGenomeForGenomeFileName:sName];
     r = [parametersController fixReadsForReadsFileName:rName];
+    
+    NSLog(@"beginActualSequencingPredefinedParameters Names fixed");
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -181,7 +220,11 @@
         [defaults synchronize];
     }
     
+    NSLog(@"beginActualSequencingPredefinedParameters Old Parameters loaded, preparing to load computingController");
+    
     [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]]];
+    
+    NSLog(@"Computing controller loaded");
 }
 
 - (IBAction)backPressed:(id)sender {

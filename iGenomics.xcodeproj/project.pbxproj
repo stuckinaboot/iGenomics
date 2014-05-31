@@ -18,11 +18,6 @@
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
-		A321162117796229002A1678 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162017796229002A1678 /* dropbox.framework */; };
-		A32116231779623F002A1678 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32116221779623F002A1678 /* CFNetwork.framework */; };
-		A321162517796247002A1678 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162417796247002A1678 /* QuartzCore.framework */; };
-		A32116271779624E002A1678 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32116261779624E002A1678 /* Security.framework */; };
-		A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162817796259002A1678 /* SystemConfiguration.framework */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
@@ -59,6 +54,11 @@
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
 		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
+		A375FBFB19391FB600F69E07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */; };
+		A375FBFD19391FB900F69E07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFC19391FB900F69E07 /* Security.framework */; };
+		A375FBFF19391FBD00F69E07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFE19391FBD00F69E07 /* QuartzCore.framework */; };
+		A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0019391FC600F69E07 /* CFNetwork.framework */; };
+		A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0219391FCB00F69E07 /* libc++.dylib */; };
 		A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A38C320918EB6E040070F49E /* ThreeLines.png */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
@@ -67,6 +67,7 @@
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
 		A3971B0E158A6367001626F7 /* shortSeqBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0D158A6367001626F7 /* shortSeqBWT.txt */; };
 		A3971B10158A636F001626F7 /* sequenceBWT.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3971B0F158A636F001626F7 /* sequenceBWT.txt */; };
+		A3984DA11935209E001C049F /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3984DA01935209E001C049F /* Dropbox.framework */; };
 		A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */; };
 		A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */; };
 		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
@@ -136,11 +137,6 @@
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		A321162017796229002A1678 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = dropbox.framework; sourceTree = "<group>"; };
-		A32116221779623F002A1678 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		A321162417796247002A1678 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A32116261779624E002A1678 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		A321162817796259002A1678 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
@@ -160,7 +156,7 @@
 		A3382FC316A111DB0042F59B /* ComputingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComputingController.m; path = iGenomics/Computing/ComputingController.m; sourceTree = "<group>"; };
 		A3382FC416A111DB0042F59B /* ComputingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComputingController.xib; path = iGenomics/Computing/ComputingController.xib; sourceTree = "<group>"; };
 		A3382FC916A118A20042F59B /* AnalysisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisController.h; path = iGenomics/Analysis/AnalysisController.h; sourceTree = "<group>"; };
-		A3382FCA16A118A20042F59B /* AnalysisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisController.m; path = iGenomics/Analysis/AnalysisController.m; sourceTree = "<group>"; };
+		A3382FCA16A118A20042F59B /* AnalysisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisController.m; path = iGenomics/Analysis/AnalysisController.m; sourceTree = "<group>"; usesTabs = 0; };
 		A3382FCB16A118A20042F59B /* AnalysisController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnalysisController.xib; path = iGenomics/Analysis/AnalysisController.xib; sourceTree = "<group>"; };
 		A338F59F17CFC7650075FAE3 /* SuccessBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SuccessBox.png; path = ../../SuccessBox.png; sourceTree = "<group>"; };
 		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
@@ -192,6 +188,11 @@
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
 		A3700F4817E3A955007C2CC7 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = iGenomics/Analysis/Grid/QuickGridView.m; sourceTree = "<group>"; };
+		A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A375FBFC19391FB900F69E07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A375FBFE19391FBD00F69E07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A375FC0019391FC600F69E07 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A375FC0219391FCB00F69E07 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		A38C320918EB6E040070F49E /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
 		A3971B0D158A6367001626F7 /* shortSeqBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortSeqBWT.txt; sourceTree = "<group>"; };
 		A3971B0F158A636F001626F7 /* sequenceBWT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sequenceBWT.txt; sourceTree = "<group>"; };
+		A3984DA01935209E001C049F /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
 		A398B3CB1889ED2200EC43B8 /* AboutSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSectionViewController.h; sourceTree = "<group>"; };
 		A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSectionViewController.m; sourceTree = "<group>"; };
 		A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSectionViewController.xib; sourceTree = "<group>"; };
@@ -274,14 +276,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */,
+				A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */,
+				A375FBFF19391FBD00F69E07 /* QuartzCore.framework in Frameworks */,
+				A375FBFD19391FB900F69E07 /* Security.framework in Frameworks */,
+				A375FBFB19391FB600F69E07 /* SystemConfiguration.framework in Frameworks */,
 				A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */,
 				A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */,
 				A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */,
-				A321162117796229002A1678 /* dropbox.framework in Frameworks */,
-				A32116231779623F002A1678 /* CFNetwork.framework in Frameworks */,
-				A321162517796247002A1678 /* QuartzCore.framework in Frameworks */,
-				A32116271779624E002A1678 /* Security.framework in Frameworks */,
-				A321162917796259002A1678 /* SystemConfiguration.framework in Frameworks */,
+				A3984DA11935209E001C049F /* Dropbox.framework in Frameworks */,
 				A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,12 +317,13 @@
 		A310AF4D158A5F7200E892AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A375FC0219391FCB00F69E07 /* libc++.dylib */,
+				A375FC0019391FC600F69E07 /* CFNetwork.framework */,
+				A375FBFE19391FBD00F69E07 /* QuartzCore.framework */,
+				A375FBFC19391FB900F69E07 /* Security.framework */,
+				A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */,
+				A3984DA01935209E001C049F /* Dropbox.framework */,
 				A321162E177BA493002A1678 /* MessageUI.framework */,
-				A321162817796259002A1678 /* SystemConfiguration.framework */,
-				A32116261779624E002A1678 /* Security.framework */,
-				A321162417796247002A1678 /* QuartzCore.framework */,
-				A32116221779623F002A1678 /* CFNetwork.framework */,
-				A321162017796229002A1678 /* dropbox.framework */,
 				A310AF4E158A5F7200E892AA /* UIKit.framework */,
 				A310AF50158A5F7200E892AA /* Foundation.framework */,
 				A310AF52158A5F7200E892AA /* CoreGraphics.framework */,
@@ -1112,9 +1116,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../App Stuff/dropbox-ios-sdk-1.1\"",
-					"\"$(SRCROOT)/../../Downloads/dropbox-ios-sync-sdk-1.0.8\"",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
@@ -1134,9 +1137,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../App Stuff/dropbox-ios-sdk-1.1\"",
-					"\"$(SRCROOT)/../../Downloads/dropbox-ios-sync-sdk-1.0.8\"",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";

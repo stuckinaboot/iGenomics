@@ -26,10 +26,15 @@
 }
 
 - (void)matchReedsFileContentsAndParametersArr:(NSArray *)arr {
+    NSLog(@"matchReedsFileContentsAndParametersArr entered");
+    
     NSString *contents = [arr objectAtIndex:0];
     NSArray *parameters = [arr objectAtIndex:1];
     
-     bwt_Matcher = [[BWT_Matcher alloc] initWithOriginalStr:originalString];
+    NSLog(@"About to build the BWT");
+    
+    bwt_Matcher = [[BWT_Matcher alloc] initWithOriginalStr:originalString];
+
     /*
      SET OF PARAMETERS:
      
@@ -46,11 +51,17 @@
      +(Advanced feature)       -------NOT IMPLEMENTED YET
      
      */
+    NSLog(@"About to load parameters");
+    
     bwt_Matcher.matchType = [[parameters objectAtIndex:0] intValue];
     maxSubs = [[parameters objectAtIndex:1] intValue];
     bwt_Matcher.alignmentType = [[parameters objectAtIndex:2] intValue];
     
+    NSLog(@"About to set delegate");
+    
     [bwt_Matcher setDelegate:self];
+    
+    NSLog(@"About to setUpReedsFileContents");
     [bwt_Matcher setUpReedsFileContents:contents refStrBWT:bwtString andMaxSubs:maxSubs];
     
     readLen = bwt_Matcher.readLen;

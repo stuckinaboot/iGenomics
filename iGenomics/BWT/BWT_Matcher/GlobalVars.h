@@ -17,7 +17,7 @@ typedef enum {
 
 //Debugging constants
 #define kPrintExportStrToConsole 1
-
+#define kCrashDebug 1
 //End debugging constants
 
 #define kMaxMultipleToCountAt 16
@@ -42,6 +42,8 @@ typedef enum {
 #define kKeyboardToolbarHeight 50
 #define kKeyboardDoneBtnTxt @"Done"
 
+#define kOldIPhoneScreenSize 480
+
 extern int bytesForIndexer;
 extern int dgenomeLen; //d means including dollar sign
 extern char *originalStr;
@@ -56,4 +58,5 @@ extern int acgtTotalOccs[kACGTLen];
 + (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;
 + (BOOL)internetAvailable;
 + (BOOL)isIpad;
++ (BOOL)isOldIPhone;
 @end

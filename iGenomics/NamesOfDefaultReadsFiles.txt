@@ -1,7 +1,7 @@
-TESTREADS.txt
 Ecoli.5k.reads.txt
 Ecoli.50k.reads.txt
 Ecoli.50k.testread.txt
+TESTREADS.txt
 reads.fa
 reads.fq
 anthrax.capsule.reads.fa

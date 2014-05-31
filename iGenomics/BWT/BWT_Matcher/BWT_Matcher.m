@@ -25,8 +25,13 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 }
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs {
+    
+    NSLog(@"==> setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs entered");
+    
     NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
     reedsArray = [[NSMutableArray alloc] init];
+    
+    NSLog(@"About to form reedsArray");
     
     if ([preReadsArray count] % 2 == 0) {//Means is possible, means is not a txt file
         for (int i = 0; i<[preReadsArray count]; i+= 2) {
@@ -40,6 +45,9 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             Read *read = [[Read alloc] initWithSeq:(char*)[[preReadsArray objectAtIndex:i] UTF8String] andName:(char*)[n UTF8String]];
             [reedsArray addObject:read];
         }
+    
+    NSLog(@"About to set basic variables");
+    
     numOfReads = [reedsArray count];
     
     Read *firstRead = [reedsArray objectAtIndex:0];
@@ -54,9 +62,13 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     refSeqLen = dgenomeLen;
     
 //    [self setUpNumberOfOccurencesArray];
+    NSLog(@"About to call setUpNumberOfOccurencesArrayFast");
+    
     [self setUpNumberOfOccurencesArrayFast];
     
     self.insertionsArray = [[NSMutableArray alloc] init];
+    
+    NSLog(@"About to create firstCol");
     
     firstCol = calloc(dgenomeLen, 1);
     
@@ -75,6 +87,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             posOccArray[i][x] = 0;
     }
     
+    NSLog(@"<== setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs");
+    
     /*
     if (kDebugPrintInsertions>0) {
         printf("\nINSERTIONS:");
@@ -87,6 +101,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 - (void)matchReeds {
     
+    NSLog(@"Match Reeds Entered");
+    
     if (!matchingTimer)
         matchingTimer = [[APTimer alloc] init];
     [matchingTimer start];
@@ -94,6 +110,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     readDataStr = [[NSMutableString alloc] init];
     if (kDebugOn == 2)
         printf("%s\n",originalStr);
+    
+    NSLog(@"About to enter match reads loop");
     
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
         reed = [reedsArray objectAtIndex:readNum];
@@ -359,14 +377,19 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     
     int spotInACGTOccurences = 0;
     
-    acgt = calloc(kACGTLen, 1);
+    NSLog(@"About to creat acgt string");
+    
+    acgt = calloc(kACGTLen+1, 1);
+    NSLog(@"About to copy kACGTStr into acgt");
     strcpy(acgt, kACGTStr);
     
+
     int occurences[kACGTLen];//0 = a, 1 = c, 2 = g, t = 3
     for (int i = 0; i<kACGTLen; i++) {
         occurences[i] = 0;
         acgtTotalOccs[i] = 0;
     }
+
     int pos = kMultipleToCountAt-1;
     if (len>kMultipleToCountAt) {
         for (int i = 0; i<len; i++) {
@@ -386,6 +409,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             }
         }
     }
+    NSLog(@"Set up number of occurences array COMPLETED!!");
 }
 
 char *substr(const char *pstr, int start, int numchars)

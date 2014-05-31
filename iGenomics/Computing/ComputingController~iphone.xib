@@ -35,9 +35,12 @@
                         <constraint firstAttribute="width" constant="302" id="29"/>
                     </constraints>
                 </progressView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GQI-UT-BUB">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GQI-UT-BUB">
                     <rect key="frame" x="34" y="211" width="253" height="82"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="82" id="gIC-nj-cUp"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -49,6 +52,9 @@
                 <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="15" id="14"/>
                 <constraint firstAttribute="bottom" secondItem="23" secondAttribute="bottom" constant="217" id="27"/>
                 <constraint firstItem="23" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="9" id="30"/>
+                <constraint firstItem="GQI-UT-BUB" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="34" id="8aj-RZ-2lf"/>
+                <constraint firstItem="GQI-UT-BUB" firstAttribute="centerX" secondItem="23" secondAttribute="centerX" id="FA0-99-R6H"/>
+                <constraint firstItem="23" firstAttribute="top" secondItem="GQI-UT-BUB" secondAttribute="bottom" constant="56" id="lkU-uO-s2A"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

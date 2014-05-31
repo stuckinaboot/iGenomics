@@ -50,9 +50,21 @@
     
     mutationSupportStpr.maximumValue = kMutationSupportMax;
     
+    analysisControllerIPhoneToolbar.hidden = YES;
+    
     [self resetDisplay];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    //Fixes problems caused by constraints on old iPhone
+    gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
+    gridView.drawingView.frame = gridView.scrollingView.frame;
+    [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
+    [gridView setUpGridViewForPixelOffset:0];
+    
+    [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
 }
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr {
@@ -88,6 +100,13 @@
     
     mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
     [mutationSupportNumLbl setText:[NSString stringWithFormat:@"%i",(int)mutationSupportStpr.value]];
+    
+    if ([GlobalVars isOldIPhone]) {
+        CGRect rect = gridView.frame;
+        gridView.frame = CGRectMake(rect.origin.x, rect.origin.y, self.view.frame.size.width-rect.origin.x, rect.size.height);
+        rect = pxlOffsetSlider.frame;
+        pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, self.view.frame.size.width-rect.origin.x, rect.size.height);
+    }
     
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     
@@ -174,7 +193,7 @@
 
 - (IBAction)seqSearch:(id)sender {
     if (![seqSearchTxtFld.text isEqualToString:@""]) {//is not an empty query
-        querySeqPosArr = [[NSArray alloc] initWithArray:[bwt simpleSearchForQuery:(char*)[seqSearchTxtFld.text UTF8String]]];
+        querySeqPosArr = [[NSArray alloc] initWithArray:[bwt simpleSearchForQuery:(char*)[seqSearchTxtFld.text.uppercaseString UTF8String]]];
         int c = [querySeqPosArr count];
         if (c>0) {//At least one match
             
@@ -583,8 +602,8 @@
 //Iphone Support
 
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender {
-    [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
-    [self.view addSubview:analysisControllerIPhoneToolbar];
+    analysisControllerIPhoneToolbar.hidden = NO;
+    [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

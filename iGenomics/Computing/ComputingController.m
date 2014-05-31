@@ -33,6 +33,8 @@
 
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
     
+    NSLog(@"==> setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray method entered");
+    
     readProgressView.progress = 0;
     readsProcessed = 0;//In case view loaded late
     
@@ -49,6 +51,7 @@
     //Set up parameters
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
     dispatch_async(queue, ^{//Opens up a background thread
+        NSLog(@"About to call matchReedsFileContentsAndParametersArr");
         [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:3] intValue];

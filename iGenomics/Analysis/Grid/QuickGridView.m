@@ -10,7 +10,7 @@
 
 @implementation QuickGridView
 
-@synthesize boxHeight, kIpadBoxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
+@synthesize boxHeight, kIpadBoxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView;
 
 - (void)firstSetUp {
     prevOffset = -1;
@@ -326,7 +326,6 @@
         [self drawRectangle:CGRectMake(x, y, self.frame.size.width+(abs(offset)), kGridLineWidthRow) withRGB:rgb];
         y += kGridLineWidthRow+boxHeight;
     }
-    
     y = kPosLblHeight;
     
     for (int i = 0; i<totalCols; i++) {

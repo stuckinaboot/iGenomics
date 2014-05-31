@@ -74,4 +74,7 @@ int acgtTotalOccs[kACGTLen];
     return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
 }
 
++ (BOOL)isOldIPhone {
+    return [[UIScreen mainScreen] bounds].size.height == kOldIPhoneScreenSize;
+}
 @end

@@ -40,7 +40,7 @@
 }
 
 - (IBAction)donePressed:(id)sender {
-    [self removeFromSuperview];
+    self.hidden = YES;
 }
 
 @end
