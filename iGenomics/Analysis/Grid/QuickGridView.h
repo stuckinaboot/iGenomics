@@ -16,11 +16,15 @@
 
 #define kDefaultIpadBoxWidth 64
 #define kDefaultIphoneBoxWidth 64
+#define kMinBoxWidth 1 //Smallest box width possible, will be showing coverage graph at this point
+#define kThresholdBoxWidth 16 //Smallest box width possible to still be showing text (not full screen coverage graph)
 
 
 #define kDefaultTxtFontSizeIPad 50
 #define kMinTxtFontSizeIPad 40
 #define kDefaultTxtFontSizeIPhone 20
+#define kFontSizeMultFactor 0.93
+#define kBoxWidthMultFactor 0.95
 #define kMinTxtFontSizeIPhone 15
 
 #define kScrollSpeed 0.5

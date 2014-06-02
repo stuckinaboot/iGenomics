@@ -87,15 +87,15 @@
 
     [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
-    if (kTxtFontSize >= kMinTxtFontSize)
+    if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth)
         [self drawDefaultBoxColors];
     
     int firstPtToDraw = [self firstPtToDrawForOffset:offSet];
     double firstPtOffset = [self firstPtToDrawOffset:offSet];//Will be 0 or negative
     
-//    NSLog(@"\nFirst Pt To Draw: %f First pt offset: %f",firstPtOffset, firstPtOffset);
+//    NSLog(@"\nFirst Pt To Draw: %i First pt offset: %f",firstPtToDraw, firstPtOffset);
     
-    if (kTxtFontSize > kMinTxtFontSize) //If it is 0, there is no need for them
+    if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth) //If it is 0, there is no need for them
         [self drawGridLinesForOffset:firstPtOffset];
     
     
@@ -184,7 +184,7 @@
             }
             else {//Graph Row
                 CGRect rect;
-                if (kTxtFontSize >= kMinTxtFontSize) {
+                if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth) {
                     //Set up the graph
                     rect = CGRectMake(x, y, kIpadBoxWidth, graphBoxHeight);
                 }
@@ -364,7 +364,7 @@
 //Actual Drawing Code
 - (void)drawText:(NSString*)txt atPoint:(CGPoint)point withRGB:(double[3])rgb {
     //point is the center of where the txt is to be drawn
-    if (kTxtFontSize >= kMinTxtFontSize) {
+    if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth) {
         CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], 1.0f);
         UIFont *font = [UIFont systemFontOfSize:kTxtFontSize];
         float yOffset = ((boxHeight+font.pointSize)/2.0f)-font.pointSize;

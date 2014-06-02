@@ -52,6 +52,8 @@
     
     analysisControllerIPhoneToolbar.hidden = YES;
     
+    gridView.currOffset = 0;//May need to be changed, intented to make it start at first position when new files are analyzed
+    
     [self resetDisplay];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -62,7 +64,7 @@
     gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
     gridView.drawingView.frame = gridView.scrollingView.frame;
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
-    [gridView setUpGridViewForPixelOffset:0];
+    [gridView setUpGridViewForPixelOffset:gridView.currOffset];
     
     [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
 }
@@ -188,7 +190,7 @@
     }
     [posSearchTxtFld resignFirstResponder];
     if (![GlobalVars isIpad])
-        [analysisControllerIPhoneToolbar removeFromSuperview];
+        analysisControllerIPhoneToolbar.hidden = YES;
 }
 
 - (IBAction)seqSearch:(id)sender {
@@ -222,7 +224,7 @@
     }
     [seqSearchTxtFld resignFirstResponder];
     if (![GlobalVars isIpad])
-        [analysisControllerIPhoneToolbar removeFromSuperview];
+        analysisControllerIPhoneToolbar.hidden = YES;
 }
 
 - (IBAction)showSeqSearchResults:(id)sender {
@@ -272,7 +274,7 @@
     [popoverController dismissPopoverAnimated:YES];
     [gridView scrollToPos:pos-1];
     if (![GlobalVars isIpad])
-        [analysisControllerIPhoneToolbar removeFromSuperview];
+        analysisControllerIPhoneToolbar.hidden = YES;
 }
 
 - (void)mutationsPopoverDidFinishUpdating {
@@ -287,7 +289,7 @@
 }
 
 //Grid View zoom in/out
--(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
+/*-(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
     if ([sender state] == UIGestureRecognizerStateEnded) {
         double s = [sender scale];
         
@@ -330,6 +332,81 @@
                 [gridView setUpGridViewForPixelOffset:gridView.currOffset];
             }
         }
+    }
+}*/
+
+-(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
+    BOOL scaleOccurred = FALSE;
+    double s = [sender scale];
+    //PROBLEM IS THAT KTXTFONTSIZE IS TOO BIG WHEN BOX WIDTH IS TOO SMALL
+    if (s > 1.0f /*&& (gridView.kTxtFontSize < (([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone)) */&& (gridView.kIpadBoxWidth < (([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth))) {//Zoom in
+        scaleOccurred = TRUE;
+        
+        if (nLbl[0].hidden && gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.kIpadBoxWidth >= kThresholdBoxWidth)
+            for (int i = 0; i < kNumOfRowsInGridView; i++)
+                nLbl[i].hidden = NO;
+    }
+    else if (s < 1.0f && gridView.kIpadBoxWidth > kMinBoxWidth) {//Zoom out
+        scaleOccurred = TRUE;
+        
+        if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.kIpadBoxWidth >= kThresholdBoxWidth))
+            for (int i = 0; i < kNumOfRowsInGridView; i++)
+                nLbl[i].hidden = YES;
+    }
+    if (scaleOccurred) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
+        dispatch_async(queue, ^{//Opens up a background thread
+            int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
+            gridView.kIpadBoxWidth = rint(gridView.kIpadBoxWidth*kBoxWidthMultFactor*sender.scale);
+            
+            double w = ([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth;
+            double f = ([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone;
+            if (gridView.kIpadBoxWidth > w) {
+                gridView.kIpadBoxWidth = w;
+                gridView.kTxtFontSize = f;
+            }
+            if (gridView.kIpadBoxWidth < kMinBoxWidth) {
+                gridView.kIpadBoxWidth = kMinBoxWidth;
+                gridView.kTxtFontSize = gridView.kMinTxtFontSize;
+            }
+            gridView.kTxtFontSize *= (kFontSizeMultFactor*sender.scale);
+            if (gridView.kTxtFontSize > f)
+                gridView.kTxtFontSize = f;
+            
+            if (gridView.kIpadBoxWidth >= kThresholdBoxWidth && gridView.kTxtFontSize < gridView.kMinTxtFontSize)
+                gridView.kTxtFontSize = gridView.kMinTxtFontSize;
+            [gridView resetScrollViewContentSize];
+            [gridView resetTickMarkInterval];
+            [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
+            gridView.currOffset = [gridView offsetOfPt:pt];
+            dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
+                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
+                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+            });
+        });
+        
+//        int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
+//        gridView.kIpadBoxWidth = rint(gridView.kIpadBoxWidth*kBoxWidthMultFactor*sender.scale);
+//        
+//        double w = ([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth;
+//        double f = ([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone;
+//        if (gridView.kIpadBoxWidth > w) {
+//            gridView.kIpadBoxWidth = w;
+//            gridView.kTxtFontSize = f;
+//        }
+//        gridView.kTxtFontSize *= (kFontSizeMultFactor*sender.scale);
+//        if (gridView.kTxtFontSize > f)
+//            gridView.kTxtFontSize = f;
+//        
+//        if (gridView.kIpadBoxWidth >= kThresholdBoxWidth && gridView.kTxtFontSize < gridView.kMinTxtFontSize)
+//            gridView.kTxtFontSize = gridView.kMinTxtFontSize;
+        
+//        [gridView resetScrollViewContentSize];
+//        [gridView resetTickMarkInterval];
+//        [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
+//        gridView.currOffset = [gridView offsetOfPt:pt];
+//        [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
+//        [gridView setUpGridViewForPixelOffset:gridView.currOffset];
     }
 }
 
