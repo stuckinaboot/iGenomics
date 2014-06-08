@@ -30,7 +30,8 @@
 #define kScrollSpeed 0.5
 
 #define kGridLineWidthRow 2
-#define kGridLineWidthCol 2
+#define kGridLineWidthColDefault 2
+#define kGridLineWidthColDefaultMin 0
 
 #define kPosLblNum 5
 #define kDefPosLblInterval 5 //20 cells
@@ -46,7 +47,6 @@
 #define kMaxCovValLblW 80
 #define kMaxCovValLblH 20
 
-//REENABLE PINCH TO ZOOM--DONE
 //POSITION LABELS--DONE (IF NEEDS TO BE CHANGED, WILL BE CHANGED)
 //                                                                 5        10      15
 //         --Should be above grid looking kinda like this |--------|---------|-------|
@@ -115,7 +115,7 @@
     double currOffset;
     
     //Constants made into a variable for pinch zoom
-    double kIpadBoxWidth;
+    double boxWidth;
     double kTxtFontSize;
     double kMinTxtFontSize;
     int kPosLblInterval;
@@ -125,7 +125,7 @@
     
     int totalRows;
     int totalCols;
-
+    
     int maxCoverageVal;
     
     id delegate;
@@ -136,8 +136,8 @@
     UIImage *newDrawingViewImg;
 }
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
-@property (nonatomic) double kIpadBoxWidth;
-@property (nonatomic) int totalRows, totalCols;
+@property (nonatomic) double boxWidth;
+@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol;
 @property (nonatomic) UIScrollView *scrollingView;
 @property (nonatomic) UIImageView *drawingView;
 @property (nonatomic) id <QuickGridViewDelegate> delegate;

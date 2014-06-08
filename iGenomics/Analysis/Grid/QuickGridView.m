@@ -10,7 +10,7 @@
 
 @implementation QuickGridView
 
-@synthesize boxHeight, kIpadBoxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView;
+@synthesize boxHeight, boxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol;
 
 - (void)firstSetUp {
     prevOffset = -1;
@@ -23,6 +23,7 @@
     scrollingView = [[UIScrollView alloc] initWithFrame:rect];
     [scrollingView setDelegate:self];
     [scrollingView setBackgroundColor:[UIColor clearColor]];
+    scrollingView.bounces = NO;
     
     drawingView = [[UIImageView alloc] initWithFrame:rect];
     
@@ -42,15 +43,17 @@
     totalCols = cols;
     
     if ([GlobalVars isIpad]) {
-        kIpadBoxWidth = kDefaultIpadBoxWidth;
+        boxWidth = kDefaultIpadBoxWidth;
         kTxtFontSize = kDefaultTxtFontSizeIPad;
         kMinTxtFontSize = kMinTxtFontSizeIPad;
     }
     else {
-        kIpadBoxWidth = kDefaultIphoneBoxWidth;
+        boxWidth = kDefaultIphoneBoxWidth;
         kTxtFontSize = kDefaultTxtFontSizeIPhone;
         kMinTxtFontSize = kMinTxtFontSizeIPhone;
     }
+    
+    kGridLineWidthCol = kGridLineWidthColDefault;
     
     [self resetScrollViewContentSize];
     [self addSubview:drawingView];
@@ -87,7 +90,7 @@
 
     [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
-    if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth)
+    if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth)
         [self drawDefaultBoxColors];
     
     int firstPtToDraw = [self firstPtToDrawForOffset:offSet];
@@ -95,15 +98,19 @@
     
 //    NSLog(@"\nFirst Pt To Draw: %i First pt offset: %f",firstPtToDraw, firstPtOffset);
     
-    if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth) //If it is 0, there is no need for them
+    if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {//If it is 0, there is no need for them
+        kGridLineWidthCol = kGridLineWidthColDefault;
         [self drawGridLinesForOffset:firstPtOffset];
+    }
+    else
+        kGridLineWidthCol = kGridLineWidthColDefaultMin;
     
     
     float x = firstPtOffset+kGridLineWidthCol;//If this passes the self.frame.size.width, stop drawing (break)
     float y = kPosLblHeight;
     
     for (int i = 0; i<totalRows; i++) {
-        for (int j = firstPtToDraw; j<totalCols && x<= self.frame.size.width; j++, x += kGridLineWidthCol+kIpadBoxWidth) {
+        for (int j = firstPtToDraw; j<totalCols && x<= self.frame.size.width; j++, x += kGridLineWidthCol+boxWidth) {
             if (i > 0) {//Not Graph Row
                 //Depending on the value of i, draw foundGenome, refGenome, etc.
                 if (i == 1) {//ref
@@ -146,7 +153,7 @@
                         [self drawText:[NSString stringWithFormat:@"%c",foundGenome[0][j]] atPoint:CGPointMake(x, y) withRGB:rgbVal];
                         
                         CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, kMutHighlightOpacity);
-                        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+kGridLineWidthCol, kPosLblHeight, kIpadBoxWidth, self.frame.size.height-kPosLblHeight));
+                        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+kGridLineWidthCol, kPosLblHeight, boxWidth, self.frame.size.height-kPosLblHeight));
 //                        [delegate mutationFoundAtPos:j];
                     }
                     else {//No mutation
@@ -184,12 +191,12 @@
             }
             else {//Graph Row
                 CGRect rect;
-                if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth) {
+                if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
                     //Set up the graph
-                    rect = CGRectMake(x, y, kIpadBoxWidth, graphBoxHeight);
+                    rect = CGRectMake(x, y, boxWidth, graphBoxHeight);
                 }
                 else {
-                    rect = CGRectMake(x, y, kIpadBoxWidth, self.bounds.size.height-kPosLblHeight);
+                    rect = CGRectMake(x, y, boxWidth, self.bounds.size.height-kPosLblHeight);
                 }
                 
                 int currCoverage = coverageArray[j]-posOccArray[kACGTLen+1][j];//Don't count insertions
@@ -211,9 +218,9 @@
                     [num setNumberStyle: NSNumberFormatterDecimalStyle];
                     
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, 0, 0, 1.0f);
-                    [[num stringFromNumber:[NSNumber numberWithInt:j+1]] drawAtPoint:CGPointMake(x+(kIpadBoxWidth/2), 0) withFont:[UIFont systemFontOfSize:kPosLblFontSize]];
+                    [[num stringFromNumber:[NSNumber numberWithInt:j+1]] drawAtPoint:CGPointMake(x+(boxWidth/2), 0) withFont:[UIFont systemFontOfSize:kPosLblFontSize]];
                     
-                    [self drawRectangle:CGRectMake(x+(kIpadBoxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthCol, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}];
+                    [self drawRectangle:CGRectMake(x+(boxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthCol, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}];
                 }
             }
         }
@@ -238,19 +245,19 @@
 }
 
 - (void)resetScrollViewContentSize {
-    [scrollingView setContentSize:CGSizeMake(totalCols*(kGridLineWidthCol+kIpadBoxWidth), scrollingView.frame.size.height)];
+    [scrollingView setContentSize:CGSizeMake(totalCols*(kGridLineWidthCol+boxWidth), scrollingView.frame.size.height)];
 }
 
 - (int)firstPtToDrawForOffset:(double)offset {
-    return (offset)/(kGridLineWidthCol+kIpadBoxWidth);
+    return (offset)/(kGridLineWidthCol+boxWidth);
 }
 
 - (double)firstPtToDrawOffset:(double)offset {
-    return -((int)offset) % ((int)kGridLineWidthCol+(int)kIpadBoxWidth);
+    return -((int)offset) % ((int)kGridLineWidthCol+(int)boxWidth);
 }
 
 - (double)offsetOfPt:(double)point {
-    return (point*(kGridLineWidthCol+kIpadBoxWidth));
+    return (point*(kGridLineWidthCol+boxWidth));
 }
 
 - (void)initialMutationFind {
@@ -264,7 +271,7 @@
 //Draw Tick Marks
 - (void)drawTickMarksForStartingPos:(int)pos {
     int zeroes = 0;
-    int colsOnScreen = (self.frame.size.width/(kIpadBoxWidth+kGridLineWidthCol));
+    int colsOnScreen = (self.frame.size.width/(boxWidth+kGridLineWidthCol));
     double interval = colsOnScreen/kPosLblNum;
     
     for (zeroes = 0; pos>10; zeroes++)
@@ -277,9 +284,9 @@
     
     for (int i = 0; i<kPosLblNum; i++) {
             CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.black.r, dnaColors.black.g, dnaColors.black.b, 1.0f);
-            [[num stringFromNumber:[NSNumber numberWithInt:pos]] drawAtPoint:CGPointMake(pos*(kIpadBoxWidth+kGridLineWidthCol)+(kIpadBoxWidth/2), 0) withFont:[UIFont systemFontOfSize:kPosLblFontSize]];
+            [[num stringFromNumber:[NSNumber numberWithInt:pos]] drawAtPoint:CGPointMake(pos*(boxWidth+kGridLineWidthCol)+(boxWidth/2), 0) withFont:[UIFont systemFontOfSize:kPosLblFontSize]];
             
-            [self drawRectangle:CGRectMake(pos*(kIpadBoxWidth+kGridLineWidthCol)+(kIpadBoxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthCol, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}];
+            [self drawRectangle:CGRectMake(pos*(boxWidth+kGridLineWidthCol)+(boxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthCol, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}];
         
         pos += interval;
     }
@@ -295,7 +302,7 @@
     int numOfColsOnScreen = 0;
     
     int x = 0;
-    for (int i = 0; i<totalCols; i++, x += kIpadBoxWidth, numOfColsOnScreen++) {
+    for (int i = 0; i<totalCols; i++, x += boxWidth, numOfColsOnScreen++) {
         if (x>self.frame.size.width)
             break;
     }
@@ -330,7 +337,7 @@
     
     for (int i = 0; i<totalCols; i++) {
         [self drawRectangle:CGRectMake(x, y, kGridLineWidthCol, self.frame.size.height) withRGB:rgb];
-        x += kGridLineWidthCol+kIpadBoxWidth;
+        x += kGridLineWidthCol+boxWidth;
         
         if (x > self.frame.size.width)
             break;
@@ -357,22 +364,25 @@
 
 //Scroll To Position
 - (void)scrollToPos:(double)p {
-    [self setUpGridViewForPixelOffset:p*(kIpadBoxWidth+kGridLineWidthCol)];
+    currOffset = p*(boxWidth+kGridLineWidthCol);
+    if (currOffset > scrollingView.contentSize.width-self.frame.size.width-1)
+        currOffset = scrollingView.contentSize.width-self.frame.size.width-1;//-1 to prevent crash due to drawing where there is nothing
+    [self setUpGridViewForPixelOffset:currOffset];
     [scrollingView setContentOffset:CGPointMake(currOffset, 0)];
 }
 
 //Actual Drawing Code
 - (void)drawText:(NSString*)txt atPoint:(CGPoint)point withRGB:(double[3])rgb {
     //point is the center of where the txt is to be drawn
-    if (kTxtFontSize >= kMinTxtFontSize && kIpadBoxWidth >= kThresholdBoxWidth) {
+    if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
         CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], 1.0f);
         UIFont *font = [UIFont systemFontOfSize:kTxtFontSize];
         float yOffset = ((boxHeight+font.pointSize)/2.0f)-font.pointSize;
         CGSize txtSize = [txt sizeWithFont:font];
     //    [txt drawAtPoint:point withFont:[UIFont systemFontOfSize:kTxtFontSize]];
-            if (txtSize.width > kIpadBoxWidth) {
+            if (txtSize.width > boxWidth) {
                 for (int i = kTxtFontSize; i > 0; i--) {
-                    if (txtSize.width < kIpadBoxWidth) {
+                    if (txtSize.width < boxWidth) {
                         yOffset = ((boxHeight+font.pointSize)/2.0f)-font.pointSize;
                         break;
                     }
@@ -380,7 +390,7 @@
                     txtSize = [txt sizeWithFont:font];
                 }
             }
-            [txt drawInRect:CGRectMake(point.x, point.y+yOffset, kIpadBoxWidth, font.pointSize) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+            [txt drawInRect:CGRectMake(point.x, point.y+yOffset, boxWidth, font.pointSize) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
 }
 
@@ -390,7 +400,6 @@
 }
 
 //ScrollView Delegate
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
 }
@@ -404,6 +413,16 @@
 
 - (void)updateScrollView:(UISlider*)s {
     [scrollingView setContentOffset:CGPointMake(s.value, 0)];
+}
+
+//Setter for Box Width
+- (void)setBoxWidth:(double)width {
+    double prevWidth = boxWidth;
+    boxWidth = width;
+    if (boxWidth < kThresholdBoxWidth && prevWidth >= kThresholdBoxWidth) //Will show with graph view
+        kGridLineWidthCol = kGridLineWidthColDefaultMin;
+    else if (boxWidth >= kThresholdBoxWidth && prevWidth < kThresholdBoxWidth)
+        kGridLineWidthCol = kGridLineWidthColDefault;
 }
 
 /*

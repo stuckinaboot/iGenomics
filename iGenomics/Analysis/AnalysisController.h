@@ -66,11 +66,14 @@ typedef enum {
 #define kGenomeLblStart @"Genome: "
 #define kReadsLblStart @"Reads: "
 
-#define kLengthLblStart @"Len: "
+#define kGenomeLengthLblStart @"Genome Len: "
+#define kReadLengthLblStart @"Read Len: "
 
-#define kGenomeCoverageLblStart @"Cov: "
+#define kGenomeCoverageLblStart @"Genome Cov: "
 
-#define kNumOfReadsLblStart @"Num: "
+#define kNumOfReadsLblStart @"Num Reads:"
+
+#define kTotalNumOfMutsLblStart @"Total Num Of Mutations: "
 
 //#define kNumOfRGBVals 10
 #define kStartOfAInRGBVals 4
@@ -159,6 +162,7 @@ typedef enum {
     IBOutlet UILabel *readsNameLbl;
     IBOutlet UILabel *readLenLbl;
     IBOutlet UILabel *readNumOfLbl;//Num of reads lbl, I like having read in front though
+    IBOutlet UILabel *totalNumOfMutsLbl;
     
     IBOutlet QuickGridView *gridView;
     IBOutlet UISlider *pxlOffsetSlider;
