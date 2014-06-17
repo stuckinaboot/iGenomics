@@ -134,9 +134,11 @@
     float prevOffset;
     
     UIImage *newDrawingViewImg;
+    
 }
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
 @property (nonatomic) double boxWidth;
+@property (nonatomic) BOOL shouldUpdateScrollView;
 @property (nonatomic) int totalRows, totalCols, kGridLineWidthCol;
 @property (nonatomic) UIScrollView *scrollingView;
 @property (nonatomic) UIImageView *drawingView;

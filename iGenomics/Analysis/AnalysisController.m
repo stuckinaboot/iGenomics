@@ -129,7 +129,7 @@
 - (void)setUpGridLbls {
     CGRect rect = CGRectMake(0, 0, kSideLblW, kSideLblH);
     
-    NSArray *txtArr = [[NSArray alloc] initWithObjects:@"Cov",@"Ref",@"Fnd",@"A",@"C",@"G",@"T",@"-",@"+", nil];
+    NSArray *txtArr = [[NSArray alloc] initWithObjects:@"Cov",@"Ref",@"Qry",@"A",@"C",@"G",@"T",@"-",@"+", nil];
     
     int yPos = gridView.frame.origin.y+kPosLblHeight+(gridView.graphBoxHeight/2);
     
@@ -295,53 +295,6 @@
     [gridView scrollToPos:pos];
 }
 
-//Grid View zoom in/out
-/*-(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
-    if ([sender state] == UIGestureRecognizerStateEnded) {
-        double s = [sender scale];
-        
-        if (s > 1.0f) {//Zoom in
-            if (zoomLevel>kPinchZoomMaxLevel) {
-                int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
-                gridView.kIpadBoxWidth *= kPinchZoomFactor;
-                gridView.kTxtFontSize *= kPinchZoomFontSizeFactor;
-                zoomLevel--;
-                
-                if (nLbl[0].hidden && gridView.kTxtFontSize >= gridView.kMinTxtFontSize)
-                    for (int i = 0; i < kNumOfRowsInGridView; i++)
-                        nLbl[i].hidden = NO;
-                
-                [gridView resetScrollViewContentSize];
-                [gridView resetTickMarkInterval];
-                [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
-                gridView.currOffset = [gridView offsetOfPt:pt];
-                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
-                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
-            }
-        }
-        else if (s < 1.0f) {//Zoom out
-            if (zoomLevel<kPinchZoomMinLevel) {
-                int pt = [gridView firstPtToDrawForOffset:gridView.currOffset];
-                gridView.kIpadBoxWidth /= kPinchZoomFactor;
-                gridView.kTxtFontSize /= kPinchZoomFontSizeFactor;
-                
-                zoomLevel++;
-                
-                if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize))
-                    for (int i = 0; i < kNumOfRowsInGridView; i++)
-                        nLbl[i].hidden = YES;
-                    
-                [gridView resetScrollViewContentSize];
-                [gridView resetTickMarkInterval];
-                [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(kGridLineWidthCol+gridView.kIpadBoxWidth)))-gridView.frame.size.width];
-                gridView.currOffset = [gridView offsetOfPt:pt];
-                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
-                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
-            }
-        }
-    }
-}*/
-
 -(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
     BOOL scaleOccurred = FALSE;
     double s = [sender scale];
@@ -386,18 +339,12 @@
                 gridView.kTxtFontSize = gridView.kMinTxtFontSize;
         
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
-        dispatch_sync(queue, ^{//Opens up a background thread
+        dispatch_sync(queue, ^{//Opens up a background thread, done synchronously because this block needs to finish before this function gets called again (often times it will be)
             [gridView resetScrollViewContentSize];
             [gridView resetTickMarkInterval];
             
             [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth)))-gridView.frame.size.width];
             
-            //            if (gridView.boxWidth < kThresholdBoxWidth && prevBoxW >= kThresholdBoxWidth) //Will show with graph view
-            //                gridView.currOffset = pt*(gridView.boxWidth+kGridLineWidthColDefaultMin)-gridViewW/2;
-            //            else if (gridView.boxWidth >= kThresholdBoxWidth && prevBoxW < kThresholdBoxWidth)
-            //                gridView.currOffset = pt*(gridView.boxWidth+kGridLineWidthColDefault)-gridViewW/2;
-            //            else
-            //                gridView.currOffset = [gridView offsetOfPt:pt]-gridViewW/2;
             gridView.currOffset = (gridView.scrollingView.contentSize.width*proportion)-gridViewW/2;
             if (gridView.currOffset < 0)
                 gridView.currOffset = gridView.boxWidth;//Goes to second box to avoid drawing issues
@@ -405,7 +352,9 @@
                 gridView.currOffset = gridView.scrollingView.contentSize.width-gridViewW-1;
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset,0)];
+//                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+                gridView.shouldUpdateScrollView = TRUE;
+                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset,0) animated:NO];
             });
         });
     }
@@ -446,6 +395,13 @@
         
         apc.heteroStr = heteroStr;
         apc.heteroLbl.text = heteroStr;
+        
+        if ([GlobalVars isIpad]) {
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
+            CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
+            
+            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        }
     }
     else if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1*/ && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there*/) {
         InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
@@ -457,12 +413,13 @@
         if (![GlobalVars isIpad])
             [self presentViewController:ipc animated:YES completion:nil];
 //        popoverController = [[UIPopoverController alloc] initWithContentViewController:ipc];
-    }
-    if ([GlobalVars isIpad]) {
-        popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
-        CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
-
-        [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        
+        if ([GlobalVars isIpad]) {
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
+            CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
+            
+            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        }
     }
 }
 

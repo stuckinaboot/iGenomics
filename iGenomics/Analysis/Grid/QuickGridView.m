@@ -10,7 +10,7 @@
 
 @implementation QuickGridView
 
-@synthesize boxHeight, boxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol;
+@synthesize boxHeight, boxWidth, delegate, refSeq, currOffset, totalRows, totalCols, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol, shouldUpdateScrollView;
 
 - (void)firstSetUp {
     prevOffset = -1;
@@ -24,6 +24,7 @@
     [scrollingView setDelegate:self];
     [scrollingView setBackgroundColor:[UIColor clearColor]];
     scrollingView.bounces = NO;
+    [scrollingView setShowsHorizontalScrollIndicator:NO];
     
     drawingView = [[UIImageView alloc] initWithFrame:rect];
     
@@ -237,6 +238,9 @@
 //    drawingView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+//    if (self.currOffset != scrollingView.contentOffset.x)
+//        [scrollingView setContentOffset:CGPointMake(self.currOffset, 0) animated:NO];
+    
     [delegate gridFinishedUpdatingWithOffset:currOffset];
 }
 
@@ -390,7 +394,7 @@
                     txtSize = [txt sizeWithFont:font];
                 }
             }
-            [txt drawInRect:CGRectMake(point.x, point.y+yOffset, boxWidth, font.pointSize) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+            [txt drawInRect:CGRectMake(point.x, point.y+yOffset, boxWidth+(2*kGridLineWidthCol), font.pointSize) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter]; //boxWidth+(2*kGridLineWidthCol) because this centers the text in a larger area, which makes the centering more precise
     }
 }
 
@@ -401,18 +405,31 @@
 
 //ScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+    if (shouldUpdateScrollView)
+        [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+    shouldUpdateScrollView = !shouldUpdateScrollView;
+//    [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//       [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+//    });
+//    [self performSelectorOnMainThread:@selector(setUpGridViewAfterDelayForPixelOffset:) withObject:[NSNumber numberWithDouble:scrollingView.contentOffset.x] waitUntilDone:YES];
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {
     UISlider* s = (UISlider*)sender;
+    shouldUpdateScrollView = TRUE;
     [scrollingView setContentOffset:scrollingView.contentOffset animated:NO];
     [self performSelector:@selector(updateScrollView:) withObject:s afterDelay:kScrollViewSliderUpdateInterval];
+//    [self performSelector:@selector(updateScrollView:) withObject:s afterDelay:kScrollViewSliderUpdateInterval];
 //    [scrollingView setContentOffset:CGPointMake(s.value, 0)];
 }
 
 - (void)updateScrollView:(UISlider*)s {
     [scrollingView setContentOffset:CGPointMake(s.value, 0)];
+}
+
+- (void)setUpGridViewAfterDelayForPixelOffset:(NSNumber*)offset {
+    [self setUpGridViewForPixelOffset:[offset doubleValue]];
 }
 
 //Setter for Box Width
