@@ -33,6 +33,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     txtView.text = txtViewContents;
+    txtView.font = [UIFont fontWithName:kFilePreviewPopoverFontName size:kFilePreviewPopoverFontSize];
     if (![GlobalVars isIpad]) {
         self.view.frame = [[UIScreen mainScreen] bounds];
         txtView.frame = self.view.frame;

@@ -16,6 +16,17 @@
 
 #define kShowAnalysisControllerDelay 1.0f // Wait for viewDidAppear/viewDidDisappear to know the current transition has completed' (error from console), this should fix it
 
+#define kFirstQualValueIndexInReadsToTrim 2
+#define kTrimmingOffVal -1
+#define kTrimmingRefChar0 '!'
+#define kTrimmingRefChar0Index 0
+#define kTrimmingRefChar1 '@'
+#define kTrimmingRefChar1Index 1
+
+//Special File Types
+#define kFa @"fa"
+#define kFq @"fq"
+
 @interface ComputingController : UIViewController <BWT_Delegate> {
     IBOutlet UIProgressView *readProgressView;
     IBOutlet UILabel *readsProcessedLbl;
@@ -26,5 +37,6 @@
     NSMutableString *exportDataStr;
 }
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray;
+- (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar;
 - (void)showAnalysisController;
 @end

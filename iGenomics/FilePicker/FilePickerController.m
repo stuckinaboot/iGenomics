@@ -213,9 +213,13 @@
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
+    NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
+    
+    if ([[parametersController extFromFileName:rName] caseInsensitiveCompare:kFq] != NSOrderedSame)
+        [arr setObject:[NSNumber numberWithInt:kTrimmingOffVal] atIndexedSubscript:4];//Disables trimming for non-Fq files
+    
     if (arr == NULL) {
-        arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:0] /*Trimming*/, nil];//Contains everything except refFileName and readFileName
+        arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:0] /*Trimming*/, nil];//Contains everything except refFileName and readFileName
         [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
         [defaults synchronize];
     }
@@ -400,6 +404,11 @@
         s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
         NSArray *arr = [self getFileNameAndExtForFullName:s];
         s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+        if ([[arr objectAtIndex:1] caseInsensitiveCompare:kFastaFileExt] == NSOrderedSame) {
+            NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
+            s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
+            s = [NSString stringWithFormat:@"%@\n%@",s,[oldStr stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
+        }
     }
     else if (selectedOptionRef == kDropboxFilesIndex) {
         DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
@@ -634,6 +643,7 @@
     for (int i = fileName.length-1; i>0; i--) {
         if ([fileName characterAtIndex:i] == kExtDot) {
             index = i;
+            break;
         }
     }
     return [NSArray arrayWithObjects:[fileName substringToIndex:index], [fileName substringFromIndex:index+1],nil];

@@ -10,6 +10,9 @@
 #import "GlobalVars.h"
 #import "IPhonePopoverHandler.h"
 
+#define kFilePreviewPopoverFontName @"Courier"
+#define kFilePreviewPopoverFontSize 14
+
 @interface FilePreviewPopoverController : IPhonePopoverHandler {
     IBOutlet UITextView *txtView;
     NSString *txtViewContents;

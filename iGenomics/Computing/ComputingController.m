@@ -48,6 +48,10 @@
     [bwt setUpForRefFileContents:mySeq];
     exportDataStr = [[NSMutableString alloc] init];
     
+    int trimmingValue = [[myParameterArray objectAtIndex:4] intValue];
+    if (trimmingValue != kTrimmingOffVal)
+        myReads = [self readsAfterTrimmingForReads:myReads andTrimValue:trimmingValue andReferenceQualityChar:[[myParameterArray objectAtIndex:5] characterAtIndex:0]];
+    
     //Set up parameters
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
     dispatch_async(queue, ^{//Opens up a background thread
@@ -59,8 +63,8 @@
             [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
             [bwt.bwtMutationFilter filterMutationsForDetails];
             
-            NSString *refFileName = [myParameterArray objectAtIndex:5];
-            NSString *readFileName = [myParameterArray objectAtIndex:6];
+            NSString *refFileName = [myParameterArray objectAtIndex:6];
+            NSString *readFileName = [myParameterArray objectAtIndex:7];
             
             //genome file name, reads file name, read length, genome length, number of reads
             NSArray *basicInf = [NSArray arrayWithObjects:refFileName, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen], [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:1] intValue]], nil];
@@ -69,6 +73,40 @@
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
         });
     });
+}
+
+- (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar {
+    NSMutableString *newReads = [[NSMutableString alloc] init];
+    NSArray *arr = [reads componentsSeparatedByString:@"\n"];
+    NSMutableString *str;
+    
+    for (int i = 0; i < [arr count]; i += (kFirstQualValueIndexInReadsToTrim+1)) {
+        str = [arr objectAtIndex:i+1];//index i is the name of the read
+        
+        int maxSum = 0;
+        int maxPos = str.length-1;
+        int curSum = 0;
+        int curPos = str.length-1;
+        
+        for (int x = str.length-1; x >= 0; x--) {
+            int qualVal = [str characterAtIndex:x]-refChar;
+            qualVal -= trimValue; //Subtracts the user inputted trim threshold
+            
+            curPos--;
+            curSum += qualVal;
+            
+            if (curSum > maxSum) {
+                maxSum = curSum;
+                maxPos = curPos;
+            }
+        }
+        
+        NSString *newRead = [str substringToIndex:maxPos+1];//+1 to include that index
+        [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
+    }
+    [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the last line break
+    
+    return (NSString*)newReads;
 }
 
 - (void)showAnalysisController {

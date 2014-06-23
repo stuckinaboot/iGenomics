@@ -33,9 +33,8 @@
  
  */
 
-//Special File Types
-#define kFa @"fa"
-#define kFq @"fq"
+#define kFaInterval 2
+#define kFqInterval 4
 //Special File Types End
 
 #define kLastUsedParamsSaveKey @"LastUsedParamsKey"
@@ -43,6 +42,8 @@
 #define kMutSupportLblTxt @"Mutation Coverage: %i"
 
 #define kStartSeqDelay 0.2
+
+#define kTrimmingStprLblTxt @"Trimming: %i"
 
 @interface ParametersController : UIViewController {
     
@@ -58,9 +59,10 @@
     IBOutlet UIStepper *mutationSupportStpr;
     IBOutlet UILabel *mutationSupportLbl;
     
-    IBOutlet UISwitch *trimmingSwitch;
-    IBOutlet UILabel *enterTrimmingLbl;
-    IBOutlet UITextField *trimmmingTxtFld;
+    IBOutlet UIStepper *trimmingStpr;
+    IBOutlet UILabel *trimmingLbl;
+    IBOutlet UILabel *trimmingRefCharLbl;
+    IBOutlet UISegmentedControl *trimmingRefCharCtrl;
     //Parameters end
     
     ComputingController *computingController;
@@ -71,15 +73,17 @@
 @property (nonatomic) ComputingController *computingController;
 @property (nonatomic) NSString *seq, *reads;
 - (IBAction)matchTypeChanged:(id)sender;
-- (IBAction)trimmingStateChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;
+- (IBAction)trimmingValueChanged:(id)sender;
 - (IBAction)maxEDValueChanged:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN;
 - (IBAction)backPressed:(id)sender;
+
+- (void)setTrimmingAllowed:(BOOL)allowed;
 
 - (NSString*)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
 - (NSString*)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParametersController">
@@ -13,6 +13,8 @@
                 <outlet property="maxEDStpr" destination="pJ4-U1-7dE" id="2UO-pL-a2R"/>
                 <outlet property="mutationSupportLbl" destination="Wwx-fv-nwq" id="WmN-0d-vSW"/>
                 <outlet property="mutationSupportStpr" destination="SrL-fV-uuH" id="V5R-vt-pYT"/>
+                <outlet property="trimmingLbl" destination="sXX-6f-rKh" id="nRj-5k-VRY"/>
+                <outlet property="trimmingStpr" destination="3ta-zU-0YB" id="SkN-yc-zvH"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -125,6 +127,24 @@
                         <action selector="mutationSupportValueChanged:" destination="-1" eventType="valueChanged" id="PKi-uW-QBj"/>
                     </connections>
                 </stepper>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trimming Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXX-6f-rKh">
+                    <rect key="frame" x="115" y="540" width="252" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="252" id="ZgK-0q-uJz"/>
+                        <constraint firstAttribute="height" constant="40" id="dFa-6l-Tnu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="3ta-zU-0YB">
+                    <rect key="frame" x="375" y="545" width="94" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <action selector="trimmingValueChanged:" destination="-1" eventType="valueChanged" id="Fpv-Sb-iHZ"/>
+                    </connections>
+                </stepper>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -142,14 +162,18 @@
                 <constraint firstItem="102" firstAttribute="top" secondItem="2" secondAttribute="top" constant="267" id="cyi-QA-Zyf"/>
                 <constraint firstItem="pJ4-U1-7dE" firstAttribute="top" secondItem="30" secondAttribute="bottom" constant="13" id="dqS-is-cWI"/>
                 <constraint firstItem="SrL-fV-uuH" firstAttribute="top" secondItem="pJ4-U1-7dE" secondAttribute="bottom" constant="265" id="eXr-6W-7IA"/>
+                <constraint firstItem="3ta-zU-0YB" firstAttribute="leading" secondItem="SrL-fV-uuH" secondAttribute="leading" id="eme-aF-wfv"/>
+                <constraint firstItem="sXX-6f-rKh" firstAttribute="top" secondItem="Wwx-fv-nwq" secondAttribute="bottom" constant="53" id="glc-iW-XUw"/>
                 <constraint firstItem="74" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" id="hs0-Fd-oBG"/>
                 <constraint firstItem="7" firstAttribute="leading" secondItem="20" secondAttribute="leading" constant="31" id="hvL-bF-V0E"/>
                 <constraint firstItem="pJ4-U1-7dE" firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="-20" id="hwF-gs-6mc"/>
                 <constraint firstItem="7" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="31" id="k78-Gz-qgb"/>
                 <constraint firstItem="92" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="45" id="kvl-9j-bd5"/>
                 <constraint firstItem="92" firstAttribute="top" secondItem="74" secondAttribute="bottom" constant="102" id="sjU-CU-HIE"/>
+                <constraint firstItem="3ta-zU-0YB" firstAttribute="leading" secondItem="sXX-6f-rKh" secondAttribute="trailing" constant="8" id="uIH-8F-SMk"/>
                 <constraint firstItem="Wwx-fv-nwq" firstAttribute="top" secondItem="pJ4-U1-7dE" secondAttribute="bottom" constant="258" id="wNR-9w-yYC"/>
                 <constraint firstItem="pJ4-U1-7dE" firstAttribute="leading" secondItem="L20-13-XCM" secondAttribute="trailing" constant="1" id="wgB-P9-CmG"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="3ta-zU-0YB" secondAttribute="bottom" constant="59" id="xDK-OB-df1"/>
                 <constraint firstItem="pJ4-U1-7dE" firstAttribute="leading" secondItem="SrL-fV-uuH" secondAttribute="leading" constant="515" id="zPv-RH-kd9"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>

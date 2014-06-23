@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     computingController = [[ComputingController alloc] init];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -44,6 +45,14 @@
         mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
     }
     
+    if ([[self extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+        [self setTrimmingAllowed:YES];
+        [self trimmingValueChanged:nil];
+        [trimmingRefCharCtrl setTitle:[NSString stringWithFormat:@"%c",kTrimmingRefChar0] forSegmentAtIndex:kTrimmingRefChar0Index];
+        [trimmingRefCharCtrl setTitle:[NSString stringWithFormat:@"%c",kTrimmingRefChar1] forSegmentAtIndex:kTrimmingRefChar1Index];
+    }
+    else
+        [self setTrimmingAllowed:NO];
     [self mutationSupportValueChanged:nil];
     [self maxEDValueChanged:nil];
 }
@@ -67,16 +76,11 @@
     }
 }
 
-- (IBAction)trimmingStateChanged:(id)sender {
-    if (trimmingSwitch.on) {
-        //Show Num of chars to trim
-        enterTrimmingLbl.hidden = FALSE;
-        trimmmingTxtFld.hidden = FALSE;
-    }
-    else {
-        enterTrimmingLbl.hidden = TRUE;
-        trimmmingTxtFld.hidden = TRUE;
-    }
+- (void)setTrimmingAllowed:(BOOL)allowed {
+    trimmingLbl.hidden = !allowed;
+    trimmingStpr.hidden = !allowed;
+    trimmingRefCharCtrl.hidden = !allowed;
+    trimmingRefCharLbl.hidden = !allowed;
 }
 
 - (IBAction)mutationSupportValueChanged:(id)sender {
@@ -84,6 +88,10 @@
 }
 - (IBAction)maxEDValueChanged:(id)sender {
     maxEDLbl.text = [NSString stringWithFormat:kMaxEDLblTxt,(int)maxEDStpr.value];
+}
+
+- (IBAction)trimmingValueChanged:(id)sender {
+    trimmingLbl.text = [NSString stringWithFormat:kTrimmingStprLblTxt,(int)trimmingStpr.value];
 }
 
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString *)refN andReadFileName:(NSString *)readN {
@@ -104,7 +112,13 @@
 - (void)beginActualSequencing {
     int i = (alignmentTypeCtrl.selectedSegmentIndex>0) ? alignmentTypeCtrl.selectedSegmentIndex-1 : alignmentTypeCtrl.selectedSegmentIndex+1;//Because I switched the two in the uisegmentedcontrol and this would require me to change the least amt of code
     
-    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? (int)maxEDStpr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? [trimmmingTxtFld.text intValue] : 0], nil];//contains everything except refFilename and readsFileName
+    NSString *trimRefChar;
+    if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar0Index)
+        trimRefChar = [NSString stringWithFormat:@"%c",kTrimmingRefChar0];
+    else if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar1Index)
+        trimRefChar = [NSString stringWithFormat:@"%c",kTrimmingRefChar1];
+    
+    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? (int)maxEDStpr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(!trimmingLbl.hidden) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar,nil];//contains everything except refFilename and readsFileName
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
@@ -130,19 +144,16 @@
     int interval = 0;
     
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame)
-        interval = 2;//Look at .fa file and this makes sense
+        interval = kFaInterval;//Look at .fa file and this makes sense
     else if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame)
-        interval = 4;//Look at .fq file and this makes sense
+        interval = kFqInterval;//Look at .fq file and this makes sense
     
     if (interval > 0) {
         for (int i = 0; i < [arr count]; i+= interval) {
             [newReads appendFormat:@"%@\n",[[arr objectAtIndex:i] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""]];//Read name, takes away the '>' or '@'
             [newReads appendFormat:@"%@\n",[arr objectAtIndex:i+1]];//Read
-            /*if (isFq) {
-                i++;
-                [newReads appendFormat:@"%@\n",[arr objectAtIndex:i]];
-                i+=2;
-            }*///uncomment when readName is done
+            if (interval == kFqInterval)
+                [newReads appendFormat:@"%@\n",[arr objectAtIndex:i+3]];//Adds the quality values
         }
         reads = [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the trailing line break
     }

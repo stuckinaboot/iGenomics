@@ -32,6 +32,8 @@
 
 #define kExtDot '.'
 
+#define kFastaFileExt @"fa"
+
 #define kLockedBtnAlpha 0.5
 
 #define kMinTapsRequired 2
