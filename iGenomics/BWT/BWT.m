@@ -53,9 +53,9 @@
      */
     NSLog(@"About to load parameters");
     
-    bwt_Matcher.matchType = [[parameters objectAtIndex:0] intValue];
-    maxSubs = [[parameters objectAtIndex:1] intValue];
-    bwt_Matcher.alignmentType = [[parameters objectAtIndex:2] intValue];
+    bwt_Matcher.matchType = [[parameters objectAtIndex:kParameterArrayEDIndex] intValue];
+    maxSubs = [[parameters objectAtIndex:kParameterArrayEDIndex] intValue];
+    bwt_Matcher.alignmentType = [[parameters objectAtIndex:kParameterArrayFoRevIndex] intValue];
     
     NSLog(@"About to set delegate");
     
@@ -72,7 +72,7 @@
     
     insertions = bwt_Matcher.insertionsArray;
 
-    bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:3] intValue]-1;//-1 because kHeteroAllowance is for one lower than what is allowed to be considered a mutation.
+    bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:kParameterArrayMutationCoverageIndex] intValue]-1;//-1 because kHeteroAllowance is for one lower than what is allowed to be considered a mutation.
     
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalString andMatcher:bwt_Matcher];
     

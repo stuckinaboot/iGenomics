@@ -13,8 +13,12 @@
                 <outlet property="maxEDStpr" destination="pJ4-U1-7dE" id="2UO-pL-a2R"/>
                 <outlet property="mutationSupportLbl" destination="Wwx-fv-nwq" id="WmN-0d-vSW"/>
                 <outlet property="mutationSupportStpr" destination="SrL-fV-uuH" id="V5R-vt-pYT"/>
+                <outlet property="trimmingEnabledLbl" destination="g5V-co-R9s" id="S1Q-JL-qcN"/>
                 <outlet property="trimmingLbl" destination="sXX-6f-rKh" id="nRj-5k-VRY"/>
+                <outlet property="trimmingRefCharCtrl" destination="LxU-z6-AvS" id="7D5-YM-av7"/>
+                <outlet property="trimmingRefCharLbl" destination="D6F-FW-TG9" id="YYx-1b-RGF"/>
                 <outlet property="trimmingStpr" destination="3ta-zU-0YB" id="SkN-yc-zvH"/>
+                <outlet property="trimmingSwitch" destination="qSS-mx-gz9" id="Sf1-BL-ao6"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -127,7 +131,7 @@
                         <action selector="mutationSupportValueChanged:" destination="-1" eventType="valueChanged" id="PKi-uW-QBj"/>
                     </connections>
                 </stepper>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trimming Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXX-6f-rKh">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trimming Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXX-6f-rKh">
                     <rect key="frame" x="115" y="540" width="252" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
@@ -138,13 +142,42 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="3ta-zU-0YB">
+                <stepper hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="3ta-zU-0YB">
                     <rect key="frame" x="375" y="545" width="94" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <action selector="trimmingValueChanged:" destination="-1" eventType="valueChanged" id="Fpv-Sb-iHZ"/>
                     </connections>
                 </stepper>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Ref Char:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6F-FW-TG9">
+                    <rect key="frame" x="70" y="585" width="266" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Enabled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5V-co-R9s">
+                    <rect key="frame" x="70" y="495" width="266" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LxU-z6-AvS">
+                    <rect key="frame" x="375" y="595" width="94" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="!"/>
+                        <segment title="@"/>
+                    </segments>
+                </segmentedControl>
+                <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qSS-mx-gz9">
+                    <rect key="frame" x="398" y="498" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="trimmingSwitchValueChanged:" destination="-1" eventType="valueChanged" id="vkc-Hn-iHN"/>
+                    </connections>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

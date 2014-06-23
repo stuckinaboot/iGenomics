@@ -76,11 +76,24 @@
     }
 }
 
+- (IBAction)trimmingSwitchValueChanged:(id)sender {
+    if (trimmingSwitch.on) {
+        trimmingLbl.hidden = NO;
+        trimmingStpr.hidden = NO;
+        trimmingRefCharCtrl.hidden = NO;
+        trimmingRefCharLbl.hidden = NO;
+    }
+    else {
+        trimmingLbl.hidden = YES;
+        trimmingStpr.hidden = YES;
+        trimmingRefCharCtrl.hidden = YES;
+        trimmingRefCharLbl.hidden = YES;
+    }
+}
+
 - (void)setTrimmingAllowed:(BOOL)allowed {
-    trimmingLbl.hidden = !allowed;
-    trimmingStpr.hidden = !allowed;
-    trimmingRefCharCtrl.hidden = !allowed;
-    trimmingRefCharLbl.hidden = !allowed;
+    trimmingSwitch.hidden = !allowed;
+    trimmingEnabledLbl.hidden = !allowed;
 }
 
 - (IBAction)mutationSupportValueChanged:(id)sender {
@@ -118,7 +131,11 @@
     else if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar1Index)
         trimRefChar = [NSString stringWithFormat:@"%c",kTrimmingRefChar1];
     
-    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? (int)maxEDStpr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(!trimmingLbl.hidden) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar,nil];//contains everything except refFilename and readsFileName
+    if (!trimmingSwitch.on && [[self extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+        reads = [self readsByRemovingQualityValFromReads:reads];
+    }
+    
+    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? (int)maxEDStpr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar,nil];//contains everything except refFilename and readsFileName
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
@@ -173,6 +190,18 @@
         seq = [NSString stringWithFormat:@"%@$",seq];
     return seq;
 }
+
+- (NSString*)readsByRemovingQualityValFromReads:(NSString*)r {
+    NSArray *arr = [r componentsSeparatedByString:@"\n"];
+    NSMutableString *readStr = [[NSMutableString alloc] init];
+    
+    for (int i = 0; i < [arr count]; i += 2) {
+        [readStr appendFormat:@"%@\n%@\n",[arr objectAtIndex:i],[arr objectAtIndex:i+1]];
+    }
+    readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break
+    return (NSString*)readStr;
+}
+
 - (NSString*)extFromFileName:(NSString *)name {
     return [name substringFromIndex:[name rangeOfString:@"." options:NSBackwardsSearch].location+1];
 }

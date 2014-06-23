@@ -33,6 +33,15 @@ typedef enum {
 #define kLineBreak @"\n"
 #define kTxt @"txt"
 
+#define kParameterArrayMatchTypeIndex 0
+#define kParameterArrayEDIndex 1
+#define kParameterArrayFoRevIndex 2
+#define kParameterArrayMutationCoverageIndex 3
+#define kParameterArrayTrimmingValIndex 4
+#define kParameterArrayTrimmingRefCharIndex 5
+#define kParameterArrayRefFileNameIndex 6
+#define kParameterArrayReadFileNameIndex 7
+
 #define kScrollViewSliderUpdateInterval 0.001
 
 #define kNoInternetAlertTitle @"Error"

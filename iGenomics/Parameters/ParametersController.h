@@ -43,7 +43,7 @@
 
 #define kStartSeqDelay 0.2
 
-#define kTrimmingStprLblTxt @"Trimming: %i"
+#define kTrimmingStprLblTxt @"Trimming Value: %i"
 
 @interface ParametersController : UIViewController {
     
@@ -63,6 +63,8 @@
     IBOutlet UILabel *trimmingLbl;
     IBOutlet UILabel *trimmingRefCharLbl;
     IBOutlet UISegmentedControl *trimmingRefCharCtrl;
+    IBOutlet UISwitch *trimmingSwitch;
+    IBOutlet UILabel *trimmingEnabledLbl;
     //Parameters end
     
     ComputingController *computingController;
@@ -76,6 +78,7 @@
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;
 - (IBAction)trimmingValueChanged:(id)sender;
+- (IBAction)trimmingSwitchValueChanged:(id)sender;
 - (IBAction)maxEDValueChanged:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
@@ -87,5 +90,6 @@
 
 - (NSString*)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
 - (NSString*)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
+- (NSString*)readsByRemovingQualityValFromReads:(NSString*)r;
 - (NSString*)extFromFileName:(NSString*)name;
 @end

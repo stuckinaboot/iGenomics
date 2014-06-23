@@ -115,6 +115,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
         reed = [reedsArray objectAtIndex:readNum];
+        readLen = strlen(reed.sequence);
         
         ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
         
