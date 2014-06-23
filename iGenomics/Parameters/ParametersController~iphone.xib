@@ -31,7 +31,7 @@
             </userGuides>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                    <rect key="frame" x="16" y="450" width="288" height="98"/>
+                    <rect key="frame" x="16" y="481" width="288" height="79"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.47753894181568546" green="0.73597507688284047" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -101,7 +101,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sol-wz-Vxo">
-                    <rect key="frame" x="46" y="371" width="169" height="22"/>
+                    <rect key="frame" x="35" y="386" width="169" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -142,28 +142,28 @@
                     </connections>
                 </stepper>
                 <stepper hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="bEC-s2-D1t">
-                    <rect key="frame" x="217" y="367" width="94" height="29"/>
+                    <rect key="frame" x="206" y="382" width="94" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <action selector="trimmingValueChanged:" destination="-1" eventType="valueChanged" id="lcd-12-ZM0"/>
                     </connections>
                 </stepper>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Ref Char:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIb-vw-Zkh">
-                    <rect key="frame" x="46" y="405" width="169" height="22"/>
+                    <rect key="frame" x="35" y="433" width="169" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Enabled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFa-UU-cbE">
-                    <rect key="frame" x="46" y="334" width="169" height="22"/>
+                    <rect key="frame" x="35" y="341" width="169" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O5T-Jd-O8q">
-                    <rect key="frame" x="217" y="402" width="94" height="29"/>
+                    <rect key="frame" x="206" y="430" width="94" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="!"/>
@@ -171,7 +171,7 @@
                     </segments>
                 </segmentedControl>
                 <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9du-ar-Qtp">
-                    <rect key="frame" x="217" y="329" width="51" height="31"/>
+                    <rect key="frame" x="206" y="336" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="trimmingSwitchValueChanged:" destination="-1" eventType="valueChanged" id="VkG-pa-cGD"/>
@@ -191,7 +191,7 @@
                 <constraint firstItem="fFN-tw-cMk" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="GK7-sd-jQB"/>
                 <constraint firstItem="74" firstAttribute="top" secondItem="2" secondAttribute="top" constant="60" id="GxQ-0M-9BF"/>
                 <constraint firstItem="30" firstAttribute="top" secondItem="74" secondAttribute="bottom" constant="7" id="Ict-ef-G9w"/>
-                <constraint firstItem="7" firstAttribute="top" secondItem="2" secondAttribute="top" priority="264" constant="450" id="LKN-CX-jK4"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="2" secondAttribute="top" priority="264" constant="481" id="LKN-CX-jK4"/>
                 <constraint firstAttribute="trailing" secondItem="HjU-px-ppB" secondAttribute="trailing" constant="9" id="MPf-tU-C9L"/>
                 <constraint firstAttribute="trailing" secondItem="92" secondAttribute="trailing" constant="22" id="NUa-AP-aAu"/>
                 <constraint firstItem="C0I-PY-mzK" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="26" id="SdE-9h-9BN"/>
@@ -201,7 +201,7 @@
                 <constraint firstItem="eqe-Ej-wC0" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="217" id="XuT-Z1-mn9"/>
                 <constraint firstItem="CU6-0i-z0g" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="22" id="dQR-SH-UO1"/>
                 <constraint firstItem="7" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="dtg-Zp-DbV"/>
-                <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" constant="20" id="geg-Sr-g3o"/>
+                <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" constant="8" id="geg-Sr-g3o"/>
                 <constraint firstItem="92" firstAttribute="top" secondItem="CU6-0i-z0g" secondAttribute="bottom" constant="33" id="hLT-uo-bgB"/>
                 <constraint firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="5" id="i04-Ya-STc"/>
                 <constraint firstItem="92" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="21" id="i5k-Vd-1k6"/>

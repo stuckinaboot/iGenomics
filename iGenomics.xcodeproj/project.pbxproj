@@ -21,6 +21,7 @@
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */; };
+		A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A324DA171958BB6400FBE264 /* TESTSEQ.txt */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
 		A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */; };
@@ -44,7 +45,6 @@
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
-		A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A358B82B187601A700076CB1 /* TESTSEQ.txt */; };
 		A35E39B41885FB7500651C41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E39B31885FB7500651C41 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */ = {isa = PBXBuildFile; fileRef = A364B409186246E10052625C /* Ecoli.50k.testread.txt */; };
@@ -141,6 +141,7 @@
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = e_coli_1000_1.fq; path = "../../Lab Projects/bowtie-0.12.7/reads/e_coli_1000_1.fq"; sourceTree = "<group>"; };
+		A324DA171958BB6400FBE264 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
 		A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilePreviewPopoverController.xib; sourceTree = "<group>"; };
@@ -175,7 +176,6 @@
 		A3531EA416BEFF3800768A31 /* MutationsInfoPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutationsInfoPopover.h; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.h"; sourceTree = "<group>"; };
 		A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutationsInfoPopover.m; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.m"; sourceTree = "<group>"; };
 		A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MutationsInfoPopover.xib; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.xib"; sourceTree = "<group>"; };
-		A358B82B187601A700076CB1 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A35E39B21885FB7500651C41 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		A35E39B31885FB7500651C41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
@@ -671,7 +671,7 @@
 				A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */,
 				A3A7212718023A1600F4E229 /* Ecoli.50k.txt */,
 				A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */,
-				A358B82B187601A700076CB1 /* TESTSEQ.txt */,
+				A324DA171958BB6400FBE264 /* TESTSEQ.txt */,
 			);
 			name = "Default Ref Files";
 			sourceTree = "<group>";
@@ -945,6 +945,7 @@
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
 				A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */,
+				A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */,
 				A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
@@ -957,7 +958,6 @@
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
-				A358B82C187601A700076CB1 /* TESTSEQ.txt in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,

@@ -78,6 +78,10 @@
     int selectedRowReads;
     DBPath *parentFolderPathReads;
     
+    BOOL isSelectingReads;
+    
+    //Only for old iphone
+    BOOL updatedScrollViewSize;
 }
 @property (nonatomic, strong) UIPopoverController *previewPopoverController;
 - (IBAction)showParametersPressed:(id)sender;

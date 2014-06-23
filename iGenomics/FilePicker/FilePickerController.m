@@ -50,9 +50,19 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if (isSelectingReads)
+        [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y)];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     if ([GlobalVars isOldIPhone]) {
-        scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+        if (!updatedScrollViewSize) {
+            scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+            updatedScrollViewSize = TRUE;
+        }
+        if (isSelectingReads)
+            [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y)];
         
         CGRect rect = referenceFilePicker.frame;
         referenceFilePicker.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height/kOldIphoneTblViewScaleFactor);
@@ -129,6 +139,7 @@
 }
 
 - (IBAction)analyzePressed:(id)sender {
+    isSelectingReads = NO;
     @try {
         NSLog(@"Try Block Entered");
         if (selectedOptionReads == kDropboxFilesIndex || selectedOptionRef == kDropboxFilesIndex)
@@ -154,6 +165,7 @@
 
 - (IBAction)nextPressedOnIPhone:(id)sender {
     [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y) animated:YES];
+    isSelectingReads = YES;
 }
 
 - (void)lockContinueBtns {
@@ -236,11 +248,13 @@
 - (IBAction)backPressed:(id)sender {
     if ([GlobalVars isIpad])
         [self dismissViewControllerAnimated:YES completion:nil];
-    else
+    else {
         if (scrollView.contentOffset.y > 0)
             [scrollView setContentOffset:CGPointZero animated:YES];
         else
             [self dismissViewControllerAnimated:YES completion:nil];
+        isSelectingReads = NO;
+    }
 }
 
 #pragma Table View Delegate
@@ -405,7 +419,7 @@
     if (selectedOptionRef == kSavedFilesIndex) {
         s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
         NSArray *arr = [self getFileNameAndExtForFullName:s];
-        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+        s = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil];
         if ([[arr objectAtIndex:1] caseInsensitiveCompare:kFastaFileExt] == NSOrderedSame) {
             NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
             s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
@@ -426,7 +440,7 @@
     if (selectedOptionReads == kSavedFilesIndex) {
         r = [filteredReadFileNames objectAtIndex:selectedRowReads];
         NSArray *arr = [self getFileNameAndExtForFullName:r];
-        r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
+        r = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil];
     }
     else if (selectedOptionReads == kDropboxFilesIndex) {
         DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
