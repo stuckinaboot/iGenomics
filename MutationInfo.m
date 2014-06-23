@@ -38,4 +38,16 @@
     mutStr[pos] = '\0';
     return mutStr;
 }
+
++ (char*)createMutCovStrFromFoundChars:(char*)fc andPos:(int)pos {
+    int len = strlen(fc);
+    int covArr[len];
+    
+    NSMutableString *covStr = [[NSMutableString alloc] init];
+    for (int i = 0; i < len; i++) {
+        covArr[i] = posOccArray[[BWT_MatcherSC whichChar:fc[i] inContainer:acgt]][pos];
+        [covStr appendFormat:kCovStrFormat,fc[i],covArr[i]];
+    }
+    return (char*)[[covStr stringByReplacingCharactersInRange:NSMakeRange(covStr.length-1, 1) withString:@""] UTF8String];//Replaces the final / with nothing
+}
 @end

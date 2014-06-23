@@ -215,8 +215,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
     
-    if ([[parametersController extFromFileName:rName] caseInsensitiveCompare:kFq] != NSOrderedSame)
-        [arr setObject:[NSNumber numberWithInt:kTrimmingOffVal] atIndexedSubscript:4];//Disables trimming for non-Fq files
+    if ([[parametersController extFromFileName:rName] caseInsensitiveCompare:kFq] != NSOrderedSame) {
+        arr = [arr mutableCopy];
+        [arr setObject:[NSNumber numberWithInt:kTrimmingOffVal] atIndexedSubscript:kParameterArrayTrimmingValIndex];//Disables trimming for non-Fq files
+    }
     
     if (arr == NULL) {
         arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:0] /*Trimming*/, nil];//Contains everything except refFileName and readFileName

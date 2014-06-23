@@ -106,8 +106,6 @@ typedef enum {
 #define kExportDropboxSaveFileFormatData @"%@%@.data.txt"//reads(1..2..3 or no ()).data...
 #define kExportDropboxSaveFileExt @".txt"
 
-#define kMutationFormat @"Pos: %i, %s\n"
-
 #define kConfirmDoneAlertTitle @"iGenomics: Analysis"
 #define kConfirmDoneAlertMsg @"Would you like to return to the main menu? Note that any unsaved data will be lost."
 #define kConfirmDoneAlertGoBtn @"Yes"

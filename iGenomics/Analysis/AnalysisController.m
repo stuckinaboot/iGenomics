@@ -558,7 +558,7 @@
     NSMutableString *mutString = [[NSMutableString alloc] init];
     [mutString appendFormat:@"Total Mutations: %i\n",[mutPosArray count]];
     for (MutationInfo *info in mutPosArray) {
-        [mutString appendFormat:kMutationFormat,info.pos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars]];//+1 so it doesn't start at 0
+        [mutString appendFormat:kMutationFormat,info.pos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]];//+1 so it doesn't start at 0
     }
     return mutString;
 }
