@@ -174,6 +174,9 @@ typedef enum {
     NSMutableArray *insertionsArr;
     BWT *bwt;
     
+    NSMutableArray *separateGenomeLens;//Contains the genome lengths ordered the same way genomeFileName is
+    NSMutableArray *cumulativeSeparateGenomeLens;//Used to quicken detection of which genome is currently being viewed
+    NSMutableArray *separateGenomeFileNames;
     NSString *genomeFileName;
     NSString *readsFileName;
     int readLen;
@@ -226,6 +229,8 @@ typedef enum {
 - (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents;
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
 - (NSString*)fixChosenExportPathExt:(NSString*)path;
+
+- (NSString*)combinedGenomeFileName;
 
 - (void)displaySuccessBox;
 

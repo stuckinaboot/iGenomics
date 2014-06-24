@@ -33,6 +33,11 @@ typedef enum {
 #define kLineBreak @"\n"
 #define kTxt @"txt"
 
+#define kRefFileInternalDivider @",,"//This constant is used to divide the multiple reference file names
+#define kRefFileDisplayedDivider @", "//Used when displaying the multiple reference file names
+
+#define kFaFileTitleIndicator @">"
+
 #define kParameterArrayMatchTypeIndex 0
 #define kParameterArrayEDIndex 1
 #define kParameterArrayFoRevIndex 2

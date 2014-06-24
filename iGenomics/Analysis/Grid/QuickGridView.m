@@ -408,11 +408,23 @@
     if (shouldUpdateScrollView)
         [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
     shouldUpdateScrollView = !shouldUpdateScrollView;
-//    [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//       [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
-//    });
-//    [self performSelectorOnMainThread:@selector(setUpGridViewAfterDelayForPixelOffset:) withObject:[NSNumber numberWithDouble:scrollingView.contentOffset.x] waitUntilDone:YES];
+    
+    float offset;
+    NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
+    int index = 0;
+    if ([arr count] > 1) {
+        for (int i = [arr count]-1; i >= 0; i--) {
+            offset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
+            if (currOffset <= offset) {
+                index = i;
+            }
+            else {
+                [delegate shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:index];
+                break;
+            }
+        }
+        [delegate shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:index];
+    }
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {

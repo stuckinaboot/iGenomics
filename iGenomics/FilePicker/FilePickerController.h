@@ -48,6 +48,7 @@
     ParametersController *parametersController;
     
     IBOutlet UIView *contentView;
+    IBOutlet UISwitch *multipleRefSelectionSwitch;
     
     IBOutlet UITableView *referenceFilePicker;
     IBOutlet UISearchBar *refPickerSearchBar;
@@ -88,6 +89,7 @@
 - (IBAction)analyzePressed:(id)sender;
 - (IBAction)nextPressedOnIPhone:(id)sender;
 - (IBAction)backPressed:(id)sender;
+- (IBAction)multipleRefSelectionValueChanged:(id)sender;
 
 - (IBAction)backRefTbl:(id)sender;
 - (IBAction)backReadsTbl:(id)sender;

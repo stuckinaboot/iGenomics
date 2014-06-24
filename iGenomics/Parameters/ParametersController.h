@@ -68,12 +68,9 @@
     //Parameters end
     
     ComputingController *computingController;
-    
-    NSString *refFileName;
-    NSString *readFileName;
 }
 @property (nonatomic) ComputingController *computingController;
-@property (nonatomic) NSString *seq, *reads;
+@property (nonatomic) NSString *seq, *reads, *refFileName, *readFileName;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;

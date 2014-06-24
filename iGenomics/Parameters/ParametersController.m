@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController, seq, reads;
+@synthesize computingController, seq, reads, refFileName, readFileName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -181,9 +181,43 @@
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
         //Remove every line break, and remove the first line because it just has random stuff
         //Finds first line break and removes characters up to and including that point
-        int index = [seq rangeOfString:kLineBreak].location;
-        seq = [seq stringByReplacingCharactersInRange:NSMakeRange(0, index+1) withString:@""];
+        
+        NSRange r1 = [seq rangeOfString:kFaFileTitleIndicator];
+        NSRange r2 = [seq rangeOfString:kLineBreak];
+        
+        NSMutableArray *lengthArray = [[NSMutableArray alloc] init];
+        NSRange lenRange;
+        int prevLoc = 0;
+        while (r1.location != NSNotFound) {
+            seq = [seq stringByReplacingCharactersInRange:NSMakeRange(r1.location, r2.location-r1.location+1) withString:@""];
+
+            prevLoc = r1.location;
+            
+            r1 = [seq rangeOfString:kFaFileTitleIndicator];
+            lenRange = NSMakeRange(prevLoc, ((r1.location == NSNotFound) ? seq.length : r1.location) - prevLoc);
+            
+            NSString *str = [seq substringWithRange:lenRange];
+            int lineBreakCount = [[str componentsSeparatedByString:kLineBreak] count];
+            [lengthArray addObject:[NSNumber numberWithInt:lenRange.length-lineBreakCount + 1]];//+1 because it accounts for the fact that lenRange.length goes to the last index, which is one less than the length
+            
+            if (r1.location == NSNotFound)
+                break;
+            r2 = [[seq substringFromIndex:r1.location] rangeOfString:kLineBreak];
+            r2 = NSMakeRange(r1.location+r2.location, r2.length);
+        }
+        
+        NSMutableString *newRefFileName = [[NSMutableString alloc] init];
+        NSArray *refFileNameComponentsArr = [refFileName componentsSeparatedByString:kRefFileInternalDivider];
+        for (int i = 0; i < [refFileNameComponentsArr count]; i++) {
+            [newRefFileName appendFormat:@"%@%@%i%@",[refFileNameComponentsArr objectAtIndex:i], kRefFileInternalDivider, [[lengthArray objectAtIndex:i] intValue], kRefFileInternalDivider];
+        }
+        refFileName = [newRefFileName stringByReplacingCharactersInRange:NSMakeRange(newRefFileName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the last divider
+        
         seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
+        seq = [seq stringByReplacingOccurrencesOfString:@"$" withString:@""];//Easier than searching for the dollar sign only if more than one ref is present
+//        int index = [seq rangeOfString:kLineBreak].location;
+//        seq = [seq stringByReplacingCharactersInRange:NSMakeRange(0, index+1) withString:@""];
+//        seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
     }
     int len = seq.length;
     if ([seq characterAtIndex:len-1] != '$')
@@ -203,7 +237,8 @@
 }
 
 - (NSString*)extFromFileName:(NSString *)name {
-    return [name substringFromIndex:[name rangeOfString:@"." options:NSBackwardsSearch].location+1];
+    NSRange range = [name rangeOfString:@"." options:NSBackwardsSearch];
+    return [name substringWithRange:NSMakeRange(range.location+1,kFa.length)];//Returns the first two characters of the ext to be able to support multiple ref files
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

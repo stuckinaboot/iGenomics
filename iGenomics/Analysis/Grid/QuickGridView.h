@@ -100,6 +100,8 @@
 //- (void)gridPointClickedWithCoordInGrid:(CGPoint)c andOriginInGrid:(CGPoint)o;
 - (void)mutationFoundAtPos:(int)pos;
 - (void)gridFinishedUpdatingWithOffset:(double)currOffset;
+- (NSArray*)getCumulativeSeparateGenomeLenArray;
+- (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index;
 @end
 
 @interface QuickGridView : UIView <UIScrollViewDelegate> {

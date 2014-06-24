@@ -83,6 +83,22 @@
     genomeLen = [[basicInfArr objectAtIndex:3] intValue];
     numOfReads = [[basicInfArr objectAtIndex:4] intValue];
     editDistance = [[basicInfArr objectAtIndex:5] intValue];
+    
+    NSArray *arr = [genomeFileName componentsSeparatedByString:kRefFileInternalDivider];
+    separateGenomeFileNames = [[NSMutableArray alloc] init];
+    separateGenomeLens = [[NSMutableArray alloc] init];
+    cumulativeSeparateGenomeLens = [[NSMutableArray alloc] init];
+    
+    for (int i = 0, x = 0; i < [arr count]; i += 2, x++) {
+        [separateGenomeFileNames addObject:[arr objectAtIndex:i]];
+        [separateGenomeLens addObject:[NSNumber numberWithInt:[[arr objectAtIndex:i+1] intValue]]];
+        if (i > 0)
+            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]+[[cumulativeSeparateGenomeLens objectAtIndex:x-1] intValue]]];
+        else
+            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
+    }
+    
+    genomeFileName = [separateGenomeFileNames objectAtIndex:0];
 }
 
 - (void)resetDisplay {
@@ -440,6 +456,14 @@
     pxlOffsetSlider.value = currOffset;//a little bit of a prob here
 }
 
+- (NSArray*)getCumulativeSeparateGenomeLenArray {
+    return cumulativeSeparateGenomeLens;
+}
+- (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {
+    genomeFileName = [separateGenomeFileNames objectAtIndex:index];
+    [genomeNameLbl setText:genomeFileName];
+}
+
 //Exports data
 - (IBAction)exportDataPressed:(id)sender {
     exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:kExportASEmailMutations, kExportASEmailData, kExportASDropboxMuts, kExportASDropboxData, nil];
@@ -534,16 +558,16 @@
     exportMailController.mailComposeDelegate = self;
     
     if (option == EmailInfoOptionMutations) {
-        [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Mutations for Aligning %@ to %@",readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:@"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a postion to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance, (int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
+        [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Mutations for Aligning %@ to %@",readsFileName, [self combinedGenomeFileName]]];
+        [exportMailController setMessageBody:[NSString stringWithFormat:@"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a postion to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, [self combinedGenomeFileName], editDistance, (int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
         
         NSMutableString *mutString = [self getMutationsExportStr];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"Mutations"];
         [self presentViewController:exportMailController animated:YES completion:nil];
     }
     else if (option == EmailInfoOptionData) {
-        [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Export Data for Aligning %@ to %@",readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:@"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
+        [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Export Data for Aligning %@ to %@",readsFileName, [self combinedGenomeFileName]]];
+        [exportMailController setMessageBody:[NSString stringWithFormat:@"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, [self combinedGenomeFileName], editDistance/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
         
         [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"ExportData"];
         [self presentViewController:exportMailController animated:YES completion:nil];
@@ -561,6 +585,16 @@
         [mutString appendFormat:kMutationFormat,info.pos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]];//+1 so it doesn't start at 0
     }
     return mutString;
+}
+
+- (NSString*)combinedGenomeFileName {
+    NSMutableString *str = [[NSMutableString alloc] init];
+    
+    for (int i = 0; i < [separateGenomeFileNames count]; i++) {
+        [str appendFormat:@"%@%@",[separateGenomeFileNames objectAtIndex:i],kRefFileDisplayedDivider];
+    }
+    [str replaceCharactersInRange:NSMakeRange(str.length-kRefFileDisplayedDivider.length, kRefFileDisplayedDivider.length) withString:@""];//Removes the last kRefFileDisplayedDivider
+    return str;
 }
 
 //Return to main menu

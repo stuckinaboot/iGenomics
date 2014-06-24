@@ -10,7 +10,7 @@
 
 @implementation MutationInfo
 
-@synthesize pos, refChar, foundChars;
+@synthesize pos, refChar, foundChars, genomeName;
 
 - (id)initWithPos:(int)p andRefChar:(char)refC andFoundChars:(char *)foundC {
     self = [super init];
