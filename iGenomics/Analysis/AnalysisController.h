@@ -71,7 +71,7 @@ typedef enum {
 
 #define kGenomeCoverageLblStart @"Genome Cov: "
 
-#define kNumOfReadsLblStart @"Num Reads:"
+#define kNumOfReadsLblStart @"Num Reads: "
 
 #define kTotalNumOfMutsLblStart @"Total Num Of Mutations: "
 
@@ -174,9 +174,9 @@ typedef enum {
     NSMutableArray *insertionsArr;
     BWT *bwt;
     
-    NSMutableArray *separateGenomeLens;//Contains the genome lengths ordered the same way genomeFileName is
+    NSMutableArray *separateGenomeLens;//Contains the genome lengths ordered the same way separateGenomeFileName is
     NSMutableArray *cumulativeSeparateGenomeLens;//Used to quicken detection of which genome is currently being viewed
-    NSMutableArray *separateGenomeFileNames;
+    NSMutableArray *separateGenomeNames;//Contains the genome names separated by >. The actual file name of the genome is stored in genomeFileName, it is removed in this.
     NSString *genomeFileName;
     NSString *readsFileName;
     int readLen;

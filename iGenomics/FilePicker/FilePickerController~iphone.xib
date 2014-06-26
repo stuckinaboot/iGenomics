@@ -10,7 +10,6 @@
                 <outlet property="analyzeBtn" destination="o7l-zh-7be" id="KDh-Uc-f2d"/>
                 <outlet property="configBtn" destination="qkQ-6B-mkr" id="WgD-0L-QnI"/>
                 <outlet property="contentView" destination="u2E-Ja-nMZ" id="kyw-A9-8lI"/>
-                <outlet property="multipleRefSelectionSwitch" destination="jIp-fR-9Me" id="A5t-Kg-6L1"/>
                 <outlet property="nextBtn" destination="o4P-6H-PUJ" id="b1P-0S-OaX"/>
                 <outlet property="readsFilePicker" destination="w2D-hS-jmD" id="YMV-e8-l5O"/>
                 <outlet property="readsPickerSearchBar" destination="zDB-8v-g9y" id="p5i-lv-oTd"/>
@@ -48,7 +47,7 @@
                                     </items>
                                 </navigationBar>
                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4P-6H-PUJ">
-                                    <rect key="frame" x="16" y="516.99999774862044" width="285" height="48"/>
+                                    <rect key="frame" x="16" y="517" width="285" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
@@ -60,7 +59,7 @@
                                     </connections>
                                 </button>
                                 <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search reference files..." translatesAutoresizingMaskIntoConstraints="NO" id="aGq-UO-lov">
-                                    <rect key="frame" x="0.0" y="117" width="275" height="44"/>
+                                    <rect key="frame" x="0.0" y="85" width="275" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -68,7 +67,7 @@
                                     </connections>
                                 </searchBar>
                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRz-zu-1as">
-                                    <rect key="frame" x="275" y="117" width="44" height="44"/>
+                                    <rect key="frame" x="275" y="85" width="44" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Back">
@@ -79,7 +78,7 @@
                                     </connections>
                                 </button>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="242" verticalHuggingPriority="965" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RxE-2A-gbt">
-                                    <rect key="frame" x="0.0" y="161" width="320" height="348"/>
+                                    <rect key="frame" x="0.0" y="129" width="320" height="380"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
@@ -166,20 +165,6 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Multiple Reference Selection:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdd-N3-57F">
-                                    <rect key="frame" x="-8" y="81" width="290" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jIp-fR-9Me">
-                                    <rect key="frame" x="256" y="81" width="51" height="31"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <action selector="multipleRefSelectionValueChanged:" destination="-1" eventType="valueChanged" id="QEi-eQ-Drt"/>
-                                    </connections>
-                                </switch>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>

@@ -23,10 +23,10 @@
 @interface MutationsInfoPopover : IPhonePopoverHandler <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *mutationsTBView;
     
-    NSArray *mutationsArray;
+    NSMutableArray *mutationsArray;
     
     id delegate;
 }
 @property (nonatomic) id <MutationsInfoPopoverDelegate> delegate;
-- (void)setUpWithMutationsArr:(NSArray*)arr;
+- (void)setUpWithMutationsArr:(NSArray *)arr andCumulativeGenomeLenArr:(NSArray *)lenArr andGenomeFileNameArr:(NSArray*)nameArr;
 @end

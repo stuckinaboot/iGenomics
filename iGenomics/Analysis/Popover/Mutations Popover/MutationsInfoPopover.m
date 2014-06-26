@@ -31,10 +31,21 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)setUpWithMutationsArr:(NSArray *)arr {
-    mutationsArray = arr;
+- (void)setUpWithMutationsArr:(NSArray *)arr andCumulativeGenomeLenArr:(NSArray *)lenArr andGenomeFileNameArr:(NSArray*)nameArr {
+    mutationsArray = (NSMutableArray*)arr;
     [mutationsTBView reloadData];
     [delegate mutationsPopoverDidFinishUpdating];
+    if ([lenArr count] > 1) {
+        for (int x = 0; x < [mutationsArray count]; x++) {
+            for (int i = [lenArr count]-1; i >= 0; i--) {
+                int len = [[lenArr objectAtIndex:i] intValue];
+                MutationInfo *info = [mutationsArray objectAtIndex:x];
+                if (info.pos < len)
+                    info.genomeName = [nameArr objectAtIndex:i];
+                [mutationsArray setObject:info atIndexedSubscript:x];
+            }
+        }
+    }
 }
 
 #pragma TableView Delegate Methods
@@ -49,19 +60,20 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
     if (indexPath.row > 0) {
         MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];
         int pos = info.pos;//-1 because first row shows total # of muts
         [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]]];//+1 because the first pos is considered 0
-        
+        [cell.detailTextLabel setText:info.genomeName];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//Show the little arrow
     }
     else {
         //Show total number of mutations
         [cell.textLabel setText:[NSString stringWithFormat:@"Total Mutations: %i",[mutationsArray count]]];
+        [cell.detailTextLabel setText:@""];
     }
     
     return cell;

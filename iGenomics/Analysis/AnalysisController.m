@@ -84,13 +84,14 @@
     numOfReads = [[basicInfArr objectAtIndex:4] intValue];
     editDistance = [[basicInfArr objectAtIndex:5] intValue];
     
-    NSArray *arr = [genomeFileName componentsSeparatedByString:kRefFileInternalDivider];
-    separateGenomeFileNames = [[NSMutableArray alloc] init];
+    NSMutableArray *arr = (NSMutableArray*)[genomeFileName componentsSeparatedByString:kRefFileInternalDivider];
+    
+    separateGenomeNames = [[NSMutableArray alloc] init];
     separateGenomeLens = [[NSMutableArray alloc] init];
     cumulativeSeparateGenomeLens = [[NSMutableArray alloc] init];
     
     for (int i = 0, x = 0; i < [arr count]; i += 2, x++) {
-        [separateGenomeFileNames addObject:[arr objectAtIndex:i]];
+        [separateGenomeNames addObject:[arr objectAtIndex:i]];
         [separateGenomeLens addObject:[NSNumber numberWithInt:[[arr objectAtIndex:i+1] intValue]]];
         if (i > 0)
             [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]+[[cumulativeSeparateGenomeLens objectAtIndex:x-1] intValue]]];
@@ -98,7 +99,7 @@
             [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
     }
     
-    genomeFileName = [separateGenomeFileNames objectAtIndex:0];
+    genomeFileName = [separateGenomeNames objectAtIndex:0];
 }
 
 - (void)resetDisplay {
@@ -284,7 +285,7 @@
 //    [bwt.bwtMutationFilter filterMutationsForDetails];
     mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray forHeteroAllowance:val];
 //    [gridView initialMutationFind];
-    [mutsPopover setUpWithMutationsArr:mutPosArray];
+    [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
     
 //    [gridView clearAllPoints];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
@@ -449,7 +450,7 @@
         [mutsPopover setDelegate:self];
         if ([mutPosArray count] == 0)
             mutPosArray = [[NSMutableArray alloc] initWithArray:allMutPosArray];
-        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value]];
+        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value] andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
         mutsPopoverAlreadyUpdated = !mutsPopoverAlreadyUpdated;
     }
     
@@ -460,7 +461,7 @@
     return cumulativeSeparateGenomeLens;
 }
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {
-    genomeFileName = [separateGenomeFileNames objectAtIndex:index];
+    genomeFileName = [separateGenomeNames objectAtIndex:index];
     [genomeNameLbl setText:genomeFileName];
 }
 
@@ -590,8 +591,8 @@
 - (NSString*)combinedGenomeFileName {
     NSMutableString *str = [[NSMutableString alloc] init];
     
-    for (int i = 0; i < [separateGenomeFileNames count]; i++) {
-        [str appendFormat:@"%@%@",[separateGenomeFileNames objectAtIndex:i],kRefFileDisplayedDivider];
+    for (int i = 0; i < [separateGenomeNames count]; i++) {
+        [str appendFormat:@"%@%@",[separateGenomeNames objectAtIndex:i],kRefFileDisplayedDivider];
     }
     [str replaceCharactersInRange:NSMakeRange(str.length-kRefFileDisplayedDivider.length, kRefFileDisplayedDivider.length) withString:@""];//Removes the last kRefFileDisplayedDivider
     return str;

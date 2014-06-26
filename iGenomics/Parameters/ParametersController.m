@@ -182,38 +182,66 @@
         //Remove every line break, and remove the first line because it just has random stuff
         //Finds first line break and removes characters up to and including that point
         
-        NSRange r1 = [seq rangeOfString:kFaFileTitleIndicator];
-        NSRange r2 = [seq rangeOfString:kLineBreak];
-        
         NSMutableArray *lengthArray = [[NSMutableArray alloc] init];
         NSRange lenRange;
-        int prevLoc = 0;
-        while (r1.location != NSNotFound) {
-            seq = [seq stringByReplacingCharactersInRange:NSMakeRange(r1.location, r2.location-r1.location+1) withString:@""];
-
-            prevLoc = r1.location;
-            
-            r1 = [seq rangeOfString:kFaFileTitleIndicator];
-            lenRange = NSMakeRange(prevLoc, ((r1.location == NSNotFound) ? seq.length : r1.location) - prevLoc);
-            
-            NSString *str = [seq substringWithRange:lenRange];
-            int lineBreakCount = [[str componentsSeparatedByString:kLineBreak] count];
-            [lengthArray addObject:[NSNumber numberWithInt:lenRange.length-lineBreakCount + 1]];//+1 because it accounts for the fact that lenRange.length goes to the last index, which is one less than the length
-            
-            if (r1.location == NSNotFound)
-                break;
-            r2 = [[seq substringFromIndex:r1.location] rangeOfString:kLineBreak];
-            r2 = NSMakeRange(r1.location+r2.location, r2.length);
+        
+        NSMutableArray *namesArray = [[NSMutableArray alloc] init];
+        
+        NSMutableArray *lineArray = (NSMutableArray*)[seq componentsSeparatedByString:kLineBreak];
+        int lineLen = [[lineArray objectAtIndex:1] length];//Length of the first DNA sequence
+        
+        int prevLenIndex = -1;
+        
+        NSMutableString *newSeq = [[NSMutableString alloc] init];
+        
+        for (int i = 0; i < [lineArray count]; i++) {
+            NSString *str = [lineArray objectAtIndex:i];
+            if ([str characterAtIndex:0] == kFaFileTitleIndicator) {
+                [namesArray addObject:[str substringFromIndex:1]];//Removes the >
+                [lineArray removeObjectAtIndex:i];
+                if (prevLenIndex != -1)
+                    [lengthArray addObject:[NSNumber numberWithInt:lineLen*(i-prevLenIndex)]];
+                prevLenIndex = i;
+                i--;
+            }
+            else
+                [newSeq appendString:str];
         }
         
+        int lineArrCount = [lineArray count];
+        [lengthArray addObject:[NSNumber numberWithInt:((lineArrCount-prevLenIndex-1)*lineLen)+[[lineArray objectAtIndex:lineArrCount-1] length]]];//Last line may have a different length
+        seq = newSeq;
+//        NSRange r1 = [seq rangeOfString:kFaFileTitleIndicator];
+//        NSRange r2 = [seq rangeOfString:kLineBreak];
+//        
+//        int prevLoc = 0;
+//        while (r1.location != NSNotFound) {
+//            NSRange rangeOfName = NSMakeRange(r1.location, r2.location-r1.location+1);
+//            [namesArray addObject:[seq substringWithRange:NSMakeRange(rangeOfName.location+1, rangeOfName.length-1)]];//Removes the >
+//            seq = [seq stringByReplacingCharactersInRange:rangeOfName withString:@""];
+//
+//            prevLoc = r1.location;
+//            
+//            r1 = [seq rangeOfString:kFaFileTitleIndicator];
+//            lenRange = NSMakeRange(prevLoc, ((r1.location == NSNotFound) ? seq.length : r1.location) - prevLoc);
+//            
+//            NSString *str = [seq substringWithRange:lenRange];
+//            int lineBreakCount = [[str componentsSeparatedByString:kLineBreak] count];
+//            [lengthArray addObject:[NSNumber numberWithInt:lenRange.length-lineBreakCount + 1]];//+1 because it accounts for the fact that lenRange.length goes to the last index, which is one less than the length
+//            
+//            if (r1.location == NSNotFound)
+//                break;
+//            r2 = [[seq substringFromIndex:r1.location] rangeOfString:kLineBreak];
+//            r2 = NSMakeRange(r1.location+r2.location, r2.length);
+//        }
+        
         NSMutableString *newRefFileName = [[NSMutableString alloc] init];
-        NSArray *refFileNameComponentsArr = [refFileName componentsSeparatedByString:kRefFileInternalDivider];
-        for (int i = 0; i < [refFileNameComponentsArr count]; i++) {
-            [newRefFileName appendFormat:@"%@%@%i%@",[refFileNameComponentsArr objectAtIndex:i], kRefFileInternalDivider, [[lengthArray objectAtIndex:i] intValue], kRefFileInternalDivider];
+        for (int i = 0; i < [namesArray count]; i++) {
+            [newRefFileName appendFormat:@"%@%@%i%@",[namesArray objectAtIndex:i], kRefFileInternalDivider, [[lengthArray objectAtIndex:i] intValue], kRefFileInternalDivider];
         }
         refFileName = [newRefFileName stringByReplacingCharactersInRange:NSMakeRange(newRefFileName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the last divider
         
-        seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
+//        seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
         seq = [seq stringByReplacingOccurrencesOfString:@"$" withString:@""];//Easier than searching for the dollar sign only if more than one ref is present
 //        int index = [seq rangeOfString:kLineBreak].location;
 //        seq = [seq stringByReplacingCharactersInRange:NSMakeRange(0, index+1) withString:@""];

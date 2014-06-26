@@ -28,6 +28,8 @@ typedef enum {
 #define kACGTStr "ACGT"
 #define kACGTwithInDels "ACGT-+"
 
+#define kBaseUnknownChar 'N'
+
 #define kNoGappedBChar "X"
 
 #define kLineBreak @"\n"
@@ -36,7 +38,7 @@ typedef enum {
 #define kRefFileInternalDivider @",,"//This constant is used to divide the multiple reference file names
 #define kRefFileDisplayedDivider @", "//Used when displaying the multiple reference file names
 
-#define kFaFileTitleIndicator @">"
+#define kFaFileTitleIndicator '>'
 
 #define kParameterArrayMatchTypeIndex 0
 #define kParameterArrayEDIndex 1

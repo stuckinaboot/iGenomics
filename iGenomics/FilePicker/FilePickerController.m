@@ -108,44 +108,19 @@
     NSString *r = @"";
     NSString *rName = @"";
     
-    if (multipleRefSelectionSwitch.on) {
-        NSString *temp;
-        if (selectedOptionRef == kSavedFilesIndex) {
-            for (NSIndexPath *path in [referenceFilePicker indexPathsForSelectedRows]) {
-                temp = [filteredRefFileNames objectAtIndex:path.row];
-                sName = [NSString stringWithFormat:@"%@%@%@",sName,temp,kRefFileInternalDivider];
-                
-                NSArray *arr = [self getFileNameAndExtForFullName:temp];
-                s = [NSString stringWithFormat:@"%@%@", s,[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-            }
-        }
-        else if (selectedOptionRef == kDropboxFilesIndex) {
-            if (![GlobalVars internetAvailable])
-                return;
-            for (NSIndexPath *path in [referenceFilePicker indexPathsForSelectedRows]) {
-                DBFileInfo *info = [filteredRefFileNames objectAtIndex:path.row];
-                sName = [NSString stringWithFormat:@"%@%@%@",sName,[info.path name],kRefFileInternalDivider];
-                DBFile *file = [dbFileSys openFile:info.path error:nil];
-                s = [NSString stringWithFormat:@"%@%@",s,[file readString:nil]];
-            }
-        }
-        sName = [sName stringByReplacingCharactersInRange:NSMakeRange(sName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the final internal divider 
+    if (selectedOptionRef == kSavedFilesIndex) {
+        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
+        sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        NSArray *arr = [self getFileNameAndExtForFullName:s];
+        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
-    else {
-        if (selectedOptionRef == kSavedFilesIndex) {
-            s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
-            sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
-            NSArray *arr = [self getFileNameAndExtForFullName:s];
-            s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-        }
-        else if (selectedOptionRef == kDropboxFilesIndex) {
-            if (![GlobalVars internetAvailable])
-                return;
-            DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-            DBFile *file = [dbFileSys openFile:info.path error:nil];
-            s = [file readString:nil];
-            sName = [info.path name];
-        }
+    else if (selectedOptionRef == kDropboxFilesIndex) {
+        if (![GlobalVars internetAvailable])
+            return;
+        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        DBFile *file = [dbFileSys openFile:info.path error:nil];
+        s = [file readString:nil];
+        sName = [info.path name];
     }
     if (selectedOptionReads == kSavedFilesIndex) {
         r = [filteredReadFileNames objectAtIndex:selectedRowReads];
@@ -219,44 +194,19 @@
     NSString *r = @"";
     NSString *rName = @"";
     
-    if (multipleRefSelectionSwitch.on) {
-        NSString *temp;
-        if (selectedOptionRef == kSavedFilesIndex) {
-            for (NSIndexPath *path in [referenceFilePicker indexPathsForSelectedRows]) {
-                temp = [filteredRefFileNames objectAtIndex:path.row];
-                sName = [NSString stringWithFormat:@"%@%@%@",sName,temp,kRefFileInternalDivider];
-                
-                NSArray *arr = [self getFileNameAndExtForFullName:temp];
-                s = [NSString stringWithFormat:@"%@%@", s,[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-            }
-        }
-        else if (selectedOptionRef == kDropboxFilesIndex) {
-            if (![GlobalVars internetAvailable])
-                return;
-            for (NSIndexPath *path in [referenceFilePicker indexPathsForSelectedRows]) {
-                DBFileInfo *info = [filteredRefFileNames objectAtIndex:path.row];
-                sName = [NSString stringWithFormat:@"%@%@%@",sName,[info.path name],kRefFileInternalDivider];
-                DBFile *file = [dbFileSys openFile:info.path error:nil];
-                s = [NSString stringWithFormat:@"%@%@",s,[file readString:nil]];
-            }
-        }
-        sName = [sName stringByReplacingCharactersInRange:NSMakeRange(sName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the final internal divider
+    if (selectedOptionRef == kSavedFilesIndex) {
+        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
+        sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        NSArray *arr = [self getFileNameAndExtForFullName:s];
+        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
-    else {
-        if (selectedOptionRef == kSavedFilesIndex) {
-            s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
-            sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
-            NSArray *arr = [self getFileNameAndExtForFullName:s];
-            s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-        }
-        else if (selectedOptionRef == kDropboxFilesIndex) {
-            if (![GlobalVars internetAvailable])
-                return;
-            DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-            DBFile *file = [dbFileSys openFile:info.path error:nil];
-            s = [file readString:nil];
-            sName = [info.path name];
-        }
+    else if (selectedOptionRef == kDropboxFilesIndex) {
+        if (![GlobalVars internetAvailable])
+            return;
+        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        DBFile *file = [dbFileSys openFile:info.path error:nil];
+        s = [file readString:nil];
+        sName = [info.path name];
     }
     if (selectedOptionReads == kSavedFilesIndex) {
         r = [filteredReadFileNames objectAtIndex:selectedRowReads];
@@ -313,15 +263,6 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         isSelectingReads = NO;
     }
-}
-
-#pragma Multiple Ref Selection
-
-- (IBAction)multipleRefSelectionValueChanged:(id)sender {
-    NSIndexPath *path = [referenceFilePicker.indexPathsForSelectedRows objectAtIndex:0];
-    referenceFilePicker.allowsMultipleSelection = multipleRefSelectionSwitch.on;
-    if (!referenceFilePicker.allowsMultipleSelection)//Selects the first of the multiple selected files so that there is one selected
-        [referenceFilePicker selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 #pragma Table View Delegate
