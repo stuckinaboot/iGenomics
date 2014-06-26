@@ -85,6 +85,8 @@
 
 - (void)setTrimmingAllowed:(BOOL)allowed;
 
+- (int)unknownBaseTrimmingIndexForRead:(NSString*)read;//-1 if shouldn't trim at all
+
 - (NSString*)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
 - (NSString*)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
 - (NSString*)readsByRemovingQualityValFromReads:(NSString*)r;

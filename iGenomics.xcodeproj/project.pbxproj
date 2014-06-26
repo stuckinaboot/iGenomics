@@ -60,6 +60,7 @@
 		A375FBFF19391FBD00F69E07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFE19391FBD00F69E07 /* QuartzCore.framework */; };
 		A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0019391FC600F69E07 /* CFNetwork.framework */; };
 		A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0219391FCB00F69E07 /* libc++.dylib */; };
+		A3845659195CB1010030F092 /* rice.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3845658195CB1010030F092 /* rice.fq */; };
 		A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A38C320918EB6E040070F49E /* ThreeLines.png */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
@@ -195,6 +196,7 @@
 		A375FBFE19391FBD00F69E07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A375FC0019391FC600F69E07 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A375FC0219391FCB00F69E07 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		A3845658195CB1010030F092 /* rice.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rice.fq; path = ../../../Downloads/rice.fq; sourceTree = "<group>"; };
 		A38C320918EB6E040070F49E /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3845658195CB1010030F092 /* rice.fq */,
 				A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */,
 				A36CCDF9184A8632004B9327 /* reads.fa */,
 				A36CCDFA184A8632004B9327 /* reads.fq */,
@@ -919,6 +922,7 @@
 				A34168571607B3A800ADA90B /* BasicReeds.txt in Resources */,
 				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
 				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
+				A3845659195CB1010030F092 /* rice.fq in Resources */,
 				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
 				A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */,
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,

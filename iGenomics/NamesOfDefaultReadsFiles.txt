@@ -1,3 +1,4 @@
+rice.fq
 Ecoli.5k.reads.txt
 e_coli_1000_1.fq
 Ecoli.50k.reads.txt

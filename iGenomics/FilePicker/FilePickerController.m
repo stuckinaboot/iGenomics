@@ -271,7 +271,6 @@
     return 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:referenceFilePicker]) {
         if (selectedOptionRef == -1)
@@ -335,6 +334,7 @@
         [self lockContinueBtns];
     [referenceFilePicker reloadData];
 }
+
 - (IBAction)backReadsTbl:(id)sender {
     if (selectedOptionReads == kDropboxFilesIndex) {
         DBPath *parentPath = [parentFolderPathReads parent];

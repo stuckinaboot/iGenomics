@@ -151,11 +151,12 @@
 - (NSString*)fixReadsForReadsFileName:(NSString *)name {
     NSString *ext = [self extFromFileName:name];
     
+    reads = [reads stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
     if ([ext isEqualToString:kTxt])
         return reads;
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[reads componentsSeparatedByString:kLineBreak]];
-    [arr removeLastObject];//Need to make sure is correct for all files
     NSMutableString *newReads = [[NSMutableString alloc] init];
     
     int interval = 0;
@@ -167,12 +168,25 @@
     
     if (interval > 0) {
         for (int i = 0; i < [arr count]; i+= interval) {
-            [newReads appendFormat:@"%@\n",[[arr objectAtIndex:i] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""]];//Read name, takes away the '>' or '@'
-            [newReads appendFormat:@"%@\n",[arr objectAtIndex:i+1]];//Read
-            if (interval == kFqInterval)
-                [newReads appendFormat:@"%@\n",[arr objectAtIndex:i+3]];//Adds the quality values
+            NSString *read = [arr objectAtIndex:i+1];
+            int trimIndex = [self unknownBaseTrimmingIndexForRead:read];
+            
+            if (trimIndex >= kMinReadLength || trimIndex == -1) {
+                [newReads appendFormat:@"%@\n",[[arr objectAtIndex:i] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""]];//Read name, takes away the '>' or '@'
+                
+                if (trimIndex != -1)
+                    [newReads appendFormat:@"%@\n",[read substringToIndex:trimIndex]];//Read
+                else
+                    [newReads appendFormat:@"%@\n",read];
+                if (interval == kFqInterval) {
+                    if (trimIndex != -1)
+                        [newReads appendFormat:@"%@\n",[[arr objectAtIndex:i+3] substringToIndex:trimIndex]];//Adds the quality values
+                    else
+                        [newReads appendFormat:@"%@\n",[arr objectAtIndex:i+3]];//Adds the quality values
+                }
+            }
         }
-        reads = [newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the trailing line break
+        reads = [newReads stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];//Takes away trailing line breaks
     }
     return reads;
 }
@@ -183,8 +197,6 @@
         //Finds first line break and removes characters up to and including that point
         
         NSMutableArray *lengthArray = [[NSMutableArray alloc] init];
-        NSRange lenRange;
-        
         NSMutableArray *namesArray = [[NSMutableArray alloc] init];
         
         NSMutableArray *lineArray = (NSMutableArray*)[seq componentsSeparatedByString:kLineBreak];
@@ -210,30 +222,7 @@
         
         int lineArrCount = [lineArray count];
         [lengthArray addObject:[NSNumber numberWithInt:((lineArrCount-prevLenIndex-1)*lineLen)+[[lineArray objectAtIndex:lineArrCount-1] length]]];//Last line may have a different length
-        seq = newSeq;
-//        NSRange r1 = [seq rangeOfString:kFaFileTitleIndicator];
-//        NSRange r2 = [seq rangeOfString:kLineBreak];
-//        
-//        int prevLoc = 0;
-//        while (r1.location != NSNotFound) {
-//            NSRange rangeOfName = NSMakeRange(r1.location, r2.location-r1.location+1);
-//            [namesArray addObject:[seq substringWithRange:NSMakeRange(rangeOfName.location+1, rangeOfName.length-1)]];//Removes the >
-//            seq = [seq stringByReplacingCharactersInRange:rangeOfName withString:@""];
-//
-//            prevLoc = r1.location;
-//            
-//            r1 = [seq rangeOfString:kFaFileTitleIndicator];
-//            lenRange = NSMakeRange(prevLoc, ((r1.location == NSNotFound) ? seq.length : r1.location) - prevLoc);
-//            
-//            NSString *str = [seq substringWithRange:lenRange];
-//            int lineBreakCount = [[str componentsSeparatedByString:kLineBreak] count];
-//            [lengthArray addObject:[NSNumber numberWithInt:lenRange.length-lineBreakCount + 1]];//+1 because it accounts for the fact that lenRange.length goes to the last index, which is one less than the length
-//            
-//            if (r1.location == NSNotFound)
-//                break;
-//            r2 = [[seq substringFromIndex:r1.location] rangeOfString:kLineBreak];
-//            r2 = NSMakeRange(r1.location+r2.location, r2.length);
-//        }
+        seq = [newSeq stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         NSMutableString *newRefFileName = [[NSMutableString alloc] init];
         for (int i = 0; i < [namesArray count]; i++) {
@@ -241,16 +230,21 @@
         }
         refFileName = [newRefFileName stringByReplacingCharactersInRange:NSMakeRange(newRefFileName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the last divider
         
-//        seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
         seq = [seq stringByReplacingOccurrencesOfString:@"$" withString:@""];//Easier than searching for the dollar sign only if more than one ref is present
-//        int index = [seq rangeOfString:kLineBreak].location;
-//        seq = [seq stringByReplacingCharactersInRange:NSMakeRange(0, index+1) withString:@""];
-//        seq = [seq stringByReplacingOccurrencesOfString:kLineBreak withString:@""];
     }
     int len = seq.length;
     if ([seq characterAtIndex:len-1] != '$')
         seq = [NSString stringWithFormat:@"%@$",seq];
     return seq;
+}
+
+- (int)unknownBaseTrimmingIndexForRead:(NSString *)read {
+    for (int i = 0; i < read.length; i++) {
+        if ([read characterAtIndex:i] == kBaseUnknownChar) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 - (NSString*)readsByRemovingQualityValFromReads:(NSString*)r {
