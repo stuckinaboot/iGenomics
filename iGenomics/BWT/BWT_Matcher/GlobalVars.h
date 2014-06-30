@@ -59,6 +59,8 @@ typedef enum {
 #define kKeyboardToolbarHeight 50
 #define kKeyboardDoneBtnTxt @"Done"
 
+#define kAlertBtnTitleCancel @"Cancel"
+
 #define kOldIPhoneScreenSize 480
 
 #define kBWTFileExt @"bwt"

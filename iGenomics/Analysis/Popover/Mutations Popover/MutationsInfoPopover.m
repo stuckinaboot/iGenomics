@@ -68,12 +68,13 @@
         int pos = info.pos;//-1 because first row shows total # of muts
         [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]]];//+1 because the first pos is considered 0
         [cell.detailTextLabel setText:info.genomeName];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//Show the little arrow
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;//Show the little arrow
     }
     else {
         //Show total number of mutations
-        [cell.textLabel setText:[NSString stringWithFormat:@"Total Mutations: %i",[mutationsArray count]]];
+        [cell.textLabel setText:[NSString stringWithFormat:kMutationTotalFormat,[mutationsArray count]]];
         [cell.detailTextLabel setText:@""];
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
@@ -81,6 +82,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    if (indexPath.row>0) {//didn't select "Total Mutations" row
+//        MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];//-1 because first row shows total # of muts
+//        [delegate mutationAtPosPressedInPopover:info.pos+1];//+1 because it starts at 0
+//    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    if (![GlobalVars isIpad])
+//        [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row>0) {//didn't select "Total Mutations" row
         MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];//-1 because first row shows total # of muts
         [delegate mutationAtPosPressedInPopover:info.pos+1];//+1 because it starts at 0

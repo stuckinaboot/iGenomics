@@ -182,15 +182,8 @@
 - (IBAction)showMutTBView:(id)sender;
 - (IBAction)exportDataPressed:(id)sender;
 - (IBAction)donePressed:(id)sender;
-- (void)emailInfoForOption:(EmailInfoOption)option;
-- (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents;
-- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents;
-- (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
-- (NSString*)fixChosenExportPathExt:(NSString*)path;
 
 //- (void)displaySuccessBox;
-
-- (NSMutableString*)getMutationsExportStr;//Don't need the same method for exportDataStr bc it is a passed in object
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;

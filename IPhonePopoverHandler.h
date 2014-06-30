@@ -11,5 +11,5 @@
 #define kIPhonePopoverMinTapsRequired 2
 
 @interface IPhonePopoverHandler : UIViewController
-- (IBAction)pinchOccurred:(id)sender;
+- (IBAction)doubleTapOccurred:(id)sender;
 @end

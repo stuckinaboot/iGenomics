@@ -30,6 +30,7 @@ typedef enum {
 
 #define kExportAlertTitle @"File Export"
 #define kExportAlertBody @"Enter file name here:"
+#define kExportAlertBtnExportTitle @"Export"
 
 #define kExportDropboxSaveFileFormatMuts @"%@%@.var.txt"//reads(1..2..3 or no ()).var...
 #define kExportDropboxSaveFileFormatData @"%@%@.data.txt"//reads(1..2..3 or no ()).data...
@@ -38,6 +39,16 @@ typedef enum {
 #define kErrorAlertExportTitle @"iGenomics: Error"
 #define kErrorAlertExportBody @"An error occurred exporting the file."
 #define kErrorAlertExportBodyFileNameAlreadyInUse @"File name already used. Would you like to overwrite or cancel?"
+#define kErrorAlertExportBtnTitleOverwrite @"Overwrite"
+
+
+#define kExportDataFileName @"ExportData"
+#define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
+#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics"
+
+#define kExportMutsFileName @"Mutations"
+#define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
+#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics"
 
 @protocol FileExporterDelegate <NSObject>
 - (UIViewController*)getVC;

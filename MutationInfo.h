@@ -12,6 +12,7 @@
 #define kMutationFormat @"Pos: %i, %s | Cov:%s\n"
 #define kMutationExportFormat @"Pos: %i, %s | Cov:%s, %@\n"
 #define kCovStrFormat @" %c = %i,"
+#define kMutationTotalFormat @"Total Mutations: %i\n"
 
 @interface MutationInfo : NSObject
 @property (nonatomic) int pos;
