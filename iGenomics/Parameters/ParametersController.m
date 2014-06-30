@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController, seq, reads, refFileName, readFileName;
+@synthesize computingController, seq, reads, refFileSegmentNames, readFileName, refFilePath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +45,7 @@
         mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
     }
     
-    if ([[self extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+    if ([[GlobalVars extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
         [self setTrimmingAllowed:YES];
         [self trimmingValueChanged:nil];
         [trimmingRefCharCtrl setTitle:[NSString stringWithFormat:@"%c",kTrimmingRefChar0] forSegmentAtIndex:kTrimmingRefChar0Index];
@@ -110,9 +110,9 @@
 - (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString *)refN andReadFileName:(NSString *)readN {
     seq = mySeq;
     reads = myReads;
-    refFileName = refN;
+    refFileSegmentNames = refN;
     readFileName = readN;
-    [self fixGenomeForGenomeFileName:refFileName];
+    [self fixGenomeForGenomeFileName:refFileSegmentNames];
     [self fixReadsForReadsFileName:readFileName];
 }
 
@@ -131,7 +131,7 @@
     else if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar1Index)
         trimRefChar = [NSString stringWithFormat:@"%c",kTrimmingRefChar1];
     
-    if (!trimmingSwitch.on && [[self extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+    if (!trimmingSwitch.on && [[GlobalVars extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
         reads = [self readsByRemovingQualityValFromReads:reads];
     }
     
@@ -141,7 +141,7 @@
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
     [defaults synchronize];
 
-    [computingController setUpWithReads:reads andSeq:seq andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:refFileName, readFileName, nil]]];
+    [computingController setUpWithReads:reads andSeq:seq andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:refFileSegmentNames, readFileName, nil]] andRefFilePath:refFilePath];
 }
 
 - (IBAction)backPressed:(id)sender {
@@ -149,7 +149,7 @@
 }
 
 - (NSString*)fixReadsForReadsFileName:(NSString *)name {
-    NSString *ext = [self extFromFileName:name];
+    NSString *ext = [GlobalVars extFromFileName:name];
     
     reads = [reads stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
@@ -191,7 +191,7 @@
     return reads;
 }
 - (NSString*)fixGenomeForGenomeFileName:(NSString *)name {
-    NSString *ext = [self extFromFileName:name];
+    NSString *ext = [GlobalVars extFromFileName:name];
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
         //Remove every line break, and remove the first line because it just has random stuff
         //Finds first line break and removes characters up to and including that point
@@ -224,11 +224,11 @@
         [lengthArray addObject:[NSNumber numberWithInt:((lineArrCount-prevLenIndex-1)*lineLen)+[[lineArray objectAtIndex:lineArrCount-1] length]]];//Last line may have a different length
         seq = [newSeq stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
-        NSMutableString *newRefFileName = [[NSMutableString alloc] init];
+        NSMutableString *newRefFileName = [[NSMutableString alloc] initWithFormat:@"%@%@",name,kRefFileInternalDivider];
         for (int i = 0; i < [namesArray count]; i++) {
             [newRefFileName appendFormat:@"%@%@%i%@",[namesArray objectAtIndex:i], kRefFileInternalDivider, [[lengthArray objectAtIndex:i] intValue], kRefFileInternalDivider];
         }
-        refFileName = [newRefFileName stringByReplacingCharactersInRange:NSMakeRange(newRefFileName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the last divider
+        refFileSegmentNames = [newRefFileName stringByReplacingCharactersInRange:NSMakeRange(newRefFileName.length-kRefFileInternalDivider.length, kRefFileInternalDivider.length) withString:@""];//Removes the last divider
         
         seq = [seq stringByReplacingOccurrencesOfString:@"$" withString:@""];//Easier than searching for the dollar sign only if more than one ref is present
     }
@@ -256,11 +256,6 @@
     }
     readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break
     return (NSString*)readStr;
-}
-
-- (NSString*)extFromFileName:(NSString *)name {
-    NSRange range = [name rangeOfString:@"." options:NSBackwardsSearch];
-    return [name substringWithRange:NSMakeRange(range.location+1,kFa.length)];//Returns the first two characters of the ext to be able to support multiple ref files
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

@@ -229,9 +229,9 @@
  - (char*)unravelCharWithLastColumn:(char*)lastColumn firstColumn:(char*)firstColumn {
  
      int i = 0;//index
-     int pos = dgenomeLen-1;
+     int pos = dgenomeLen-2;//-2 because dollar sign is added afterwards
      int occurence = 1;//1 = 1st, etc.
-     char *unraveledChar = calloc(dgenomeLen, 1);
+     char *unraveledChar = calloc(dgenomeLen+1, 1);
      int unravCharSize = 0;
      char lastChar = lastColumn[i];
      
@@ -239,19 +239,17 @@
      
      i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
      
-     while (/*strlen(unraveledChar)*/unravCharSize<dgenomeLen) {
+     while (/*strlen(unraveledChar)*/unravCharSize<dgenomeLen && pos > 0) {
          pos--;
          //Add lastChar to beginning of unraveledChar
          lastChar = lastColumn[i];
-         
-         unraveledChar[pos] = lastChar;
          
          occurence = [self whichOccurenceOfChar:lastChar inBWT:lastColumn atPos:i];
          i = [self getIndexOfNth:occurence OccurenceOfChar:lastChar inChar:firstColumn];
          unravCharSize++;
      }
-     
-     strcpy(unraveledChar, unraveledChar+1);
+     unraveledChar[dgenomeLen-1] = '$';
+     unraveledChar[dgenomeLen] = '\0';
      return unraveledChar;
  }
 

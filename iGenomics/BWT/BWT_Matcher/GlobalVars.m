@@ -77,4 +77,10 @@ int acgtTotalOccs[kACGTLen];
 + (BOOL)isOldIPhone {
     return [[UIScreen mainScreen] bounds].size.height == kOldIPhoneScreenSize;
 }
+
++ (NSString*)extFromFileName:(NSString *)name {
+    NSRange range = [name rangeOfString:@"." options:NSBackwardsSearch];
+    return [name substringWithRange:NSMakeRange(range.location+1,name.length-range.location-1)];
+}
+
 @end

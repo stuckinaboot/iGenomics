@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -123,6 +124,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
+		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A310AF4E158A5F7200E892AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A310AF50158A5F7200E892AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -296,6 +299,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3007EE11961AF2D0094FFF9 /* File Exporter */ = {
+			isa = PBXGroup;
+			children = (
+				A3007EDE1961AF2A0094FFF9 /* FileExporter.h */,
+				A3007EDF1961AF2A0094FFF9 /* FileExporter.m */,
+			);
+			name = "File Exporter";
+			sourceTree = "<group>";
+		};
 		A310AF3F158A5F7200E892AA = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +442,7 @@
 			children = (
 				A3382FC916A118A20042F59B /* AnalysisController.h */,
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
+				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
 				A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */,
 				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
@@ -999,6 +1012,7 @@
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
 				A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */,
+				A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */,
 				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,
 				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
 				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,

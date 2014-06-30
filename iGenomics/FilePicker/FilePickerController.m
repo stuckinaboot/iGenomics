@@ -121,6 +121,7 @@
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         s = [file readString:nil];
         sName = [info.path name];
+        parametersController.refFilePath = [info.path stringValue];
     }
     if (selectedOptionReads == kSavedFilesIndex) {
         r = [filteredReadFileNames objectAtIndex:selectedRowReads];
@@ -194,6 +195,8 @@
     NSString *r = @"";
     NSString *rName = @"";
     
+    NSString *refFilePath = @"";
+    
     if (selectedOptionRef == kSavedFilesIndex) {
         s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
         sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
@@ -205,8 +208,10 @@
             return;
         DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
         DBFile *file = [dbFileSys openFile:info.path error:nil];
+        refFilePath = [info.path stringValue];
         s = [file readString:nil];
         sName = [info.path name];
+        parametersController.refFilePath = refFilePath;
     }
     if (selectedOptionReads == kSavedFilesIndex) {
         r = [filteredReadFileNames objectAtIndex:selectedRowReads];
@@ -215,6 +220,8 @@
         r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
     }
     else if (selectedOptionReads == kDropboxFilesIndex) {
+        if (![GlobalVars internetAvailable])
+            return;
         DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         r = [file readString:nil];
@@ -226,7 +233,7 @@
     [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName];
     s = parametersController.seq;
     r = parametersController.reads;
-    sName = parametersController.refFileName;
+    sName = parametersController.refFileSegmentNames;
     rName = parametersController.readFileName;
     
     NSLog(@"beginActualSequencingPredefinedParameters Names fixed");
@@ -235,20 +242,20 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
     
-    if ([[parametersController extFromFileName:rName] caseInsensitiveCompare:kFq] != NSOrderedSame) {
+    if ([[GlobalVars extFromFileName:rName] caseInsensitiveCompare:kFq] != NSOrderedSame) {
         arr = [arr mutableCopy];
         [arr setObject:[NSNumber numberWithInt:kTrimmingOffVal] atIndexedSubscript:kParameterArrayTrimmingValIndex];//Disables trimming for non-Fq files
     }
     
     if (arr == NULL) {
-        arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:0] /*Trimming*/, nil];//Contains everything except refFileName and readFileName
+        arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:kTrimmingOffVal] /*Trimming*/, [NSString stringWithFormat:@"%c",kTrimmingRefChar0], nil];//Contains everything except refFileName and readFileName
         [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
         [defaults synchronize];
     }
     
     NSLog(@"beginActualSequencingPredefinedParameters Old Parameters loaded, preparing to load computingController");
     
-    [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]]];
+    [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]] andRefFilePath:refFilePath];
     
     NSLog(@"Computing controller loaded");
 }
@@ -366,9 +373,9 @@
                                        reuseIdentifier:MyIdentifier];
         UITapGestureRecognizer *recognizer;
         if ([tableView isEqual:referenceFilePicker])
-            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongPressedRef:)];
+            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDoubleTappedRef:)];
         else if ([tableView isEqual:readsFilePicker])
-            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongPressedReads:)];
+            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDoubleTappedReads:)];
         [recognizer setNumberOfTapsRequired:kMinTapsRequired];
         [cell addGestureRecognizer:recognizer];
     }
@@ -421,7 +428,7 @@
     return cell;
 }
 
-- (IBAction)cellLongPressedRef:(id)sender {
+- (IBAction)cellDoubleTappedRef:(id)sender {
     NSString *s = @"";
     
     if (selectedOptionRef == kSavedFilesIndex) {
@@ -436,13 +443,15 @@
     }
     else if (selectedOptionRef == kDropboxFilesIndex) {
         DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
+        if (info.isFolder)
+            return;
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         s = [file readString:nil];
     }
     [self displayPopoverOutOfCellWithContents:s atLocation:[(UIGestureRecognizer*)sender locationInView:self.view]];
 }
 
-- (IBAction)cellLongPressedReads:(id)sender {
+- (IBAction)cellDoubleTappedReads:(id)sender {
     NSString *r = @"";
     
     if (selectedOptionReads == kSavedFilesIndex) {
@@ -452,6 +461,8 @@
     }
     else if (selectedOptionReads == kDropboxFilesIndex) {
         DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
+        if (info.isFolder)
+            return;
         DBFile *file = [dbFileSys openFile:info.path error:nil];
         r = [file readString:nil];
     }
@@ -499,6 +510,7 @@
                 }
                 else
                     filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
                 [tableView reloadData];
             }
         }
@@ -517,6 +529,7 @@
                         dbFileSys = [DBFilesystem sharedFilesystem];
                     [self setUpAllDropboxFiles];
                     filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                    filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
                 }
                 else
                     selectedOptionRef = -1;
@@ -554,7 +567,8 @@
                     }
                 }
                 else
-                filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                    filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
                 [tableView reloadData];
             }
         }
@@ -573,6 +587,7 @@
                         dbFileSys = [DBFilesystem sharedFilesystem];
                     [self setUpAllDropboxFiles];
                     filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
+                    filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
                 }
                 else
                     selectedOptionReads = -1;
@@ -608,6 +623,7 @@
                 filteredRefFileNames = [[NSMutableArray alloc] initWithArray:defaultRefFilesNames];
             else if (selectedOptionRef == kDropboxFilesIndex) {
                 filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentFolderPathRef error:nil]];
+                filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
             }
         }
         else {
@@ -626,6 +642,7 @@
                     if(nameRange.location != NSNotFound)
                         [filteredRefFileNames addObject:info];
                 }
+                filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
             }
             //may need to add something for dropbox support
         }
@@ -635,8 +652,10 @@
         if(text.length == 0) {
             if (selectedOptionReads == kSavedFilesIndex)
                 filteredReadFileNames = [[NSMutableArray alloc] initWithArray:defaultReadsFilesNames];
-            else if (selectedOptionReads == kDropboxFilesIndex)
+            else if (selectedOptionReads == kDropboxFilesIndex) {
                 filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentFolderPathReads error:nil]];
+                filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
+            }
         }
         else {
             [filteredReadFileNames removeAllObjects];
@@ -654,12 +673,26 @@
                     if(nameRange.location != NSNotFound)
                         [filteredReadFileNames addObject:info];
                 }
+                filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
             }
             //may need to add something for dropbox support
         }
         [readsFilePicker reloadData];
     }
-} 
+}
+
+- (NSMutableArray*)fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:(NSMutableArray *)array {
+    if ([array count] >= 1) {
+        for (int i = 0; i < [array count]; i++) {
+            DBFileInfo *info = [array objectAtIndex:i];
+            if (![info isFolder] && [[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:kFa] != NSOrderedSame && [[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:kFq] != NSOrderedSame) {
+                [array removeObjectAtIndex:i];
+                i--;
+            }
+        }
+    }
+    return array;
+}
 
 - (NSArray*)getFileNameAndExtForFullName:(NSString *)fileName {
     //Search for first . starting from the end

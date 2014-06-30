@@ -47,7 +47,7 @@ typedef enum {
 #define kParameterArrayMutationCoverageIndex 3
 #define kParameterArrayTrimmingValIndex 4
 #define kParameterArrayTrimmingRefCharIndex 5
-#define kParameterArrayRefFileNameIndex 6
+#define kParameterArrayRefFileSegmentNamesIndex 6
 #define kParameterArrayReadFileNameIndex 7
 
 #define kScrollViewSliderUpdateInterval 0.001
@@ -60,6 +60,9 @@ typedef enum {
 #define kKeyboardDoneBtnTxt @"Done"
 
 #define kOldIPhoneScreenSize 480
+
+#define kBWTFileExt @"bwt"
+#define kBWTFileDividerBtwBWTandBenchmarkPosList @"\n--------\n"
 
 extern int bytesForIndexer;
 extern int dgenomeLen; //d means including dollar sign
@@ -76,4 +79,5 @@ extern int acgtTotalOccs[kACGTLen];
 + (BOOL)internetAvailable;
 + (BOOL)isIpad;
 + (BOOL)isOldIPhone;
++ (NSString*)extFromFileName:(NSString *)name;
 @end

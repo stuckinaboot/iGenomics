@@ -6,11 +6,6 @@
 //
 //
 
-typedef enum {
-    EmailInfoOptionMutations,
-    EmailInfoOptionData
-} EmailInfoOption;
-
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
@@ -22,6 +17,7 @@ typedef enum {
 #import "SearchQueryResultsPopover.h"
 #import "APTimer.h"
 #import "AnalysisControllerIPhoneToolbar.h"
+#import "FileExporter.h"
 
 #import "QuickGridView.h"
 
@@ -111,26 +107,6 @@ typedef enum {
 #define kConfirmDoneAlertGoBtn @"Yes"
 #define kConfirmDoneAlertCancelBtn @"No"
 
-#define kReturnToHomeAnimationDuration 10
-
-//DON"T INCLUDE $ SIGN IN LEN
-//SHOW LOADING SCREEN THE INSTANT BEFORE SEQUENCING STARTS (START SEQUENCING FROM LOADING SCREEN)
-//IN UIPOPOVER THAT SHOWS UP FOR A POSITION THAT IS A MUTATION (ALSO SHOW THIS IN THE SHOW ALL MUTATIONS UITABLEVIEW CELLS), EX. for G to - supported by 5 reads, G > - 5 Reads
-//ADD UITEXTFIELD FOR MUTATION SUPPORT**MOST PRIORITIZED
-//BUTTON TO SEND TABLE OF MUTATIONS TO AN EMAIL ADDRESS AS A TEXT FILE**MOST PRIORITIZED
-
-//POPOVER TO JUMP TO NEXT MUTATION --IN PROGRESS (POPOVER WITH A LIST, SORTED ASCENDING?)---MAKE IT ASCENDING
-//MUTATION SUMMARY (DISPLAY ALL MUTATION IN A TABLE VIEW POPOVER, ALONG WITH A LABEL SAYING THE TOTAL NUMBER OF MUTATIONS) - TAPPING A MUTATION WILL SCROLL YOU TO IT--(((ALSO ADD INSERTIONS TO THIS MUTATION LIST????))))--IF SO STILL IN PROGRESS
-
-
-//!!!!!NEED TO CREATE LOADING THING WHILE MUTATATION SUPPORT UPDATES (SPINNING ACTIVITY INDICATOR) or a crash will occur
-
-//Display the actual mutation when show mutations is pressed : first
-
-//Need to look through all mutations array at any spot where a mutation is present so that the mutation support is fully functional : third
-
-//Add some save options (such as save actual BWT, save export info to dropbox, email exportinfo (second-highest priority), email list of mutations as a file (highest priority)) : second
-
 @interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
     DNAColors *dnaColors;
     
@@ -177,6 +153,7 @@ typedef enum {
     NSMutableArray *separateGenomeLens;//Contains the genome lengths ordered the same way separateGenomeFileName is
     NSMutableArray *cumulativeSeparateGenomeLens;//Used to quicken detection of which genome is currently being viewed
     NSMutableArray *separateGenomeNames;//Contains the genome names separated by >. The actual file name of the genome is stored in genomeFileName, it is removed in this.
+    NSString *genomeFileSegmentNames;
     NSString *genomeFileName;
     NSString *readsFileName;
     int readLen;
@@ -230,7 +207,7 @@ typedef enum {
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
 - (NSString*)fixChosenExportPathExt:(NSString*)path;
 
-- (NSString*)combinedGenomeFileName;
+//- (NSString*)combinedGenomeFileName;
 
 - (void)displaySuccessBox;
 

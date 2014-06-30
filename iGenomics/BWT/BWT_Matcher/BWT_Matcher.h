@@ -6,8 +6,6 @@
 //
 //
 
-//ORGANIZE INTO FUNCTIONS
-
 #import <Foundation/Foundation.h>
 #import "GlobalVars.h"
 
@@ -70,7 +68,6 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 @property (nonatomic) int kBytesForIndexer, /*kMultipleToCountAt, */alignmentType, matchType;
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
 
-- (id)initWithOriginalStr:(char*)orgStr;
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 
 - (char*)getReverseComplementForSeq:(char*)seq;

@@ -21,6 +21,7 @@
 #import "BWT_Matcher.h"
 #import "BWT_MutationFilter.h"
 #import "APTimer.h"
+#import <Dropbox/Dropbox.h>
 //BWT_ Imports End
 
 //DEBUGGING CONSTANT 0 = nothing, 1 = print created BWT
@@ -37,18 +38,15 @@
     BWT_Matcher *bwt_Matcher;
     BWT_MatcherSC *bwt_MatcherSC;
     
-    char* originalString;
-    char* bwtString;
     NSMutableArray *insertions;
     int maxSubs;
 }
 @property (nonatomic) id <BWT_Delegate> delegate;
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
-@property (nonatomic) char* originalString;
 
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
 
-- (void)setUpForRefFileContents:(NSString*)contents;
+- (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath;
 - (void)matchReedsFileContentsAndParametersArr:(NSArray*)arr;//The arr - index 0 is read file contents, index 1 is parameters arr
 
 - (NSArray*)simpleSearchForQuery:(char*)query;//searches for the query using exact match, returns all matches

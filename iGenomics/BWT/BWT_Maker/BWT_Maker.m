@@ -14,7 +14,7 @@
     if (!bwtCreationTimer)
         bwtCreationTimer = [[APTimer alloc] init];
     [bwtCreationTimer start];
-    
+
     sequence = strdup([contents UTF8String]);
     sequenceLength = strlen(sequence);
     

@@ -16,9 +16,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 @synthesize readLen, refSeqLen, numOfReads;
 @synthesize delegate;
 
-- (id)initWithOriginalStr:(char*)orgStr {
+- (id)init {
     if (self == [super init]) {
-        originalStr = orgStr;
         exactMatcher = [[BWT_MatcherSC alloc] init];
     }
     return self;
@@ -64,11 +63,11 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 //    [self setUpNumberOfOccurencesArray];
     NSLog(@"About to call setUpNumberOfOccurencesArrayFast");
     
-    [self setUpNumberOfOccurencesArrayFast];
-    
     self.insertionsArray = [[NSMutableArray alloc] init];
     
     NSLog(@"About to create firstCol");
+    
+    [self setUpNumberOfOccurencesArrayFast];
     
     firstCol = calloc(dgenomeLen, 1);
     
@@ -86,8 +85,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         for (int x = 0; x<dgenomeLen; x++)
             posOccArray[i][x] = 0;
     }
-    
-    NSLog(@"<== setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs");
     
     /*
     if (kDebugPrintInsertions>0) {
@@ -413,8 +410,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     NSLog(@"Set up number of occurences array COMPLETED!!");
 }
 
-char *substr(const char *pstr, int start, int numchars)
-{
+char *substr(const char *pstr, int start, int numchars) {
     char *pnew = malloc(numchars+1);
     strncpy(pnew, pstr + start, numchars);
     pnew[numchars] = '\0';

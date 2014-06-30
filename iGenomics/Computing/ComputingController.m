@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray {
+- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString *)path {
     
     NSLog(@"==> setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray method entered");
     
@@ -42,13 +42,20 @@
     
     bytesForIndexer = ceilf((double)dgenomeLen/kMaxMultipleToCountAt);
     
+    
+    NSLog(@"About to call [bwt setUpForRefFileContents]");
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];
-    [bwt setUpForRefFileContents:mySeq];
+    [bwt setUpForRefFileContents:mySeq andFilePath:path];
     exportDataStr = [[NSMutableString alloc] init];
     
+    NSLog(@"About to determine trimming value");
+    
     int trimmingValue = [[myParameterArray objectAtIndex:kParameterArrayTrimmingValIndex] intValue];
+    
+    NSLog(@"Trimming value is %i",trimmingValue);
+    
     if (trimmingValue != kTrimmingOffVal)
         myReads = [self readsAfterTrimmingForReads:myReads andTrimValue:trimmingValue andReferenceQualityChar:[[myParameterArray objectAtIndex:kParameterArrayTrimmingRefCharIndex] characterAtIndex:0]];
     
@@ -58,26 +65,32 @@
         NSLog(@"About to call matchReedsFileContentsAndParametersArr");
         [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
+            NSLog(@"About to find and filter mutations");
+            
             bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
-            [bwt.bwtMutationFilter buildOccTableWithUnravStr:bwt.originalString];
-            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:bwt.originalString];
+            [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
+            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
             [bwt.bwtMutationFilter filterMutationsForDetails];
             
-            NSString *refFileName = [myParameterArray objectAtIndex:kParameterArrayRefFileNameIndex];
+            NSLog(@"About to create basicInf and call readyViewForDisplay");
+            
+            NSString *refFileSegmentNames = [myParameterArray objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
             NSString *readFileName = [myParameterArray objectAtIndex:kParameterArrayReadFileNameIndex];
             
             //genome file name, reads file name, read length, genome length, number of reads
-            NSArray *basicInf = [NSArray arrayWithObjects:refFileName, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], nil];
+            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], nil];
             
-            [analysisController readyViewForDisplay:bwt.originalString andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf];
+            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
         });
     });
 }
 
 - (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar {
+    
+    NSLog(@"readsAfterTrimmingForReads called");
     NSMutableString *newReads = [[NSMutableString alloc] init];
-    NSArray *arr = [reads componentsSeparatedByString:@"\n"];
+    NSArray *arr = [reads componentsSeparatedByString:kLineBreak];
     NSMutableString *qualStr;
     
     for (int i = 0; i < [arr count]; i += (kFirstQualValueIndexInReadsToTrim+1)) {
@@ -100,11 +113,14 @@
         }
         
         NSString *newRead = [[arr objectAtIndex:i+1] substringToIndex:maxPos+1];//+1 to include that index
-        [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
+        if (newRead.length >= kMinReadLength)
+            [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
     }
     newReads = (NSMutableString*)[newReads stringByReplacingCharactersInRange:NSMakeRange(newReads.length-1, 1) withString:@""];//Takes away the last line break
     
     printf("%s",[newReads UTF8String]);
+    
+    NSLog(@"Finished readsAfterTrimmingForReads");
     
     return (NSString*)newReads;
 }

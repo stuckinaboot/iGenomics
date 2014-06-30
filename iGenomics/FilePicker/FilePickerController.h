@@ -97,8 +97,8 @@
 
 - (void)resetScrollViewOffset;
 
-- (IBAction)cellLongPressedRef:(id)sender;
-- (IBAction)cellLongPressedReads:(id)sender;
+- (IBAction)cellDoubleTappedRef:(id)sender;
+- (IBAction)cellDoubleTappedReads:(id)sender;
 //- (void)displayPopoverOutOfCellWithContents:(NSString*)contents;//Popover with textview
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc;
 
@@ -107,5 +107,6 @@
 - (void)lockContinueBtns;
 - (void)unlockContinueBtns;
 
+- (NSMutableArray*)fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:(NSMutableArray*)array;
 - (NSArray*)getFileNameAndExtForFullName:(NSString*)fileName;//returns array with two NSStrings, fileName and fileExt
 @end

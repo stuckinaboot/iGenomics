@@ -29,5 +29,7 @@
 - (int)LFC:(int)r andChar:(char)c;
 - (int)getIndexOfNth:(int)n OccurenceOfChar:(char)c inChar:(char*)container;
 
+- (char*)unravelCharWithLastColumn:(char*)lastColumn firstColumn:(char*)firstColumn;
+
 - (void)timerPrint;
 @end

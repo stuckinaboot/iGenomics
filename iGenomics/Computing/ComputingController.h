@@ -36,7 +36,7 @@
     AnalysisController *analysisController;
     NSMutableString *exportDataStr;
 }
-- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray;
+- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString*)path;//path is empty if not dropbox
 - (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar;
 - (void)showAnalysisController;
 @end

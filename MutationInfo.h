@@ -10,6 +10,7 @@
 #import "BWT_MutationFilter.h"
 
 #define kMutationFormat @"Pos: %i, %s | Cov:%s\n"
+#define kMutationExportFormat @"Pos: %i, %s | Cov:%s, %@\n"
 #define kCovStrFormat @" %c = %i,"
 
 @interface MutationInfo : NSObject

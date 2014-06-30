@@ -70,7 +70,7 @@
     ComputingController *computingController;
 }
 @property (nonatomic) ComputingController *computingController;
-@property (nonatomic) NSString *seq, *reads, *refFileName, *readFileName;
+@property (nonatomic) NSString *seq, *reads, *refFileSegmentNames, *refFilePath, *readFileName;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;
@@ -90,5 +90,4 @@
 - (NSString*)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
 - (NSString*)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
 - (NSString*)readsByRemovingQualityValFromReads:(NSString*)r;
-- (NSString*)extFromFileName:(NSString*)name;
 @end
