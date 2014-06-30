@@ -107,7 +107,9 @@
             [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
     }
     
-    NSLog(@"About to set genomeFileName");
+    fileExporter = [[FileExporter alloc] init];
+    [fileExporter setDelegate:self];
+    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andEditDistance:editDistance andExportDataStr:exportDataStr];
 }
 
 - (void)resetDisplay {
@@ -474,11 +476,14 @@
 }
 
 //Exports data
-- (IBAction)exportDataPressed:(id)sender {
-    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:kExportASEmailMutations, kExportASEmailData, kExportASDropboxMuts, kExportASDropboxData, nil];
-    [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
-}
 
+- (IBAction)exportDataPressed:(id)sender {
+    [fileExporter setMutSupportVal:(int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/ andMutPosArray:mutPosArray];
+    [fileExporter displayExportOptionsWithSender:sender];
+//    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Cancel" otherButtonTitles:kExportASEmailMutations, kExportASEmailData, kExportASDropboxMuts, kExportASDropboxData, nil];
+//    [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
+}
+/*
 - (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents {
     DBFilesystem *sys = [DBFilesystem sharedFilesystem];
     path = [self fixChosenExportPathExt:path];
@@ -568,7 +573,7 @@
     
     if (option == EmailInfoOptionMutations) {
         [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Mutations for Aligning %@ to %@",readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:@"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance, (int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
+        [exportMailController setMessageBody:[NSString stringWithFormat:@"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance, (int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*//*] isHTML:NO];
         
         NSMutableString *mutString = [self getMutationsExportStr];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"Mutations"];
@@ -576,7 +581,7 @@
     }
     else if (option == EmailInfoOptionData) {
         [exportMailController setSubject:[NSString stringWithFormat:@"iGenomics- Export Data for Aligning %@ to %@",readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:@"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/] isHTML:NO];
+        [exportMailController setMessageBody:[NSString stringWithFormat:@"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics", readsFileName, genomeFileName, editDistance/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*//*] isHTML:NO];
         
         [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:@"ExportData"];
         [self presentViewController:exportMailController animated:YES completion:nil];
@@ -600,17 +605,7 @@
         [mutString appendFormat:exportFormat,info.pos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos],info.genomeName];//+1 so it doesn't start at 0
     }
     return mutString;
-}
-//
-//- (NSString*)combinedGenomeFileName {
-//    NSMutableString *str = [[NSMutableString alloc] init];
-//    
-//    for (int i = 0; i < [separateGenomeNames count]; i++) {
-//        [str appendFormat:@"%@%@",[separateGenomeNames objectAtIndex:i],kRefFileDisplayedDivider];
-//    }
-//    [str replaceCharactersInRange:NSMakeRange(str.length-kRefFileDisplayedDivider.length, kRefFileDisplayedDivider.length) withString:@""];//Removes the last kRefFileDisplayedDivider
-//    return str;
-//}
+}*/
 
 //Return to main menu
 - (IBAction)donePressed:(id)sender {
@@ -618,6 +613,7 @@
     [confirmDoneAlert show];
 }
 
+/*
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([alertView isEqual:confirmDoneAlert]) {
         if (buttonIndex == 1) {
@@ -667,7 +663,7 @@
     if (![[path substringFromIndex:path.length-s] isEqualToString:kExportDropboxSaveFileExt])
         return [NSString stringWithFormat:@"%@%@",path,kExportDropboxSaveFileExt];
     return path;
-}
+}*/
 
 //Success box
 - (void)displaySuccessBox {
@@ -681,6 +677,10 @@
     } completion:^(BOOL finished){
         [successBox removeFromSuperview];
     }];
+}
+
+- (UIViewController*)getVC {
+    return self;
 }
 
 //Iphone Support

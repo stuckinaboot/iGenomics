@@ -27,16 +27,17 @@
 
 #import "DNAColors.h"
 
+#define kConfirmDoneAlertTitle @"iGenomics: Analysis"
+#define kConfirmDoneAlertMsg @"Would you like to return to the main menu? Note that any unsaved data will be lost."
+#define kConfirmDoneAlertGoBtn @"Yes"
+#define kConfirmDoneAlertCancelBtn @"No"
+
 #define kShowAllMutsBtnTxtNormal @"Show All Mutations"
 #define kShowAllMutsBtnTxtUpdating @"Updating..."
 
 #define kSuccessBoxImgName @"SuccessBox.png"
 #define kSuccessBoxAlpha 0.8
 #define kSuccessBoxDuration 1.8f
-
-#define kErrorAlertExportTitle @"iGenomics: Error"
-#define kErrorAlertExportBody @"An error occurred exporting the file."
-#define kErrorAlertExportBodyFileNameAlreadyInUse @"File name already used. Would you like to overwrite or cancel?"
 
 #define kExportNameCustomOption @"Export"
 
@@ -85,29 +86,7 @@
 
 #define kAnalysisNavBarHeightIPhone 44
 
-#define kExportASTitle @"Export Data"
-#define kExportASEmailMutations @"Email Mutations"
-#define kExportASEmailMutsIndex 1 //Index 0 is the cancel button
-#define kExportASEmailData @"Email Data"
-#define kExportASEmailDataIndex 2
-#define kExportASDropboxMuts @"Save Mutations to Dropbox"
-#define kExportASDropboxMutsIndex 3
-#define kExportASDropboxData @"Save Data to Dropbox"
-#define kExportASDropboxDataIndex 4
-
-#define kExportAlertTitle @"File Export"
-#define kExportAlertBody @"Enter file name here:"
-
-#define kExportDropboxSaveFileFormatMuts @"%@%@.var.txt"//reads(1..2..3 or no ()).var...
-#define kExportDropboxSaveFileFormatData @"%@%@.data.txt"//reads(1..2..3 or no ()).data...
-#define kExportDropboxSaveFileExt @".txt"
-
-#define kConfirmDoneAlertTitle @"iGenomics: Analysis"
-#define kConfirmDoneAlertMsg @"Would you like to return to the main menu? Note that any unsaved data will be lost."
-#define kConfirmDoneAlertGoBtn @"Yes"
-#define kConfirmDoneAlertCancelBtn @"No"
-
-@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate> {
     DNAColors *dnaColors;
     
     //Interactive Interface Elements
@@ -182,6 +161,8 @@
     NSString *chosenMutsExportPath;
     NSString *chosenDataExportPath;
     
+    FileExporter *fileExporter;
+    
     IBOutlet AnalysisControllerIPhoneToolbar *analysisControllerIPhoneToolbar;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
@@ -207,9 +188,7 @@
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
 - (NSString*)fixChosenExportPathExt:(NSString*)path;
 
-//- (NSString*)combinedGenomeFileName;
-
-- (void)displaySuccessBox;
+//- (void)displaySuccessBox;
 
 - (NSMutableString*)getMutationsExportStr;//Don't need the same method for exportDataStr bc it is a passed in object
 
