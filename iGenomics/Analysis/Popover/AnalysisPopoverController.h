@@ -13,6 +13,7 @@
 
 
 #define kAnalysisPopoverPosLblTxt @"Position: %i"
+#define kAnalysisPopoverSegmentLblTxt @"Segment: %@"
 
 #define kAnalysisPopoverW 150
 #define kAnalysisPopoverH 250
@@ -28,10 +29,11 @@
     IBOutlet CopyLabel *tLbl;
     IBOutlet CopyLabel *delLbl;
     IBOutlet CopyLabel *insLbl;
+    IBOutlet CopyLabel *segmentLbl;
 }
-@property (nonatomic, retain) IBOutlet UILabel *posLbl;
-@property (nonatomic, retain) IBOutlet UILabel *heteroLbl;
-@property (nonatomic) NSString *heteroStr;
+@property (nonatomic, retain) IBOutlet CopyLabel *posLbl;
+@property (nonatomic, retain) IBOutlet CopyLabel *heteroLbl;
+@property (nonatomic) NSString *heteroStr, *segment;
 @property (nonatomic) int position;
 - (void)updateLbls;
 @end

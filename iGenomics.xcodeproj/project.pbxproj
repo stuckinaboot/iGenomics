@@ -442,9 +442,9 @@
 			children = (
 				A3382FC916A118A20042F59B /* AnalysisController.h */,
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
-				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
 				A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */,
+				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
 				A3382FD116A118D80042F59B /* Grid */,
 				A31AA7CD16E30BD700D3D808 /* Popovers */,

@@ -31,6 +31,7 @@
 #define kConfirmDoneAlertMsg @"Would you like to return to the main menu? Note that any unsaved data will be lost."
 #define kConfirmDoneAlertGoBtn @"Yes"
 #define kConfirmDoneAlertCancelBtn @"No"
+#define kConfirmDoneAlertGoBtnIndex 1
 
 #define kShowAllMutsBtnTxtNormal @"Show All Mutations"
 #define kShowAllMutsBtnTxtUpdating @"Updating..."
@@ -57,6 +58,8 @@
 #define kPinchZoomFactor 2 //(in pixels)
 
 #define kPinchZoomFontSizeFactor 1.2 //(font size)
+
+#define kNumOfTapsRequiredToDisplayAnalysisPopover 2
 
 #define kGridViewTitleLblHolderBorderWidth 7
 

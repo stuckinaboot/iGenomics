@@ -25,6 +25,7 @@
                         *insLbl,
                         *mutHighlight,
                         *black,
-                        *white;
+                        *white,
+                        *graph;
 - (void)setUp;
 @end

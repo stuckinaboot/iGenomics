@@ -16,7 +16,8 @@
 
 #define kDefaultIpadBoxWidth 64
 #define kDefaultIphoneBoxWidth 64
-#define kMinBoxWidth 0.0001 //Smallest box width possible, will be showing coverage graph at this point
+#define kMinBoxWidth 0.05 //Smallest box width possible, will be showing coverage graph at this point
+#define kPixelWidth 1
 #define kThresholdBoxWidth 16 //Smallest box width possible to still be showing text (not full screen coverage graph)
 
 
@@ -35,14 +36,18 @@
 
 #define kPosLblNum 5
 #define kDefPosLblInterval 5 //20 cells
+#define kPosLblZoomedFarOutIntervalMultiple 1000 //interval = 100*numOfBoxesPerPixel when numOfBoxesPerPixel > kPixelWidth
 #define kPosLblTickMarkHeight 10
 #define kPosLblFontSize 20
+#define kPosLblFontSizeIPhoneOld 16
 #define kPosLblHeight 40
 
 #define kStartOfAInRGBVals 4
 #define kStartOfRefInRGBVals 2
 
 #define kMutHighlightOpacity 0.2
+#define kMutHighlightOpacityZoomedFarOut 1.0f //Occurs when boxWidth < kThresholdBoxWidth
+#define kMutHighlightMinWidth 1
 
 #define kMaxCovValLblW 80
 #define kMaxCovValLblH 20
@@ -118,6 +123,8 @@
     
     //Constants made into a variable for pinch zoom
     double boxWidth;
+    double boxWidthDecimal;
+    int numOfBoxesPerPixel;
     double kTxtFontSize;
     double kMinTxtFontSize;
     int kPosLblInterval;
@@ -139,9 +146,9 @@
     
 }
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
-@property (nonatomic) double boxWidth;
+@property (nonatomic) double boxWidth, boxWidthDecimal;
 @property (nonatomic) BOOL shouldUpdateScrollView;
-@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol;
+@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol, numOfBoxesPerPixel;;
 @property (nonatomic) UIScrollView *scrollingView;
 @property (nonatomic) UIImageView *drawingView;
 @property (nonatomic) id <QuickGridViewDelegate> delegate;
@@ -152,6 +159,7 @@
 - (void)firstSetUp;
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight;
 - (void)setUpGridViewForPixelOffset:(double)offSet;
+- (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex;
 - (void)resetScrollViewContentSize;
 - (void)drawGridLinesForOffset:(double)offset;
 - (void)drawDefaultBoxColors;
@@ -170,4 +178,6 @@
 
 - (void)scrollToPos:(double)p;
 - (void)updateScrollView:(UISlider*)s;
+
+- (double)getProperBoxWidth;
 @end

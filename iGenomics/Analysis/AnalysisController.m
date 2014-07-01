@@ -39,6 +39,7 @@
     [gridView addGestureRecognizer:pinchRecognizer];
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapOccured:)];
+    tapRecognizer.numberOfTapsRequired = kNumOfTapsRequiredToDisplayAnalysisPopover;
     [gridView addGestureRecognizer:tapRecognizer];
     
     [gridView firstSetUp];
@@ -64,7 +65,7 @@
     //Fixes problems caused by constraints on old iPhone
     gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
     gridView.drawingView.frame = gridView.scrollingView.frame;
-    [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth)))-gridView.frame.size.width];
+    [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
     
     [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
@@ -149,7 +150,7 @@
     [gridView setDelegate:self];
     gridView.refSeq = originalStr;
     [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
-    [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth)))-gridView.frame.size.width];
+    [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
 }
 
@@ -346,8 +347,9 @@
             
             float proportion = (gridView.currOffset+gridViewW/2)/gridView.scrollingView.contentSize.width;
         
-            [gridView setBoxWidth:ceilf(gridView.boxWidth*kBoxWidthMultFactor*sender.scale)];
-            
+//            [gridView setBoxWidth:ceilf(gridView.boxWidth*kBoxWidthMultFactor*sender.scale)];
+            [gridView setBoxWidth:gridView.boxWidthDecimal*kBoxWidthMultFactor*sender.scale];
+        
             double w = ([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth;
             double f = ([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone;
             if (gridView.boxWidth > w) {
@@ -355,7 +357,7 @@
                 gridView.kTxtFontSize = f;
             }
             if (gridView.boxWidth < kMinBoxWidth) {
-                gridView.boxWidth = kMinBoxWidth;
+                [gridView setBoxWidth:kMinBoxWidth];
                 gridView.kTxtFontSize = gridView.kMinTxtFontSize;
             }
             gridView.kTxtFontSize *= (kFontSizeMultFactor*sender.scale);
@@ -370,7 +372,7 @@
             [gridView resetScrollViewContentSize];
             [gridView resetTickMarkInterval];
             
-            [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth)))-gridView.frame.size.width];
+            [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
             
             gridView.currOffset = (gridView.scrollingView.contentSize.width*proportion)-gridViewW/2;
             if (gridView.currOffset < 0)
@@ -382,6 +384,8 @@
 //                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
                 gridView.shouldUpdateScrollView = TRUE;
                 [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset,0) animated:NO];
+                if (gridView.shouldUpdateScrollView)
+                    [gridView setUpGridViewForPixelOffset:gridView.currOffset];
             });
         });
     }
@@ -402,16 +406,44 @@
 
 //Grid view delegate
 - (void)gridPointClickedWithCoordInGrid:(CGPoint)c andClickedPt:(CGPoint)o {
+    if (gridView.boxWidth < kThresholdBoxWidth)
+        return;
     UIViewController *vc;
-    if (c.y < 2 && c.y >= 0) {
+    if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1*/ && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there*/) {
+        InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
+        [ipc setInsArr:insertionsArr forPos:(int)c.x];
+        
+        ipc.contentSizeForViewInPopover = CGSizeMake(kInsPopoverW, kInsPopoverH);
+        
+        vc = ipc;
+        if (![GlobalVars isIpad])
+            [self presentViewController:ipc animated:YES completion:nil];
+//        popoverController = [[UIPopoverController alloc] initWithContentViewController:ipc];
+        
+        if ([GlobalVars isIpad]) {
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
+            CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
+            
+            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        }
+    }
+    else {
         AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
         apc.contentSizeForViewInPopover = CGSizeMake(kAnalysisPopoverW, kAnalysisPopoverH);
         
         vc = apc;
         if (![GlobalVars isIpad])
             [self presentViewController:apc animated:YES completion:nil];
-//        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
+        //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
         apc.position = c.x+1;
+        
+        for (int i = [cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
+            int len = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
+            if (c.x < len)
+                apc.segment = [separateGenomeNames objectAtIndex:i];
+            else
+                break;
+        }
         [apc updateLbls];
         
         NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
@@ -422,24 +454,6 @@
         
         apc.heteroStr = heteroStr;
         apc.heteroLbl.text = heteroStr;
-        
-        if ([GlobalVars isIpad]) {
-            popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
-            CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
-            
-            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-        }
-    }
-    else if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1*/ && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there*/) {
-        InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
-        [ipc setInsArr:insertionsArr forPos:(int)c.x];
-        
-        ipc.contentSizeForViewInPopover = CGSizeMake(kInsPopoverW, kInsPopoverH);
-        
-        vc = ipc;
-        if (![GlobalVars isIpad])
-            [self presentViewController:ipc animated:YES completion:nil];
-//        popoverController = [[UIPopoverController alloc] initWithContentViewController:ipc];
         
         if ([GlobalVars isIpad]) {
             popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
@@ -486,6 +500,13 @@
 - (IBAction)donePressed:(id)sender {
     confirmDoneAlert = [[UIAlertView alloc] initWithTitle:kConfirmDoneAlertTitle message:kConfirmDoneAlertMsg delegate:self cancelButtonTitle:kConfirmDoneAlertCancelBtn otherButtonTitles:kConfirmDoneAlertGoBtn, nil];
     [confirmDoneAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:confirmDoneAlert]) {
+        if (buttonIndex == kConfirmDoneAlertGoBtnIndex)
+             [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 //Success box

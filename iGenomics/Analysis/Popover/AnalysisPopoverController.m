@@ -10,7 +10,7 @@
 
 @implementation AnalysisPopoverController
 
-@synthesize posLbl, heteroLbl, heteroStr, position;
+@synthesize posLbl, heteroLbl, heteroStr, segment, position;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +33,7 @@
 
 - (void)updateLbls {
     posLbl.text = [NSString stringWithFormat:kAnalysisPopoverPosLblTxt,position+1];//+1 so doesn't start at 0
+    segmentLbl.text = [NSString stringWithFormat:kAnalysisPopoverSegmentLblTxt,segment];
     heteroLbl.text = heteroStr;
     posLbl.text = [NSString stringWithFormat:kAnalysisPopoverPosLblTxt,position];
     aLbl.text = [NSString stringWithFormat:kPopoverACGTLblTxt,'A',posOccArray[0][position-1]];

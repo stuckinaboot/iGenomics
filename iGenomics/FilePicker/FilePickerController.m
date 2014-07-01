@@ -248,7 +248,7 @@
     }
     
     if (arr == NULL) {
-        arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:1/*Substitutions*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:kTrimmingOffVal] /*Trimming*/, [NSString stringWithFormat:@"%c",kTrimmingRefChar0], nil];//Contains everything except refFileName and readFileName
+        arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:2/*Subs and In/Dels*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:kTrimmingOffVal] /*Trimming*/, [NSString stringWithFormat:@"%c",kTrimmingRefChar0], nil];//Contains everything except refFileName and readFileName
         [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
         [defaults synchronize];
     }
@@ -398,7 +398,7 @@
             DBFileInfo *info = [filteredRefFileNames objectAtIndex:indexPath.row];
             [cell.textLabel setText:[info.path name]];//names of dropbox files
             if (info.isFolder)
-                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             else
                 cell.accessoryType = UITableViewCellAccessoryNone;
         }
@@ -419,7 +419,7 @@
             DBFileInfo *info = [filteredReadFileNames objectAtIndex:indexPath.row];
             [cell.textLabel setText:[info.path name]];//names of dropbox files
             if (info.isFolder)
-                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             else
                 cell.accessoryType = UITableViewCellAccessoryNone;
         }

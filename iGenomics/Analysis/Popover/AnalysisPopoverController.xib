@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnalysisPopoverController">
@@ -14,6 +14,7 @@
                 <outlet property="heteroLbl" destination="12" id="20"/>
                 <outlet property="insLbl" destination="BhD-DU-yHa" id="vhY-90-UkQ"/>
                 <outlet property="posLbl" destination="4" id="11"/>
+                <outlet property="segmentLbl" destination="dFQ-XZ-soh" id="eKD-sH-mKR"/>
                 <outlet property="tLbl" destination="ItV-nz-BoL" id="bEn-TR-JOr"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Position:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="CopyLabel">
-                    <rect key="frame" x="33" y="20" width="150" height="27"/>
+                    <rect key="frame" x="33" y="16" width="150" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="7"/>
@@ -34,8 +35,19 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Segment:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dFQ-XZ-soh" customClass="CopyLabel">
+                    <rect key="frame" x="33" y="46" width="272" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="CDq-Go-vnD"/>
+                        <constraint firstAttribute="width" constant="272" id="ox8-9M-zf8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hetero:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12" customClass="CopyLabel">
-                    <rect key="frame" x="33" y="70" width="150" height="27"/>
+                    <rect key="frame" x="33" y="76" width="150" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="14"/>
@@ -108,8 +120,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="33" id="5"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="6"/>
-                <constraint firstItem="12" firstAttribute="top" secondItem="2" secondAttribute="top" constant="70" id="17"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="16" id="6"/>
+                <constraint firstItem="12" firstAttribute="top" secondItem="2" secondAttribute="top" constant="76" id="17"/>
                 <constraint firstItem="12" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="18"/>
                 <constraint firstItem="12" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="19"/>
                 <constraint firstItem="eME-sn-Lin" firstAttribute="top" secondItem="ItV-nz-BoL" secondAttribute="bottom" constant="8" symbolic="YES" id="2mN-uN-n6K"/>
@@ -121,11 +133,13 @@
                 <constraint firstItem="ItV-nz-BoL" firstAttribute="leading" secondItem="0a7-Jm-3Jm" secondAttribute="leading" id="JiC-nv-oIf"/>
                 <constraint firstItem="TKO-Ag-kAv" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="JrP-hz-be5"/>
                 <constraint firstItem="0a7-Jm-3Jm" firstAttribute="trailing" secondItem="TWp-CY-G6h" secondAttribute="trailing" id="MCe-CS-Lzg"/>
+                <constraint firstItem="dFQ-XZ-soh" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="3" id="RFX-Hc-gHl"/>
                 <constraint firstItem="eME-sn-Lin" firstAttribute="trailing" secondItem="ItV-nz-BoL" secondAttribute="trailing" id="SNQ-Ri-Vuh"/>
                 <constraint firstItem="0a7-Jm-3Jm" firstAttribute="top" secondItem="TWp-CY-G6h" secondAttribute="bottom" constant="8" symbolic="YES" id="cQe-Uc-1RA"/>
                 <constraint firstItem="TKO-Ag-kAv" firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="iGe-0y-dK5"/>
-                <constraint firstItem="TKO-Ag-kAv" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="14" id="nAj-4Y-VyD"/>
+                <constraint firstItem="TKO-Ag-kAv" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="8" id="nAj-4Y-VyD"/>
                 <constraint firstItem="eME-sn-Lin" firstAttribute="leading" secondItem="ItV-nz-BoL" secondAttribute="leading" id="qYM-9G-LjQ"/>
+                <constraint firstItem="dFQ-XZ-soh" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="sim-QY-VYy"/>
                 <constraint firstItem="BhD-DU-yHa" firstAttribute="leading" secondItem="eME-sn-Lin" secondAttribute="leading" id="tc4-Hm-Ca4"/>
                 <constraint firstItem="BhD-DU-yHa" firstAttribute="top" secondItem="eME-sn-Lin" secondAttribute="bottom" constant="8" symbolic="YES" id="u2u-su-xF2"/>
                 <constraint firstItem="0a7-Jm-3Jm" firstAttribute="leading" secondItem="TWp-CY-G6h" secondAttribute="leading" id="wUP-22-OLB"/>
