@@ -97,7 +97,7 @@
      */
     NSLog(@"About to load parameters");
     
-    bwt_Matcher.matchType = [[parameters objectAtIndex:kParameterArrayEDIndex] intValue];
+    bwt_Matcher.matchType = [[parameters objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
     maxSubs = [[parameters objectAtIndex:kParameterArrayEDIndex] intValue];
     bwt_Matcher.alignmentType = [[parameters objectAtIndex:kParameterArrayFoRevIndex] intValue];
     

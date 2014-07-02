@@ -39,8 +39,11 @@
 #define kPosLblZoomedFarOutIntervalMultiple 1000 //interval = 100*numOfBoxesPerPixel when numOfBoxesPerPixel > kPixelWidth
 #define kPosLblTickMarkHeight 10
 #define kPosLblFontSize 20
-#define kPosLblFontSizeIPhoneOld 16
+#define kPosLblFontSizeIPhoneOld 20
 #define kPosLblHeight 40
+#define kPosLblMaxNumShownOnScreenWhenZoomedOut 4
+#define kPosLblMinNumShownOnScreenWhenZoomedOut 2
+
 
 #define kStartOfAInRGBVals 4
 #define kStartOfRefInRGBVals 2

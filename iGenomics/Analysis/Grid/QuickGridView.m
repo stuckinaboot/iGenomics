@@ -225,12 +225,13 @@
                 int intervalNum = j;
                 if (numOfBoxesPerPixel == kPixelWidth)
                     intervalNum++;
-                if (intervalNum % kPosLblInterval == 0) {//Multiple of kPosLblInterval
+                int nearestPosInterval = roundf(intervalNum/kPosLblInterval)*kPosLblInterval;
+                if ((numOfBoxesPerPixel == kPixelWidth) ? intervalNum % kPosLblInterval == 0 : (intervalNum-numOfBoxesPerPixel < nearestPosInterval && intervalNum+numOfBoxesPerPixel >= nearestPosInterval)) {//Multiple of kPosLblInterval
                     NSNumberFormatter *num = [[NSNumberFormatter alloc] init];
                     [num setNumberStyle: NSNumberFormatterDecimalStyle];
                     
                     UIFont *font = [UIFont systemFontOfSize:([GlobalVars isOldIPhone]) ? kPosLblFontSizeIPhoneOld : kPosLblFontSize];
-                    NSString *numStr = [num stringFromNumber:[NSNumber numberWithInt:intervalNum]];
+                    NSString *numStr = [num stringFromNumber:[NSNumber numberWithInt:(numOfBoxesPerPixel == kPixelWidth) ? intervalNum : nearestPosInterval]];
                     float numStrWidth = [numStr sizeWithFont:font].width;
                     
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, 0, 0, 1.0f);
@@ -340,7 +341,8 @@
 
 - (void)resetTickMarkInterval {
     //First find num of cols on screen
-    int numOfColsOnScreen = 0;
+    int numOfColsOnScreen = 0;//Is modified when numOfBoxesPerPixel > kPixelWidth
+//    int actualNumOfColsOnScreen = 0;//Not modified when above occurs
     
     int x = 0;
     for (int i = 0; i<totalCols; i++, x += boxWidth, numOfColsOnScreen++) {
@@ -348,15 +350,17 @@
             break;
     }
     
+//    actualNumOfColsOnScreen = numOfColsOnScreen;
     numOfColsOnScreen *= numOfBoxesPerPixel;
-    
     kPosLblInterval = numOfColsOnScreen/kPosLblNum;
+    
     
     if (kPosLblInterval<5)
         kPosLblInterval = 5;
     else if (kPosLblInterval<10)
         kPosLblInterval = 10;
     
+
     //Now make the interval nicer
     int zeroes;
     for (zeroes = 0; kPosLblInterval>10; zeroes++)
@@ -364,8 +368,9 @@
     for (int i = 0; i<zeroes; i++)
         kPosLblInterval *= 10;
     
-    if (numOfBoxesPerPixel > kPixelWidth)
-        kPosLblInterval = round(kPosLblInterval/numOfBoxesPerPixel)*numOfBoxesPerPixel;
+    while (numOfColsOnScreen/kPosLblInterval > kPosLblNum) {
+        kPosLblInterval *= 2;
+    }
 }
 
 //Create Grid Lines

@@ -137,7 +137,11 @@
 - (NSMutableString*)getMutationsExportStr {
     NSMutableString *mutString = [[NSMutableString alloc] init];
     [mutString appendFormat:kMutationTotalFormat,[mutPosArray count]];
-    MutationInfo *inf = [mutPosArray objectAtIndex:0];
+    MutationInfo *inf;
+    if ([mutPosArray count] > 0)
+        inf = [mutPosArray objectAtIndex:0];
+    else
+        return (NSMutableString*)kNoMutationsFoundStr;
     NSString *exportFormat;
     if (!inf.genomeName)
         exportFormat = kMutationFormat;

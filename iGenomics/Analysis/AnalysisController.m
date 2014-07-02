@@ -343,30 +343,30 @@
     }
     if (scaleOccurred) {
 
-            float gridViewW = gridView.bounds.size.width;
-            
-            float proportion = (gridView.currOffset+gridViewW/2)/gridView.scrollingView.contentSize.width;
+        float gridViewW = gridView.bounds.size.width;
         
+        float proportion = (gridView.currOffset+gridViewW/2)/gridView.scrollingView.contentSize.width;
+    
 //            [gridView setBoxWidth:ceilf(gridView.boxWidth*kBoxWidthMultFactor*sender.scale)];
-            [gridView setBoxWidth:gridView.boxWidthDecimal*kBoxWidthMultFactor*sender.scale];
+        [gridView setBoxWidth:gridView.boxWidthDecimal*kBoxWidthMultFactor*sender.scale];
+    
+        double w = ([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth;
+        double f = ([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone;
+        if (gridView.boxWidth > w) {
+            gridView.boxWidth = w;
+            gridView.kTxtFontSize = f;
+        }
+        if (gridView.boxWidth < kMinBoxWidth) {
+            [gridView setBoxWidth:kMinBoxWidth];
+            gridView.kTxtFontSize = gridView.kMinTxtFontSize;
+        }
+        gridView.kTxtFontSize *= (kFontSizeMultFactor*sender.scale);
+        if (gridView.kTxtFontSize > f)
+            gridView.kTxtFontSize = f;
         
-            double w = ([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth;
-            double f = ([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone;
-            if (gridView.boxWidth > w) {
-                gridView.boxWidth = w;
-                gridView.kTxtFontSize = f;
-            }
-            if (gridView.boxWidth < kMinBoxWidth) {
-                [gridView setBoxWidth:kMinBoxWidth];
-                gridView.kTxtFontSize = gridView.kMinTxtFontSize;
-            }
-            gridView.kTxtFontSize *= (kFontSizeMultFactor*sender.scale);
-            if (gridView.kTxtFontSize > f)
-                gridView.kTxtFontSize = f;
-            
-            if (gridView.boxWidth >= kThresholdBoxWidth && gridView.kTxtFontSize < gridView.kMinTxtFontSize)
-                gridView.kTxtFontSize = gridView.kMinTxtFontSize;
-        
+        if (gridView.boxWidth >= kThresholdBoxWidth && gridView.kTxtFontSize < gridView.kMinTxtFontSize)
+            gridView.kTxtFontSize = gridView.kMinTxtFontSize;
+    
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
         dispatch_sync(queue, ^{//Opens up a background thread, done synchronously because this block needs to finish before this function gets called again (often times it will be)
             [gridView resetScrollViewContentSize];

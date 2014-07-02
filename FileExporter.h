@@ -50,6 +50,8 @@ typedef enum {
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
 #define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics"
 
+#define kNoMutationsFoundStr @"No Mutations Found"
+
 @protocol FileExporterDelegate <NSObject>
 - (UIViewController*)getVC;
 - (void)displaySuccessBox;

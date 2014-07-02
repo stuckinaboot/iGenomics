@@ -136,7 +136,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     int forwardMatches = 0;//EX. ACA
 
     BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];
-    
     for (int subs = 0; subs < amtOfSubs+1; subs++) {
         if (subs == 0 || matchType == MatchTypeExactOnly)
             arr = [exactMatcher exactMatchForQuery:query andIsReverse:NO andForOnlyPos:NO];
