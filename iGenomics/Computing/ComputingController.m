@@ -77,8 +77,8 @@
             NSString *refFileSegmentNames = [myParameterArray objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
             NSString *readFileName = [myParameterArray objectAtIndex:kParameterArrayReadFileNameIndex];
             
-            //genome file name, reads file name, read length, genome length, number of reads
-            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], nil];
+            //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
+            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], nil];
             
             [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];

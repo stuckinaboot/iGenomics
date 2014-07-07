@@ -42,7 +42,7 @@
 extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+) __________________I----- GLOBAL ------I
 
 @protocol BWT_MatcherDelegate <NSObject>
-- (void)readProccesed:(NSString*)readData;
+- (void)readProccesed:(NSString*)readData andMatchedAtLeastOnce:(BOOL)didMatch;
 @end
 @interface BWT_Matcher : NSObject {
     

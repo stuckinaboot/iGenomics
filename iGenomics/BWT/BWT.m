@@ -11,7 +11,7 @@
 @implementation BWT
 
 @synthesize bwtMutationFilter;
-@synthesize readLen, refSeqLen, numOfReads;
+@synthesize readLen, refSeqLen, numOfReads, numOfReadsMatched;
 @synthesize delegate;
 
 - (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath {
@@ -71,6 +71,8 @@
 
 - (void)matchReedsFileContentsAndParametersArr:(NSArray *)arr {
     NSLog(@"matchReedsFileContentsAndParametersArr entered");
+    
+    numOfReadsMatched = 0;
     
     NSString *contents = [arr objectAtIndex:0];
     NSArray *parameters = [arr objectAtIndex:1];
@@ -134,7 +136,9 @@
 }
 
 //BWT_MatcherDelegate
-- (void)readProccesed:(NSString *)readData {
+- (void)readProccesed:(NSString *)readData andMatchedAtLeastOnce:(BOOL)didMatch {
+    if (didMatch)
+        numOfReadsMatched++;
     [delegate readProccesed:readData];
 }
 @end

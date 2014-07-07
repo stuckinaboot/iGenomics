@@ -50,6 +50,7 @@
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */ = {isa = PBXBuildFile; fileRef = A364B409186246E10052625C /* Ecoli.50k.testread.txt */; };
 		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
+		A36C7C0E1964AFAD004CA5EF /* CoverageHistogram.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */; };
 		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
 		A36CCDFC184A8632004B9327 /* reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF9184A8632004B9327 /* reads.fa */; };
 		A36CCDFD184A8632004B9327 /* reads.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDFA184A8632004B9327 /* reads.fq */; };
@@ -187,6 +188,8 @@
 		A364B409186246E10052625C /* Ecoli.50k.testread.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.50k.testread.txt; sourceTree = "<group>"; };
 		A3669B3316F689750034A1CC /* DNAColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNAColors.h; path = iGenomics/Analysis/Grid/DNAColors.h; sourceTree = "<group>"; };
 		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
+		A36C7C0C1964AFAC004CA5EF /* CoverageHistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverageHistogram.h; sourceTree = "<group>"; };
+		A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageHistogram.m; sourceTree = "<group>"; };
 		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
 		A36CCDF9184A8632004B9327 /* reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fa; path = "ecoli-2.50k/reads.fa"; sourceTree = "<group>"; };
 		A36CCDFA184A8632004B9327 /* reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fq; path = "ecoli-2.50k/reads.fq"; sourceTree = "<group>"; };
@@ -447,6 +450,7 @@
 				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
 				A3382FD116A118D80042F59B /* Grid */,
+				A36C7C0F1964AFB0004CA5EF /* Coverage Histogram */,
 				A31AA7CD16E30BD700D3D808 /* Popovers */,
 			);
 			name = Analysis;
@@ -572,6 +576,15 @@
 				A3DB3772170214BC007F0B9E /* RGB */,
 			);
 			name = Colors;
+			sourceTree = "<group>";
+		};
+		A36C7C0F1964AFB0004CA5EF /* Coverage Histogram */ = {
+			isa = PBXGroup;
+			children = (
+				A36C7C0C1964AFAC004CA5EF /* CoverageHistogram.h */,
+				A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */,
+			);
+			name = "Coverage Histogram";
 			sourceTree = "<group>";
 		};
 		A39316E216C08C5F0041BF4B /* Search Query Popover */ = {
@@ -1001,6 +1014,7 @@
 				A35E39B41885FB7500651C41 /* Reachability.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
+				A36C7C0E1964AFAD004CA5EF /* CoverageHistogram.m in Sources */,
 				A3971B0C158A635D001626F7 /* Chunks.m in Sources */,
 				A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */,
 				A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */,

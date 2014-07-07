@@ -1,3 +1,4 @@
+flu.H1N1.reads.fa
 rice.fq
 Ecoli.5k.reads.txt
 e_coli_1000_1.fq
@@ -7,6 +8,5 @@ TESTREADS.txt
 reads.fa
 reads.fq
 anthrax.capsule.reads.fa
-flu.H1N1.reads.fa
 lambdaphage.reads.fa
 phix174.reads.fa

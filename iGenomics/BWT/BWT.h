@@ -44,7 +44,7 @@
 @property (nonatomic) id <BWT_Delegate> delegate;
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
 
-@property (nonatomic) int readLen, refSeqLen, numOfReads;
+@property (nonatomic) int readLen, refSeqLen, numOfReads, numOfReadsMatched;
 
 - (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath;
 - (void)matchReedsFileContentsAndParametersArr:(NSArray*)arr;//The arr - index 0 is read file contents, index 1 is parameters arr

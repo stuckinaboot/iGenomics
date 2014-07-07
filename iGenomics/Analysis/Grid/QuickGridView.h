@@ -34,6 +34,9 @@
 #define kGridLineWidthColDefault 2
 #define kGridLineWidthColDefaultMin 0
 
+#define kSegmentDividerWidth 4
+#define kSegmentDividerFontSize 14
+
 #define kPosLblNum 5
 #define kDefPosLblInterval 5 //20 cells
 #define kPosLblZoomedFarOutIntervalMultiple 1000 //interval = 100*numOfBoxesPerPixel when numOfBoxesPerPixel > kPixelWidth
@@ -109,6 +112,7 @@
 - (void)mutationFoundAtPos:(int)pos;
 - (void)gridFinishedUpdatingWithOffset:(double)currOffset;
 - (NSArray*)getCumulativeSeparateGenomeLenArray;
+- (NSString*)genomeSegmentNameForIndexInGenomeNameArr:(int)index;
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index;
 @end
 
@@ -151,7 +155,7 @@
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
 @property (nonatomic) double boxWidth, boxWidthDecimal;
 @property (nonatomic) BOOL shouldUpdateScrollView;
-@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol, numOfBoxesPerPixel;;
+@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol, numOfBoxesPerPixel, maxCoverageVal;
 @property (nonatomic) UIScrollView *scrollingView;
 @property (nonatomic) UIImageView *drawingView;
 @property (nonatomic) id <QuickGridViewDelegate> delegate;
@@ -165,6 +169,7 @@
 - (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex;
 - (void)resetScrollViewContentSize;
 - (void)drawGridLinesForOffset:(double)offset;
+- (void)drawSegmentDividers;
 - (void)drawDefaultBoxColors;
 
 - (void)drawTickMarksForStartingPos:(int)pos;

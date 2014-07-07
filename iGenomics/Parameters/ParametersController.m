@@ -248,10 +248,10 @@
 }
 
 - (NSString*)readsByRemovingQualityValFromReads:(NSString*)r {
-    NSArray *arr = [r componentsSeparatedByString:@"\n"];
+    NSArray *arr = [r componentsSeparatedByString:kLineBreak];
     NSMutableString *readStr = [[NSMutableString alloc] init];
     
-    for (int i = 0; i < [arr count]; i += 2) {
+    for (int i = 0; i < [arr count]; i += 3) {
         [readStr appendFormat:@"%@\n%@\n",[arr objectAtIndex:i],[arr objectAtIndex:i+1]];
     }
     readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break

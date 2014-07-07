@@ -79,6 +79,8 @@
     bwt = myBwt;
     exportDataStr = exportDataString;
     
+    coverageHistogram = [[CoverageHistogram alloc] init];
+    
     //genome file name, reads file name, read length, genome length, number of reads
     genomeFileSegmentNames = [basicInfArr objectAtIndex:0];
     readsFileName = [basicInfArr objectAtIndex:1];
@@ -86,6 +88,8 @@
     genomeLen = [[basicInfArr objectAtIndex:3] intValue];
     numOfReads = [[basicInfArr objectAtIndex:4] intValue];
     editDistance = [[basicInfArr objectAtIndex:5] intValue];
+    numOfReadsMatched = [[basicInfArr objectAtIndex:6] intValue];
+    
     
     NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
     genomeFileName = [genomeFileSegmentNames substringWithRange:genomeFileNameRange];
@@ -128,6 +132,7 @@
     allMutPosArray = [[NSMutableArray alloc] init];
     
     [readNumOfLbl setText:[NSString stringWithFormat:@"%@%i",kNumOfReadsLblStart,numOfReads]];
+    [readPercentMatchedLbl setText:[NSString stringWithFormat:@"%@%1.0f%%",kReadPercentMatchedLblStart, ((float)numOfReadsMatched/numOfReads)*100.0f]];
     
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
     
@@ -326,6 +331,9 @@
 -(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
     BOOL scaleOccurred = FALSE;
     double s = [sender scale];
+    
+    float gridViewW = gridView.bounds.size.width;
+    
     //PROBLEM IS THAT KTXTFONTSIZE IS TOO BIG WHEN BOX WIDTH IS TOO SMALL
     if (s > 1.0f /*&& (gridView.kTxtFontSize < (([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone)) */&& (gridView.boxWidth < (([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth))) {//Zoom in
         scaleOccurred = TRUE;
@@ -335,6 +343,13 @@
                 nLbl[i].hidden = NO;
     }
     else if (s < 1.0f) {//Zoom out
+        
+        if (gridView.numOfBoxesPerPixel > kPixelWidth) {
+            int potentialNewNumOfBoxesPerPixel = 1.0f/(gridView.boxWidthDecimal*s*kBoxWidthMultFactor);
+            if (gridView.totalCols/gridView.numOfBoxesPerPixel < gridViewW || gridView.totalCols/potentialNewNumOfBoxesPerPixel < gridViewW)
+                return;
+        }
+        
         scaleOccurred = TRUE;
         
         if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.boxWidth >= kThresholdBoxWidth) && !nLbl[0].hidden)
@@ -342,9 +357,6 @@
                 nLbl[i].hidden = YES;
     }
     if (scaleOccurred) {
-
-        float gridViewW = gridView.bounds.size.width;
-        
         float proportion = (gridView.currOffset+gridViewW/2)/gridView.scrollingView.contentSize.width;
     
 //            [gridView setBoxWidth:ceilf(gridView.boxWidth*kBoxWidthMultFactor*sender.scale)];
@@ -372,8 +384,7 @@
             [gridView resetScrollViewContentSize];
             [gridView resetTickMarkInterval];
             
-            [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
-            
+            [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.bounds.size.width];
             gridView.currOffset = (gridView.scrollingView.contentSize.width*proportion)-gridViewW/2;
             if (gridView.currOffset < 0)
                 gridView.currOffset = gridView.boxWidth;//Goes to second box to avoid drawing issues
@@ -402,6 +413,19 @@
     CGPoint box = CGPointMake([gridView firstPtToDrawForOffset:xCoord],(int)((pt.y-(kPosLblHeight+graphRowHeight))/(kGridLineWidthRow+gridView.boxHeight)));//Get the tapped box
     
     [self gridPointClickedWithCoordInGrid:box andClickedPt:pt];
+}
+
+//Coverage Histogram
+- (IBAction)showCoverageHistogram:(id)sender {
+    if ([GlobalVars isIpad]) {
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
+        [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
+    }
+    else
+        [self presentViewController:coverageHistogram animated:YES completion:^{
+            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
+        }];
 }
 
 //Grid view delegate
@@ -484,6 +508,11 @@
 - (NSArray*)getCumulativeSeparateGenomeLenArray {
     return cumulativeSeparateGenomeLens;
 }
+
+- (NSString*)genomeSegmentNameForIndexInGenomeNameArr:(int)index {
+    return separateGenomeNames[index];
+}
+
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {
     genomeFileSegmentNames = [separateGenomeNames objectAtIndex:index];
     [genomeNameLbl setText:genomeFileSegmentNames];

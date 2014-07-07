@@ -121,7 +121,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen) andED_Info:a];
             
         }
-        [delegate readProccesed:readDataStr];
+        [delegate readProccesed:readDataStr andMatchedAtLeastOnce:a != NULL];
         [readDataStr setString:@""];
     }
 //    [exactMatcher timerPrint];

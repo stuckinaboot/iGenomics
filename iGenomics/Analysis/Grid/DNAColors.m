@@ -10,7 +10,7 @@
 
 @implementation DNAColors
 
-@synthesize defaultBackground, defaultLbl, covLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight, black, white, graph;
+@synthesize defaultBackground, defaultLbl, covLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight, black, white, graph, segmentDivider, segmentDividerTxt;
 
 - (void)setUp {
     defaultBackground = [[RGB alloc] initWithVals:203/255.0f :203/255.0f :203/255.0f];
@@ -28,6 +28,8 @@
     black = [[RGB alloc] initWithVals:0 :0 :0];
     white = [[RGB alloc] initWithVals:1 :1 :1];
     graph = [[RGB alloc] initWithVals:0.2 :0.3 :0.4];
+    segmentDivider = [[RGB alloc] initWithVals:1 :0 :0];
+    segmentDividerTxt = [[RGB alloc] initWithVals:0 :0 :0];
 }
 
 @end

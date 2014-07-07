@@ -255,6 +255,9 @@
     
     NSLog(@"beginActualSequencingPredefinedParameters Old Parameters loaded, preparing to load computingController");
     
+    if ([[GlobalVars extFromFileName:rName] caseInsensitiveCompare:kFq] == NSOrderedSame && [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue] == kTrimmingOffVal)
+        r = [parametersController readsByRemovingQualityValFromReads:r];
+    
     [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]] andRefFilePath:refFilePath];
     
     NSLog(@"Computing controller loaded");

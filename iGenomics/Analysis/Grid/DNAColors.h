@@ -26,6 +26,8 @@
                         *mutHighlight,
                         *black,
                         *white,
-                        *graph;
+                        *graph,
+                        *segmentDivider,
+                        *segmentDividerTxt;
 - (void)setUp;
 @end

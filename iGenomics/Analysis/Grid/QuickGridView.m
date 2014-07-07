@@ -10,7 +10,7 @@
 
 @implementation QuickGridView
 
-@synthesize boxHeight, boxWidth, boxWidthDecimal, delegate, refSeq, currOffset, totalRows, totalCols, numOfBoxesPerPixel, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol, shouldUpdateScrollView;
+@synthesize boxHeight, boxWidth, boxWidthDecimal, delegate, refSeq, currOffset, totalRows, totalCols, numOfBoxesPerPixel, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol, shouldUpdateScrollView, maxCoverageVal;
 
 - (void)firstSetUp {
     prevOffset = -1;
@@ -83,7 +83,7 @@
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
-    //    NSLog(@"\nPrev: %f Curr: %f Width: %f",prevOffset,offSet, self.frame.size.width);
+
     prevOffset = offSet;
     currOffset = offSet;
     drawingView.image = NULL;
@@ -97,16 +97,13 @@
     
     int firstPtToDraw = round([self firstPtToDrawForOffset:offSet]/numOfBoxesPerPixel)*numOfBoxesPerPixel;//Rounds to nearest multiple of numOfBoxesPerPixel
     double firstPtOffset = [self firstPtToDrawOffset:offSet];//Will be 0 or negative
-    
-    //    NSLog(@"\nFirst Pt To Draw: %i First pt offset: %f",firstPtToDraw, firstPtOffset);
-    
+
     if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {//If it is 0, there is no need for them
         kGridLineWidthCol = kGridLineWidthColDefault;
         [self drawGridLinesForOffset:firstPtOffset];
     }
     else
         kGridLineWidthCol = kGridLineWidthColDefaultMin;
-    
     
     float x = firstPtOffset+kGridLineWidthCol;//If this passes the self.frame.size.width, stop drawing (break)
     float y = kPosLblHeight;
@@ -248,6 +245,8 @@
         else
             y += kGridLineWidthRow+graphBoxHeight;
     }
+    
+    [self drawSegmentDividers];
     
     newDrawingViewImg = UIGraphicsGetImageFromCurrentImageContext();
     [self setNeedsDisplay];
@@ -395,6 +394,53 @@
     }
 }
 
+- (void)drawSegmentDividers {
+    float segOffset = 0;
+    NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
+    NSMutableArray* segOffsetsToDrawAt = [[NSMutableArray alloc] init];
+    NSMutableArray* segOffsetindexesToDrawAt = [[NSMutableArray alloc] init];
+    int index = 0;
+    BOOL alreadyUpdatedGenomeNameLbl = FALSE;
+    if ([arr count] > 1) {
+        for (int i = [arr count]-1; i >= 0; i--) {
+            segOffset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
+            NSLog(@"Seg Offset: %f",segOffset);
+            if (segOffset <= currOffset+self.bounds.size.width && segOffset >= currOffset) {
+                [segOffsetsToDrawAt addObject:[NSNumber numberWithFloat:segOffset]];
+                [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInteger:i]];
+            }
+            if (currOffset <= segOffset)
+                index = i;
+            else if (!alreadyUpdatedGenomeNameLbl) {
+                [delegate shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:index];
+                alreadyUpdatedGenomeNameLbl = TRUE;
+//                break;
+            }
+            if (!alreadyUpdatedGenomeNameLbl)
+                [delegate shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:index];
+            
+            //        if (segOffset < currOffset+self.bounds.size.width) {
+            //            [self drawRectangle:CGRectMake(segOffset, kPosLblHeight, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight) withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
+            //        }
+            UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
+            for (int i = 0; i < [segOffsetsToDrawAt count]; i++) {
+                int index = [[segOffsetindexesToDrawAt objectAtIndex:i] intValue]+1;//+1 to show the name of the next segment
+                if (index <= [arr count]-1) {
+                    segOffset = [[segOffsetsToDrawAt objectAtIndex:i] floatValue];
+                    CGRect rect = CGRectMake(segOffset-currOffset, kPosLblHeight-kPosLblTickMarkHeight/2, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight+kPosLblTickMarkHeight/2);
+                    [self drawRectangle:rect withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
+                
+                    NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:index];
+                    CGSize size = [str sizeWithFont:font];
+                    
+                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.segmentDividerTxt.r, dnaColors.segmentDividerTxt.g, dnaColors.segmentDividerTxt.b, 1.0f);
+                        [str drawAtPoint:CGPointMake(segOffset-currOffset-size.width/2, kPosLblHeight-kPosLblTickMarkHeight/2-size.height) withFont:font];
+                }
+            }
+        }
+    }
+}
+
 //Create Default Colors
 - (void)drawDefaultBoxColors {
     float y = kPosLblHeight+graphBoxHeight+kGridLineWidthRow;
@@ -456,23 +502,6 @@
 //    if (shouldUpdateScrollView)
         [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
     shouldUpdateScrollView = !shouldUpdateScrollView;
-    
-    float offset;
-    NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
-    int index = 0;
-    if ([arr count] > 1) {
-        for (int i = [arr count]-1; i >= 0; i--) {
-            offset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
-            if (currOffset <= offset) {
-                index = i;
-            }
-            else {
-                [delegate shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:index];
-                break;
-            }
-        }
-        [delegate shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:index];
-    }
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {

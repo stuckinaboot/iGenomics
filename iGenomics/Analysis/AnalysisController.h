@@ -18,6 +18,7 @@
 #import "APTimer.h"
 #import "AnalysisControllerIPhoneToolbar.h"
 #import "FileExporter.h"
+#import "CoverageHistogram.h"
 
 #import "QuickGridView.h"
 
@@ -73,6 +74,8 @@
 
 #define kNumOfReadsLblStart @"Num Reads: "
 
+#define kReadPercentMatchedLblStart @"% Matched: "
+
 #define kTotalNumOfMutsLblStart @"Total Num Of Mutations: "
 
 //#define kNumOfRGBVals 10
@@ -118,6 +121,7 @@
     IBOutlet UILabel *readsNameLbl;
     IBOutlet UILabel *readLenLbl;
     IBOutlet UILabel *readNumOfLbl;//Num of reads lbl, I like having read in front though
+    IBOutlet UILabel *readPercentMatchedLbl;
     IBOutlet UILabel *totalNumOfMutsLbl;
     
     IBOutlet QuickGridView *gridView;
@@ -125,6 +129,9 @@
     UIPopoverController *popoverController;
     MutationsInfoPopover *mutsPopover;
     IBOutlet UIButton *showAllMutsBtn;
+    
+    IBOutlet UIBarButtonItem *coverageHistogramBtn;
+    CoverageHistogram *coverageHistogram;
     
     BOOL mutsPopoverAlreadyUpdated;
     //Passed in
@@ -141,6 +148,7 @@
     int readLen;
     int genomeLen;
     int numOfReads;
+    int numOfReadsMatched;
     int editDistance;
     
     //Data elements
@@ -169,6 +177,8 @@
     IBOutlet AnalysisControllerIPhoneToolbar *analysisControllerIPhoneToolbar;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
+
+- (IBAction)showCoverageHistogram:(id)sender;
 
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 - (void)singleTapOccured:(UITapGestureRecognizer*)sender;
