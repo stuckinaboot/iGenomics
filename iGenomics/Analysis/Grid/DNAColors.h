@@ -13,6 +13,7 @@
     
 }
 @property (nonatomic) RGB *defaultBackground,
+                        *defaultLighterBackground,
                         *defaultLbl,
                         *covLbl,
                         *refLbl,

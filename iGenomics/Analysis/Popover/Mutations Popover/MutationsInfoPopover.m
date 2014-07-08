@@ -36,14 +36,21 @@
     [mutationsTBView reloadData];
     [delegate mutationsPopoverDidFinishUpdating];
     if ([lenArr count] > 1) {
+        int index = 0;
         for (int x = 0; x < [mutationsArray count]; x++) {
+            MutationInfo *info = [mutationsArray objectAtIndex:x];
             for (int i = [lenArr count]-1; i >= 0; i--) {
                 int len = [[lenArr objectAtIndex:i] intValue];
-                MutationInfo *info = [mutationsArray objectAtIndex:x];
                 if (info.pos < len)
                     info.genomeName = [nameArr objectAtIndex:i];
-                [mutationsArray setObject:info atIndexedSubscript:x];
+                else {
+                    index = i+1;
+                    break;
+                }
             }
+            if (index > 0)
+                info.displayedPos -= [[lenArr objectAtIndex:index-1] intValue];
+            [mutationsArray setObject:info atIndexedSubscript:x];
         }
     }
 }
@@ -65,7 +72,7 @@
     
     if (indexPath.row > 0) {
         MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];
-        int pos = info.pos;//-1 because first row shows total # of muts
+        int pos = info.displayedPos;//-1 because first row shows total # of muts
         [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]]];//+1 because the first pos is considered 0
         [cell.detailTextLabel setText:info.genomeName];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;//Show the little arrow

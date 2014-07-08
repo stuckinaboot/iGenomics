@@ -74,7 +74,7 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 
-- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readLen;
+- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL;
 
 - (void)matchReeds;
 

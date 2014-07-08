@@ -413,7 +413,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     NSLog(@"Set up number of occurences array COMPLETED!!");
 }
 
-- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readLen {
+- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL {
     int closestLen = 0;
     for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
         int v = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
@@ -423,10 +423,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         }
     }
     
-    if (info.position + readLen-1 < closestLen)
+    if (info.position + readL-1 < closestLen)
         return 0;
     
-    int charsToTrim = info.position+readLen-closestLen;
+    int charsToTrim = info.position+readL-closestLen;
     
     return charsToTrim;
 }

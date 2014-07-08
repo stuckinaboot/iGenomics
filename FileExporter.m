@@ -156,7 +156,7 @@
     else
         exportFormat = kMutationExportFormat;
     for (MutationInfo *info in mutPosArray) {
-        [mutString appendFormat:exportFormat,info.pos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos],info.genomeName];//+1 so it doesn't start at 0
+        [mutString appendFormat:exportFormat,info.displayedPos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos],info.genomeName];//+1 so it doesn't start at 0
     }
     return mutString;
 }

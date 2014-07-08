@@ -10,7 +10,7 @@
 
 @implementation QuickGridView
 
-@synthesize boxHeight, boxWidth, boxWidthDecimal, delegate, refSeq, currOffset, totalRows, totalCols, numOfBoxesPerPixel, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol, shouldUpdateScrollView, maxCoverageVal;
+@synthesize boxHeight, boxWidth, boxWidthDecimal, delegate, refSeq, currOffset, totalRows, totalCols, numOfBoxesPerPixel, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol, shouldUpdateScrollView, maxCoverageVal, indexInGenomeNameArr;
 
 - (void)firstSetUp {
     prevOffset = -1;
@@ -90,7 +90,6 @@
     
     CGSize drawingSize = self.frame.size;
     
-    
     //Prevents pixelation of text on retina display
     if (UIGraphicsBeginImageContextWithOptions != NULL)
         UIGraphicsBeginImageContextWithOptions(drawingSize, NO, 0.0);//0.0 sets the scale factor to the scale of the device's main screen
@@ -98,6 +97,8 @@
         UIGraphicsBeginImageContext(drawingSize);
 
     [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    
+    [self drawSegmentDividers];
     
     if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth)
         [self drawDefaultBoxColors];
@@ -226,23 +227,7 @@
                 [self drawRectangle:newRect withRGB:(double[3]){color.r,color.g,color.b}];
                 
                 //Put a position label above the graph
-                int intervalNum = j;
-                if (numOfBoxesPerPixel == kPixelWidth)
-                    intervalNum++;
-                int nearestPosInterval = roundf(intervalNum/kPosLblInterval)*kPosLblInterval;
-                if ((numOfBoxesPerPixel == kPixelWidth) ? intervalNum % kPosLblInterval == 0 : (intervalNum-numOfBoxesPerPixel < nearestPosInterval && intervalNum+numOfBoxesPerPixel >= nearestPosInterval)) {//Multiple of kPosLblInterval
-                    NSNumberFormatter *num = [[NSNumberFormatter alloc] init];
-                    [num setNumberStyle: NSNumberFormatterDecimalStyle];
-                    
-                    UIFont *font = [UIFont systemFontOfSize:([GlobalVars isOldIPhone]) ? kPosLblFontSizeIPhoneOld : kPosLblFontSize];
-                    NSString *numStr = [num stringFromNumber:[NSNumber numberWithInt:(numOfBoxesPerPixel == kPixelWidth) ? intervalNum : nearestPosInterval]];
-                    float numStrWidth = [numStr sizeWithFont:font].width;
-                    
-                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, 0, 0, 1.0f);
-                    [numStr drawAtPoint:CGPointMake(x+(boxWidth/2)-numStrWidth/2, 0) withFont:font];
-                    
-                    [self drawRectangle:CGRectMake(x+(boxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthColDefault, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}];
-                }
+                [self drawTickMarksForPoint:j andX:x];
             }
         }
         x = firstPtOffset;
@@ -253,7 +238,7 @@
             y += kGridLineWidthRow+graphBoxHeight;
     }
     
-    [self drawSegmentDividers];
+//    [self drawSegmentDividers];
     
     newDrawingViewImg = UIGraphicsGetImageFromCurrentImageContext();
     [self setNeedsDisplay];
@@ -312,37 +297,45 @@
 }
 
 //Draw Tick Marks
-- (void)drawTickMarksForStartingPos:(int)pos {
-    int zeroes = 0;
-    int colsOnScreen = (self.frame.size.width/(boxWidth+kGridLineWidthCol));
-    double interval = colsOnScreen/kPosLblNum;
-    
-    for (zeroes = 0; pos>10; zeroes++)
-        pos = floorf(pos/10);
-    for (int i = 0; i<zeroes; i++)
-        pos *= 10;
-    
-    NSNumberFormatter *num = [[NSNumberFormatter alloc] init];
-    [num setNumberStyle: NSNumberFormatterDecimalStyle];
-    
-    for (int i = 0; i<kPosLblNum; i++) {
-        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.black.r, dnaColors.black.g, dnaColors.black.b, 1.0f);
+- (void)drawTickMarksForPoint:(int)p andX:(float)x {
+    int intervalNum = p;
+    if (numOfBoxesPerPixel == kPixelWidth)
+        intervalNum++;
+    int nearestPosInterval = roundf(intervalNum/kPosLblInterval)*kPosLblInterval;
+    if ((numOfBoxesPerPixel == kPixelWidth) ? intervalNum % kPosLblInterval == 0 : (intervalNum-numOfBoxesPerPixel < nearestPosInterval && intervalNum+numOfBoxesPerPixel >= nearestPosInterval)) {//Multiple of kPosLblInterval
+        NSNumberFormatter *num = [[NSNumberFormatter alloc] init];
+        [num setNumberStyle: NSNumberFormatterDecimalStyle];
         
-        UIFont *font = [UIFont systemFontOfSize:kPosLblFontSize];
-        NSString *numStr = [num stringFromNumber:[NSNumber numberWithInt:pos]];
-        float numStrWidth = [numStr sizeWithFont:font].width;
+        UIFont *font = [UIFont systemFontOfSize:([GlobalVars isOldIPhone]) ? kPosLblFontSizeIPhoneOld : kPosLblFontSize];
+        int index = 0;
+        NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
+        while (index < [arr count] && intervalNum > [[arr objectAtIndex:index] intValue])
+            index++;
+        index--;
+        int amountToSub = (index >= 0 && index < [arr count]) ? [[arr objectAtIndex:index] intValue] : 0;
+        NSString *numStr;
+        if (numOfBoxesPerPixel == kPixelWidth)
+            numStr = [num stringFromNumber:[NSNumber numberWithInt:intervalNum - amountToSub]];
+        else {
+            int tempInterval = kPosLblInterval;
+            if (nearestPosInterval-amountToSub != 0) {
+                while (roundf((nearestPosInterval-amountToSub)/tempInterval)*tempInterval == 0 && p > 0) {
+                    tempInterval /= 2;
+                }
+            }
+            if (p == 0)
+                nearestPosInterval = 0;
+            else
+                nearestPosInterval = roundf((nearestPosInterval-amountToSub)/tempInterval)*tempInterval;
+            numStr = [num stringFromNumber:[NSNumber numberWithInt:nearestPosInterval]];
+        }
+        CGSize numStrSize = [numStr sizeWithFont:font];
         
-        [numStr drawAtPoint:CGPointMake(pos*(boxWidth+kGridLineWidthCol)+(boxWidth/2)-numStrWidth/2, 0) withFont:font];
+        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, 0, 0, 1.0f);
+        [numStr drawAtPoint:CGPointMake(x+(boxWidth/2)-numStrSize.width/2, kPosLblHeight-numStrSize.height-kGridLineWidthRow-kPosLblDistAboveFirstGridLine) withFont:font];
         
-        [self drawRectangle:CGRectMake(pos*(boxWidth+kGridLineWidthCol)+(boxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthColDefault, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}];
-        
-        pos += interval;
+        //                    [self drawRectangle:CGRectMake(x+(boxWidth/2), kPosLblHeight-kPosLblTickMarkHeight, kGridLineWidthColDefault, kPosLblTickMarkHeight) withRGB:(double[]){0,0,0}]; DRAWS THE TICK MARKS, I COMMENTED THIS OUT CAUSE I DIDN'T WANT THEM
     }
-    //FOR THEH INTERVAL ON ZOOM IN/OUT ON THE FLY SHOW FIVE TICK MARKS (THE NUM OF COLUMNS ON THE SCREEN/4) ON THE SCREEN AT ALL TIMES (UNLESS THE FIFTH IS OFF THE SCREEN, THEN DO FOUR). Only show to one sig fig
-    /*
-     zeros = 0;  do while num>10 zeroes++ num = floorf(num/10), then do for x = 0, x<zeroes x++) num *= 10
-     num = 3123;
-     */
 }
 
 - (void)resetTickMarkInterval {
@@ -408,6 +401,7 @@
     NSMutableArray* segOffsetindexesToDrawAt = [[NSMutableArray alloc] init];
     int index = 0;
     BOOL alreadyUpdatedGenomeNameLbl = FALSE;
+
     if ([arr count] > 1) {
         for (int i = [arr count]-1; i >= 0; i--) {
             segOffset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
@@ -428,23 +422,34 @@
             //        if (segOffset < currOffset+self.bounds.size.width) {
             //            [self drawRectangle:CGRectMake(segOffset, kPosLblHeight, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight) withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
             //        }
-            UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
-            for (int i = 0; i < [segOffsetsToDrawAt count]; i++) {
-                int index = [[segOffsetindexesToDrawAt objectAtIndex:i] intValue]+1;//+1 to show the name of the next segment
-                if (index <= [arr count]-1) {
-                    segOffset = [[segOffsetsToDrawAt objectAtIndex:i] floatValue];
-                    CGRect rect = CGRectMake(segOffset-currOffset, kPosLblHeight-kPosLblTickMarkHeight/2, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight+kPosLblTickMarkHeight/2);
-                    [self drawRectangle:rect withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
+        }
+        indexInGenomeNameArr = index;
+        UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
+        for (int i = [segOffsetsToDrawAt count]-1; i >= 0; i--) {
+            int index = [[segOffsetindexesToDrawAt objectAtIndex:i] intValue]+1;//+1 to show the name of the next segment
+                segOffset = [[segOffsetsToDrawAt objectAtIndex:i] floatValue];
+                float nextSegOffset = (i - 1 >= 0) ? [[segOffsetsToDrawAt objectAtIndex:i-1] floatValue] : 0;
+//                CGRect rect = CGRectMake(segOffset-currOffset, kPosLblHeight-kPosLblTickMarkHeight/2, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight+kPosLblTickMarkHeight/2);
+//                    [self drawRectangle:rect withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
+                int width = (nextSegOffset > 0) ? ceilf(nextSegOffset-segOffset) : self.bounds.size.width;
+                CGRect rect = CGRectMake(segOffset-currOffset, 0, width, self.bounds.size.height);
+                RGB *rgb = ((index-1) % 2 == 0) ? dnaColors.defaultLighterBackground : dnaColors.defaultBackground;
+                [self drawRectangle:rect withRGB:(double[3]){rgb.r, rgb.g, rgb.b}];
+            
+            if (index < [arr count]) {
+                NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:index];
+                CGSize size = [str sizeWithFont:font];
                 
-                    NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:index];
-                    CGSize size = [str sizeWithFont:font];
-                    
-                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.segmentDividerTxt.r, dnaColors.segmentDividerTxt.g, dnaColors.segmentDividerTxt.b, 1.0f);
-                        [str drawAtPoint:CGPointMake(segOffset-currOffset-size.width/2, kPosLblHeight-kPosLblTickMarkHeight/2-size.height) withFont:font];
-                }
+                CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.segmentDividerTxt.r, dnaColors.segmentDividerTxt.g, dnaColors.segmentDividerTxt.b, 1.0f);
+                [str drawAtPoint:CGPointMake(ceilf(segOffset-currOffset), 0) withFont:font];
             }
         }
+        RGB *rgb = ((indexInGenomeNameArr-1) % 2 == 0) ? dnaColors.defaultLighterBackground : dnaColors.defaultBackground;
+        int width = ([segOffsetsToDrawAt count] > 0) ? ceilf([[segOffsetsToDrawAt lastObject] floatValue]-currOffset) : self.bounds.size.width;
+        [self drawRectangle:CGRectMake(0, 0, width, self.bounds.size.height) withRGB:(double[3]){rgb.r,rgb.g,rgb.b}];
+        
     }
+
 }
 
 //Create Default Colors
@@ -466,8 +471,14 @@
 }
 
 //Scroll To Position
-- (void)scrollToPos:(double)p {
-    currOffset = p*(boxWidth+kGridLineWidthCol);
+- (void)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput {
+    if (fieldInput) {
+        int amountToAdd = (indexInGenomeNameArr > 0) ? [[[delegate getCumulativeSeparateGenomeLenArray] objectAtIndex:indexInGenomeNameArr-1] intValue] : 0;
+        currOffset = (p+amountToAdd)*(boxWidth+kGridLineWidthCol)/numOfBoxesPerPixel;
+    }
+    else {
+        currOffset = (p)*(boxWidth+kGridLineWidthCol)/numOfBoxesPerPixel;
+    }
     if (currOffset > scrollingView.contentSize.width-self.frame.size.width-1)
         currOffset = scrollingView.contentSize.width-self.frame.size.width-1;//-1 to prevent crash due to drawing where there is nothing
     [self setUpGridViewForPixelOffset:currOffset];

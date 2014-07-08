@@ -44,6 +44,7 @@
 #define kPosLblFontSize 20
 #define kPosLblFontSizeIPhoneOld 20
 #define kPosLblHeight 40
+#define kPosLblDistAboveFirstGridLine 5
 #define kPosLblMaxNumShownOnScreenWhenZoomedOut 4
 #define kPosLblMinNumShownOnScreenWhenZoomedOut 2
 
@@ -146,6 +147,8 @@
     
     id delegate;
     
+    int indexInGenomeNameArr;
+    
     //Temp variable
     float prevOffset;
     
@@ -155,7 +158,7 @@
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
 @property (nonatomic) double boxWidth, boxWidthDecimal;
 @property (nonatomic) BOOL shouldUpdateScrollView;
-@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol, numOfBoxesPerPixel, maxCoverageVal;
+@property (nonatomic) int totalRows, totalCols, kGridLineWidthCol, numOfBoxesPerPixel, maxCoverageVal, indexInGenomeNameArr;
 @property (nonatomic) UIScrollView *scrollingView;
 @property (nonatomic) UIImageView *drawingView;
 @property (nonatomic) id <QuickGridViewDelegate> delegate;
@@ -172,7 +175,7 @@
 - (void)drawSegmentDividers;
 - (void)drawDefaultBoxColors;
 
-- (void)drawTickMarksForStartingPos:(int)pos;
+- (void)drawTickMarksForPoint:(int)p andX:(float)x;
 - (void)resetTickMarkInterval;
 
 - (void)initialMutationFind;
@@ -184,7 +187,7 @@
 - (void)drawText:(NSString*)txt atPoint:(CGPoint)point withRGB:(double[3])rgb;
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb;
 
-- (void)scrollToPos:(double)p;
+- (void)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput;
 - (void)updateScrollView:(UISlider*)s;
 
 - (double)getProperBoxWidth;

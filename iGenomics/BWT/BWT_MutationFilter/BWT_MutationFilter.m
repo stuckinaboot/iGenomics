@@ -241,14 +241,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             foundChars[posInFoundChars] = '\0';
         }
         if (diffCharsAtPos == 1)
-            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];//Duplicates it so it doesn't overwrite it (same for below)
+            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];//Duplicates it so it doesn't overwrite it (same for below)
         else if (coverageArray[p]<kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
             for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>0)
                     diffCharsAtPos++;
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
                     break;
                 }
             }
@@ -264,14 +264,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                     posInFoundChars++;
                 }
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
                     alreadyAdded = TRUE;
                     break;
                 }
             }
             foundChars[posInFoundChars] = '\0';
             if (diffCharsAtPos > 1 && !alreadyAdded) //In case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
-                [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
+                [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
         }
         for (int t = 0; t < kACGTLen + 2; t++) {
             if (foundChars[t] == 0)

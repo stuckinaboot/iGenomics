@@ -224,7 +224,7 @@
 - (IBAction)posSearch:(id)sender {
     int i = [posSearchTxtFld.text doubleValue];
     if (i > 0 && i<= dgenomeLen) {//is a valid number
-        [gridView scrollToPos:i-1];//converts it to the normal scale where pos 0 is 0
+        [gridView scrollToPos:i-1 inputtedByPosSearchField:YES];//converts it to the normal scale where pos 0 is 0
     }
     [posSearchTxtFld resignFirstResponder];
     if (![GlobalVars isIpad])
@@ -254,7 +254,7 @@
                 if (diff == 1/* || (possiblePos<currPos && diff > abs(closestPos-currPos))*/)
                     break;
             }
-            [gridView scrollToPos:closestPos];
+            [gridView scrollToPos:closestPos inputtedByPosSearchField:YES];
         }
         else {
             //Show an error
@@ -312,7 +312,7 @@
 //Mutation Info Popover Delegate
 - (void)mutationAtPosPressedInPopover:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
-    [gridView scrollToPos:pos-1];
+    [gridView scrollToPos:pos-1 inputtedByPosSearchField:NO];
     if (![GlobalVars isIpad])
         analysisControllerIPhoneToolbar.hidden = YES;
 }
@@ -325,7 +325,7 @@
 //Search Query Results Delegate
 - (void)queryResultPosPicked:(int)pos {
     [popoverController dismissPopoverAnimated:YES];
-    [gridView scrollToPos:pos];
+    [gridView scrollToPos:pos inputtedByPosSearchField:YES];
 }
 
 -(void)pinchOccurred:(UIPinchGestureRecognizer*)sender {
@@ -459,7 +459,8 @@
         if (![GlobalVars isIpad])
             [self presentViewController:apc animated:YES completion:nil];
         //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
-        apc.position = c.x+1;
+        int amountToSub = (gridView.indexInGenomeNameArr-1 >= 0) ? [[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] : 0;
+        apc.position = c.x+1-amountToSub;
         
         for (int i = [cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
             int len = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
