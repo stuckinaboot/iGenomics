@@ -59,18 +59,22 @@ extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//
     
     NSMutableArray *insertionsArray;
     
+    NSMutableArray *cumulativeSeparateGenomeLens;
+    
     BWT_MatcherSC *exactMatcher;
     
     NSMutableString *readDataStr;
 }
 @property (nonatomic) id <BWT_MatcherDelegate> delegate;
-@property (nonatomic) NSMutableArray *insertionsArray;
+@property (nonatomic) NSMutableArray *insertionsArray, *cumulativeSeparateGenomeLens;
 @property (nonatomic) int kBytesForIndexer, /*kMultipleToCountAt, */alignmentType, matchType;
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs;
 
 - (char*)getReverseComplementForSeq:(char*)seq;
+
+- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readLen;
 
 - (void)matchReeds;
 

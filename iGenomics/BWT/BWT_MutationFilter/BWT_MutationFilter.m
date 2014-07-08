@@ -256,6 +256,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         else {
             diffCharsAtPos = 0;
             posInFoundChars = 0;
+            BOOL alreadyAdded = FALSE;
             for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>heteroAllowance) {
                     diffCharsAtPos++;
@@ -264,13 +265,13 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 }
                 else if (diffCharsAtPos > 1) {
                     [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
+                    alreadyAdded = TRUE;
                     break;
                 }
             }
             foundChars[posInFoundChars] = '\0';
-            if (diffCharsAtPos > 1) {//In case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
+            if (diffCharsAtPos > 1 && !alreadyAdded) //In case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
                 [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars]];
-            }
         }
         for (int t = 0; t < kACGTLen + 2; t++) {
             if (foundChars[t] == 0)

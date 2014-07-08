@@ -71,7 +71,7 @@
     [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
 }
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr {
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA {
     NSLog(@"About to ready view for display");
     
     originalStr = unraveledStr;
@@ -93,24 +93,24 @@
     
     NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
     genomeFileName = [genomeFileSegmentNames substringWithRange:genomeFileNameRange];
-    genomeFileSegmentNames = [genomeFileSegmentNames substringFromIndex:genomeFileNameRange.length+kRefFileInternalDivider.length];
+//    genomeFileSegmentNames = [genomeFileSegmentNames substringFromIndex:genomeFileNameRange.length+kRefFileInternalDivider.length];
     
-    NSMutableArray *arr = (NSMutableArray*)[genomeFileSegmentNames componentsSeparatedByString:kRefFileInternalDivider];
+//    NSMutableArray *arr = (NSMutableArray*)[genomeFileSegmentNames componentsSeparatedByString:kRefFileInternalDivider];
     
-    separateGenomeNames = [[NSMutableArray alloc] init];
-    separateGenomeLens = [[NSMutableArray alloc] init];
-    cumulativeSeparateGenomeLens = [[NSMutableArray alloc] init];
+    separateGenomeNames = sepGNA;
+    separateGenomeLens = sepGLA;
+    cumulativeSeparateGenomeLens = cGLA;
     
-    NSLog(@"About to create separateGenomeNames and separateGenomeLens arrays");
+//    NSLog(@"About to create separateGenomeNames and separateGenomeLens arrays");
     
-    for (int i = 0, x = 0; i < [arr count]; i += 2, x++) {
-        [separateGenomeNames addObject:[arr objectAtIndex:i]];
-        [separateGenomeLens addObject:[NSNumber numberWithInt:[[arr objectAtIndex:i+1] intValue]]];
-        if (i > 0)
-            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]+[[cumulativeSeparateGenomeLens objectAtIndex:x-1] intValue]]];
-        else
-            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
-    }
+//    for (int i = 0, x = 0; i < [arr count]; i += 2, x++) {
+//        [separateGenomeNames addObject:[arr objectAtIndex:i]];
+//        [separateGenomeLens addObject:[NSNumber numberWithInt:[[arr objectAtIndex:i+1] intValue]]];
+//        if (i > 0)
+//            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]+[[cumulativeSeparateGenomeLens objectAtIndex:x-1] intValue]]];
+//        else
+//            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
+//    }
     
     fileExporter = [[FileExporter alloc] init];
     [fileExporter setDelegate:self];

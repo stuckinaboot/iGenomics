@@ -63,6 +63,8 @@
 		A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0019391FC600F69E07 /* CFNetwork.framework */; };
 		A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0219391FCB00F69E07 /* libc++.dylib */; };
 		A3845659195CB1010030F092 /* rice.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3845658195CB1010030F092 /* rice.fq */; };
+		A3890A72196B3F02002B6048 /* flu.H1N1s.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3890A70196B3F02002B6048 /* flu.H1N1s.fa */; };
+		A3890A73196B3F02002B6048 /* flu.H1N1s.reads.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3890A71196B3F02002B6048 /* flu.H1N1s.reads.fq */; };
 		A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A38C320918EB6E040070F49E /* ThreeLines.png */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
@@ -203,6 +205,8 @@
 		A375FC0019391FC600F69E07 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A375FC0219391FCB00F69E07 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		A3845658195CB1010030F092 /* rice.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rice.fq; path = ../../../Downloads/rice.fq; sourceTree = "<group>"; };
+		A3890A70196B3F02002B6048 /* flu.H1N1s.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1s.fa; sourceTree = "<group>"; };
+		A3890A71196B3F02002B6048 /* flu.H1N1s.reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1s.reads.fq; sourceTree = "<group>"; };
 		A38C320918EB6E040070F49E /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
@@ -587,6 +591,15 @@
 			name = "Coverage Histogram";
 			sourceTree = "<group>";
 		};
+		A3890A6F196B3F02002B6048 /* flu.H1N1s */ = {
+			isa = PBXGroup;
+			children = (
+				A3890A70196B3F02002B6048 /* flu.H1N1s.fa */,
+				A3890A71196B3F02002B6048 /* flu.H1N1s.reads.fq */,
+			);
+			path = flu.H1N1s;
+			sourceTree = "<group>";
+		};
 		A39316E216C08C5F0041BF4B /* Search Query Popover */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,6 +699,7 @@
 				A3AC49C616979B4600DD9266 /* Default Ref Files */,
 				A3AC49C716979B5500DD9266 /* Default Read Files */,
 				A3C9C9BE189E01480001EF64 /* anthrax.capsule */,
+				A3890A6F196B3F02002B6048 /* flu.H1N1s */,
 				A3C9C9C1189E01480001EF64 /* flu.H1N1 */,
 				A3C9C9C4189E01480001EF64 /* lambdaphage */,
 				A3C9C9C7189E01480001EF64 /* phix174 */,
@@ -979,6 +993,7 @@
 				A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
+				A3890A72196B3F02002B6048 /* flu.H1N1s.fa in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
@@ -986,6 +1001,7 @@
 				A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
+				A3890A73196B3F02002B6048 /* flu.H1N1s.reads.fq in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
@@ -1159,7 +1175,7 @@
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D6FAA405-8F65-4CEF-922A-CD40E76D2366";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1180,7 +1196,7 @@
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D6FAA405-8F65-4CEF-922A-CD40E76D2366";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

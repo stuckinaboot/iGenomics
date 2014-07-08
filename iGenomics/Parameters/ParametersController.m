@@ -199,7 +199,7 @@
         NSMutableArray *lengthArray = [[NSMutableArray alloc] init];
         NSMutableArray *namesArray = [[NSMutableArray alloc] init];
         
-        NSMutableArray *lineArray = (NSMutableArray*)[seq componentsSeparatedByString:kLineBreak];
+        NSMutableArray *lineArray = (NSMutableArray*)[[seq stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:kLineBreak];
         int lineLen = [[lineArray objectAtIndex:1] length];//Length of the first DNA sequence
         
         int prevLenIndex = -1;
@@ -208,6 +208,7 @@
         
         for (int i = 0; i < [lineArray count]; i++) {
             NSString *str = [lineArray objectAtIndex:i];
+            NSLog(@"%@",str);
             if ([str characterAtIndex:0] == kFaFileTitleIndicator) {
                 [namesArray addObject:[str substringFromIndex:1]];//Removes the >
                 [lineArray removeObjectAtIndex:i];

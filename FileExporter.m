@@ -91,20 +91,28 @@
             [self emailInfoForOption:EmailInfoOptionData];
         }
         else if (buttonIndex == kExportASDropboxMutsIndex) {
-            exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
-            [exportMutsDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-            UITextField *txtField = [exportMutsDropboxAlert textFieldAtIndex:0];
-            int i = [self firstAvailableDefaultFileNameForMutsOrData:0];
-            [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
-            [exportMutsDropboxAlert show];
+            if ([DBAccountManager sharedManager].linkedAccount == NULL)
+                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+            else {
+                exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
+                [exportMutsDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+                UITextField *txtField = [exportMutsDropboxAlert textFieldAtIndex:0];
+                int i = [self firstAvailableDefaultFileNameForMutsOrData:0];
+                [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
+                [exportMutsDropboxAlert show];
+            }
         }
         else if (buttonIndex == kExportASDropboxDataIndex) {
-            exportDataDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
-            [exportDataDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-            UITextField *txtField = [exportDataDropboxAlert textFieldAtIndex:0];
-            int i = [self firstAvailableDefaultFileNameForMutsOrData:1];
-            [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatData, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
-            [exportDataDropboxAlert show];
+            if ([DBAccountManager sharedManager].linkedAccount == NULL)
+                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+            else {
+                exportDataDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
+                [exportDataDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+                UITextField *txtField = [exportDataDropboxAlert textFieldAtIndex:0];
+                int i = [self firstAvailableDefaultFileNameForMutsOrData:1];
+                [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatData, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
+                [exportDataDropboxAlert show];
+            }
         }
     }
 }

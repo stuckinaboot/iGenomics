@@ -24,6 +24,8 @@
 #import <Dropbox/Dropbox.h>
 //BWT_ Imports End
 
+#define kSeparateGenomeNamesSubstringToIndexStr @" "
+
 //DEBUGGING CONSTANT 0 = nothing, 1 = print created BWT
 //NOTE---ALL PRINTS TO CONSOLE MUST START WITH A \n
 #define kDebugOn 0
@@ -43,6 +45,7 @@
 }
 @property (nonatomic) id <BWT_Delegate> delegate;
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
+@property (nonatomic) NSMutableArray *separateGenomeNames, *cumulativeSeparateGenomeLens, *separateGenomeLens;
 
 @property (nonatomic) int readLen, refSeqLen, numOfReads, numOfReadsMatched;
 

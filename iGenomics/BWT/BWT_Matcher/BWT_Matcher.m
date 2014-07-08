@@ -12,7 +12,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 
 @implementation BWT_Matcher
 
-@synthesize /*kMultipleToCountAt,*/ matchType, alignmentType, insertionsArray;
+@synthesize /*kMultipleToCountAt,*/ matchType, alignmentType, insertionsArray, cumulativeSeparateGenomeLens;
 @synthesize readLen, refSeqLen, numOfReads;
 @synthesize delegate;
 
@@ -118,7 +118,11 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         
         if (a != NULL) {
             a.readName = reed.name;
-            [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen) andED_Info:a];
+            int charsToTrim = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
+            if (a.distance + charsToTrim <= maxSubs)
+                [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen-charsToTrim) andED_Info:a];
+            else
+                a = NULL;//So it is not counted as matchedAtLeastOnce
             
         }
         [delegate readProccesed:readDataStr andMatchedAtLeastOnce:a != NULL];
@@ -407,6 +411,24 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         }
     }
     NSLog(@"Set up number of occurences array COMPLETED!!");
+}
+
+- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readLen {
+    int closestLen = 0;
+    for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
+        int v = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
+        if (info.position < v) {
+            closestLen = v;
+            break;
+        }
+    }
+    
+    if (info.position + readLen-1 < closestLen)
+        return 0;
+    
+    int charsToTrim = info.position+readLen-closestLen;
+    
+    return charsToTrim;
 }
 
 char *substr(const char *pstr, int start, int numchars) {

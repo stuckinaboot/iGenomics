@@ -13,6 +13,7 @@
 @synthesize bwtMutationFilter;
 @synthesize readLen, refSeqLen, numOfReads, numOfReadsMatched;
 @synthesize delegate;
+@synthesize separateGenomeLens, separateGenomeNames, cumulativeSeparateGenomeLens;
 
 - (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath {
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
@@ -103,7 +104,32 @@
     maxSubs = [[parameters objectAtIndex:kParameterArrayEDIndex] intValue];
     bwt_Matcher.alignmentType = [[parameters objectAtIndex:kParameterArrayFoRevIndex] intValue];
     
-    NSLog(@"About to set delegate");
+    NSString *genomeFileSegmentNames = [parameters objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
+    
+    NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
+    genomeFileSegmentNames = [genomeFileSegmentNames substringFromIndex:genomeFileNameRange.length+kRefFileInternalDivider.length];
+    
+    NSMutableArray *segArr = (NSMutableArray*)[genomeFileSegmentNames componentsSeparatedByString:kRefFileInternalDivider];
+    
+    separateGenomeNames = [[NSMutableArray alloc] init];
+    separateGenomeLens = [[NSMutableArray alloc] init];
+    cumulativeSeparateGenomeLens = [[NSMutableArray alloc] init];
+    
+    for (int i = 0, x = 0; i < [segArr count]; i += 2, x++) {
+        NSString *seg = [segArr objectAtIndex:i];
+        NSRange r = [seg rangeOfString:kSeparateGenomeNamesSubstringToIndexStr];
+        if (r.location != NSNotFound)
+            [separateGenomeNames addObject:[seg substringToIndex:r.location]];
+        else
+            [separateGenomeNames addObject:seg];
+        [separateGenomeLens addObject:[NSNumber numberWithInt:[[segArr objectAtIndex:i+1] intValue]]];
+        if (i > 0)
+            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]+[[cumulativeSeparateGenomeLens objectAtIndex:x-1] intValue]]];
+        else
+            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
+    }
+    
+    bwt_Matcher.cumulativeSeparateGenomeLens = [[NSMutableArray alloc] initWithArray:cumulativeSeparateGenomeLens];
     
     [bwt_Matcher setDelegate:self];
     

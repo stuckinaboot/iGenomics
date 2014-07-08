@@ -1,4 +1,5 @@
 flu.H1N1.reads.fa
+flu.H1N1s.reads.fq
 rice.fq
 Ecoli.5k.reads.txt
 e_coli_1000_1.fq

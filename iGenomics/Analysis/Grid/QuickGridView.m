@@ -88,8 +88,15 @@
     currOffset = offSet;
     drawingView.image = NULL;
     
-    UIGraphicsBeginImageContext(self.frame.size);
+    CGSize drawingSize = self.frame.size;
     
+    
+    //Prevents pixelation of text on retina display
+    if (UIGraphicsBeginImageContextWithOptions != NULL)
+        UIGraphicsBeginImageContextWithOptions(drawingSize, NO, 0.0);//0.0 sets the scale factor to the scale of the device's main screen
+    else
+        UIGraphicsBeginImageContext(drawingSize);
+
     [drawingView.image drawInRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
     if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth)
@@ -404,7 +411,6 @@
     if ([arr count] > 1) {
         for (int i = [arr count]-1; i >= 0; i--) {
             segOffset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
-            NSLog(@"Seg Offset: %f",segOffset);
             if (segOffset <= currOffset+self.bounds.size.width && segOffset >= currOffset) {
                 [segOffsetsToDrawAt addObject:[NSNumber numberWithFloat:segOffset]];
                 [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInteger:i]];
