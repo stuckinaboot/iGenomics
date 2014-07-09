@@ -44,7 +44,7 @@ typedef enum {
 
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
-#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics"
+#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Segment, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics"
 
 #define kExportMutsFileName @"Mutations"
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"

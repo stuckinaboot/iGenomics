@@ -23,7 +23,7 @@ typedef enum {
 //End debugging constants
 
 #define kReadExportDataBasicInfo @"%s,%i,%c,%i,%s,%s\n"//read name, position, forward/reverse, gapped b, gapped a
-#define kReadExportDataCompleteInfo @"%s,%s,%i,%c,%i,%s,%s\n"//read name, position relative to segment, segment, forward/reverse, gapped b, gapped a --May not even need to be used but is good to have to show the format
+#define kReadExportDataCompleteInfo @"%s,%i,%s,%c,%i,%s,%s\n"//read name, position relative to segment, segment, forward/reverse, gapped b, gapped a --May not even need to be used but is good to have to show the format
 #define kReadExportDataComponentDivider @","//What divides each component of the string.
 #define kReadExportDataStrPositionIndex 1 //Index of position in the string
 

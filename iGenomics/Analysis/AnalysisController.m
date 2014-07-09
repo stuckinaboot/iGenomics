@@ -35,14 +35,15 @@
     else
         graphRowHeight = kGraphRowHeightIPhone;
     
-    pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
-    [gridView addGestureRecognizer:pinchRecognizer];
-    
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapOccured:)];
     tapRecognizer.numberOfTapsRequired = kNumOfTapsRequiredToDisplayAnalysisPopover;
     [gridView addGestureRecognizer:tapRecognizer];
     
     [gridView firstSetUp];
+    
+    pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
+    [gridView.scrollingView removeGestureRecognizer:[gridView.scrollingView pinchGestureRecognizer]];
+    [gridView.scrollingView addGestureRecognizer:pinchRecognizer];
     
     if ([GlobalVars isIpad])
         gridView.boxWidth = kDefaultIpadBoxWidth;
@@ -291,11 +292,12 @@
     if (gridView.indexInGenomeNameArr > 0)
         [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
     else
-        [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr] intValue] inputtedByPosSearchField:NO];
+        [gridView scrollToPos:1 inputtedByPosSearchField:NO];//1 because it is interpreted as if it were "user-inputted"
 }
 
 - (IBAction)showMutTBView:(id)sender {
     if ([GlobalVars isIpad]) {
+        mutsPopover.contentSizeForViewInPopover = mutsPopover.view.bounds.size;
         popoverController = [[UIPopoverController alloc] initWithContentViewController:mutsPopover];
         [popoverController presentPopoverFromRect:showMutTBViewBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
@@ -403,7 +405,6 @@
             [gridView resetScrollViewContentSize];
             [gridView resetTickMarkInterval];
             
-            [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.bounds.size.width];
             gridView.currOffset = (gridView.scrollingView.contentSize.width*proportion)-gridViewW/2;
             if (gridView.currOffset < 0)
                 gridView.currOffset = gridView.boxWidth;//Goes to second box to avoid drawing issues
@@ -411,6 +412,7 @@
                 gridView.currOffset = gridView.scrollingView.contentSize.width-gridViewW-1;
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridViewW];
 //                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
                 gridView.shouldUpdateScrollView = TRUE;
                 [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset,0) animated:NO];
@@ -472,7 +474,7 @@
     }
     else {
         AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
-        apc.contentSizeForViewInPopover = CGSizeMake(kAnalysisPopoverW, kAnalysisPopoverH);
+        apc.contentSizeForViewInPopover = apc.view.bounds.size;
         
         vc = apc;
         if (![GlobalVars isIpad])
@@ -509,7 +511,7 @@
             popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
             CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
             
-            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }
     }
 }

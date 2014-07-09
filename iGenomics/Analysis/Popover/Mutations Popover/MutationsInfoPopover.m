@@ -74,7 +74,9 @@
         MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];
         int pos = info.displayedPos;//-1 because first row shows total # of muts
         [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]]];//+1 because the first pos is considered 0
+        [cell.textLabel setAdjustsFontSizeToFitWidth:YES];
         [cell.detailTextLabel setText:info.genomeName];
+        [cell.detailTextLabel setAdjustsFontSizeToFitWidth:YES];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;//Show the little arrow
     }
     else {

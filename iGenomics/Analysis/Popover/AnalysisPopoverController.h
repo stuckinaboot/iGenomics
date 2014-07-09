@@ -15,9 +15,6 @@
 #define kAnalysisPopoverPosLblTxt @"Position: %i"
 #define kAnalysisPopoverSegmentLblTxt @"Segment: %@"
 
-#define kAnalysisPopoverW 150
-#define kAnalysisPopoverH 250
-
 #define kPopoverACGTLblTxt @"%c: %i"
 
 @interface AnalysisPopoverController : IPhonePopoverHandler {
