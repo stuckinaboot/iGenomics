@@ -19,7 +19,6 @@
 #import "AnalysisControllerIPhoneToolbar.h"
 #import "FileExporter.h"
 #import "CoverageHistogram.h"
-
 #import "QuickGridView.h"
 
 #import "BWT_Matcher.h"
@@ -33,6 +32,14 @@
 #define kConfirmDoneAlertGoBtn @"Yes"
 #define kConfirmDoneAlertCancelBtn @"No"
 #define kConfirmDoneAlertGoBtnIndex 1
+
+#define kSeqSearchNoResultsAlertTitle @"iGenomics: Analysis"
+#define kSeqSearchNoResultsAlertMsg @"No results found"
+#define kSeqSearchNoResultsAlertDoneBtn @"Ok"
+
+#define kPosSearchPosOutOfRangeAlertTitle @"iGenomics: Analysis"
+#define kPosSearchPosOutOfRangeAlertMsg @"Searched position is out of the range of the segment"
+#define kPosSearchPosOutOfRangeAlertBtn @"Ok"
 
 #define kShowAllMutsBtnTxtNormal @"Show All Mutations"
 #define kShowAllMutsBtnTxtUpdating @"Updating..."
@@ -124,6 +131,9 @@
     IBOutlet UILabel *readPercentMatchedLbl;
     IBOutlet UILabel *totalNumOfMutsLbl;
     
+    IBOutlet UIStepper *segmentStpr;
+    IBOutlet UILabel *currSegmentLbl;
+    
     IBOutlet QuickGridView *gridView;
     IBOutlet UISlider *pxlOffsetSlider;
     UIPopoverController *popoverController;
@@ -194,6 +204,9 @@
 
 - (IBAction)showMutTBView:(id)sender;
 - (IBAction)exportDataPressed:(id)sender;
+
+- (IBAction)segmentStprValChanged:(id)sender;
+
 - (IBAction)donePressed:(id)sender;
 
 //- (void)displaySuccessBox;

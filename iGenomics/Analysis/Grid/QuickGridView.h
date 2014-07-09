@@ -187,7 +187,7 @@
 - (void)drawText:(NSString*)txt atPoint:(CGPoint)point withRGB:(double[3])rgb;
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb;
 
-- (void)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput;
+- (BOOL)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput;//Returns yes if successful, no if not successful
 - (void)updateScrollView:(UISlider*)s;
 
 - (double)getProperBoxWidth;

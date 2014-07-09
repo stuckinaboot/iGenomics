@@ -146,6 +146,11 @@
         pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, self.view.frame.size.width-rect.origin.x, rect.size.height);
     }
     
+    segmentStpr.maximumValue = [separateGenomeNames count]-1;
+    segmentStpr.minimumValue = 0;
+    currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];
+    
+    
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
@@ -223,12 +228,15 @@
 //Interactive UI Elements besides gridview
 - (IBAction)posSearch:(id)sender {
     int i = [posSearchTxtFld.text doubleValue];
-    if (i > 0 && i<= dgenomeLen) {//is a valid number
-        [gridView scrollToPos:i-1 inputtedByPosSearchField:YES];//converts it to the normal scale where pos 0 is 0
+    if ([gridView scrollToPos:i-1 inputtedByPosSearchField:YES]) {//converts it to the normal scale where pos 0 is 0
+        if (![GlobalVars isIpad])
+            analysisControllerIPhoneToolbar.hidden = YES;
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kPosSearchPosOutOfRangeAlertTitle message:kPosSearchPosOutOfRangeAlertMsg delegate:self cancelButtonTitle:kPosSearchPosOutOfRangeAlertBtn otherButtonTitles:nil];
+        [alert show];
     }
     [posSearchTxtFld resignFirstResponder];
-    if (![GlobalVars isIpad])
-        analysisControllerIPhoneToolbar.hidden = YES;
 }
 
 - (IBAction)seqSearch:(id)sender {
@@ -254,15 +262,16 @@
                 if (diff == 1/* || (possiblePos<currPos && diff > abs(closestPos-currPos))*/)
                     break;
             }
-            [gridView scrollToPos:closestPos inputtedByPosSearchField:YES];
+            [gridView scrollToPos:closestPos inputtedByPosSearchField:NO];
+            if (![GlobalVars isIpad])
+                analysisControllerIPhoneToolbar.hidden = YES;
         }
         else {
-            //Show an error
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kSeqSearchNoResultsAlertTitle message:kSeqSearchNoResultsAlertMsg delegate:self cancelButtonTitle:kSeqSearchNoResultsAlertDoneBtn otherButtonTitles:nil];
+            [alert show];
         }
     }
     [seqSearchTxtFld resignFirstResponder];
-    if (![GlobalVars isIpad])
-        analysisControllerIPhoneToolbar.hidden = YES;
 }
 
 - (IBAction)showSeqSearchResults:(id)sender {
@@ -273,6 +282,16 @@
     
     popoverController = [[UIPopoverController alloc] initWithContentViewController:sq];
     [popoverController presentPopoverFromRect:showQueryResultsBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+- (IBAction)segmentStprValChanged:(id)sender {
+    gridView.indexInGenomeNameArr = segmentStpr.value;
+//    [self shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:gridView.indexInGenomeNameArr];
+    currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
+    if (gridView.indexInGenomeNameArr > 0)
+        [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
+    else
+        [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr] intValue] inputtedByPosSearchField:NO];
 }
 
 - (IBAction)showMutTBView:(id)sender {
@@ -459,16 +478,22 @@
         if (![GlobalVars isIpad])
             [self presentViewController:apc animated:YES completion:nil];
         //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
-        int amountToSub = (gridView.indexInGenomeNameArr-1 >= 0) ? [[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] : 0;
-        apc.position = c.x+1-amountToSub;
         
+        int index = [cumulativeSeparateGenomeLens count]-1;
         for (int i = [cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
             int len = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
-            if (c.x < len)
+            if (c.x < len) {
                 apc.segment = [separateGenomeNames objectAtIndex:i];
+                index--;
+            }
             else
                 break;
         }
+        
+        int amountToSub = (index >= 0) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] : 0;
+        apc.displayedPos = c.x+1-amountToSub;
+        apc.position = c.x;
+        
         [apc updateLbls];
         
         NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
@@ -517,6 +542,9 @@
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {
     genomeFileSegmentNames = [separateGenomeNames objectAtIndex:index];
     [genomeNameLbl setText:genomeFileSegmentNames];
+    
+    segmentStpr.value = index;
+    currSegmentLbl.text = [separateGenomeNames objectAtIndex:index];
 }
 
 //Exports data
@@ -555,6 +583,14 @@
 
 - (UIViewController*)getVC {
     return self;
+}
+
+- (NSArray*)getCumulativeLenArray {
+    return cumulativeSeparateGenomeLens;
+}
+
+- (NSArray*)getSeparateGenomeSegmentNamesArray {
+    return separateGenomeNames;
 }
 
 //Iphone Support

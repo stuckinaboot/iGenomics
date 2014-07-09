@@ -6,6 +6,8 @@
 //
 //
 
+//You may consider Global Variables, let alone a class dedicated to them, to be bad programming practice but they allowed me to avoid a hell of a lot of strcpys and declerations of extra large-scale arrays/matrices
+
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
 
@@ -19,6 +21,11 @@ typedef enum {
 #define kPrintExportStrToConsole 1
 #define kCrashDebug 1
 //End debugging constants
+
+#define kReadExportDataBasicInfo @"%s,%i,%c,%i,%s,%s\n"//read name, position, forward/reverse, gapped b, gapped a
+#define kReadExportDataCompleteInfo @"%s,%s,%i,%c,%i,%s,%s\n"//read name, position relative to segment, segment, forward/reverse, gapped b, gapped a --May not even need to be used but is good to have to show the format
+#define kReadExportDataComponentDivider @","//What divides each component of the string.
+#define kReadExportDataStrPositionIndex 1 //Index of position in the string
 
 #define kMaxMultipleToCountAt 16
 #define kMaxBytesForIndexer 100000

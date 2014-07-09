@@ -54,6 +54,8 @@ typedef enum {
 
 @protocol FileExporterDelegate <NSObject>
 - (UIViewController*)getVC;
+- (NSArray*)getCumulativeLenArray;
+- (NSArray*)getSeparateGenomeSegmentNamesArray;
 - (void)displaySuccessBox;
 @end
 @interface FileExporter : NSObject <UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
@@ -78,6 +80,8 @@ typedef enum {
 }
 @property (nonatomic) id <FileExporterDelegate> delegate;
 - (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andEditDistance:(int)ed andExportDataStr:(NSString*)expDataStr;
+- (void)fixExportDataStr;
+
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray*)mutPosArr;
 
 - (void)displayExportOptionsWithSender:(id)sender;

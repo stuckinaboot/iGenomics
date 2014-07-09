@@ -31,9 +31,10 @@
     IBOutlet CopyLabel *insLbl;
     IBOutlet CopyLabel *segmentLbl;
 }
+@property (nonatomic) int displayedPos;//The displayed position relative to the start of the closest segment start
 @property (nonatomic, retain) IBOutlet CopyLabel *posLbl;
 @property (nonatomic, retain) IBOutlet CopyLabel *heteroLbl;
 @property (nonatomic) NSString *heteroStr, *segment;
-@property (nonatomic) int position;
+@property (nonatomic) int position;//The actual position relative to the start of the genome
 - (void)updateLbls;
 @end

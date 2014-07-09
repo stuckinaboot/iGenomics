@@ -17,6 +17,32 @@
     readsFileName = [NSString stringWithString:rName];
     editDistance = ed;
     exportDataStr = [NSString stringWithString:expDataStr];
+    [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
+}
+
+- (void)fixExportDataStr {
+    NSArray *lineArr = [exportDataStr componentsSeparatedByString:kLineBreak];
+    NSMutableString *newDataStr = [[NSMutableString alloc] init];
+    NSArray *lenArr = [delegate getCumulativeLenArray];
+    
+    int currLenArrIndex = 0;
+    
+    for (int i = 0; i < [lineArr count]; i++) {
+        NSArray *compArr = [[lineArr objectAtIndex:i] componentsSeparatedByString:kReadExportDataComponentDivider];
+        for (int x = 0; x < [compArr count]; x++) {
+            NSString *obj = [compArr objectAtIndex:x];
+            if (x == kReadExportDataStrPositionIndex) {
+                currLenArrIndex = 0;
+                while ([obj intValue] > [[lenArr objectAtIndex:currLenArrIndex] intValue])
+                    currLenArrIndex++;
+                int newVal = [obj intValue] - ((currLenArrIndex > 0) ? [[lenArr objectAtIndex:currLenArrIndex-1] intValue] : 0);
+                obj = [NSString stringWithFormat:@"%i%@%@",newVal, kReadExportDataComponentDivider, [[delegate getSeparateGenomeSegmentNamesArray] objectAtIndex:currLenArrIndex]];
+            }
+            [newDataStr appendFormat:@"%@%@",obj,(x < [compArr count]-1) ? kReadExportDataComponentDivider : kLineBreak];
+        }
+    }
+    
+    exportDataStr = newDataStr;
 }
 
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray *)mutPosArr {

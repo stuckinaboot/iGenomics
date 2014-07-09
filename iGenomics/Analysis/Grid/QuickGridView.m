@@ -471,9 +471,14 @@
 }
 
 //Scroll To Position
-- (void)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput {
+- (BOOL)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput {
+    if (p < 0)
+        return NO;
     if (fieldInput) {
-        int amountToAdd = (indexInGenomeNameArr > 0) ? [[[delegate getCumulativeSeparateGenomeLenArray] objectAtIndex:indexInGenomeNameArr-1] intValue] : 0;
+        NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
+        int amountToAdd = (indexInGenomeNameArr > 0) ? [[arr objectAtIndex:indexInGenomeNameArr-1] intValue] : 0;
+        if (p+amountToAdd >= [[arr objectAtIndex:indexInGenomeNameArr] intValue])
+            return NO;
         currOffset = (p+amountToAdd)*(boxWidth+kGridLineWidthCol)/numOfBoxesPerPixel;
     }
     else {
@@ -481,8 +486,11 @@
     }
     if (currOffset > scrollingView.contentSize.width-self.frame.size.width-1)
         currOffset = scrollingView.contentSize.width-self.frame.size.width-1;//-1 to prevent crash due to drawing where there is nothing
+    else
+        currOffset++;//Makes it so at segment dividers it starts at the beginning of the next segment
     [self setUpGridViewForPixelOffset:currOffset];
     [scrollingView setContentOffset:CGPointMake(currOffset, 0)];
+    return YES;
 }
 
 //Actual Drawing Code
