@@ -111,7 +111,7 @@
 @protocol QuickGridViewDelegate <NSObject>
 //- (void)gridPointClickedWithCoordInGrid:(CGPoint)c andOriginInGrid:(CGPoint)o;
 - (void)mutationFoundAtPos:(int)pos;
-- (void)gridFinishedUpdatingWithOffset:(double)currOffset;
+- (void)gridFinishedUpdatingWithOffset:(double)currOffset andGridScrollViewContentSizeChanged:(BOOL)sizeChanged;
 - (NSArray*)getCumulativeSeparateGenomeLenArray;
 - (NSString*)genomeSegmentNameForIndexInGenomeNameArr:(int)index;
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index;
@@ -136,6 +136,8 @@
     double kTxtFontSize;
     double kMinTxtFontSize;
     int kPosLblInterval;
+    
+    BOOL scrollViewContentSizeChangedOnLastUpdate;//Meant only for pinch zoom
     
     double graphBoxHeight;
     double boxHeight;

@@ -413,11 +413,11 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridViewW];
-//                [gridView setUpGridViewForPixelOffset:gridView.currOffset];
                 gridView.shouldUpdateScrollView = TRUE;
                 [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset,0) animated:NO];
                 if (gridView.shouldUpdateScrollView)
                     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+                pxlOffsetSlider.value = gridView.currOffset;
             });
         });
     }
@@ -520,7 +520,7 @@
     [allMutPosArray addObject:[NSNumber numberWithInt:pos]];
 }
 
-- (void)gridFinishedUpdatingWithOffset:(double)currOffset {
+- (void)gridFinishedUpdatingWithOffset:(double)currOffset andGridScrollViewContentSizeChanged:(BOOL)sizeChanged {
     if (!mutsPopoverAlreadyUpdated) {
         mutsPopover = [[MutationsInfoPopover alloc] init];
         [mutsPopover setDelegate:self];
@@ -529,8 +529,9 @@
         [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value] andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
         mutsPopoverAlreadyUpdated = !mutsPopoverAlreadyUpdated;
     }
-    
-    pxlOffsetSlider.value = currOffset;//a little bit of a prob here
+    if (!sizeChanged)
+        pxlOffsetSlider.value = currOffset;
+//    pxlOffsetSlider.value = currOffset;//a little bit of a prob here
 }
 
 - (NSArray*)getCumulativeSeparateGenomeLenArray {

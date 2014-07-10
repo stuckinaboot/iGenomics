@@ -57,6 +57,7 @@
     kGridLineWidthCol = kGridLineWidthColDefault;
     
     [self resetScrollViewContentSize];
+    scrollViewContentSizeChangedOnLastUpdate = NO;
     [self addSubview:drawingView];
     [self addSubview:scrollingView];
     [self addSubview:maxCovLbl];
@@ -249,7 +250,8 @@
     //    if (self.currOffset != scrollingView.contentOffset.x)
     //        [scrollingView setContentOffset:CGPointMake(self.currOffset, 0) animated:NO];
     
-    [delegate gridFinishedUpdatingWithOffset:currOffset];
+    [delegate gridFinishedUpdatingWithOffset:currOffset andGridScrollViewContentSizeChanged:scrollViewContentSizeChangedOnLastUpdate];
+    scrollViewContentSizeChangedOnLastUpdate = NO;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -274,6 +276,7 @@
         float widthInPixels = ((float)totalCols)/numOfBoxesPerPixel;
         [scrollingView setContentSize:CGSizeMake(widthInPixels, scrollingView.frame.size.height)];
     }
+    scrollViewContentSizeChangedOnLastUpdate = YES;
 }
 
 - (int)firstPtToDrawForOffset:(double)offset {
