@@ -148,6 +148,14 @@
     [exportDataStr appendFormat:@"%@",readData];
 }
 
+- (void)bwtLoadedWithLoadingText:(NSString*)txt {
+    [self performSelectorOnMainThread:@selector(setReadProcessLblText:) withObject:txt waitUntilDone:NO];
+}
+
+- (void)setReadProcessLblText:(NSString*)txt {//Method so that performSelectorOnMainThread can call it
+    [readsProcessedLbl setText:txt];
+}
+
 - (void)updateProgressView {
     readProgressView.progress += (1.0f/bwt.numOfReads);//This is 0 and everything is on main thread, this needs to change
     readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];

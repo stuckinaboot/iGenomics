@@ -58,6 +58,19 @@
 
 #define kMaxCovValLblW 80
 #define kMaxCovValLblH 20
+#define kMaxCovLblFormat @"[0,%i]"
+
+typedef enum {
+    GraphRow,
+    RefRow,
+    FoundRow,
+    ARow,
+    CRow,
+    GRow,
+    TRow,
+    DelRow,
+    InsRow
+} GraphRowIndexes;
 
 //POSITION LABELS--DONE (IF NEEDS TO BE CHANGED, WILL BE CHANGED)
 //                                                                 5        10      15
@@ -150,9 +163,6 @@
     id delegate;
     
     int indexInGenomeNameArr;
-    
-    //Temp variable
-    float prevOffset;
     
     UIImage *newDrawingViewImg;
     

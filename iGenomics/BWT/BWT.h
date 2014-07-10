@@ -26,6 +26,10 @@
 
 #define kSeparateGenomeNamesSubstringToIndexStr @" "
 
+#define kBWTCreatingTxt @"Setting up BWT"
+#define kBWTSavingToDropboxTxt @"BWT Saving To Dropbox"
+#define kBWTLoadingFromDropboxTxt @"BWT Loading from Dropbox"
+
 //DEBUGGING CONSTANT 0 = nothing, 1 = print created BWT
 //NOTE---ALL PRINTS TO CONSOLE MUST START WITH A \n
 #define kDebugOn 0
@@ -34,6 +38,7 @@
 
 @protocol BWT_Delegate <NSObject>
 - (void)readProccesed:(NSString*)readData;
+- (void)bwtLoadedWithLoadingText:(NSString*)txt;
 @end
 @interface BWT : NSObject <BWT_MatcherDelegate> {
     BWT_MutationFilter *bwtMutationFilter;//CREATED AS AN OBJECT SO THAT DATA CAN BE EASILY RETRIEVED FROM THE FILTER

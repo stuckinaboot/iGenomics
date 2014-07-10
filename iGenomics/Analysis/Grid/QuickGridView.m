@@ -13,8 +13,6 @@
 @synthesize boxHeight, boxWidth, boxWidthDecimal, delegate, refSeq, currOffset, totalRows, totalCols, numOfBoxesPerPixel, scrollingView, kTxtFontSize, kMinTxtFontSize, graphBoxHeight, drawingView, kGridLineWidthCol, shouldUpdateScrollView, maxCoverageVal, indexInGenomeNameArr;
 
 - (void)firstSetUp {
-    prevOffset = -1;
-    
     dnaColors = [[DNAColors alloc] init];
     [dnaColors setUp];
     
@@ -76,7 +74,7 @@
         }
     }
     
-    maxCovLbl.text = [NSString stringWithFormat:@"[0,%i]",maxCoverageVal];
+    maxCovLbl.text = [NSString stringWithFormat:kMaxCovLblFormat,maxCoverageVal];
     
     numOfBoxesPerPixel = kPixelWidth;
     [self setUpGridViewForPixelOffset:0];
@@ -85,7 +83,6 @@
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
 
-    prevOffset = offSet;
     currOffset = offSet;
     drawingView.image = NULL;
     
@@ -120,12 +117,12 @@
     
     for (int i = 0; i<totalRows; i++) {
         for (int j = firstPtToDraw; j<totalCols && x <= self.frame.size.width; j += numOfBoxesPerPixel, x += kGridLineWidthCol+boxWidth) {
-            if (i > 0) {//Not Graph Row
+            if (i > GraphRow) {//Not Graph Row
                 //Depending on the value of i, draw foundGenome, refGenome, etc.
-                if (i == 1) {//ref
+                if (i == RefRow) {//ref
                     [self drawText:[NSString stringWithFormat:@"%c",refSeq[j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.white.r, dnaColors.white.g, dnaColors.white.b}];
                 }
-                else if (i == 2) {//found genome
+                else if (i == FoundRow) {//found genome
                     if ((refSeq[j] != foundGenome[0][j]) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
                         RGB *rgb;
                         for (int t = 0; t<kACGTLen; t++) {
@@ -172,9 +169,9 @@
                     }
                 }
                 else {//A through insertion
-                    if (posOccArray[i-3][j] > 0) {
+                    if (posOccArray[i-ARow][j] > 0) {
                         RGB *rgb;
-                        switch (i-3) {
+                        switch (i-ARow) {
                             case 0:
                                 rgb = dnaColors.aLbl;
                                 break;
@@ -194,10 +191,10 @@
                                 rgb = dnaColors.insLbl;
                                 break;
                         }
-                        [self drawText:[NSString stringWithFormat:@"%i",posOccArray[i-3][j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){rgb.r,rgb.g,rgb.b}];
+                        [self drawText:[NSString stringWithFormat:@"%i",posOccArray[i-ARow][j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){rgb.r,rgb.g,rgb.b}];
                     }
                     else
-                        [self drawText:[NSString stringWithFormat:@"%i",posOccArray[i-3][j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.defaultLbl.r, dnaColors.defaultLbl.g, dnaColors.defaultLbl.b}];
+                        [self drawText:[NSString stringWithFormat:@"%i",posOccArray[i-ARow][j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.defaultLbl.r, dnaColors.defaultLbl.g, dnaColors.defaultLbl.b}];
                 }
             }
             else {//Graph Row
@@ -570,13 +567,5 @@
     else
         return kPixelWidth;
 }
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end

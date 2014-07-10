@@ -17,21 +17,21 @@
 
 - (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath {
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
-    
-    if (![filePath isEqualToString:@""]) {//filePath is from dropbox
+    [delegate bwtLoadedWithLoadingText:kBWTCreatingTxt];
+    if (filePath != nil && ![filePath isEqualToString:@""]) {//filePath is from dropbox
         DBFilesystem *dbFileSys = [DBFilesystem sharedFilesystem];
         DBPath *newPath = [[DBPath alloc] initWithString:[filePath stringByAppendingFormat:@".%@",kBWTFileExt]];
         DBFile *file = [dbFileSys openFile:newPath error:nil];
         
         if (file == nil) {
-//        if ([[GlobalVars extFromFileName:filePath] caseInsensitiveCompare:kBWTFileExt] != NSOrderedSame) {
-            
             refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:[contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]]);
             originalStr = strdup([bwt_Maker getOriginalString]);
             
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             
             dispatch_async(queue, ^{
+                [delegate bwtLoadedWithLoadingText:kBWTSavingToDropboxTxt];
+                
                 NSMutableString *benchmarkPosStr = [[NSMutableString alloc] init];
                 dgenomeLen = strlen(refStrBWT);
                 for (int i = 0; i < dgenomeLen; i++) {
@@ -46,6 +46,8 @@
             
         }
         else {
+            [delegate bwtLoadedWithLoadingText:kBWTLoadingFromDropboxTxt];
+            
             bwt_MatcherSC = [[BWT_MatcherSC alloc] init];
             
             NSString *bwtFileStr = [file readString:nil];
