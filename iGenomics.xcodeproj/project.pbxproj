@@ -89,6 +89,7 @@
 		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
 		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
 		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
+		A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */; };
 		A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
 		A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD21160FA5AC00BC2168 /* BWT_Maker.m */; };
@@ -237,6 +238,8 @@
 		A3AC49BD1697936100DD9266 /* ParametersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ParametersController.xib; path = Parameters/ParametersController.xib; sourceTree = "<group>"; };
 		A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReferenceFiles.txt; sourceTree = "<group>"; };
 		A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReadsFiles.txt; sourceTree = "<group>"; };
+		A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridView.h; sourceTree = "<group>"; };
+		A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridView.m; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
 		A3C0FD1E160FA5AC00BC2168 /* BWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT.m; sourceTree = "<group>"; };
 		A3C0FD20160FA5AC00BC2168 /* BWT_Maker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Maker.h; sourceTree = "<group>"; };
@@ -464,8 +467,8 @@
 		A3382FD116A118D80042F59B /* Grid */ = {
 			isa = PBXGroup;
 			children = (
-				A3700F4717E3A955007C2CC7 /* QuickGridView.h */,
-				A3700F4817E3A955007C2CC7 /* QuickGridView.m */,
+				A3B92FE2196F018600EE1C06 /* Coverage Profile Grid View */,
+				A3B92FE1196F017E00EE1C06 /* Alignment Grid View */,
 				A3669B3616F689780034A1CC /* Colors */,
 			);
 			name = Grid;
@@ -731,6 +734,24 @@
 				A3181A7116B7465500A2B700 /* TESTREADS.txt */,
 			);
 			name = "Default Read Files";
+			sourceTree = "<group>";
+		};
+		A3B92FE1196F017E00EE1C06 /* Alignment Grid View */ = {
+			isa = PBXGroup;
+			children = (
+				A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */,
+				A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */,
+			);
+			name = "Alignment Grid View";
+			sourceTree = "<group>";
+		};
+		A3B92FE2196F018600EE1C06 /* Coverage Profile Grid View */ = {
+			isa = PBXGroup;
+			children = (
+				A3700F4717E3A955007C2CC7 /* QuickGridView.h */,
+				A3700F4817E3A955007C2CC7 /* QuickGridView.m */,
+			);
+			name = "Coverage Profile Grid View";
 			sourceTree = "<group>";
 		};
 		A3C0FD1C160FA5AC00BC2168 /* BWT */ = {
@@ -1059,6 +1080,7 @@
 				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
 				A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */,
+				A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */,
 				A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

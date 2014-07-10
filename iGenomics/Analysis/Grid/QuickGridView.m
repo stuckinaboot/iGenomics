@@ -438,7 +438,6 @@
             
             if (index < [arr count]) {
                 NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:index];
-                CGSize size = [str sizeWithFont:font];
                 
                 CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.segmentDividerTxt.r, dnaColors.segmentDividerTxt.g, dnaColors.segmentDividerTxt.b, 1.0f);
                 [str drawAtPoint:CGPointMake(ceilf(segOffset-currOffset), 0) withFont:font];

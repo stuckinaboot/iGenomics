@@ -42,7 +42,6 @@
     while (i*boxWidth < rect.size.width) {
         float normalVal = [self normalCurveFormulaValueForPos:i];
         float actualYVal = rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom);
-        NSLog(@"%f",actualYVal);
        
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
         CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);

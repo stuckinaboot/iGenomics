@@ -17,6 +17,7 @@ char *acgt;
 int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
 int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 int acgtTotalOccs[kACGTLen];
+NSMutableArray *readAlignmentsArr;
 
 @implementation GlobalVars
 

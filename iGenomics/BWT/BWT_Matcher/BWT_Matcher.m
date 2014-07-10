@@ -30,6 +30,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
     reedsArray = [[NSMutableArray alloc] init];
     
+    readAlignmentsArr = [[NSMutableArray alloc] init];
+    
     NSLog(@"About to form reedsArray");
     
     if ([preReadsArray count] % 2 == 0) {//Means is possible, means is not a txt file
@@ -119,8 +121,10 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         if (a != NULL) {
             a.readName = reed.name;
             int charsToTrim = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
-            if (a.distance + charsToTrim <= maxSubs)
+            if (a.distance + charsToTrim <= maxSubs) {
                 [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen-charsToTrim) andED_Info:a];
+                [readAlignmentsArr addObject:a];
+            }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
             

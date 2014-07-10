@@ -6,7 +6,7 @@
 //
 //
 
-//You may consider Global Variables, let alone a class dedicated to them, to be bad programming practice but they allowed me to avoid a hell of a lot of strcpys and declerations of extra large-scale arrays/matrices
+//You may consider Global Variables, let alone a class dedicated to them, to be bad programming practice but they allowed me to avoid a hell of a lot of strcpys and declerations of extra large-scale arrays/matrices so if you would like to restructure my whole code to avoid all of them you can do so, but I am not going to
 
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
@@ -82,6 +82,8 @@ extern char *acgt;
 extern int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
 extern int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 extern int acgtTotalOccs[kACGTLen];
+
+extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned read
 
 @interface GlobalVars : NSObject
 + (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;

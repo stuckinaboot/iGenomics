@@ -113,15 +113,12 @@
         }
         
         NSString *newRead = [[arr objectAtIndex:i+1] substringToIndex:maxPos+1];//+1 to include that index
-        NSLog(@"%@",newRead);
         if (newRead.length >= kMinReadLength)
             [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
         else
             NSLog(@"above was too short");
     }
     newReads = (NSMutableString*)[newReads stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    printf("%s",[newReads UTF8String]);
     
     NSLog(@"Finished readsAfterTrimmingForReads");
     
@@ -157,7 +154,7 @@
 }
 
 - (void)updateProgressView {
-    readProgressView.progress += (1.0f/bwt.numOfReads);//This is 0 and everything is on main thread, this needs to change
+    readProgressView.progress += (1.0f/bwt.numOfReads);
     readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     if (kPrintReadProcessedInConsole>0)
         printf("\n%i reads processed",readsProcessed);
