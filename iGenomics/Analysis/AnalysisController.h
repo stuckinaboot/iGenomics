@@ -20,6 +20,8 @@
 #import "FileExporter.h"
 #import "CoverageHistogram.h"
 #import "QuickGridView.h"
+#import "CoverageGridView.h"
+#import "AlignmentGridView.h"
 
 #import "BWT_Matcher.h"
 #import "BWT_MutationFilter.h"
@@ -135,6 +137,9 @@
     IBOutlet UILabel *currSegmentLbl;
     
     IBOutlet QuickGridView *gridView;
+    CoverageGridView *covGridView;
+    AlignmentGridView *alignmentGridView;
+    
     IBOutlet UISlider *pxlOffsetSlider;
     UIPopoverController *popoverController;
     MutationsInfoPopover *mutsPopover;

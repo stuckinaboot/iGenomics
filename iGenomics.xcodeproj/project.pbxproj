@@ -17,6 +17,7 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3161667196F0EF30083AD71 /* CoverageGridView.m */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
@@ -46,6 +47,7 @@
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
+		A3558AE3197035F300BF0821 /* AlignmentGridPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3558AE2197035F300BF0821 /* AlignmentGridPosition.m */; };
 		A35E39B41885FB7500651C41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E39B31885FB7500651C41 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */ = {isa = PBXBuildFile; fileRef = A364B409186246E10052625C /* Ecoli.50k.testread.txt */; };
@@ -144,6 +146,8 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A3161666196F0EF30083AD71 /* CoverageGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverageGridView.h; sourceTree = "<group>"; };
+		A3161667196F0EF30083AD71 /* CoverageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageGridView.m; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 		A3531EA416BEFF3800768A31 /* MutationsInfoPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutationsInfoPopover.h; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.h"; sourceTree = "<group>"; };
 		A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutationsInfoPopover.m; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.m"; sourceTree = "<group>"; };
 		A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MutationsInfoPopover.xib; path = "iGenomics/Analysis/Popover/Mutations Popover/MutationsInfoPopover.xib"; sourceTree = "<group>"; };
+		A3558AE1197035F300BF0821 /* AlignmentGridPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridPosition.h; sourceTree = "<group>"; };
+		A3558AE2197035F300BF0821 /* AlignmentGridPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridPosition.m; sourceTree = "<group>"; };
 		A35E39B21885FB7500651C41 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		A35E39B31885FB7500651C41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
@@ -394,6 +400,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A3161669196F0EFF0083AD71 /* Grid View Superclass */ = {
+			isa = PBXGroup;
+			children = (
+				A3700F4717E3A955007C2CC7 /* QuickGridView.h */,
+				A3700F4817E3A955007C2CC7 /* QuickGridView.m */,
+			);
+			name = "Grid View Superclass";
+			sourceTree = "<group>";
+		};
 		A31AA7CD16E30BD700D3D808 /* Popovers */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +482,7 @@
 		A3382FD116A118D80042F59B /* Grid */ = {
 			isa = PBXGroup;
 			children = (
+				A3161669196F0EFF0083AD71 /* Grid View Superclass */,
 				A3B92FE2196F018600EE1C06 /* Coverage Profile Grid View */,
 				A3B92FE1196F017E00EE1C06 /* Alignment Grid View */,
 				A3669B3616F689780034A1CC /* Colors */,
@@ -564,6 +580,15 @@
 				A3C215151777F70800B0C6D5 /* Mutation */,
 			);
 			name = "Mutations Popover";
+			sourceTree = "<group>";
+		};
+		A3558ADD197020BE00BF0821 /* Grid Position */ = {
+			isa = PBXGroup;
+			children = (
+				A3558AE1197035F300BF0821 /* AlignmentGridPosition.h */,
+				A3558AE2197035F300BF0821 /* AlignmentGridPosition.m */,
+			);
+			name = "Grid Position";
 			sourceTree = "<group>";
 		};
 		A35E39B51885FB7B00651C41 /* Reachability */ = {
@@ -741,6 +766,7 @@
 			children = (
 				A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */,
 				A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */,
+				A3558ADD197020BE00BF0821 /* Grid Position */,
 			);
 			name = "Alignment Grid View";
 			sourceTree = "<group>";
@@ -748,8 +774,8 @@
 		A3B92FE2196F018600EE1C06 /* Coverage Profile Grid View */ = {
 			isa = PBXGroup;
 			children = (
-				A3700F4717E3A955007C2CC7 /* QuickGridView.h */,
-				A3700F4817E3A955007C2CC7 /* QuickGridView.m */,
+				A3161666196F0EF30083AD71 /* CoverageGridView.h */,
+				A3161667196F0EF30083AD71 /* CoverageGridView.m */,
 			);
 			name = "Coverage Profile Grid View";
 			sourceTree = "<group>";
@@ -1072,10 +1098,12 @@
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
 				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
 				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,
+				A3558AE3197035F300BF0821 /* AlignmentGridPosition.m in Sources */,
 				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
 				A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */,
 				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
+				A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,

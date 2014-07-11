@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
+#import "ED_Info.h"
 
 typedef enum {
     MatchTypeExactOnly,
@@ -91,4 +92,5 @@ extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned
 + (BOOL)isIpad;
 + (BOOL)isOldIPhone;
 + (NSString*)extFromFileName:(NSString *)name;
+//+ (void)displayReadAlignmentDataInConsole;
 @end

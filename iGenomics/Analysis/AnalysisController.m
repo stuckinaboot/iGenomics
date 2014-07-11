@@ -35,29 +35,32 @@
     else
         graphRowHeight = kGraphRowHeightIPhone;
     
+    [super viewDidLoad];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    covGridView = [[CoverageGridView alloc] initWithFrame:gridView.frame];
+    alignmentGridView = [[AlignmentGridView alloc] initWithFrame:gridView.frame];
+    gridView = alignmentGridView;
+    [self.view addSubview:gridView];
+    [pxlOffsetSlider addTarget:gridView action:@selector(pxlOffsetSliderValChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view bringSubviewToFront:pxlOffsetSlider];
+    
+    [gridView firstSetUp];
+    
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapOccured:)];
     tapRecognizer.numberOfTapsRequired = kNumOfTapsRequiredToDisplayAnalysisPopover;
     [gridView addGestureRecognizer:tapRecognizer];
-    
-    [gridView firstSetUp];
     
     pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
     [gridView.scrollingView removeGestureRecognizer:[gridView.scrollingView pinchGestureRecognizer]];
     [gridView.scrollingView addGestureRecognizer:pinchRecognizer];
     
-    if ([GlobalVars isIpad])
-        gridView.boxWidth = kDefaultIpadBoxWidth;
-    else
-        gridView.boxWidth = kDefaultIphoneBoxWidth;
-    
     mutationSupportStpr.maximumValue = kMutationSupportMax;
-    
-    gridView.currOffset = 0;//May need to be changed, intented to make it start at first position when new files are analyzed
     
     analysisControllerIPhoneToolbar.hidden = NO;
     
     [self resetDisplay];
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -151,16 +154,13 @@
     segmentStpr.minimumValue = 0;
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];
     
-    
-    [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
-    
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
     //Set up gridView
     int len = dgenomeLen-1;//-1 so to not include $ sign
     
     [gridView setDelegate:self];
-    gridView.refSeq = originalStr;
     [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
+    [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
 }
@@ -172,7 +172,7 @@
     
     int yPos = gridView.frame.origin.y+kPosLblHeight+(gridView.graphBoxHeight/2);
     
-    for (int i  = 0; i<kNumOfRowsInGridView; i++) {
+    for (int i  = 0; i<gridView.totalRows; i++) {
         nLbl[i] = [[UILabel alloc] initWithFrame:rect];
         [nLbl[i] setFont:[UIFont systemFontOfSize:kSideLblFontSize]];
         [nLbl[i] setAdjustsFontSizeToFitWidth:NO];

@@ -35,6 +35,14 @@
     [tickMarkConnectingLine setBackgroundColor:[UIColor blackColor]];
     
     kPosLblInterval = kDefPosLblInterval;
+    
+    if ([GlobalVars isIpad])
+        [self setBoxWidth:kDefaultIpadBoxWidth];
+    else
+        [self setBoxWidth:kDefaultIphoneBoxWidth];
+    
+    refSeq = originalStr;
+    currOffset = 0;
 }
 
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight {
@@ -517,6 +525,11 @@
 
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb {
     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], 1.0f);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
+}
+
+- (void)drawRectangle:(CGRect)rect withRGB:(double [3])rgb andAlpha:(float)alpha {
+    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], alpha);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
 }
 

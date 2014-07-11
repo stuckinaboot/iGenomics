@@ -64,13 +64,14 @@
     dispatch_async(queue, ^{//Opens up a background thread
         NSLog(@"About to call matchReedsFileContentsAndParametersArr");
         [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
+        
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             NSLog(@"About to find and filter mutations");
-            
             bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
             [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
             [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
             [bwt.bwtMutationFilter filterMutationsForDetails];
+            
             
             NSLog(@"About to create basicInf and call readyViewForDisplay");
             
@@ -79,9 +80,9 @@
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], nil];
-            
             [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
+            
         });
     });
 }

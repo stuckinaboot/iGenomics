@@ -83,5 +83,10 @@ NSMutableArray *readAlignmentsArr;
     NSRange range = [name rangeOfString:@"." options:NSBackwardsSearch];
     return [name substringWithRange:NSMakeRange(range.location+1,name.length-range.location-1)];
 }
-
+/*
++ (void)displayReadAlignmentDataInConsole {
+    for (ED_Info *info in readAlignmentsArr) {
+        printf("\n\n%i, %s",info.position, info.gappedA);
+    }
+}*/
 @end

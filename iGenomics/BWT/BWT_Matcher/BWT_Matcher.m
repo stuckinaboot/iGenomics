@@ -123,7 +123,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             int charsToTrim = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
             if (a.distance + charsToTrim <= maxSubs) {
                 [self updatePosOccsArrayWithRange:NSMakeRange(a.position, readLen-charsToTrim) andED_Info:a];
-                [readAlignmentsArr addObject:a];
             }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
@@ -206,7 +205,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 - (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info {
 //    if (info.isRev)
 //        query = [self getReverseComplementForSeq:query];
-    
     if (!info.insertion && info.distance > 0) {
         for (int i = range.location; i<range.length+range.location; i++) {
             int c = [BWT_MatcherSC whichChar:info.gappedA[i-range.location] inContainer:acgt];
@@ -243,6 +241,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     }
     [readDataStr setString:@""];
     [readDataStr appendFormat:kReadExportDataBasicInfo, info.readName,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
+    [readAlignmentsArr addObject:info];
 }
 
 //INSERTION/DELETION
