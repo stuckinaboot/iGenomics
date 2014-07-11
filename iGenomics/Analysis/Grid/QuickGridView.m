@@ -136,20 +136,7 @@
                         for (int t = 0; t<kACGTLen; t++) {
                             if (kACGTStr[t] == foundGenome[0][j]) {
                                 //v = t;
-                                switch (t) {
-                                    case 0:
-                                        rgb = dnaColors.aLbl;
-                                        break;
-                                    case 1:
-                                        rgb = dnaColors.cLbl;
-                                        break;
-                                    case 2:
-                                        rgb = dnaColors.gLbl;
-                                        break;
-                                    case 3:
-                                        rgb = dnaColors.tLbl;
-                                        break;
-                                }
+                                rgb = [self colorForIndexInACGTWithInDelsStr:t orChar:' ' usingIndex:YES];
                                 break;
                             }
                             else if (kDelMarker == foundGenome[0][j]) {
@@ -178,27 +165,8 @@
                 }
                 else {//A through insertion
                     if (posOccArray[i-ARow][j] > 0) {
-                        RGB *rgb;
-                        switch (i-ARow) {
-                            case 0:
-                                rgb = dnaColors.aLbl;
-                                break;
-                            case 1:
-                                rgb = dnaColors.cLbl;
-                                break;
-                            case 2:
-                                rgb = dnaColors.gLbl;
-                                break;
-                            case 3:
-                                rgb = dnaColors.tLbl;
-                                break;
-                            case 4:
-                                rgb = dnaColors.delLbl;
-                                break;
-                            case 5:
-                                rgb = dnaColors.insLbl;
-                                break;
-                        }
+                        RGB *rgb = [self colorForIndexInACGTWithInDelsStr:i-ARow orChar:' ' usingIndex:YES];
+
                         [self drawText:[NSString stringWithFormat:@"%i",posOccArray[i-ARow][j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){rgb.r,rgb.g,rgb.b}];
                     }
                     else
@@ -261,6 +229,47 @@
 
 - (void)drawRect:(CGRect)rect {
     drawingView.image = newDrawingViewImg;
+}
+
+- (RGB*)colorForIndexInACGTWithInDelsStr:(int)index orChar:(char)c usingIndex:(BOOL)usingIndex {
+    RGB *rgb;
+    if (usingIndex) {
+        switch (index) {
+            case 0:
+                rgb = dnaColors.aLbl;
+                return rgb;
+            case 1:
+                rgb = dnaColors.cLbl;
+                return rgb;
+            case 2:
+                rgb = dnaColors.gLbl;
+                return rgb;
+            case 3:
+                rgb = dnaColors.tLbl;
+                return rgb;
+            case 4:
+                rgb = dnaColors.delLbl;
+                return rgb;
+            case 5:
+                rgb = dnaColors.insLbl;
+                return rgb;
+        }
+    }
+    else {
+        if (c == kACGTwithInDels[0])
+            rgb = dnaColors.aLbl;
+        else if (c == kACGTwithInDels[1])
+            rgb = dnaColors.cLbl;
+        else if (c == kACGTwithInDels[2])
+            rgb = dnaColors.gLbl;
+        else if (c == kACGTwithInDels[3])
+            rgb = dnaColors.tLbl;
+        else if (c == kACGTwithInDels[4])
+            rgb = dnaColors.delLbl;
+        else if (c == kACGTwithInDels[5])
+            rgb = dnaColors.insLbl;
+    }
+    return rgb;
 }
 
 - (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex {

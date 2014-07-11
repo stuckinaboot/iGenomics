@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import <dropbox/dropbox.h>
 
+#import "OBSlider.h"
 #import "AnalysisPopoverController.h"
 #import "InsertionsPopoverController.h"
 #import "MutationsInfoPopover.h"
@@ -140,7 +141,7 @@
     CoverageGridView *covGridView;
     AlignmentGridView *alignmentGridView;
     
-    IBOutlet UISlider *pxlOffsetSlider;
+    IBOutlet OBSlider *pxlOffsetSlider;
     UIPopoverController *popoverController;
     MutationsInfoPopover *mutsPopover;
     IBOutlet UIButton *showAllMutsBtn;

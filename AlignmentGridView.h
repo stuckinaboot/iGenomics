@@ -18,6 +18,7 @@
 //    NSMutableArray *positionMatchedCharsArr;
 //    NSMutableArray *positionMatchedIndecesArr;
     NSMutableArray *alignmentGridPositionsArr;
+    int currYOffset;
 //    ED_Info *alignmentGridPositionsArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 //    int readStartsIndexArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];//Size of the genome, contains the first index in the readAlignmentsArr where a read matched pos was there
     
@@ -30,5 +31,5 @@
 - (void)drawReadBodyAtPoint:(CGPoint)point nextToAnEnd:(int)end;
 //- (void)drawReadWithEDInfo:(ED_Info*)read atX:(float)x andY:(float)y;
 //- (void)drawCharColumnWithTxt:(NSString*)txt atX:(float)x andY:(float)y;
-- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos atX:(float)x andY:(float)y;
+- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross;
 @end

@@ -200,6 +200,8 @@ typedef enum {
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb;
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb andAlpha:(float)alpha;
 
+- (RGB*)colorForIndexInACGTWithInDelsStr:(int)index orChar:(char)c usingIndex:(BOOL)usingIndex;
+
 - (BOOL)scrollToPos:(double)p inputtedByPosSearchField:(BOOL)fieldInput;//Returns yes if successful, no if not successful
 - (void)updateScrollView:(UISlider*)s;
 

@@ -20,4 +20,7 @@
     return self;
 }
 
+- (CGColorRef)rgbColorRef {
+    return [UIColor colorWithRed:r green:g blue:b alpha:kRGBDefaultAlpha].CGColor;
+}
 @end

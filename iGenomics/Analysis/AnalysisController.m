@@ -35,9 +35,6 @@
     else
         graphRowHeight = kGraphRowHeightIPhone;
     
-    [super viewDidLoad];
-}
-- (void)viewWillAppear:(BOOL)animated {
     covGridView = [[CoverageGridView alloc] initWithFrame:gridView.frame];
     alignmentGridView = [[AlignmentGridView alloc] initWithFrame:gridView.frame];
     gridView = alignmentGridView;
@@ -60,7 +57,7 @@
     analysisControllerIPhoneToolbar.hidden = NO;
     
     [self resetDisplay];
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 

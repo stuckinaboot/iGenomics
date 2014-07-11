@@ -26,6 +26,58 @@
     [self setUpAlignmentGridPositionsArr];
 }
 
+- (void)setUpAlignmentGridPositionsArr {
+    alignmentGridPositionsArr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < dgenomeLen; i++) {
+        AlignmentGridPosition *position = [[AlignmentGridPosition alloc] init];
+        position.startIndexInreadAlignmentsArr = kAlignmentGridViewReadStartIndexNone;
+        position.positionRelativeToReadStart = kAlignmentGridViewReadStartIndexNone;
+        [alignmentGridPositionsArr addObject:position];
+    }
+    
+    int rowOfRead = 0;
+    for (int i = 0; i < [readAlignmentsArr count]; i++) {
+        ED_Info *read = [readAlignmentsArr objectAtIndex:i];
+        int lenA = strlen(read.gappedA);
+        
+        for (int x = 0; x < lenA; x++) {
+            AlignmentGridPosition *gridPos = [alignmentGridPositionsArr objectAtIndex:read.position+x];
+            gridPos.startIndexInreadAlignmentsArr = read.position;
+            gridPos.positionRelativeToReadStart = x;
+            gridPos.readLen = lenA;
+            
+            if (!gridPos.str)
+                gridPos.str = [[NSMutableString alloc] init];
+            if (!gridPos.readInfoStr)
+                gridPos.readInfoStr = [[NSMutableString alloc] init];
+            [gridPos.str appendFormat:@"%c",read.gappedA[x]];
+            
+            int readInfoNum;
+            if (x == 0)
+                readInfoNum = kReadInfoReadStart;
+            else if (x == lenA-1)
+                readInfoNum = kReadInfoReadEnd;
+            else if (x == 1)
+                readInfoNum = kReadInfoReadPosAfterStart;
+            else if (x == lenA-2)
+                readInfoNum = kReadInfoReadPosBeforeEnd;
+            else
+                readInfoNum = kReadInfoReadMiddle;
+            [gridPos.readInfoStr appendFormat:@"%i",readInfoNum];
+            
+            if (x > 0) {
+                while(rowOfRead+1 > gridPos.str.length) {
+                    [gridPos.str insertString:kAlignmentGridViewCharColumnNoChar atIndex:gridPos.str.length-1];
+                    [gridPos.readInfoStr insertString:kAlignmentGridViewCharColumnNoChar atIndex:gridPos.readInfoStr.length-1];
+                }
+            }
+            else {
+                rowOfRead = gridPos.str.length-1;
+            }
+        }
+    }
+}
+
 - (void)setUpGridViewForPixelOffset:(double)offSet {
     
     currOffset = offSet;
@@ -58,10 +110,9 @@
     
     float x = firstPtOffset+self.kGridLineWidthCol;//If this passes the self.frame.size.width, stop drawing (break)
     float y = kPosLblHeight;
-    
-    int indexInReadAlignmentArr = 0;
-    
+
     for (int i = 0; i<kAlignmentGridViewNumOfGridSections; i++) {
+        float maxAlignmentStrLen = 0;
         for (int j = firstPtToDraw; j<totalCols && x <= self.frame.size.width; j += numOfBoxesPerPixel, x += self.kGridLineWidthCol+boxWidth) {
             if (i > GraphRow) {//Not Graph Row
                 //Depending on the value of i, draw foundGenome, refGenome, etc.
@@ -115,20 +166,10 @@
                     }
                 }
                 else {//A through insertion
-                    /*
-                    if (readStartsIndexArr[j] != kAlignmentGridViewReadStartIndexNone) {
-                        ED_Info *read = [readAlignmentsArr objectAtIndex:readStartsIndexArr[j]];
-                        read.rowInAlignmentGrid = 0;
-                        [self drawReadWithEDInfo:read atX:x andY:y];
-                        int k = readStartsIndexArr[j]+1;
-                        while (k < [readAlignmentsArr count] && read.position == j) {
-                            read.rowInAlignmentGrid++;
-                            [self drawReadWithEDInfo:read atX:x andY:y];
-                            k++;
-                            read = [readAlignmentsArr objectAtIndex:k];
-                        }
-                    }*/
-                    [self drawCharColumnWithAlignmentGridPos:[alignmentGridPositionsArr objectAtIndex:j] atX:x+self.kGridLineWidthCol andY:y];
+                    AlignmentGridPosition *gridPos = [alignmentGridPositionsArr objectAtIndex:j];
+                    if (gridPos.str.length > maxAlignmentStrLen)
+                        maxAlignmentStrLen = gridPos.str.length;
+                    [self drawCharColumnWithAlignmentGridPos:gridPos atX:x andY:y-currYOffset andYToNotCross:y];
 //                    [self drawCharColumnWithTxt:[positionMatchedCharsArr objectAtIndex:j] atX:x andY:y];
                     
                     //Put a position label above the graph
@@ -142,6 +183,8 @@
             y += kGridLineWidthRow+boxHeight;
         else
             y += kGridLineWidthRow+graphBoxHeight;
+        if (maxAlignmentStrLen > 0)
+            [self fixScrollViewContentSizeWithMaxAlignmentStrLen:maxAlignmentStrLen];
     }
     
     newDrawingViewImg = UIGraphicsGetImageFromCurrentImageContext();
@@ -151,6 +194,19 @@
     
     [delegate gridFinishedUpdatingWithOffset:currOffset andGridScrollViewContentSizeChanged:scrollViewContentSizeChangedOnLastUpdate];
     scrollViewContentSizeChangedOnLastUpdate = NO;
+}
+
+- (void)fixScrollViewContentSizeWithMaxAlignmentStrLen:(int)maxAlignmentStrLen {
+    float maxY = kPosLblHeight+(maxAlignmentStrLen+ARow)*(kGridLineWidthRow+boxHeight);
+    if (maxY > scrollingView.contentSize.height)
+        scrollingView.contentSize = CGSizeMake(scrollingView.contentSize.width, maxY);
+    else if (maxY < self.bounds.size.height && scrollingView.contentSize.height >= self.bounds.size.height)
+        scrollingView.contentSize = CGSizeMake(scrollingView.contentSize.width, self.bounds.size.height);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [super scrollViewDidScroll:scrollView];
+    currYOffset = scrollView.contentOffset.y;
 }
 
 //Create Grid Lines
@@ -175,16 +231,16 @@
     }
 }
 
-- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos atX:(float)x andY:(float)y {
+- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross {
     if (!gridPos.str)
         return;
+    
+    CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(0, yToNotCross, self.bounds.size.width, self.bounds.size.height-yToNotCross));
     CGPoint point;
     for (int i = 0; i < gridPos.str.length; i++) {
         point = CGPointMake(x, y);
-
         char c = [gridPos.readInfoStr characterAtIndex:i];
-        if (c != [kAlignmentGridViewCharColumnNoChar characterAtIndex:0]) {
-        
+        if (c != [kAlignmentGridViewCharColumnNoChar characterAtIndex:0] && y + kGridLineWidthRow+boxHeight > yToNotCross) {
             int readInfoNum = [[NSString stringWithFormat:@"%c",c] intValue];
             
             if (readInfoNum == kReadInfoReadStart) {
@@ -203,9 +259,11 @@
                 [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd];
             }
             
-            [self drawText:[NSString stringWithFormat:@"%c",[gridPos.str characterAtIndex:i]] atPoint:point withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g,dnaColors.black.b}];//May want to change the color for each read or something
+            char gridPosChar = [gridPos.str characterAtIndex:i];
+            RGB *rgb = [self colorForIndexInACGTWithInDelsStr:-1 orChar:gridPosChar usingIndex:NO];
+            
+            [self drawText:[NSString stringWithFormat:@"%c",gridPosChar] atPoint:point withRGB:(double[3]){rgb.r, rgb.g,rgb.b}];//May want to change the color for each read or something
         }
-        
         y += kGridLineWidthRow+boxHeight;
     }
 }
@@ -213,19 +271,19 @@
 - (void)drawReadStartAtPoint:(CGPoint)point {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth+boxWidth/2, boxHeight);
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.0];
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor grayColor].CGColor);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
     [bezierPath fill];
 }
 
 - (void)drawReadEndAtPoint:(CGPoint)point {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth, boxHeight);
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.0];
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor grayColor].CGColor);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
     [bezierPath fill];
 }
 - (void)drawReadBodyAtPoint:(CGPoint)point {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth+self.kGridLineWidthCol, boxHeight);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor grayColor].CGColor);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
 }
 
@@ -234,70 +292,8 @@
     if (end == kReadInfoReadPosBeforeEnd)
         rect = CGRectMake(point.x, point.y, boxWidth+boxWidth/2, boxHeight);
     
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor grayColor].CGColor);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
-}
-
-- (void)setUpAlignmentGridPositionsArr {
-    alignmentGridPositionsArr = [[NSMutableArray alloc] init];
-    for (int i = 0; i < dgenomeLen; i++) {
-        AlignmentGridPosition *position = [[AlignmentGridPosition alloc] init];
-        position.startIndexInreadAlignmentsArr = kAlignmentGridViewReadStartIndexNone;
-        position.positionRelativeToReadStart = kAlignmentGridViewReadStartIndexNone;
-        [alignmentGridPositionsArr addObject:position];
-    }
-
-    int rowOfRead = 0;
-    for (int i = 0; i < [readAlignmentsArr count]; i++) {
-        ED_Info *read = [readAlignmentsArr objectAtIndex:i];
-        int lenA = strlen(read.gappedA);
-        
-        for (int x = 0; x < lenA; x++) {
-            AlignmentGridPosition *gridPos = [alignmentGridPositionsArr objectAtIndex:read.position+x];
-            gridPos.startIndexInreadAlignmentsArr = read.position;
-            gridPos.positionRelativeToReadStart = x;
-            gridPos.readLen = lenA;
-
-            if (!gridPos.str)
-                gridPos.str = [[NSMutableString alloc] init];
-            if (!gridPos.readInfoStr)
-                gridPos.readInfoStr = [[NSMutableString alloc] init];
-            [gridPos.str appendFormat:@"%c",read.gappedA[x]];
-            
-            int readInfoNum;
-            if (x == 0)
-                readInfoNum = kReadInfoReadStart;
-            else if (x == lenA-1)
-                readInfoNum = kReadInfoReadEnd;
-            else if (x == 1)
-                readInfoNum = kReadInfoReadPosAfterStart;
-            else if (x == lenA-2)
-                readInfoNum = kReadInfoReadPosBeforeEnd;
-            else
-                readInfoNum = kReadInfoReadMiddle;
-            [gridPos.readInfoStr appendFormat:@"%i",readInfoNum];
-            
-            if (x > 0) {
-                while(rowOfRead+1 > gridPos.str.length) {
-                    [gridPos.str insertString:kAlignmentGridViewCharColumnNoChar atIndex:0];
-                    [gridPos.readInfoStr insertString:kAlignmentGridViewCharColumnNoChar atIndex:0];
-                }
-            }
-            else {
-                rowOfRead = gridPos.str.length-1;
-            }
-        }
-    }
-}
-
-
-- (void)drawCharColumnWithTxt:(NSString*)txt atX:(float)x andY:(float)y {
-    if (txt.length == 0)
-        return;
-    for (int i = 0; i < txt.length; i++) {
-        [self drawText:[NSString stringWithFormat:@"%c",[txt characterAtIndex:i]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g,dnaColors.black.b}];//May want to change the color for each read or something
-        y += kGridLineWidthRow+boxHeight;
-    }
 }
 
 @end

@@ -99,6 +99,7 @@
 		A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */; };
 		A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2C160FA5F600BC2168 /* MySeq.txt */; };
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
+		A3C17028197079B2008C7A4C /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C17027197079B2008C7A4C /* OBSlider.m */; };
 		A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C215171777F72600B0C6D5 /* MutationInfo.m */; };
 		A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */; };
 		A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */; };
@@ -256,6 +257,8 @@
 		A3C0FD27160FA5AC00BC2168 /* BWT_MutationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_MutationFilter.m; sourceTree = "<group>"; };
 		A3C0FD2C160FA5F600BC2168 /* MySeq.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MySeq.txt; path = "../../Lab Projects/LabProject5/MySeq.txt"; sourceTree = "<group>"; };
 		A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reedsFile.txt; path = "../../Lab Projects/LabProject7/LabProject7/reedsFile.txt"; sourceTree = "<group>"; };
+		A3C17026197079B2008C7A4C /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		A3C17027197079B2008C7A4C /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A3C215161777F72600B0C6D5 /* MutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutationInfo.h; sourceTree = "<group>"; };
 		A3C215171777F72600B0C6D5 /* MutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutationInfo.m; sourceTree = "<group>"; };
 		A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.fa; sourceTree = "<group>"; };
@@ -384,6 +387,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3C1702919707D8D008C7A4C /* OBSlider */,
 				A38C320918EB6E040070F49E /* ThreeLines.png */,
 				A337B1A218E7D2A200919612 /* settingsIcon.png */,
 				A35E39B51885FB7B00651C41 /* Reachability */,
@@ -821,6 +825,16 @@
 			path = BWT_MutationFilter;
 			sourceTree = "<group>";
 		};
+		A3C1702919707D8D008C7A4C /* OBSlider */ = {
+			isa = PBXGroup;
+			children = (
+				A3C17026197079B2008C7A4C /* OBSlider.h */,
+				A3C17027197079B2008C7A4C /* OBSlider.m */,
+			);
+			name = OBSlider;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		A3C215151777F70800B0C6D5 /* Mutation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1088,6 +1102,7 @@
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
+				A3C17028197079B2008C7A4C /* OBSlider.m in Sources */,
 				A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */,
 				A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */,
 				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,

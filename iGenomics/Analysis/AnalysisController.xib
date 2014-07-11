@@ -185,7 +185,7 @@
                         <action selector="mutationSupportStepperChanged:" destination="-1" eventType="valueChanged" id="1155"/>
                     </connections>
                 </stepper>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1172">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1172" customClass="OBSlider">
                     <rect key="frame" x="74" y="724" width="927" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>

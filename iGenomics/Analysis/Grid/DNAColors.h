@@ -29,6 +29,7 @@
                         *white,
                         *graph,
                         *segmentDivider,
-                        *segmentDividerTxt;
+                        *segmentDividerTxt,
+                        *alignedRead;
 - (void)setUp;
 @end
