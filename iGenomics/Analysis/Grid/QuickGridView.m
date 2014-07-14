@@ -23,6 +23,7 @@
     [scrollingView setBackgroundColor:[UIColor clearColor]];
     scrollingView.bounces = NO;
     [scrollingView setShowsHorizontalScrollIndicator:NO];
+    [scrollingView setDirectionalLockEnabled:YES];
     
     drawingView = [[UIImageView alloc] initWithFrame:rect];
     
@@ -73,20 +74,25 @@
     graphBoxHeight = gbHeight;
     boxHeight = (double)((self.frame.size.height)-graphBoxHeight-kPosLblHeight-((rows-1)*kGridLineWidthRow))/(rows-1);//Finds the boxHeight for the remaining rows
     
-    //For the graph find the maxCoverageVal
-    //First find highest value to make the max scale
-    
-    for (int i = 0; i<totalCols; i++) {//This is totalCols because that is the len of the seq, if this is no longer the len of the seq, then this needs to be changed
-        if (coverageArray[i]-posOccArray[kACGTLen+1][i]>maxCoverageVal) {//Don't count insertions
-            maxCoverageVal = coverageArray[i];
-        }
-    }
+    if (maxCoverageVal == 0)
+        [self setMaxCovValWithNumOfCols:totalCols];
     
     maxCovLbl.text = [NSString stringWithFormat:kMaxCovLblFormat,maxCoverageVal];
     
     numOfBoxesPerPixel = kPixelWidth;
     [self setUpGridViewForPixelOffset:0];
     [self initialMutationFind];
+}
+
+- (void)setMaxCovValWithNumOfCols:(int)cols {
+    //For the graph find the maxCoverageVal
+    //First find highest value to make the max scale
+    
+    for (int i = 0; i<cols; i++) {//This is totalCols because that is the len of the seq, if this is no longer the len of the seq, then this needs to be changed
+        if (coverageArray[i]-posOccArray[kACGTLen+1][i]>maxCoverageVal) {//Don't count insertions
+            maxCoverageVal = coverageArray[i];
+        }
+    }
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {

@@ -396,7 +396,7 @@
         
         if (gridView.boxWidth >= kThresholdBoxWidth && gridView.kTxtFontSize < gridView.kMinTxtFontSize)
             gridView.kTxtFontSize = gridView.kMinTxtFontSize;
-    
+
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
         dispatch_sync(queue, ^{//Opens up a background thread, done synchronously because this block needs to finish before this function gets called again (often times it will be)
             [gridView resetScrollViewContentSize];
@@ -433,8 +433,10 @@
     [self gridPointClickedWithCoordInGrid:box andClickedPt:pt];
 }
 
-//Coverage Histogram
+//Cov Histogram
 - (IBAction)showCoverageHistogram:(id)sender {
+    if (gridView.maxCoverageVal == 0)
+        [gridView setMaxCovValWithNumOfCols:dgenomeLen];
     if ([GlobalVars isIpad]) {
         popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
         [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];

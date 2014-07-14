@@ -180,6 +180,7 @@ typedef enum {
 
 - (void)firstSetUp;
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight;
+- (void)setMaxCovValWithNumOfCols:(int)cols;
 - (void)setUpGridViewForPixelOffset:(double)offSet;
 - (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex;
 - (void)resetScrollViewContentSize;

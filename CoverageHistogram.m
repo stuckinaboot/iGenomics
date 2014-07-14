@@ -59,6 +59,8 @@
     //Everything in here is following the normal distribution formula as defined here: http://upload.wikimedia.org/math/7/3/a/73ad15f79b11af99bd2477ff3ffc5a35.png
 
     float sd = sqrtf(posOfHighestFrequency);
+    if (sd == 0)
+        sd = kCoverageHistogramSDDefault;
     float mean = posOfHighestFrequency;
     
     float formulaPart1 = 1/(sd*sqrtf(2*M_PI));//Formula 1st part

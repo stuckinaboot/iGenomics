@@ -27,6 +27,7 @@
 #define kCoverageHistogramIntervalLblHeight 20
 #define kCoverageHistogramIntervalLblFontSize 13
 
+#define kCoverageHistogramSDDefault 2.0f //Set to this when the mean is 0
 #define kCoverageHistogramNumOfSDDecreaseFactor 2.0f
 
 #define kCoverageHistogramThinLineWidth 2.0f

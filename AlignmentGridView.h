@@ -20,7 +20,7 @@
 //    NSMutableArray *alignmentGridPositionsArr;
 //    char *alignmentGridPosStrings;
 //    char *alignmentGridPosReadInfo;
-    __strong AlignmentGridPosition **alignmentGridPositionsArr;
+    __strong AlignmentGridPosition **alignmentGridPositionsArr;//Strong means ARC won't destory this object unless it is set to nil, ** is a Pointer to a pointer
 //    AlignmentGridPosition *alignmentGridPositions;
     int currYOffset;
 //    ED_Info *alignmentGridPositionsArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];
