@@ -27,6 +27,63 @@
 }
 
 - (void)setUpAlignmentGridPositionsArr {
+//    AlignmentGridPosition *pos[10];
+//    alignmentGridPosition = pos;
+
+    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)malloc(dgenomeLen*sizeof(AlignmentGridPosition*));
+    
+    for (int i = 0; i < dgenomeLen; i ++) {
+        AlignmentGridPosition *position = [[AlignmentGridPosition alloc] init];
+        position.startIndexInreadAlignmentsArr = kAlignmentGridViewReadStartIndexNone;
+        position.positionRelativeToReadStart = kAlignmentGridViewReadStartIndexNone;
+        alignmentGridPositionsArr[i] = position;
+    }
+    
+    int rowOfRead = 0;
+    for (int i = 0; i < [readAlignmentsArr count]; i++) {
+        ED_Info *read = [readAlignmentsArr objectAtIndex:i];
+        int lenA = strlen(read.gappedA);
+        
+        for (int x = 0; x < lenA; x++) {
+            AlignmentGridPosition *gridPos = alignmentGridPositionsArr[(read.position+x)];
+            gridPos.startIndexInreadAlignmentsArr = read.position;
+            gridPos.positionRelativeToReadStart = x;
+            gridPos.readLen = lenA;
+            
+            if (!gridPos.str)
+                gridPos.str = [[NSMutableString alloc] init];
+            if (!gridPos.readInfoStr)
+                gridPos.readInfoStr = [[NSMutableString alloc] init];
+            [gridPos.str appendFormat:@"%c",read.gappedA[x]];
+            
+            int readInfoNum;
+            if (x == 0)
+                readInfoNum = kReadInfoReadStart;
+            else if (x == lenA-1)
+                readInfoNum = kReadInfoReadEnd;
+            else if (x == 1)
+                readInfoNum = kReadInfoReadPosAfterStart;
+            else if (x == lenA-2)
+                readInfoNum = kReadInfoReadPosBeforeEnd;
+            else
+                readInfoNum = kReadInfoReadMiddle;
+            [gridPos.readInfoStr appendFormat:@"%i",readInfoNum];
+            
+            if (x > 0) {
+                while(rowOfRead+1 > gridPos.str.length) {
+                    [gridPos.str insertString:kAlignmentGridViewCharColumnNoChar atIndex:gridPos.str.length-1];
+                    [gridPos.readInfoStr insertString:kAlignmentGridViewCharColumnNoChar atIndex:gridPos.readInfoStr.length-1];
+                }
+            }
+            else {
+                rowOfRead = gridPos.str.length-1;
+            }
+        }
+    }
+}
+
+/*
+- (void)setUpAlignmentGridPositionsArr {
     alignmentGridPositionsArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < dgenomeLen; i++) {
         AlignmentGridPosition *position = [[AlignmentGridPosition alloc] init];
@@ -76,7 +133,7 @@
             }
         }
     }
-}
+}*/
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
     
@@ -166,7 +223,7 @@
                     }
                 }
                 else {//A through insertion
-                    AlignmentGridPosition *gridPos = [alignmentGridPositionsArr objectAtIndex:j];
+                    AlignmentGridPosition *gridPos = alignmentGridPositionsArr[(j)];
                     if (gridPos.str.length > maxAlignmentStrLen)
                         maxAlignmentStrLen = gridPos.str.length;
                     [self drawCharColumnWithAlignmentGridPos:gridPos atX:x andY:y-currYOffset andYToNotCross:y];
@@ -198,7 +255,7 @@
 
 - (void)fixScrollViewContentSizeWithMaxAlignmentStrLen:(int)maxAlignmentStrLen {
     float maxY = kPosLblHeight+(maxAlignmentStrLen+ARow)*(kGridLineWidthRow+boxHeight);
-    if (maxY > scrollingView.contentSize.height)
+    if (maxY != scrollingView.contentSize.height)
         scrollingView.contentSize = CGSizeMake(scrollingView.contentSize.width, maxY);
     else if (maxY < self.bounds.size.height && scrollingView.contentSize.height >= self.bounds.size.height)
         scrollingView.contentSize = CGSizeMake(scrollingView.contentSize.width, self.bounds.size.height);

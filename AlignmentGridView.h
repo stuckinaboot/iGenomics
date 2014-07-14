@@ -17,14 +17,18 @@
 @interface AlignmentGridView : QuickGridView {
 //    NSMutableArray *positionMatchedCharsArr;
 //    NSMutableArray *positionMatchedIndecesArr;
-    NSMutableArray *alignmentGridPositionsArr;
+//    NSMutableArray *alignmentGridPositionsArr;
+//    char *alignmentGridPosStrings;
+//    char *alignmentGridPosReadInfo;
+    __strong AlignmentGridPosition **alignmentGridPositionsArr;
+//    AlignmentGridPosition *alignmentGridPositions;
     int currYOffset;
 //    ED_Info *alignmentGridPositionsArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 //    int readStartsIndexArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];//Size of the genome, contains the first index in the readAlignmentsArr where a read matched pos was there
     
 }
 - (void)setUpAlignmentGridPositionsArr;
-- (void)setUpPositionMatchedCharsArr;
+//- (void)setUpPositionMatchedCharsArr;
 - (void)drawReadStartAtPoint:(CGPoint)point;
 - (void)drawReadEndAtPoint:(CGPoint)point;
 - (void)drawReadBodyAtPoint:(CGPoint)point;
