@@ -127,11 +127,19 @@
         [xLbls[i] setAdjustsFontSizeToFitWidth:YES];
         [self.view addSubview:xLbls[i]];
         
+        UIFont *font = xLbls[i].font;
+        
         if (i < ceilf(kCoverageHistogramNumOfIntervalLblsPerAxis/2.0f) && pos <= maxCoverageVal && pos >= 0) {//This if is here because at the same SD, there will probably/usually be different frequencies. Also, can't make labels for out of bounds positions
-            yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft-kCoverageHistogramIntervalLblWidth+kCoverageHistogramYAxisTitleDistFromScreenEdge, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom)), kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
+            yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(0, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom)), kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
+            
             if (yLbls[i].frame.origin.y > 0)
                 yLbls[i].frame = CGRectMake(yLbls[i].frame.origin.x, yLbls[i].frame.origin.y-kCoverageHistogramIntervalLblHeight/2, yLbls[i].frame.size.width, yLbls[i].frame.size.height);
             [yLbls[i] setText:[NSString stringWithFormat:@"%i",covFreqArr[pos]]];
+            
+            CGSize size = [yLbls[i].text sizeWithFont:font];
+            yLbls[i].frame = CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft-size.width, yLbls[i].frame.origin.y, size.width, size.height);
+            
+            [yLbls[i] setTextAlignment:NSTextAlignmentLeft];
             [yLbls[i] setAdjustsFontSizeToFitWidth:YES];
             [self.view addSubview:yLbls[i]];
         }

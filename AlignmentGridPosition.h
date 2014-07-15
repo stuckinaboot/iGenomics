@@ -12,7 +12,7 @@
 
 #define kAlignmentGridViewReadStartIndexNone -1
 
-#define kAlignmentGridViewCharColumnNoChar @"M"//An arbitrary # to avoid confusion with any base-pair
+#define kAlignmentGridViewCharColumnNoChar 'M'//An arbitrary # to avoid confusion with any base-pair
 
 #define kReadInfoReadMiddle 0
 #define kReadInfoReadStart 1

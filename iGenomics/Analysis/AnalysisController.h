@@ -102,7 +102,7 @@
 
 #define kAnalysisNavBarHeightIPhone 44
 
-@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate> {
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate, AnalysisControllerIPhoneToolbarDelegate> {
     DNAColors *dnaColors;
     
     //Interactive Interface Elements
@@ -191,8 +191,11 @@
     FileExporter *fileExporter;
     
     IBOutlet AnalysisControllerIPhoneToolbar *analysisControllerIPhoneToolbar;
+    
+    BOOL firstAppeared;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
+- (void)setUpIPhoneToolbar;
 
 - (IBAction)showCoverageHistogram:(id)sender;
 
@@ -219,6 +222,8 @@
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;
+
+- (void)resetGridViewForType:(QuickGridView*)gViewType;
 
 - (void)setUpGridLbls;
 @end

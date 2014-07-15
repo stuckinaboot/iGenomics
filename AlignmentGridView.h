@@ -9,6 +9,8 @@
 #import "QuickGridView.h"
 #import "GlobalVars.h"
 #import "AlignmentGridPosition.h"
+#import <malloc/malloc.h>
+#import <objc/runtime.h>
 
 #define kAlignmentGridViewMaxCharsReadSpacing 2
 

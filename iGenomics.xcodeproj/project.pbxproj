@@ -473,8 +473,8 @@
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
 				A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */,
-				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
+				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A3382FD116A118D80042F59B /* Grid */,
 				A36C7C0F1964AFB0004CA5EF /* Coverage Histogram */,
 				A31AA7CD16E30BD700D3D808 /* Popovers */,
@@ -1239,6 +1239,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/iOS",
+					DeviceSupport/7.0.2,
+					"(11A501)/Symbols/usr/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1260,6 +1266,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGenomics/iGenomics-Prefix.pch";
 				INFOPLIST_FILE = "iGenomics/iGenomics-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/iOS",
+					DeviceSupport/7.0.2,
+					"(11A501)/Symbols/usr/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

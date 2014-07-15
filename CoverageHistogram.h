@@ -23,7 +23,7 @@
 #define kCoverageHistogramLblWidth 250
 #define kCoverageHistogramLblHeight 30
 #define kCoverageHistogramNumOfIntervalLblsPerAxis 3
-#define kCoverageHistogramIntervalLblWidth 50
+#define kCoverageHistogramIntervalLblWidth 80
 #define kCoverageHistogramIntervalLblHeight 20
 #define kCoverageHistogramIntervalLblFontSize 13
 

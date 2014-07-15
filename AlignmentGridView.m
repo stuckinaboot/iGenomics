@@ -23,18 +23,14 @@
     [super firstSetUp];
     [GlobalVars sortArrayUsingQuicksort:readAlignmentsArr withStartPos:0 andEndPos:[readAlignmentsArr count]-1];
 //    [self setUpPositionMatchedCharsArr];
+    [self setMaxCovValWithNumOfCols:dgenomeLen-1];
     [self setUpAlignmentGridPositionsArr];
 }
 
 - (void)setUpAlignmentGridPositionsArr {
-    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)malloc(dgenomeLen*sizeof(AlignmentGridPosition*));
+    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));//Ask about why sizeof(a pointer) works here
     
-    for (int i = 0; i < dgenomeLen; i ++) {
-        AlignmentGridPosition *position = [[AlignmentGridPosition alloc] init];
-        position.startIndexInreadAlignmentsArr = kAlignmentGridViewReadStartIndexNone;
-        position.positionRelativeToReadStart = kAlignmentGridViewReadStartIndexNone;
-        alignmentGridPositionsArr[i] = position;
-    }
+    NSString *noCharStr = [NSString stringWithFormat:@"%c",kAlignmentGridViewCharColumnNoChar];
     
     int rowOfRead = 0;
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
@@ -43,6 +39,10 @@
         
         for (int x = 0; x < lenA; x++) {
             AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
+            if (!gridPos) {
+                gridPos = [[AlignmentGridPosition alloc] init];
+                alignmentGridPositionsArr[read.position+x] = gridPos;
+            }
             gridPos.startIndexInreadAlignmentsArr = read.position;
             gridPos.positionRelativeToReadStart = x;
             gridPos.readLen = lenA;
@@ -68,8 +68,8 @@
             
             if (x > 0) {
                 while(rowOfRead+1 > gridPos.str.length) {
-                    [gridPos.str insertString:kAlignmentGridViewCharColumnNoChar atIndex:gridPos.str.length-1];
-                    [gridPos.readInfoStr insertString:kAlignmentGridViewCharColumnNoChar atIndex:gridPos.readInfoStr.length-1];
+                    [gridPos.str insertString:noCharStr atIndex:gridPos.str.length-1];
+                    [gridPos.readInfoStr insertString:noCharStr atIndex:gridPos.readInfoStr.length-1];
                 }
             }
             else {
@@ -265,10 +265,11 @@
     
     CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(0, yToNotCross, self.bounds.size.width, self.bounds.size.height-yToNotCross));
     CGPoint point;
+    
     for (int i = 0; i < gridPos.str.length; i++) {
         point = CGPointMake(x, y);
         char c = [gridPos.readInfoStr characterAtIndex:i];
-        if (c != [kAlignmentGridViewCharColumnNoChar characterAtIndex:0] && y + kGridLineWidthRow+boxHeight > yToNotCross) {
+        if (c != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
             int readInfoNum = c-'0';
             
             if (readInfoNum == kReadInfoReadStart) {
@@ -287,13 +288,15 @@
                 [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd];
             }
             
-            char gridPosChar = [gridPos.str characterAtIndex:i];
             if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
+                char gridPosChar = [gridPos.str characterAtIndex:i];
                 RGB *rgb = [self colorForIndexInACGTWithInDelsStr:-1 orChar:gridPosChar usingIndex:NO];
                 [self drawText:[gridPos.str substringWithRange:NSMakeRange(i, 1)] atPoint:point withRGB:(double[3]){rgb.r, rgb.g,rgb.b}];//May want to change the color for each read or something
             }
         }
         y += kGridLineWidthRow+boxHeight;
+        if (y > self.bounds.size.height)
+            break;
     }
 }
 

@@ -37,28 +37,40 @@
     
     covGridView = [[CoverageGridView alloc] initWithFrame:gridView.frame];
     alignmentGridView = [[AlignmentGridView alloc] initWithFrame:gridView.frame];
-    gridView = alignmentGridView;
-    [self.view addSubview:gridView];
-    [pxlOffsetSlider addTarget:gridView action:@selector(pxlOffsetSliderValChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view bringSubviewToFront:pxlOffsetSlider];
+    [self.view addSubview:covGridView];
+    [self.view addSubview:alignmentGridView];
     
-    [gridView firstSetUp];
+    [covGridView firstSetUp];
+    [alignmentGridView firstSetUp];
     
     tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapOccured:)];
     tapRecognizer.numberOfTapsRequired = kNumOfTapsRequiredToDisplayAnalysisPopover;
-    [gridView addGestureRecognizer:tapRecognizer];
     
     pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
-    [gridView.scrollingView removeGestureRecognizer:[gridView.scrollingView pinchGestureRecognizer]];
-    [gridView.scrollingView addGestureRecognizer:pinchRecognizer];
     
     mutationSupportStpr.maximumValue = kMutationSupportMax;
     
-    analysisControllerIPhoneToolbar.hidden = NO;
-    
     [self resetDisplay];
     [super viewDidLoad];
+
+//    [self setUpIPhoneToolbar];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (!firstAppeared) {
+        [self setUpIPhoneToolbar];
+        firstAppeared = TRUE;
+    }
+//    [analysisControllerIPhoneToolbar setDelegate:self];
+//    
+//    CGRect rect = self.view.bounds;
+//    [analysisControllerIPhoneToolbar setBounds:rect];
+//    [analysisControllerIPhoneToolbar setFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+//    [self.view addSubview:analysisControllerIPhoneToolbar];
+//    [self.view layoutIfNeeded];
+//    [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
+//    analysisControllerIPhoneToolbar.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -68,8 +80,6 @@
     gridView.drawingView.frame = gridView.scrollingView.frame;
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
-    
-    [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
 }
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA {
@@ -118,6 +128,40 @@
     [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andEditDistance:editDistance andExportDataStr:exportDataStr];
 }
 
+- (void)readyViewForCovProfile {
+    [self resetGridViewForType:covGridView];
+}
+
+- (void)readyViewForAlignments {
+    [self resetGridViewForType:alignmentGridView];
+}
+
+- (void)resetGridViewForType:(QuickGridView *)gViewType {
+
+    [gridView removeGestureRecognizer:tapRecognizer];
+    [gridView.scrollingView removeGestureRecognizer:[gridView.scrollingView pinchGestureRecognizer]];
+    
+    [pxlOffsetSlider removeTarget:gridView action:@selector(pxlOffsetSliderValChanged:) forControlEvents:UIControlEventValueChanged];
+    gridView = gViewType;
+    
+    [gridView addGestureRecognizer:tapRecognizer];
+    [gridView.scrollingView addGestureRecognizer:pinchRecognizer];
+    
+    if ([gViewType isEqual:covGridView]) {
+        covGridView.hidden = NO;
+        alignmentGridView.hidden = YES;
+    }
+    else if ([gViewType isEqual:alignmentGridView]) {
+        alignmentGridView.hidden = NO;
+        covGridView.hidden = YES;
+    }
+    
+    [pxlOffsetSlider addTarget:gridView action:@selector(pxlOffsetSliderValChanged:) forControlEvents:UIControlEventValueChanged];
+    [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
+    pxlOffsetSlider.value = gridView.currOffset;
+    [self.view bringSubviewToFront:pxlOffsetSlider];
+}
+
 - (void)resetDisplay {
     //Set up info lbls
     [genomeNameLbl setText:[NSString stringWithFormat:@"%@",[separateGenomeNames objectAtIndex:0]]];
@@ -155,8 +199,14 @@
     //Set up gridView
     int len = dgenomeLen-1;//-1 so to not include $ sign
     
-    [gridView setDelegate:self];
-    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
+    [covGridView setDelegate:self];
+    [alignmentGridView setDelegate:self];
+    [covGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
+    [alignmentGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
+    
+    gridView = covGridView;
+//    [gridView setDelegate:self];
+//    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
@@ -436,7 +486,7 @@
 //Cov Histogram
 - (IBAction)showCoverageHistogram:(id)sender {
     if (gridView.maxCoverageVal == 0)
-        [gridView setMaxCovValWithNumOfCols:dgenomeLen];
+        [gridView setMaxCovValWithNumOfCols:dgenomeLen-1];
     if ([GlobalVars isIpad]) {
         popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
         [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
@@ -600,6 +650,20 @@
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender {
     analysisControllerIPhoneToolbar.hidden = NO;
     [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
+}
+
+- (void)setUpIPhoneToolbar {
+    [analysisControllerIPhoneToolbar setDelegate:self];
+    
+    CGRect rect = self.view.bounds;
+    [analysisControllerIPhoneToolbar setFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+    [self.view addSubview:analysisControllerIPhoneToolbar];
+    [analysisControllerIPhoneToolbar layoutIfNeeded];
+
+    [analysisControllerIPhoneToolbar setUp];
+    [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
+    [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
+    analysisControllerIPhoneToolbar.hidden = NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

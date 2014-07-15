@@ -10,16 +10,39 @@
 
 @implementation AnalysisControllerIPhoneToolbar
 
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-    }
+            }
     return self;
 }
 
+- (void)setUp {
+    //Sets up the scrollview for paging
+    scrollView.frame = CGRectMake(0, summaryNavBar.frame.size.height, scrollView.frame.size.width, scrollView.frame.size.height);
+
+    pages = [NSArray arrayWithObjects:btnsView, lblsView, nil];
+    
+    scrollView.contentSize = CGSizeMake(self.bounds.size.width*[pages count], scrollView.bounds.size.height);
+    
+    float x = 0;
+    CGSize size = scrollView.frame.size;
+    for (UIView *view in pages) {
+        [view setFrame:CGRectMake(x, 0, size.width, view.frame.size.height)];
+        [scrollView addSubview:view];
+        x += scrollView.frame.size.width;
+    }
+    
+    [pageControl setNumberOfPages:[pages count]];
+    [pageControl setCurrentPage:0];
+    [self bringSubviewToFront:pageControl];
+}
+
 - (void)addDoneBtnForTxtFields:(NSArray*)txtFields {
+
     UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
     
     keyboardToolbar.items = [NSArray arrayWithObjects:
@@ -33,14 +56,38 @@
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = scrollView.bounds.size.width;
+    int page = floorf((scrollView.contentOffset.x - pageWidth/2.0f) / pageWidth) + 1;
+    pageControl.currentPage = page;
+}
+
+- (IBAction)pageChanged:(id)sender {
+    CGRect rect = self.frame;
+    [scrollView scrollRectToVisible:CGRectMake((pageControl.currentPage-1)*rect.size.width, 0, rect.size.width, rect.size.height) animated:YES];
+}
+
 - (IBAction)dismissKeyboard:(id)sender {
     for (UITextField* field in [self subviews]) {
         [field resignFirstResponder];
     }
 }
 
+- (IBAction)showAlignmentsPressed:(id)sender {
+    [delegate readyViewForAlignments];
+    [self hide];
+}
+- (IBAction)showCovProfilePressed:(id)sender {
+    [delegate readyViewForCovProfile];
+    [self hide];
+}
+
 - (IBAction)donePressed:(id)sender {
     self.hidden = YES;
 }
 
+- (void)hide {
+    self.hidden = YES;
+}
 @end
