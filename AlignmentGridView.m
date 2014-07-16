@@ -29,14 +29,25 @@
 
 - (void)setUpAlignmentGridPositionsArr {
     alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));//Ask about why sizeof(a pointer) works here
+    NSMutableString *noCharLongStr = [[NSMutableString alloc] init];
+    for (int i = 0; i < maxCoverageVal; i++)
+        [noCharLongStr appendFormat:@"%c",kAlignmentGridViewCharColumnNoChar];
+    
+    for (int i = 0; i < dgenomeLen; i++) {
+        AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
+        gridPos.str = [[NSMutableString alloc] initWithString:noCharLongStr];
+        gridPos.readInfoStr = [[NSMutableString alloc] initWithString:noCharLongStr];
+        alignmentGridPositionsArr[i] = gridPos;
+    }
     
     NSString *noCharStr = [NSString stringWithFormat:@"%c",kAlignmentGridViewCharColumnNoChar];
     
     int rowOfRead = 0;
+    int firstNonNoCharLoc = 0;
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
         ED_Info *read = [readAlignmentsArr objectAtIndex:i];
         int lenA = strlen(read.gappedA);
-        
+        int placeToInsertChar = -1;
         for (int x = 0; x < lenA; x++) {
             AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
             if (!gridPos) {
@@ -51,7 +62,6 @@
                 gridPos.str = [[NSMutableString alloc] init];
             if (!gridPos.readInfoStr)
                 gridPos.readInfoStr = [[NSMutableString alloc] init];
-            [gridPos.str appendFormat:@"%c",read.gappedA[x]];
             
             int readInfoNum;
             if (x == 0)
@@ -64,17 +74,32 @@
                 readInfoNum = kReadInfoReadPosBeforeEnd;
             else
                 readInfoNum = kReadInfoReadMiddle;
-            [gridPos.readInfoStr appendFormat:@"%i",readInfoNum];
             
-            if (x > 0) {
-                while(rowOfRead+1 > gridPos.str.length) {
-                    [gridPos.str insertString:noCharStr atIndex:gridPos.str.length-1];
-                    [gridPos.readInfoStr insertString:noCharStr atIndex:gridPos.readInfoStr.length-1];
-                }
+            if (readInfoNum == kReadInfoReadStart) {
+                placeToInsertChar = 0;
+                while (placeToInsertChar < gridPos.str.length && [gridPos.str characterAtIndex:placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
+                    placeToInsertChar++;
             }
-            else {
-                rowOfRead = gridPos.str.length-1;
+            if (placeToInsertChar < gridPos.str.length) {
+                [gridPos.str replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%c",read.gappedA[x]]];
+                [gridPos.readInfoStr replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%i",readInfoNum]];
             }
+            else
+                NSLog(@"An insertion is present");
+//            else {
+//                [gridPos.str appendFormat:@"%c",read.gappedA[x]];
+//                [gridPos.readInfoStr appendFormat:@"%i",readInfoNum];
+//            }
+            
+//            if (x > 0) {
+//                while(rowOfRead+1 > gridPos.str.length) {
+//                    [gridPos.str insertString:noCharStr atIndex:gridPos.str.length-1];
+//                    [gridPos.readInfoStr insertString:noCharStr atIndex:gridPos.readInfoStr.length-1];
+//                }
+//            }
+//            else {
+//                rowOfRead = gridPos.str.length-1;
+//            }
         }
     }
 }
@@ -272,22 +297,25 @@
         if (c != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
             int readInfoNum = c-'0';
             
-            if (readInfoNum == kReadInfoReadStart) {
-                [self drawReadStartAtPoint:point];
-            }
-            else if (readInfoNum == kReadInfoReadEnd) {
-                [self drawReadEndAtPoint:point];
-            }
-            else if (readInfoNum == kReadInfoReadMiddle) {
+            if (numOfBoxesPerPixel > kPixelWidth)
                 [self drawReadBodyAtPoint:point];
+            else {
+                if (readInfoNum == kReadInfoReadStart) {
+                    [self drawReadStartAtPoint:point];
+                }
+                else if (readInfoNum == kReadInfoReadEnd) {
+                    [self drawReadEndAtPoint:point];
+                }
+                else if (readInfoNum == kReadInfoReadMiddle) {
+                    [self drawReadBodyAtPoint:point];
+                }
+                else if (readInfoNum == kReadInfoReadPosAfterStart) {
+                    [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosAfterStart];
+                }
+                else if (readInfoNum == kReadInfoReadPosBeforeEnd) {
+                    [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd];
+                }
             }
-            else if (readInfoNum == kReadInfoReadPosAfterStart) {
-                [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosAfterStart];
-            }
-            else if (readInfoNum == kReadInfoReadPosBeforeEnd) {
-                [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd];
-            }
-            
             if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
                 char gridPosChar = [gridPos.str characterAtIndex:i];
                 RGB *rgb = [self colorForIndexInACGTWithInDelsStr:-1 orChar:gridPosChar usingIndex:NO];
