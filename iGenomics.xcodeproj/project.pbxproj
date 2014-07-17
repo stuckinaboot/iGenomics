@@ -476,6 +476,7 @@
 				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
 				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A3382FD116A118D80042F59B /* Grid */,
+				A3669B3616F689780034A1CC /* Colors */,
 				A36C7C0F1964AFB0004CA5EF /* Coverage Histogram */,
 				A31AA7CD16E30BD700D3D808 /* Popovers */,
 			);
@@ -489,7 +490,6 @@
 				A3161669196F0EFF0083AD71 /* Grid View Superclass */,
 				A3B92FE2196F018600EE1C06 /* Coverage Profile Grid View */,
 				A3B92FE1196F017E00EE1C06 /* Alignment Grid View */,
-				A3669B3616F689780034A1CC /* Colors */,
 			);
 			name = Grid;
 			sourceTree = "<group>";

@@ -14,8 +14,8 @@
 
 - (id)initWithSeq:(char*)s andName:(char*)n {
     if (self = [super init]) {
-        sequence = s;
-        name = n;
+        sequence = strdup(s);
+        name = strdup(n);
     }
     return self;
 }

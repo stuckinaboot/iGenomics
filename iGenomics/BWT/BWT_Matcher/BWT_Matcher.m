@@ -292,8 +292,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
     if (info.position >= 0 && info.position+aLen<=dgenomeLen) {//ISN'T Negative and doesn't go over
         int bLen = strlen(info.gappedB);
         int insCount = 0;
-        char *smallSeq = calloc(kMaxInsertionSeqLen, 1);
-        
+
         for (int a = 0; a<bLen; a++) {
             if (info.gappedB[a] == kDelMarker) {
                 BWT_Matcher_InsertionDeletion_InsertionHolder *tID = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
@@ -326,9 +325,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
                 insCount++;
             }
             else {
-                smallSeq[0] = info.gappedA[a];
-                smallSeq[1] = '\0';
-                int w = [BWT_MatcherSC whichChar:smallSeq[0] inContainer:acgt];
+                int w = [BWT_MatcherSC whichChar:info.gappedA[a] inContainer:acgt];
                 posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]++;
             }
         }

@@ -44,16 +44,23 @@
     
     int rowOfRead = 0;
     int firstNonNoCharLoc = 0;
+    int counter = 0;
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
         ED_Info *read = [readAlignmentsArr objectAtIndex:i];
+        if (read.position == 12676)
+            NSLog(@"%i",read.position);
         int lenA = strlen(read.gappedA);
         int placeToInsertChar = -1;
+        int insCount = 0;
+        if (read.insertion)
+            lenA = strlen(read.gappedB);
         for (int x = 0; x < lenA; x++) {
             AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
             if (!gridPos) {
                 gridPos = [[AlignmentGridPosition alloc] init];
                 alignmentGridPositionsArr[read.position+x] = gridPos;
             }
+            
             gridPos.startIndexInreadAlignmentsArr = read.position;
             gridPos.positionRelativeToReadStart = x;
             gridPos.readLen = lenA;
@@ -76,16 +83,43 @@
                 readInfoNum = kReadInfoReadMiddle;
             
             if (readInfoNum == kReadInfoReadStart) {
+                counter = 0;
                 placeToInsertChar = 0;
-                while (placeToInsertChar < gridPos.str.length && [gridPos.str characterAtIndex:placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
-                    placeToInsertChar++;
+                
+                while (placeToInsertChar < gridPos.str.length && [gridPos.str characterAtIndex:placeToInsertChar] != kAlignmentGridViewCharColumnNoChar) {
+                            placeToInsertChar++;
+                    }
             }
-            if (placeToInsertChar < gridPos.str.length) {
-                [gridPos.str replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%c",read.gappedA[x]]];
-                [gridPos.readInfoStr replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%i",readInfoNum]];
+            
+            if ([alignmentGridPositionsArr[12678].str characterAtIndex:placeToInsertChar] == 'G' && alignmentGridPositionsArr[12678] == gridPos)
+                NSLog(@"%c, %i, %i",[gridPos.str characterAtIndex:placeToInsertChar],placeToInsertChar,gridPos.startIndexInreadAlignmentsArr);
+            
+            if (read.insertion) {
+//                break;
+//                if (alignmentGridPositionsArr[12746] == gridPos)
+//                    NSLog(@"afsas");
+                if (read.gappedB[x] == kDelMarker)
+                    insCount++;
+//                if (x+insCount >= lenA)
+//                    break;
+//                if (placeToInsertChar >= gridPos.str.length)
+//                    NSLog(@"NOT WORKING");
+                else {
+                    gridPos = alignmentGridPositionsArr[read.position+x-insCount];
+                    [gridPos.str replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%c",read.gappedA[x]]];
+                    [gridPos.readInfoStr replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%i",readInfoNum]];
+                    counter++;
+//                    printf("\n%s",[gridPos.str UTF8String]);
+                }
             }
-            else
-                NSLog(@"An insertion is present");
+            else {
+                if (placeToInsertChar < gridPos.str.length) {
+                    [gridPos.str replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%c",read.gappedA[x]]];
+                    [gridPos.readInfoStr replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%i",readInfoNum]];
+                }
+                else
+                    NSLog(@"Beyond str len");
+            }
 //            else {
 //                [gridPos.str appendFormat:@"%c",read.gappedA[x]];
 //                [gridPos.readInfoStr appendFormat:@"%i",readInfoNum];
@@ -101,6 +135,7 @@
 //                rowOfRead = gridPos.str.length-1;
 //            }
         }
+        printf("\n%s",[alignmentGridPositionsArr[read.position].str UTF8String]);
     }
 }
 
