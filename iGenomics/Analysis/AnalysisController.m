@@ -51,6 +51,7 @@
     mutationSupportStpr.maximumValue = kMutationSupportMax;
     
     [self resetDisplay];
+    [self resetGridViewForType:covGridView];
     [super viewDidLoad];
 
 //    [self setUpIPhoneToolbar];
@@ -201,8 +202,8 @@
     
     [covGridView setDelegate:self];
     [alignmentGridView setDelegate:self];
-    [covGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
-    [alignmentGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
+    [covGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight andDoInitialMutationFind:YES];
+    [alignmentGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight andDoInitialMutationFind:NO];
     
     gridView = covGridView;
 //    [gridView setDelegate:self];

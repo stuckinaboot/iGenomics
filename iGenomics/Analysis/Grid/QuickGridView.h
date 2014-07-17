@@ -179,7 +179,7 @@ typedef enum {
 - (IBAction)pxlOffsetSliderValChanged:(id)sender;
 
 - (void)firstSetUp;
-- (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight;
+- (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight andDoInitialMutationFind:(BOOL)initialFindMuts ;
 - (void)setMaxCovValWithNumOfCols:(int)cols;
 - (void)setUpGridViewForPixelOffset:(double)offSet;
 - (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex;

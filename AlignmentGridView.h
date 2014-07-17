@@ -17,17 +17,10 @@
 #define kAlignmentGridViewNumOfGridSections 4 //Includes graph row for spacing reasons and to possibly put insertion buttons there
 
 @interface AlignmentGridView : QuickGridView {
-//    NSMutableArray *positionMatchedCharsArr;
-//    NSMutableArray *positionMatchedIndecesArr;
-//    NSMutableArray *alignmentGridPositionsArr;
-//    char *alignmentGridPosStrings;
-//    char *alignmentGridPosReadInfo;
     __strong AlignmentGridPosition **alignmentGridPositionsArr;//Strong means ARC won't destory this object unless it is set to nil, ** is a Pointer to a pointer
-//    AlignmentGridPosition *alignmentGridPositions;
     int currYOffset;
-//    ED_Info *alignmentGridPositionsArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];
-//    int readStartsIndexArr[kMaxBytesForIndexer*kMaxMultipleToCountAt];//Size of the genome, contains the first index in the readAlignmentsArr where a read matched pos was there
     
+    BOOL isScrollingHorizontally;
 }
 - (void)setUpAlignmentGridPositionsArr;
 //- (void)setUpPositionMatchedCharsArr;

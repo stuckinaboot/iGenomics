@@ -46,7 +46,7 @@
     currOffset = 0;
 }
 
-- (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight {
+- (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight andDoInitialMutationFind:(BOOL)initialFindMuts {
     totalRows = rows;
     totalCols = cols;
     
@@ -81,7 +81,8 @@
     
     numOfBoxesPerPixel = kPixelWidth;
     [self setUpGridViewForPixelOffset:0];
-    [self initialMutationFind];
+    if (initialFindMuts)
+        [self initialMutationFind];
 }
 
 - (void)setMaxCovValWithNumOfCols:(int)cols {

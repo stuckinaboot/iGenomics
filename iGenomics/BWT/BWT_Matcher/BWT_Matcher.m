@@ -123,8 +123,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             int charsToTrim = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
             if (a.distance + charsToTrim <= maxSubs) {
                 [self updatePosOccsArrayWithRange:NSMakeRange(a.position, strlen(a.gappedA)-charsToTrim) andED_Info:a];
-                if (a.position+strlen(a.gappedA) >= 12746 && a.position < 12746)
-                    NSLog(@"%i %s %s",a.position, a.gappedA, a.gappedB);
             }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
@@ -208,11 +206,6 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
 //    if (info.isRev)
 //        query = [self getReverseComplementForSeq:query];
     if (!info.insertion && info.distance > 0) {
-        if (info.position+strlen(info.gappedA) >= 12746 && info.position < 12746) {
-            NSLog(@"RECORDING NORMAL: %i",posOccArray[2][12746]);
-            if (posOccArray[2][12746] == 19 || posOccArray[2][12746] == 25)
-            NSLog(@"SHIT IS GOING DOWN");
-        }
         for (int i = range.location; i<range.length+range.location; i++) {
             int c = [BWT_MatcherSC whichChar:info.gappedA[i-range.location] inContainer:acgt];
             
@@ -223,12 +216,8 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             
             posOccArray[c][i]++;
         }
-        if (info.position+strlen(info.gappedA) >= 12746 && info.position < 12746)
-            NSLog(@"RECORDING NORMAL: %i",posOccArray[2][12746]);
     }
     else if (info.distance == 0) {
-        if (info.position+strlen(info.gappedA) >= 12746 && info.position < 12746)
-            NSLog(@"RECORDING EXACT: %i",posOccArray[2][12746]);
         for (int i = info.position; i<range.length+info.position; i++) {
             int c = [BWT_MatcherSC whichChar:info.gappedA[i-info.position] inContainer:acgt];
             
@@ -239,15 +228,9 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
             
             posOccArray[c][i]++;
         }
-        if (info.position+strlen(info.gappedA) >= 12746 && info.position < 12746)
-            NSLog(@"RECORDING EXACT: %i",posOccArray[2][12746]);
     }
     else {
-        if (info.position+strlen(info.gappedA) >= 12746 && info.position < 12746)
-            NSLog(@"RECORDING INDEL: %i",posOccArray[2][12746]);
         [self recordInDel:info];
-        if (info.position+strlen(info.gappedA) >= 12746 && info.position < 12746)
-            NSLog(@"RECORDING INDEL: %i",posOccArray[2][12746]);
     }
     
     if (kDebugAllInfo > 0) {

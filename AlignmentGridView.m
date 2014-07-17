@@ -36,21 +36,17 @@
     
     for (int i = 0; i < dgenomeLen; i++) {
         AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
-        gridPos.str = [[NSMutableString alloc] initWithString:noCharLongStr];
-        gridPos.readInfoStr = [[NSMutableString alloc] initWithString:noCharLongStr];
+        gridPos.str = strdup([noCharLongStr UTF8String]);
+        gridPos.readInfoStr = calloc(noCharLongStr.length, sizeof(int));
         alignmentGridPositionsArr[i] = gridPos;
     }
     
     int counter = 0;
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
         ED_Info *read = [readAlignmentsArr objectAtIndex:i];
-        if (read.position == 12746)
-            NSLog(@"%i",read.position);
         int lenA = (int)strlen(read.gappedA);
         int placeToInsertChar = -1;
         int insCount = 0;
-        if (read.position+lenA >= 12746 && read.position < 12746)
-            NSLog(@"%i %s %s",read.position, read.gappedA, read.gappedB);
         for (int x = 0; x < lenA; x++) {
             
             AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
@@ -62,11 +58,6 @@
             gridPos.startIndexInreadAlignmentsArr = read.position;
             gridPos.positionRelativeToReadStart = x;
             gridPos.readLen = lenA;
-            
-            if (!gridPos.str)
-                gridPos.str = [[NSMutableString alloc] init];
-            if (!gridPos.readInfoStr)
-                gridPos.readInfoStr = [[NSMutableString alloc] init];
             
             int readInfoNum;
             if (x+insCount == 0)
@@ -83,7 +74,8 @@
             if (readInfoNum == kReadInfoReadStart) {
                 counter = 0;
                 placeToInsertChar = 0;
-                while (placeToInsertChar < gridPos.str.length && [gridPos.str characterAtIndex:placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
+                
+                while (placeToInsertChar < maxCoverageVal && gridPos.str[placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
                     placeToInsertChar++;
             }
             
@@ -92,31 +84,19 @@
                     break;
                 if (read.gappedB[x] == kDelMarker)
                     insCount++;
-//                else {
-//                    gridPos = alignmentGridPositionsArr[read.position+x-insCount];
                     if (x + insCount >= lenA)
                         break;
-                    if ([alignmentGridPositionsArr[read.position+x+1].str characterAtIndex:placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
-                        NSLog(@"THIS IS CRAZY");
-                    [gridPos.str replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%c",read.gappedA[x+insCount]]];
-                    [gridPos.readInfoStr replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%i",readInfoNum]];
+                gridPos.str[placeToInsertChar] = read.gappedA[x+insCount];
+                gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
                     counter++;
-//                    printf("\n%s",[gridPos.str UTF8String]);
-//                }
             }
             else {
-                if (placeToInsertChar < gridPos.str.length) {
-                    [gridPos.str replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%c",read.gappedA[x]]];
-                    [gridPos.readInfoStr replaceCharactersInRange:NSMakeRange(placeToInsertChar, 1) withString:[NSString stringWithFormat:@"%i",readInfoNum]];
+                if (placeToInsertChar < maxCoverageVal) {//gridPos.str.length) {
+                    gridPos.str[placeToInsertChar] = read.gappedA[x];
+                    gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
                 }
-//                else
-//                    NSLog(@"Beyond str len");
             }
-//            if (read.insertion)
-//                printf("\n%s   Pos: %i     Read Aligned in col: %i, %i",[gridPos.str UTF8String],read.position+x,(readInfoNum == kReadInfoReadStart) ? read.position : -1, (readInfoNum == kReadInfoReadStart) ? placeToInsertChar : -1);
         }
-//        printf("\n\n");
-//        printf("\n%i  %i",read.position,placeToInsertChar);
     }
 }
 
@@ -209,8 +189,8 @@
                 }
                 else {//A through insertion
                     AlignmentGridPosition *gridPos = alignmentGridPositionsArr[j];
-                    if (gridPos.str.length > maxAlignmentStrLen)
-                        maxAlignmentStrLen = gridPos.str.length;
+                    if (coverageArray[j] > maxAlignmentStrLen)
+                        maxAlignmentStrLen = coverageArray[j];
                     [self drawCharColumnWithAlignmentGridPos:gridPos atX:x andY:y-currYOffset andYToNotCross:y];
 //                    [self drawCharColumnWithTxt:[positionMatchedCharsArr objectAtIndex:j] atX:x andY:y];
                 }
@@ -285,7 +265,7 @@
     float x = offset;
     float y = kPosLblHeight+graphBoxHeight;
     
-    for (int i = 1; i<totalRows; i++) {
+    for (int i = 1; i<ARow; i++) {
         [self drawRectangle:CGRectMake(x, y, self.frame.size.width+(abs(offset)), kGridLineWidthRow) withRGB:rgb];
         y += kGridLineWidthRow+boxHeight;
     }
@@ -307,11 +287,12 @@
     CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(0, yToNotCross, self.bounds.size.width, self.bounds.size.height-yToNotCross));
     CGPoint point;
     
-    for (int i = 0; i < gridPos.str.length; i++) {
+    NSString *gridPosStr = [NSString stringWithFormat:@"%s",gridPos.str];
+    
+    for (int i = 0; i < maxCoverageVal; i++) {
         point = CGPointMake(x, y);
-        char c = [gridPos.readInfoStr characterAtIndex:i];
-        if (c != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
-            int readInfoNum = c-'0';
+        if (gridPos.str[i] != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
+            int readInfoNum = gridPos.readInfoStr[i];
             
             if (numOfBoxesPerPixel > kPixelWidth)
                 [self drawReadBodyAtPoint:point];
@@ -333,9 +314,10 @@
                 }
             }
             if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
-                char gridPosChar = [gridPos.str characterAtIndex:i];
+//                char gridPosChar = [gridPos.str characterAtIndex:i];
+                char gridPosChar = gridPos.str[i];
                 RGB *rgb = [self colorForIndexInACGTWithInDelsStr:-1 orChar:gridPosChar usingIndex:NO];
-                [self drawText:[gridPos.str substringWithRange:NSMakeRange(i, 1)] atPoint:point withRGB:(double[3]){rgb.r, rgb.g,rgb.b}];//May want to change the color for each read or something
+                [self drawText:[gridPosStr substringWithRange:NSMakeRange(i, 1)] atPoint:point withRGB:(double[3]){rgb.r, rgb.g,rgb.b}];//May want to change the color for each read or something
             }
         }
         y += kGridLineWidthRow+boxHeight;
