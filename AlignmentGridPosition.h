@@ -26,6 +26,7 @@
 @property (nonatomic) int startIndexInreadAlignmentsArr, readLen;
 @property (nonatomic) int positionRelativeToReadStart;//0 if is start of the read
 //@property (nonatomic) NSMutableString *str;
+@property (nonatomic) int highestChar;//AKA set equal to the highest placeToInsertChar for this position
 @property (nonatomic) char *str;
 @property (nonatomic) int *readInfoStr;
 //@property (nonatomic) NSMutableString *readInfoStr;

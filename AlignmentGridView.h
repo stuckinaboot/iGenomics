@@ -23,6 +23,7 @@
     BOOL isScrollingHorizontally;
 }
 - (void)setUpAlignmentGridPositionsArr;
+- (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount;
 //- (void)setUpPositionMatchedCharsArr;
 - (void)drawReadStartAtPoint:(CGPoint)point;
 - (void)drawReadEndAtPoint:(CGPoint)point;

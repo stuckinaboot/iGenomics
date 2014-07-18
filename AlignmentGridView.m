@@ -59,17 +59,7 @@
             gridPos.positionRelativeToReadStart = x;
             gridPos.readLen = lenA;
             
-            int readInfoNum;
-            if (x+insCount == 0)
-                readInfoNum = kReadInfoReadStart;
-            else if (x+insCount == lenA-1)
-                readInfoNum = kReadInfoReadEnd;
-            else if (x+insCount == 1)
-                readInfoNum = kReadInfoReadPosAfterStart;
-            else if (x+insCount == lenA-2)
-                readInfoNum = kReadInfoReadPosBeforeEnd;
-            else
-                readInfoNum = kReadInfoReadMiddle;
+            int readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
             
             if (readInfoNum == kReadInfoReadStart) {
                 counter = 0;
@@ -79,13 +69,25 @@
                     placeToInsertChar++;
             }
             
+            if (placeToInsertChar+1 > gridPos.highestChar)
+                gridPos.highestChar = placeToInsertChar+1;//+1 because is basically counting the row in normal numbers for math purposes
+            
             if (read.insertion) {
                 if (placeToInsertChar >= maxCoverageVal)
                     break;
-                if (read.gappedB[x] == kDelMarker)
+                int temp = x+insCount;
+                int prevX = x+insCount;
+                while (temp < lenA && read.gappedB[temp] == kDelMarker) {
                     insCount++;
-                    if (x + insCount >= lenA)
-                        break;
+                    temp++;
+                }
+                if (prevX != temp) {
+                    readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
+                    if (readInfoNum == kReadInfoReadEnd)
+                        alignmentGridPositionsArr[read.position+prevX].readInfoStr[placeToInsertChar] = kReadInfoReadPosBeforeEnd;
+                }
+                if (x + insCount >= lenA)
+                    break;
                 gridPos.str[placeToInsertChar] = read.gappedA[x+insCount];
                 gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
                     counter++;
@@ -98,6 +100,19 @@
             }
         }
     }
+}
+
+- (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount {
+    if (x+insCount == 0)
+         return kReadInfoReadStart;
+    else if (x+insCount == len-1)
+        return kReadInfoReadEnd;
+    else if (x+insCount == 1)
+         return kReadInfoReadPosAfterStart;
+    else if (x+insCount == len-2)
+         return kReadInfoReadPosBeforeEnd;
+    else
+         return kReadInfoReadMiddle;
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
@@ -189,8 +204,8 @@
                 }
                 else {//A through insertion
                     AlignmentGridPosition *gridPos = alignmentGridPositionsArr[j];
-                    if (coverageArray[j] > maxAlignmentStrLen)
-                        maxAlignmentStrLen = coverageArray[j];
+                    if (gridPos.highestChar > maxAlignmentStrLen)
+                        maxAlignmentStrLen = gridPos.highestChar;
                     [self drawCharColumnWithAlignmentGridPos:gridPos atX:x andY:y-currYOffset andYToNotCross:y];
 //                    [self drawCharColumnWithTxt:[positionMatchedCharsArr objectAtIndex:j] atX:x andY:y];
                 }
