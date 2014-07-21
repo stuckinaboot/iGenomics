@@ -12,31 +12,9 @@
 #import "GlobalVars.h"
 #import "FilePreviewPopoverController.h"
 #import "AnalysisPopoverController.h"
+#import "FileInputView.h"
 
 #import "ParametersController.h"
-
-
-#define kDefaultRefFilesNamesFile @"NamesOfDefaultReferenceFiles"
-#define kDefaultReadsFilesNamesFile @"NamesOfDefaultReadsFiles"
-
-#define kNumOfComponentsInPickers 1
-
-#define kComponent1Title @"Default"
-
-#define kSavedFilesTitle @"Saved Files"
-#define kSavedFilesIndex 0
-#define kDropboxFilesTitle @"Dropbox Files"
-#define kDropboxFilesIndex 1
-
-#define kNumOfFilePickOptions 2
-
-#define kExtDot '.'
-
-#define kFastaFileExt @"fa"
-
-#define kLockedBtnAlpha 0.5
-
-#define kMinTapsRequired 2
 
 #define kOldIphoneTblViewScaleFactor 1.4
 #define kFilePickerDistBwtBtnAndTblView 8

@@ -48,9 +48,9 @@
                                     <action selector="displayAnalysisIPhoneToolbar:" destination="-1" id="FrB-Ie-2qC"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Mmi-x0-oAf">
+                            <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Vsk-Km-5dA">
                                 <connections>
-                                    <action selector="donePressed:" destination="-1" id="zDw-LJ-Gem"/>
+                                    <action selector="donePressed:" destination="-1" id="gB5-7d-Fej"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>
@@ -157,6 +157,11 @@
                             <barButtonItem key="leftBarButtonItem" systemItem="action" id="h84-mU-vMc">
                                 <connections>
                                     <action selector="exportDataPressed:" destination="-1" id="irV-ow-fmC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" systemItem="stop" id="FDo-Ca-f9d">
+                                <connections>
+                                    <action selector="donePressed:" destination="-1" id="mbt-Iq-d8r"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>

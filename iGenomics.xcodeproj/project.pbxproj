@@ -119,6 +119,8 @@
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
 		A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */; };
 		A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */; };
+		A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D5197D687100E64DD7 /* FileInputView.m */; };
+		A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D9197D6B0000E64DD7 /* FileManager.m */; };
 		A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE881F18FC79CE00F9D682 /* CopyLabel.m */; };
 		A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882218FC7DC000F9D682 /* IconIdea2.png */; };
 		A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882418FC7EA800F9D682 /* Images.xcassets */; };
@@ -286,6 +288,10 @@
 		A3DB3770170214B9007F0B9E /* RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RGB.m; path = iGenomics/RGB.m; sourceTree = "<group>"; };
 		A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = New.Ecoli.5k.txt; path = ../../../Downloads/snps2/New.Ecoli.5k.txt; sourceTree = "<group>"; };
 		A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.5k.reads.txt; path = ../../../Downloads/snps2/Ecoli.5k.reads.txt; sourceTree = "<group>"; };
+		A3E282D4197D687100E64DD7 /* FileInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInputView.h; sourceTree = "<group>"; };
+		A3E282D5197D687100E64DD7 /* FileInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInputView.m; sourceTree = "<group>"; };
+		A3E282D8197D6B0000E64DD7 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		A3E282D9197D6B0000E64DD7 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		A3EE881E18FC79CE00F9D682 /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
 		A3EE881F18FC79CE00F9D682 /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		A3EE882218FC7DC000F9D682 /* IconIdea2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconIdea2.png; path = iGenomics/IconIdea2.png; sourceTree = "<group>"; };
@@ -714,6 +720,7 @@
 				A3AC49B6169791EF00DD9266 /* FilePickerController.m */,
 				A3AC49B7169791EF00DD9266 /* FilePickerController.xib */,
 				A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */,
+				A3E282D7197D687500E64DD7 /* File Input View */,
 			);
 			name = "File Picker";
 			sourceTree = "<group>";
@@ -934,6 +941,25 @@
 			name = RGB;
 			sourceTree = "<group>";
 		};
+		A3E282D7197D687500E64DD7 /* File Input View */ = {
+			isa = PBXGroup;
+			children = (
+				A3E282D4197D687100E64DD7 /* FileInputView.h */,
+				A3E282D5197D687100E64DD7 /* FileInputView.m */,
+				A3E282DB197D6B0200E64DD7 /* File Manager */,
+			);
+			name = "File Input View";
+			sourceTree = "<group>";
+		};
+		A3E282DB197D6B0200E64DD7 /* File Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A3E282D8197D6B0000E64DD7 /* FileManager.h */,
+				A3E282D9197D6B0000E64DD7 /* FileManager.m */,
+			);
+			name = "File Manager";
+			sourceTree = "<group>";
+		};
 		A3EE882118FC79D200F9D682 /* Copy Label */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,6 +1145,7 @@
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
+				A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */,
 				A3C17028197079B2008C7A4C /* OBSlider.m in Sources */,
 				A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */,
 				A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */,
@@ -1139,6 +1166,7 @@
 				A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,
+				A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
 				A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */,
 				A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */,
