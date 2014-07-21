@@ -74,6 +74,8 @@ typedef enum {
 #define kBWTFileExt @"bwt"
 #define kBWTFileDividerBtwBWTandBenchmarkPosList @"\n--------\n"
 
+static const int kImplictUnicode[6] = {0xFA3,0x96F,0x2553,0x2222,0x3A3,0xD7B};
+
 extern int bytesForIndexer;
 extern int dgenomeLen; //d means including dollar sign
 extern char *originalStr;
@@ -83,6 +85,7 @@ extern char *acgt;
 extern int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
 extern int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 extern int acgtTotalOccs[kACGTLen];
+extern BOOL drawTextWithDefinedUnicodeChars;
 
 extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned read
 
@@ -92,5 +95,6 @@ extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned
 + (BOOL)isIpad;
 + (BOOL)isOldIPhone;
 + (NSString*)extFromFileName:(NSString *)name;
++ (NSString*)implicitDefinedUnicodeValOfTxt:(NSString*)txt;
 //+ (void)displayReadAlignmentDataInConsole;
 @end

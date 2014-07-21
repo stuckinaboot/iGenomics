@@ -101,6 +101,8 @@
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3C17028197079B2008C7A4C /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C17027197079B2008C7A4C /* OBSlider.m */; };
 		A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C215171777F72600B0C6D5 /* MutationInfo.m */; };
+		A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C94C5919799930008202E6 /* ReadPopoverController.m */; };
+		A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C94C5A19799930008202E6 /* ReadPopoverController.xib */; };
 		A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */; };
 		A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */; };
 		A3C9C9CC189E01480001EF64 /* flu.H1N1.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C2189E01480001EF64 /* flu.H1N1.fa */; };
@@ -261,6 +263,9 @@
 		A3C17027197079B2008C7A4C /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A3C215161777F72600B0C6D5 /* MutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutationInfo.h; sourceTree = "<group>"; };
 		A3C215171777F72600B0C6D5 /* MutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutationInfo.m; sourceTree = "<group>"; };
+		A3C94C5819799930008202E6 /* ReadPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadPopoverController.h; sourceTree = "<group>"; };
+		A3C94C5919799930008202E6 /* ReadPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadPopoverController.m; sourceTree = "<group>"; };
+		A3C94C5A19799930008202E6 /* ReadPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadPopoverController.xib; sourceTree = "<group>"; };
 		A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.fa; sourceTree = "<group>"; };
 		A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.reads.fa; sourceTree = "<group>"; };
 		A3C9C9C2189E01480001EF64 /* flu.H1N1.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.fa; sourceTree = "<group>"; };
@@ -416,6 +421,7 @@
 		A31AA7CD16E30BD700D3D808 /* Popovers */ = {
 			isa = PBXGroup;
 			children = (
+				A3C94C5D19799933008202E6 /* Read Popover */,
 				A34E8B9416B5EEF1002F3AB7 /* Insertions Popover */,
 				A3FF3AD916AB26870095EACF /* Normal Popover */,
 				A3531EA916BEFF3C00768A31 /* Mutations Popover */,
@@ -844,6 +850,16 @@
 			name = Mutation;
 			sourceTree = "<group>";
 		};
+		A3C94C5D19799933008202E6 /* Read Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A3C94C5819799930008202E6 /* ReadPopoverController.h */,
+				A3C94C5919799930008202E6 /* ReadPopoverController.m */,
+				A3C94C5A19799930008202E6 /* ReadPopoverController.xib */,
+			);
+			name = "Read Popover";
+			sourceTree = "<group>";
+		};
 		A3C9C9BE189E01480001EF64 /* anthrax.capsule */ = {
 			isa = PBXGroup;
 			children = (
@@ -1049,6 +1065,7 @@
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
+				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
 				A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */,
 				A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */,
 				A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */,
@@ -1117,6 +1134,7 @@
 				A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */,
 				A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */,
 				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
+				A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 				A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
@@ -1189,7 +1207,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D6FAA405-8F65-4CEF-922A-CD40E76D2366";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1219,7 +1237,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D6FAA405-8F65-4CEF-922A-CD40E76D2366";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

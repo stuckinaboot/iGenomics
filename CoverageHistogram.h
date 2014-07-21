@@ -38,6 +38,8 @@
 #define kCoverageHistogramXAxisTitleDistFromScreenEdge 20
 #define kCoverageHistogramYAxisTitleDistFromScreenEdge 15
 
+#define kCoverageHistogramNormalCurveLinesPerBox 4
+
 @interface CoverageHistogram : IPhonePopoverHandler {
     UIImageView *imgView;
     
@@ -50,7 +52,7 @@
 }
 - (void)createHistogramWithMaxCovVal:(int)maxCovVal;
 - (void)drawNormalCurveInRect:(CGRect)rect;
-- (float)normalCurveFormulaValueForPos:(int)x;
+- (float)normalCurveFormulaValueForPos:(float)x;
 - (void)drawAxisesInRect:(CGRect)rect;
 - (void)drawPlotInRect:(CGRect)rect;
 - (void)drawAxisLblsInRect:(CGRect)rect withCovFreqArr:(int[])covFreqArr andCovFreqArrMax:(int)covFreqArrMax;

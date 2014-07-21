@@ -65,7 +65,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="QuickGridView">
-                    <rect key="frame" x="43" y="32" width="525" height="268"/>
+                    <rect key="frame" x="42" y="32" width="526" height="268"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <accessibility key="accessibilityConfiguration">
@@ -103,7 +103,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="43" id="0oZ-YM-DvB"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="42" id="0oZ-YM-DvB"/>
                 <constraint firstItem="1017" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="2Nc-Q6-t4Z"/>
                 <constraint firstAttribute="trailing" secondItem="1172" secondAttribute="trailing" constant="15" id="4Az-g0-Md8"/>
                 <constraint firstItem="799" firstAttribute="leading" secondItem="791" secondAttribute="trailing" constant="13" id="5IF-dR-j0b"/>

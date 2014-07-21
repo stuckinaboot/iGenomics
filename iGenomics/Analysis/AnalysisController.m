@@ -600,6 +600,16 @@
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:index];
 }
 
+- (void)displayPopoverWithViewController:(UIViewController *)controller atPoint:(CGPoint)point {
+    if ([GlobalVars isIpad]) {
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+        [popoverController presentPopoverFromRect:CGRectMake(point.x, point.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else {
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+}
+
 //Exports data
 
 - (IBAction)exportDataPressed:(id)sender {

@@ -128,6 +128,7 @@ typedef enum {
 - (NSArray*)getCumulativeSeparateGenomeLenArray;
 - (NSString*)genomeSegmentNameForIndexInGenomeNameArr:(int)index;
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index;
+- (void)displayPopoverWithViewController:(UIViewController*)controller atPoint:(CGPoint)point;
 @end
 
 @interface QuickGridView : UIView <UIScrollViewDelegate> {
@@ -165,7 +166,6 @@ typedef enum {
     int indexInGenomeNameArr;
     
     UIImage *newDrawingViewImg;
-    
 }
 @property (nonatomic) double boxHeight, currOffset, kTxtFontSize, kMinTxtFontSize, graphBoxHeight;
 @property (nonatomic) double boxWidth, boxWidthDecimal;

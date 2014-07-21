@@ -36,9 +36,10 @@
 
 - (void)drawNormalCurveInRect:(CGRect)rect {
     float maxNormVal = [self normalCurveFormulaValueForPos:posOfHighestFrequency];
-    float x = kCoverageHistogramXAxisDistFromScreenLeft+kCoverageHistogramAxisWidth;
+    float x = kCoverageHistogramXAxisDistFromScreenLeft+kCoverageHistogramAxisWidth+boxWidth/2;
     float y = rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-kCoverageHistogramAxisWidth;
-    int i = 0;
+    float i = 0;
+    float step = 1.0f/kCoverageHistogramNormalCurveLinesPerBox;
     while (i*boxWidth < rect.size.width) {
         float normalVal = [self normalCurveFormulaValueForPos:i];
         float actualYVal = rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom);
@@ -46,16 +47,17 @@
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
         CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
         CGContextMoveToPoint(UIGraphicsGetCurrentContext(), x, y);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth, actualYVal);
+        if (i > 0)
+            CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth+boxWidth/2, actualYVal);
         CGContextStrokePath(UIGraphicsGetCurrentContext());
-        x = kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth;
+        x = kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth+boxWidth/2;
         y = actualYVal;
 //        [self drawRectangle:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth, actualYVal, 1.0f, 1.0f) withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g, dnaColors.black.b}];
-        i++;
+        i += step;
     }
 }
 
-- (float)normalCurveFormulaValueForPos:(int)x {
+- (float)normalCurveFormulaValueForPos:(float)x {
     //Everything in here is following the normal distribution formula as defined here: http://upload.wikimedia.org/math/7/3/a/73ad15f79b11af99bd2477ff3ffc5a35.png
 
     float sd = sqrtf(posOfHighestFrequency);

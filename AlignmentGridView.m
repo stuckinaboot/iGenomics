@@ -21,7 +21,11 @@
 
 - (void)firstSetUp {
     [super firstSetUp];
-    [GlobalVars sortArrayUsingQuicksort:readAlignmentsArr withStartPos:0 andEndPos:[readAlignmentsArr count]-1];
+    longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(readLongPressed:)];
+    longPressRecognizer.minimumPressDuration = kReadLongPressRecognizerMinDuration;
+    [self addGestureRecognizer:longPressRecognizer];
+    if ([readAlignmentsArr count] > 1) //No need to sort if count is 0 or 1
+        [GlobalVars sortArrayUsingQuicksort:readAlignmentsArr withStartPos:0 andEndPos:[readAlignmentsArr count]-1];
 //    [self setUpPositionMatchedCharsArr];
     [self setMaxCovValWithNumOfCols:dgenomeLen-1];
     [self setUpAlignmentGridPositionsArr];
@@ -38,6 +42,7 @@
         AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
         gridPos.str = strdup([noCharLongStr UTF8String]);
         gridPos.readInfoStr = calloc(noCharLongStr.length, sizeof(int));
+        gridPos.readIndexStr = calloc(noCharLongStr.length, sizeof(int));//+1 rather than initialize the whole array to -1, I will just later on subtract 1
         alignmentGridPositionsArr[i] = gridPos;
     }
     
@@ -68,6 +73,8 @@
                 while (placeToInsertChar < maxCoverageVal && gridPos.str[placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
                     placeToInsertChar++;
             }
+            
+            gridPos.readIndexStr[placeToInsertChar] = i+1;
             
             if (placeToInsertChar+1 > gridPos.highestChar)
                 gridPos.highestChar = placeToInsertChar+1;//+1 because is basically counting the row in normal numbers for math purposes
@@ -148,9 +155,13 @@
     float x = firstPtOffset+self.kGridLineWidthCol;//If this passes the self.frame.size.width, stop drawing (break)
     float y = kPosLblHeight;
 
+    float maxAlignmentStrLen = 0;
+    
     for (int i = 0; i<kAlignmentGridViewNumOfGridSections; i++) {
-        float maxAlignmentStrLen = 0;
+        BOOL mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
+        int indexInMutPresentArr = 0;
         for (int j = firstPtToDraw; j<totalCols && x <= self.frame.size.width; j += numOfBoxesPerPixel, x += self.kGridLineWidthCol+boxWidth) {
+            float graphCurrY = 0;
             if (i > GraphRow) {//Not Graph Row
                 //Depending on the value of i, draw foundGenome, refGenome, etc.
                 if (i == RefRow) {//ref
@@ -162,20 +173,7 @@
                         for (int t = 0; t<kACGTLen; t++) {
                             if (kACGTStr[t] == foundGenome[0][j]) {
                                 //v = t;
-                                switch (t) {
-                                    case 0:
-                                        rgb = dnaColors.aLbl;
-                                        break;
-                                    case 1:
-                                        rgb = dnaColors.cLbl;
-                                        break;
-                                    case 2:
-                                        rgb = dnaColors.gLbl;
-                                        break;
-                                    case 3:
-                                        rgb = dnaColors.tLbl;
-                                        break;
-                                }
+                                rgb = [self colorForIndexInACGTWithInDelsStr:t orChar:' ' usingIndex:YES];
                                 break;
                             }
                             else if (kDelMarker == foundGenome[0][j]) {
@@ -191,11 +189,11 @@
                         }
                         double rgbVal[3] = {rgb.r, rgb.g, rgb.b};
                         [self drawText:[NSString stringWithFormat:@"%c",foundGenome[0][j]] atPoint:CGPointMake(x, y) withRGB:rgbVal];
-                        float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
-                        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
-                        int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
-                        
-                        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
+//                        float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
+//                        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
+//                        int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
+//                        
+//                        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
                         //                        [delegate mutationFoundAtPos:j];
                     }
                     else {//No mutation
@@ -230,8 +228,11 @@
                  X = (Coverage*Max Height)/ Max Val
                  */
                 
-                CGRect newRect = CGRectMake(x, y+(rect.size.height-newHeight), rect.size.width, newHeight);
+                graphCurrY = y+(rect.size.height-newHeight);
+                CGRect newRect = CGRectMake(x, graphCurrY, rect.size.width, newHeight);
                 BOOL mutationPresent = [self mutationPresentWithinInterval:j andEndIndex:j+numOfBoxesPerPixel-1];//Highlights the bar of the graph
+                mutationPresentArr[indexInMutPresentArr] = mutationPresent;
+                indexInMutPresentArr++;
                 RGB *color = (mutationPresent) ? dnaColors.mutHighlight : dnaColors.graph;
                 if (mutationPresent)
                     NSLog(@"");
@@ -240,6 +241,23 @@
                 //Put a position label above the graph
                 [self drawTickMarksForPoint:j andX:x];
             }
+            if (i == ARow) {
+                if (mutationPresentArr[indexInMutPresentArr] && boxWidth >= kThresholdBoxWidth) {
+                    float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
+                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
+                    int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
+                    
+                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
+                }
+                else if  (mutationPresentArr[indexInMutPresentArr] && boxWidth < kThresholdBoxWidth) {
+                    float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
+                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
+                    int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
+                    
+                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, y, highlightWidth, self.frame.size.height-kPosLblHeight));
+                }
+                indexInMutPresentArr++;
+            }
         }
         x = firstPtOffset;
         
@@ -247,9 +265,10 @@
             y += kGridLineWidthRow+boxHeight;
         else
             y += kGridLineWidthRow+graphBoxHeight;
-        if (maxAlignmentStrLen > 0)
-            [self fixScrollViewContentSizeWithMaxAlignmentStrLen:maxAlignmentStrLen];
     }
+    
+    if (maxAlignmentStrLen > 0)
+        [self fixScrollViewContentSizeWithMaxAlignmentStrLen:maxAlignmentStrLen];
     
     newDrawingViewImg = UIGraphicsGetImageFromCurrentImageContext();
     [self setNeedsDisplay];
@@ -299,6 +318,7 @@
     if (!gridPos.str)
         return;
     
+    CGContextSaveGState(UIGraphicsGetCurrentContext());
     CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(0, yToNotCross, self.bounds.size.width, self.bounds.size.height-yToNotCross));
     CGPoint point;
     
@@ -339,6 +359,8 @@
         if (y > self.bounds.size.height)
             break;
     }
+    
+    CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }
 
 - (void)drawReadStartAtPoint:(CGPoint)point {
@@ -367,6 +389,26 @@
     
     CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
+}
+
+//Read long pressed
+- (IBAction)readLongPressed:(id)sender {
+    CGPoint pt = [sender locationInView:self];
+    
+    //Get the xCoord in the scrollView
+    double xCoord = self.currOffset+pt.x;
+    
+    //Find the box that was clicked
+    CGPoint box = CGPointMake([self firstPtToDrawForOffset:xCoord],(int)((pt.y-(kPosLblHeight+graphBoxHeight))/(kGridLineWidthRow+self.boxHeight))-FoundRow);//Get the tapped box,... subtracts found row because is assuming box.y = 0 would mean the first row for displaying reads
+    
+    ED_Info *read = [readAlignmentsArr objectAtIndex:alignmentGridPositionsArr[(int)box.x].readIndexStr[(int)box.y]-1];
+    [self displayReadPopoverForRead:read atPosInGenome:box.x atPointOnScreen:pt];
+}
+
+- (void)displayReadPopoverForRead:(ED_Info *)read atPosInGenome:(int)pos atPointOnScreen:(CGPoint)point {
+    ReadPopoverController *controller = [[ReadPopoverController alloc] init];
+    [controller setUpWithRead:read];
+    [delegate displayPopoverWithViewController:controller atPoint:point];
 }
 
 @end

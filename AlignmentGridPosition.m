@@ -10,6 +10,6 @@
 
 @implementation AlignmentGridPosition
 
-@synthesize positionRelativeToReadStart, readInfoStr, readLen, startIndexInreadAlignmentsArr, str, highestChar;
+@synthesize positionRelativeToReadStart, readInfoStr, readIndexStr, readLen, startIndexInreadAlignmentsArr, str, highestChar;
 
 @end
