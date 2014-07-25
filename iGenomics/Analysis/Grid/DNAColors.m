@@ -12,6 +12,8 @@
 
 @synthesize defaultBackground, defaultLighterBackground, defaultLbl, covLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight, black, white, graph, segmentDivider, segmentDividerTxt, alignedRead;
 
+@synthesize importantMutationInfoHeterozygousMut, importantMutationInfoHomozygousMut, importantMutationInfoHeterozygousOther,importantMutationInfoHomozygousOther, importantMutationInfoNoMutation, importantMutationInfoNoAlignments;
+
 - (void)setUp {
     defaultBackground = [[RGB alloc] initWithVals:203/255.0f :203/255.0f :203/255.0f];
     defaultLighterBackground = [[RGB alloc] initWithVals:230/255.0f :230/255.0f :230/255.0f];
@@ -32,6 +34,13 @@
     segmentDivider = [[RGB alloc] initWithVals:1 :0 :0];
     segmentDividerTxt = [[RGB alloc] initWithVals:0 :0 :0];
     alignedRead = [[RGB alloc] initWithVals:251/255.0f :209/255.0f :222/255.0f];
+    
+    importantMutationInfoHeterozygousMut = [UIColor orangeColor];
+    importantMutationInfoHomozygousMut = [UIColor redColor];
+    importantMutationInfoHeterozygousOther = [UIColor darkGrayColor];
+    importantMutationInfoHomozygousOther = [UIColor blueColor];
+    importantMutationInfoNoMutation = [UIColor greenColor];
+    importantMutationInfoNoAlignments = [UIColor purpleColor];
 }
 
 @end

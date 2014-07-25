@@ -20,6 +20,9 @@
 		A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3161667196F0EF30083AD71 /* CoverageGridView.m */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
+		A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */; };
+		A3208B38197EED4700299A30 /* ImportantMutationsDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3208B37197EED4700299A30 /* ImportantMutationsDisplayView.m */; };
+		A3208B3C197EFDC000299A30 /* ImportantMutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */; };
@@ -121,6 +124,9 @@
 		A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A3166EC3DA00F23AD8 /* Ecoli.5k.reads.txt */; };
 		A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D5197D687100E64DD7 /* FileInputView.m */; };
 		A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D9197D6B0000E64DD7 /* FileManager.m */; };
+		A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E282DC197D96FA00E64DD7 /* FileInputView.xib */; };
+		A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */; };
+		A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */; };
 		A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE881F18FC79CE00F9D682 /* CopyLabel.m */; };
 		A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882218FC7DC000F9D682 /* IconIdea2.png */; };
 		A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882418FC7EA800F9D682 /* Images.xcassets */; };
@@ -155,6 +161,11 @@
 		A3161667196F0EF30083AD71 /* CoverageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageGridView.m; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImportantMutationsDisplayView.xib; sourceTree = "<group>"; };
+		A3208B36197EED4700299A30 /* ImportantMutationsDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportantMutationsDisplayView.h; sourceTree = "<group>"; };
+		A3208B37197EED4700299A30 /* ImportantMutationsDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportantMutationsDisplayView.m; sourceTree = "<group>"; };
+		A3208B3A197EFDC000299A30 /* ImportantMutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportantMutationInfo.h; sourceTree = "<group>"; };
+		A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportantMutationInfo.m; sourceTree = "<group>"; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = e_coli_1000_1.fq; path = "../../Lab Projects/bowtie-0.12.7/reads/e_coli_1000_1.fq"; sourceTree = "<group>"; };
@@ -292,6 +303,9 @@
 		A3E282D5197D687100E64DD7 /* FileInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInputView.m; sourceTree = "<group>"; };
 		A3E282D8197D6B0000E64DD7 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		A3E282D9197D6B0000E64DD7 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		A3E282DC197D96FA00E64DD7 /* FileInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInputView.xib; sourceTree = "<group>"; };
+		A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultImptMutsFiles.txt; sourceTree = "<group>"; };
+		A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FluImptMuts.txt; sourceTree = "<group>"; };
 		A3EE881E18FC79CE00F9D682 /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
 		A3EE881F18FC79CE00F9D682 /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		A3EE882218FC7DC000F9D682 /* IconIdea2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconIdea2.png; path = iGenomics/IconIdea2.png; sourceTree = "<group>"; };
@@ -438,6 +452,16 @@
 			name = Popovers;
 			sourceTree = "<group>";
 		};
+		A3208B39197EEDE700299A30 /* Important Mutations Display */ = {
+			isa = PBXGroup;
+			children = (
+				A3208B36197EED4700299A30 /* ImportantMutationsDisplayView.h */,
+				A3208B37197EED4700299A30 /* ImportantMutationsDisplayView.m */,
+				A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */,
+			);
+			name = "Important Mutations Display";
+			sourceTree = "<group>";
+		};
 		A3304A0818BC70B600D8B0AC /* File Preview Popover */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +486,7 @@
 			children = (
 				A337B19E18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.h */,
 				A337B19F18E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m */,
+				A3208B39197EEDE700299A30 /* Important Mutations Display */,
 			);
 			name = "iPhone Toolbar";
 			sourceTree = "<group>";
@@ -741,8 +766,10 @@
 			children = (
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
+				A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */,
 				A3AC49C616979B4600DD9266 /* Default Ref Files */,
 				A3AC49C716979B5500DD9266 /* Default Read Files */,
+				A3E282E0197DBD5D00E64DD7 /* Default Impt Muts Files */,
 				A3C9C9BE189E01480001EF64 /* anthrax.capsule */,
 				A3890A6F196B3F02002B6048 /* flu.H1N1s */,
 				A3C9C9C1189E01480001EF64 /* flu.H1N1 */,
@@ -853,6 +880,8 @@
 			children = (
 				A3C215161777F72600B0C6D5 /* MutationInfo.h */,
 				A3C215171777F72600B0C6D5 /* MutationInfo.m */,
+				A3208B3A197EFDC000299A30 /* ImportantMutationInfo.h */,
+				A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */,
 			);
 			name = Mutation;
 			sourceTree = "<group>";
@@ -946,6 +975,7 @@
 			children = (
 				A3E282D4197D687100E64DD7 /* FileInputView.h */,
 				A3E282D5197D687100E64DD7 /* FileInputView.m */,
+				A3E282DC197D96FA00E64DD7 /* FileInputView.xib */,
 				A3E282DB197D6B0200E64DD7 /* File Manager */,
 			);
 			name = "File Input View";
@@ -958,6 +988,14 @@
 				A3E282D9197D6B0000E64DD7 /* FileManager.m */,
 			);
 			name = "File Manager";
+			sourceTree = "<group>";
+		};
+		A3E282E0197DBD5D00E64DD7 /* Default Impt Muts Files */ = {
+			isa = PBXGroup;
+			children = (
+				A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */,
+			);
+			name = "Default Impt Muts Files";
 			sourceTree = "<group>";
 		};
 		A3EE882118FC79D200F9D682 /* Copy Label */ = {
@@ -1091,6 +1129,8 @@
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
+				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
+				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
 				A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */,
 				A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */,
@@ -1107,9 +1147,11 @@
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
 				A3890A73196B3F02002B6048 /* flu.H1N1s.reads.fq in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
+				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
+				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
@@ -1142,6 +1184,7 @@
 				A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */,
 				A337B19718E781B800919612 /* IPhonePopoverHandler.m in Sources */,
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
+				A3208B38197EED4700299A30 /* ImportantMutationsDisplayView.m in Sources */,
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
@@ -1163,6 +1206,7 @@
 				A3669B3516F689750034A1CC /* DNAColors.m in Sources */,
 				A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
+				A3208B3C197EFDC000299A30 /* ImportantMutationInfo.m in Sources */,
 				A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,

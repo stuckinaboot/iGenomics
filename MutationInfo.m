@@ -10,7 +10,7 @@
 
 @implementation MutationInfo
 
-@synthesize pos, displayedPos, refChar, foundChars, genomeName;
+@synthesize pos, displayedPos, refChar, foundChars, genomeName, indexInSegmentNameArr;
 
 - (id)initWithPos:(int)p andRefChar:(char)refC andFoundChars:(char *)foundC andDisplayedPos:(int)dispP {
     self = [super init];
@@ -50,5 +50,9 @@
         [covStr appendFormat:kCovStrFormat,fc[i],covArr[i]];
     }
     return (char*)[[covStr stringByReplacingCharactersInRange:NSMakeRange(covStr.length-1, 1) withString:@""] UTF8String];//Replaces the final / with nothing
+}
+
++ (BOOL)mutationInfoObjectsHaveSameContents:(MutationInfo *)info1 :(MutationInfo *)info2 {
+    return ((info1.pos == info2.pos) && (info1.refChar == info2.refChar) && (info1.foundChars[0] == info2.foundChars[0]) && [info1.genomeName isEqualToString:info2.genomeName]);//Checks if a bunch of factors are equal, foundChars[0] because is just checking first character...may change in future to strcmp
 }
 @end

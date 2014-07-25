@@ -20,11 +20,15 @@
     return self;
 }
 
-- (void)setUp {
+- (void)setUpWithImptMutationList:(NSMutableArray*)imptMutations {
     //Sets up the scrollview for paging
     scrollView.frame = CGRectMake(0, summaryNavBar.frame.size.height, scrollView.frame.size.width, scrollView.frame.size.height);
 
-    pages = [NSArray arrayWithObjects:btnsView, lblsView, nil];
+    UINib *mutsNib = [UINib nibWithNibName:kImportantMutationsDisplayViewNibName bundle:nil];
+    imptMutsDispView = [[mutsNib instantiateWithOwner:imptMutsDispView options:nil] objectAtIndex:0];
+    [imptMutsDispView setUpWithMutationsArray:imptMutations];
+    [imptMutsDispView setDelegate:self];
+    pages = [NSArray arrayWithObjects:btnsView, lblsView, imptMutsDispView,nil];// imptMutsDispView, nil];
     
     scrollView.contentSize = CGSizeMake(self.bounds.size.width*[pages count], scrollView.bounds.size.height);
     
@@ -85,6 +89,11 @@
 
 - (IBAction)donePressed:(id)sender {
     self.hidden = YES;
+}
+
+- (void)importantMutationAtPosPressedInImptMutDispView:(int)pos {
+    [delegate scrollToPos:pos];
+    [self hide];
 }
 
 - (void)hide {

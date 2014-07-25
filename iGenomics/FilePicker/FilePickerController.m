@@ -30,74 +30,59 @@
 - (void)viewDidLoad
 {
     parametersController = [[ParametersController alloc] init];
-    selectedOptionRef = -1;
-    selectedRowRef = 0;
-    selectedOptionReads = -1;
-    selectedRowReads = 0;
-    
-    isSelectingReads = FALSE;
+    filePickerCurrentlySelecting = kFilePickerSelectingRef;
     
     [self lockContinueBtns];
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
-    
-    keyboardToolbar.items = [NSArray arrayWithObjects:
-                             [[UIBarButtonItem alloc]initWithTitle:kKeyboardDoneBtnTxt style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)],
-                             nil];
-    readsPickerSearchBar.inputAccessoryView = keyboardToolbar;
-    refPickerSearchBar.inputAccessoryView = keyboardToolbar;
 
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //Ref
+    refFileManager = [[FileManager alloc] init];
+    UINib *inputViewNib = [UINib nibWithNibName:kFileInputViewNibName bundle:nil];
+    refInputView = [[inputViewNib instantiateWithOwner:refInputView options:nil] objectAtIndex:0];
+    
+    [refFileManager setUpWithDefaultFileNamesPath:kDefaultRefFilesNamesFile ofType:kTxt];
+    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt];
+    [refInputView setDelegate:self];
+    
+    //Reads
+    readsFileManager = [[FileManager alloc] init];
+    readsInputView = [[inputViewNib instantiateWithOwner:readsInputView options:nil] objectAtIndex:0];
+    
+    [readsFileManager setUpWithDefaultFileNamesPath:kDefaultReadsFilesNamesFile ofType:kTxt];
+    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt];
+    [readsInputView setDelegate:self];
+    
+    //Impt muts
+    imptMutsFileManager = [[FileManager alloc] init];
+    imptMutsInputView = [[inputViewNib instantiateWithOwner:imptMutsInputView options:nil] objectAtIndex:0];
+    
+    [imptMutsFileManager setUpWithDefaultFileNamesPath:kDefaultImptMutsFilesNamesFile ofType:kTxt];
+    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt];
+    [imptMutsInputView setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (isSelectingReads)
-        [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y)];
+    [super viewWillAppear:animated];
+    [self.view layoutIfNeeded];
+    
+    refInputView.frame = CGRectMake(refInputView.frame.origin.x, refInputView.frame.origin.y, refFileInputContainerView.frame.size.width, refFileInputContainerView.frame.size.height);
+    [refFileInputContainerView addSubview:refInputView];
+    
+    readsInputView.frame = CGRectMake(readsInputView.frame.origin.x, readsInputView.frame.origin.y, readsFileInputContainerView.frame.size.width, readsFileInputContainerView.frame.size.height);
+    [readsFileInputContainerView addSubview:readsInputView];
+    
+    imptMutsInputView.frame = CGRectMake(imptMutsInputView.frame.origin.x, imptMutsInputView.frame.origin.y, imptMutsFileInputContainerView.frame.size.width, imptMutsFileInputContainerView.frame.size.height);
+    [imptMutsFileInputContainerView addSubview:imptMutsInputView];
+    
+    [scrollView setContentOffset:CGPointMake(self.view.frame.size.width*filePickerCurrentlySelecting, 0)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([GlobalVars isOldIPhone]) {
-        if (!updatedScrollViewSize) {
-            scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
-            updatedScrollViewSize = TRUE;
-        }
-        if (isSelectingReads)
-            [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y)];
-        
-        CGRect rect = referenceFilePicker.frame;
-        referenceFilePicker.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height/kOldIphoneTblViewScaleFactor);
-        rect = referenceFilePicker.frame;
-        CGRect rect2 = nextBtn.frame;
-        nextBtn.frame = CGRectMake(rect2.origin.x, rect.origin.y+rect.size.height+kFilePickerDistBwtBtnAndTblView, rect2.size.width, rect2.size.height);
-        CGRect rect3 = readsFilePicker.frame;
-        readsFilePicker.frame = CGRectMake(rect3.origin.x, rect3.origin.y, rect3.size.width, rect3.size.height/kOldIphoneTblViewScaleFactor);
-        rect3 = readsFilePicker.frame;
-        CGRect rect4 = analyzeBtn.frame;
-        analyzeBtn.frame = CGRectMake(rect4.origin.x, rect3.origin.y+rect3.size.height+kFilePickerDistBwtBtnAndTblView, rect4.size.width, rect4.size.height);
-        rect4 = configBtn.frame;
-        configBtn.frame = CGRectMake(rect4.origin.x, rect3.origin.y+rect3.size.height+kFilePickerDistBwtBtnAndTblView, rect4.size.width, rect4.size.height);
-    }
-}
-
-- (void)setUpDefaultFiles {
-    defaultRefFilesNames = [[NSMutableArray alloc] initWithArray:[[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kDefaultRefFilesNamesFile ofType:kTxt] encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"]];
-    
-    filteredRefFileNames = [[NSMutableArray alloc] initWithArray:defaultRefFilesNames];
-    
-    defaultReadsFilesNames = [[NSMutableArray alloc] initWithArray:[[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kDefaultReadsFilesNamesFile ofType:kTxt] encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@"\n"]];
-    
-    filteredReadFileNames = [[NSMutableArray alloc] initWithArray:defaultReadsFilesNames];
-    
-    if ([DBAccountManager sharedManager].linkedAccount) {
-        dbFileSys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
-        [DBFilesystem setSharedFilesystem:dbFileSys];
-    }
 }
 
 - (void)resetScrollViewOffset {
     [scrollView setContentOffset:CGPointZero animated:NO];
-    isSelectingReads = NO;
 }
 
 #pragma Button Actions
@@ -108,69 +93,41 @@
     NSString *r = @"";
     NSString *rName = @"";
     
-    if (selectedOptionRef == kSavedFilesIndex) {
-        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
-        sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
-        NSArray *arr = [self getFileNameAndExtForFullName:s];
-        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-    }
-    else if (selectedOptionRef == kDropboxFilesIndex) {
-        if (![GlobalVars internetAvailable])
-            return;
-        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-        DBFile *file = [dbFileSys openFile:info.path error:nil];
-        s = [file readString:nil];
-        sName = [info.path name];
-        parametersController.refFilePath = [info.path stringValue];
-    }
-    if (selectedOptionReads == kSavedFilesIndex) {
-        r = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        rName = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        NSArray *arr = [self getFileNameAndExtForFullName:r];
-        r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-    }
-    else if (selectedOptionReads == kDropboxFilesIndex) {
-        if (![GlobalVars internetAvailable])
-            return;
-        DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        DBFile *file = [dbFileSys openFile:info.path error:nil];
-        r = [file readString:nil];
-        rName = [info.path name];
-    }
-    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName];
+    sName = [refInputView nameOfSelectedRow];
+    s = [refInputView contentsOfSelectedRow];
+
+    rName = [readsInputView nameOfSelectedRow];
+    r = [readsInputView contentsOfSelectedRow];
+    
+    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
     [self presentViewController:parametersController animated:YES completion:nil];
 }
 
 - (IBAction)analyzePressed:(id)sender {
-    isSelectingReads = NO;
-    @try {
-        NSLog(@"Try Block Entered");
-        if (selectedOptionReads == kDropboxFilesIndex || selectedOptionRef == kDropboxFilesIndex)
-            if (![GlobalVars internetAvailable])
-                return;
-        
-        NSLog(@"About to set computing controller");
-        parametersController.computingController = [[ComputingController alloc] init];
-        
-        NSLog(@"About to present View Controller");
-        [self presentViewController:parametersController.computingController animated:NO completion:nil];
-        NSLog(@"About to perform selector");
-        [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
-        NSLog(@"Try Block Finished");
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Analyze Pressed Exception: %@, %@",exception.debugDescription, exception.description);
-    }
-    @finally {
-        NSLog(@"Finally Reached");
-    }
+    filePickerCurrentlySelecting = kFilePickerSelectingRef;
+    if ([refInputView needsInternetToGetFile] || [readsInputView needsInternetToGetFile])
+        if (![GlobalVars internetAvailable])
+            return;
+    parametersController.computingController = [[ComputingController alloc] init];
+
+    [self presentViewController:parametersController.computingController animated:NO completion:nil];
+    [self performSelector:@selector(beginActualSequencingPredefinedParameters) withObject:nil afterDelay:kStartSeqDelay];
 }
 
 - (IBAction)nextPressedOnIPhone:(id)sender {
-    [scrollView setContentOffset:CGPointMake(0, secondDataSelectionBarIPhoneOnly.frame.origin.y) animated:YES];
-    isSelectingReads = YES;
+    filePickerCurrentlySelecting++;
     
-    if (referenceFilePicker.indexPathForSelectedRow == nil)
+    self.view.userInteractionEnabled = NO;//Prevents double tapping of btns
+    
+    [UIView animateWithDuration:kFilePickerScrollViewAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        [scrollView setContentOffset:CGPointMake(filePickerCurrentlySelecting*self.view.frame.size.width, 0) animated:NO];
+    } completion:^(BOOL finished){
+        self.view.userInteractionEnabled = YES;
+    }];
+    
+//    [scrollView setContentOffset:CGPointMake(filePickerCurrentlySelecting*self.view.frame.size.width, 0) animated:YES];
+
+    if ([refInputView nameOfSelectedRow] == nil)
         [self lockContinueBtns];
 }
 
@@ -197,46 +154,17 @@
     
     NSString *refFilePath = @"";
     
-    if (selectedOptionRef == kSavedFilesIndex) {
-        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
-        sName = [filteredRefFileNames objectAtIndex:selectedRowRef];
-        NSArray *arr = [self getFileNameAndExtForFullName:s];
-        s = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-    }
-    else if (selectedOptionRef == kDropboxFilesIndex) {
-        if (![GlobalVars internetAvailable])
-            return;
-        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-        DBFile *file = [dbFileSys openFile:info.path error:nil];
-        refFilePath = [info.path stringValue];
-        s = [file readString:nil];
-        sName = [info.path name];
-        parametersController.refFilePath = refFilePath;
-    }
-    if (selectedOptionReads == kSavedFilesIndex) {
-        r = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        rName = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        NSArray *arr = [self getFileNameAndExtForFullName:r];
-        r = [[NSString alloc] initWithString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil]];
-    }
-    else if (selectedOptionReads == kDropboxFilesIndex) {
-        if (![GlobalVars internetAvailable])
-            return;
-        DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        DBFile *file = [dbFileSys openFile:info.path error:nil];
-        r = [file readString:nil];
-        rName = [info.path name];
-    }
+    sName = [refInputView nameOfSelectedRow];
+    s = [refInputView contentsOfSelectedRow];
     
-    NSLog(@"beginActualSequencingPredefinedParameters... Files Loaded");
-    
-    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName];
+    rName = [readsInputView nameOfSelectedRow];
+    r = [readsInputView contentsOfSelectedRow];
+
+    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
     s = parametersController.seq;
     r = parametersController.reads;
     sName = parametersController.refFileSegmentNames;
     rName = parametersController.readFileName;
-    
-    NSLog(@"beginActualSequencingPredefinedParameters Names fixed");
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -253,223 +181,23 @@
         [defaults synchronize];
     }
     
-    NSLog(@"beginActualSequencingPredefinedParameters Old Parameters loaded, preparing to load computingController");
-    
     if ([[GlobalVars extFromFileName:rName] caseInsensitiveCompare:kFq] == NSOrderedSame && [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue] == kTrimmingOffVal)
         r = [parametersController readsByRemovingQualityValFromReads:r];
     
-    [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]] andRefFilePath:refFilePath];
-    
-    NSLog(@"Computing controller loaded");
+    [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]] andRefFilePath:refFilePath andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
 }
 
 - (IBAction)backPressed:(id)sender {
     if ([GlobalVars isIpad])
         [self dismissViewControllerAnimated:YES completion:nil];
     else {
-        if (scrollView.contentOffset.y > 0)
-            [scrollView setContentOffset:CGPointZero animated:YES];
+        if (filePickerCurrentlySelecting > kFilePickerSelectingRef) {
+            filePickerCurrentlySelecting--;
+            [scrollView setContentOffset:CGPointMake(filePickerCurrentlySelecting*self.view.frame.size.width, 0) animated:YES];
+        }
         else
             [self dismissViewControllerAnimated:YES completion:nil];
-        isSelectingReads = NO;
     }
-}
-
-#pragma Table View Delegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([tableView isEqual:referenceFilePicker]) {
-        if (selectedOptionRef == -1)
-            return kNumOfFilePickOptions;
-        else if (selectedOptionRef == kSavedFilesIndex)
-            return [filteredRefFileNames count];
-        else if (selectedOptionRef == kDropboxFilesIndex)
-            return [filteredRefFileNames count];//Num of dropbox files
-    }
-    else if ([tableView isEqual:readsFilePicker]) {
-        if (selectedOptionReads == -1)
-            return kNumOfFilePickOptions;
-        else if (selectedOptionReads == kSavedFilesIndex)
-            return [filteredReadFileNames count];
-        else if (selectedOptionReads == kDropboxFilesIndex)
-            return [filteredReadFileNames count];//Num of dropbox files
-    }
-    return 0;
-}
-
-/*
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,kHeaderHeight)];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:@"Back" forState:UIControlStateNormal];
-    btn.frame = CGRectMake(tableView.frame.size.width-kBackBtnWidth, 0, kBackBtnWidth, kHeaderHeight);
-    
-    UISearchBar *searchBar;
-    if ([tableView isEqual:referenceFilePicker]) {
-        [btn addTarget:self action:@selector(backRefTbl:) forControlEvents:UIControlEventTouchUpInside];
-        refPickerSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width-kBackBtnWidth, kHeaderHeight)];
-        searchBar = refPickerSearchBar;
-    }
-    else if ([tableView isEqual:readsFilePicker]) {
-        [btn addTarget:self action:@selector(backReadsTbl:) forControlEvents:UIControlEventTouchUpInside];
-        readsPickerSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width-kBackBtnWidth, kHeaderHeight)];
-        searchBar = readsPickerSearchBar;
-    }
-    [searchBar setDelegate:self];
-    [headerView addSubview:searchBar];
-    [headerView addSubview:btn];
-    return headerView;
-    
-}*/
-
-- (IBAction)backRefTbl:(id)sender {
-    if (selectedOptionRef == kDropboxFilesIndex) {
-        DBPath *parentPath = [parentFolderPathRef parent];
-        if ([parentFolderPathRef isEqual:[DBPath root]])
-            selectedOptionRef = -1;
-        else {
-            filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentPath error:nil]];
-        }
-        parentFolderPathRef = parentPath;
-        [self searchBar:refPickerSearchBar textDidChange:@""];
-    }
-    else
-        selectedOptionRef = -1;
-    refSelected = FALSE;
-    if (analyzeBtn.enabled)//Currently unlocked
-        [self lockContinueBtns];
-    [referenceFilePicker reloadData];
-}
-
-- (IBAction)backReadsTbl:(id)sender {
-    if (selectedOptionReads == kDropboxFilesIndex) {
-        DBPath *parentPath = [parentFolderPathReads parent];
-        if ([parentFolderPathReads isEqual:[DBPath root]])
-            selectedOptionReads = -1;
-        else
-            filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentPath error:nil]];
-        parentFolderPathReads = parentPath;
-        [self searchBar:readsPickerSearchBar textDidChange:@""];
-    }
-    else
-        selectedOptionReads = -1;
-    readsSelected = FALSE;
-    if (analyzeBtn.enabled)//Currently unlocked
-        [self lockContinueBtns];
-    [readsFilePicker reloadData];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *MyIdentifier = @"MyIdentifier";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:MyIdentifier];
-        UITapGestureRecognizer *recognizer;
-        if ([tableView isEqual:referenceFilePicker])
-            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDoubleTappedRef:)];
-        else if ([tableView isEqual:readsFilePicker])
-            recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellDoubleTappedReads:)];
-        [recognizer setNumberOfTapsRequired:kMinTapsRequired];
-        [cell addGestureRecognizer:recognizer];
-    }
-    
-    // Here we use the provided setImageWithURL: method to load the web image
-    // Ensure you use a placeholder image otherwise cells will be initialized with no image
-    if ([tableView isEqual:referenceFilePicker]) {
-        if (selectedOptionRef == -1) {
-            if (indexPath.row == kSavedFilesIndex)
-                [cell.textLabel setText:kSavedFilesTitle];
-            else if (indexPath.row == kDropboxFilesIndex)
-                [cell.textLabel setText:kDropboxFilesTitle];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        else if (selectedOptionRef == kSavedFilesIndex) {
-            [cell.textLabel setText:[filteredRefFileNames objectAtIndex:indexPath.row]];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        else if (selectedOptionRef == kDropboxFilesIndex) {
-            DBFileInfo *info = [filteredRefFileNames objectAtIndex:indexPath.row];
-            [cell.textLabel setText:[info.path name]];//names of dropbox files
-            if (info.isFolder)
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            else
-                cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }
-    else if ([tableView isEqual:readsFilePicker]) {
-        if (selectedOptionReads == -1) {
-            if (indexPath.row == kSavedFilesIndex)
-                [cell.textLabel setText:kSavedFilesTitle];
-            else if (indexPath.row == kDropboxFilesIndex)
-                [cell.textLabel setText:kDropboxFilesTitle];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        else if (selectedOptionReads == kSavedFilesIndex) {
-            [cell.textLabel setText:[filteredReadFileNames objectAtIndex:indexPath.row]];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        else if (selectedOptionReads == kDropboxFilesIndex) {
-            DBFileInfo *info = [filteredReadFileNames objectAtIndex:indexPath.row];
-            [cell.textLabel setText:[info.path name]];//names of dropbox files
-            if (info.isFolder)
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            else
-                cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }
-    
-    return cell;
-}
-
-- (IBAction)cellDoubleTappedRef:(id)sender {
-    NSString *s = @"";
-    
-    if (selectedOptionRef == kSavedFilesIndex) {
-        s = [filteredRefFileNames objectAtIndex:selectedRowRef];//Component 0 for default files for now
-        NSArray *arr = [self getFileNameAndExtForFullName:s];
-        s = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil];
-        if ([[arr objectAtIndex:1] caseInsensitiveCompare:kFastaFileExt] == NSOrderedSame) {
-            NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
-            s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
-            s = [NSString stringWithFormat:@"%@\n%@",s,[oldStr stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
-        }
-    }
-    else if (selectedOptionRef == kDropboxFilesIndex) {
-        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-        if (info.isFolder)
-            return;
-        DBFile *file = [dbFileSys openFile:info.path error:nil];
-        s = [file readString:nil];
-    }
-    [self displayPopoverOutOfCellWithContents:s atLocation:[(UIGestureRecognizer*)sender locationInView:self.view]];
-}
-
-- (IBAction)cellDoubleTappedReads:(id)sender {
-    NSString *r = @"";
-    
-    if (selectedOptionReads == kSavedFilesIndex) {
-        r = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        NSArray *arr = [self getFileNameAndExtForFullName:r];
-        r = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[arr objectAtIndex:0] ofType:[arr objectAtIndex:1]] encoding:NSUTF8StringEncoding error:nil];
-    }
-    else if (selectedOptionReads == kDropboxFilesIndex) {
-        DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
-        if (info.isFolder)
-            return;
-        DBFile *file = [dbFileSys openFile:info.path error:nil];
-        r = [file readString:nil];
-    }
-    [self displayPopoverOutOfCellWithContents:r atLocation:[(UIGestureRecognizer*)sender locationInView:self.view]];
 }
 
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc {
@@ -488,234 +216,8 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BOOL showSelectedRow = TRUE; //Used to prevent user from accidentally selecting wrong item
-    if ([tableView isEqual:referenceFilePicker]) {
-        if (selectedOptionRef > -1) {
-            selectedRowRef = indexPath.row;
-            if (selectedOptionRef == kDropboxFilesIndex) {
-                if ([filteredRefFileNames count] > 0) {
-                    if (![[filteredRefFileNames objectAtIndex:0] isKindOfClass:[DBFileInfo class]]) {
-                        filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
-                        parentFolderPathRef = [DBPath root];
-                    }
-                    else {
-                        DBFileInfo *info = [filteredRefFileNames objectAtIndex:selectedRowRef];
-                        if (info.isFolder) {
-                            filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
-                            parentFolderPathRef = info.path;
-                            refSelected = FALSE;
-                            showSelectedRow = FALSE;
-                        }
-                        else
-                            refSelected = TRUE;
-                    }
-                }
-                else
-                    filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
-                filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
-                [tableView reloadData];
-            }
-        }
-        else {
-            selectedOptionRef = indexPath.row;
-            if (selectedOptionRef == kDropboxFilesIndex) {
-                if (![GlobalVars internetAvailable]) {
-                    selectedOptionRef = -1;
-                    return;
-                }
-                if ([DBAccountManager sharedManager].linkedAccount == NULL)
-                    [[DBAccountManager sharedManager] linkFromController:self];
-                DBAccount *account = [DBAccountManager sharedManager].linkedAccount;
-                if (account) {
-                    if (!dbFileSys)
-                        dbFileSys = [DBFilesystem sharedFilesystem];
-                    [self setUpAllDropboxFiles];
-                    filteredRefFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
-                    filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
-                }
-                else
-                    selectedOptionRef = -1;
-            }
-            else if (selectedOptionRef == kSavedFilesIndex) {
-                filteredRefFileNames = [NSMutableArray arrayWithArray:defaultRefFilesNames];
-                refSelected = TRUE;
-            }
-            [tableView reloadData];
-        }
-        NSIndexPath *path = [NSIndexPath indexPathForRow:selectedRowRef inSection:0];
-        [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
-        if (!showSelectedRow)
-            [tableView deselectRowAtIndexPath:path animated:YES];
-    }
-    else if ([tableView isEqual:readsFilePicker]) {
-        if (selectedOptionReads > -1) {
-            selectedRowReads = indexPath.row;
-            if (selectedOptionReads == kDropboxFilesIndex) {
-                if ([filteredReadFileNames count] > 0) {
-                    if (![[filteredReadFileNames objectAtIndex:0] isKindOfClass:[DBFileInfo class]]) {
-                        filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
-                        parentFolderPathReads = [DBPath root];
-                    }
-                    else {
-                        DBFileInfo *info = [filteredReadFileNames objectAtIndex:selectedRowReads];
-                        if (info.isFolder) {
-                            filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:info.path error:nil]];
-                            parentFolderPathReads = info.path;
-                            readsSelected = FALSE;
-                            showSelectedRow = FALSE;
-                        }
-                        else
-                            readsSelected = TRUE;
-                    }
-                }
-                else
-                    filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
-                filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
-                [tableView reloadData];
-            }
-        }
-        else {
-            selectedOptionReads = indexPath.row;
-            if (selectedOptionReads == kDropboxFilesIndex) {
-                if (![GlobalVars internetAvailable]) {
-                    selectedOptionReads = -1;
-                    return;
-                }
-                if ([DBAccountManager sharedManager].linkedAccount == NULL)
-                    [[DBAccountManager sharedManager] linkFromController:self];
-                DBAccount *account = [DBAccountManager sharedManager].linkedAccount;
-                if (account) {
-                    if (!dbFileSys)
-                        dbFileSys = [DBFilesystem sharedFilesystem];
-                    [self setUpAllDropboxFiles];
-                    filteredReadFileNames = [NSMutableArray arrayWithArray:allDropboxFiles];
-                    filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
-                }
-                else
-                    selectedOptionReads = -1;
-            }
-            else if (selectedOptionReads == kSavedFilesIndex) {
-                filteredReadFileNames = [NSMutableArray arrayWithArray:defaultReadsFilesNames];
-                readsSelected = TRUE;
-            }
-            [tableView reloadData];
-        }
-        NSIndexPath *path = [NSIndexPath indexPathForRow:selectedRowReads inSection:0];
-        [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
-        if (!showSelectedRow)
-            [tableView deselectRowAtIndexPath:path animated:YES];
-    }
-    if (readsSelected && refSelected)
-        [self unlockContinueBtns];
-    else if (analyzeBtn.enabled)//Currently unlocked
-        [self lockContinueBtns];
-}
-
-- (void)setUpAllDropboxFiles {
-    allDropboxFiles = [[NSMutableArray alloc] initWithArray:[dbFileSys listFolder:[DBPath root] error:nil]];
-    parentFolderPathRef = [DBPath root];
-    parentFolderPathReads = [DBPath root];
-}
-
--(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
-{
-    if ([searchBar isEqual:refPickerSearchBar]) {
-        if(text.length == 0) {
-            if (selectedOptionRef == kSavedFilesIndex)
-                filteredRefFileNames = [[NSMutableArray alloc] initWithArray:defaultRefFilesNames];
-            else if (selectedOptionRef == kDropboxFilesIndex) {
-                filteredRefFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentFolderPathRef error:nil]];
-                filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
-            }
-        }
-        else {
-            [filteredRefFileNames removeAllObjects];
-            if (selectedOptionRef != kDropboxFilesIndex) {
-                for (NSString* s in defaultRefFilesNames) {
-                    NSRange nameRange = [s rangeOfString:text options:NSCaseInsensitiveSearch];
-                    if(nameRange.location != NSNotFound)
-                        [filteredRefFileNames addObject:s];
-                }
-            }
-            else {
-                for (DBFileInfo* info in [dbFileSys listFolder:parentFolderPathRef error:nil]) {
-                    NSString *s = [info.path name];
-                    NSRange nameRange = [s rangeOfString:text options:NSCaseInsensitiveSearch];
-                    if(nameRange.location != NSNotFound)
-                        [filteredRefFileNames addObject:info];
-                }
-                filteredRefFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredRefFileNames];
-            }
-            //may need to add something for dropbox support
-        }
-        [referenceFilePicker reloadData];
-    }
-    else if ([searchBar isEqual:readsPickerSearchBar]) {
-        if(text.length == 0) {
-            if (selectedOptionReads == kSavedFilesIndex)
-                filteredReadFileNames = [[NSMutableArray alloc] initWithArray:defaultReadsFilesNames];
-            else if (selectedOptionReads == kDropboxFilesIndex) {
-                filteredReadFileNames = [NSMutableArray arrayWithArray:[dbFileSys listFolder:parentFolderPathReads error:nil]];
-                filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
-            }
-        }
-        else {
-            [filteredReadFileNames removeAllObjects];
-            if (selectedOptionReads != kDropboxFilesIndex) {
-                for (NSString* s in defaultReadsFilesNames) {
-                    NSRange nameRange = [s rangeOfString:text options:NSCaseInsensitiveSearch];
-                    if(nameRange.location != NSNotFound)
-                        [filteredReadFileNames addObject:s];
-                }
-            }
-            else {
-                for (DBFileInfo* info in [dbFileSys listFolder:parentFolderPathReads error:nil]) {
-                    NSString *s = [info.path name];
-                    NSRange nameRange = [s rangeOfString:text options:NSCaseInsensitiveSearch];
-                    if(nameRange.location != NSNotFound)
-                        [filteredReadFileNames addObject:info];
-                }
-                filteredReadFileNames = [self fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:filteredReadFileNames];
-            }
-            //may need to add something for dropbox support
-        }
-        [readsFilePicker reloadData];
-    }
-}
-
-- (NSMutableArray*)fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:(NSMutableArray *)array {
-    if ([array count] >= 1) {
-        for (int i = 0; i < [array count]; i++) {
-            DBFileInfo *info = [array objectAtIndex:i];
-            if (![info isFolder] && [[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:kFa] != NSOrderedSame && [[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:kFq] != NSOrderedSame) {
-                [array removeObjectAtIndex:i];
-                i--;
-            }
-        }
-    }
-    return array;
-}
-
-- (NSArray*)getFileNameAndExtForFullName:(NSString *)fileName {
-    //Search for first . starting from the end
-    int index = 0;
-    for (int i = fileName.length-1; i>0; i--) {
-        if ([fileName characterAtIndex:i] == kExtDot) {
-            index = i;
-            break;
-        }
-    }
-    return [NSArray arrayWithObjects:[fileName substringToIndex:index], [fileName substringFromIndex:index+1],nil];
-}
-
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
     
-}
-
-- (IBAction)dismissKeyboard:(id)sender {
-    [refPickerSearchBar resignFirstResponder];
-    [readsPickerSearchBar resignFirstResponder];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -725,6 +227,25 @@
         return UIInterfaceOrientationMaskLandscape;
 }
 
+#pragma File Input View Delegate
+- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc {
+    [self displayPopoverOutOfCellWithContents:contents atLocation:loc];
+}
+
+- (UIViewController*)getVC {
+    return self;
+}
+
+- (void)fileSelected:(BOOL)isSelected InFileInputView:(UIView*)inputView {
+    if ([inputView isEqual:refInputView])
+        refSelected = isSelected;
+    else if ([inputView isEqual:readsInputView])
+        readsSelected = isSelected;
+    if (readsSelected && refSelected)
+        [self unlockContinueBtns];
+    else
+        [self lockContinueBtns];
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController, seq, reads, refFileSegmentNames, readFileName, refFilePath;
+@synthesize computingController, seq, reads, refFileSegmentNames, readFileName, refFilePath, imptMutsFileContents;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -107,11 +107,12 @@
     trimmingLbl.text = [NSString stringWithFormat:kTrimmingStprLblTxt,(int)trimmingStpr.value];
 }
 
-- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString *)refN andReadFileName:(NSString *)readN {
+- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString *)refN andReadFileName:(NSString *)readN andImptMutsFileContents:(NSString *)imptMutsContents {
     seq = mySeq;
     reads = myReads;
     refFileSegmentNames = refN;
     readFileName = readN;
+    imptMutsFileContents = imptMutsContents;
     [self fixGenomeForGenomeFileName:refFileSegmentNames];
     [self fixReadsForReadsFileName:readFileName];
 }
@@ -141,7 +142,7 @@
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
     [defaults synchronize];
 
-    [computingController setUpWithReads:reads andSeq:seq andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:refFileSegmentNames, readFileName, nil]] andRefFilePath:refFilePath];
+    [computingController setUpWithReads:reads andSeq:seq andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:refFileSegmentNames, readFileName, nil]] andRefFilePath:refFilePath andImptMutsFileContents:imptMutsFileContents];
 }
 
 - (IBAction)backPressed:(id)sender {

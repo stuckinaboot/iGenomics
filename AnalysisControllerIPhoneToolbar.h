@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "GlobalVars.h"
+#import "ImportantMutationsDisplayView.h"
 
 @protocol AnalysisControllerIPhoneToolbarDelegate <NSObject>
 - (void)readyViewForCovProfile;
 - (void)readyViewForAlignments;
+- (void)scrollToPos:(int)pos;
 @end
-@interface AnalysisControllerIPhoneToolbar : UIView <UIScrollViewDelegate> {
+@interface AnalysisControllerIPhoneToolbar : UIView <UIScrollViewDelegate, ImportantMutationsDisplayViewDelegate> {
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UINavigationBar *summaryNavBar;
@@ -21,6 +23,7 @@
     NSArray *pages;
     IBOutlet UIView *btnsView;
     IBOutlet UIView *lblsView;
+    ImportantMutationsDisplayView *imptMutsDispView;
 }
 @property (nonatomic) id <AnalysisControllerIPhoneToolbarDelegate> delegate;
 - (IBAction)showAlignmentsPressed:(id)sender;
@@ -28,6 +31,6 @@
 - (IBAction)donePressed:(id)sender;
 - (void)hide;
 - (IBAction)pageChanged:(id)sender;
-- (void)setUp;
+- (void)setUpWithImptMutationList:(NSMutableArray*)imptMutations;
 - (void)addDoneBtnForTxtFields:(NSArray*)txtFields;
 @end

@@ -19,18 +19,39 @@
 #define kOldIphoneTblViewScaleFactor 1.4
 #define kFilePickerDistBwtBtnAndTblView 8
 
+#define kRefInputViewInstructLblTxt @"Pick the reference file:"
+#define kRefInputViewSearchPlaceholderTxt @"Search reference files..."
+
+#define kReadsInputViewInstructLblTxt @"Pick the reads file:"
+#define kReadsInputViewSearchPlaceholderTxt @"Search reads files..."
+
+#define kImptMutsInputViewInstructLblTxt @"Pick the important muts file:"
+#define kImptMutsInputViewSearchPlaceholderTxt @"Search important muts files..."
 //Eventually we can use - (NSFileHandle *)readHandle:(DBError **)error to read x lines (or megabytes) at a time
 //fasta is standard format for genome, fastq is standard format for reads
 
-@interface FilePickerController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPopoverControllerDelegate> {
+#define kFilePickerSelectingRef 0
+#define kFilePickerSelectingReads 1
+#define kFilePickerSelectingImptMuts 2
+
+#define kFilePickerScrollViewAnimationDuration 0.4f
+
+@interface FilePickerController : UIViewController <UIPopoverControllerDelegate, FileInputViewDelegate> {
     ParametersController *parametersController;
     
     IBOutlet UIView *contentView;
     
-    IBOutlet UITableView *referenceFilePicker;
-    IBOutlet UISearchBar *refPickerSearchBar;
-    IBOutlet UITableView *readsFilePicker;
-    IBOutlet UISearchBar *readsPickerSearchBar;
+    IBOutlet UIView *refFileInputContainerView;
+    FileInputView *refInputView;
+    FileManager *refFileManager;
+    
+    IBOutlet UIView *readsFileInputContainerView;
+    FileInputView *readsInputView;
+    FileManager *readsFileManager;
+    
+    IBOutlet UIView *imptMutsFileInputContainerView;
+    FileInputView *imptMutsInputView;
+    FileManager *imptMutsFileManager;
     
     IBOutlet UIButton *analyzeBtn;
     IBOutlet UIButton *configBtn;
@@ -41,22 +62,7 @@
     
     IBOutlet UIScrollView *scrollView;
     
-    NSMutableArray *defaultRefFilesNames;
-    NSMutableArray *filteredRefFileNames;
-    NSMutableArray *defaultReadsFilesNames;
-    NSMutableArray *filteredReadFileNames;
-    
-    NSMutableArray *allDropboxFiles;
-    DBFilesystem *dbFileSys;
-    
-    int selectedOptionRef;
-    int selectedRowRef;
-    DBPath *parentFolderPathRef;
-    int selectedOptionReads;
-    int selectedRowReads;
-    DBPath *parentFolderPathReads;
-    
-    BOOL isSelectingReads;
+    int filePickerCurrentlySelecting;
     
     //Only for old iphone
     BOOL updatedScrollViewSize;
@@ -67,16 +73,8 @@
 - (IBAction)nextPressedOnIPhone:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
-- (IBAction)backRefTbl:(id)sender;
-- (IBAction)backReadsTbl:(id)sender;
-
-- (void)setUpDefaultFiles;
-- (void)setUpAllDropboxFiles;
-
 - (void)resetScrollViewOffset;
 
-- (IBAction)cellDoubleTappedRef:(id)sender;
-- (IBAction)cellDoubleTappedReads:(id)sender;
 //- (void)displayPopoverOutOfCellWithContents:(NSString*)contents;//Popover with textview
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc;
 
@@ -84,7 +82,4 @@
 
 - (void)lockContinueBtns;
 - (void)unlockContinueBtns;
-
-- (NSMutableArray*)fileArrayByKeepingOnlyFaAndFqFilesForDropboxFileArray:(NSMutableArray*)array;
-- (NSArray*)getFileNameAndExtForFullName:(NSString*)fileName;//returns array with two NSStrings, fileName and fileExt
 @end

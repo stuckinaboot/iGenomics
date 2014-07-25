@@ -31,5 +31,12 @@
                         *segmentDivider,
                         *segmentDividerTxt,
                         *alignedRead;
+
+@property (nonatomic) UIColor  *importantMutationInfoHeterozygousMut,
+                                *importantMutationInfoHomozygousMut,
+                                *importantMutationInfoHeterozygousOther,
+                                *importantMutationInfoHomozygousOther,
+                                *importantMutationInfoNoMutation,
+                                *importantMutationInfoNoAlignments;
 - (void)setUp;
 @end

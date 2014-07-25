@@ -10,7 +10,7 @@
 
 @implementation FileInputView
 
-@synthesize delegate;
+@synthesize delegate, tblView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,6 +32,37 @@
     searchBar.inputAccessoryView = keyboardToolbar;
     
     selectedOption = -1;
+}
+
+- (NSString*)nameOfSelectedRow {
+    if (selectedOption == kSavedFilesIndex) {
+        return [filteredFileNames objectAtIndex:[tblView indexPathForSelectedRow].row];
+    }
+    else if (selectedOption == kDropboxFilesIndex) {
+        DBFileInfo *info = [filteredFileNames objectAtIndex:[tblView indexPathForSelectedRow].row];
+        if (info.isFolder)
+            return @"";
+        return [info.path name];
+    }
+    return @"";
+}
+
+- (NSString*)contentsOfSelectedRow {
+    if (selectedOption == kSavedFilesIndex) {
+        NSString *fileName = [self nameOfSelectedRow];
+        return [fileManager fileContentsForNameWithExt:fileName];
+    }
+    else if (selectedOption == kDropboxFilesIndex) {
+        DBFileInfo *info = [filteredFileNames objectAtIndex:[tblView indexPathForSelectedRow].row];
+        if (info.isFolder)
+            return @"";
+        return [fileManager fileContentsForPath:info.path];
+    }
+    return @"";
+}
+
+- (BOOL)needsInternetToGetFile {
+    return (selectedOption == kDropboxFilesIndex);
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -56,7 +87,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BOOL showSelectedRow = TRUE; //Used to prevent user from accidentally selecting wrong item
+    BOOL shouldShowSelectedRow = YES;
     if (selectedOption > -1) {
         if (selectedOption == kDropboxFilesIndex) {
             if ([filteredFileNames count] > 0) {
@@ -69,8 +100,9 @@
                     if (info.isFolder) {
                         filteredFileNames = [fileManager fileNamesForPath:info.path];
                         parentPath = info.path;
-                        showSelectedRow = FALSE;
                     }
+                    shouldShowSelectedRow = !info.isFolder;
+                    [delegate fileSelected:!info.isFolder InFileInputView:self];
                 }
             }
             else
@@ -78,9 +110,13 @@
             filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
             [tableView reloadData];
         }
+        else
+            [delegate fileSelected:YES InFileInputView:self];
     }
     else {
         selectedOption = indexPath.row;
+        shouldShowSelectedRow = NO;
+        [delegate fileSelected:NO InFileInputView:self];
         if (selectedOption == kDropboxFilesIndex) {
             if (![GlobalVars internetAvailable]) {
                 selectedOption = -1;
@@ -103,9 +139,8 @@
         [tableView reloadData];
     }
     NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
-    [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
-    if (!showSelectedRow)
-        [tableView deselectRowAtIndexPath:path animated:YES];
+    if (shouldShowSelectedRow)
+        [tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -150,16 +185,19 @@
 - (IBAction)backTbl:(id)sender {
     if (selectedOption == kDropboxFilesIndex) {
         DBPath *parentOfParentPath = [parentPath parent];
-        if ([parentOfParentPath isEqual:[DBPath root]])
+        if ([parentPath isEqual:[DBPath root]])
             selectedOption = -1;
         else {
             filteredFileNames = [fileManager fileNamesForPath:parentOfParentPath];
+            if (!filteredFileNames)
+                selectedOption = -1;
         }
         parentPath = parentOfParentPath;
         [self searchBar:searchBar textDidChange:@""];
     }
     else
         selectedOption = -1;
+    [delegate fileSelected:NO InFileInputView:self];
     [tblView reloadData];
 }
 
@@ -181,6 +219,30 @@
     }
     
     [delegate displayFilePreviewPopoverWithContents:s atLocation:[(UIGestureRecognizer*)sender locationInView:self]];
+}
+
+#pragma Search Bar delegate
+
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    if(text.length == 0) {
+        if (selectedOption == kSavedFilesIndex)
+            filteredFileNames = [[NSMutableArray alloc] initWithArray:fileManager.defaultFileNames];
+        else if (selectedOption == kDropboxFilesIndex) {
+            filteredFileNames = [fileManager fileNamesForPath:parentPath];
+            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
+        }
+    }
+    else {
+        [filteredFileNames removeAllObjects];
+        if (selectedOption != kDropboxFilesIndex)
+            filteredFileNames = [fileManager fileNamesArrayWithNamesContainingTxt:text inArr:fileManager.defaultFileNames];
+        else {
+            filteredFileNames = [fileManager fileNamesArrayWithNamesContainingTxt:text inArr:[fileManager fileNamesForPath:parentPath]];
+            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
+        }
+    }
+    [tblView reloadData];
 }
 
 @end

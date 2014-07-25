@@ -70,7 +70,7 @@
     ComputingController *computingController;
 }
 @property (nonatomic) ComputingController *computingController;
-@property (nonatomic) NSString *seq, *reads, *refFileSegmentNames, *refFilePath, *readFileName;
+@property (nonatomic) NSString *seq, *reads, *refFileSegmentNames, *refFilePath, *readFileName, *imptMutsFileContents;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;
@@ -80,7 +80,7 @@
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;
-- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN;
+- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN andImptMutsFileContents:(NSString*)imptMutsContents;
 - (IBAction)backPressed:(id)sender;
 
 - (void)setTrimmingAllowed:(BOOL)allowed;

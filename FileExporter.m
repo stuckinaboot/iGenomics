@@ -57,6 +57,14 @@
 
 - (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents {
     DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+    if (!sys) {
+        if ([DBAccountManager sharedManager].linkedAccount == NULL)
+            [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+        else {
+            sys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
+            [DBFilesystem setSharedFilesystem:sys];
+        }
+    }
     path = [self fixChosenExportPathExt:path];
     DBFile *file = [sys createFile:[[DBPath alloc] initWithString:path] error:nil];
     if ([file writeString:contents error:nil]) {

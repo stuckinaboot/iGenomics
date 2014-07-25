@@ -93,6 +93,11 @@ BOOL drawTextWithDefinedUnicodeChars;
             break;
     return [NSString stringWithFormat:@"%c",kImplictUnicode[i]];
 }
+
++ (void)displayiGenomicsAlertWithMsg:(NSString *)msg {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kBasicAlertTitle message:msg delegate:nil cancelButtonTitle:kBasicAlertDoneBtn otherButtonTitles:nil];
+    [alert show];
+}
 /*
 + (void)displayReadAlignmentDataInConsole {
     for (ED_Info *info in readAlignmentsArr) {

@@ -7,6 +7,7 @@
 //
 
 #import "BWT_MutationFilter.h"
+#import "ImportantMutationInfo.h"
 
 char *foundGenome[kACGTLen+2];
 int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
@@ -257,17 +258,18 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             diffCharsAtPos = 0;
             posInFoundChars = 0;
             BOOL alreadyAdded = FALSE;
+
             for (int a = 0; a<kACGTLen+2; a++) {
                 if (posOccArray[a][p]>heteroAllowance) {
                     diffCharsAtPos++;
                     foundChars[posInFoundChars] = kACGTwithInDels[a];
                     posInFoundChars++;
                 }
-                else if (diffCharsAtPos > 1) {
+               /* else if (diffCharsAtPos > 1) {
                     [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
                     alreadyAdded = TRUE;
                     break;
-                }
+                }*/ //I COMMENTED THIS OUT BECAUSE IT LEFT THE LOOP TOO EARLY, BECAUSE WHAT IF diffCharsAtPos == 3 or 4? and the foundChars were A,G,T?
             }
             foundChars[posInFoundChars] = '\0';
             if (diffCharsAtPos > 1 && !alreadyAdded) //In case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
@@ -285,6 +287,82 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 
     free(foundChars);
     return finalArr;
-    //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
 }
+
++ (NSMutableArray*)compareFoundMutationsArr:(NSArray *)arr toImptMutationsString:(NSString *)imptMutsStr andCumulativeLenArr:(NSMutableArray*)lenArr {
+    
+    if ([imptMutsStr isEqualToString:@""])
+        return nil;
+    
+    NSMutableArray *imptMutsMutationInfoArr = [[NSMutableArray alloc] init];
+    NSArray *lineArr = [imptMutsStr componentsSeparatedByString:kLineBreak];
+    
+    //Creates mutation info objects for the important muts str
+    int index = 0;
+    for (int i = 0; i < [lineArr count]; i++) {
+        NSString *str = [lineArr objectAtIndex:i];
+        NSArray *componentsArr = [str componentsSeparatedByString:kImptMutsStrComponentSeparator];
+        NSString *segName = [componentsArr objectAtIndex:kImptMutsStrSegmentNameIndex];
+        int pos = [[componentsArr objectAtIndex:kImptMutsStrPositionIndex] intValue];
+        char refChar = [[componentsArr objectAtIndex:kImptMutsStrRefCharIndex] characterAtIndex:0];
+        char* foundChars = strdup([[componentsArr objectAtIndex:kImptMutsStrFoundCharIndex] UTF8String]);
+        NSString *details = [componentsArr objectAtIndex:kImptMutsStrDescriptionIndex];
+        
+        ImportantMutationInfo *info = [[ImportantMutationInfo alloc] initWithPos:0 andRefChar:refChar andFoundChars:foundChars andDisplayedPos:pos];
+        info.genomeName = segName;
+        if (i > 0) {
+            MutationInfo *prevInfo = [imptMutsMutationInfoArr lastObject];
+            if (![prevInfo.genomeName isEqualToString:info.genomeName])
+                index++;
+        }
+        
+        info.indexInSegmentNameArr = index;
+        
+        if (info.indexInSegmentNameArr > 0)
+            info.pos = [[lenArr objectAtIndex:info.indexInSegmentNameArr-1] intValue]+pos-1;//pos-1 because is inputted as position with first spot as 1 not 0
+        else
+            info.pos = pos-1;
+        
+        info.details = details;
+        [imptMutsMutationInfoArr addObject:info];
+    }
+    
+    NSMutableArray *matches = [[NSMutableArray alloc] init];
+    
+    for (int j = 0; j < [imptMutsMutationInfoArr count]; j++) {
+        BOOL matchAdded = NO;
+        ImportantMutationInfo *imptInfo = [imptMutsMutationInfoArr objectAtIndex:j];
+        MutationInfo *sameLocMutation;//Used in case impt and recorded have same pos and segment but have diff fnd (in the case of the impt info, mutated) chars
+        for (int i = 0; i < [arr count]; i++) {
+            MutationInfo *recordedInfo = [arr objectAtIndex:i];
+            if (recordedInfo.pos == imptInfo.pos && [[recordedInfo genomeName] isEqualToString:[imptInfo genomeName]])
+                sameLocMutation = recordedInfo;
+            if ([MutationInfo mutationInfoObjectsHaveSameContents:recordedInfo :imptInfo]) {
+                if (strlen(recordedInfo.foundChars) > 1)
+                    imptInfo.matchType = ImportantMutationMatchTypeHeterozygousMut;
+                else
+                    imptInfo.matchType = ImportantMutationMatchTypeHomozygousMut;
+                [matches addObject:imptInfo];
+                matchAdded = YES;
+                break;
+            }
+        }
+        if (!matchAdded) {
+            if (!sameLocMutation) {
+                if (coverageArray[imptInfo.pos] > 0)
+                    imptInfo.matchType =ImportantMutationMatchTypeNoMutation;
+                else
+                    imptInfo.matchType = ImportantMutationMatchTypeNoAlignments;
+            }
+            else if (strlen(sameLocMutation.foundChars) > 1)
+               imptInfo.matchType = ImportantMutationMatchTypeHeterozygousOther;
+            else
+                imptInfo.matchType = ImportantMutationMatchTypeHomozygousOther;
+            [matches addObject:imptInfo];
+        }
+    }
+    
+    return matches;
+}
+
 @end

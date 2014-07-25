@@ -32,33 +32,62 @@
 }
 
 - (void)setUpWithMutationsArr:(NSArray *)arr andCumulativeGenomeLenArr:(NSArray *)lenArr andGenomeFileNameArr:(NSArray*)nameArr {
+    numOfRowsInSectionArr = [[NSMutableArray alloc] init];
+    
     mutationsArray = (NSMutableArray*)arr;
     [mutationsTBView reloadData];
     [delegate mutationsPopoverDidFinishUpdating];
     if ([lenArr count] > 1) {
         int index = 0;
+        int numOfRowsInSection = 0;
         for (int x = 0; x < [mutationsArray count]; x++) {
             MutationInfo *info = [mutationsArray objectAtIndex:x];
             for (int i = [lenArr count]-1; i >= 0; i--) {
                 int len = [[lenArr objectAtIndex:i] intValue];
-                if (info.pos < len)
+                if (info.pos < len) {
                     info.genomeName = [nameArr objectAtIndex:i];
+                    info.indexInSegmentNameArr = i;
+                }
                 else {
                     index = i+1;
                     break;
                 }
             }
+            if (x > 0) {
+                numOfRowsInSection++;
+                MutationInfo *prevInfo = [mutationsArray objectAtIndex:x-1];
+                if (![prevInfo.genomeName isEqualToString:info.genomeName]) {
+                    [numOfRowsInSectionArr addObject:[NSNumber numberWithInt:numOfRowsInSection]];
+                    numOfRowsInSection = 0;
+                }
+            }
+
             if (index > 0)
                 info.displayedPos -= [[lenArr objectAtIndex:index-1] intValue];
             [mutationsArray setObject:info atIndexedSubscript:x];
         }
+        
+        [numOfRowsInSectionArr addObject:[NSNumber numberWithInt:numOfRowsInSection+1]];//+1 includes the last row because the loop exits before that gets added
     }
+    
+    [mutationsTBView reloadData];
 }
 
 #pragma TableView Delegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [mutationsArray count]+1;
+    return [[numOfRowsInSectionArr objectAtIndex:section] intValue]+1;//+1 accounts for the total mutations label in each section
+//    return [mutationsArray count]+1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [numOfRowsInSectionArr count];
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:section];
+    MutationInfo *info = [mutationsArray objectAtIndex:[self indexInMutationsArrayForIndexPath:index]];
+    return info.genomeName;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,18 +99,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if (indexPath.row > 0) {
-        MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];
+        MutationInfo *info = [mutationsArray objectAtIndex:[self indexInMutationsArrayForIndexPath:indexPath]-1];//-1 because first row is always the total number of mutations
+//        MutationInfo *info = [mutationsArray objectAtIndex:rowsToAdd+indexPath.row-1];
         int pos = info.displayedPos;//-1 because first row shows total # of muts
         [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]]];//+1 because the first pos is considered 0
         [cell.textLabel setAdjustsFontSizeToFitWidth:YES];
-        [cell.detailTextLabel setText:info.genomeName];
-        [cell.detailTextLabel setAdjustsFontSizeToFitWidth:YES];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;//Show the little arrow
     }
     else {
         //Show total number of mutations
-        [cell.textLabel setText:[NSString stringWithFormat:kMutationTotalFormat,[mutationsArray count]]];
+        [cell.textLabel setText:[NSString stringWithFormat:kMutationTotalFormat,[[numOfRowsInSectionArr objectAtIndex:indexPath.section] intValue]]];
+//        [cell.textLabel setText:[NSString stringWithFormat:kMutationTotalFormat,[mutationsArray count]]];
         [cell.detailTextLabel setText:@""];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -102,12 +133,24 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row>0) {//didn't select "Total Mutations" row
-        MutationInfo *info = [mutationsArray objectAtIndex:indexPath.row-1];//-1 because first row shows total # of muts
+//        int rowsToAdd = (indexPath.section > 0) ? [[numOfRowsInSectionArr objectAtIndex:indexPath.section-1] intValue] : 0;
+        MutationInfo *info = [mutationsArray objectAtIndex:[self indexInMutationsArrayForIndexPath:indexPath]-1];//-1 because first row is always the total number of mutations
+//        MutationInfo *info = [mutationsArray objectAtIndex:rowsToAdd+indexPath.row-1];//-1 because first row shows total # of muts
         [delegate mutationAtPosPressedInPopover:info.pos+1];//+1 because it starts at 0
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (![GlobalVars isIpad])
         [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (int)indexInMutationsArrayForIndexPath:(NSIndexPath *)indexPath {
+    int totalRows = 0;
+    for (int i = 0; i < indexPath.section; i++) {
+        int currNumOfRows = [[numOfRowsInSectionArr objectAtIndex:i] intValue];
+        totalRows += currNumOfRows;
+    }
+    totalRows += indexPath.row;
+    return totalRows;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

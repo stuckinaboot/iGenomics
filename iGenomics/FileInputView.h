@@ -12,6 +12,8 @@
 
 #define kNumOfComponentsInPickers 1
 
+#define kFileInputViewNibName @"FileInputView"
+
 #define kComponent1Title @"Default"
 
 #define kSavedFilesTitle @"Saved Files"
@@ -30,10 +32,10 @@
 @protocol FileInputViewDelegate <NSObject>
 - (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc;
 - (UIViewController*)getVC;
+- (void)fileSelected:(BOOL)isSelected InFileInputView:(UIView*)inputView;
 @end
 @interface FileInputView : UIView <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPopoverControllerDelegate> {
     IBOutlet UISearchBar *searchBar;
-    IBOutlet UITableView *tblView;
     IBOutlet UILabel *instructLbl;
     
     NSMutableArray *filteredFileNames;
@@ -43,7 +45,11 @@
     int selectedOption;
 }
 @property (nonatomic) id <FileInputViewDelegate> delegate;
+@property (nonatomic, readonly) IBOutlet UITableView *tblView;
 - (IBAction)backTbl:(id)sender;
 - (IBAction)cellDoubleTapped:(id)sender;
+- (BOOL)needsInternetToGetFile;
+- (NSString*)nameOfSelectedRow;
+- (NSString*)contentsOfSelectedRow;
 - (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt;
 @end

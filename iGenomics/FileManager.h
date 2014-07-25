@@ -12,6 +12,7 @@
 
 #define kDefaultRefFilesNamesFile @"NamesOfDefaultReferenceFiles"
 #define kDefaultReadsFilesNamesFile @"NamesOfDefaultReadsFiles"
+#define kDefaultImptMutsFilesNamesFile @"NamesOfDefaultImptMutsFiles"
 
 @interface FileManager : NSObject {
 

@@ -167,6 +167,9 @@
     int numOfReadsMatched;
     int editDistance;
     
+    NSString *imptMutsFileContents;
+    NSMutableArray *imptMutationsArr;
+    
     //Data elements
     NSMutableArray *mutPosArray;//Keeps the positions of the mutations for the selected mutation support
     NSMutableArray *allMutPosArray;//Keeps the positions of ALL mutations
@@ -220,7 +223,7 @@
 
 //- (void)displaySuccessBox;
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA andImptMutsFileContents:(NSString*)mutsFileContents;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;
 
 - (void)resetGridViewForType:(QuickGridView*)gViewType;

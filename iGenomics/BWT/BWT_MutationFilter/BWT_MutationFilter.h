@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "BWT_Matcher.h"
-#import "MutationInfo.h"
 #import "GlobalVars.h"
 
 //Format- P: R: F: #A: #C: #G: #T:
@@ -19,6 +18,15 @@
 
 extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
 extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------GLOBAL-------I
+
+#define kImptMutsStrSegmentNameIndex 0
+#define kImptMutsStrPositionIndex 1
+#define kImptMutsStrRefCharIndex 2
+#define kImptMutsStrFoundCharIndex 3
+#define kImptMutsStrDescriptionIndex 4
+#define kImptMutsStrComponentSeparator @"   "
+
+@class ImportantMutationInfo;
 
 @interface BWT_MutationFilter : NSObject {
     BWT_Matcher *matcher;
@@ -36,4 +44,5 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
 - (NSArray*)findMutationsWithOriginalSeq:(char*)seq;
 
 + (NSMutableArray*)filteredMutations:(NSArray*)arr forHeteroAllowance:(int)heteroAllowance;
++ (NSMutableArray*)compareFoundMutationsArr:(NSArray *)arr toImptMutationsString:(NSString *)imptMutsStr andCumulativeLenArr:(NSMutableArray*)lenArr;
 @end

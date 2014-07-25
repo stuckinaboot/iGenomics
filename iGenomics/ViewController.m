@@ -21,7 +21,6 @@
 {
     
     filePickerController = [[FilePickerController alloc] init];
-    [filePickerController setUpDefaultFiles];
     
     abtSectController = [[AboutSectionViewController alloc] init];
     

@@ -83,13 +83,14 @@
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
 }
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA {
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents {
     NSLog(@"About to ready view for display");
     
     originalStr = unraveledStr;
     insertionsArr = iArr;
     bwt = myBwt;
     exportDataStr = exportDataString;
+    imptMutsFileContents = mutsFileContents;
     
     coverageHistogram = [[CoverageHistogram alloc] init];
     
@@ -135,6 +136,10 @@
 
 - (void)readyViewForAlignments {
     [self resetGridViewForType:alignmentGridView];
+}
+
+- (void)scrollToPos:(int)pos {
+    [gridView scrollToPos:pos inputtedByPosSearchField:NO];
 }
 
 - (void)resetGridViewForType:(QuickGridView *)gViewType {
@@ -204,13 +209,15 @@
     [alignmentGridView setDelegate:self];
     [covGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight andDoInitialMutationFind:YES];
     [alignmentGridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight andDoInitialMutationFind:NO];
-    
+
     gridView = covGridView;
 //    [gridView setDelegate:self];
 //    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
+    
+    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens];
 }
 
 - (void)setUpGridLbls {
@@ -344,6 +351,10 @@
 }
 
 - (IBAction)showMutTBView:(id)sender {
+    if ([allMutPosArray count] == 0) {
+        [GlobalVars displayiGenomicsAlertWithMsg:kMutationsPopoverNoMutationsAlertMsg];
+        return;
+    }
     if ([GlobalVars isIpad]) {
         mutsPopover.contentSizeForViewInPopover = mutsPopover.view.bounds.size;
         popoverController = [[UIPopoverController alloc] initWithContentViewController:mutsPopover];
@@ -671,7 +682,7 @@
     [self.view addSubview:analysisControllerIPhoneToolbar];
     [analysisControllerIPhoneToolbar layoutIfNeeded];
 
-    [analysisControllerIPhoneToolbar setUp];
+    [analysisControllerIPhoneToolbar setUpWithImptMutationList:imptMutationsArr];
     [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
     [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
     analysisControllerIPhoneToolbar.hidden = NO;

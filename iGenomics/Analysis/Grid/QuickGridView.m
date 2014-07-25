@@ -430,7 +430,7 @@
         for (int i = [arr count]-1; i >= 0; i--) {
             segOffset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
             if (segOffset <= currOffset+self.bounds.size.width && segOffset >= currOffset) {
-                [segOffsetsToDrawAt addObject:[NSNumber numberWithFloat:segOffset]];
+                [segOffsetsToDrawAt addObject:[NSNumber numberWithInt:segOffset]];
                 [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInteger:i]];
             }
             if (currOffset <= segOffset)

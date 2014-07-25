@@ -79,6 +79,9 @@ typedef enum {
 #define kBWTFileExt @"bwt"
 #define kBWTFileDividerBtwBWTandBenchmarkPosList @"\n--------\n"
 
+#define kBasicAlertTitle @"iGenomics"
+#define kBasicAlertDoneBtn @"Ok"
+
 static const int kImplictUnicode[6] = {0xFA3,0x96F,0x2553,0x2222,0x3A3,0xD7B};
 
 extern int bytesForIndexer;
@@ -101,5 +104,6 @@ extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned
 + (BOOL)isOldIPhone;
 + (NSString*)extFromFileName:(NSString *)name;
 + (NSString*)implicitDefinedUnicodeValOfTxt:(NSString*)txt;
++ (void)displayiGenomicsAlertWithMsg:(NSString*)msg;
 //+ (void)displayReadAlignmentDataInConsole;
 @end

@@ -157,8 +157,9 @@
 
     float maxAlignmentStrLen = 0;
     
+    BOOL mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
+    
     for (int i = 0; i<kAlignmentGridViewNumOfGridSections; i++) {
-        BOOL mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
         int indexInMutPresentArr = 0;
         for (int j = firstPtToDraw; j<totalCols && x <= self.frame.size.width; j += numOfBoxesPerPixel, x += self.kGridLineWidthCol+boxWidth) {
             float graphCurrY = 0;
@@ -234,22 +235,21 @@
                 mutationPresentArr[indexInMutPresentArr] = mutationPresent;
                 indexInMutPresentArr++;
                 RGB *color = (mutationPresent) ? dnaColors.mutHighlight : dnaColors.graph;
-                if (mutationPresent)
-                    NSLog(@"");
                 [self drawRectangle:newRect withRGB:(double[3]){color.r,color.g,color.b}];
                 
                 //Put a position label above the graph
                 [self drawTickMarksForPoint:j andX:x];
             }
             if (i == ARow) {
-                if (mutationPresentArr[indexInMutPresentArr] && boxWidth >= kThresholdBoxWidth) {
+                BOOL mutPresent = mutationPresentArr[indexInMutPresentArr];
+                if (mutPresent && boxWidth >= kThresholdBoxWidth) {
                     float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
                     
                     CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
                 }
-                else if  (mutationPresentArr[indexInMutPresentArr] && boxWidth < kThresholdBoxWidth) {
+                else if  (mutPresent && boxWidth < kThresholdBoxWidth) {
                     float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
@@ -259,6 +259,7 @@
                 indexInMutPresentArr++;
             }
         }
+        
         x = firstPtOffset;
         
         if (i > 0)

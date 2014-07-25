@@ -17,9 +17,12 @@
 }
 
 - (void)setUpForDropbox {
-    if ([DBAccountManager sharedManager].linkedAccount) {
+    if ([DBAccountManager sharedManager].linkedAccount && ![DBFilesystem sharedFilesystem]) {
         dbFileSys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
         [DBFilesystem setSharedFilesystem:dbFileSys];
+    }
+    else if ([DBAccountManager sharedManager].linkedAccount && [DBFilesystem sharedFilesystem]) {
+        dbFileSys = [DBFilesystem sharedFilesystem];
     }
     
     dropboxFileNames = [[NSMutableArray alloc] initWithArray:[dbFileSys listFolder:[DBPath root] error:nil]];
@@ -66,16 +69,18 @@
     if ([array count] >= 1) {
         for (int i = 0; i < [array count]; i++) {
             DBFileInfo *info = [array objectAtIndex:i];
-            BOOL passesTest = NO;
-            for (int j = 0; j < [fileTypes count]; j++) {
-                if ([[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:[fileTypes objectAtIndex:j]] == NSOrderedSame) {
-                    passesTest = YES;
-                    break;
+            if (!info.isFolder) {
+                BOOL passesTest = NO;
+                for (int j = 0; j < [fileTypes count]; j++) {
+                    if ([[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:[fileTypes objectAtIndex:j]] == NSOrderedSame) {
+                        passesTest = YES;
+                        break;
+                    }
                 }
-            }
-            if (![info isFolder] && !passesTest) {
-                [array removeObjectAtIndex:i];
-                i--;
+                if (!passesTest) {
+                    [array removeObjectAtIndex:i];
+                    i--;
+                }
             }
         }
     }

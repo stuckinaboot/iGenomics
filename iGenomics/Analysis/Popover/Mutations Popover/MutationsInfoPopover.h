@@ -15,6 +15,8 @@
 #define kIsHeteroStr "(Hetero)"
 #define kIsNotHeteroStr ""
 
+#define kMutationsPopoverNoMutationsAlertMsg @"No mutations found"
+
 @protocol MutationsInfoPopoverDelegate <NSObject>
 - (void)mutationAtPosPressedInPopover:(int)pos;
 - (void)mutationsPopoverDidFinishUpdating;
@@ -24,9 +26,11 @@
     IBOutlet UITableView *mutationsTBView;
     
     NSMutableArray *mutationsArray;
+    NSMutableArray *numOfRowsInSectionArr;
     
     id delegate;
 }
 @property (nonatomic) id <MutationsInfoPopoverDelegate> delegate;
 - (void)setUpWithMutationsArr:(NSArray *)arr andCumulativeGenomeLenArr:(NSArray *)lenArr andGenomeFileNameArr:(NSArray*)nameArr;
+- (int)indexInMutationsArrayForIndexPath:(NSIndexPath*)indexPath;
 @end

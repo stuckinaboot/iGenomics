@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString *)path {
+- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString *)path andImptMutsFileContents:(NSString*)imptMutsContents {
     
     NSLog(@"==> setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray method entered");
     
@@ -80,7 +80,7 @@
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], nil];
-            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens];
+            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsContents];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
             
         });

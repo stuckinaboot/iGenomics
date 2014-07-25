@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Ksg-cc-W1G" customClass="FileInputView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="Search reference files..." translatesAutoresizingMaskIntoConstraints="NO" id="7Qx-bo-QbD">
+                    <rect key="frame" x="0.0" y="39" width="276" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="Ksg-cc-W1G" id="jDK-tf-Q5M"/>
+                    </connections>
+                </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsB-Eu-yLh">
+                    <rect key="frame" x="276" y="39" width="44" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="Sct-IG-wR2"/>
+                    </constraints>
+                    <state key="normal" title="Back">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="backTbl:" destination="Ksg-cc-W1G" eventType="touchUpInside" id="Djr-tm-8Up"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dc5-RD-WbQ">
+                    <rect key="frame" x="0.0" y="83" width="320" height="390"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="Ksg-cc-W1G" id="8zv-aN-WWS"/>
+                        <outlet property="delegate" destination="Ksg-cc-W1G" id="q8Q-VM-Vhl"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pick the reference file:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngT-WY-nCv">
+                    <rect key="frame" x="16" y="1" width="290" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="dc5-RD-WbQ" secondAttribute="bottom" id="5FM-lM-vbK"/>
+                <constraint firstItem="7Qx-bo-QbD" firstAttribute="bottom" secondItem="MsB-Eu-yLh" secondAttribute="bottom" id="Cgf-MU-XAz"/>
+                <constraint firstItem="ngT-WY-nCv" firstAttribute="top" secondItem="Ksg-cc-W1G" secondAttribute="top" constant="1" id="Nwz-Zn-j3K"/>
+                <constraint firstItem="dc5-RD-WbQ" firstAttribute="leading" secondItem="Ksg-cc-W1G" secondAttribute="leading" id="ODW-VS-VgQ"/>
+                <constraint firstItem="dc5-RD-WbQ" firstAttribute="top" secondItem="7Qx-bo-QbD" secondAttribute="bottom" id="OlV-4o-r0l"/>
+                <constraint firstItem="MsB-Eu-yLh" firstAttribute="top" secondItem="7Qx-bo-QbD" secondAttribute="top" id="REG-fg-HZf"/>
+                <constraint firstAttribute="trailing" secondItem="dc5-RD-WbQ" secondAttribute="trailing" id="SEf-FV-ufF"/>
+                <constraint firstItem="MsB-Eu-yLh" firstAttribute="top" secondItem="ngT-WY-nCv" secondAttribute="bottom" constant="8" symbolic="YES" id="UuD-lF-2RV"/>
+                <constraint firstAttribute="trailing" secondItem="ngT-WY-nCv" secondAttribute="trailing" constant="14" id="W6T-09-EhE"/>
+                <constraint firstItem="ngT-WY-nCv" firstAttribute="leading" secondItem="Ksg-cc-W1G" secondAttribute="leading" constant="16" id="Y9O-mm-hUp"/>
+                <constraint firstItem="MsB-Eu-yLh" firstAttribute="leading" secondItem="7Qx-bo-QbD" secondAttribute="trailing" id="gY0-4c-HRi"/>
+                <constraint firstItem="7Qx-bo-QbD" firstAttribute="leading" secondItem="dc5-RD-WbQ" secondAttribute="leading" id="kV7-VD-aMj"/>
+                <constraint firstItem="dc5-RD-WbQ" firstAttribute="trailing" secondItem="MsB-Eu-yLh" secondAttribute="trailing" id="v2W-2U-Eb3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="instructLbl" destination="ngT-WY-nCv" id="fKi-Dl-gQ0"/>
+                <outlet property="searchBar" destination="7Qx-bo-QbD" id="E1Y-Bt-Bpn"/>
+                <outlet property="tblView" destination="dc5-RD-WbQ" id="cmO-ne-b2p"/>
+            </connections>
+        </view>
+    </objects>
+</document>
