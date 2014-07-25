@@ -93,6 +93,7 @@
 #define kStartOfRefInRGBVals 2
 
 #define kMutationSupportMax 8
+#define kMutationSupportMin 1
 
 #define kSideLblFontSize 16
 #define kSideLblStartingX 26
@@ -102,8 +103,20 @@
 
 #define kAnalysisNavBarHeightIPhone 44
 
-@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate, AnalysisControllerIPhoneToolbarDelegate> {
+#define kBasicInfoArrGenomeFileNameIndex 0
+#define kBasicInfoArrReadsFileNameIndex 1
+#define kBasicInfoArrReadLenIndex 2
+#define kBasicInfoArrGenomeLenIndex 3
+#define kBasicInfoArrNumOfReadsIndex 4
+#define kBasicInfoArrEDIndex 5
+#define kBasicInfoArrNumOfReadsMatchedIndex 6
+#define kBasicInfoArrMutationSupportIndex 7
+
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate, AnalysisControllerIPhoneToolbarDelegate, ImportantMutationsDisplayViewDelegate> {
     DNAColors *dnaColors;
+    
+    IBOutlet UIView *utilitiesView;//For iPad
+    IBOutlet UIButton *showUtilitiesBtn;
     
     //Interactive Interface Elements
     IBOutlet UITextField *posSearchTxtFld;
@@ -145,6 +158,7 @@
     UIPopoverController *popoverController;
     MutationsInfoPopover *mutsPopover;
     IBOutlet UIButton *showAllMutsBtn;
+    IBOutlet UIButton *showImportantMutationsBtn;
     
     IBOutlet UIBarButtonItem *coverageHistogramBtn;
     CoverageHistogram *coverageHistogram;
@@ -198,9 +212,13 @@
     BOOL firstAppeared;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
+- (IBAction)showUtilitiesPopover:(id)sender;
+- (IBAction)showImportantMutationsPopover:(id)sender;
 - (void)setUpIPhoneToolbar;
 
 - (IBAction)showCoverageHistogram:(id)sender;
+- (IBAction)showCoverageProfileGridView:(id)sender;
+- (IBAction)showAlignmentsGridView:(id)sender;
 
 - (void)pinchOccurred:(UIPinchGestureRecognizer*)sender;
 - (void)singleTapOccured:(UITapGestureRecognizer*)sender;

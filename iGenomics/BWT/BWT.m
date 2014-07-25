@@ -146,7 +146,7 @@
     
     insertions = bwt_Matcher.insertionsArray;
 
-    bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:kParameterArrayMutationCoverageIndex] intValue]-1;//-1 because kHeteroAllowance is for one lower than what is allowed to be considered a mutation.
+    bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
     
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalStr andMatcher:bwt_Matcher];
     

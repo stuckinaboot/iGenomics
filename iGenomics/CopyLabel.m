@@ -7,8 +7,9 @@
 - (void) attachTapHandler
 {
     [self setUserInteractionEnabled:YES];
-    UIGestureRecognizer *touchy = [[UITapGestureRecognizer alloc]
+    UILongPressGestureRecognizer *touchy = [[UILongPressGestureRecognizer alloc]
                                    initWithTarget:self action:@selector(handleTap:)];
+    touchy.minimumPressDuration = kCopyLabelLongPressGestureRecognizerDuration;
     [self addGestureRecognizer:touchy];
 }
 

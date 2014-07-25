@@ -7,13 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilePickerController">
             <connections>
-                <outlet property="analyzeBtn" destination="635" id="674"/>
-                <outlet property="configBtn" destination="168" id="675"/>
-                <outlet property="readsFilePicker" destination="372" id="379"/>
-                <outlet property="readsPickerSearchBar" destination="466" id="482"/>
-                <outlet property="refPickerSearchBar" destination="424" id="481"/>
-                <outlet property="referenceFilePicker" destination="365" id="371"/>
-                <outlet property="view" destination="2" id="3"/>
+                <outlet property="analyzeBtn" destination="OXc-Z7-0WN" id="UvY-Uh-tFA"/>
+                <outlet property="configBtn" destination="EoM-RG-h9Z" id="o5c-T9-iFT"/>
+                <outlet property="imptMutsFileInputContainerView" destination="xv5-sA-2Vc" id="DYL-RJ-Zqq"/>
+                <outlet property="readsFileInputContainerView" destination="4E5-Jx-Gga" id="Jl6-OH-D5O"/>
+                <outlet property="refFileInputContainerView" destination="scW-Bm-k2x" id="dQs-72-4IC"/>
+                <outlet property="scrollView" destination="wWt-V4-YUl" id="y2K-5s-juQ"/>
+                <outlet property="view" destination="0ds-Wq-GQ8" id="GVK-SX-psh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -49,20 +49,13 @@
                     <state key="normal" title="Configure">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="showParametersPressed:" destination="-1" eventType="touchUpInside" id="202"/>
-                    </connections>
                 </button>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="209">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="Data Selection" id="210">
-                            <barButtonItem key="leftBarButtonItem" title="Back" id="225">
-                                <connections>
-                                    <action selector="backPressed:" destination="-1" id="226"/>
-                                </connections>
-                            </barButtonItem>
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="225"/>
                         </navigationItem>
                     </items>
                 </navigationBar>
@@ -70,27 +63,16 @@
                     <rect key="frame" x="0.0" y="168" width="508" height="382"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="380"/>
-                        <outlet property="delegate" destination="-1" id="381"/>
-                    </connections>
                 </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="372">
                     <rect key="frame" x="516" y="168" width="508" height="382"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="377"/>
-                        <outlet property="delegate" destination="-1" id="378"/>
-                    </connections>
                 </tableView>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="466">
                     <rect key="frame" x="516" y="124" width="443" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="631"/>
-                    </connections>
                 </searchBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="467">
                     <rect key="frame" x="959" y="124" width="65" height="44"/>
@@ -102,17 +84,11 @@
                     <state key="normal" title="Back">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="backReadsTbl:" destination="-1" eventType="touchUpInside" id="479"/>
-                    </connections>
                 </button>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="424">
                     <rect key="frame" x="0.0" y="124" width="443" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="480"/>
-                    </connections>
                 </searchBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="449">
                     <rect key="frame" x="443" y="124" width="65" height="44"/>
@@ -124,9 +100,6 @@
                     <state key="normal" title="Back">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="backRefTbl:" destination="-1" eventType="touchUpInside" id="478"/>
-                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="575">
                     <rect key="frame" x="508" y="44" width="8" height="506"/>
@@ -152,9 +125,6 @@
                     <state key="normal" title="Analyze">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="analyzePressed:" destination="-1" eventType="touchUpInside" id="673"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -202,6 +172,73 @@
                 <constraint firstItem="424" firstAttribute="leading" secondItem="365" secondAttribute="leading" id="uJt-kt-Zgs"/>
                 <constraint firstItem="372" firstAttribute="top" secondItem="466" secondAttribute="bottom" id="yZD-FP-eGe"/>
             </constraints>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="0ds-Wq-GQ8">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-V4-YUl">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scW-Bm-k2x">
+                            <rect key="frame" x="0.0" y="44" width="341" height="599"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4E5-Jx-Gga">
+                            <rect key="frame" x="341" y="44" width="342" height="599"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-sA-2Vc">
+                            <rect key="frame" x="683" y="44" width="341" height="599"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        </view>
+                        <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCw-ds-fJK">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Data Selection" id="H2P-q2-ma3">
+                                    <barButtonItem key="leftBarButtonItem" title="Back" id="iLc-dV-QK9">
+                                        <connections>
+                                            <action selector="backPressed:" destination="-1" id="m7A-Ok-aoD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXc-Z7-0WN">
+                            <rect key="frame" x="34" y="651" width="462" height="108"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <state key="normal" title="Analyze">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="analyzePressed:" destination="-1" eventType="touchUpInside" id="IsZ-h4-eTq"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoM-RG-h9Z">
+                            <rect key="frame" x="540" y="651" width="450" height="108"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <state key="normal" title="Configure">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="showParametersPressed:" destination="-1" eventType="touchUpInside" id="Ec5-If-Tbe"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>

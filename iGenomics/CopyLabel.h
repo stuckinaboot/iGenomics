@@ -2,6 +2,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define kCopyLabelLongPressGestureRecognizerDuration 0.45f
 @interface CopyLabel : UILabel
 
 @end

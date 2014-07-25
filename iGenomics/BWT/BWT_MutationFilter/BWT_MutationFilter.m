@@ -82,7 +82,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         }
         for (int a = 0; a <= kACGTLen+1; a++) {
             if (charWMostOccs != a) {
-                if (posOccArray[a][i]>kHeteroAllowance) {
+                if (posOccArray[a][i]>=kHeteroAllowance) {
                     if (a<kACGTLen)
                         foundGenome[posInFoundGenomeCounter][i] = acgt[a];
                     else if (a == kACGTLen)
@@ -144,7 +144,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     for (int i = 0; i < strlen(seq); i++) {
         if (coverageArray[i]>=kLowestAllowedCoverage) {
             for (int x = 0; x<kACGTLen+1; x++) {
-                if (posOccArray[x][i] > kHeteroAllowance && acgt[x] != seq[i]) {
+                if (posOccArray[x][i] >= kHeteroAllowance && acgt[x] != seq[i]) {
                     [mutationsArray addObject:[NSNumber numberWithInt:i]];
                     break;
                 }
@@ -196,7 +196,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         }
         else {
             for (int a = 0; a<kACGTLen+2; a++) {
-                if (posOccArray[a][p]>kHeteroAllowance) {
+                if (posOccArray[a][p]>=kHeteroAllowance) {
                     mutStr[i][mutCounter] = acgt[a];
                     
                     if (a == kACGTLen)

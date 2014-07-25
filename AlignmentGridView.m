@@ -330,9 +330,9 @@
         if (gridPos.str[i] != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
             int readInfoNum = gridPos.readInfoStr[i];
             
-            if (numOfBoxesPerPixel > kPixelWidth)
-                [self drawReadBodyAtPoint:point];
-            else {
+//            if (numOfBoxesPerPixel > kPixelWidth)
+//                [self drawReadBodyAtPoint:point];
+//            else {
                 if (readInfoNum == kReadInfoReadStart) {
                     [self drawReadStartAtPoint:point];
                 }
@@ -348,7 +348,7 @@
                 else if (readInfoNum == kReadInfoReadPosBeforeEnd) {
                     [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd];
                 }
-            }
+//            }
             if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
 //                char gridPosChar = [gridPos.str characterAtIndex:i];
                 char gridPosChar = gridPos.str[i];

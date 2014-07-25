@@ -127,7 +127,10 @@
         
         [xLbls[i] setText:[NSString stringWithFormat:@"%i",pos]];
         [xLbls[i] setAdjustsFontSizeToFitWidth:YES];
-        [self.view addSubview:xLbls[i]];
+        if (i > 0 && !CGRectIntersectsRect(xLbls[i-1].frame, xLbls[i].frame))
+            [self.view addSubview:xLbls[i]];
+        else if (i == 0 && !CGRectIntersectsRect(xLbls[i].frame, x0Lbl.frame))
+            [self.view addSubview:xLbls[i]];
         
         UIFont *font = xLbls[i].font;
         

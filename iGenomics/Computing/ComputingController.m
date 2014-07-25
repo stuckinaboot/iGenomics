@@ -67,7 +67,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             NSLog(@"About to find and filter mutations");
-            bwt.bwtMutationFilter.kHeteroAllowance = [[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+            bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
             [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
             [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
             [bwt.bwtMutationFilter filterMutationsForDetails];
@@ -79,7 +79,7 @@
             NSString *readFileName = [myParameterArray objectAtIndex:kParameterArrayReadFileNameIndex];
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
-            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], nil];
+            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayEDIndex] intValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue]], nil];
             [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsContents];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
             

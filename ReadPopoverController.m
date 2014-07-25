@@ -27,11 +27,11 @@
 {
     [super viewDidLoad];
     
-    readNameLbl.text = [NSString stringWithFormat:@"%s",read.readName];
-    gappedALbl.text = [NSString stringWithFormat:@"%s",read.gappedA];
-    gappedBLbl.text = [NSString stringWithFormat:@"%s",read.gappedB];
-    edLbl.text = [NSString stringWithFormat:@"%i",read.distance];
-    foRevLbl.text = [NSString stringWithFormat:@"%@",(!read.isRev) ? @"Forward" : @"Reverse"];
+    readNameLbl.text = [NSString stringWithFormat:kReadPopoverReadNameLblTxt,read.readName];
+    gappedALbl.text = [NSString stringWithFormat:kReadPopoverGappedALblTxt,read.gappedA];
+    gappedBLbl.text = [NSString stringWithFormat:kReadPopoverGappedBLblTxt,read.gappedB];
+    edLbl.text = [NSString stringWithFormat:kReadPopoverEDLblTxt,read.distance];
+    foRevLbl.text = [NSString stringWithFormat:kReadPopoverFoRevLblTxt,(!read.isRev) ? kReadPopoverFoRevLblForwardTxt : kReadPopoverFoRevLblReverseTxt];
     // Do any additional setup after loading the view from its nib.
 }
 

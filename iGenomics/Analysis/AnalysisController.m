@@ -49,6 +49,7 @@
     pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
     
     mutationSupportStpr.maximumValue = kMutationSupportMax;
+    mutationSupportStpr.minimumValue = kMutationSupportMin;
     
     [self resetDisplay];
     [self resetGridViewForType:covGridView];
@@ -95,14 +96,14 @@
     coverageHistogram = [[CoverageHistogram alloc] init];
     
     //genome file name, reads file name, read length, genome length, number of reads
-    genomeFileSegmentNames = [basicInfArr objectAtIndex:0];
-    readsFileName = [basicInfArr objectAtIndex:1];
-    readLen = [[basicInfArr objectAtIndex:2] intValue];
-    genomeLen = [[basicInfArr objectAtIndex:3] intValue];
-    numOfReads = [[basicInfArr objectAtIndex:4] intValue];
-    editDistance = [[basicInfArr objectAtIndex:5] intValue];
-    numOfReadsMatched = [[basicInfArr objectAtIndex:6] intValue];
-    
+    genomeFileSegmentNames = [basicInfArr objectAtIndex:kBasicInfoArrGenomeFileNameIndex];
+    readsFileName = [basicInfArr objectAtIndex:kBasicInfoArrReadsFileNameIndex];
+    readLen = [[basicInfArr objectAtIndex:kBasicInfoArrReadLenIndex] intValue];
+    genomeLen = [[basicInfArr objectAtIndex:kBasicInfoArrGenomeLenIndex] intValue];
+    numOfReads = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsIndex] intValue];
+    editDistance = [[basicInfArr objectAtIndex:kBasicInfoArrEDIndex] intValue];
+    numOfReadsMatched = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsMatchedIndex] intValue];
+    bwt.bwtMutationFilter.kHeteroAllowance = [[basicInfArr objectAtIndex:kBasicInfoArrMutationSupportIndex] intValue];
     
     NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
     genomeFileName = [genomeFileSegmentNames substringWithRange:genomeFileNameRange];
@@ -166,6 +167,9 @@
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     pxlOffsetSlider.value = gridView.currOffset;
     [self.view bringSubviewToFront:pxlOffsetSlider];
+    
+    segmentStpr.value = gridView.indexInGenomeNameArr;
+    currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
 }
 
 - (void)resetDisplay {
@@ -188,7 +192,6 @@
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
     
     mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
-    [mutationSupportNumLbl setText:[NSString stringWithFormat:@"%i",(int)mutationSupportStpr.value]];
     
     if ([GlobalVars isOldIPhone]) {
         CGRect rect = gridView.frame;
@@ -356,7 +359,7 @@
         return;
     }
     if ([GlobalVars isIpad]) {
-        mutsPopover.contentSizeForViewInPopover = mutsPopover.view.bounds.size;
+        mutsPopover.preferredContentSize = mutsPopover.view.bounds.size;
         popoverController = [[UIPopoverController alloc] initWithContentViewController:mutsPopover];
         [popoverController presentPopoverFromRect:showMutTBViewBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
@@ -519,7 +522,7 @@
         InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
         [ipc setInsArr:insertionsArr forPos:(int)c.x];
         
-        ipc.contentSizeForViewInPopover = CGSizeMake(kInsPopoverW, kInsPopoverH);
+        ipc.preferredContentSize = CGSizeMake(kInsPopoverW, kInsPopoverH);
         
         vc = ipc;
         if (![GlobalVars isIpad])
@@ -535,7 +538,7 @@
     }
     else {
         AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
-        apc.contentSizeForViewInPopover = apc.view.bounds.size;
+        apc.preferredContentSize = apc.view.bounds.size;
         
         vc = apc;
         if (![GlobalVars isIpad])
@@ -624,7 +627,7 @@
 //Exports data
 
 - (IBAction)exportDataPressed:(id)sender {
-    [fileExporter setMutSupportVal:(int)mutationSupportStpr.value+1/*Mutation support is computed using posOccArr[x]i] > kHeteroAllowance, so for solely greater than, it needs to add one for the sentence in the message to make sense*/ andMutPosArray:mutPosArray];
+    [fileExporter setMutSupportVal:(int)mutationSupportStpr.value andMutPosArray:mutPosArray];
     [fileExporter displayExportOptionsWithSender:sender];
 }
 
@@ -667,6 +670,48 @@
     return separateGenomeNames;
 }
 
+//Extra iPad Support
+
+- (IBAction)showUtilitiesPopover:(id)sender {
+    if (popoverController.isPopoverVisible)
+        return;
+    UIViewController *controller = [[UIViewController alloc] init];
+    UIView *view = [[UIView alloc] initWithFrame:utilitiesView.frame];
+    [view addSubview:utilitiesView];
+    controller.view = view;
+    controller.preferredContentSize = utilitiesView.bounds.size;
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+    CGRect rect = showUtilitiesBtn.frame;
+    [popoverController presentPopoverFromRect:CGRectMake(rect.origin.x, rect.origin.y+rect.size.height, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (IBAction)showImportantMutationsPopover:(id)sender {
+    if (popoverController.isPopoverVisible)
+        return;
+    UIViewController *controller = [[UIViewController alloc] init];
+    UINib *myNib = [UINib nibWithNibName:kImportantMutationsDisplayViewNibName bundle:nil];
+    ImportantMutationsDisplayView *myView = [[myNib instantiateWithOwner:self options:0] objectAtIndex:0];
+    [myView setDelegate:self];
+    [myView setUpWithMutationsArray:imptMutationsArr];
+    controller.view = myView;
+    controller.preferredContentSize = myView.bounds.size;
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+    CGRect rect = showImportantMutationsBtn.frame;
+    [popoverController presentPopoverFromRect:CGRectMake(rect.origin.x, rect.origin.y+rect.size.height, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+//Impt muts disp view delegate start
+- (void)importantMutationAtPosPressedInImptMutDispView:(int)pos {
+    [self scrollToPos:pos];
+}
+//Impt muts disp view delegate end
+
+- (IBAction)showCoverageProfileGridView:(id)sender {
+    [self resetGridViewForType:covGridView];
+}
+- (IBAction)showAlignmentsGridView:(id)sender {
+    [self resetGridViewForType:alignmentGridView];
+}
 //Iphone Support
 
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender {

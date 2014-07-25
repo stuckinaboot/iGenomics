@@ -25,7 +25,7 @@
 #define kReadsInputViewInstructLblTxt @"Pick the reads file:"
 #define kReadsInputViewSearchPlaceholderTxt @"Search reads files..."
 
-#define kImptMutsInputViewInstructLblTxt @"Pick the important muts file:"
+#define kImptMutsInputViewInstructLblTxt @"Pick the important muts file (Optional):"
 #define kImptMutsInputViewSearchPlaceholderTxt @"Search important muts files..."
 //Eventually we can use - (NSFileHandle *)readHandle:(DBError **)error to read x lines (or megabytes) at a time
 //fasta is standard format for genome, fastq is standard format for reads
