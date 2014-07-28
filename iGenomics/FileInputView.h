@@ -29,8 +29,9 @@
 
 #define kMinTapsRequired 2
 
+@class FileInputView;
 @protocol FileInputViewDelegate <NSObject>
-- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc;
+- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc fromFileInputView:(FileInputView*)fileInputView;
 - (UIViewController*)getVC;
 - (void)fileSelected:(BOOL)isSelected InFileInputView:(UIView*)inputView;
 @end
@@ -43,6 +44,8 @@
     FileManager *fileManager;
     DBPath *parentPath;
     int selectedOption;
+    
+    NSArray *supportedFileTypes;
 }
 @property (nonatomic) id <FileInputViewDelegate> delegate;
 @property (nonatomic, readonly) IBOutlet UITableView *tblView;
@@ -51,5 +54,5 @@
 - (BOOL)needsInternetToGetFile;
 - (NSString*)nameOfSelectedRow;
 - (NSString*)contentsOfSelectedRow;
-- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt;
+- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes;
 @end

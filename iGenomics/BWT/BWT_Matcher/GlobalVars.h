@@ -49,6 +49,9 @@ typedef enum {
 #define kFa @"fa"
 #define kFq @"fq"
 
+#define kFaInterval 2
+#define kFqInterval 4
+
 #define kRefFileInternalDivider @",,"//This constant is used to divide the multiple reference file names
 #define kRefFileDisplayedDivider @", "//Used when displaying the multiple reference file names
 
@@ -93,7 +96,6 @@ extern char *acgt;
 extern int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each multiple to count at
 extern int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 extern int acgtTotalOccs[kACGTLen];
-extern BOOL drawTextWithDefinedUnicodeChars;
 
 extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned read
 

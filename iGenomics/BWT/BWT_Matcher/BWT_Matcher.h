@@ -19,6 +19,9 @@
 //#import "MatchedReadData.h"
 
 //CONSTANTS
+#define kAlignmentTypeForward 1
+#define kAlignmentTypeForwardAndReverse 0
+
 #define kReedsArraySeperationStr @"\n"
 
 //#define kBytesForIndexer 101//101

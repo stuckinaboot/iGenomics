@@ -34,7 +34,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     if (![GlobalVars isIpad]) {
         UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
         
@@ -51,8 +51,11 @@
         [trimmingRefCharCtrl setTitle:[NSString stringWithFormat:@"%c",kTrimmingRefChar0] forSegmentAtIndex:kTrimmingRefChar0Index];
         [trimmingRefCharCtrl setTitle:[NSString stringWithFormat:@"%c",kTrimmingRefChar1] forSegmentAtIndex:kTrimmingRefChar1Index];
     }
-    else
+    else {
         [self setTrimmingAllowed:NO];
+        trimmingSwitch.on = NO;
+        [self trimmingSwitchValueChanged:nil];
+    }
     [self mutationSupportValueChanged:nil];
     [self maxEDValueChanged:nil];
 }
@@ -60,6 +63,41 @@
 - (IBAction)dismissKeyboard:(id)sender {
     [mutationSupportTxtFld resignFirstResponder];
     [maxEDTxtFld resignFirstResponder];
+}
+
+- (IBAction)useLastUsedParameters:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
+    
+    matchTypeCtrl.selectedSegmentIndex = [[arr objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
+    [self matchTypeChanged:nil];
+    
+    maxEDStpr.value = [[arr objectAtIndex:kParameterArrayEDIndex] intValue];
+    [self maxEDValueChanged:nil];
+    
+    mutationSupportStpr.value = [[arr objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+    [self mutationSupportValueChanged:nil];
+    
+    if ([[GlobalVars extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+        trimmingStpr.value = [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue];
+        [self trimmingValueChanged:nil];
+        
+        NSString *trimmingRefCharStr = [arr objectAtIndex:kParameterArrayTrimmingRefCharIndex];
+        if ([trimmingRefCharStr isEqualToString:[NSString stringWithFormat:@"%c",kTrimmingRefChar0]])
+            trimmingRefCharCtrl.selectedSegmentIndex = kTrimmingRefChar0Index;
+        else if ([trimmingRefCharStr isEqualToString:[NSString stringWithFormat:@"%c", kTrimmingRefChar1]])
+            trimmingRefCharCtrl.selectedSegmentIndex = kTrimmingRefChar1Index;
+        
+        trimmingSwitch.on = (trimmingStpr.value != kTrimmingOffVal);
+        [self trimmingSwitchValueChanged:nil];
+    }
+    else {
+        trimmingSwitch.on = NO;
+        [self setTrimmingAllowed:NO];
+        [self trimmingSwitchValueChanged:nil];
+    }
+    
+    alignmentTypeCtrl.selectedSegmentIndex = [[arr objectAtIndex:kParameterArrayFoRevIndex] intValue];
 }
 
 - (IBAction)matchTypeChanged:(id)sender {
@@ -124,7 +162,7 @@
 }
 
 - (void)beginActualSequencing {
-    int i = (alignmentTypeCtrl.selectedSegmentIndex>0) ? alignmentTypeCtrl.selectedSegmentIndex-1 : alignmentTypeCtrl.selectedSegmentIndex+1;//Because I switched the two in the uisegmentedcontrol and this would require me to change the least amt of code
+    int i = alignmentTypeCtrl.selectedSegmentIndex;
     
     NSString *trimRefChar;
     if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar0Index)

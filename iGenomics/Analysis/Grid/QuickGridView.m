@@ -520,8 +520,6 @@
 - (void)drawText:(NSString*)txt atPoint:(CGPoint)point withRGB:(double[3])rgb {
     //point is the center of where the txt is to be drawn
     if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
-        if (drawTextWithDefinedUnicodeChars)
-            txt = [GlobalVars implicitDefinedUnicodeValOfTxt:txt];
         CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), rgb[0], rgb[1], rgb[2], 1.0f);
         UIFont *font = [UIFont systemFontOfSize:kTxtFontSize];
         float yOffset = ((boxHeight+font.pointSize)/2.0f)-font.pointSize;

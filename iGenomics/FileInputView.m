@@ -21,10 +21,12 @@
     return self;
 }
 
-- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt {
+- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes {
     fileManager = manager;
     instructLbl.text = instructTxt;
     searchBar.placeholder = placeHolderTxt;
+    
+    supportedFileTypes = supportedTypes;
     
     UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
     
@@ -107,7 +109,7 @@
             }
             else
                 filteredFileNames = [NSMutableArray arrayWithArray:fileManager.dropboxFileNames];
-            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
+            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:supportedFileTypes fromDropboxFileArray:filteredFileNames];
             [tableView reloadData];
         }
         else
@@ -129,7 +131,7 @@
                 if (!fileManager.dbFileSys)
                     [fileManager setUpForDropbox];
                 filteredFileNames = [NSMutableArray arrayWithArray:fileManager.dropboxFileNames];
-                filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
+                filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:supportedFileTypes fromDropboxFileArray:filteredFileNames];
             }
             else
                 selectedOption = -1;
@@ -203,13 +205,11 @@
 
 - (IBAction)cellDoubleTapped:(id)sender {
     NSString *s = @"";
-    
+    NSString *ext = @"";
     if (selectedOption == kSavedFilesIndex) {
         s = [filteredFileNames objectAtIndex:[tblView indexPathForSelectedRow].row];//Component 0 for default files for now
+        ext = [[FileManager getFileNameAndExtForFullName:s] objectAtIndex:1];
         s = [fileManager fileContentsForNameWithExt:s];
-        NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
-        s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
-        s = [NSString stringWithFormat:@"%@\n%@",s,[oldStr stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
     }
     else if (selectedOption == kDropboxFilesIndex) {
         DBFileInfo *info = [filteredFileNames objectAtIndex:[tblView indexPathForSelectedRow].row];
@@ -217,8 +217,18 @@
             return;
         s = [fileManager fileContentsForPath:info.path];
     }
-    
-    [delegate displayFilePreviewPopoverWithContents:s atLocation:[(UIGestureRecognizer*)sender locationInView:self]];
+
+    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
+        NSArray *sComponents = [NSArray arrayWithArray:[s componentsSeparatedByString:kLineBreak]];
+        if ([[sComponents objectAtIndex:kFaInterval] characterAtIndex:0] != kFaFileTitleIndicator) {//Makes sure its not a reads file
+            NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
+            s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
+            s = [NSString stringWithFormat:@"%@\n%@",s,[oldStr stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
+        }
+    }
+    CGRect frame = [tblView rectForRowAtIndexPath:[tblView indexPathForSelectedRow]];
+    CGPoint loc = CGPointMake(frame.origin.x+frame.size.width/2, tblView.frame.origin.y+frame.origin.y+frame.size.height);
+    [delegate displayFilePreviewPopoverWithContents:s atLocation:loc fromFileInputView:self];
 }
 
 #pragma Search Bar delegate
@@ -230,7 +240,7 @@
             filteredFileNames = [[NSMutableArray alloc] initWithArray:fileManager.defaultFileNames];
         else if (selectedOption == kDropboxFilesIndex) {
             filteredFileNames = [fileManager fileNamesForPath:parentPath];
-            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
+            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:supportedFileTypes fromDropboxFileArray:filteredFileNames];
         }
     }
     else {
@@ -239,7 +249,7 @@
             filteredFileNames = [fileManager fileNamesArrayWithNamesContainingTxt:text inArr:fileManager.defaultFileNames];
         else {
             filteredFileNames = [fileManager fileNamesArrayWithNamesContainingTxt:text inArr:[fileManager fileNamesForPath:parentPath]];
-            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:[NSArray arrayWithObjects:kFa, kFq, nil] fromDropboxFileArray:filteredFileNames];
+            filteredFileNames = [FileManager fileArrayByKeepingOnlyFilesOfTypes:supportedFileTypes fromDropboxFileArray:filteredFileNames];
         }
     }
     [tblView reloadData];

@@ -50,6 +50,11 @@
                                     <action selector="backPressed:" destination="-1" id="29"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Last Used" id="XOa-xH-M2Z">
+                                <connections>
+                                    <action selector="useLastUsedParameters:" destination="-1" id="gpy-UC-MT6"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>

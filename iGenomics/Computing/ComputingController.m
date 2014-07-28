@@ -67,9 +67,9 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             NSLog(@"About to find and filter mutations");
-            bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+            bwt.bwtMutationFilter.kHeteroAllowance = /*kMutationSupportMin;*/[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
             [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
-            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
+//            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
             [bwt.bwtMutationFilter filterMutationsForDetails];
             
             

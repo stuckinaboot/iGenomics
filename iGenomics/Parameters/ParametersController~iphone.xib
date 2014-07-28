@@ -124,6 +124,11 @@
                                     <action selector="backPressed:" destination="-1" id="rKd-DA-FBX"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Last Used" id="EsM-3g-N8l">
+                                <connections>
+                                    <action selector="useLastUsedParameters:" destination="-1" id="ByE-6s-f9K"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>

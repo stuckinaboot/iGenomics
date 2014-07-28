@@ -95,11 +95,13 @@
     [yTitle setTransform:CGAffineTransformMakeRotation(-(M_PI)/2)];
     [self.view addSubview:yTitle];
     
-    UILabel *x0Lbl = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft+kCoverageHistogramAxisWidth, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom+kCoverageHistogramAxisWidth, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//Corresponds to the maxYLbl
-    
-    [x0Lbl setText:[NSString stringWithFormat:kCoverageHistogram0IntervalTxt]];
-    [x0Lbl setAdjustsFontSizeToFitWidth:YES];
-    [self.view addSubview:x0Lbl];
+    if (posOfHighestFrequency > 0) {
+        UILabel *x0Lbl = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft+kCoverageHistogramAxisWidth, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom+kCoverageHistogramAxisWidth, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//Corresponds to the maxYLbl
+        
+        [x0Lbl setText:[NSString stringWithFormat:kCoverageHistogram0IntervalTxt]];
+        [x0Lbl setAdjustsFontSizeToFitWidth:YES];
+        [self.view addSubview:x0Lbl];
+    }
     
 //    CGSize lblTxtSize = [kCoverageHistogram0IntervalTxt sizeWithFont:x0Lbl.font];
     
@@ -110,6 +112,12 @@
 //    [self.view addSubview:y0Lbl];
     
     float standardDeviation = sqrtf(posOfHighestFrequency);
+    BOOL usingDefaultSD = NO;
+    
+    if (standardDeviation == 0) {
+        standardDeviation = kCoverageHistogramSDDefault;
+        usingDefaultSD = YES;
+    }
     
     UILabel *xLbls[kCoverageHistogramNumOfIntervalLblsPerAxis];
     UILabel *yLbls[kCoverageHistogramNumOfIntervalLblsPerAxis];
@@ -127,14 +135,14 @@
         
         [xLbls[i] setText:[NSString stringWithFormat:@"%i",pos]];
         [xLbls[i] setAdjustsFontSizeToFitWidth:YES];
-        if (i > 0 && !CGRectIntersectsRect(xLbls[i-1].frame, xLbls[i].frame))
+        if (posOfHighestFrequency > 0)
             [self.view addSubview:xLbls[i]];
-        else if (i == 0 && !CGRectIntersectsRect(xLbls[i].frame, x0Lbl.frame))
+        else if (usingDefaultSD && maxCoverageVal != 0 && currNumOfSD >= 0) {
             [self.view addSubview:xLbls[i]];
-        
+        }
         UIFont *font = xLbls[i].font;
         
-        if (i < ceilf(kCoverageHistogramNumOfIntervalLblsPerAxis/2.0f) && pos <= maxCoverageVal && pos >= 0) {//This if is here because at the same SD, there will probably/usually be different frequencies. Also, can't make labels for out of bounds positions
+        if (i <= ceilf(kCoverageHistogramNumOfIntervalLblsPerAxis/2.0f) && pos <= maxCoverageVal && pos >= 0) {//This if is here because at the same SD, there will probably/usually be different frequencies. Also, can't make labels for out of bounds positions
             yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(0, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom)), kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
             
             if (yLbls[i].frame.origin.y > 0)

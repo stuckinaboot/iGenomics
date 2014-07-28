@@ -18,7 +18,6 @@ int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each mu
 int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 int acgtTotalOccs[kACGTLen];
 NSMutableArray *readAlignmentsArr;
-BOOL drawTextWithDefinedUnicodeChars;
 
 @implementation GlobalVars
 
@@ -83,15 +82,6 @@ BOOL drawTextWithDefinedUnicodeChars;
 + (NSString*)extFromFileName:(NSString *)name {
     NSRange range = [name rangeOfString:@"." options:NSBackwardsSearch];
     return [name substringWithRange:NSMakeRange(range.location+1,name.length-range.location-1)];
-}
-
-+ (NSString*)implicitDefinedUnicodeValOfTxt:(NSString *)txt {
-    char c = [txt characterAtIndex:0];
-    int i;
-    for (i = 0; i < kACGTLen+1; i++)
-        if (kACGTwithInDels[i] == c)
-            break;
-    return [NSString stringWithFormat:@"%c",kImplictUnicode[i]];
 }
 
 + (void)displayiGenomicsAlertWithMsg:(NSString *)msg {

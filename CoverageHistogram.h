@@ -13,6 +13,8 @@
 #import "BWT_MutationFilter.h"
 #import "IPhonePopoverHandler.h"
 
+#define kCoverageHistogramNoReadsAlignedAlertMsg @"No reads aligned"
+
 #define kCoverageHistogramAxisWidth 2
 #define kCoverageHistogramAxisFontSize 15
 #define kCoverageHistogramAxisXTitle @"Coverage"

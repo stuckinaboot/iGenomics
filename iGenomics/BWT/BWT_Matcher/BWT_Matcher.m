@@ -155,7 +155,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         
         forwardMatches = [arr count];
         
-        if (alignmentType > 0) {//Reverse also
+        if (alignmentType == kAlignmentTypeForwardAndReverse) {//Reverse also
             if (subs == 0 || matchType == MatchTypeExactOnly) {
                 arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query] andIsReverse:YES andForOnlyPos:NO]];
 //                if ([arr count] > forwardMatches) {

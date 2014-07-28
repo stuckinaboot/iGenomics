@@ -37,12 +37,14 @@
     [super viewDidLoad];
     
     //Ref
+    NSArray *fileTypesDNA = [NSArray arrayWithObjects:kFa, kFq, nil];
+    
     refFileManager = [[FileManager alloc] init];
     UINib *inputViewNib = [UINib nibWithNibName:kFileInputViewNibName bundle:nil];
     refInputView = [[inputViewNib instantiateWithOwner:refInputView options:nil] objectAtIndex:0];
     
     [refFileManager setUpWithDefaultFileNamesPath:kDefaultRefFilesNamesFile ofType:kTxt];
-    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt];
+    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA];
     [refInputView setDelegate:self];
     
     //Reads
@@ -50,15 +52,17 @@
     readsInputView = [[inputViewNib instantiateWithOwner:readsInputView options:nil] objectAtIndex:0];
     
     [readsFileManager setUpWithDefaultFileNamesPath:kDefaultReadsFilesNamesFile ofType:kTxt];
-    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt];
+    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA];
     [readsInputView setDelegate:self];
     
     //Impt muts
+    NSArray *fileTypesImptMuts = [NSArray arrayWithObjects:kTxt, nil];
+    
     imptMutsFileManager = [[FileManager alloc] init];
     imptMutsInputView = [[inputViewNib instantiateWithOwner:imptMutsInputView options:nil] objectAtIndex:0];
     
     [imptMutsFileManager setUpWithDefaultFileNamesPath:kDefaultImptMutsFilesNamesFile ofType:kTxt];
-    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt];
+    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesImptMuts];
     [imptMutsInputView setDelegate:self];
 }
 
@@ -82,6 +86,7 @@
 }
 
 - (void)resetScrollViewOffset {
+    filePickerCurrentlySelecting = kFilePickerSelectingRef;
     [scrollView setContentOffset:CGPointZero animated:NO];
 }
 
@@ -209,7 +214,7 @@
     if ([GlobalVars isIpad]) {
         previewPopoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
         [previewPopoverController setPopoverContentSize:controller.txtView.frame.size];
-        [previewPopoverController presentPopoverFromRect:CGRectMake(loc.x, loc.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [previewPopoverController presentPopoverFromRect:CGRectMake(loc.x, loc.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp | UIPopoverArrowDirectionDown animated:YES];
     }
     else {
         [self presentViewController:controller animated:YES completion:nil];
@@ -228,8 +233,9 @@
 }
 
 #pragma File Input View Delegate
-- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc {
-    [self displayPopoverOutOfCellWithContents:contents atLocation:loc];
+- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc fromFileInputView:(FileInputView *)fileInputView {
+    CGPoint location = [self.view convertPoint:loc fromView:fileInputView];
+    [self displayPopoverOutOfCellWithContents:contents atLocation:location];
 }
 
 - (UIViewController*)getVC {

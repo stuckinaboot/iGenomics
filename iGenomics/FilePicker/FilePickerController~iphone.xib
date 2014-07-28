@@ -49,7 +49,7 @@
                                     </items>
                                 </navigationBar>
                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hS-Gw-Sha">
-                                    <rect key="frame" x="18" y="517.99999997143948" width="285" height="48"/>
+                                    <rect key="frame" x="18" y="517.999999942778" width="285" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -118,7 +118,7 @@
                                     </items>
                                 </navigationBar>
                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="791-re-fql">
-                                    <rect key="frame" x="18" y="516.99999998882413" width="285" height="48"/>
+                                    <rect key="frame" x="18" y="516.99999997758891" width="285" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>

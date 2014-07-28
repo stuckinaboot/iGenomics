@@ -33,8 +33,6 @@
  
  */
 
-#define kFaInterval 2
-#define kFqInterval 4
 //Special File Types End
 
 #define kLastUsedParamsSaveKey @"LastUsedParamsKey"
@@ -77,6 +75,8 @@
 - (IBAction)trimmingValueChanged:(id)sender;
 - (IBAction)trimmingSwitchValueChanged:(id)sender;
 - (IBAction)maxEDValueChanged:(id)sender;
+
+- (IBAction)useLastUsedParameters:(id)sender;
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;

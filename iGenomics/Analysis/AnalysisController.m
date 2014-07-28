@@ -381,6 +381,9 @@
     [mutPosArray removeAllObjects];
     bwt.bwtMutationFilter.kHeteroAllowance = val;
     
+    [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
+    [bwt.bwtMutationFilter filterMutationsForDetails];
+    
 //    [bwt.bwtMutationFilter filterMutationsForDetails];
     mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray forHeteroAllowance:val];
 //    [gridView initialMutationFind];
@@ -502,6 +505,10 @@
 - (IBAction)showCoverageHistogram:(id)sender {
     if (gridView.maxCoverageVal == 0)
         [gridView setMaxCovValWithNumOfCols:dgenomeLen-1];
+    if (numOfReadsMatched == 0) {
+        [GlobalVars displayiGenomicsAlertWithMsg:kCoverageHistogramNoReadsAlignedAlertMsg];
+        return;
+    }
     if ([GlobalVars isIpad]) {
         popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
         [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
