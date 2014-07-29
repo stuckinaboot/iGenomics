@@ -33,8 +33,6 @@
 
 - (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString *)path andImptMutsFileContents:(NSString*)imptMutsContents {
     
-    NSLog(@"==> setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray method entered");
-    
     readProgressView.progress = 0;
     readsProcessed = 0;//In case view loaded late
     
@@ -42,19 +40,13 @@
     
     bytesForIndexer = ceilf((double)dgenomeLen/kMaxMultipleToCountAt);
     
-    
-    NSLog(@"About to call [bwt setUpForRefFileContents]");
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];
     [bwt setUpForRefFileContents:mySeq andFilePath:path];
     exportDataStr = [[NSMutableString alloc] init];
     
-    NSLog(@"About to determine trimming value");
-    
     int trimmingValue = [[myParameterArray objectAtIndex:kParameterArrayTrimmingValIndex] intValue];
-    
-    NSLog(@"Trimming value is %i",trimmingValue);
     
     if (trimmingValue != kTrimmingOffVal)
         myReads = [self readsAfterTrimmingForReads:myReads andTrimValue:trimmingValue andReferenceQualityChar:[[myParameterArray objectAtIndex:kParameterArrayTrimmingRefCharIndex] characterAtIndex:0]];
@@ -62,18 +54,15 @@
     //Set up parameters
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
     dispatch_async(queue, ^{//Opens up a background thread
-        NSLog(@"About to call matchReedsFileContentsAndParametersArr");
         [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
-            NSLog(@"About to find and filter mutations");
+
             bwt.bwtMutationFilter.kHeteroAllowance = /*kMutationSupportMin;*/[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+            [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
             [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
 //            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
             [bwt.bwtMutationFilter filterMutationsForDetails];
-            
-            
-            NSLog(@"About to create basicInf and call readyViewForDisplay");
             
             NSString *refFileSegmentNames = [myParameterArray objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
             NSString *readFileName = [myParameterArray objectAtIndex:kParameterArrayReadFileNameIndex];
@@ -89,7 +78,6 @@
 
 - (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar {
     
-    NSLog(@"readsAfterTrimmingForReads called");
     NSMutableString *newReads = [[NSMutableString alloc] init];
     NSArray *arr = [reads componentsSeparatedByString:kLineBreak];
     NSMutableString *qualStr;
@@ -116,12 +104,8 @@
         NSString *newRead = [[arr objectAtIndex:i+1] substringToIndex:maxPos+1];//+1 to include that index
         if (newRead.length >= kMinReadLength)
             [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
-        else
-            NSLog(@"above was too short");
     }
     newReads = (NSMutableString*)[newReads stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    NSLog(@"Finished readsAfterTrimmingForReads");
     
     return (NSString*)newReads;
 }

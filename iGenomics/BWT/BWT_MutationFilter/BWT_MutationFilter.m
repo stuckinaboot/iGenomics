@@ -37,6 +37,16 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 //    [self setUpPosOccArray];
 }
 
+- (void)resetFoundGenome {
+    for (int i = 0; i<kACGTLen+2; i++) {
+        for (int x = 0; x<fileStrLen; x++) {
+            foundGenome[i][x] = kFoundGenomeDefaultChar;
+        }
+    }
+    
+    strcpy(foundGenome[0], refStr);
+}
+
 /*
 - (void)setUpPosOccArray {
     for (int i = 0; i<kACGTLen+2; i++) {

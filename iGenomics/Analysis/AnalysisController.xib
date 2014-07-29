@@ -13,6 +13,7 @@
                 <outlet property="genomeLenLbl" destination="873" id="893"/>
                 <outlet property="genomeNameLbl" destination="791" id="798"/>
                 <outlet property="gridView" destination="4" id="1157"/>
+                <outlet property="gridViewSwitcherCtrl" destination="tf2-Zh-I7A" id="hKJ-l3-7Mn"/>
                 <outlet property="gridViewTitleLblHolder" destination="1017" id="1052"/>
                 <outlet property="mutationSupportNumLbl" destination="KAz-DN-0mG" id="M7E-3F-t6Q"/>
                 <outlet property="mutationSupportStpr" destination="hrV-NB-ke0" id="BrZ-Zd-fEw"/>
@@ -29,7 +30,6 @@
                 <outlet property="showMutTBViewBtn" destination="588" id="597"/>
                 <outlet property="showUtilitiesBtn" destination="Ozt-el-Gzn" id="Ksg-IO-5VV"/>
                 <outlet property="totalNumOfMutsLbl" destination="ghO-dZ-7NO" id="IMS-P5-rE8"/>
-                <outlet property="utilitiesView" destination="RLy-gj-aPl" id="nbO-8j-YS2"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -193,7 +193,7 @@
         </view>
         <pinchGestureRecognizer id="1163"/>
         <view contentMode="scaleToFill" id="RLy-gj-aPl">
-            <rect key="frame" x="0.0" y="0.0" width="774" height="165"/>
+            <rect key="frame" x="0.0" y="0.0" width="774" height="197"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURR SEGMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9z-2p-u6v">
@@ -293,6 +293,17 @@
                         <navigationItem title="Utilities" id="rFO-d3-PYF"/>
                     </items>
                 </navigationBar>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tf2-Zh-I7A">
+                    <rect key="frame" x="444" y="160" width="244" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Alignments"/>
+                        <segment title="Coverage Profile"/>
+                    </segments>
+                    <connections>
+                        <action selector="gridViewSwitcherCtrlValChanged:" destination="-1" eventType="valueChanged" id="GEb-IE-ZZb"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

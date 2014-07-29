@@ -10,6 +10,9 @@
 #import "GlobalVars.h"
 #import "ImportantMutationsDisplayView.h"
 
+#define kGridViewSwitcherCtrlAlignmentsIndex 0
+#define kGridViewSwitcherCtrlCovProfileIndex 1
+
 @protocol AnalysisControllerIPhoneToolbarDelegate <NSObject>
 - (void)readyViewForCovProfile;
 - (void)readyViewForAlignments;

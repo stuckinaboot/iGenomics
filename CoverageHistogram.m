@@ -152,9 +152,20 @@
             CGSize size = [yLbls[i].text sizeWithFont:font];
             yLbls[i].frame = CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft-size.width, yLbls[i].frame.origin.y, size.width, size.height);
             
-            [yLbls[i] setTextAlignment:NSTextAlignmentLeft];
-            [yLbls[i] setAdjustsFontSizeToFitWidth:YES];
-            [self.view addSubview:yLbls[i]];
+            BOOL shouldAddY = YES;
+            if (i > 0) {
+                for (int j = 0; j < i; j++)
+                    if (CGRectIntersectsRect(yLbls[j].frame, yLbls[i].frame)) {
+                        shouldAddY = NO;
+                        break;
+                    }
+            }
+            
+            if (shouldAddY) {
+                [yLbls[i] setTextAlignment:NSTextAlignmentLeft];
+                [yLbls[i] setAdjustsFontSizeToFitWidth:YES];
+                [self.view addSubview:yLbls[i]];
+            }
         }
     }
 }

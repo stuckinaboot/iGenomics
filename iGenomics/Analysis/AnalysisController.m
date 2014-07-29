@@ -52,7 +52,7 @@
     mutationSupportStpr.minimumValue = kMutationSupportMin;
     
     [self resetDisplay];
-    [self resetGridViewForType:covGridView];
+    [self resetGridViewForType:alignmentGridView];
     [super viewDidLoad];
 
 //    [self setUpIPhoneToolbar];
@@ -143,6 +143,14 @@
     [gridView scrollToPos:pos inputtedByPosSearchField:NO];
 }
 
+- (IBAction)gridViewSwitcherCtrlValChanged:(id)sender {
+    if (gridViewSwitcherCtrl.selectedSegmentIndex == kGridViewSwitcherCtrlAlignmentsIndex)
+        [self resetGridViewForType:alignmentGridView];
+    else if (gridViewSwitcherCtrl.selectedSegmentIndex == kGridViewSwitcherCtrlCovProfileIndex)
+        [self resetGridViewForType:covGridView];
+    [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
+}
+
 - (void)resetGridViewForType:(QuickGridView *)gViewType {
 
     [gridView removeGestureRecognizer:tapRecognizer];
@@ -157,10 +165,12 @@
     if ([gViewType isEqual:covGridView]) {
         covGridView.hidden = NO;
         alignmentGridView.hidden = YES;
+        gridViewSwitcherCtrl.selectedSegmentIndex = kGridViewSwitcherCtrlCovProfileIndex;
     }
     else if ([gViewType isEqual:alignmentGridView]) {
         alignmentGridView.hidden = NO;
         covGridView.hidden = YES;
+        gridViewSwitcherCtrl.selectedSegmentIndex = kGridViewSwitcherCtrlAlignmentsIndex;
     }
     
     [pxlOffsetSlider addTarget:gridView action:@selector(pxlOffsetSliderValChanged:) forControlEvents:UIControlEventValueChanged];
@@ -381,6 +391,7 @@
     [mutPosArray removeAllObjects];
     bwt.bwtMutationFilter.kHeteroAllowance = val;
     
+    [bwt.bwtMutationFilter resetFoundGenome];
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     

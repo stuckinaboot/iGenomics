@@ -38,6 +38,7 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
 }
 @property (nonatomic) int kHeteroAllowance;
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher;
+- (void)resetFoundGenome;
 
 - (void)buildOccTableWithUnravStr:(char*)unravStr;
 - (NSArray*)filterMutationsForDetails;

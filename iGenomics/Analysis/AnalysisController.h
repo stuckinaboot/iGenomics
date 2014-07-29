@@ -150,6 +150,7 @@
     IBOutlet UIStepper *segmentStpr;
     IBOutlet UILabel *currSegmentLbl;
     
+    IBOutlet UISegmentedControl *gridViewSwitcherCtrl;
     IBOutlet QuickGridView *gridView;
     CoverageGridView *covGridView;
     AlignmentGridView *alignmentGridView;
@@ -215,6 +216,8 @@
 - (IBAction)showUtilitiesPopover:(id)sender;
 - (IBAction)showImportantMutationsPopover:(id)sender;
 - (void)setUpIPhoneToolbar;
+
+- (IBAction)gridViewSwitcherCtrlValChanged:(id)sender;
 
 - (IBAction)showCoverageHistogram:(id)sender;
 - (IBAction)showCoverageProfileGridView:(id)sender;

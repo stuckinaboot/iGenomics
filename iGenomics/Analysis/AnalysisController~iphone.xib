@@ -13,6 +13,7 @@
                 <outlet property="genomeLenLbl" destination="l8G-Vi-qm9" id="zJi-kz-136"/>
                 <outlet property="genomeNameLbl" destination="791" id="798"/>
                 <outlet property="gridView" destination="4" id="1157"/>
+                <outlet property="gridViewSwitcherCtrl" destination="hCr-lp-Hrb" id="hEz-11-EaJ"/>
                 <outlet property="gridViewTitleLblHolder" destination="1017" id="1052"/>
                 <outlet property="mutationSupportNumLbl" destination="q2x-7e-ZTk" id="zSZ-nA-idd"/>
                 <outlet property="mutationSupportStpr" destination="m5H-LO-2E3" id="MpJ-m1-wYf"/>
@@ -195,7 +196,7 @@
             <rect key="frame" x="0.0" y="0.0" width="568" height="276"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY3-pN-A5x">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY3-pN-A5x">
                     <rect key="frame" x="312" y="160" width="244" height="74"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -404,7 +405,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2x-7e-ZTk">
-                    <rect key="frame" x="220" y="97" width="54" height="21"/>
+                    <rect key="frame" x="220" y="130" width="54" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="54" id="13u-BW-La9"/>
@@ -414,14 +415,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="m5H-LO-2E3">
-                    <rect key="frame" x="273" y="93" width="94" height="29"/>
+                    <rect key="frame" x="273" y="126" width="94" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <action selector="mutationSupportStepperChanged:" destination="-1" eventType="valueChanged" id="Xzh-2O-4A9"/>
                     </connections>
                 </stepper>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutation Coverage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpW-wq-NBR">
-                    <rect key="frame" x="220" y="68" width="148" height="21"/>
+                    <rect key="frame" x="220" y="101" width="148" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="148" id="pa0-PI-P85"/>
@@ -437,6 +438,17 @@
                         <action selector="segmentStprValChanged:" destination="-1" eventType="valueChanged" id="G77-9O-52u"/>
                     </connections>
                 </stepper>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hCr-lp-Hrb">
+                    <rect key="frame" x="101" y="48" width="367" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Alignments"/>
+                        <segment title="Coverage Profile"/>
+                    </segments>
+                    <connections>
+                        <action selector="gridViewSwitcherCtrlValChanged:" destination="-1" eventType="valueChanged" id="w3x-fK-yrw"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -460,7 +472,7 @@
                 <constraint firstItem="SPx-16-vlS" firstAttribute="leading" secondItem="bpW-wq-NBR" secondAttribute="trailing" constant="25" id="PUZ-wh-3LL"/>
                 <constraint firstItem="q2x-7e-ZTk" firstAttribute="leading" secondItem="bpW-wq-NBR" secondAttribute="leading" id="R7I-OP-Ti0"/>
                 <constraint firstItem="A2F-mb-BND" firstAttribute="leading" secondItem="TUx-zU-Khu" secondAttribute="trailing" constant="8" symbolic="YES" id="Wj4-FZ-4XC"/>
-                <constraint firstItem="q2x-7e-ZTk" firstAttribute="baseline" secondItem="SPx-16-vlS" secondAttribute="baseline" id="XVX-1Z-WJE"/>
+                <constraint firstItem="q2x-7e-ZTk" firstAttribute="baseline" secondItem="SPx-16-vlS" secondAttribute="baseline" constant="33" id="XVX-1Z-WJE"/>
                 <constraint firstItem="l8G-Vi-qm9" firstAttribute="leading" secondItem="B2S-AH-Rrx" secondAttribute="leading" id="ZE6-3x-RUu"/>
                 <constraint firstItem="aw8-Kg-sxM" firstAttribute="leading" secondItem="HGO-Mu-8j2" secondAttribute="trailing" constant="6" id="ZYK-Hf-hK3"/>
                 <constraint firstItem="aw8-Kg-sxM" firstAttribute="top" secondItem="yt4-R7-U5O" secondAttribute="top" id="aPa-LM-9JJ"/>
@@ -468,7 +480,7 @@
                 <constraint firstAttribute="trailing" secondItem="SPx-16-vlS" secondAttribute="trailing" constant="26" id="byb-BW-5II"/>
                 <constraint firstItem="7rv-Gs-LBD" firstAttribute="trailing" secondItem="B2S-AH-Rrx" secondAttribute="trailing" id="cEL-Xm-NHY"/>
                 <constraint firstItem="B2S-AH-Rrx" firstAttribute="baseline" secondItem="RjP-Gk-prd" secondAttribute="baseline" id="eE5-kC-Diu"/>
-                <constraint firstItem="obH-mo-qOR" firstAttribute="top" secondItem="m5H-LO-2E3" secondAttribute="bottom" constant="37" id="eIZ-3z-c4g"/>
+                <constraint firstItem="obH-mo-qOR" firstAttribute="top" secondItem="m5H-LO-2E3" secondAttribute="bottom" constant="4" id="eIZ-3z-c4g"/>
                 <constraint firstItem="bpW-wq-NBR" firstAttribute="leading" relation="lessThanOrEqual" secondItem="l8G-Vi-qm9" secondAttribute="trailing" constant="47" id="eRO-80-oct"/>
                 <constraint firstItem="RjP-Gk-prd" firstAttribute="centerX" secondItem="nLp-WE-j9G" secondAttribute="centerX" id="fe1-lW-qGg"/>
                 <constraint firstAttribute="trailing" secondItem="RjP-Gk-prd" secondAttribute="trailing" constant="24" id="fel-SI-7ES"/>
@@ -479,7 +491,7 @@
                 <constraint firstItem="RjP-Gk-prd" firstAttribute="leading" secondItem="obH-mo-qOR" secondAttribute="trailing" constant="10" id="lc2-8T-DL8"/>
                 <constraint firstItem="MTl-R7-CzM" firstAttribute="baseline" secondItem="TUx-zU-Khu" secondAttribute="baseline" id="lfG-mq-dWI"/>
                 <constraint firstItem="aw8-Kg-sxM" firstAttribute="baseline" secondItem="HGO-Mu-8j2" secondAttribute="baseline" id="rVg-I1-cl5"/>
-                <constraint firstItem="bpW-wq-NBR" firstAttribute="top" secondItem="yt4-R7-U5O" secondAttribute="bottom" constant="29" id="t4t-D0-xlG"/>
+                <constraint firstItem="bpW-wq-NBR" firstAttribute="top" secondItem="yt4-R7-U5O" secondAttribute="bottom" constant="62" id="t4t-D0-xlG"/>
                 <constraint firstItem="aw8-Kg-sxM" firstAttribute="baseline" secondItem="TUx-zU-Khu" secondAttribute="baseline" id="wkK-1e-eC4"/>
                 <constraint firstItem="l8G-Vi-qm9" firstAttribute="trailing" secondItem="B2S-AH-Rrx" secondAttribute="trailing" id="xdP-dS-Mh5"/>
                 <constraint firstItem="l8G-Vi-qm9" firstAttribute="leading" secondItem="LW0-q0-VVi" secondAttribute="leading" constant="20" symbolic="YES" id="xu1-85-U9P"/>
