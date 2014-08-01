@@ -10,7 +10,7 @@
 
 @implementation DNAColors
 
-@synthesize defaultBackground, defaultLighterBackground, defaultLbl, covLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight, black, white, graph, segmentDivider, segmentDividerTxt, alignedRead;
+@synthesize defaultBackground, defaultLighterBackground, defaultLbl, covLbl, refLbl, foundLbl, aLbl, cLbl, gLbl, tLbl, delLbl, insLbl, mutHighlight, black, white, graph, segmentDivider, segmentDividerTxt, alignedRead, insertionIcon;
 
 @synthesize importantMutationInfoHeterozygousMut, importantMutationInfoHomozygousMut, importantMutationInfoHeterozygousOther,importantMutationInfoHomozygousOther, importantMutationInfoNoMutation, importantMutationInfoNoAlignments;
 
@@ -34,6 +34,7 @@
     segmentDivider = [[RGB alloc] initWithVals:1 :0 :0];
     segmentDividerTxt = [[RGB alloc] initWithVals:0 :0 :0];
     alignedRead = [[RGB alloc] initWithVals:251/255.0f :209/255.0f :222/255.0f];
+    insertionIcon = [[RGB alloc] initWithVals:0/255.0f :0/255.0f :0/255.0f];
     
     importantMutationInfoHeterozygousMut = [UIColor orangeColor];
     importantMutationInfoHomozygousMut = [UIColor redColor];

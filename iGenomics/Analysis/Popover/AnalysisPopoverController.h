@@ -10,6 +10,7 @@
 #import "IPhonePopoverHandler.h"
 #import "CopyLabel.h"
 #import "BWT.h"
+#import "InsertionsPopoverController.h"
 
 
 #define kAnalysisPopoverPosLblTxt @"Position: %i"
@@ -17,7 +18,7 @@
 
 #define kPopoverACGTLblTxt @"%c: %i"
 
-@interface AnalysisPopoverController : IPhonePopoverHandler {
+@interface AnalysisPopoverController : IPhonePopoverHandler <UITableViewDataSource, UITableViewDelegate> {
     IBOutlet CopyLabel *posLbl;
     IBOutlet CopyLabel *heteroLbl;
     IBOutlet CopyLabel *aLbl;
@@ -27,7 +28,12 @@
     IBOutlet CopyLabel *delLbl;
     IBOutlet CopyLabel *insLbl;
     IBOutlet CopyLabel *segmentLbl;
+    
+    
+    IBOutlet UITableView *insertionsTblView;
+    NSMutableArray *insertionsArray;
 }
+- (void)setInsertionsArray:(NSArray*)array;
 @property (nonatomic) int displayedPos;//The displayed position relative to the start of the closest segment start
 @property (nonatomic, retain) IBOutlet CopyLabel *posLbl;
 @property (nonatomic, retain) IBOutlet CopyLabel *heteroLbl;

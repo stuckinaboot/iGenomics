@@ -105,7 +105,6 @@ extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned
 + (BOOL)isIpad;
 + (BOOL)isOldIPhone;
 + (NSString*)extFromFileName:(NSString *)name;
-+ (NSString*)implicitDefinedUnicodeValOfTxt:(NSString*)txt;
 + (void)displayiGenomicsAlertWithMsg:(NSString*)msg;
 //+ (void)displayReadAlignmentDataInConsole;
 @end

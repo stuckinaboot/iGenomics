@@ -30,6 +30,7 @@
                 <outlet property="showMutTBViewBtn" destination="588" id="597"/>
                 <outlet property="showUtilitiesBtn" destination="Ozt-el-Gzn" id="Ksg-IO-5VV"/>
                 <outlet property="totalNumOfMutsLbl" destination="ghO-dZ-7NO" id="IMS-P5-rE8"/>
+                <outlet property="utilitiesView" destination="RLy-gj-aPl" id="DGj-Vf-Zq6"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>

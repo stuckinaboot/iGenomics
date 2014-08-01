@@ -62,7 +62,7 @@
     
     [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i, Seq: %s, Count: %i",info.pos+1,info.seq,info.count]];//Not positive about gappedA, info.pos + 1 because position 0 is considered 1
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }

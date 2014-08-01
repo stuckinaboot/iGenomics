@@ -129,7 +129,6 @@
     float x = firstPtOffset+kGridLineWidthCol;//If this passes the self.frame.size.width, stop drawing (break)
     float y = kPosLblHeight;
     
-    
     for (int i = 0; i<totalRows; i++) {
         for (int j = firstPtToDraw; j<totalCols && x <= self.frame.size.width; j += numOfBoxesPerPixel, x += kGridLineWidthCol+boxWidth) {
             if (i > GraphRow) {//Not Graph Row
@@ -181,6 +180,11 @@
                 }
             }
             else {//Graph Row
+                if (posOccArray[kACGTLen+1][j] > 0 && numOfBoxesPerPixel == kPixelWidth) {
+                    NSString *strToDraw = [NSString stringWithFormat:@"%c",kInsMarker];
+                    CGSize size = [strToDraw sizeWithFont:[UIFont systemFontOfSize:kTxtFontSize]];
+                    [self drawText:strToDraw atPoint:CGPointMake(x, kPosLblHeight-size.height-kPosLblTickMarkHeight/2+kGridLineWidthRow) withRGB:(double[3]){dnaColors.insertionIcon.r ,dnaColors.insertionIcon.g, dnaColors.insertionIcon.b}];
+                }
                 CGRect rect;
                 if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
                     //Set up the graph
@@ -297,6 +301,7 @@
         float widthInPixels = ((float)totalCols)/numOfBoxesPerPixel;
         [scrollingView setContentSize:CGSizeMake(widthInPixels, scrollingView.frame.size.height)];
     }
+
     scrollViewContentSizeChangedOnLastUpdate = YES;
 }
 
@@ -427,9 +432,13 @@
     BOOL alreadyUpdatedGenomeNameLbl = FALSE;
 
     if ([arr count] > 1) {
+        UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
+        
         for (int i = [arr count]-1; i >= 0; i--) {
             segOffset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
-            if (segOffset <= currOffset+self.bounds.size.width && segOffset >= currOffset) {
+            NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:i];
+            CGSize strFontSize = [str sizeWithFont:font];
+            if (segOffset <= currOffset+self.bounds.size.width && segOffset+strFontSize.width >= currOffset) {
                 [segOffsetsToDrawAt addObject:[NSNumber numberWithInt:segOffset]];
                 [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInteger:i]];
             }
@@ -447,8 +456,8 @@
             //            [self drawRectangle:CGRectMake(segOffset, kPosLblHeight, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight) withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
             //        }
         }
+        
         indexInGenomeNameArr = index;
-        UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
         for (int i = [segOffsetsToDrawAt count]-1; i >= 0; i--) {
             int index = [[segOffsetindexesToDrawAt objectAtIndex:i] intValue]+1;//+1 to show the name of the next segment
                 segOffset = [[segOffsetsToDrawAt objectAtIndex:i] floatValue];
@@ -456,9 +465,14 @@
 //                CGRect rect = CGRectMake(segOffset-currOffset, kPosLblHeight-kPosLblTickMarkHeight/2, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight+kPosLblTickMarkHeight/2);
 //                    [self drawRectangle:rect withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
                 int width = (nextSegOffset > 0) ? ceilf(nextSegOffset-segOffset) : self.bounds.size.width;
-                CGRect rect = CGRectMake(segOffset-currOffset, 0, width, self.bounds.size.height);
-                RGB *rgb = ((index-1) % 2 == 0) ? dnaColors.defaultLighterBackground : dnaColors.defaultBackground;
-                [self drawRectangle:rect withRGB:(double[3]){rgb.r, rgb.g, rgb.b}];
+            int rectx = segOffset-currOffset;
+            if (segOffset + [[delegate genomeSegmentNameForIndexInGenomeNameArr:i] sizeWithFont:font].width >= currOffset && segOffset < currOffset) {
+                width = self.bounds.size.width;
+                rectx = 0;
+            }
+            CGRect rect = CGRectMake(rectx, 0, width, self.bounds.size.height);
+            RGB *rgb = ((index-1) % 2 == 0) ? dnaColors.defaultLighterBackground : dnaColors.defaultBackground;
+            [self drawRectangle:rect withRGB:(double[3]){rgb.r, rgb.g, rgb.b}];
             
             if (index < [arr count]) {
                 NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:index];

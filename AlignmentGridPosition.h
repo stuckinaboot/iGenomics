@@ -14,11 +14,14 @@
 
 #define kAlignmentGridViewCharColumnNoChar ' '//An arbitrary # to avoid confusion with any base-pair
 
-#define kReadInfoReadMiddle 2 //Don't use 0 because that is the default int value...just trying to avoid confusion
+#define kReadInfoNoAlignment 0 // 0 because that is the default int value...just trying to avoid confusion
+#define kReadInfoReadMiddle 2
 #define kReadInfoReadStart 3
 #define kReadInfoReadEnd 4
 #define kReadInfoReadPosAfterStart 5
 #define kReadInfoReadPosBeforeEnd 6
+
+#define kAlignmentGridPositionStartEndStrokeBorderWidth 2
 
 @interface AlignmentGridPosition : NSObject {
     

@@ -58,6 +58,7 @@
     }
     [self mutationSupportValueChanged:nil];
     [self maxEDValueChanged:nil];
+    [self useLastUsedParameters:nil];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {

@@ -30,7 +30,8 @@
                         *graph,
                         *segmentDivider,
                         *segmentDividerTxt,
-                        *alignedRead;
+                        *alignedRead,
+                        *insertionIcon;
 
 @property (nonatomic) UIColor  *importantMutationInfoHeterozygousMut,
                                 *importantMutationInfoHomozygousMut,

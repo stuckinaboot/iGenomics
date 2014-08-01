@@ -32,11 +32,11 @@
 - (void)setUpAlignmentGridPositionsArr;
 - (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount;
 //- (void)setUpPositionMatchedCharsArr;
-- (void)drawReadStartAtPoint:(CGPoint)point;
-- (void)drawReadEndAtPoint:(CGPoint)point;
-- (void)drawReadBodyAtPoint:(CGPoint)point;
-- (void)drawReadBodyAtPoint:(CGPoint)point nextToAnEnd:(int)end;
+- (void)drawReadStartAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;
+- (void)drawReadEndAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;;
+- (void)drawReadBodyAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;
+- (void)drawReadBodyAtPoint:(CGPoint)point nextToAnEnd:(int)end withColorRef:(CGColorRef)colorRef;;
 //- (void)drawReadWithEDInfo:(ED_Info*)read atX:(float)x andY:(float)y;
 //- (void)drawCharColumnWithTxt:(NSString*)txt atX:(float)x andY:(float)y;
-- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross;
+- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos withGridPosIndexInGridPosArr:(int)j atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross;
 @end

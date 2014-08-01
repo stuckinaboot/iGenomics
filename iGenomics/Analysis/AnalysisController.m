@@ -478,6 +478,9 @@
 
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
         dispatch_sync(queue, ^{//Opens up a background thread, done synchronously because this block needs to finish before this function gets called again (often times it will be)
+            
+            CGPoint prevOffset = gridView.scrollingView.contentOffset;
+            
             [gridView resetScrollViewContentSize];
             [gridView resetTickMarkInterval];
             
@@ -490,7 +493,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridViewW];
                 gridView.shouldUpdateScrollView = TRUE;
-                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset,0) animated:NO];
+                [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
                 if (gridView.shouldUpdateScrollView)
                     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
                 pxlOffsetSlider.value = gridView.currOffset;
@@ -521,6 +524,8 @@
         return;
     }
     if ([GlobalVars isIpad]) {
+        if (popoverController.isPopoverVisible)
+            [popoverController dismissPopoverAnimated:YES];
         popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
         [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
@@ -536,7 +541,7 @@
     if (gridView.boxWidth < kThresholdBoxWidth)
         return;
     UIViewController *vc;
-    if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1*/ && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there*/) {
+    /*if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1 && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there) {
         InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
         [ipc setInsArr:insertionsArr forPos:(int)c.x];
         
@@ -554,7 +559,7 @@
             [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
         }
     }
-    else {
+    else {*/
         AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
         apc.preferredContentSize = apc.view.bounds.size;
         
@@ -578,6 +583,9 @@
         apc.displayedPos = c.x+1-amountToSub;
         apc.position = c.x;
         
+        if (posOccArray[kACGTLen+1][(int)c.x] > 0)
+            [apc setInsertionsArray:insertionsArr];
+        
         [apc updateLbls];
         
         NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
@@ -595,7 +603,6 @@
             
             [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }
-    }
 }
 
 - (void)mutationFoundAtPos:(int)pos {

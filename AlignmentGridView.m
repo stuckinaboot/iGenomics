@@ -43,6 +43,9 @@
         gridPos.str = strdup([noCharLongStr UTF8String]);
         gridPos.readInfoStr = calloc(noCharLongStr.length, sizeof(int));
         gridPos.readIndexStr = calloc(noCharLongStr.length, sizeof(int));//+1 rather than initialize the whole array to -1, I will just later on subtract 1
+        for (int j = 0; j < maxCoverageVal; j++) {
+            gridPos.readIndexStr[j] = -1;
+        }
         alignmentGridPositionsArr[i] = gridPos;
     }
     
@@ -74,7 +77,7 @@
                     placeToInsertChar++;
             }
             
-            gridPos.readIndexStr[placeToInsertChar] = i+1;
+            gridPos.readIndexStr[placeToInsertChar] = i;
             
             if (placeToInsertChar+1 > gridPos.highestChar)
                 gridPos.highestChar = placeToInsertChar+1;//+1 because is basically counting the row in normal numbers for math purposes
@@ -123,7 +126,6 @@
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
-    
     currOffset = offSet;
     drawingView.image = NULL;
     
@@ -158,6 +160,7 @@
     float maxAlignmentStrLen = 0;
     
     BOOL mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
+    
     
     for (int i = 0; i<kAlignmentGridViewNumOfGridSections; i++) {
         int indexInMutPresentArr = 0;
@@ -203,13 +206,19 @@
                 }
                 else {//A through insertion
                     AlignmentGridPosition *gridPos = alignmentGridPositionsArr[j];
+
                     if (gridPos.highestChar > maxAlignmentStrLen)
                         maxAlignmentStrLen = gridPos.highestChar;
-                    [self drawCharColumnWithAlignmentGridPos:gridPos atX:x andY:y-currYOffset andYToNotCross:y];
+                    [self drawCharColumnWithAlignmentGridPos:gridPos withGridPosIndexInGridPosArr:j atX:x andY:y-currYOffset andYToNotCross:y];
 //                    [self drawCharColumnWithTxt:[positionMatchedCharsArr objectAtIndex:j] atX:x andY:y];
                 }
             }
             else if (i == GraphRow) {
+                if (posOccArray[kACGTLen+1][j] > 0 && numOfBoxesPerPixel == kPixelWidth) {
+                    NSString *strToDraw = [NSString stringWithFormat:@"%c",kInsMarker];
+                    CGSize size = [strToDraw sizeWithFont:[UIFont systemFontOfSize:kTxtFontSize]];
+                    [self drawText:strToDraw atPoint:CGPointMake(x, kPosLblHeight-size.height-kPosLblTickMarkHeight/2+kGridLineWidthRow) withRGB:(double[3]){dnaColors.insertionIcon.r ,dnaColors.insertionIcon.g, dnaColors.insertionIcon.b}];
+                }
                 CGRect rect;
                 if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
                     //Set up the graph
@@ -246,10 +255,11 @@
                     float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
-                    
-                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
+                   
+                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, FoundRow*(boxHeight+kGridLineWidthRow)+graphBoxHeight));
+//                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
                 }
-                else if  (mutPresent && boxWidth < kThresholdBoxWidth) {
+                if  (mutPresent && boxWidth < kThresholdBoxWidth && numOfBoxesPerPixel > kPixelWidth) {
                     float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
@@ -270,14 +280,17 @@
     
     if (maxAlignmentStrLen > 0)
         [self fixScrollViewContentSizeWithMaxAlignmentStrLen:maxAlignmentStrLen];
+    else if (maxAlignmentStrLen == 0 && scrollingView.contentSize.height > scrollingView.frame.size.height)
+        [self fixScrollViewContentSizeWithMaxAlignmentStrLen:maxAlignmentStrLen];
     
     newDrawingViewImg = UIGraphicsGetImageFromCurrentImageContext();
     [self setNeedsDisplay];
 
     UIGraphicsEndImageContext();
-    
+
     [delegate gridFinishedUpdatingWithOffset:currOffset andGridScrollViewContentSizeChanged:scrollViewContentSizeChangedOnLastUpdate];
     scrollViewContentSizeChangedOnLastUpdate = NO;
+    
 }
 
 - (void)fixScrollViewContentSizeWithMaxAlignmentStrLen:(int)maxAlignmentStrLen {
@@ -315,7 +328,7 @@
     }
 }
 
-- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross {
+- (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos withGridPosIndexInGridPosArr:(int)j atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross {
     if (!gridPos.str)
         return;
     
@@ -326,28 +339,52 @@
     NSString *gridPosStr = [NSString stringWithFormat:@"%s",gridPos.str];
     
     for (int i = 0; i < maxCoverageVal; i++) {
+        
+        BOOL isHiddenReadStart = NO;
+        if (numOfBoxesPerPixel > kPixelWidth)
+            if (j-numOfBoxesPerPixel >= 0 && gridPos.readIndexStr[i] != alignmentGridPositionsArr[j-numOfBoxesPerPixel].readIndexStr[i] && alignmentGridPositionsArr[j-numOfBoxesPerPixel].readInfoStr[i] != kReadInfoReadStart)
+                isHiddenReadStart = YES;
+        
+        BOOL isHiddenReadEnd = NO;
+        if (!isHiddenReadStart) {
+            if (numOfBoxesPerPixel > kPixelWidth)
+                if (j+numOfBoxesPerPixel<dgenomeLen && gridPos.readIndexStr[i] != alignmentGridPositionsArr[j+numOfBoxesPerPixel].readIndexStr[i])
+                    isHiddenReadEnd = YES;
+        }
+        
         point = CGPointMake(x, y);
         if (gridPos.str[i] != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
             int readInfoNum = gridPos.readInfoStr[i];
             
-//            if (numOfBoxesPerPixel > kPixelWidth)
-//                [self drawReadBodyAtPoint:point];
-//            else {
+            CGColorRef ref = [dnaColors.alignedRead rgbColorRef];
+            
+            //For adding outline
+            if (isHiddenReadStart || isHiddenReadEnd)
+                ref = [dnaColors.black rgbColorRef];
+            //
+            
+            if (gridPos.str[i] != originalStr[j] && numOfBoxesPerPixel == kPixelWidth)
+                ref = [dnaColors.mutHighlight rgbColorRef];
+            
+            if (numOfBoxesPerPixel > kPixelWidth)
+                [self drawReadBodyAtPoint:point withColorRef:ref];
+            else {
                 if (readInfoNum == kReadInfoReadStart) {
-                    [self drawReadStartAtPoint:point];
+                    [self drawReadStartAtPoint:point withColorRef:ref];
                 }
                 else if (readInfoNum == kReadInfoReadEnd) {
-                    [self drawReadEndAtPoint:point];
+                    [self drawReadEndAtPoint:point withColorRef:ref];
                 }
                 else if (readInfoNum == kReadInfoReadMiddle) {
-                    [self drawReadBodyAtPoint:point];
+                    [self drawReadBodyAtPoint:point withColorRef:ref];
                 }
                 else if (readInfoNum == kReadInfoReadPosAfterStart) {
-                    [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosAfterStart];
+                    [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosAfterStart withColorRef:ref];
                 }
                 else if (readInfoNum == kReadInfoReadPosBeforeEnd) {
-                    [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd];
+                    [self drawReadBodyAtPoint:point nextToAnEnd:kReadInfoReadPosBeforeEnd withColorRef:ref];
                 }
+            }
 //            }
             if (kTxtFontSize >= kMinTxtFontSize && boxWidth >= kThresholdBoxWidth) {
 //                char gridPosChar = [gridPos.str characterAtIndex:i];
@@ -364,45 +401,74 @@
     CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }
 
-- (void)drawReadStartAtPoint:(CGPoint)point {
+- (void)drawReadStartAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth+boxWidth/2, boxHeight);
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.0];
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), colorRef);
     [bezierPath fill];
+    
+    //For adding outline
+    CGContextSaveGState(UIGraphicsGetCurrentContext());
+    CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(rect.origin.x-kAlignmentGridPositionStartEndStrokeBorderWidth, rect.origin.y, boxWidth/2+kAlignmentGridPositionStartEndStrokeBorderWidth, rect.size.height));
+    bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.0];
+    CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kAlignmentGridPositionStartEndStrokeBorderWidth);
+    [bezierPath stroke];
+    CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }
 
-- (void)drawReadEndAtPoint:(CGPoint)point {
+- (void)drawReadEndAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth, boxHeight);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), colorRef);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(rect.origin.x, rect.origin.y, rect.size.width/2, rect.size.height));
+    CGContextSaveGState(UIGraphicsGetCurrentContext());
+    CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(rect.origin.x+boxWidth/2, rect.origin.y, rect.size.width, rect.size.height));
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.0];
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
     [bezierPath fill];
+    
+    //For adding outline
+    CGContextRestoreGState(UIGraphicsGetCurrentContext());
+    CGContextSaveGState(UIGraphicsGetCurrentContext());
+    CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(rect.origin.x+boxWidth/2, rect.origin.y, rect.size.width, rect.size.height));
+    bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.0];
+    CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kAlignmentGridPositionStartEndStrokeBorderWidth);
+    [bezierPath stroke];
+    CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }
-- (void)drawReadBodyAtPoint:(CGPoint)point {
+- (void)drawReadBodyAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth+self.kGridLineWidthCol, boxHeight);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), colorRef);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
 }
 
-- (void)drawReadBodyAtPoint:(CGPoint)point nextToAnEnd:(int)end {
+- (void)drawReadBodyAtPoint:(CGPoint)point nextToAnEnd:(int)end withColorRef:(CGColorRef)colorRef {
     CGRect rect = CGRectMake(point.x, point.y, boxWidth+self.kGridLineWidthCol, boxHeight);
     if (end == kReadInfoReadPosBeforeEnd)
-        rect = CGRectMake(point.x, point.y, boxWidth+boxWidth/2, boxHeight);
+        rect = CGRectMake(point.x, point.y, boxWidth+boxWidth/1.5, boxHeight);
     
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [dnaColors.alignedRead rgbColorRef]);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), colorRef);
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
 }
 
 //Read long pressed
 - (IBAction)readLongPressed:(id)sender {
-    CGPoint pt = [sender locationInView:self];
+    if (numOfBoxesPerPixel > kPixelWidth)
+        return;
+    
+    CGPoint touchLocInGrid = [sender locationInView:self];
+    CGPoint touchLocInScrollView = [sender locationInView:scrollingView];
+    CGPoint pt = CGPointMake(touchLocInGrid.x, touchLocInScrollView.y);
     
     //Get the xCoord in the scrollView
     double xCoord = self.currOffset+pt.x;
     
     //Find the box that was clicked
     CGPoint box = CGPointMake([self firstPtToDrawForOffset:xCoord],(int)((pt.y-(kPosLblHeight+graphBoxHeight))/(kGridLineWidthRow+self.boxHeight))-FoundRow);//Get the tapped box,... subtracts found row because is assuming box.y = 0 would mean the first row for displaying reads
-    
-    ED_Info *read = [readAlignmentsArr objectAtIndex:alignmentGridPositionsArr[(int)box.x].readIndexStr[(int)box.y]-1];
+    int index = alignmentGridPositionsArr[(int)box.x].readIndexStr[(int)box.y];
+    if (index < 0 || alignmentGridPositionsArr[(int)box.x].str[(int)box.y] == kAlignmentGridViewCharColumnNoChar)
+        return;
+    ED_Info *read = [readAlignmentsArr objectAtIndex:index];
     [self displayReadPopoverForRead:read atPosInGenome:box.x atPointOnScreen:pt];
 }
 

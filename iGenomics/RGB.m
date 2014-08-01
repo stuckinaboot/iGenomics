@@ -21,6 +21,10 @@
 }
 
 - (CGColorRef)rgbColorRef {
-    return [UIColor colorWithRed:r green:g blue:b alpha:kRGBDefaultAlpha].CGColor;
+    return [self UIColorObj].CGColor;
+}
+
+- (UIColor*)UIColorObj {
+    return [UIColor colorWithRed:r green:g blue:b alpha:kRGBDefaultAlpha];
 }
 @end

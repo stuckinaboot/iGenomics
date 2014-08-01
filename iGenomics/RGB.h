@@ -14,4 +14,5 @@
 @property (nonatomic) double r, g, b;
 - (id)initWithVals:(double)myR : (double)myG : (double)myB;
 - (CGColorRef)rgbColorRef;
+- (UIColor*)UIColorObj;
 @end

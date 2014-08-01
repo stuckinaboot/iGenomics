@@ -13,6 +13,7 @@
                 <outlet property="gLbl" destination="0a7-Jm-3Jm" id="iSy-Gd-Uag"/>
                 <outlet property="heteroLbl" destination="12" id="20"/>
                 <outlet property="insLbl" destination="BhD-DU-yHa" id="vhY-90-UkQ"/>
+                <outlet property="insertionsTblView" destination="P64-rS-sLZ" id="D5V-SF-rrT"/>
                 <outlet property="posLbl" destination="4" id="11"/>
                 <outlet property="segmentLbl" destination="dFQ-XZ-soh" id="eKD-sH-mKR"/>
                 <outlet property="tLbl" destination="ItV-nz-BoL" id="bEn-TR-JOr"/>
@@ -21,7 +22,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="475" height="320"/>
+            <rect key="frame" x="0.0" y="0.0" width="536" height="320"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Position:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="CopyLabel">
@@ -116,6 +117,20 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="P64-rS-sLZ">
+                    <rect key="frame" x="175" y="81" width="361" height="239"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="0BM-7B-1bh"/>
+                        <constraint firstAttribute="height" constant="239" id="KSq-1F-90z"/>
+                        <constraint firstAttribute="width" priority="999" constant="361" id="xm7-i2-Lce"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="5yw-yh-t0L"/>
+                        <outlet property="delegate" destination="-1" id="9kd-Fv-e48"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -125,14 +140,17 @@
                 <constraint firstItem="12" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="18"/>
                 <constraint firstItem="12" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="19"/>
                 <constraint firstItem="eME-sn-Lin" firstAttribute="top" secondItem="ItV-nz-BoL" secondAttribute="bottom" constant="8" symbolic="YES" id="2mN-uN-n6K"/>
+                <constraint firstItem="P64-rS-sLZ" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="-22" id="71j-6o-bPe"/>
                 <constraint firstItem="TWp-CY-G6h" firstAttribute="top" secondItem="TKO-Ag-kAv" secondAttribute="bottom" constant="8" symbolic="YES" id="7mV-KM-V8h"/>
                 <constraint firstItem="TWp-CY-G6h" firstAttribute="trailing" secondItem="TKO-Ag-kAv" secondAttribute="trailing" id="9k6-zu-EVq"/>
                 <constraint firstItem="TKO-Ag-kAv" firstAttribute="leading" secondItem="TWp-CY-G6h" secondAttribute="leading" id="AgZ-7G-MKy"/>
+                <constraint firstAttribute="trailing" secondItem="P64-rS-sLZ" secondAttribute="trailing" id="DXg-CI-bEe"/>
                 <constraint firstItem="ItV-nz-BoL" firstAttribute="trailing" secondItem="0a7-Jm-3Jm" secondAttribute="trailing" id="GOg-YR-Ais"/>
                 <constraint firstItem="BhD-DU-yHa" firstAttribute="trailing" secondItem="eME-sn-Lin" secondAttribute="trailing" id="HuA-I6-qoS"/>
                 <constraint firstItem="ItV-nz-BoL" firstAttribute="leading" secondItem="0a7-Jm-3Jm" secondAttribute="leading" id="JiC-nv-oIf"/>
                 <constraint firstItem="TKO-Ag-kAv" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="JrP-hz-be5"/>
                 <constraint firstItem="0a7-Jm-3Jm" firstAttribute="trailing" secondItem="TWp-CY-G6h" secondAttribute="trailing" id="MCe-CS-Lzg"/>
+                <constraint firstAttribute="bottom" secondItem="P64-rS-sLZ" secondAttribute="bottom" id="Me6-yk-dvi"/>
                 <constraint firstItem="dFQ-XZ-soh" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="3" id="RFX-Hc-gHl"/>
                 <constraint firstItem="eME-sn-Lin" firstAttribute="trailing" secondItem="ItV-nz-BoL" secondAttribute="trailing" id="SNQ-Ri-Vuh"/>
                 <constraint firstItem="0a7-Jm-3Jm" firstAttribute="top" secondItem="TWp-CY-G6h" secondAttribute="bottom" constant="8" symbolic="YES" id="cQe-Uc-1RA"/>
