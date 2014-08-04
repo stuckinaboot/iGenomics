@@ -31,13 +31,12 @@
                         *segmentDivider,
                         *segmentDividerTxt,
                         *alignedRead,
-                        *insertionIcon;
-
-@property (nonatomic) UIColor  *importantMutationInfoHeterozygousMut,
-                                *importantMutationInfoHomozygousMut,
-                                *importantMutationInfoHeterozygousOther,
-                                *importantMutationInfoHomozygousOther,
-                                *importantMutationInfoNoMutation,
-                                *importantMutationInfoNoAlignments;
+                        *insertionIcon,
+                        *matchTypeHeterozygousMutationImportant,
+                        *matchTypeHomozygousMutationImportant,
+                        *matchTypeHeterozygousMutationNormal,
+                        *matchTypeHomozygousMutationNormal,
+                        *matchTypeNoMutation,
+                        *matchTypeNoAlignment;
 - (void)setUp;
 @end

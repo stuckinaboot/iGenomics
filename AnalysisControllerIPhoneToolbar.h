@@ -26,8 +26,8 @@
     NSArray *pages;
     IBOutlet UIView *btnsView;
     IBOutlet UIView *lblsView;
-    ImportantMutationsDisplayView *imptMutsDispView;
 }
+@property (nonatomic) ImportantMutationsDisplayView *imptMutsDispView;
 @property (nonatomic) id <AnalysisControllerIPhoneToolbarDelegate> delegate;
 - (IBAction)showAlignmentsPressed:(id)sender;
 - (IBAction)showCovProfilePressed:(id)sender;

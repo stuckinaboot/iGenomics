@@ -159,7 +159,7 @@
 
     float maxAlignmentStrLen = 0;
     
-    BOOL mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
+    char mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
     
     
     for (int i = 0; i<kAlignmentGridViewNumOfGridSections; i++) {
@@ -172,7 +172,8 @@
                     [self drawText:[NSString stringWithFormat:@"%c",self.refSeq[j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.white.r, dnaColors.white.g, dnaColors.white.b}];
                 }
                 else if (i == FoundRow) {//found genome
-                    if ((self.refSeq[j] != foundGenome[0][j]) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
+                    char matchType = foundGenome[kFoundGenomeArrSize-1][j];
+                    if ((matchType == kMatchTypeHeterozygousMutationImportant || matchType == kMatchTypeHeterozygousMutationNormal || matchType == kMatchTypeHomozygousMutationImportant || matchType == kMatchTypeHomozygousMutationNormal) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
                         RGB *rgb;
                         for (int t = 0; t<kACGTLen; t++) {
                             if (kACGTStr[t] == foundGenome[0][j]) {
@@ -240,28 +241,34 @@
                 
                 graphCurrY = y+(rect.size.height-newHeight);
                 CGRect newRect = CGRectMake(x, graphCurrY, rect.size.width, newHeight);
-                BOOL mutationPresent = [self mutationPresentWithinInterval:j andEndIndex:j+numOfBoxesPerPixel-1];//Highlights the bar of the graph
+                RGB *color;
+                char mutationPresent = [self mutationPresentWithinInterval:j andEndIndex:j+numOfBoxesPerPixel-1];//Highlights the bar of the graph
+                if (mutationPresent != kMatchTypeNoAlignment && mutationPresent != kMatchTypeHomozygousNoMutation && mutationPresent != kMatchTypeHeterozygousNoMutation)
+                    color = [self colorForMatchType:mutationPresent];
+                else
+                    color = dnaColors.graph;
                 mutationPresentArr[indexInMutPresentArr] = mutationPresent;
                 indexInMutPresentArr++;
-                RGB *color = (mutationPresent) ? dnaColors.mutHighlight : dnaColors.graph;
                 [self drawRectangle:newRect withRGB:(double[3]){color.r,color.g,color.b}];
                 
                 //Put a position label above the graph
                 [self drawTickMarksForPoint:j andX:x];
             }
             if (i == ARow) {
-                BOOL mutPresent = mutationPresentArr[indexInMutPresentArr];
-                if (mutPresent && boxWidth >= kThresholdBoxWidth) {
+                char mutPresent = mutationPresentArr[indexInMutPresentArr];
+                if (mutPresent != kMatchTypeNoAlignment && boxWidth >= kThresholdBoxWidth) {
+                    RGB *color = [self colorForMatchType:mutPresent];
                     float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
-                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
+                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), color.r, color.g, color.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
                    
                     CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, FoundRow*(boxHeight+kGridLineWidthRow)+graphBoxHeight));
 //                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
                 }
-                if  (mutPresent && boxWidth < kThresholdBoxWidth && numOfBoxesPerPixel > kPixelWidth) {
+                if  (mutPresent != kMatchTypeNoAlignment && boxWidth < kThresholdBoxWidth && numOfBoxesPerPixel > kPixelWidth) {
+                    RGB *color = [self colorForMatchType:mutPresent];
                     float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
-                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
+                    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), color.r, color.g, color.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
                     
                     CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, y, highlightWidth, self.frame.size.height-kPosLblHeight));
@@ -357,6 +364,9 @@
             int readInfoNum = gridPos.readInfoStr[i];
             
             CGColorRef ref = [dnaColors.alignedRead rgbColorRef];
+            
+            if (gridPos.str[i] != originalStr[j])
+                ref = [dnaColors.mutHighlight rgbColorRef];//If I set it to the individual color of each specific mutation, it hurts the eyes to look at
             
             //For adding outline
             if (isHiddenReadStart || isHiddenReadEnd)

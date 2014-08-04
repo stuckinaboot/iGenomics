@@ -58,7 +58,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
 
-            bwt.bwtMutationFilter.kHeteroAllowance = /*kMutationSupportMin;*/[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+            bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
             [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
             [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
 //            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];

@@ -8,7 +8,7 @@
 
 #import "BWT_Matcher.h"
 
-int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+)
+int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+)
 
 @implementation BWT_Matcher
 
@@ -83,7 +83,7 @@ int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 beca
         }
     }
     
-    for (int i = 0; i<kACGTLen+2; i++) {
+    for (int i = 0; i<kACGTwithInDelsLen; i++) {
         for (int x = 0; x<dgenomeLen; x++)
             posOccArray[i][x] = 0;
     }

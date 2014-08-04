@@ -42,7 +42,7 @@
 //MAKE LASTCOL (BWT) AND FIRSTCOL VARIABLE IN THE HEADER FILE
 //WORK ON EXPORT (FILE IS ON DESKTOP)
 
-extern int posOccArray[kACGTLen+2][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+) __________________I----- GLOBAL ------I
+extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+) __________________I----- GLOBAL ------I
 
 @protocol BWT_MatcherDelegate <NSObject>
 - (void)readProccesed:(NSString*)readData andMatchedAtLeastOnce:(BOOL)didMatch;

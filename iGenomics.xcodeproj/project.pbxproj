@@ -25,7 +25,6 @@
 		A3208B3C197EFDC000299A30 /* ImportantMutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
-		A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */; };
 		A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A324DA171958BB6400FBE264 /* TESTSEQ.txt */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
@@ -168,7 +167,6 @@
 		A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportantMutationInfo.m; sourceTree = "<group>"; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = e_coli_1000_1.fq; path = "../../Lab Projects/bowtie-0.12.7/reads/e_coli_1000_1.fq"; sourceTree = "<group>"; };
 		A324DA171958BB6400FBE264 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
@@ -794,7 +792,6 @@
 			isa = PBXGroup;
 			children = (
 				A3845658195CB1010030F092 /* rice.fq */,
-				A324DA1519588AFB00FBE264 /* e_coli_1000_1.fq */,
 				A36CCDF9184A8632004B9327 /* reads.fa */,
 				A36CCDFA184A8632004B9327 /* reads.fq */,
 				A3A7212918023A3100F4E229 /* Ecoli.50k.reads.txt */,
@@ -1134,7 +1131,6 @@
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
 				A364B40A186246E10052625C /* Ecoli.50k.testread.txt in Resources */,
 				A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */,
-				A324DA1619588AFB00FBE264 /* e_coli_1000_1.fq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3890A72196B3F02002B6048 /* flu.H1N1s.fa in Resources */,

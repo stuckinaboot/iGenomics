@@ -9,7 +9,7 @@
 #import "BWT_MutationFilter.h"
 #import "ImportantMutationInfo.h"
 
-char *foundGenome[kACGTLen+2];
+char *foundGenome[kFoundGenomeArrSize];
 int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 
 @implementation BWT_MutationFilter
@@ -21,11 +21,11 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     refStr = strdup(originalSeq);
     fileStrLen = strlen(refStr);
     
-    for (int i = 0; i<kACGTLen+2; i++) {
+    for (int i = 0; i<kFoundGenomeArrSize; i++) {
         foundGenome[i] = calloc(fileStrLen,1);
     }
     
-    for (int i = 0; i<kACGTLen+2; i++) {
+    for (int i = 0; i<kFoundGenomeArrSize; i++) {
         for (int x = 0; x<fileStrLen; x++) {
             foundGenome[i][x] = kFoundGenomeDefaultChar;
         }
@@ -38,7 +38,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 }
 
 - (void)resetFoundGenome {
-    for (int i = 0; i<kACGTLen+2; i++) {
+    for (int i = 0; i < kFoundGenomeArrSize; i++) {
         for (int x = 0; x<fileStrLen; x++) {
             foundGenome[i][x] = kFoundGenomeDefaultChar;
         }
@@ -63,7 +63,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     int coverageCounter = 0;
     
     for (int i = 0; i<fileStrLen-1; i++) {
-        for (int a = 0; a < kACGTLen+2; a++) {
+        for (int a = 0; a < kACGTwithInDelsLen; a++) {
             
             if (posOccArray[a][i]>0 /*&& a < kACGTLen+1*/) { //Character did match, at least 1x coverage was found, and not an insertion
                 coverageCounter += posOccArray[a][i];
@@ -90,7 +90,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             else if (charWMostOccs == kACGTLen+1)
                 foundGenome[0][i] = kInsMarker;
         }
-        for (int a = 0; a <= kACGTLen+1; a++) {
+        for (int a = 0; a < kACGTwithInDelsLen; a++) {
             if (charWMostOccs != a) {
                 if (posOccArray[a][i]>=kHeteroAllowance) {
                     if (a<kACGTLen)
@@ -122,6 +122,15 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
         }
         
+        char foundGenomeMatchType = kMatchTypeNoAlignment;
+        if (foundGenome[0][i] != kFoundGenomeDefaultChar) {
+            if (foundGenome[1][i] != kFoundGenomeDefaultChar)
+                foundGenomeMatchType = kMatchTypeHeterozygousNoMutation;
+            else
+                foundGenomeMatchType = kMatchTypeHomozygousNoMutation;
+        }
+        foundGenome[kFoundGenomeArrSize-1][i] = foundGenomeMatchType;
+        
         posInFoundGenomeCounter = 1;
         coverageCounter = 0;
     }
@@ -129,7 +138,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     if (kOnlyPrintFoundGenome == 0) {
         for (int i = 0; i<fileStrLen-1; i++) {
             printf("\nP: %i |R: %c F: %c|  ",i,unravStr[i],foundGenome[0][i]);
-            for (int t = 0; t<kACGTLen+2; t++) {
+            for (int t = 0; t<kACGTwithInDelsLen; t++) {
                 if (t<kACGTLen)
                     printf("|%c: %i|  ",acgt[t],posOccArray[t][i]);
                 else if (t == kACGTLen)//Deletion (-) THIS IS WHERE IN/DELS ARE DISPLAYED
@@ -184,8 +193,8 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     char *heteroStr[mutations.count];
     
     for (int i = 0; i<mutations.count; i++) {
-        mutStr[i] = calloc(kACGTLen+2, 1);
-        heteroStr[i] = calloc(kACGTLen+2, 1);
+        mutStr[i] = calloc(kACGTwithInDelsLen, 1);
+        heteroStr[i] = calloc(kACGTwithInDelsLen, 1);
         strcpy(heteroStr[i], "    ");
     }
     
@@ -193,7 +202,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     for (int i = 0; i<mutations.count; i++) {
         int p = [[mutations objectAtIndex:i] intValue];
         if (coverageArray[p]<kLowestAllowedCoverage) {
-            for (int a = 0; a<kACGTLen+2; a++) {
+            for (int a = 0; a<kACGTwithInDelsLen; a++) {
                 if (posOccArray[a][p]>0) {
                     mutStr[i][mutCounter] = acgt[a];
                     
@@ -205,7 +214,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
         }
         else {
-            for (int a = 0; a<kACGTLen+2; a++) {
+            for (int a = 0; a<kACGTwithInDelsLen; a++) {
                 if (posOccArray[a][p]>=kHeteroAllowance) {
                     mutStr[i][mutCounter] = acgt[a];
                     
@@ -217,6 +226,12 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 }
             }
         }
+        
+        if (mutCounter > 1)
+            foundGenome[kFoundGenomeArrSize-1][p] = kMatchTypeHeterozygousMutationNormal;
+        else
+            foundGenome[kFoundGenomeArrSize-1][p] = kMatchTypeHomozygousMutationNormal;
+        
         mutCounter = 0;
     }
     
@@ -238,12 +253,12 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     int diffCharsAtPos = 0;
     
     char *foundChars = calloc(kACGTLen+3, 1);
-    foundChars[kACGTLen+2] = '\0';
+    foundChars[kACGTwithInDelsLen] = '\0';
     int posInFoundChars = 0;
     for (int i = 0; i<arr.count; i++) {
         diffCharsAtPos = 0;
         int p = [[arr objectAtIndex:i] intValue];
-        for (int a = 0; a<kACGTLen+2; a++) {
+        for (int a = 0; a<kACGTwithInDelsLen; a++) {
             if (posOccArray[a][p]>0) {
                 diffCharsAtPos++;
                 foundChars[posInFoundChars] = kACGTwithInDels[a];
@@ -255,7 +270,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];//Duplicates it so it doesn't overwrite it (same for below)
         else if (coverageArray[p]<kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
-            for (int a = 0; a<kACGTLen+2; a++) {
+            for (int a = 0; a<kACGTwithInDelsLen; a++) {
                 if (posOccArray[a][p]>0)
                     diffCharsAtPos++;
                 else if (diffCharsAtPos > 1) {
@@ -269,8 +284,8 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             posInFoundChars = 0;
             BOOL alreadyAdded = FALSE;
 
-            for (int a = 0; a<kACGTLen+2; a++) {
-                if (posOccArray[a][p]>heteroAllowance) {
+            for (int a = 0; a<kACGTwithInDelsLen; a++) {
+                if (posOccArray[a][p]>=heteroAllowance) {
                     diffCharsAtPos++;
                     foundChars[posInFoundChars] = kACGTwithInDels[a];
                     posInFoundChars++;
@@ -348,26 +363,21 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             if (recordedInfo.pos == imptInfo.pos && [[recordedInfo genomeName] isEqualToString:[imptInfo genomeName]])
                 sameLocMutation = recordedInfo;
             if ([MutationInfo mutationInfoObjectsHaveSameContents:recordedInfo :imptInfo]) {
-                if (strlen(recordedInfo.foundChars) > 1)
-                    imptInfo.matchType = ImportantMutationMatchTypeHeterozygousMut;
-                else
-                    imptInfo.matchType = ImportantMutationMatchTypeHomozygousMut;
+                if (strlen(recordedInfo.foundChars) > 1) {
+                    foundGenome[kFoundGenomeArrSize-1][recordedInfo.pos] = kMatchTypeHeterozygousMutationImportant;
+                    imptInfo.matchType = kMatchTypeHeterozygousMutationImportant;
+                }
+                else {
+                    foundGenome[kFoundGenomeArrSize-1][recordedInfo.pos] = kMatchTypeHomozygousMutationImportant;
+                    imptInfo.matchType = kMatchTypeHomozygousMutationImportant;
+                }
                 [matches addObject:imptInfo];
                 matchAdded = YES;
                 break;
             }
         }
         if (!matchAdded) {
-            if (!sameLocMutation) {
-                if (coverageArray[imptInfo.pos] > 0)
-                    imptInfo.matchType =ImportantMutationMatchTypeNoMutation;
-                else
-                    imptInfo.matchType = ImportantMutationMatchTypeNoAlignments;
-            }
-            else if (strlen(sameLocMutation.foundChars) > 1)
-               imptInfo.matchType = ImportantMutationMatchTypeHeterozygousOther;
-            else
-                imptInfo.matchType = ImportantMutationMatchTypeHomozygousOther;
+            imptInfo.matchType = foundGenome[kFoundGenomeArrSize-1][imptInfo.pos];
             [matches addObject:imptInfo];
         }
     }

@@ -16,7 +16,17 @@
 #define kOnlyPrintFoundGenome -111
 #define kFoundGenomeDefaultChar ' '
 
-extern char *foundGenome[kACGTLen+2]; //I--------GLOBAL-------I
+#define kMatchTypeHomozygousMutationNormal 'h'
+#define kMatchTypeHomozygousMutationImportant 'H'
+#define kMatchTypeHeterozygousMutationNormal 't'
+#define kMatchTypeHeterozygousMutationImportant 'T'
+#define kMatchTypeHomozygousNoMutation 'n'
+#define kMatchTypeHeterozygousNoMutation 'd'
+#define kMatchTypeNoAlignment 'x'
+
+#define kFoundGenomeArrSize 7 //A, C, G, T, -, +, status code for hetero/homo/other
+
+extern char *foundGenome[kFoundGenomeArrSize]; //I--------GLOBAL-------I
 extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------GLOBAL-------I
 
 #define kImptMutsStrSegmentNameIndex 0

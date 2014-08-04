@@ -10,7 +10,7 @@
 
 @implementation AnalysisControllerIPhoneToolbar
 
-@synthesize delegate;
+@synthesize delegate, imptMutsDispView;
 
 - (id)initWithFrame:(CGRect)frame
 {

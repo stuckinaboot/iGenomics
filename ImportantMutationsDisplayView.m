@@ -48,6 +48,7 @@
     }
     
     [numOfRowsInSectionArr addObject:[NSNumber numberWithInt:numOfRows+1]];//+1 includes the last row because the loop exits before that gets added
+    [tblView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -96,23 +97,23 @@
     btn.showsTouchWhenHighlighted = YES;
     
     switch (info.matchType) {
-        case ImportantMutationMatchTypeHeterozygousMut:
-            btn.backgroundColor = dnaColors.importantMutationInfoHeterozygousMut;
+        case kMatchTypeHeterozygousMutationImportant:
+            btn.backgroundColor = [dnaColors.matchTypeHeterozygousMutationImportant UIColorObj];
             break;
-        case ImportantMutationMatchTypeHomozygousMut:
-            btn.backgroundColor = dnaColors.importantMutationInfoHomozygousMut;
+        case kMatchTypeHomozygousMutationImportant:
+            btn.backgroundColor = [dnaColors.matchTypeHomozygousMutationImportant UIColorObj];
             break;
-        case ImportantMutationMatchTypeHeterozygousOther:
-            btn.backgroundColor = dnaColors.importantMutationInfoHeterozygousOther;
+        case kMatchTypeHeterozygousMutationNormal:
+            btn.backgroundColor = [dnaColors.matchTypeHeterozygousMutationNormal UIColorObj];
             break;
-        case ImportantMutationMatchTypeHomozygousOther:
-            btn.backgroundColor = dnaColors.importantMutationInfoHomozygousOther;
+        case kMatchTypeHomozygousMutationNormal:
+            btn.backgroundColor = [dnaColors.matchTypeHomozygousMutationNormal UIColorObj];
             break;
-        case ImportantMutationMatchTypeNoMutation:
-            btn.backgroundColor = dnaColors.importantMutationInfoNoMutation;
+        case kMatchTypeHeterozygousNoMutation | kMatchTypeHomozygousNoMutation:
+            btn.backgroundColor = [dnaColors.matchTypeNoMutation UIColorObj];
             break;
-        case ImportantMutationMatchTypeNoAlignments:
-            btn.backgroundColor = dnaColors.importantMutationInfoNoAlignments;
+        case kMatchTypeNoAlignment:
+            btn.backgroundColor = [dnaColors.matchTypeNoAlignment UIColorObj];
             break;
         default:
             break;

@@ -8,18 +8,9 @@
 
 #import "MutationInfo.h"
 
-typedef enum {
-    ImportantMutationMatchTypeHomozygousOther,
-    ImportantMutationMatchTypeHomozygousMut,
-    ImportantMutationMatchTypeHeterozygousOther,
-    ImportantMutationMatchTypeHeterozygousMut,
-    ImportantMutationMatchTypeNoMutation,
-    ImportantMutationMatchTypeNoAlignments
-} ImportantMutationMatchType;
-
 @interface ImportantMutationInfo : MutationInfo {
 
 }
 @property (nonatomic) NSString *details; //Optional, only used for important mutations file mutations
-@property (nonatomic) ImportantMutationMatchType matchType;
+@property (nonatomic) char matchType;
 @end

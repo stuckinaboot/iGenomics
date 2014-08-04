@@ -229,8 +229,6 @@
     [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
-    
-    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens];
 }
 
 - (void)setUpGridLbls {
@@ -387,7 +385,7 @@
     showAllMutsBtn.enabled = FALSE;
     
     mutationSupportNumLbl.text = [NSString stringWithFormat:@"%i",val];
-    
+
     [mutPosArray removeAllObjects];
     bwt.bwtMutationFilter.kHeteroAllowance = val;
     
@@ -395,15 +393,18 @@
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-//    [bwt.bwtMutationFilter filterMutationsForDetails];
     mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray forHeteroAllowance:val];
 //    [gridView initialMutationFind];
+    
     [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
     
 //    [gridView clearAllPoints];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
     
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
+    
+    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens];
+    [analysisControllerIPhoneToolbar.imptMutsDispView setUpWithMutationsArray:imptMutationsArr];
 }
 
 //Mutation Info Popover Delegate
@@ -590,7 +591,7 @@
         
         NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
         
-        for (int i = 1; i<kACGTLen+2; i++) {
+        for (int i = 1; i<kACGTwithInDelsLen; i++) {
             [heteroStr appendFormat:@" %c",foundGenome[i][(int)c.x]];
         }
         
@@ -606,6 +607,8 @@
 }
 
 - (void)mutationFoundAtPos:(int)pos {
+    if (pos == 2860)
+        printf("fishdf");
     [allMutPosArray addObject:[NSNumber numberWithInt:pos]];
 }
 

@@ -35,6 +35,7 @@ typedef enum {
 #define kACGTLen 4
 #define kACGTStr "ACGT"
 #define kACGTwithInDels "ACGT-+"
+#define kACGTwithInDelsLen 6
 
 #define kBaseUnknownChar 'N'
 #define kMinReadLength 15 //If a read is trimmed below this minimum

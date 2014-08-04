@@ -182,7 +182,7 @@ typedef enum {
 - (void)setUpWithNumOfRows:(int)rows andCols:(int)cols andGraphBoxHeight:(double)gbHeight andDoInitialMutationFind:(BOOL)initialFindMuts ;
 - (void)setMaxCovValWithNumOfCols:(int)cols;
 - (void)setUpGridViewForPixelOffset:(double)offSet;
-- (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex;
+- (char)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex;
 - (void)resetScrollViewContentSize;
 - (void)drawGridLinesForOffset:(double)offset;
 - (void)drawSegmentDividers;
@@ -207,4 +207,6 @@ typedef enum {
 - (void)updateScrollView:(UISlider*)s;
 
 - (double)getProperBoxWidth;
+
+- (RGB*)colorForMatchType:(char)matchType;
 @end

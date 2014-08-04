@@ -53,6 +53,18 @@
 }
 
 + (BOOL)mutationInfoObjectsHaveSameContents:(MutationInfo *)info1 :(MutationInfo *)info2 {
-    return ((info1.pos == info2.pos) && (info1.refChar == info2.refChar) && (info1.foundChars[0] == info2.foundChars[0]) && [info1.genomeName isEqualToString:info2.genomeName]);//Checks if a bunch of factors are equal, foundChars[0] because is just checking first character...may change in future to strcmp
+    BOOL sameFoundChars = NO;
+    int len = (int)strlen(info1.foundChars);
+    if (len > 1 && foundGenome[kFoundGenomeArrSize-1][info1.pos] != kMatchTypeHomozygousMutationNormal && foundGenome[kFoundGenomeArrSize-1][info1.pos] != kMatchTypeHomozygousNoMutation) {
+        for (int i = 0; i < len; i++) {
+            if (info2.foundChars[0] == info1.foundChars[i]) {
+                sameFoundChars = YES;
+                break;
+            }
+        }
+    }
+    else if (len == 1)
+        sameFoundChars = (info1.foundChars[0] == info2.foundChars[0]);
+    return ((info1.pos == info2.pos) && (info1.refChar == info2.refChar) && sameFoundChars && [info1.genomeName isEqualToString:info2.genomeName]);//Checks if a bunch of factors are equal, foundChars[0] because is just checking first character...may change in future to strcmp
 }
 @end

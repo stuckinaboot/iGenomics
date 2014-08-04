@@ -137,7 +137,8 @@
                     [self drawText:[NSString stringWithFormat:@"%c",refSeq[j]] atPoint:CGPointMake(x, y) withRGB:(double[3]){dnaColors.white.r, dnaColors.white.g, dnaColors.white.b}];
                 }
                 else if (i == FoundRow) {//found genome
-                    if ((refSeq[j] != foundGenome[0][j]) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
+                    char matchType = foundGenome[kFoundGenomeArrSize-1][j];
+                    if ((matchType == kMatchTypeHeterozygousMutationImportant || matchType == kMatchTypeHeterozygousMutationNormal || matchType == kMatchTypeHomozygousMutationImportant || matchType == kMatchTypeHomozygousMutationNormal) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
                         RGB *rgb;
                         for (int t = 0; t<kACGTLen; t++) {
                             if (kACGTStr[t] == foundGenome[0][j]) {
@@ -159,7 +160,10 @@
                         double rgbVal[3] = {rgb.r, rgb.g, rgb.b};
                         [self drawText:[NSString stringWithFormat:@"%c",foundGenome[0][j]] atPoint:CGPointMake(x, y) withRGB:rgbVal];
                         float opacity = (boxWidth < kThresholdBoxWidth) ? kMutHighlightOpacityZoomedFarOut : kMutHighlightOpacity;
-                        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), dnaColors.mutHighlight.r, dnaColors.mutHighlight.g, dnaColors.mutHighlight.b, opacity);
+                        
+                        RGB *mutationHighlightRGB = [self colorForMatchType:matchType];
+                        
+                        CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), mutationHighlightRGB.r, mutationHighlightRGB.g, mutationHighlightRGB.b, opacity);
                         int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
 
                         CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+kGridLineWidthCol, kPosLblHeight, highlightWidth, self.frame.size.height-kPosLblHeight));
@@ -205,10 +209,12 @@
                  */
                 
                 CGRect newRect = CGRectMake(x, y+(rect.size.height-newHeight), rect.size.width, newHeight);
-                BOOL mutationPresent = [self mutationPresentWithinInterval:j andEndIndex:j+numOfBoxesPerPixel-1];//Highlights the bar of the graph
-                RGB *color = (mutationPresent) ? dnaColors.mutHighlight : dnaColors.graph;
-                if (mutationPresent)
-                    NSLog(@"");
+                char mutationPresent = [self mutationPresentWithinInterval:j andEndIndex:j+numOfBoxesPerPixel-1];//Highlights the bar of the graph
+                RGB *color;
+                if (mutationPresent != kMatchTypeNoAlignment && mutationPresent != kMatchTypeHomozygousNoMutation && mutationPresent != kMatchTypeHeterozygousNoMutation)
+                    color = [self colorForMatchType:mutationPresent];
+                else
+                    color = dnaColors.graph;
                 [self drawRectangle:newRect withRGB:(double[3]){color.r,color.g,color.b}];
                 
                 //Put a position label above the graph
@@ -240,6 +246,21 @@
 
 - (void)drawRect:(CGRect)rect {
     drawingView.image = newDrawingViewImg;
+}
+
+- (RGB*)colorForMatchType:(char)matchType {
+    switch (matchType) {
+        case kMatchTypeHomozygousMutationNormal:
+            return dnaColors.matchTypeHomozygousMutationNormal;
+        case kMatchTypeHomozygousMutationImportant:
+            return dnaColors.matchTypeHomozygousMutationImportant;
+        case kMatchTypeHeterozygousMutationNormal:
+            return dnaColors.matchTypeHeterozygousMutationNormal;
+        case kMatchTypeHeterozygousMutationImportant:
+            return dnaColors.matchTypeHeterozygousMutationImportant;
+        default:
+            return dnaColors.mutHighlight;
+    }
 }
 
 - (RGB*)colorForIndexInACGTWithInDelsStr:(int)index orChar:(char)c usingIndex:(BOOL)usingIndex {
@@ -283,12 +304,13 @@
     return rgb;
 }
 
-- (BOOL)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex {
+- (char)mutationPresentWithinInterval:(int)startIndex andEndIndex:(int)endIndex {
     for (int i = startIndex; i <= endIndex; i++) {
-        if (refSeq[i] != foundGenome[0][i])
-            return YES;
+        char c = foundGenome[kFoundGenomeArrSize-1][i];
+        if (c != kMatchTypeNoAlignment && c != kMatchTypeHomozygousNoMutation && c != kMatchTypeHeterozygousNoMutation)
+            return foundGenome[kFoundGenomeArrSize-1][i];
     }
-    return NO;
+    return kMatchTypeNoAlignment;//All that matters is that it is understood that no mutation is found
 }
 
 - (void)resetScrollViewContentSize {
@@ -465,7 +487,7 @@
 //                CGRect rect = CGRectMake(segOffset-currOffset, kPosLblHeight-kPosLblTickMarkHeight/2, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight+kPosLblTickMarkHeight/2);
 //                    [self drawRectangle:rect withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
                 int width = (nextSegOffset > 0) ? ceilf(nextSegOffset-segOffset) : self.bounds.size.width;
-            int rectx = segOffset-currOffset;
+            int rectx = ceilf(segOffset-currOffset);
             if (segOffset + [[delegate genomeSegmentNameForIndexInGenomeNameArr:i] sizeWithFont:font].width >= currOffset && segOffset < currOffset) {
                 width = self.bounds.size.width;
                 rectx = 0;
@@ -500,7 +522,7 @@
         else if (i == 2) //Found
             [self drawRectangle:CGRectMake(0, y, self.frame.size.width, boxHeight) withRGB:(double[3]){dnaColors.foundLbl.r, dnaColors.foundLbl.g, dnaColors.foundLbl.b}];
         else {
-            [self drawRectangle:CGRectMake(0, y, self.frame.size.width, (boxHeight+kGridLineWidthRow)*(kACGTLen+2)) withRGB:(double[3]){dnaColors.defaultBackground.r, dnaColors.defaultBackground.g, dnaColors.defaultBackground.b}];//+2 because of dels and ins
+            [self drawRectangle:CGRectMake(0, y, self.frame.size.width, (boxHeight+kGridLineWidthRow)*(kACGTwithInDelsLen)) withRGB:(double[3]){dnaColors.defaultBackground.r, dnaColors.defaultBackground.g, dnaColors.defaultBackground.b}];//+2 because of dels and ins
             break;
         }
         y += kGridLineWidthRow+boxHeight;
