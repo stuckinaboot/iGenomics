@@ -28,7 +28,7 @@
     imptMutsDispView = [[mutsNib instantiateWithOwner:imptMutsDispView options:nil] objectAtIndex:0];
     [imptMutsDispView setUpWithMutationsArray:imptMutations];
     [imptMutsDispView setDelegate:self];
-    pages = [NSArray arrayWithObjects:btnsView, lblsView, imptMutsDispView,nil];// imptMutsDispView, nil];
+    pages = [NSArray arrayWithObjects:btnsView, lblsView, imptMutsDispView,nil];
     
     scrollView.contentSize = CGSizeMake(self.bounds.size.width*[pages count], scrollView.bounds.size.height);
     
@@ -57,6 +57,7 @@
     for (int i = 0; i < [txtFields count]; i++) {
         txtField = [txtFields objectAtIndex:i];
         txtField.inputAccessoryView = keyboardToolbar;
+        [txtField setDelegate:self];
     }
 }
 
@@ -73,9 +74,15 @@
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
+    [self endEditing:YES];
     for (UITextField* field in [self subviews]) {
         [field resignFirstResponder];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self endEditing:YES];
+    return YES;
 }
 
 - (IBAction)showAlignmentsPressed:(id)sender {

@@ -314,16 +314,16 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     return finalArr;
 }
 
-+ (NSMutableArray*)compareFoundMutationsArr:(NSArray *)arr toImptMutationsString:(NSString *)imptMutsStr andCumulativeLenArr:(NSMutableArray*)lenArr {
++ (NSMutableArray*)compareFoundMutationsArr:(NSArray *)arr toImptMutationsString:(NSString *)imptMutsStr andCumulativeLenArr:(NSMutableArray*)lenArr andSegmentNameArr:(NSMutableArray*)nameArr {
     
     if ([imptMutsStr isEqualToString:@""])
         return nil;
     
     NSMutableArray *imptMutsMutationInfoArr = [[NSMutableArray alloc] init];
-    NSArray *lineArr = [imptMutsStr componentsSeparatedByString:kLineBreak];
+    NSArray *lineArr = [[imptMutsStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:kLineBreak];
     
     //Creates mutation info objects for the important muts str
-    int index = 0;
+
     for (int i = 0; i < [lineArr count]; i++) {
         NSString *str = [lineArr objectAtIndex:i];
         NSArray *componentsArr = [str componentsSeparatedByString:kImptMutsStrComponentSeparator];
@@ -334,14 +334,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         NSString *details = [componentsArr objectAtIndex:kImptMutsStrDescriptionIndex];
         
         ImportantMutationInfo *info = [[ImportantMutationInfo alloc] initWithPos:0 andRefChar:refChar andFoundChars:foundChars andDisplayedPos:pos];
-        info.genomeName = segName;
-        if (i > 0) {
-            MutationInfo *prevInfo = [imptMutsMutationInfoArr lastObject];
-            if (![prevInfo.genomeName isEqualToString:info.genomeName])
-                index++;
-        }
         
-        info.indexInSegmentNameArr = index;
+        info.genomeName = segName;
+        
+        for (int j = 0; j < [nameArr count]; j++)
+            if ([[nameArr objectAtIndex:j] isEqualToString:info.genomeName]) {
+                info.indexInSegmentNameArr = j;
+                break;
+            }
         
         if (info.indexInSegmentNameArr > 0)
             info.pos = [[lenArr objectAtIndex:info.indexInSegmentNameArr-1] intValue]+pos-1;//pos-1 because is inputted as position with first spot as 1 not 0

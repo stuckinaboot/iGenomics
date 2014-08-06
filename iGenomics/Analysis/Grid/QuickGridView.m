@@ -31,7 +31,7 @@
     [maxCovLbl setBackgroundColor:[UIColor clearColor]];
     [maxCovLbl setTextColor:[UIColor blackColor]];
     
-    tickMarkConnectingLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, kPosLblHeight-(kPosLblTickMarkHeight/2), self.frame.size.width, kPosLblTickMarkHeight/4)];
+    tickMarkConnectingLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, kPosLblHeight-(kPosLblTickMarkHeight/2), self.frame.size.width, kGridLineWidthRow)];
     tickMarkConnectingLine.center = CGPointMake(tickMarkConnectingLine.center.x, kPosLblHeight-kPosLblTickMarkHeight/2);
     [tickMarkConnectingLine setBackgroundColor:[UIColor blackColor]];
     
@@ -98,6 +98,8 @@
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
 
+    
+    drawingIndexInGenomeNameArr = indexInGenomeNameArr;
     currOffset = offSet;
     drawingView.image = NULL;
     
@@ -218,7 +220,8 @@
                 [self drawRectangle:newRect withRGB:(double[3]){color.r,color.g,color.b}];
                 
                 //Put a position label above the graph
-                [self drawTickMarksForPoint:j andX:x];
+                if ([[[delegate getCumulativeSeparateGenomeLenArray] objectAtIndex:0] intValue]/kSegmentsOnScreenMax >= kPosLblInterval)
+                    [self drawTickMarksForPoint:j andX:x];
             }
         }
         x = firstPtOffset;
@@ -349,35 +352,41 @@
 
 //Draw Tick Marks
 - (void)drawTickMarksForPoint:(int)p andX:(float)x {
+    NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
     int intervalNum = p;
     if (numOfBoxesPerPixel == kPixelWidth)
         intervalNum++;
+    if (intervalNum >= [[arr objectAtIndex:drawingIndexInGenomeNameArr] intValue] && intervalNum-numOfBoxesPerPixel <= [[arr objectAtIndex:drawingIndexInGenomeNameArr] intValue])
+        drawingIndexInGenomeNameArr++;
+    int amtToSub = (drawingIndexInGenomeNameArr > 0) ? [[arr objectAtIndex:drawingIndexInGenomeNameArr-1] intValue] : 0;
+//    if (p >= [[arr objectAtIndex:indexInGenomeNameArr] intValue])
+//        amtToSub = [[arr objectAtIndex:indexInGenomeNameArr] intValue];
+//    else if (numOfBoxesPerPixel == kPixelWidth && indexInGenomeNameArr > 0 && p >= [[arr objectAtIndex:indexInGenomeNameArr-1] intValue])
+//        amtToSub = [[arr objectAtIndex:indexInGenomeNameArr-1] intValue];
+//    else if (numOfBoxesPerPixel > kPixelWidth && indexInGenomeNameArr > 0 && p >= [[arr objectAtIndex:indexInGenomeNameArr-1] intValue]) {
+//        amtToSub = [[arr objectAtIndex:indexInGenomeNameArr-1] intValue];
+//        for (int furthestRightIndexInGenomeNameArrShowOnScreen = indexInGenomeNameArr; furthestRightIndexInGenomeNameArrShowOnScreen < furthestRightIndexInGenomeNameArrShowOnScreen+kSegmentsOnScreenMax-2; furthestRightIndexInGenomeNameArrShowOnScreen++) {
+//            int val = [[arr objectAtIndex:furthestRightIndexInGenomeNameArrShowOnScreen] intValue];
+//            if (p >= val)
+//                amtToSub = val;
+//            else
+//                break;
+//        }
+//    }
+    intervalNum -= amtToSub;
+    
     int nearestPosInterval = roundf(intervalNum/kPosLblInterval)*kPosLblInterval;
+    if (nearestPosInterval == 0)
+        return;
     if ((numOfBoxesPerPixel == kPixelWidth) ? intervalNum % kPosLblInterval == 0 : (intervalNum-numOfBoxesPerPixel < nearestPosInterval && intervalNum+numOfBoxesPerPixel >= nearestPosInterval)) {//Multiple of kPosLblInterval
         NSNumberFormatter *num = [[NSNumberFormatter alloc] init];
         [num setNumberStyle: NSNumberFormatterDecimalStyle];
         
         UIFont *font = [UIFont systemFontOfSize:([GlobalVars isOldIPhone]) ? kPosLblFontSizeIPhoneOld : kPosLblFontSize];
-        int index = 0;
-        NSArray *arr = [delegate getCumulativeSeparateGenomeLenArray];
-        while (index < [arr count] && intervalNum > [[arr objectAtIndex:index] intValue])
-            index++;
-        index--;
-        int amountToSub = (index >= 0 && index < [arr count]) ? [[arr objectAtIndex:index] intValue] : 0;
         NSString *numStr;
         if (numOfBoxesPerPixel == kPixelWidth)
-            numStr = [num stringFromNumber:[NSNumber numberWithInt:intervalNum - amountToSub]];
+            numStr = [num stringFromNumber:[NSNumber numberWithInt:intervalNum]];// - amountToSub]];
         else {
-            int tempInterval = kPosLblInterval;
-            if (nearestPosInterval-amountToSub != 0) {
-                while (roundf((nearestPosInterval-amountToSub)/tempInterval)*tempInterval == 0 && p > 0) {
-                    tempInterval /= 2;
-                }
-            }
-            if (p == 0)
-                nearestPosInterval = 0;
-            else
-                nearestPosInterval = roundf((nearestPosInterval-amountToSub)/tempInterval)*tempInterval;
             numStr = [num stringFromNumber:[NSNumber numberWithInt:nearestPosInterval]];
         }
         CGSize numStrSize = [numStr sizeWithFont:font];
@@ -479,7 +488,8 @@
             //        }
         }
         
-        indexInGenomeNameArr = index;
+        drawingIndexInGenomeNameArr = index;
+        
         for (int i = [segOffsetsToDrawAt count]-1; i >= 0; i--) {
             int index = [[segOffsetindexesToDrawAt objectAtIndex:i] intValue]+1;//+1 to show the name of the next segment
                 segOffset = [[segOffsetsToDrawAt objectAtIndex:i] floatValue];
@@ -591,6 +601,20 @@
 //    if (shouldUpdateScrollView)
         [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
     shouldUpdateScrollView = !shouldUpdateScrollView;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if ([touches count] > 1) {
+        scrollingView.scrollEnabled = NO;
+        scrollingView.scrollEnabled = YES;
+    }
+}
+
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    NSSet *touches = [event allTouches];
+    if ([touches count])
+        NSLog(@"wofjojad");
+    return self;
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {

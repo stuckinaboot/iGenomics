@@ -18,7 +18,7 @@
 - (void)readyViewForAlignments;
 - (void)scrollToPos:(int)pos;
 @end
-@interface AnalysisControllerIPhoneToolbar : UIView <UIScrollViewDelegate, ImportantMutationsDisplayViewDelegate> {
+@interface AnalysisControllerIPhoneToolbar : UIView <UIScrollViewDelegate, ImportantMutationsDisplayViewDelegate, UITextFieldDelegate> {
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UINavigationBar *summaryNavBar;

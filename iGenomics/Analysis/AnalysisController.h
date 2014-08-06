@@ -18,6 +18,7 @@
 #import "SearchQueryResultsPopover.h"
 #import "APTimer.h"
 #import "AnalysisControllerIPhoneToolbar.h"
+#import "AnalysisControllerIPadToolbar.h"
 #import "FileExporter.h"
 #import "CoverageHistogram.h"
 #import "QuickGridView.h"
@@ -115,9 +116,6 @@
 @interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate, AnalysisControllerIPhoneToolbarDelegate, ImportantMutationsDisplayViewDelegate> {
     DNAColors *dnaColors;
     
-    IBOutlet UIView *utilitiesView;//For iPad
-    IBOutlet UIButton *showUtilitiesBtn;
-    
     //Interactive Interface Elements
     IBOutlet UITextField *posSearchTxtFld;
     IBOutlet UITextField *seqSearchTxtFld;
@@ -209,11 +207,11 @@
     FileExporter *fileExporter;
     
     IBOutlet AnalysisControllerIPhoneToolbar *analysisControllerIPhoneToolbar;
+    IBOutlet AnalysisControllerIPadToolbar *analysisControllerIPadToolbar;
     
     BOOL firstAppeared;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
-- (IBAction)showUtilitiesPopover:(id)sender;
 - (IBAction)showImportantMutationsPopover:(id)sender;
 - (void)setUpIPhoneToolbar;
 

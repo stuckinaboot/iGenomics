@@ -12,7 +12,7 @@
 
 #define kImportantMutationsDisplayViewNibName @"ImportantMutationsDisplayView"
 
-#define kImportantMutationInfoFormat @"Pos: %i Ref: %c Mut: %s %i"
+#define kImportantMutationInfoFormat @"Pos: %i Ref: %c Mut: %s"
 #define kImportantMutationsInfoMatchIconSizeFactor 0.5 //Is multiplied by the table view cell height
 
 #define kImportationMutationDisplayViewNoMutationsListed @"No important mutation file loaded"

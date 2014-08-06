@@ -37,6 +37,8 @@
 }
 
 - (NSString*)nameOfSelectedRow {
+    if (![tblView indexPathForSelectedRow])
+        return @"";
     if (selectedOption == kSavedFilesIndex) {
         return [filteredFileNames objectAtIndex:[tblView indexPathForSelectedRow].row];
     }
@@ -50,6 +52,8 @@
 }
 
 - (NSString*)contentsOfSelectedRow {
+    if (![tblView indexPathForSelectedRow])
+        return @"";
     if (selectedOption == kSavedFilesIndex) {
         NSString *fileName = [self nameOfSelectedRow];
         return [fileManager fileContentsForNameWithExt:fileName];
@@ -87,6 +91,22 @@
     return 0;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isSelected]) {
+        // Deselect manually.
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView.delegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
+        
+        return nil;
+    }
+    return indexPath;
+}
+
+- (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![tableView indexPathForSelectedRow])
+        [delegate fileSelected:NO InFileInputView:self];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BOOL shouldShowSelectedRow = YES;

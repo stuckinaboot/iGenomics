@@ -89,7 +89,7 @@
     
     // Set the data for this cell:
     ImportantMutationInfo *info = [mutationsArray objectAtIndex:[self indexInMutationsArrayForIndexPath:indexPath]];
-    cell.textLabel.text = [NSString stringWithFormat:kImportantMutationInfoFormat, info.displayedPos, info.refChar, info.foundChars, info.matchType];
+    cell.textLabel.text = [NSString stringWithFormat:kImportantMutationInfoFormat, info.displayedPos, info.refChar, info.foundChars];
     cell.detailTextLabel.text = info.details;
 //    cell.imageView.image = [UIImage imageNamed:@"flower.png"];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

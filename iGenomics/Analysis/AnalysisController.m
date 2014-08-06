@@ -62,6 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     if (!firstAppeared) {
         [self setUpIPhoneToolbar];
+        [analysisControllerIPadToolbar setUp];
         firstAppeared = TRUE;
     }
 //    [analysisControllerIPhoneToolbar setDelegate:self];
@@ -403,7 +404,7 @@
     
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
     
-    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens];
+    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens andSegmentNameArr:separateGenomeNames];
     [analysisControllerIPhoneToolbar.imptMutsDispView setUpWithMutationsArray:imptMutationsArr];
 }
 
@@ -607,8 +608,6 @@
 }
 
 - (void)mutationFoundAtPos:(int)pos {
-    if (pos == 2860)
-        printf("fishdf");
     [allMutPosArray addObject:[NSNumber numberWithInt:pos]];
 }
 
@@ -637,7 +636,7 @@
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {
     genomeFileSegmentNames = [separateGenomeNames objectAtIndex:index];
     [genomeNameLbl setText:genomeFileSegmentNames];
-    
+    gridView.indexInGenomeNameArr = index;
     segmentStpr.value = index;
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:index];
 }
@@ -699,20 +698,6 @@
 }
 
 //Extra iPad Support
-
-- (IBAction)showUtilitiesPopover:(id)sender {
-    if (popoverController.isPopoverVisible)
-        return;
-    UIViewController *controller = [[UIViewController alloc] init];
-    UIView *view = [[UIView alloc] initWithFrame:utilitiesView.frame];
-    [view addSubview:utilitiesView];
-    controller.view = view;
-    controller.preferredContentSize = utilitiesView.bounds.size;
-    popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-    CGRect rect = showUtilitiesBtn.frame;
-    [popoverController presentPopoverFromRect:CGRectMake(rect.origin.x, rect.origin.y+rect.size.height, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
 - (IBAction)showImportantMutationsPopover:(id)sender {
     if (popoverController.isPopoverVisible)
         return;

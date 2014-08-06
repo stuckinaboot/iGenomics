@@ -31,6 +31,9 @@
     computingController = [[ComputingController alloc] init];
     
     [super viewDidLoad];
+    
+    trimmingStpr.maximumValue = kTrimmingStprMaxVal;
+    [self useLastUsedParameters:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -58,7 +61,6 @@
     }
     [self mutationSupportValueChanged:nil];
     [self maxEDValueChanged:nil];
-    [self useLastUsedParameters:nil];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -240,11 +242,13 @@
         NSMutableArray *namesArray = [[NSMutableArray alloc] init];
         
         NSMutableArray *lineArray = (NSMutableArray*)[[seq stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:kLineBreak];
-        int lineLen = [[lineArray objectAtIndex:1] length];//Length of the first DNA sequence
+//        int lineLen = [[lineArray objectAtIndex:1] length];//Length of the first DNA sequence
         
         int prevLenIndex = -1;
         
         NSMutableString *newSeq = [[NSMutableString alloc] init];
+        
+        int len = 0;
         
         for (int i = 0; i < [lineArray count]; i++) {
             NSString *str = [lineArray objectAtIndex:i];
@@ -252,16 +256,19 @@
                 [namesArray addObject:[str substringFromIndex:1]];//Removes the >
                 [lineArray removeObjectAtIndex:i];
                 if (prevLenIndex != -1)
-                    [lengthArray addObject:[NSNumber numberWithInt:lineLen*(i-prevLenIndex)]];
+                    [lengthArray addObject:[NSNumber numberWithInt:len]];//lineLen*(i-prevLenIndex)]];
                 prevLenIndex = i;
                 i--;
+                len = 0;
             }
-            else
+            else {
+                len += str.length;
                 [newSeq appendString:str];
+            }
         }
         
-        int lineArrCount = [lineArray count];
-        [lengthArray addObject:[NSNumber numberWithInt:((lineArrCount-prevLenIndex-1)*lineLen)+[[lineArray objectAtIndex:lineArrCount-1] length]]];//Last line may have a different length
+//        int lineArrCount = [lineArray count];
+        [lengthArray addObject:[NSNumber numberWithInt:len]];//Last line may have a different length
         seq = [newSeq stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         NSMutableString *newRefFileName = [[NSMutableString alloc] initWithFormat:@"%@%@",name,kRefFileInternalDivider];
@@ -272,8 +279,7 @@
         
         seq = [seq stringByReplacingOccurrencesOfString:@"$" withString:@""];//Easier than searching for the dollar sign only if more than one ref is present
     }
-    int len = seq.length;
-    if ([seq characterAtIndex:len-1] != '$')
+    if ([seq characterAtIndex:seq.length-1] != '$')
         seq = [NSString stringWithFormat:@"%@$",seq];
     return seq;
 }

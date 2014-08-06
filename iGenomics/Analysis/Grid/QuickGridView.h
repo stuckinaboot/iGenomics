@@ -60,6 +60,8 @@
 #define kMaxCovValLblH 20
 #define kMaxCovLblFormat @"[0,%i]"
 
+#define kSegmentsOnScreenMax 3
+
 typedef enum {
     GraphRow,
     RefRow,
@@ -164,6 +166,7 @@ typedef enum {
     id delegate;
     
     int indexInGenomeNameArr;
+    int drawingIndexInGenomeNameArr;
     
     UIImage *newDrawingViewImg;
 }

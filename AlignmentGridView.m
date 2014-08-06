@@ -162,7 +162,7 @@
     char mutationPresentArr[(int)ceilf((totalCols-firstPtToDraw)/(float)numOfBoxesPerPixel)];
     
     
-    for (int i = 0; i<kAlignmentGridViewNumOfGridSections; i++) {
+    for (int i = 0; i <= kAlignmentGridViewNumOfGridSections; i++) {
         int indexInMutPresentArr = 0;
         for (int j = firstPtToDraw; j<totalCols && x <= self.frame.size.width; j += numOfBoxesPerPixel, x += self.kGridLineWidthCol+boxWidth) {
             float graphCurrY = 0;
@@ -252,7 +252,8 @@
                 [self drawRectangle:newRect withRGB:(double[3]){color.r,color.g,color.b}];
                 
                 //Put a position label above the graph
-                [self drawTickMarksForPoint:j andX:x];
+                if ([[[delegate getCumulativeSeparateGenomeLenArray] objectAtIndex:0] intValue]/kSegmentsOnScreenMax >= kPosLblInterval)
+                    [self drawTickMarksForPoint:j andX:x];
             }
             if (i == ARow) {
                 char mutPresent = mutationPresentArr[indexInMutPresentArr];
@@ -320,14 +321,14 @@
     float x = offset;
     float y = kPosLblHeight+graphBoxHeight;
     
-    for (int i = 1; i<ARow; i++) {
+    for (int i = 0; i<ARow; i++) {
         [self drawRectangle:CGRectMake(x, y, self.frame.size.width+(abs(offset)), kGridLineWidthRow) withRGB:rgb];
         y += kGridLineWidthRow+boxHeight;
     }
     y = kPosLblHeight-(kPosLblTickMarkHeight/2);//See tickMarkConnectingLine code and this makes sense
     
     for (int i = 0; i<totalCols; i++) {
-        [self drawRectangle:CGRectMake(x, y, self.kGridLineWidthCol, (boxHeight+kGridLineWidthRow)*(kAlignmentGridViewNumOfGridSections-1)) withRGB:rgb];
+        [self drawRectangle:CGRectMake(x, y, self.kGridLineWidthCol, graphBoxHeight+kGridLineWidthRow+kPosLblTickMarkHeight/2+(boxHeight+kGridLineWidthRow)*(kAlignmentGridViewNumOfGridSections-1)) withRGB:rgb];
         x += self.kGridLineWidthCol+boxWidth;
         
         if (x > self.frame.size.width)

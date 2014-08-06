@@ -15,7 +15,7 @@
 
 #define kAlignmentGridViewMaxCharsReadSpacing 2
 
-#define kAlignmentGridViewNumOfGridSections 4 //Includes graph row for spacing reasons and to possibly put insertion buttons there
+#define kAlignmentGridViewNumOfGridSections 3 //Includes graph row for spacing reasons and to possibly put insertion buttons there
 
 #define kReadLongPressRecognizerMinDuration 1.0f
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
+		A305AFB419918EA900F35333 /* RealFluImptMuts.txt in Resources */ = {isa = PBXBuildFile; fileRef = A305AFB319918EA900F35333 /* RealFluImptMuts.txt */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -17,6 +18,7 @@
 		A310AF62158A5F7200E892AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A310AF61158A5F7200E892AA /* ViewController.m */; };
 		A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF63158A5F7200E892AA /* ViewController_iPhone.xib */; };
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
+		A3111632199003630008809D /* AnalysisControllerIPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */; };
 		A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3161667196F0EF30083AD71 /* CoverageGridView.m */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
@@ -142,6 +144,7 @@
 /* Begin PBXFileReference section */
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
+		A305AFB319918EA900F35333 /* RealFluImptMuts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RealFluImptMuts.txt; sourceTree = "<group>"; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A310AF4E158A5F7200E892AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A310AF50158A5F7200E892AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -156,6 +159,8 @@
 		A310AF61158A5F7200E892AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A310AF64158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A310AF67158A5F7200E892AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		A3111630199003630008809D /* AnalysisControllerIPadToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisControllerIPadToolbar.h; sourceTree = "<group>"; };
+		A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisControllerIPadToolbar.m; sourceTree = "<group>"; };
 		A3161666196F0EF30083AD71 /* CoverageGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverageGridView.h; sourceTree = "<group>"; };
 		A3161667196F0EF30083AD71 /* CoverageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageGridView.m; sourceTree = "<group>"; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
@@ -427,6 +432,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A31116331990036E0008809D /* iPad Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				A3111630199003630008809D /* AnalysisControllerIPadToolbar.h */,
+				A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */,
+			);
+			name = "iPad Toolbar";
+			sourceTree = "<group>";
+		};
 		A3161669196F0EFF0083AD71 /* Grid View Superclass */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +522,7 @@
 				A3382FCA16A118A20042F59B /* AnalysisController.m */,
 				A3382FCB16A118A20042F59B /* AnalysisController.xib */,
 				A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */,
+				A31116331990036E0008809D /* iPad Toolbar */,
 				A337B1A118E78D1E00919612 /* iPhone Toolbar */,
 				A3007EE11961AF2D0094FFF9 /* File Exporter */,
 				A3382FD116A118D80042F59B /* Grid */,
@@ -991,6 +1006,7 @@
 			isa = PBXGroup;
 			children = (
 				A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */,
+				A305AFB319918EA900F35333 /* RealFluImptMuts.txt */,
 			);
 			name = "Default Impt Muts Files";
 			sourceTree = "<group>";
@@ -1126,6 +1142,7 @@
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
+				A305AFB419918EA900F35333 /* RealFluImptMuts.txt in Resources */,
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
@@ -1172,6 +1189,7 @@
 				A35E39B41885FB7500651C41 /* Reachability.m in Sources */,
 				A310AF5F158A5F7200E892AA /* AppDelegate.m in Sources */,
 				A310AF62158A5F7200E892AA /* ViewController.m in Sources */,
+				A3111632199003630008809D /* AnalysisControllerIPadToolbar.m in Sources */,
 				A36C7C0E1964AFAD004CA5EF /* CoverageHistogram.m in Sources */,
 				A3971B0C158A635D001626F7 /* Chunks.m in Sources */,
 				A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */,
