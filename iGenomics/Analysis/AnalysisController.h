@@ -113,7 +113,7 @@
 #define kBasicInfoArrNumOfReadsMatchedIndex 6
 #define kBasicInfoArrMutationSupportIndex 7
 
-@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate, AnalysisControllerIPhoneToolbarDelegate, ImportantMutationsDisplayViewDelegate> {
+@interface AnalysisController : UIViewController <QuickGridViewDelegate, MutationsInfoPopoverDelegate, SearchQueryResultsDelegate, UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, FileExporterDelegate, AnalysisControllerIPhoneToolbarDelegate, ImportantMutationsDisplayViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
     DNAColors *dnaColors;
     
     //Interactive Interface Elements
@@ -145,7 +145,7 @@
     IBOutlet UILabel *readPercentMatchedLbl;
     IBOutlet UILabel *totalNumOfMutsLbl;
     
-    IBOutlet UIStepper *segmentStpr;
+    IBOutlet UIPickerView *segmentPckr;
     IBOutlet UILabel *currSegmentLbl;
     
     IBOutlet UISegmentedControl *gridViewSwitcherCtrl;
@@ -209,6 +209,9 @@
     IBOutlet AnalysisControllerIPhoneToolbar *analysisControllerIPhoneToolbar;
     IBOutlet AnalysisControllerIPadToolbar *analysisControllerIPadToolbar;
     
+    IBOutlet UIButton *showAlignmentViewSegmentPckrBtn;
+    IBOutlet UIButton *showCoverageProfileSegmentPckrBtn;
+    
     BOOL firstAppeared;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
@@ -235,8 +238,6 @@
 
 - (IBAction)showMutTBView:(id)sender;
 - (IBAction)exportDataPressed:(id)sender;
-
-- (IBAction)segmentStprValChanged:(id)sender;
 
 - (IBAction)donePressed:(id)sender;
 

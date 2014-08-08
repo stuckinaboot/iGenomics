@@ -140,7 +140,7 @@
                 }
                 else if (i == FoundRow) {//found genome
                     char matchType = foundGenome[kFoundGenomeArrSize-1][j];
-                    if ((matchType == kMatchTypeHeterozygousMutationImportant || matchType == kMatchTypeHeterozygousMutationNormal || matchType == kMatchTypeHomozygousMutationImportant || matchType == kMatchTypeHomozygousMutationNormal) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
+                    if ((matchType == kMatchTypeHeterozygousMutationImportant || matchType == kMatchTypeHeterozygousMutationNormal || matchType == kMatchTypeHomozygousMutationImportant || matchType == kMatchTypeHomozygousMutationNormal || matchType == kMatchTypeNoMutationImportant) && boxWidth >= kThresholdBoxWidth) {//Mutation present - highlights the view. If the graph is taking up the whole view, the mutation is checked and dealt with properly when the graph is created
                         RGB *rgb;
                         for (int t = 0; t<kACGTLen; t++) {
                             if (kACGTStr[t] == foundGenome[0][j]) {
@@ -261,6 +261,8 @@
             return dnaColors.matchTypeHeterozygousMutationNormal;
         case kMatchTypeHeterozygousMutationImportant:
             return dnaColors.matchTypeHeterozygousMutationImportant;
+        case kMatchTypeNoMutationImportant:
+            return dnaColors.matchTypeNoMutation;
         default:
             return dnaColors.mutHighlight;
     }
@@ -598,8 +600,7 @@
 //ScrollView Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    if (shouldUpdateScrollView)
-        [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+    [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
     shouldUpdateScrollView = !shouldUpdateScrollView;
 }
 

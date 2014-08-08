@@ -55,7 +55,7 @@
     [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
 }
 
-- (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents {
+- (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType {
     DBFilesystem *sys = [DBFilesystem sharedFilesystem];
     if (!sys) {
         if ([DBAccountManager sharedManager].linkedAccount == NULL)
@@ -65,7 +65,7 @@
             [DBFilesystem setSharedFilesystem:sys];
         }
     }
-    path = [self fixChosenExportPathExt:path];
+    path = [self fixChosenExportPathExt:path forFileType:fileType];
     DBFile *file = [sys createFile:[[DBPath alloc] initWithString:path] error:nil];
     if ([file writeString:contents error:nil]) {
         [delegate displaySuccessBox];
@@ -100,9 +100,9 @@
     return -1;
 }
 
-- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents {
+- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType {
     DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-    path = [self fixChosenExportPathExt:path];
+    path = [self fixChosenExportPathExt:path forFileType:fileType];
     DBFile *file = [sys openFile:[[DBPath alloc] initWithString:path] error:nil];
     if ([file writeString:contents error:nil]) {
         [delegate displaySuccessBox];
@@ -160,14 +160,14 @@
         [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, editDistance, mutationSupportVal] isHTML:NO];
         
         NSMutableString *mutString = [self getMutationsExportStr];
-        [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:kExportMutsFileName];
+        [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,@""]];
         [[delegate getVC] presentViewController:exportMailController animated:YES completion:nil];
     }
     else if (option == EmailInfoOptionData) {
         [exportMailController setSubject:[NSString stringWithFormat:kExportDataEmailSubject,readsFileName, genomeFileName]];
         [exportMailController setMessageBody:[NSString stringWithFormat:kExportDataEmailMsg, readsFileName, genomeFileName, editDistance] isHTML:NO];
         
-        [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:kExportDataFileName];
+        [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName,@""]];
         [[delegate getVC] presentViewController:exportMailController animated:YES completion:nil];
     }
 }
@@ -202,7 +202,7 @@
             if ([txt isEqualToString:@""]) {
                 [self actionSheet:exportActionSheet didDismissWithButtonIndex:kExportASDropboxMutsIndex];
             }
-            else if (![self saveFileAtPath:txt andContents:[self getMutationsExportStr]]) {
+            else if (![self saveFileAtPath:txt andContents:[self getMutationsExportStr] andFileType:FileTypeMutations]) {
                 chosenMutsExportPath = txt;
                 exportMutsDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
                 [exportMutsDropboxErrorAlert show];
@@ -211,7 +211,7 @@
     }
     else if ([alertView isEqual:exportMutsDropboxErrorAlert]) {
         if (buttonIndex == 1) {
-            [self overwriteFileAtPath:chosenMutsExportPath andContents:[self getMutationsExportStr]];
+            [self overwriteFileAtPath:chosenMutsExportPath andContents:[self getMutationsExportStr] andFileType:FileTypeMutations];
         }
     }
     else if ([alertView isEqual:exportDataDropboxAlert]) {
@@ -220,7 +220,7 @@
             if ([txt isEqualToString:@""]) {
                 [self actionSheet:exportActionSheet didDismissWithButtonIndex:kExportASDropboxDataIndex];
             }
-            else if (![self saveFileAtPath:txt andContents:exportDataStr]) {
+            else if (![self saveFileAtPath:txt andContents:exportDataStr andFileType:FileTypeData]) {
                 chosenDataExportPath = txt;
                 exportDataDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
                 [exportDataDropboxErrorAlert show];
@@ -229,15 +229,27 @@
     }
     else if ([alertView isEqual:exportDataDropboxErrorAlert]) {
         if (buttonIndex == 1) {
-            [self overwriteFileAtPath:chosenDataExportPath andContents:exportDataStr];
+            [self overwriteFileAtPath:chosenDataExportPath andContents:exportDataStr andFileType:FileTypeData];
         }
     }
 }
 
-- (NSString*)fixChosenExportPathExt:(NSString*)path {
-    int s = kExportDropboxSaveFileExt.length;
-    if (![[path substringFromIndex:path.length-s] isEqualToString:kExportDropboxSaveFileExt])
-        return [NSString stringWithFormat:@"%@%@",path,kExportDropboxSaveFileExt];
+- (NSString*)fixChosenExportPathExt:(NSString*)path forFileType:(FileType)fileType {
+    NSString *ext;
+    switch (fileType) {
+        case FileTypeData:
+            ext = kExportDropboxSaveDataFileExt;
+            break;
+        case FileTypeMutations:
+            ext = kExportDropboxSaveMutsFileExt;
+            break;
+        default:
+            ext = kExportDropboxSaveFileExt;
+            break;
+    }
+    int s = ext.length;
+    if ([[path substringFromIndex:path.length-s] caseInsensitiveCompare:ext] != NSOrderedSame)
+        return [NSString stringWithFormat:@"%@%@",path,ext];
     return path;
 }
 

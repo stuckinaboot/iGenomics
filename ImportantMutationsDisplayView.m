@@ -109,7 +109,7 @@
         case kMatchTypeHomozygousMutationNormal:
             btn.backgroundColor = [dnaColors.matchTypeHomozygousMutationNormal UIColorObj];
             break;
-        case kMatchTypeHeterozygousNoMutation | kMatchTypeHomozygousNoMutation:
+        case kMatchTypeNoMutationImportant:
             btn.backgroundColor = [dnaColors.matchTypeNoMutation UIColorObj];
             break;
         case kMatchTypeNoAlignment:

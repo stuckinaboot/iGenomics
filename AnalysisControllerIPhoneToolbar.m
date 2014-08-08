@@ -28,7 +28,7 @@
     imptMutsDispView = [[mutsNib instantiateWithOwner:imptMutsDispView options:nil] objectAtIndex:0];
     [imptMutsDispView setUpWithMutationsArray:imptMutations];
     [imptMutsDispView setDelegate:self];
-    pages = [NSArray arrayWithObjects:btnsView, lblsView, imptMutsDispView,nil];
+    pages = [NSArray arrayWithObjects:btnsView, lblsView, segSelectView, imptMutsDispView,nil];
     
     scrollView.contentSize = CGSizeMake(self.bounds.size.width*[pages count], scrollView.bounds.size.height);
     
@@ -43,6 +43,11 @@
     [pageControl setNumberOfPages:[pages count]];
     [pageControl setCurrentPage:0];
     [self bringSubviewToFront:pageControl];
+}
+
+- (void)setAlignmentSegmentPckrBtn:(UIButton *)aBtn covProfileSegmentPckrBtn:(UIButton *)cBtn {
+    showAlignmentViewSegmentPckrBtn = aBtn;
+    showCoverageProfileSegmentPckrBtn = cBtn;
 }
 
 - (void)addDoneBtnForTxtFields:(NSArray*)txtFields {
@@ -86,11 +91,35 @@
 }
 
 - (IBAction)showAlignmentsPressed:(id)sender {
+    BOOL calledByPicker = [sender isEqual:showAlignmentViewSegmentPckrBtn];
+    int index = 0;
+    if (calledByPicker) {
+        UIPickerView *segmentPckr;
+        for (UIPickerView *picker in [segSelectView subviews]) {
+            segmentPckr = picker;
+            break;
+        }
+        index = (int)[segmentPckr selectedRowInComponent:0];
+    }
     [delegate readyViewForAlignments];
+    if (calledByPicker)
+        [delegate readyViewCalledBySegPickerView:index];
     [self hide];
 }
 - (IBAction)showCovProfilePressed:(id)sender {
+    BOOL calledByPicker = [sender isEqual:showCoverageProfileSegmentPckrBtn];
+    int index = 0;
+    if (calledByPicker) {
+        UIPickerView *segmentPckr;
+        for (UIPickerView *picker in [segSelectView subviews]) {
+            segmentPckr = picker;
+            break;
+        }
+        index = (int)[segmentPckr selectedRowInComponent:0];
+    }
     [delegate readyViewForCovProfile];
+    if (calledByPicker)
+        [delegate readyViewCalledBySegPickerView:index];
     [self hide];
 }
 

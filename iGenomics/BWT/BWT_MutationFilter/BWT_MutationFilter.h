@@ -21,6 +21,7 @@
 #define kMatchTypeHeterozygousMutationNormal 't'
 #define kMatchTypeHeterozygousMutationImportant 'T'
 #define kMatchTypeHomozygousNoMutation 'n'
+#define kMatchTypeNoMutationImportant 'j'
 #define kMatchTypeHeterozygousNoMutation 'd'
 #define kMatchTypeNoAlignment 'x'
 

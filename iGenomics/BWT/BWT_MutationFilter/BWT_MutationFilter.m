@@ -377,7 +377,12 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
         }
         if (!matchAdded) {
-            imptInfo.matchType = foundGenome[kFoundGenomeArrSize-1][imptInfo.pos];
+            if (foundGenome[kFoundGenomeArrSize-1][imptInfo.pos] == kMatchTypeHomozygousNoMutation || foundGenome[kFoundGenomeArrSize-1][imptInfo.pos] == kMatchTypeHeterozygousNoMutation) {
+                foundGenome[kFoundGenomeArrSize-1][imptInfo.pos] = kMatchTypeNoMutationImportant;
+                imptInfo.matchType = foundGenome[kFoundGenomeArrSize-1][imptInfo.pos];
+            }
+            else
+                imptInfo.matchType = foundGenome[kFoundGenomeArrSize-1][imptInfo.pos];
             [matches addObject:imptInfo];
         }
     }

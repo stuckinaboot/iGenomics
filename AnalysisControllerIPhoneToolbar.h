@@ -16,6 +16,7 @@
 @protocol AnalysisControllerIPhoneToolbarDelegate <NSObject>
 - (void)readyViewForCovProfile;
 - (void)readyViewForAlignments;
+- (void)readyViewCalledBySegPickerView:(int)indexToScrollTo;
 - (void)scrollToPos:(int)pos;
 @end
 @interface AnalysisControllerIPhoneToolbar : UIView <UIScrollViewDelegate, ImportantMutationsDisplayViewDelegate, UITextFieldDelegate> {
@@ -26,6 +27,10 @@
     NSArray *pages;
     IBOutlet UIView *btnsView;
     IBOutlet UIView *lblsView;
+    IBOutlet UIView *segSelectView;
+    
+    UIButton *showAlignmentViewSegmentPckrBtn;
+    UIButton *showCoverageProfileSegmentPckrBtn;
 }
 @property (nonatomic) ImportantMutationsDisplayView *imptMutsDispView;
 @property (nonatomic) id <AnalysisControllerIPhoneToolbarDelegate> delegate;
@@ -35,5 +40,6 @@
 - (void)hide;
 - (IBAction)pageChanged:(id)sender;
 - (void)setUpWithImptMutationList:(NSMutableArray*)imptMutations;
+- (void)setAlignmentSegmentPckrBtn:(UIButton*)aBtn covProfileSegmentPckrBtn:(UIButton*)cBtn;
 - (void)addDoneBtnForTxtFields:(NSArray*)txtFields;
 @end

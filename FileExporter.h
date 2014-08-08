@@ -11,6 +11,11 @@ typedef enum {
     EmailInfoOptionData
 } EmailInfoOption;
 
+typedef enum {
+    FileTypeMutations,
+    FileTypeData
+} FileType;
+
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
@@ -33,8 +38,10 @@ typedef enum {
 #define kExportAlertBtnExportTitle @"Export"
 
 #define kExportDropboxSaveFileFormatMuts @"%@%@.var.txt"//reads(1..2..3 or no ()).var...
-#define kExportDropboxSaveFileFormatData @"%@%@.data.txt"//reads(1..2..3 or no ()).data...
+#define kExportDropboxSaveFileFormatData @"%@%@.data.acp"//reads(1..2..3 or no ()).data...
 #define kExportDropboxSaveFileExt @".txt"
+#define kExportDropboxSaveDataFileExt @".acp"
+#define kExportDropboxSaveMutsFileExt @".mcs"
 
 #define kErrorAlertExportTitle @"iGenomics: Error"
 #define kErrorAlertExportBody @"An error occurred exporting the file."
@@ -44,11 +51,11 @@ typedef enum {
 
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
-#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Segment, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as a text file. \n\nPowered by iGenomics"
+#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Segment, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as an ACP (Alignment Compressed Protocol) file. \n\nPowered by iGenomics"
 
 #define kExportMutsFileName @"Mutations"
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
-#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as a text file. \n\nPowered by iGenomics"
+#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compressed String) file. \n\nPowered by iGenomics"
 
 #define kNoMutationsFoundStr @"No Mutations Found"
 
@@ -87,9 +94,9 @@ typedef enum {
 - (void)displayExportOptionsWithSender:(id)sender;
 
 - (void)emailInfoForOption:(EmailInfoOption)option;
-- (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents;
-- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents;
+- (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
+- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
-- (NSString*)fixChosenExportPathExt:(NSString*)path;
+- (NSString*)fixChosenExportPathExt:(NSString*)path forFileType:(FileType)fileType;
 
 @end

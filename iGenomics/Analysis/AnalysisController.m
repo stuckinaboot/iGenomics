@@ -140,6 +140,15 @@
     [self resetGridViewForType:alignmentGridView];
 }
 
+- (void)readyViewCalledBySegPickerView:(int)indexToScrollTo {
+    gridView.indexInGenomeNameArr = indexToScrollTo;
+    currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
+    if (gridView.indexInGenomeNameArr > 0)
+        [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
+    else
+        [gridView scrollToPos:1 inputtedByPosSearchField:NO];//1 because it is interpreted as if it were "user-inputted"
+}
+
 - (void)scrollToPos:(int)pos {
     [gridView scrollToPos:pos inputtedByPosSearchField:NO];
 }
@@ -179,13 +188,13 @@
     pxlOffsetSlider.value = gridView.currOffset;
     [self.view bringSubviewToFront:pxlOffsetSlider];
     
-    segmentStpr.value = gridView.indexInGenomeNameArr;
+    [segmentPckr selectRow:gridView.indexInGenomeNameArr inComponent:0 animated:NO];
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
 }
 
 - (void)resetDisplay {
     //Set up info lbls
-    [genomeNameLbl setText:[NSString stringWithFormat:@"%@",[separateGenomeNames objectAtIndex:0]]];
+    [genomeNameLbl setText:genomeFileName];
     [genomeLenLbl setText:[NSString stringWithFormat:@"%@%i",kGenomeLengthLblStart,genomeLen]];
     
     [readsNameLbl setText:[NSString stringWithFormat:@"%@",readsFileName]];
@@ -211,8 +220,6 @@
         pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, self.view.frame.size.width-rect.origin.x, rect.size.height);
     }
     
-    segmentStpr.maximumValue = [separateGenomeNames count]-1;
-    segmentStpr.minimumValue = 0;
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];
     
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
@@ -352,14 +359,27 @@
     [popoverController presentPopoverFromRect:showQueryResultsBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
-- (IBAction)segmentStprValChanged:(id)sender {
-    gridView.indexInGenomeNameArr = segmentStpr.value;
-//    [self shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:gridView.indexInGenomeNameArr];
-    currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
-    if (gridView.indexInGenomeNameArr > 0)
-        [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
-    else
-        [gridView scrollToPos:1 inputtedByPosSearchField:NO];//1 because it is interpreted as if it were "user-inputted"
+#pragma Segment Stpr Picker
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+//    gridView.indexInGenomeNameArr = (int)row;
+//    currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
+//    if (gridView.indexInGenomeNameArr > 0)
+//        [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
+//    else
+//        [gridView scrollToPos:1 inputtedByPosSearchField:NO];//1 because it is interpreted as if it were "user-inputted"
+}
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [separateGenomeNames objectAtIndex:row];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [separateGenomeNames count];
 }
 
 - (IBAction)showMutTBView:(id)sender {
@@ -635,9 +655,8 @@
 
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {
     genomeFileSegmentNames = [separateGenomeNames objectAtIndex:index];
-    [genomeNameLbl setText:genomeFileSegmentNames];
     gridView.indexInGenomeNameArr = index;
-    segmentStpr.value = index;
+    [segmentPckr selectRow:index inComponent:0 animated:NO];
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:index];
 }
 
@@ -720,10 +739,22 @@
 //Impt muts disp view delegate end
 
 - (IBAction)showCoverageProfileGridView:(id)sender {
+    BOOL calledByPicker = [sender isEqual:showCoverageProfileSegmentPckrBtn];
+    int index = 0;
+    if (calledByPicker)
+        index = (int)[segmentPckr selectedRowInComponent:0];
     [self resetGridViewForType:covGridView];
+    if (calledByPicker)
+        [self readyViewCalledBySegPickerView:index];
 }
 - (IBAction)showAlignmentsGridView:(id)sender {
+    BOOL calledByPicker = [sender isEqual:showAlignmentViewSegmentPckrBtn];
+    int index = 0;
+    if (calledByPicker)
+        index = (int)[segmentPckr selectedRowInComponent:0];
     [self resetGridViewForType:alignmentGridView];
+    if (calledByPicker)
+        [self readyViewCalledBySegPickerView:index];
 }
 //Iphone Support
 
@@ -741,6 +772,7 @@
     [analysisControllerIPhoneToolbar layoutIfNeeded];
 
     [analysisControllerIPhoneToolbar setUpWithImptMutationList:imptMutationsArr];
+    [analysisControllerIPhoneToolbar setAlignmentSegmentPckrBtn:showAlignmentViewSegmentPckrBtn covProfileSegmentPckrBtn:showCoverageProfileSegmentPckrBtn];
     [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
     [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
     analysisControllerIPhoneToolbar.hidden = NO;
