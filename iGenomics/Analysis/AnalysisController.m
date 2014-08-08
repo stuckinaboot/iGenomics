@@ -153,7 +153,7 @@
 }
 
 - (void)resetGridViewForType:(QuickGridView *)gViewType {
-
+    gridView.scrollingView.minimumZoomScale = 0.5f;
     [gridView removeGestureRecognizer:tapRecognizer];
     [gridView.scrollingView removeGestureRecognizer:[gridView.scrollingView pinchGestureRecognizer]];
     

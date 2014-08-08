@@ -603,18 +603,12 @@
     shouldUpdateScrollView = !shouldUpdateScrollView;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([touches count] > 1) {
-        scrollingView.scrollEnabled = NO;
-        scrollingView.scrollEnabled = YES;
-    }
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    NSLog(@"hi");
 }
 
-- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    NSSet *touches = [event allTouches];
-    if ([touches count])
-        NSLog(@"wofjojad");
-    return self;
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return nil;
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {
