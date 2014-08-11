@@ -80,16 +80,13 @@
 #define kGenomeLblStart @"Genome: "
 #define kReadsLblStart @"Reads: "
 
-#define kGenomeLengthLblStart @"Genome Len: "
-#define kReadLengthLblStart @"Read Len: "
-
 #define kGenomeCoverageLblStart @"Genome Cov: "
-
-#define kNumOfReadsLblStart @"Num Reads: "
 
 #define kReadPercentMatchedLblStart @"% Matched: "
 
 #define kTotalNumOfMutsLblStart @"Total Num Of Mutations: "
+
+#define kCurrSegmentLenLblStart @"Segment Len: %i"
 
 //#define kNumOfRGBVals 10
 #define kStartOfAInRGBVals 4
@@ -138,17 +135,14 @@
     IBOutlet UIImageView *gridViewTitleLblHolder;
     
     IBOutlet UILabel *genomeNameLbl;
-    IBOutlet UILabel *genomeLenLbl;
-    IBOutlet UILabel *genomeCoverageLbl;
     
     IBOutlet UILabel *readsNameLbl;
-    IBOutlet UILabel *readLenLbl;
-    IBOutlet UILabel *readNumOfLbl;//Num of reads lbl, I like having read in front though
     IBOutlet UILabel *readPercentMatchedLbl;
     IBOutlet UILabel *totalNumOfMutsLbl;
     
     IBOutlet UIPickerView *segmentPckr;
     IBOutlet UILabel *currSegmentLbl;
+    IBOutlet UILabel *currSegmentLenLbl;
     
     IBOutlet UISegmentedControl *gridViewSwitcherCtrl;
     IBOutlet QuickGridView *gridView;

@@ -52,7 +52,10 @@
 
 - (void)displayExportOptionsWithSender:(id)sender {
     exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportASEmailMutations, kExportASEmailData, kExportASDropboxMuts, kExportASDropboxData, nil];
-    [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
+    if ([sender isKindOfClass:[UIBarButtonItem class]])
+        [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
+    else
+        [exportActionSheet showFromRect:((UIView*)sender).frame inView:((UIView*)sender).superview animated:YES];
 }
 
 - (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType {

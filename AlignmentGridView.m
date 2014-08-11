@@ -302,7 +302,7 @@
 }
 
 - (void)fixScrollViewContentSizeWithMaxAlignmentStrLen:(int)maxAlignmentStrLen {
-    float maxY = kPosLblHeight+(maxAlignmentStrLen+ARow)*(kGridLineWidthRow+boxHeight);
+    float maxY = kPosLblHeight+graphBoxHeight+(maxAlignmentStrLen+FoundRow)*(kGridLineWidthRow+boxHeight)+kAlignmentGridExtraSpaceAtBottomOfScrollView;
     if (maxY != scrollingView.contentSize.height)
         scrollingView.contentSize = CGSizeMake(scrollingView.contentSize.width, maxY);
     else if (maxY < self.bounds.size.height && scrollingView.contentSize.height >= self.bounds.size.height)
@@ -480,12 +480,13 @@
     if (index < 0 || alignmentGridPositionsArr[(int)box.x].str[(int)box.y] == kAlignmentGridViewCharColumnNoChar)
         return;
     ED_Info *read = [readAlignmentsArr objectAtIndex:index];
-    [self displayReadPopoverForRead:read atPosInGenome:box.x atPointOnScreen:pt];
+    [self displayReadPopoverForRead:read atPosInGenome:box.x atPointOnScreen:[sender locationInView:self.superview]];
 }
 
 - (void)displayReadPopoverForRead:(ED_Info *)read atPosInGenome:(int)pos atPointOnScreen:(CGPoint)point {
     ReadPopoverController *controller = [[ReadPopoverController alloc] init];
     [controller setUpWithRead:read];
+    controller.preferredContentSize = controller.view.bounds.size;
     [delegate displayPopoverWithViewController:controller atPoint:point];
 }
 

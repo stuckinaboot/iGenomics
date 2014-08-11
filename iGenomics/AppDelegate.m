@@ -38,9 +38,9 @@
   sourceApplication:(NSString *)source annotation:(id)annotation {
     DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
     if (account) {
-        NSLog(@"App linked successfully!");
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
         [DBFilesystem setSharedFilesystem:filesystem];
+        [GlobalVars displayiGenomicsAlertWithMsg:kDropboxLinkedSuccessfullyAlertMsg];
         return YES;
     }
     return NO;

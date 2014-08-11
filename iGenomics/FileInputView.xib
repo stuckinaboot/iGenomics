@@ -25,8 +25,9 @@
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="Sct-IG-wR2"/>
+                        <constraint firstAttribute="height" constant="44" id="udh-ZO-RPH"/>
                     </constraints>
-                    <state key="normal" title="Back">
+                    <state key="normal" backgroundImage="BackBtn.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -74,4 +75,7 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="BackBtn.png" width="100" height="100"/>
+    </resources>
 </document>

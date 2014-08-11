@@ -9,28 +9,22 @@
             <connections>
                 <outlet property="analysisControllerIPadMenu" destination="e7D-2c-j7C" id="F1H-Th-B8l"/>
                 <outlet property="analysisControllerIPadToolbar" destination="loo-67-dgA" id="Tva-qf-j1I"/>
-                <outlet property="currSegmentLbl" destination="g9z-2p-u6v" id="5Rh-Qq-Umr"/>
-                <outlet property="genomeCoverageLbl" destination="894" id="900"/>
-                <outlet property="genomeLenLbl" destination="873" id="893"/>
+                <outlet property="currSegmentLbl" destination="PIJ-CZ-63k" id="IJx-B3-6kU"/>
+                <outlet property="currSegmentLenLbl" destination="5Oe-1l-3VX" id="MS5-Tj-EIj"/>
                 <outlet property="genomeNameLbl" destination="791" id="798"/>
                 <outlet property="gridView" destination="4" id="1157"/>
-                <outlet property="gridViewSwitcherCtrl" destination="tf2-Zh-I7A" id="hKJ-l3-7Mn"/>
+                <outlet property="gridViewSwitcherCtrl" destination="URI-uu-nlP" id="0mV-zj-FjR"/>
                 <outlet property="gridViewTitleLblHolder" destination="1017" id="1052"/>
                 <outlet property="mutationSupportNumLbl" destination="JVP-eK-fwd" id="uyQ-Sm-LEX"/>
-                <outlet property="mutationSupportStpr" destination="hrV-NB-ke0" id="BrZ-Zd-fEw"/>
+                <outlet property="mutationSupportStpr" destination="lVr-87-f0I" id="5Xv-nZ-F26"/>
                 <outlet property="posSearchTxtFld" destination="yq5-LY-jPs" id="UbI-Ua-udF"/>
                 <outlet property="pxlOffsetSlider" destination="1172" id="1183"/>
-                <outlet property="readLenLbl" destination="886" id="892"/>
-                <outlet property="readNumOfLbl" destination="904" id="915"/>
                 <outlet property="readPercentMatchedLbl" destination="83U-22-oQj" id="tbh-eM-SKY"/>
                 <outlet property="readsNameLbl" destination="799" id="807"/>
                 <outlet property="segmentPckr" destination="rFe-Vt-Chr" id="Yq4-nl-gpb"/>
                 <outlet property="seqSearchTxtFld" destination="sdi-sz-zMw" id="wx8-2b-RPl"/>
                 <outlet property="showAlignmentViewSegmentPckrBtn" destination="joZ-ga-U0z" id="7o9-5R-FCJ"/>
-                <outlet property="showAllMutsBtn" destination="588" id="1629"/>
                 <outlet property="showCoverageProfileSegmentPckrBtn" destination="XE0-Wi-3f9" id="RXJ-RB-991"/>
-                <outlet property="showImportantMutationsBtn" destination="RIN-Pw-m4U" id="txa-he-2BJ"/>
-                <outlet property="showMutTBViewBtn" destination="588" id="597"/>
                 <outlet property="totalNumOfMutsLbl" destination="ghO-dZ-7NO" id="IMS-P5-rE8"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -54,28 +48,6 @@
                     </accessibility>
                     <gestureRecognizers/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="588">
-                    <rect key="frame" x="853" y="54" width="151" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.47753894181568546" green="0.73597507688284047" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Show All Mutations">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="showMutTBView:" destination="-1" eventType="touchUpInside" id="598"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIN-Pw-m4U">
-                    <rect key="frame" x="853" y="110" width="151" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Important Mutations">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="showImportantMutationsPopover:" destination="-1" eventType="touchUpInside" id="wru-dd-8Pz"/>
-                    </connections>
-                </button>
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1172" customClass="OBSlider">
                     <rect key="frame" x="74" y="724" width="927" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -92,25 +64,7 @@
                                 <action selector="showHamburgerMenu:" destination="-1" id="4pK-Wo-Fno"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="151" style="plain" systemItem="fixedSpace" id="7PV-D9-Y1l"/>
-                        <barButtonItem title="Coverage Profile" width="170" id="Oya-3z-88l">
-                            <connections>
-                                <action selector="showCoverageProfileGridView:" destination="-1" id="MrE-eZ-2db"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="95" style="plain" systemItem="fixedSpace" id="6oi-kA-cxt"/>
-                        <barButtonItem title="Read Alignments" width="170" id="DhY-6u-KyF">
-                            <connections>
-                                <action selector="showAlignmentsGridView:" destination="-1" id="fb9-Zm-QaX"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="173" style="plain" systemItem="fixedSpace" id="IjP-UZ-mXo"/>
-                        <barButtonItem systemItem="action" id="1607">
-                            <connections>
-                                <action selector="exportDataPressed:" destination="-1" id="1608"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="118" style="plain" systemItem="fixedSpace" id="gHO-Fy-vne"/>
+                        <barButtonItem width="922" style="plain" systemItem="fixedSpace" id="7PV-D9-Y1l"/>
                         <barButtonItem style="done" systemItem="done" id="1625">
                             <connections>
                                 <action selector="donePressed:" destination="-1" id="1628"/>
@@ -118,37 +72,16 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CSHLabIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
-                    <rect key="frame" x="10" y="44" width="123" height="107"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iGenomicsLogoDNAIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
+                    <rect key="frame" x="30" y="44" width="52" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loo-67-dgA" customClass="AnalysisControllerIPadToolbar">
                     <rect key="frame" x="141" y="44" width="704" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8g3-B3-BIV">
-                            <rect key="frame" x="332" y="92" width="39" height="37"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="pageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="currentPageIndicatorTintColor" red="0.4462765917" green="0.56848937619999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="pageChanged:" destination="loo-67-dgA" eventType="valueChanged" id="p8k-P1-CoQ"/>
-                            </connections>
-                        </pageControl>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1o-Gw-Efq">
-                            <rect key="frame" x="0.0" y="0.0" width="704" height="106"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <connections>
-                                <outlet property="delegate" destination="loo-67-dgA" id="I7X-fs-JI6"/>
-                            </connections>
-                        </scrollView>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="infoView" destination="5bW-Rd-K5k" id="5RY-tv-m3U"/>
-                        <outlet property="pageControl" destination="8g3-B3-BIV" id="nIt-0q-Azg"/>
-                        <outlet property="scrollView" destination="v1o-Gw-Efq" id="L6p-0k-XQO"/>
-                        <outlet property="utilitiesView" destination="RLy-gj-aPl" id="fWh-fF-Q0p"/>
                     </connections>
                 </view>
             </subviews>
@@ -266,36 +199,8 @@
             <rect key="frame" x="0.0" y="0.0" width="704" height="106"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="GENOME LEN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="873">
-                    <rect key="frame" x="30" y="5" width="146" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="GENOME COV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="894">
-                    <rect key="frame" x="30" y="40" width="146" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="TOTAL NUM OF MUTATIONS" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="ghO-dZ-7NO">
                     <rect key="frame" x="520" y="58" width="140" height="41"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="NUM OF READS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="904">
-                    <rect key="frame" x="298" y="40" width="142" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="READ LEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="886">
-                    <rect key="frame" x="290" y="5" width="159" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -316,7 +221,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="GENOME FILE NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="791">
-                    <rect key="frame" x="9" y="74" width="167" height="21"/>
+                    <rect key="frame" x="286" y="45" width="167" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIJ-CZ-63k">
+                    <rect key="frame" x="15" y="38" width="223" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT LEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-1l-3VX">
+                    <rect key="frame" x="15" y="69" width="223" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -340,15 +259,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-WL-uac">
-                        <rect key="frame" x="0.0" y="106" width="300" height="662"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZE-gR-pVJ">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-WL-uac">
+                        <rect key="frame" x="0.0" y="44" width="300" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <connections>
                             <outlet property="dataSource" destination="e7D-2c-j7C" id="nqf-gU-V1L"/>
                             <outlet property="delegate" destination="e7D-2c-j7C" id="5yk-LL-Igy"/>
                         </connections>
                     </tableView>
+                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQw-UW-DA7">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <items>
+                            <navigationItem title="Analysis Utilities" id="XDu-0M-tes"/>
+                        </items>
+                    </navigationBar>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -361,9 +294,9 @@
             <nil key="simulatedDestinationMetrics"/>
             <size key="freeformSize" width="300" height="768"/>
             <connections>
-                <outlet property="elementMutSprtView" destination="PY5-Tb-v94" id="JXR-WH-UsG"/>
                 <outlet property="elementSearchView" destination="K6b-YU-kW3" id="BKb-nv-2la"/>
                 <outlet property="elementSegmentPckrView" destination="6bm-Nj-dlT" id="QR0-xk-ys9"/>
+                <outlet property="elementSettingsView" destination="PY5-Tb-v94" id="WMl-2p-e95"/>
                 <outlet property="tblView" destination="PzK-WL-uac" id="eFM-Cv-va8"/>
             </connections>
         </viewController>
@@ -462,36 +395,63 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
         </view>
         <view contentMode="scaleToFill" id="PY5-Tb-v94">
-            <rect key="frame" x="0.0" y="0.0" width="233" height="84"/>
+            <rect key="frame" x="0.0" y="0.0" width="502" height="84"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="MUTATION SUPPORT NUM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JVP-eK-fwd">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="MUTATION SUPPORT NUM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JVP-eK-fwd">
                     <rect key="frame" x="123" y="49" width="77" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="77" id="jLp-xs-Y2I"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="lVr-87-f0I">
+                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="lVr-87-f0I">
                     <rect key="frame" x="21" y="42" width="94" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <action selector="mutationSupportStepperChanged:" destination="-1" eventType="valueChanged" id="mmH-oT-DpK"/>
                     </connections>
                 </stepper>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mutation Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGc-yE-z2i">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutation Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGc-yE-z2i">
                     <rect key="frame" x="48" y="14" width="135" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="URI-uu-nlP">
+                    <rect key="frame" x="258" y="28" width="224" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="224" id="Xtd-Ib-sp0"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Alignments"/>
+                        <segment title="Coverage Profile"/>
+                    </segments>
+                    <connections>
+                        <action selector="gridViewSwitcherCtrlValChanged:" destination="-1" eventType="valueChanged" id="Mer-pQ-8LZ"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="URI-uu-nlP" firstAttribute="leading" secondItem="rGc-yE-z2i" secondAttribute="trailing" constant="75" id="9hC-ug-yR8"/>
+                <constraint firstItem="URI-uu-nlP" firstAttribute="centerY" secondItem="PY5-Tb-v94" secondAttribute="centerY" id="P72-hn-aQ7"/>
+                <constraint firstItem="URI-uu-nlP" firstAttribute="leading" secondItem="JVP-eK-fwd" secondAttribute="trailing" constant="58" id="UGh-YC-fij"/>
+                <constraint firstItem="JVP-eK-fwd" firstAttribute="top" secondItem="rGc-yE-z2i" secondAttribute="bottom" constant="14" id="fhx-iE-fqk"/>
+                <constraint firstItem="lVr-87-f0I" firstAttribute="top" secondItem="rGc-yE-z2i" secondAttribute="bottom" constant="7" id="p4K-Go-8XB"/>
+                <constraint firstAttribute="bottom" secondItem="JVP-eK-fwd" secondAttribute="bottom" constant="14" id="qaz-ms-jrO"/>
+                <constraint firstAttribute="trailing" secondItem="URI-uu-nlP" secondAttribute="trailing" constant="20" symbolic="YES" id="smL-cp-J8o"/>
+                <constraint firstItem="JVP-eK-fwd" firstAttribute="leading" secondItem="lVr-87-f0I" secondAttribute="trailing" constant="8" symbolic="YES" id="vdS-4r-etI"/>
+            </constraints>
         </view>
     </objects>
     <resources>
-        <image name="CSHLabIcon.png" width="418" height="418"/>
         <image name="ThreeLines.png" width="22" height="22"/>
+        <image name="iGenomicsLogoDNAIcon.png" width="184" height="400"/>
     </resources>
 </document>

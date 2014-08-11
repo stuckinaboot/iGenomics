@@ -55,7 +55,8 @@
     [self resetGridViewForType:alignmentGridView];
     [super viewDidLoad];
 
-    hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
+    if ([GlobalVars isIpad])
+        hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
 //    [self setUpIPhoneToolbar];
     // Do any additional setup after loading the view from its nib.
 }
@@ -69,8 +70,10 @@
             [gridView setMaxCovValWithNumOfCols:dgenomeLen-1];
         if ([GlobalVars isIpad])
             coverageHistogram.view.frame = CGRectMake(0, 0, kCoverageHistogramPopoverWidth, kCoverageHistogramPopoverHeight);
-        [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
-        [analysisControllerIPadMenu setCoverageHistogram:coverageHistogram];
+        else
+            coverageHistogram.view.bounds = self.view.bounds;
+        [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
+        [analysisControllerIPadMenu setCoverageHistogram:(gridView.maxCoverageVal > 0) ? coverageHistogram : NULL];
     }
 //    [analysisControllerIPhoneToolbar setDelegate:self];
 //    
@@ -142,16 +145,23 @@
 }
 
 - (void)readyViewForCovProfile {
+    if (nLbl[ARow].hidden)
+        for (int i = ARow; i < kNumOfRowsInGridView; i++)
+            nLbl[i].hidden = NO;
     [self resetGridViewForType:covGridView];
 }
 
 - (void)readyViewForAlignments {
+    if (!nLbl[ARow].hidden)
+        for (int i = ARow; i < kNumOfRowsInGridView; i++)
+            nLbl[i].hidden = YES;
     [self resetGridViewForType:alignmentGridView];
 }
 
 - (void)readyViewCalledBySegPickerView:(int)indexToScrollTo {
     gridView.indexInGenomeNameArr = indexToScrollTo;
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
+    currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr] intValue]];
     if (gridView.indexInGenomeNameArr > 0)
         [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
     else
@@ -199,23 +209,20 @@
     
     [segmentPckr selectRow:gridView.indexInGenomeNameArr inComponent:0 animated:NO];
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
+    currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr] intValue]];
 }
 
 - (void)resetDisplay {
     //Set up info lbls
     [genomeNameLbl setText:genomeFileName];
-    [genomeLenLbl setText:[NSString stringWithFormat:@"%@%i",kGenomeLengthLblStart,genomeLen]];
     
     [readsNameLbl setText:[NSString stringWithFormat:@"%@",readsFileName]];
-    [readLenLbl setText:[NSString stringWithFormat:@"%@%i",kReadLengthLblStart,readLen]];
     
     double coverage = (double)((double)numOfReads * readLen)/(double)genomeLen;
     
-    [genomeCoverageLbl setText:[NSString stringWithFormat:@"%@%.02fx",kGenomeCoverageLblStart,coverage]];
     mutPosArray = [[NSMutableArray alloc] init];
     allMutPosArray = [[NSMutableArray alloc] init];
     
-    [readNumOfLbl setText:[NSString stringWithFormat:@"%@%i",kNumOfReadsLblStart,numOfReads]];
     [readPercentMatchedLbl setText:[NSString stringWithFormat:@"%@%1.0f%%",kReadPercentMatchedLblStart, ((float)numOfReadsMatched/numOfReads)*100.0f]];
     
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
@@ -230,6 +237,7 @@
     }
     
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];
+    currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:0] intValue]];
     
     [gridViewTitleLblHolder.layer setBorderWidth:kGridViewTitleLblHolderBorderWidth];
     //Set up gridView
@@ -557,11 +565,10 @@
             [popoverController dismissPopoverAnimated:YES];
         popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
         [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
     }
     else
         [self presentViewController:coverageHistogram animated:YES completion:^{
-            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
+
         }];
 }
 
@@ -665,12 +672,15 @@
     gridView.indexInGenomeNameArr = index;
     [segmentPckr selectRow:index inComponent:0 animated:NO];
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:index];
+    currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:index] intValue]];
 }
 
 - (void)displayPopoverWithViewController:(UIViewController *)controller atPoint:(CGPoint)point {
     if ([GlobalVars isIpad]) {
+        if (popoverController.isPopoverVisible)
+            return;
         popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-        [popoverController presentPopoverFromRect:CGRectMake(point.x, point.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [popoverController presentPopoverFromRect:CGRectMake(point.x, point.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
     }
     else {
         [self presentViewController:controller animated:YES completion:nil];
@@ -725,6 +735,16 @@
 
 //Extra iPad Support
 - (IBAction)showHamburgerMenu:(id)sender {
+    [analysisControllerIPadMenu setFileExporter:fileExporter];
+    [analysisControllerIPadMenu setMutationsInfoPopover:mutsPopover];
+    
+    UINib *imptMutsNib = [UINib nibWithNibName:kImportantMutationsDisplayViewNibName bundle:nil];
+    ImportantMutationsDisplayView *imptMutsView = [[imptMutsNib instantiateWithOwner:self options:0] objectAtIndex:0];
+    [imptMutsView setDelegate:self];
+    [imptMutsView setUpWithMutationsArray:imptMutationsArr];
+    
+    [analysisControllerIPadMenu setImptMutationsView:imptMutsView];
+    
     if (hamburgerMenuController.menuOpen)
         [hamburgerMenuController closeHamburgerMenu];
     else

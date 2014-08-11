@@ -100,6 +100,7 @@
         
         return nil;
     }
+    lastSelectedIndexPath = indexPath;
     return indexPath;
 }
 
@@ -224,6 +225,8 @@
 }
 
 - (IBAction)cellDoubleTapped:(id)sender {
+    [tblView selectRowAtIndexPath:lastSelectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [delegate fileSelected:YES InFileInputView:self];
     NSString *s = @"";
     NSString *ext = @"";
     if (selectedOption == kSavedFilesIndex) {

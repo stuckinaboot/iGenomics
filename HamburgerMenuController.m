@@ -26,6 +26,8 @@
     
     [mainController addChildViewController:sideController];
     sideController.view.frame = CGRectMake(0, 0, sideController.view.frame.size.width, sideController.view.frame.size.height);
+    sideController.view.center = CGPointMake(-sideController.view.bounds.size.width/2, sideController.view.center.y);
+    
     sideController.view.hidden = YES;
     [mainController.view addSubview:sideController.view];
     [mainController.view sendSubviewToBack:sideController.view];

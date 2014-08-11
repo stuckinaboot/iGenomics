@@ -13,6 +13,10 @@
 #import "BWT_MutationFilter.h"
 #import "IPhonePopoverHandler.h"
 
+#define kGenomeLengthLblStart @"Genome Len: "
+#define kReadLengthLblStart @"Read Len: "
+#define kNumOfReadsLblStart @"Num Reads: "
+
 #define kCoverageHistogramPopoverWidth 600
 #define kCoverageHistogramPopoverHeight 600
 
@@ -55,13 +59,15 @@
     float xValOfPosOfHighestFrequency;
     int boxWidth;
 }
-- (void)createHistogramWithMaxCovVal:(int)maxCovVal;
+- (void)createHistogramWithMaxCovVal:(int)maxCovVal andNumOfReads:(int)numOfReads andReadLen:(int)readLen andGenomeLen:(int)genomeLen;
 - (void)drawNormalCurveInRect:(CGRect)rect;
 - (float)normalCurveFormulaValueForPos:(float)x;
 - (void)drawAxisesInRect:(CGRect)rect;
 - (void)drawPlotInRect:(CGRect)rect;
 - (void)drawAxisLblsInRect:(CGRect)rect withCovFreqArr:(int[])covFreqArr andCovFreqArrMax:(int)covFreqArrMax;
 - (void)drawDashedLineOnHighestFreqOccInRect:(CGRect)rect;
+
+- (void)drawSideInformationWithNumOfReads:(int)numOfReads andReadLen:(int)readLen andGenomeLen:(int)genomeLen;
 
 - (void)drawRectangle:(CGRect)rect withRGB:(double[3])rgb;
 @end

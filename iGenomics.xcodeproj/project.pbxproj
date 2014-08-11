@@ -20,6 +20,8 @@
 		A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A310AF66158A5F7200E892AA /* ViewController_iPad.xib */; };
 		A3111632199003630008809D /* AnalysisControllerIPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */; };
 		A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3161667196F0EF30083AD71 /* CoverageGridView.m */; };
+		A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */; };
+		A316743519994BB9009C8EC8 /* BackBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = A316743419994BB9009C8EC8 /* BackBtn.png */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */; };
@@ -165,6 +167,8 @@
 		A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisControllerIPadToolbar.m; sourceTree = "<group>"; };
 		A3161666196F0EF30083AD71 /* CoverageGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverageGridView.h; sourceTree = "<group>"; };
 		A3161667196F0EF30083AD71 /* CoverageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageGridView.m; sourceTree = "<group>"; };
+		A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iGenomicsLogoDNAIcon.png; sourceTree = "<group>"; };
+		A316743419994BB9009C8EC8 /* BackBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackBtn.png; sourceTree = SOURCE_ROOT; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImportantMutationsDisplayView.xib; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 				A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */,
 				A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */,
 				A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */,
+				A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */,
 				A310AF54158A5F7200E892AA /* iGenomics */,
 				A310AF4D158A5F7200E892AA /* Frameworks */,
 				A310AF4B158A5F7200E892AA /* Products */,
@@ -423,6 +428,7 @@
 			children = (
 				A3C1702919707D8D008C7A4C /* OBSlider */,
 				A38C320918EB6E040070F49E /* ThreeLines.png */,
+				A316743419994BB9009C8EC8 /* BackBtn.png */,
 				A337B1A218E7D2A200919612 /* settingsIcon.png */,
 				A35E39B51885FB7B00651C41 /* Reachability */,
 				A338F59F17CFC7650075FAE3 /* SuccessBox.png */,
@@ -1153,6 +1159,7 @@
 				A3845659195CB1010030F092 /* rice.fq in Resources */,
 				A3C0FD2D160FA5F600BC2168 /* MySeq.txt in Resources */,
 				A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */,
+				A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */,
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A3A7212818023A1600F4E229 /* Ecoli.50k.txt in Resources */,
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
@@ -1202,6 +1209,7 @@
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
+				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
 				A338F5A017CFC7650075FAE3 /* SuccessBox.png in Resources */,

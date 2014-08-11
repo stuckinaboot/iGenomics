@@ -10,7 +10,7 @@
 
 @implementation CoverageHistogram
 
-- (void)createHistogramWithMaxCovVal:(int)maxCovVal {
+- (void)createHistogramWithMaxCovVal:(int)maxCovVal andNumOfReads:(int)numOfReads andReadLen:(int)readLen andGenomeLen:(int)genomeLen {
     self.view.backgroundColor = [UIColor whiteColor];
     imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:imgView];
@@ -32,6 +32,24 @@
     [self drawNormalCurveInRect:rect];
     imgView.image = UIGraphicsGetImageFromCurrentImageContext();//Might need to use drawRect for setting the img, depending on performance
     UIGraphicsEndImageContext();
+    
+    [self drawSideInformationWithNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
+}
+
+- (void)drawSideInformationWithNumOfReads:(int)numOfReads andReadLen:(int)readLen andGenomeLen:(int)genomeLen {
+    NSArray *startStrings = [NSArray arrayWithObjects:kNumOfReadsLblStart, kReadLengthLblStart, kGenomeLengthLblStart, nil];
+    NSArray *numVals = [NSArray arrayWithObjects:[NSNumber numberWithInt:numOfReads], [NSNumber numberWithInt:readLen], [NSNumber numberWithInt:genomeLen], nil];
+    
+    float y = 0;
+    for (int i = 0; i < [startStrings count]; i++) {
+        UILabel *lbl = [[UILabel alloc] init];
+        lbl.text = [NSString stringWithFormat:@"%@%i",[startStrings objectAtIndex:i],[[numVals objectAtIndex:i] intValue]];
+        lbl.font = [UIFont systemFontOfSize:kCoverageHistogramAxisFontSize];
+        CGSize size = [lbl.text sizeWithFont:lbl.font];
+        lbl.frame = CGRectMake(self.view.frame.size.width-size.width, y, size.width, size.height);
+        [self.view addSubview:lbl];
+        y += size.height;
+    }
 }
 
 - (void)drawNormalCurveInRect:(CGRect)rect {

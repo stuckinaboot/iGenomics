@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AnalysisControllerIPadToolbar : UIView <UIScrollViewDelegate> {
-    IBOutlet UIPageControl *pageControl;
-    IBOutlet UIScrollView *scrollView;
-    
-    NSArray *pages;
-    IBOutlet UIView *utilitiesView;
+@interface AnalysisControllerIPadToolbar : UIView {
     IBOutlet UIView *infoView;
 }
 - (void)setUp;

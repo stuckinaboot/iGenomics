@@ -165,7 +165,7 @@
 }
 
 - (void)beginActualSequencing {
-    int i = alignmentTypeCtrl.selectedSegmentIndex;
+    int i = kAlignmentTypeForwardAndReverse;//alignmentTypeCtrl.selectedSegmentIndex;
     
     NSString *trimRefChar;
     if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar0Index)

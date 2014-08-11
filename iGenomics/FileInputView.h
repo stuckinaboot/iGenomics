@@ -46,6 +46,8 @@
     int selectedOption;
     
     NSArray *supportedFileTypes;
+    
+    NSIndexPath *lastSelectedIndexPath;
 }
 @property (nonatomic) id <FileInputViewDelegate> delegate;
 @property (nonatomic, readonly) IBOutlet UITableView *tblView;

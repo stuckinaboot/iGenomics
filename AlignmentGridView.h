@@ -17,6 +17,8 @@
 
 #define kAlignmentGridViewNumOfGridSections 3 //Includes graph row for spacing reasons and to possibly put insertion buttons there
 
+#define kAlignmentGridExtraSpaceAtBottomOfScrollView 20
+
 #define kReadLongPressRecognizerMinDuration 1.0f
 
 @interface AlignmentGridView : QuickGridView {
