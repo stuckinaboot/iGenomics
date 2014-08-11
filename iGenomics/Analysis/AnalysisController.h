@@ -24,6 +24,8 @@
 #import "QuickGridView.h"
 #import "CoverageGridView.h"
 #import "AlignmentGridView.h"
+#import "HamburgerMenuController.h"
+#import "AnalysisControllerIPadMenu.h"
 
 #import "BWT_Matcher.h"
 #import "BWT_MutationFilter.h"
@@ -213,6 +215,9 @@
     IBOutlet UIButton *showCoverageProfileSegmentPckrBtn;
     
     BOOL firstAppeared;
+    
+    HamburgerMenuController *hamburgerMenuController;
+    IBOutlet AnalysisControllerIPadMenu *analysisControllerIPadMenu;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
 - (IBAction)showImportantMutationsPopover:(id)sender;
@@ -240,6 +245,8 @@
 - (IBAction)exportDataPressed:(id)sender;
 
 - (IBAction)donePressed:(id)sender;
+
+- (IBAction)showHamburgerMenu:(id)sender;
 
 //- (void)displaySuccessBox;
 

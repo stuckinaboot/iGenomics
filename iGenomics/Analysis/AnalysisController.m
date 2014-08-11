@@ -55,6 +55,7 @@
     [self resetGridViewForType:alignmentGridView];
     [super viewDidLoad];
 
+    hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
 //    [self setUpIPhoneToolbar];
     // Do any additional setup after loading the view from its nib.
 }
@@ -64,6 +65,12 @@
         [self setUpIPhoneToolbar];
         [analysisControllerIPadToolbar setUp];
         firstAppeared = TRUE;
+        if (gridView.maxCoverageVal == 0)
+            [gridView setMaxCovValWithNumOfCols:dgenomeLen-1];
+        if ([GlobalVars isIpad])
+            coverageHistogram.view.frame = CGRectMake(0, 0, kCoverageHistogramPopoverWidth, kCoverageHistogramPopoverHeight);
+        [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal];
+        [analysisControllerIPadMenu setCoverageHistogram:coverageHistogram];
     }
 //    [analysisControllerIPhoneToolbar setDelegate:self];
 //    
@@ -83,6 +90,8 @@
     gridView.drawingView.frame = gridView.scrollingView.frame;
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+    
+//    analysisControllerIPadMenu = [[AnalysisControllerIPadMenu alloc] init];
 }
 
 - (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents {
@@ -498,7 +507,7 @@
         if (gridView.boxWidth >= kThresholdBoxWidth && gridView.kTxtFontSize < gridView.kMinTxtFontSize)
             gridView.kTxtFontSize = gridView.kMinTxtFontSize;
 
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);//Creates background queue
         dispatch_sync(queue, ^{//Opens up a background thread, done synchronously because this block needs to finish before this function gets called again (often times it will be)
             
             CGPoint prevOffset = gridView.scrollingView.contentOffset;
@@ -516,8 +525,6 @@
                 [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridViewW];
                 gridView.shouldUpdateScrollView = TRUE;
                 [gridView.scrollingView setContentOffset:CGPointMake(gridView.currOffset, 0)];
-                if (gridView.shouldUpdateScrollView)
-                    [gridView setUpGridViewForPixelOffset:gridView.currOffset];
                 pxlOffsetSlider.value = gridView.currOffset;
             });
         });
@@ -717,6 +724,13 @@
 }
 
 //Extra iPad Support
+- (IBAction)showHamburgerMenu:(id)sender {
+    if (hamburgerMenuController.menuOpen)
+        [hamburgerMenuController closeHamburgerMenu];
+    else
+        [hamburgerMenuController openHamburgerMenu];
+}
+
 - (IBAction)showImportantMutationsPopover:(id)sender {
     if (popoverController.isPopoverVisible)
         return;
@@ -731,7 +745,6 @@
     CGRect rect = showImportantMutationsBtn.frame;
     [popoverController presentPopoverFromRect:CGRectMake(rect.origin.x, rect.origin.y+rect.size.height, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
-
 //Impt muts disp view delegate start
 - (void)importantMutationAtPosPressedInImptMutDispView:(int)pos {
     [self scrollToPos:pos];

@@ -105,6 +105,8 @@
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3C17028197079B2008C7A4C /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C17027197079B2008C7A4C /* OBSlider.m */; };
 		A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C215171777F72600B0C6D5 /* MutationInfo.m */; };
+		A3C61C0919955EC500AED305 /* HamburgerMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C61C0819955EC500AED305 /* HamburgerMenuController.m */; };
+		A3C61C0E19956F2000AED305 /* AnalysisControllerIPadMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C61C0C19956F2000AED305 /* AnalysisControllerIPadMenu.m */; };
 		A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C94C5919799930008202E6 /* ReadPopoverController.m */; };
 		A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C94C5A19799930008202E6 /* ReadPopoverController.xib */; };
 		A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */; };
@@ -279,6 +281,10 @@
 		A3C17027197079B2008C7A4C /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A3C215161777F72600B0C6D5 /* MutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutationInfo.h; sourceTree = "<group>"; };
 		A3C215171777F72600B0C6D5 /* MutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutationInfo.m; sourceTree = "<group>"; };
+		A3C61C0719955EC500AED305 /* HamburgerMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerMenuController.h; sourceTree = "<group>"; };
+		A3C61C0819955EC500AED305 /* HamburgerMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerMenuController.m; sourceTree = "<group>"; };
+		A3C61C0B19956F2000AED305 /* AnalysisControllerIPadMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisControllerIPadMenu.h; sourceTree = "<group>"; };
+		A3C61C0C19956F2000AED305 /* AnalysisControllerIPadMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisControllerIPadMenu.m; sourceTree = "<group>"; };
 		A3C94C5819799930008202E6 /* ReadPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadPopoverController.h; sourceTree = "<group>"; };
 		A3C94C5919799930008202E6 /* ReadPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadPopoverController.m; sourceTree = "<group>"; };
 		A3C94C5A19799930008202E6 /* ReadPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadPopoverController.xib; sourceTree = "<group>"; };
@@ -435,8 +441,9 @@
 		A31116331990036E0008809D /* iPad Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				A3111630199003630008809D /* AnalysisControllerIPadToolbar.h */,
-				A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */,
+				A3C61C1119956F2A00AED305 /* Toolbar */,
+				A3C61C1019956F2300AED305 /* iPad Menu */,
+				A3C61C0A19956EF000AED305 /* Hamburger Menu Controller */,
 			);
 			name = "iPad Toolbar";
 			sourceTree = "<group>";
@@ -898,6 +905,33 @@
 			name = Mutation;
 			sourceTree = "<group>";
 		};
+		A3C61C0A19956EF000AED305 /* Hamburger Menu Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A3C61C0719955EC500AED305 /* HamburgerMenuController.h */,
+				A3C61C0819955EC500AED305 /* HamburgerMenuController.m */,
+			);
+			name = "Hamburger Menu Controller";
+			sourceTree = "<group>";
+		};
+		A3C61C1019956F2300AED305 /* iPad Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A3C61C0B19956F2000AED305 /* AnalysisControllerIPadMenu.h */,
+				A3C61C0C19956F2000AED305 /* AnalysisControllerIPadMenu.m */,
+			);
+			name = "iPad Menu";
+			sourceTree = "<group>";
+		};
+		A3C61C1119956F2A00AED305 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				A3111630199003630008809D /* AnalysisControllerIPadToolbar.h */,
+				A3111631199003630008809D /* AnalysisControllerIPadToolbar.m */,
+			);
+			name = Toolbar;
+			sourceTree = "<group>";
+		};
 		A3C94C5D19799933008202E6 /* Read Popover */ = {
 			isa = PBXGroup;
 			children = (
@@ -1209,6 +1243,7 @@
 				A33A7C161650397B00E39A6C /* ED_Info.m in Sources */,
 				A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */,
 				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,
+				A3C61C0919955EC500AED305 /* HamburgerMenuController.m in Sources */,
 				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
 				A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */,
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
@@ -1221,6 +1256,7 @@
 				A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */,
 				A3DB3771170214B9007F0B9E /* RGB.m in Sources */,
 				A3208B3C197EFDC000299A30 /* ImportantMutationInfo.m in Sources */,
+				A3C61C0E19956F2000AED305 /* AnalysisControllerIPadMenu.m in Sources */,
 				A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */,
 				A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */,
 				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,
