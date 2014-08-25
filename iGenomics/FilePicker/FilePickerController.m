@@ -44,7 +44,7 @@
     refInputView = [[inputViewNib instantiateWithOwner:refInputView options:nil] objectAtIndex:0];
     
     [refFileManager setUpWithDefaultFileNamesPath:kDefaultRefFilesNamesFile ofType:kTxt];
-    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA];
+    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:[NSArray arrayWithObjects:kFa, nil] andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, nil]];
     [refInputView setDelegate:self];
     
     //Reads
@@ -52,7 +52,7 @@
     readsInputView = [[inputViewNib instantiateWithOwner:readsInputView options:nil] objectAtIndex:0];
     
     [readsFileManager setUpWithDefaultFileNamesPath:kDefaultReadsFilesNamesFile ofType:kTxt];
-    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA];
+    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, kFilePickerFastqValidationStr, nil]];
     [readsInputView setDelegate:self];
     
     //Impt muts
@@ -62,7 +62,7 @@
     imptMutsInputView = [[inputViewNib instantiateWithOwner:imptMutsInputView options:nil] objectAtIndex:0];
     
     [imptMutsFileManager setUpWithDefaultFileNamesPath:kDefaultImptMutsFilesNamesFile ofType:kTxt];
-    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesImptMuts];
+    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesImptMuts andValidationStrings:nil];
     [imptMutsInputView setDelegate:self];
 }
 
@@ -93,6 +93,9 @@
 #pragma Button Actions
 
 - (IBAction)showParametersPressed:(id)sender {
+    if (![self allSelectedFilesPassedValidation])
+        return;
+    
     NSString *s = @"";
     NSString *sName = @"";
     NSString *r = @"";
@@ -109,6 +112,8 @@
 }
 
 - (IBAction)analyzePressed:(id)sender {
+    if (![self allSelectedFilesPassedValidation])
+        return;
     filePickerCurrentlySelecting = kFilePickerSelectingRef;
     if ([refInputView needsInternetToGetFile] || [readsInputView needsInternetToGetFile])
         if (![GlobalVars internetAvailable])
@@ -203,6 +208,10 @@
         else
             [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (BOOL)allSelectedFilesPassedValidation {
+    return ([refInputView selectedFilePassedValidation] && [readsInputView selectedFilePassedValidation] && [imptMutsInputView selectedFilePassedValidation]);
 }
 
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc {

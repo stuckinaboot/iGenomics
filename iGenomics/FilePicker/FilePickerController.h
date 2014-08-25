@@ -34,6 +34,10 @@
 #define kFilePickerSelectingReads 1
 #define kFilePickerSelectingImptMuts 2
 
+#define kFilePickerFastaValidationStr @">"
+#define kFilePickerFastqValidationStr @"@"
+#define kFilePickerImptMutsFileValidationStr
+
 #define kFilePickerScrollViewAnimationDuration 0.4f
 
 @interface FilePickerController : UIViewController <UIPopoverControllerDelegate, FileInputViewDelegate> {
@@ -74,6 +78,8 @@
 - (IBAction)backPressed:(id)sender;
 
 - (void)resetScrollViewOffset;
+
+- (BOOL)allSelectedFilesPassedValidation;
 
 //- (void)displayPopoverOutOfCellWithContents:(NSString*)contents;//Popover with textview
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc;

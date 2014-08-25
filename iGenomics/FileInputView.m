@@ -21,10 +21,11 @@
     return self;
 }
 
-- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes {
+- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes andValidationStrings:(NSArray *)valStrs {
     fileManager = manager;
     instructLbl.text = instructTxt;
     searchBar.placeholder = placeHolderTxt;
+    validationStrings = valStrs;
     
     supportedFileTypes = supportedTypes;
     
@@ -65,6 +66,22 @@
         return [fileManager fileContentsForPath:info.path];
     }
     return @"";
+}
+
+- (BOOL)selectedFilePassedValidation {
+    NSString *fileContents = [self contentsOfSelectedRow];
+    if (![fileContents isEqualToString:@""]) {
+        if (!validationStrings)
+            return YES;
+        else {
+            for (NSString *validationStr in validationStrings)
+                if ([validationStr isEqualToString:[fileContents substringToIndex:validationStr.length]])
+                    return YES;
+        }
+        [GlobalVars displayiGenomicsAlertWithMsg:kFileInputFailedValidation];
+        return NO;
+    }
+    return YES;
 }
 
 - (BOOL)needsInternetToGetFile {

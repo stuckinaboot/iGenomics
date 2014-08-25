@@ -40,7 +40,7 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="QuickGridView">
-                    <rect key="frame" x="41" y="159" width="958" height="574"/>
+                    <rect key="frame" x="41" y="159" width="983" height="574"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <accessibility key="accessibilityConfiguration">
@@ -55,35 +55,36 @@
                         <action selector="pxlOffsetSliderValChanged:" destination="4" eventType="valueChanged" id="1182"/>
                     </connections>
                 </slider>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1599">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem image="ThreeLines.png" id="n34-WT-j9q">
-                            <connections>
-                                <action selector="showHamburgerMenu:" destination="-1" id="4pK-Wo-Fno"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem width="922" style="plain" systemItem="fixedSpace" id="7PV-D9-Y1l"/>
-                        <barButtonItem style="done" systemItem="done" id="1625">
-                            <connections>
-                                <action selector="donePressed:" destination="-1" id="1628"/>
-                            </connections>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iGenomicsLogoDNAIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
-                    <rect key="frame" x="30" y="44" width="52" height="114"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
+                    <rect key="frame" x="30" y="44" width="238" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loo-67-dgA" customClass="AnalysisControllerIPadToolbar">
-                    <rect key="frame" x="141" y="44" width="704" height="114"/>
+                    <rect key="frame" x="283" y="44" width="704" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="infoView" destination="5bW-Rd-K5k" id="5RY-tv-m3U"/>
                     </connections>
                 </view>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waU-Qp-blm">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Analysis View" id="X4h-BJ-TMQ">
+                            <barButtonItem key="leftBarButtonItem" image="ThreeLines.png" id="n34-WT-j9q">
+                                <connections>
+                                    <action selector="showHamburgerMenu:" destination="-1" id="4pK-Wo-Fno"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="1625">
+                                <connections>
+                                    <action selector="donePressed:" destination="-1" id="1628"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -207,7 +208,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="% MATCHED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83U-22-oQj">
-                    <rect key="frame" x="520" y="0.0" width="136" height="31"/>
+                    <rect key="frame" x="520" y="17" width="136" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -221,14 +222,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="GENOME FILE NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="791">
-                    <rect key="frame" x="286" y="45" width="167" height="21"/>
+                    <rect key="frame" x="286" y="27" width="167" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIJ-CZ-63k">
-                    <rect key="frame" x="15" y="38" width="223" height="30"/>
+                    <rect key="frame" x="15" y="18" width="223" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -452,6 +453,6 @@
     </objects>
     <resources>
         <image name="ThreeLines.png" width="22" height="22"/>
-        <image name="iGenomicsLogoDNAIcon.png" width="184" height="400"/>
+        <image name="iGenomicsLogo.png" width="1024" height="400"/>
     </resources>
 </document>

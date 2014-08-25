@@ -14,6 +14,8 @@
 
 #define kFileInputViewNibName @"FileInputView"
 
+#define kFileInputFailedValidation @"The file you tried to load is not valid."
+
 #define kComponent1Title @"Default"
 
 #define kSavedFilesTitle @"Saved Files"
@@ -48,6 +50,8 @@
     NSArray *supportedFileTypes;
     
     NSIndexPath *lastSelectedIndexPath;
+    
+    NSArray *validationStrings;//Compares each str to the beginning of the file and if one of them matches, it passes validation
 }
 @property (nonatomic) id <FileInputViewDelegate> delegate;
 @property (nonatomic, readonly) IBOutlet UITableView *tblView;
@@ -56,5 +60,6 @@
 - (BOOL)needsInternetToGetFile;
 - (NSString*)nameOfSelectedRow;
 - (NSString*)contentsOfSelectedRow;
-- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes;
+- (BOOL)selectedFilePassedValidation;
+- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes andValidationStrings:(NSArray*)valStrs;
 @end

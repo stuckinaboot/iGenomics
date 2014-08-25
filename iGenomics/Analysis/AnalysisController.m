@@ -145,16 +145,10 @@
 }
 
 - (void)readyViewForCovProfile {
-    if (nLbl[ARow].hidden)
-        for (int i = ARow; i < kNumOfRowsInGridView; i++)
-            nLbl[i].hidden = NO;
     [self resetGridViewForType:covGridView];
 }
 
 - (void)readyViewForAlignments {
-    if (!nLbl[ARow].hidden)
-        for (int i = ARow; i < kNumOfRowsInGridView; i++)
-            nLbl[i].hidden = YES;
     [self resetGridViewForType:alignmentGridView];
 }
 
@@ -210,6 +204,18 @@
     [segmentPckr selectRow:gridView.indexInGenomeNameArr inComponent:0 animated:NO];
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:gridView.indexInGenomeNameArr];
     currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr] intValue]];
+    
+    BOOL isCovGridView = [gridView isEqual:covGridView];
+    if (gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.boxWidth >= kThresholdBoxWidth)
+        for (int i = 0; i < kNumOfRowsInGridView; i++) {
+            if (!isCovGridView && i >= ARow)
+                nLbl[i].hidden = YES;
+            else
+                nLbl[i].hidden = NO;
+        }
+    else if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.boxWidth >= kThresholdBoxWidth))
+        for (int i = 0; i < kNumOfRowsInGridView; i++)
+            nLbl[i].hidden = YES;
 }
 
 - (void)resetDisplay {
@@ -473,9 +479,8 @@
     //PROBLEM IS THAT KTXTFONTSIZE IS TOO BIG WHEN BOX WIDTH IS TOO SMALL
     if (s > 1.0f /*&& (gridView.kTxtFontSize < (([GlobalVars isIpad]) ? kDefaultTxtFontSizeIPad : kDefaultTxtFontSizeIPhone)) */&& (gridView.boxWidth < (([GlobalVars isIpad]) ? kDefaultIpadBoxWidth : kDefaultIphoneBoxWidth))) {//Zoom in
         scaleOccurred = TRUE;
-        
         if (nLbl[0].hidden && gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.boxWidth >= kThresholdBoxWidth)
-            for (int i = 0; i < kNumOfRowsInGridView; i++)
+            for (int i = 0; i < ([gridView isEqual:covGridView] ? kNumOfRowsInGridView : ARow); i++)
                 nLbl[i].hidden = NO;
     }
     else if (s < 1.0f) {//Zoom out
@@ -487,9 +492,8 @@
         }
         
         scaleOccurred = TRUE;
-        
         if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.boxWidth >= kThresholdBoxWidth) && !nLbl[0].hidden)
-            for (int i = 0; i < kNumOfRowsInGridView; i++)
+            for (int i = 0; i < ([gridView isEqual:covGridView] ? kNumOfRowsInGridView : ARow); i++)
                 nLbl[i].hidden = YES;
     }
     if (scaleOccurred) {

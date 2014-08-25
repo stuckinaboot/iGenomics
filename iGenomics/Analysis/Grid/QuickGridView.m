@@ -600,16 +600,9 @@
 //ScrollView Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+    if (shouldUpdateScrollView)
+        [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
     shouldUpdateScrollView = !shouldUpdateScrollView;
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    NSLog(@"hi");
-}
-
-- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return nil;
 }
 
 - (IBAction)pxlOffsetSliderValChanged:(id)sender {
