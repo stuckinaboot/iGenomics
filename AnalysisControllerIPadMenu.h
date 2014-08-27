@@ -72,4 +72,6 @@
 
 - (void)displayCovHistogramOutOfCell:(UITableViewCell*)cell;
 - (void)displayExportActionSheetOutOfCell:(UITableViewCell*)cell;
+
+- (void)updateCompleSecElContentsArr;
 @end

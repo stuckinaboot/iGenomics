@@ -42,14 +42,16 @@
 #define kCoverageHistogramThinLineWidth 2.0f
 #define kCoverageHistogramDashLength 10.0f
 
-#define kCoverageHistogramYAxisDistFromScreenBottom 60
-#define kCoverageHistogramXAxisDistFromScreenLeft 60
+#define kCoverageHistogramXAxisDistFromScreenBottom 50
+#define kCoverageHistogramYAxisDistFromScreenLeft 60
 #define kCoverageHistogramXAxisTitleDistFromScreenEdge 20
 #define kCoverageHistogramYAxisTitleDistFromScreenEdge 15
 
 #define kCoverageHistogramNormalCurveLinesPerBox 4
 
-@interface CoverageHistogram : IPhonePopoverHandler {
+#define kCoverageHistogramTitleInIPhoneHandlerPopover @"Coverage Histogram"
+
+@interface CoverageHistogram : UIViewController {
     UIImageView *imgView;
     
     DNAColors *dnaColors;

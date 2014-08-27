@@ -97,8 +97,6 @@
 }
 
 - (void)setUpGridViewForPixelOffset:(double)offSet {
-
-    
     drawingIndexInGenomeNameArr = indexInGenomeNameArr;
     currOffset = offSet;
     drawingView.image = NULL;
@@ -242,7 +240,6 @@
     
     //    if (self.currOffset != scrollingView.contentOffset.x)
     //        [scrollingView setContentOffset:CGPointMake(self.currOffset, 0) animated:NO];
-    
     [delegate gridFinishedUpdatingWithOffset:currOffset andGridScrollViewContentSizeChanged:scrollViewContentSizeChangedOnLastUpdate];
     scrollViewContentSizeChangedOnLastUpdate = NO;
 }
@@ -598,10 +595,16 @@
 }
 
 //ScrollView Delegate
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (shouldUpdateScrollView)
+    /*
+     When the if statement condition is commented out and the entire else is commented out, scrolling is more in sync. When they are not commented out, my iPad has drawing issues but my iPhone works fine and scrolling is in sync. Need to test on your iPhone to see if its just iPad 2/out-dated processors where it lags. Show Mike both versions (with/without the commented out portions) and we can decide if we want a note saying not optimized for iPad 2 maybe or it may ultimately be fine without the comments.
+     */
+//    if (shouldUpdateScrollView)
         [self setUpGridViewForPixelOffset:scrollingView.contentOffset.x];
+//    else {
+//        currOffset = scrollingView.contentOffset.x;
+//        [delegate gridFinishedUpdatingWithOffset:scrollingView.contentOffset.x andGridScrollViewContentSizeChanged:NO];
+//    }
     shouldUpdateScrollView = !shouldUpdateScrollView;
 }
 

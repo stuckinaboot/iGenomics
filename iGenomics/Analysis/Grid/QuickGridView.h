@@ -130,7 +130,7 @@ typedef enum {
 - (NSArray*)getCumulativeSeparateGenomeLenArray;
 - (NSString*)genomeSegmentNameForIndexInGenomeNameArr:(int)index;
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index;
-- (void)displayPopoverWithViewController:(UIViewController*)controller atPoint:(CGPoint)point;
+- (void)displayPopoverWithViewController:(UIViewController*)controller atPoint:(CGPoint)point withTitle:(NSString*)title;
 @end
 
 @interface QuickGridView : UIView <UIScrollViewDelegate> {

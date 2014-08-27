@@ -13,6 +13,8 @@
 #import "GlobalVars.h"
 #import "DNAColors.h"
 
+#define kReadPopoverTitleInIPhonePopoverHandler @"Read Information"
+
 #define kReadPopoverReadNameLblTxt @"Read Name: %s"
 #define kReadPopoverGappedALblTxt @"Found:      %s"
 #define kReadPopoverGappedBLblTxt @"Reference:  %s"
@@ -21,7 +23,7 @@
 #define kReadPopoverFoRevLblForwardTxt @"Forward"
 #define kReadPopoverFoRevLblReverseTxt @"Reverse"
 
-@interface ReadPopoverController : IPhonePopoverHandler {
+@interface ReadPopoverController : UIViewController {
     IBOutlet CopyLabel *readNameLbl;
     IBOutlet CopyLabel *gappedALbl;
     IBOutlet CopyLabel *gappedBLbl;

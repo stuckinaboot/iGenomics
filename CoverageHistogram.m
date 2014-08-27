@@ -54,23 +54,23 @@
 
 - (void)drawNormalCurveInRect:(CGRect)rect {
     float maxNormVal = [self normalCurveFormulaValueForPos:posOfHighestFrequency];
-    float x = kCoverageHistogramXAxisDistFromScreenLeft+kCoverageHistogramAxisWidth+boxWidth/2;
-    float y = rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-kCoverageHistogramAxisWidth;
+    float x = kCoverageHistogramYAxisDistFromScreenLeft+kCoverageHistogramAxisWidth+boxWidth/2;
+    float y = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-kCoverageHistogramAxisWidth;
     float i = 0;
     float step = 1.0f/kCoverageHistogramNormalCurveLinesPerBox;
     while (i*boxWidth < rect.size.width) {
         float normalVal = [self normalCurveFormulaValueForPos:i];
-        float actualYVal = rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom);
+        float actualYVal = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
        
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
         CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
         CGContextMoveToPoint(UIGraphicsGetCurrentContext(), x, y);
         if (i > 0)
-            CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth+boxWidth/2, actualYVal);
+            CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth+boxWidth/2, actualYVal);
         CGContextStrokePath(UIGraphicsGetCurrentContext());
-        x = kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth+boxWidth/2;
+        x = kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth+boxWidth/2;
         y = actualYVal;
-//        [self drawRectangle:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft+i*boxWidth, actualYVal, 1.0f, 1.0f) withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g, dnaColors.black.b}];
+//        [self drawRectangle:CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth, actualYVal, 1.0f, 1.0f) withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g, dnaColors.black.b}];
         i += step;
     }
 }
@@ -91,8 +91,8 @@
 }
 
 - (void)drawAxisesInRect:(CGRect)rect {
-    [self drawRectangle:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft, 0, kCoverageHistogramAxisWidth, rect.size.height) withRGB:(double[3]){dnaColors.black.r,dnaColors.black.g,dnaColors.black.b}];
-    [self drawRectangle:CGRectMake(0, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom, rect.size.width, kCoverageHistogramAxisWidth) withRGB:(double[3]){dnaColors.black.r,dnaColors.black.g,dnaColors.black.b}];
+    [self drawRectangle:CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft, 0, kCoverageHistogramAxisWidth, rect.size.height) withRGB:(double[3]){dnaColors.black.r,dnaColors.black.g,dnaColors.black.b}];
+    [self drawRectangle:CGRectMake(0, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom, rect.size.width, kCoverageHistogramAxisWidth) withRGB:(double[3]){dnaColors.black.r,dnaColors.black.g,dnaColors.black.b}];
 }
 
 - (void)drawAxisLblsInRect:(CGRect)rect withCovFreqArr:(int[])covFreqArr andCovFreqArrMax:(int)covFreqArrMax {
@@ -101,20 +101,20 @@
     UIFont *axisLblFont = [UIFont systemFontOfSize:kCoverageHistogramAxisFontSize];
     
     UILabel *xTitle = [[UILabel alloc] initWithFrame:titleFrame];
-    xTitle.center = CGPointMake(kCoverageHistogramXAxisDistFromScreenLeft+((rect.size.width-kCoverageHistogramXAxisDistFromScreenLeft)/2)+xTitle.bounds.size.width/2,rect.size.height-kCoverageHistogramXAxisTitleDistFromScreenEdge);
+    xTitle.center = CGPointMake(kCoverageHistogramYAxisDistFromScreenLeft+((rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/2)+xTitle.bounds.size.width/2,rect.size.height-kCoverageHistogramXAxisTitleDistFromScreenEdge);
     [xTitle setFont:axisLblFont];
     [xTitle setText:kCoverageHistogramAxisXTitle];
     [self.view addSubview:xTitle];
     
     UILabel *yTitle = [[UILabel alloc] initWithFrame:titleFrame];
-    yTitle.center = CGPointMake(kCoverageHistogramYAxisTitleDistFromScreenEdge, ((rect.size.height)/2)-kCoverageHistogramYAxisDistFromScreenBottom);
+    yTitle.center = CGPointMake(kCoverageHistogramYAxisTitleDistFromScreenEdge, ((rect.size.height)/2)-kCoverageHistogramXAxisDistFromScreenBottom);
     [yTitle setFont:axisLblFont];
     [yTitle setText:kCoverageHistogramAxisYTitle];
     [yTitle setTransform:CGAffineTransformMakeRotation(-(M_PI)/2)];
     [self.view addSubview:yTitle];
     
     if (posOfHighestFrequency > 0) {
-        UILabel *x0Lbl = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft+kCoverageHistogramAxisWidth, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom+kCoverageHistogramAxisWidth, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//Corresponds to the maxYLbl
+        UILabel *x0Lbl = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft+kCoverageHistogramAxisWidth, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom+kCoverageHistogramAxisWidth, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//Corresponds to the maxYLbl
         
         [x0Lbl setText:[NSString stringWithFormat:kCoverageHistogram0IntervalTxt]];
         [x0Lbl setAdjustsFontSizeToFitWidth:YES];
@@ -123,7 +123,7 @@
     
 //    CGSize lblTxtSize = [kCoverageHistogram0IntervalTxt sizeWithFont:x0Lbl.font];
     
-//    UILabel *y0Lbl = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft-kCoverageHistogramIntervalLblWidth, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-lblTxtSize.height, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//x0Lbl has same font so might as well just do it in the same line
+//    UILabel *y0Lbl = [[UILabel alloc] initWithFrame:CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft-kCoverageHistogramIntervalLblWidth, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-lblTxtSize.height, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//x0Lbl has same font so might as well just do it in the same line
 //    [y0Lbl setTextAlignment:NSTextAlignmentRight];
 //    [y0Lbl setText:[NSString stringWithFormat:kCoverageHistogram0IntervalTxt]];
 //    [y0Lbl setAdjustsFontSizeToFitWidth:YES];
@@ -145,7 +145,7 @@
     int x = xValOfPosOfHighestFrequency+(standardDeviation*currNumOfSD)*boxWidth+kCoverageHistogramAxisWidth;
     
     for (int i = 0; i < kCoverageHistogramNumOfIntervalLblsPerAxis; i++, x += standardDeviation*boxWidth, currNumOfSD++) {
-        xLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(x, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom+kCoverageHistogramAxisWidth, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//Corresponds to the maxYLbl
+        xLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(x, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom+kCoverageHistogramAxisWidth, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];//Corresponds to the maxYLbl
         xLbls[i].center = CGPointMake(x, xLbls[i].center.y);
         [xLbls[i] setTextAlignment:NSTextAlignmentCenter];
         
@@ -161,14 +161,14 @@
         UIFont *font = xLbls[i].font;
         
         if (i <= ceilf(kCoverageHistogramNumOfIntervalLblsPerAxis/2.0f) && pos <= maxCoverageVal && pos >= 0) {//This if is here because at the same SD, there will probably/usually be different frequencies. Also, can't make labels for out of bounds positions
-            yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(0, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom)), kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
+            yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(0, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom)), kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
             
             if (yLbls[i].frame.origin.y > 0)
                 yLbls[i].frame = CGRectMake(yLbls[i].frame.origin.x, yLbls[i].frame.origin.y-kCoverageHistogramIntervalLblHeight/2, yLbls[i].frame.size.width, yLbls[i].frame.size.height);
             [yLbls[i] setText:[NSString stringWithFormat:@"%i",covFreqArr[pos]]];
             
             CGSize size = [yLbls[i].text sizeWithFont:font];
-            yLbls[i].frame = CGRectMake(kCoverageHistogramXAxisDistFromScreenLeft-size.width, yLbls[i].frame.origin.y, size.width, size.height);
+            yLbls[i].frame = CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft-size.width, yLbls[i].frame.origin.y, size.width, size.height);
             
             BOOL shouldAddY = YES;
             if (i > 0) {
@@ -207,11 +207,11 @@
             posOfHighestFrequency = i;
         }
     
-    boxWidth = (rect.size.width-kCoverageHistogramXAxisDistFromScreenLeft)/(maxCoverageVal+1);
-    for (int i = 0, x = kCoverageHistogramXAxisDistFromScreenLeft; i <= maxCoverageVal; i++, x += boxWidth) {
+    boxWidth = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
+    for (int i = 0, x = kCoverageHistogramYAxisDistFromScreenLeft; i <= maxCoverageVal; i++, x += boxWidth) {
         float ratio = ((float)covFrequencyArr[i]/highestFrequency);
-        int height = ratio*(rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom);
-        [self drawRectangle:CGRectMake(x, rect.size.height-kCoverageHistogramYAxisDistFromScreenBottom-height, boxWidth, height) withRGB:(double[3]){dnaColors.mutHighlight.r,dnaColors.mutHighlight.g,dnaColors.mutHighlight.b}];
+        int height = ratio*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
+        [self drawRectangle:CGRectMake(x, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-height, boxWidth, height) withRGB:(double[3]){dnaColors.mutHighlight.r,dnaColors.mutHighlight.g,dnaColors.mutHighlight.b}];
         if (ratio == 1)
             xValOfPosOfHighestFrequency = x+boxWidth/2;
     }
@@ -224,8 +224,8 @@
 //    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
     CGContextSaveGState(UIGraphicsGetCurrentContext());
     CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramXAxisDistFromScreenLeft+boxWidth*posOfHighestFrequency+boxWidth/2, 0);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramXAxisDistFromScreenLeft+boxWidth*posOfHighestFrequency+boxWidth/2, rect.size.height-kCoverageHistogramAxisWidth-kCoverageHistogramYAxisDistFromScreenBottom);
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramYAxisDistFromScreenLeft+boxWidth*posOfHighestFrequency+boxWidth/2, 0);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramYAxisDistFromScreenLeft+boxWidth*posOfHighestFrequency+boxWidth/2, rect.size.height-kCoverageHistogramAxisWidth-kCoverageHistogramXAxisDistFromScreenBottom);
     CGContextSetLineDash(UIGraphicsGetCurrentContext(), 0, (CGFloat[2]){kCoverageHistogramDashLength, kCoverageHistogramDashLength}, kCoverageHistogramThinLineWidth);
     CGContextStrokePath(UIGraphicsGetCurrentContext());
     CGContextRestoreGState(UIGraphicsGetCurrentContext());

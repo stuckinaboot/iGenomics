@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="308"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="up8-jr-BoX">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="up8-jr-BoX">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="308"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -25,6 +25,12 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="up8-jr-BoX" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="VcF-qe-6qp"/>
+                <constraint firstAttribute="bottom" secondItem="up8-jr-BoX" secondAttribute="bottom" id="cpr-qa-Ai7"/>
+                <constraint firstItem="up8-jr-BoX" firstAttribute="top" secondItem="2" secondAttribute="top" id="q0f-S7-lea"/>
+                <constraint firstAttribute="trailing" secondItem="up8-jr-BoX" secondAttribute="trailing" id="yPh-Pc-HKz"/>
+            </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

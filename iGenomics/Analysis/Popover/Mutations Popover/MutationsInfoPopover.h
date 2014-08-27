@@ -17,12 +17,14 @@
 
 #define kMutationsPopoverNoMutationsAlertMsg @"No mutations found"
 
+#define kMutationsInfoPopoverTitleInIPhonePopoverHandler @"Mutations List"
+
 @protocol MutationsInfoPopoverDelegate <NSObject>
 - (void)mutationAtPosPressedInPopover:(int)pos;
 - (void)mutationsPopoverDidFinishUpdating;
 @end
 
-@interface MutationsInfoPopover : IPhonePopoverHandler <UITableViewDelegate, UITableViewDataSource> {
+@interface MutationsInfoPopover : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *mutationsTBView;
     
     NSMutableArray *mutationsArray;

@@ -13,7 +13,9 @@
 #define kFilePreviewPopoverFontName @"Courier"
 #define kFilePreviewPopoverFontSize 14
 
-@interface FilePreviewPopoverController : IPhonePopoverHandler {
+#define kFilePreviewPopoverTitleInIPhonePopoverHandler @"File Preview"
+
+@interface FilePreviewPopoverController : UIViewController {
     IBOutlet UITextView *txtView;
     NSString *txtViewContents;
 }

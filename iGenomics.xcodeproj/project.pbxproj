@@ -33,7 +33,6 @@
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
 		A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */; };
-		A337B19718E781B800919612 /* IPhonePopoverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A337B19618E781B800919612 /* IPhonePopoverHandler.m */; };
 		A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19818E7866700919612 /* ParametersController~iphone.xib */; };
 		A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19A18E78A3500919612 /* ComputingController~iphone.xib */; };
 		A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */; };
@@ -123,6 +122,8 @@
 		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
 		A3D81EBB1666EF3700BD5C07 /* newreads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBA1666EF3700BD5C07 /* newreads.txt */; };
 		A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */; };
+		A3D9B74F19AD2EA500D9AA35 /* IPhonePopoverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9B74D19AD2EA500D9AA35 /* IPhonePopoverHandler.m */; };
+		A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D9B74E19AD2EA500D9AA35 /* IPhonePopoverHandler.xib */; };
 		A3DA1CBB1859609300C10C22 /* Read.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA1CBA1859609300C10C22 /* Read.m */; };
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
 		A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3DE20A2166EC3DA00F23AD8 /* New.Ecoli.5k.txt */; };
@@ -183,8 +184,6 @@
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
 		A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilePreviewPopoverController.xib; sourceTree = "<group>"; };
 		A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FilePickerController~iphone.xib"; path = "FilePicker/FilePickerController~iphone.xib"; sourceTree = "<group>"; };
-		A337B19518E781B800919612 /* IPhonePopoverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPhonePopoverHandler.h; sourceTree = "<group>"; };
-		A337B19618E781B800919612 /* IPhonePopoverHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPhonePopoverHandler.m; sourceTree = "<group>"; };
 		A337B19818E7866700919612 /* ParametersController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ParametersController~iphone.xib"; path = "Parameters/ParametersController~iphone.xib"; sourceTree = "<group>"; };
 		A337B19A18E78A3500919612 /* ComputingController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ComputingController~iphone.xib"; path = "iGenomics/Computing/ComputingController~iphone.xib"; sourceTree = "<group>"; };
 		A337B19C18E78BB100919612 /* AnalysisController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "AnalysisController~iphone.xib"; path = "iGenomics/Analysis/AnalysisController~iphone.xib"; sourceTree = "<group>"; };
@@ -222,8 +221,8 @@
 		A364B409186246E10052625C /* Ecoli.50k.testread.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ecoli.50k.testread.txt; sourceTree = "<group>"; };
 		A3669B3316F689750034A1CC /* DNAColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNAColors.h; path = iGenomics/Analysis/Grid/DNAColors.h; sourceTree = "<group>"; };
 		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
-		A36C7C0C1964AFAC004CA5EF /* CoverageHistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverageHistogram.h; sourceTree = "<group>"; };
-		A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageHistogram.m; sourceTree = "<group>"; };
+		A36C7C0C1964AFAC004CA5EF /* CoverageHistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CoverageHistogram.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CoverageHistogram.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
 		A36CCDF9184A8632004B9327 /* reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fa; path = "ecoli-2.50k/reads.fa"; sourceTree = "<group>"; };
 		A36CCDFA184A8632004B9327 /* reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fq; path = "ecoli-2.50k/reads.fq"; sourceTree = "<group>"; };
@@ -306,6 +305,9 @@
 		A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_MatcherSC.m; path = ../../../BWT_MatcherSC.m; sourceTree = "<group>"; };
 		A3D81EBA1666EF3700BD5C07 /* newreads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newreads.txt; path = "../../../Downloads/snpchallenge1 3/newreads.txt"; sourceTree = "<group>"; };
 		A3D81EBD1666EF3E00BD5C07 /* NewEcoli.5k.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = NewEcoli.5k.txt; path = "../../../Downloads/snpchallenge1 3/NewEcoli.5k.txt"; sourceTree = "<group>"; };
+		A3D9B74C19AD2EA500D9AA35 /* IPhonePopoverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPhonePopoverHandler.h; sourceTree = "<group>"; };
+		A3D9B74D19AD2EA500D9AA35 /* IPhonePopoverHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPhonePopoverHandler.m; sourceTree = "<group>"; };
+		A3D9B74E19AD2EA500D9AA35 /* IPhonePopoverHandler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPhonePopoverHandler.xib; sourceTree = "<group>"; };
 		A3DA1CB91859609300C10C22 /* Read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Read.h; path = ../Read.h; sourceTree = "<group>"; };
 		A3DA1CBA1859609300C10C22 /* Read.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Read.m; path = ../Read.m; sourceTree = "<group>"; };
 		A3DB376F170214B9007F0B9E /* RGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RGB.h; path = iGenomics/RGB.h; sourceTree = "<group>"; };
@@ -500,8 +502,9 @@
 		A337B19418E77F5800919612 /* iPhone Popover */ = {
 			isa = PBXGroup;
 			children = (
-				A337B19518E781B800919612 /* IPhonePopoverHandler.h */,
-				A337B19618E781B800919612 /* IPhonePopoverHandler.m */,
+				A3D9B74C19AD2EA500D9AA35 /* IPhonePopoverHandler.h */,
+				A3D9B74D19AD2EA500D9AA35 /* IPhonePopoverHandler.m */,
+				A3D9B74E19AD2EA500D9AA35 /* IPhonePopoverHandler.xib */,
 			);
 			name = "iPhone Popover";
 			sourceTree = "<group>";
@@ -1210,6 +1213,7 @@
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
+				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
 				A338F5A017CFC7650075FAE3 /* SuccessBox.png in Resources */,
@@ -1238,7 +1242,6 @@
 				A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */,
 				A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */,
 				A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */,
-				A337B19718E781B800919612 /* IPhonePopoverHandler.m in Sources */,
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
 				A3208B38197EED4700299A30 /* ImportantMutationsDisplayView.m in Sources */,
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
@@ -1255,6 +1258,7 @@
 				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
 				A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */,
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
+				A3D9B74F19AD2EA500D9AA35 /* IPhonePopoverHandler.m in Sources */,
 				A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */,
 				A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */,
 				A3558AE3197035F300BF0821 /* AlignmentGridPosition.m in Sources */,

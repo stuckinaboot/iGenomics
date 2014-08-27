@@ -226,7 +226,11 @@
         [previewPopoverController presentPopoverFromRect:CGRectMake(loc.x, loc.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp | UIPopoverArrowDirectionDown animated:YES];
     }
     else {
-        [self presentViewController:controller animated:YES completion:nil];
+        IPhonePopoverHandler *handler = [[IPhonePopoverHandler alloc] init];
+        [handler addChildViewController:controller];
+        [handler setMainViewController:controller andTitle:kFilePreviewPopoverTitleInIPhonePopoverHandler];
+        [controller didMoveToParentViewController:handler];
+        [self presentViewController:handler animated:YES completion:nil];
     }
 }
 

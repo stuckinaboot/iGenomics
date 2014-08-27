@@ -13,7 +13,7 @@
 #define kInsPopoverW 450
 #define kInsPopoverH 250
 
-@interface InsertionsPopoverController : IPhonePopoverHandler <UITableViewDelegate, UITableViewDataSource> {
+@interface InsertionsPopoverController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *insTBView;
     
     NSMutableArray *arr;

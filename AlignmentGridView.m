@@ -468,6 +468,8 @@
         return;
     
     CGPoint touchLocInGrid = [sender locationInView:self];
+    if (touchLocInGrid.y < kPosLblHeight+kGridLineWidthRow+graphBoxHeight+FoundRow*(boxHeight+kGridLineWidthRow))//User selected above all the reads (aka the fnd row or higher) so just return bc we have no info to show them pertaining to a read here
+        return;
     CGPoint touchLocInScrollView = [sender locationInView:scrollingView];
     CGPoint pt = CGPointMake(touchLocInGrid.x, touchLocInScrollView.y);
     
@@ -487,7 +489,7 @@
     ReadPopoverController *controller = [[ReadPopoverController alloc] init];
     [controller setUpWithRead:read];
     controller.preferredContentSize = controller.view.bounds.size;
-    [delegate displayPopoverWithViewController:controller atPoint:point];
+    [delegate displayPopoverWithViewController:controller atPoint:point withTitle:kReadPopoverTitleInIPhonePopoverHandler];
 }
 
 @end

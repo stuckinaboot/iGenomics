@@ -72,7 +72,7 @@
     
     BWT_Matcher_InsertionDeletion_InsertionHolder *info = [insertionsArray objectAtIndex:indexPath.row];
     
-    [cell.textLabel setText:[NSString stringWithFormat:@"Pos: %i, Seq: %s, Count: %i",info.pos+1,info.seq,info.count]];//Not positive about gappedA, info.pos + 1 because position 0 is considered 1
+    [cell.textLabel setText:[NSString stringWithFormat:kAnalysisPopoverInsertionInfoTxt,info.seq,info.count]];//Displayed Pos bc the info.pos is not relative to each segment and the insertion listed here occurs at the position that was clicked, so just display that position
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     

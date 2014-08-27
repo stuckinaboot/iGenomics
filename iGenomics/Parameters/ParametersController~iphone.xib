@@ -37,7 +37,7 @@
                         <constraint firstAttribute="width" constant="288" id="Vwl-K9-VMg"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                    <state key="normal" title="Start Sequencing"/>
+                    <state key="normal" title="Start Aligning"/>
                     <connections>
                         <action selector="startSequencingPressed:" destination="-1" eventType="touchUpInside" id="19"/>
                     </connections>

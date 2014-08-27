@@ -38,11 +38,11 @@
     SEL fileExportSelector = @selector(displayExportActionSheetOutOfCell:);
     exportElementContentsArr = [NSArray arrayWithObjects:NSStringFromSelector(fileExportSelector), nil];
     
-    sectionNameArr = [NSArray arrayWithObjects:kAnalysisControllerIPadTblSectionInformation, kAnalysisControllerIPadTblSectionGenomeInteraction, kAnalysisControllerIPadTblSectionExport,kAnalysisControllerIPadTblSectionSettings, nil];
+    sectionNameArr = [NSArray arrayWithObjects:kAnalysisControllerIPadTblSectionGenomeInteraction, kAnalysisControllerIPadTblSectionInformation, kAnalysisControllerIPadTblSectionExport,kAnalysisControllerIPadTblSectionSettings, nil];
     
-    completeSecElArr = [NSArray arrayWithObjects:genomeInformationElementsArr, genomeInteractionElementsArr, exportElementsArr, settingsElementsArr, nil];
+    completeSecElArr = [NSArray arrayWithObjects:genomeInteractionElementsArr, genomeInformationElementsArr, exportElementsArr, settingsElementsArr, nil];
     
-    completeSecElContentsArr = [NSArray arrayWithObjects:genomeInformationElementContentsArr, genomeInteractionElementContentsArr, exportElementContentsArr, settingsElementContentsArr, nil];
+    completeSecElContentsArr = [NSArray arrayWithObjects:genomeInteractionElementContentsArr, genomeInformationElementContentsArr, exportElementContentsArr, settingsElementContentsArr, nil];
 //    tblElementsArr = [NSArray arrayWithObjects:kAnalysisControllerIPadTblElementCovHistogram,kAnalysisControllerIPadTblElementSearch, kAnalysisControllerIPadTblElementSegmentPicker, kAnalysisControllerIPadTblElementMutSupport,
 //        kAnalysisControllerIPadTblElementExport, nil];
     [super viewDidLoad];
@@ -56,7 +56,7 @@
         return;
     covHistogram = histo;
     genomeInformationElementContentsArr = [NSArray arrayWithObjects:covHistogram, mutInfoPopover, imptMutsDisplayView, nil];
-    completeSecElContentsArr = [NSArray arrayWithObjects:genomeInformationElementContentsArr, genomeInteractionElementContentsArr, exportElementContentsArr, settingsElementContentsArr, nil];
+    [self updateCompleSecElContentsArr];
 }
 
 - (void)setFileExporter:(id)exporter {
@@ -68,7 +68,7 @@
         return;
     mutInfoPopover = m;
     genomeInformationElementContentsArr = [NSArray arrayWithObjects:covHistogram, mutInfoPopover, imptMutsDisplayView, nil];
-    completeSecElContentsArr = [NSArray arrayWithObjects:genomeInformationElementContentsArr, genomeInteractionElementContentsArr, exportElementContentsArr, settingsElementContentsArr, nil];
+    [self updateCompleSecElContentsArr];
 }
 
 - (void)setImptMutationsView:(ImportantMutationsDisplayView*)i {
@@ -76,7 +76,11 @@
         return;
     imptMutsDisplayView = i;
     genomeInformationElementContentsArr = [NSArray arrayWithObjects:covHistogram, mutInfoPopover, imptMutsDisplayView, nil];
-    completeSecElContentsArr = [NSArray arrayWithObjects:genomeInformationElementContentsArr, genomeInteractionElementContentsArr, exportElementContentsArr, settingsElementContentsArr, nil];
+    [self updateCompleSecElContentsArr];
+}
+
+- (void)updateCompleSecElContentsArr {
+    completeSecElContentsArr = [NSArray arrayWithObjects:genomeInteractionElementContentsArr, genomeInformationElementContentsArr, exportElementContentsArr, settingsElementContentsArr, nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

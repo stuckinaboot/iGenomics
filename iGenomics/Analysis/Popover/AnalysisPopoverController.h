@@ -16,9 +16,13 @@
 #define kAnalysisPopoverPosLblTxt @"Position: %i"
 #define kAnalysisPopoverSegmentLblTxt @"Segment: %@"
 
+#define kAnalysisPopoverInsertionInfoTxt @"Seq: %s, Count: %i"
+
 #define kPopoverACGTLblTxt @"%c: %i"
 
-@interface AnalysisPopoverController : IPhonePopoverHandler <UITableViewDataSource, UITableViewDelegate> {
+#define kAnalysisPopoverTitleInIPhonePopoverHandler @"Position Information"
+
+@interface AnalysisPopoverController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     IBOutlet CopyLabel *posLbl;
     IBOutlet CopyLabel *heteroLbl;
     IBOutlet CopyLabel *aLbl;

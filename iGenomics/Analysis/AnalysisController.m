@@ -50,11 +50,12 @@
     
     mutationSupportStpr.maximumValue = kMutationSupportMax;
     mutationSupportStpr.minimumValue = kMutationSupportMin;
-    
-    [self resetDisplay];
-    [self resetGridViewForType:alignmentGridView];
+
     [super viewDidLoad];
 
+    [self resetDisplay];
+    [self resetGridViewForType:alignmentGridView];
+    
     if ([GlobalVars isIpad])
         hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
 //    [self setUpIPhoneToolbar];
@@ -71,7 +72,7 @@
         if ([GlobalVars isIpad])
             coverageHistogram.view.frame = CGRectMake(0, 0, kCoverageHistogramPopoverWidth, kCoverageHistogramPopoverHeight);
         else
-            coverageHistogram.view.bounds = self.view.bounds;
+            coverageHistogram.view.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-kIPhonePopoverNavBarLandscapeHeight);
         [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
         [analysisControllerIPadMenu setCoverageHistogram:(gridView.maxCoverageVal > 0) ? coverageHistogram : NULL];
     }
@@ -257,7 +258,7 @@
     gridView = covGridView;
 //    [gridView setDelegate:self];
 //    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
-    [self performSelector:@selector(setUpGridLbls) withObject:nil afterDelay:0];
+    [self setUpGridLbls];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [self mutationSupportStepperChanged:mutationSupportStpr];
 }
@@ -416,7 +417,11 @@
         [popoverController presentPopoverFromRect:showMutTBViewBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
     else {
-        [self presentViewController:mutsPopover animated:YES completion:nil];
+        IPhonePopoverHandler *handler = [[IPhonePopoverHandler alloc] init];
+        [handler addChildViewController:mutsPopover];
+        [handler setMainViewController:mutsPopover andTitle:kMutationsInfoPopoverTitleInIPhonePopoverHandler];
+        [mutsPopover didMoveToParentViewController:handler];
+        [self presentViewController:handler animated:YES completion:nil];
     }
 }
 
@@ -528,8 +533,8 @@
             [gridView resetTickMarkInterval];
             
             gridView.currOffset = (gridView.scrollingView.contentSize.width*proportion)-gridViewW/2;
-            if (gridView.currOffset < 0)
-                gridView.currOffset = gridView.boxWidth;//Goes to second box to avoid drawing issues
+            if (gridView.currOffset <= gridView.boxWidth)
+                gridView.currOffset = gridView.boxWidth*gridView.numOfBoxesPerPixel;//Goes to the next box to avoid drawing issues
             else if (gridView.currOffset > gridView.scrollingView.contentSize.width-gridViewW-1)
                 gridView.currOffset = gridView.scrollingView.contentSize.width-gridViewW-1;
             
@@ -570,10 +575,13 @@
         popoverController = [[UIPopoverController alloc] initWithContentViewController:coverageHistogram];
         [popoverController presentPopoverFromBarButtonItem:coverageHistogramBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     }
-    else
-        [self presentViewController:coverageHistogram animated:YES completion:^{
-
-        }];
+    else {
+        IPhonePopoverHandler *handler = [[IPhonePopoverHandler alloc] init];
+        [handler addChildViewController:coverageHistogram];
+        [handler setMainViewController:coverageHistogram andTitle:kCoverageHistogramTitleInIPhoneHandlerPopover];
+        [coverageHistogram didMoveToParentViewController:handler];
+        [self presentViewController:handler animated:YES completion:nil];
+    }
 }
 
 //Grid view delegate
@@ -581,68 +589,54 @@
     if (gridView.boxWidth < kThresholdBoxWidth)
         return;
     UIViewController *vc;
-    /*if (c.y == kNumOfRowsInGridView-2 /*-2 is because of grid and because the normal use of size-1 && posOccArray[kACGTLen+1][(int)c.x] > 0/*there is at least one insertion there) {
-        InsertionsPopoverController *ipc = [[InsertionsPopoverController alloc] init];
-        [ipc setInsArr:insertionsArr forPos:(int)c.x];
-        
-        ipc.preferredContentSize = CGSizeMake(kInsPopoverW, kInsPopoverH);
-        
-        vc = ipc;
-        if (![GlobalVars isIpad])
-            [self presentViewController:ipc animated:YES completion:nil];
-//        popoverController = [[UIPopoverController alloc] initWithContentViewController:ipc];
-        
-        if ([GlobalVars isIpad]) {
-            popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
-            CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
-            
-            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+    AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
+    apc.preferredContentSize = apc.view.bounds.size;
+    
+    vc = apc;
+    //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
+    
+    int index = [cumulativeSeparateGenomeLens count]-1;
+    for (int i = [cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
+        int len = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
+        if (c.x < len) {
+            apc.segment = [separateGenomeNames objectAtIndex:i];
+            index--;
         }
+        else
+            break;
     }
-    else {*/
-        AnalysisPopoverController *apc = [[AnalysisPopoverController alloc] init];
-        apc.preferredContentSize = apc.view.bounds.size;
+    
+    int amountToSub = (index >= 0) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] : 0;
+    apc.displayedPos = c.x+1-amountToSub;
+    apc.position = c.x;
+    
+    if (posOccArray[kACGTLen+1][(int)c.x] > 0)
+        [apc setInsertionsArray:insertionsArr];
+    
+    [apc updateLbls];
+    
+    NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
+    
+    for (int i = 1; i<kACGTwithInDelsLen; i++) {
+        [heteroStr appendFormat:@" %c",foundGenome[i][(int)c.x]];
+    }
+    
+    apc.heteroStr = heteroStr;
+    apc.heteroLbl.text = heteroStr;
+    
+    if ([GlobalVars isIpad]) {
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
+        CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
         
-        vc = apc;
-        if (![GlobalVars isIpad])
-            [self presentViewController:apc animated:YES completion:nil];
-        //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
-        
-        int index = [cumulativeSeparateGenomeLens count]-1;
-        for (int i = [cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
-            int len = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
-            if (c.x < len) {
-                apc.segment = [separateGenomeNames objectAtIndex:i];
-                index--;
-            }
-            else
-                break;
-        }
-        
-        int amountToSub = (index >= 0) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] : 0;
-        apc.displayedPos = c.x+1-amountToSub;
-        apc.position = c.x;
-        
-        if (posOccArray[kACGTLen+1][(int)c.x] > 0)
-            [apc setInsertionsArray:insertionsArr];
-        
-        [apc updateLbls];
-        
-        NSMutableString *heteroStr = [[NSMutableString alloc] initWithString:@"Hetero: "];
-        
-        for (int i = 1; i<kACGTwithInDelsLen; i++) {
-            [heteroStr appendFormat:@" %c",foundGenome[i][(int)c.x]];
-        }
-        
-        apc.heteroStr = heteroStr;
-        apc.heteroLbl.text = heteroStr;
-        
-        if ([GlobalVars isIpad]) {
-            popoverController = [[UIPopoverController alloc] initWithContentViewController:vc];
-            CGRect rect = CGRectMake(c.x*(gridView.boxWidth+gridView.kGridLineWidthCol)-gridView.currOffset, c.y*(gridView.boxHeight+kGridLineWidthRow)+graphRowHeight+kPosLblHeight, gridView.boxWidth, gridView.boxHeight);
-            
-            [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }
+        [popoverController presentPopoverFromRect:rect inView:gridView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else {
+        IPhonePopoverHandler *handler = [[IPhonePopoverHandler alloc] init];
+        [handler addChildViewController:apc];
+        [handler setMainViewController:apc andTitle:kAnalysisPopoverTitleInIPhonePopoverHandler];
+        [apc didMoveToParentViewController:handler];
+        [self presentViewController:handler animated:YES completion:nil];
+    }
 }
 
 - (void)mutationFoundAtPos:(int)pos {
@@ -679,7 +673,7 @@
     currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:index] intValue]];
 }
 
-- (void)displayPopoverWithViewController:(UIViewController *)controller atPoint:(CGPoint)point {
+- (void)displayPopoverWithViewController:(UIViewController *)controller atPoint:(CGPoint)point withTitle:(NSString *)title {
     if ([GlobalVars isIpad]) {
         if (popoverController.isPopoverVisible)
             return;
@@ -687,7 +681,11 @@
         [popoverController presentPopoverFromRect:CGRectMake(point.x, point.y, 1, 1) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
     }
     else {
-        [self presentViewController:controller animated:YES completion:nil];
+        IPhonePopoverHandler *handler = [[IPhonePopoverHandler alloc] init];
+        [handler addChildViewController:controller];
+        [handler setMainViewController:controller andTitle:title];
+        [controller didMoveToParentViewController:handler];
+        [self presentViewController:handler animated:YES completion:nil];
     }
 }
 

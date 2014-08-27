@@ -31,11 +31,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     txtView.text = txtViewContents;
     txtView.font = [UIFont fontWithName:kFilePreviewPopoverFontName size:kFilePreviewPopoverFontSize];
     if (![GlobalVars isIpad]) {
-        self.view.frame = [[UIScreen mainScreen] bounds];
+        self.view.frame = [[super view] bounds];
         txtView.frame = self.view.frame;
     }
 }

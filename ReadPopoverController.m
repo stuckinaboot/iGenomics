@@ -43,6 +43,11 @@
     gappedBLbl.frame = CGRectMake(gappedBLbl.frame.origin.x, gappedBLbl.frame.origin.y, gappedATxtSize.width, gappedATxtSize.height);
     
     [self highlightDifferencesInGappedLbls];
+    gappedLblsScrollView.contentSize = CGSizeMake(gappedLblsScrollView.contentSize.width, gappedLblsScrollView.frame.size.height);
+}
+
+- (void)viewDidLayoutSubviews {
+     gappedLblsScrollView.contentSize = CGSizeMake(gappedLblsScrollView.contentSize.width, gappedLblsScrollView.frame.size.height);
 }
 
 - (void)setUpWithRead:(ED_Info *)r {
