@@ -272,7 +272,9 @@
                     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), color.r, color.g, color.b, opacity);
                     int highlightWidth = (boxWidth < kMutHighlightMinWidth) ? kMutHighlightMinWidth : boxWidth;
                     
-                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, y, highlightWidth, self.frame.size.height-kPosLblHeight));
+                    float calculatedHeight = alignmentGridPositionsArr[j].highestChar*(boxHeight+kGridLineWidthRow)-scrollingView.contentOffset.y-kGridLineWidthRow;
+                    
+                    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(x+self.kGridLineWidthCol, y, highlightWidth, (calculatedHeight > 0) ? calculatedHeight : 0));
                 }
                 indexInMutPresentArr++;
             }

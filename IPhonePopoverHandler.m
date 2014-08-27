@@ -47,4 +47,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return mainController.supportedInterfaceOrientations;
+}
+
 @end

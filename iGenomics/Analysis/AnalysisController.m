@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     dnaColors = [[DNAColors alloc] init];
     [dnaColors setUp];
     
@@ -51,19 +53,15 @@
     mutationSupportStpr.maximumValue = kMutationSupportMax;
     mutationSupportStpr.minimumValue = kMutationSupportMin;
 
-    [super viewDidLoad];
-
-    [self resetDisplay];
-    [self resetGridViewForType:alignmentGridView];
-    
     if ([GlobalVars isIpad])
         hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
-//    [self setUpIPhoneToolbar];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if (!firstAppeared) {
+        [self resetDisplay];
+        [self resetGridViewForType:alignmentGridView];
+        
         [self setUpIPhoneToolbar];
         [analysisControllerIPadToolbar setUp];
         firstAppeared = TRUE;
@@ -160,7 +158,7 @@
     if (gridView.indexInGenomeNameArr > 0)
         [gridView scrollToPos:[[cumulativeSeparateGenomeLens objectAtIndex:gridView.indexInGenomeNameArr-1] intValue] inputtedByPosSearchField:NO];
     else
-        [gridView scrollToPos:1 inputtedByPosSearchField:NO];//1 because it is interpreted as if it were "user-inputted"
+        [gridView scrollToPos:0 inputtedByPosSearchField:NO];
 }
 
 - (void)scrollToPos:(int)pos {
@@ -225,8 +223,6 @@
     
     [readsNameLbl setText:[NSString stringWithFormat:@"%@",readsFileName]];
     
-    double coverage = (double)((double)numOfReads * readLen)/(double)genomeLen;
-    
     mutPosArray = [[NSMutableArray alloc] init];
     allMutPosArray = [[NSMutableArray alloc] init];
     
@@ -238,9 +234,12 @@
     
     if ([GlobalVars isOldIPhone]) {
         CGRect rect = gridView.frame;
-        gridView.frame = CGRectMake(rect.origin.x, rect.origin.y, self.view.frame.size.width-rect.origin.x, rect.size.height);
+        float w = self.view.bounds.size.width;
+        gridView.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
+        covGridView.frame = gridView.frame;
+        alignmentGridView.frame = gridView.frame;
         rect = pxlOffsetSlider.frame;
-        pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, self.view.frame.size.width-rect.origin.x, rect.size.height);
+        pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
     }
     
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];

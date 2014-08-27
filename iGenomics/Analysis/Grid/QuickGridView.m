@@ -77,7 +77,10 @@
     if (maxCoverageVal == 0)
         [self setMaxCovValWithNumOfCols:totalCols];
     
-    maxCovLbl.text = [NSString stringWithFormat:kMaxCovLblFormat,maxCoverageVal];
+    NSString *str = [NSString stringWithFormat:kMaxCovLblFormat,maxCoverageVal];
+    CGSize size = [str sizeWithFont:maxCovLbl.font];
+    maxCovLbl.frame = CGRectMake(self.frame.size.width-size.width, 0, maxCovLbl.frame.size.width, maxCovLbl.frame.size.height);
+    maxCovLbl.text = str;
     
     numOfBoxesPerPixel = kPixelWidth;
     [self setUpGridViewForPixelOffset:0];
@@ -464,13 +467,15 @@
     if ([arr count] > 1) {
         UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
         
+        CGSize strFontSize;
+        
         for (int i = [arr count]-1; i >= 0; i--) {
             segOffset = [self offsetOfPt:[[arr objectAtIndex:i] intValue]];//Makes sense because offset is of the start of the block after that genome ends, so it checks if currOffset is before that
             NSString *str = [delegate genomeSegmentNameForIndexInGenomeNameArr:i];
-            CGSize strFontSize = [str sizeWithFont:font];
+            strFontSize = [str sizeWithFont:font];
             if (segOffset <= currOffset+self.bounds.size.width && segOffset+strFontSize.width >= currOffset) {
                 [segOffsetsToDrawAt addObject:[NSNumber numberWithInt:segOffset]];
-                [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInteger:i]];
+                [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInt:i]];
             }
             if (currOffset <= segOffset)
                 index = i;
@@ -485,6 +490,11 @@
             //        if (segOffset < currOffset+self.bounds.size.width) {
             //            [self drawRectangle:CGRectMake(segOffset, kPosLblHeight, kSegmentDividerWidth, self.bounds.size.height-kPosLblHeight) withRGB:(double[3]){dnaColors.segmentDivider.r, dnaColors.segmentDivider.g, dnaColors.segmentDivider.b}];
             //        }
+        }
+        
+        if (index == 0 && 0 <= currOffset+self.bounds.size.width && strFontSize.width >= currOffset) {
+            [segOffsetsToDrawAt addObject:[NSNumber numberWithInt:0]];
+            [segOffsetindexesToDrawAt addObject:[NSNumber numberWithInt:-1]];
         }
         
         drawingIndexInGenomeNameArr = index;
