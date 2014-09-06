@@ -36,6 +36,7 @@
         modifiableView.frame = CGRectMake(0, navBar.frame.size.height, modifiableView.frame.size.width, modifiableView.frame.size.height);
         mainController.view.frame = CGRectMake(0, 0, modifiableView.frame.size.width, modifiableView.frame.size.height);
     }
+    [modifiableView layoutSubviews];
 }
 
 - (void)setMainViewController:(UIViewController *)controller andTitle:(NSString *)title {

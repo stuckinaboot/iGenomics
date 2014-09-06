@@ -18,6 +18,9 @@ int acgtOccurences[kMaxBytesForIndexer][kACGTLen];//Occurences for up to each mu
 int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 int acgtTotalOccs[kACGTLen];
 NSMutableArray *readAlignmentsArr;
+BOOL isOutdatedDevice;
+
+NSString * const kOutdatedDevicesArray[] = {@"iPad1,1", @"iPad2,1", @"iPad2,2", @"iPad2,3", @"iPad2,4", @"iPhone1,1", @"iPhone1,2", @"iPhone2,1"};
 
 @implementation GlobalVars
 

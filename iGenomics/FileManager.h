@@ -15,7 +15,8 @@
 #define kDefaultImptMutsFilesNamesFile @"NamesOfDefaultImptMutsFiles"
 
 @interface FileManager : NSObject {
-
+    NSString *lastOpenedFileName;
+    NSString *lastOpenedFileContents;
 }
 @property (nonatomic) NSMutableArray *defaultFileNames;
 @property (nonatomic) NSMutableArray *dropboxFileNames;

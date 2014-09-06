@@ -1,3 +1,7 @@
+QBCLTR105BC0071.fq.1000.fq
+QBCLT_R105_BC013.fastq
+QBCLTR105BC0071.fq
+QBCLTR105BC0071.100r.fq
 flu.H1N1.reads.fa
 flu.H1N1s.reads.fq
 rice.fq

@@ -17,9 +17,9 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 @synthesize delegate;
 
 - (id)init {
-    if (self == [super init]) {
-        exactMatcher = [[BWT_MatcherSC alloc] init];
-    }
+    self = [super init];
+    
+    exactMatcher = [[BWT_MatcherSC alloc] init];
     return self;
 }
 
@@ -54,7 +54,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     Read *firstRead = [reedsArray objectAtIndex:0];
     readLen = strlen(firstRead.sequence);
     
-    refStrBWT = strdup(bwt);
+    refStrBWT = bwt;
     
     maxSubs = subs;
     readNum = 0;
@@ -71,7 +71,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     [self setUpNumberOfOccurencesArrayFast];
     
-    firstCol = calloc(dgenomeLen, 1);
+    firstCol = calloc(dgenomeLen+1, 1);
     
     firstCol[0] = '$';
     
@@ -82,6 +82,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             pos++;
         }
     }
+    
+    firstCol[dgenomeLen] = '\0';
     
     for (int i = 0; i<kACGTwithInDelsLen; i++) {
         for (int x = 0; x<dgenomeLen; x++)
@@ -113,21 +115,27 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     NSLog(@"About to enter match reads loop");
     
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
+        
         reed = [reedsArray objectAtIndex:readNum];
         readLen = strlen(reed.sequence);
+        
+        //printf("DK: calling getBestMatchForQuery\n");
         
         ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
         
         if (a != NULL) {
             a.readName = reed.name;
+            //printf("DK: calling numOfCharsPastSegment\n");
             int charsToTrim = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
             if (a.distance + charsToTrim <= maxSubs) {
+                //printf("DK: calling updatePosOccsArray\n");
                 [self updatePosOccsArrayWithRange:NSMakeRange(a.position, strlen(a.gappedA)-charsToTrim) andED_Info:a];
             }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
             
         }
+        //printf("DK: calling readProcessed\n");
         [delegate readProccesed:readDataStr andMatchedAtLeastOnce:a != NULL];
         [readDataStr setString:@""];
     }
@@ -149,29 +157,24 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         else {
             if (matchType == MatchTypeExactAndSubs)
                 arr = [approxiMatcher approxiMatchForQuery:query andNumOfSubs:subs andIsReverse:NO andReadLen:readLen];
-            else if (matchType == MatchTypeSubsAndIndels)
+            else if (matchType == MatchTypeSubsAndIndels) {
+                //printf("DK: calling insertionDeletionMatches (Forward)\n");
                 arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs andIsReverse:NO];
+            }
         }
         
         forwardMatches = [arr count];
         
         if (alignmentType == kAlignmentTypeForwardAndReverse) {//Reverse also
-            if (subs == 0 || matchType == MatchTypeExactOnly) {
+            if (subs == 0 || matchType == MatchTypeExactOnly)
                 arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query] andIsReverse:YES andForOnlyPos:NO]];
-//                if ([arr count] > forwardMatches) {
-//                    int counter = 0;
-//                    for (ED_Info *info in arr) {
-//                        counter++;
-//                        if (counter >= forwardMatches)
-//                            printf("\n%i",info.isRev);
-//                    }
-//                }
-            }
             else {
                 if (matchType == MatchTypeExactAndSubs)
                     arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] andNumOfSubs:subs andIsReverse:YES andReadLen:readLen]];
-                else if (matchType == MatchTypeSubsAndIndels)
+                else if (matchType == MatchTypeSubsAndIndels) {
+                    //printf("DK: calling insertionDeletionMatches (Reverse)\n");
                     arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES]];
+                }
             }
         }
         
@@ -260,6 +263,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         sizeOfChunks = (float)queryLength/numOfChunks;
     }
     
+    //printf("DK: creating Chunk Array with query: %s\n",query);
+    
     //    Fill Chunks with their respective string, and then use exact match to match the chunks to the reference
     int start = 0;
     NSMutableArray *chunkArray = [[NSMutableArray alloc] init];
@@ -274,7 +279,11 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForChunk:chunk andIsReverse:isRev andForOnlyPos:YES];
         [chunkArray addObject:chunk];
         start += sizeOfChunks;
+        
+        //printf("DK: log Chunk Matched Position State: %i, Str State: %s\n",chunk.str != NULL, chunk.str);
     }
+    
+    //printf("DK: calling setUpWithCharA:query andCharB:originalStr andChunks\n");
     
     //  Find In/Del by using the matched positions of the chunks
     NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev]];
@@ -338,8 +347,9 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     int spotInACGTOccurences = 0;
     
-    acgt = calloc(kACGTLen, 1);
+    acgt = calloc(kACGTLen+1, 1);
     strcpy(acgt, kACGTStr);
+    acgt[kACGTLen+1] = '\0';
     
     int occurences[kACGTLen];//0 = a, 1 = c, 2 = g, t = 3
     for (int i = 0; i<kACGTLen; i++) {
@@ -383,7 +393,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     acgt = calloc(kACGTLen+1, 1);
     NSLog(@"About to copy kACGTStr into acgt");
     strcpy(acgt, kACGTStr);
-    
+    acgt[kACGTLen] = '\0';
 
     int occurences[kACGTLen];//0 = a, 1 = c, 2 = g, t = 3
     for (int i = 0; i<kACGTLen; i++) {
@@ -431,21 +441,14 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     return charsToTrim;
 }
 
-char *substr(const char *pstr, int start, int numchars) {
-    char *pnew = malloc(numchars+1);
-    strncpy(pnew, pstr + start, numchars);
-    pnew[numchars] = '\0';
-    return pnew;
-}
-
 //Getters
 - (char*)getReverseComplementForSeq:(char*)seq {
     int len = readLen; //The only thing you should be getting a reverse complement for is the read (am I right?)
-    char *revSeq = calloc(len, 1);
+    char *revSeq = calloc(len+1, 1);
     
     for (int i = 0; i<len; i++)
         revSeq[i] = acgt[kACGTLen-[BWT_MatcherSC whichChar:seq[len-i-1] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
-    
+    revSeq[len] = '\0';
     return revSeq;
 }
 @end

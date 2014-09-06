@@ -30,10 +30,15 @@
 
 - (NSMutableArray*)fileNamesArrayWithNamesContainingTxt:(NSString*)txt inArr:(NSArray*)arr {
     NSMutableArray *filteredArr = [[NSMutableArray alloc] init];
-    for (NSString* s in arr) {
+    for (id a in arr) {
+        NSString *s;
+        if ([a isKindOfClass:[NSString class]])
+            s = (NSString*)a;
+        else if ([a isKindOfClass:[DBFileInfo class]])
+            s = ((DBFileInfo*)a).path.name;
         NSRange nameRange = [s rangeOfString:txt options:NSCaseInsensitiveSearch];
         if (nameRange.location != NSNotFound)
-            [filteredArr addObject:s];
+            [filteredArr addObject:a];
     }
     return filteredArr;
 }
@@ -43,8 +48,13 @@
 }
 
 - (NSString*)fileContentsForPath:(DBPath*)path {
+    if ([path.name isEqualToString:lastOpenedFileName])
+        return lastOpenedFileContents;
+    lastOpenedFileName = path.name;
     DBFile *file = [dbFileSys openFile:path error:nil];
-    return [file readString:nil];
+    lastOpenedFileContents = [file readString:nil];
+    [file close];
+    return lastOpenedFileContents;
 }
 
 - (NSString*)fileContentsForNameWithExt:(NSString*)name {

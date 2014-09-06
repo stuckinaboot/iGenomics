@@ -22,6 +22,8 @@
 		A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3161667196F0EF30083AD71 /* CoverageGridView.m */; };
 		A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */; };
 		A316743519994BB9009C8EC8 /* BackBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = A316743419994BB9009C8EC8 /* BackBtn.png */; };
+		A316885B19AFDDA900B6FC0C /* QBCLTR105BC0071.fq in Resources */ = {isa = PBXBuildFile; fileRef = A316885A19AFDDA900B6FC0C /* QBCLTR105BC0071.fq */; };
+		A316885D19AFDEA800B6FC0C /* QBCLTR105BC0071.100r.fq in Resources */ = {isa = PBXBuildFile; fileRef = A316885C19AFDEA800B6FC0C /* QBCLTR105BC0071.100r.fq */; };
 		A3181A7216B7465500A2B700 /* TESTREADS.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3181A7116B7465500A2B700 /* TESTREADS.txt */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */; };
@@ -61,6 +63,7 @@
 		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
 		A36CCDFC184A8632004B9327 /* reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF9184A8632004B9327 /* reads.fa */; };
 		A36CCDFD184A8632004B9327 /* reads.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDFA184A8632004B9327 /* reads.fq */; };
+		A36E1E2319B10552000B9AFC /* QBCLTR105BC0071.fq.1000.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36E1E2219B10552000B9AFC /* QBCLTR105BC0071.fq.1000.fq */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
 		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
@@ -106,6 +109,7 @@
 		A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3C0FD2E160FA61A00BC2168 /* reedsFile.txt */; };
 		A3C17028197079B2008C7A4C /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C17027197079B2008C7A4C /* OBSlider.m */; };
 		A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C215171777F72600B0C6D5 /* MutationInfo.m */; };
+		A3C32D5619B0E41C001AB91B /* QBCLT_R105_BC013.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3C32D5519B0E41C001AB91B /* QBCLT_R105_BC013.fastq */; };
 		A3C61C0919955EC500AED305 /* HamburgerMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C61C0819955EC500AED305 /* HamburgerMenuController.m */; };
 		A3C61C0E19956F2000AED305 /* AnalysisControllerIPadMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C61C0C19956F2000AED305 /* AnalysisControllerIPadMenu.m */; };
 		A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C94C5919799930008202E6 /* ReadPopoverController.m */; };
@@ -170,6 +174,8 @@
 		A3161667196F0EF30083AD71 /* CoverageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageGridView.m; sourceTree = "<group>"; };
 		A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iGenomicsLogoDNAIcon.png; sourceTree = "<group>"; };
 		A316743419994BB9009C8EC8 /* BackBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackBtn.png; sourceTree = SOURCE_ROOT; };
+		A316885A19AFDDA900B6FC0C /* QBCLTR105BC0071.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QBCLTR105BC0071.fq; sourceTree = SOURCE_ROOT; };
+		A316885C19AFDEA800B6FC0C /* QBCLTR105BC0071.100r.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QBCLTR105BC0071.100r.fq; sourceTree = SOURCE_ROOT; };
 		A3181A7116B7465500A2B700 /* TESTREADS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTREADS.txt; sourceTree = "<group>"; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImportantMutationsDisplayView.xib; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
 		A36CCDF9184A8632004B9327 /* reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fa; path = "ecoli-2.50k/reads.fa"; sourceTree = "<group>"; };
 		A36CCDFA184A8632004B9327 /* reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fq; path = "ecoli-2.50k/reads.fq"; sourceTree = "<group>"; };
+		A36E1E2219B10552000B9AFC /* QBCLTR105BC0071.fq.1000.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QBCLTR105BC0071.fq.1000.fq; sourceTree = SOURCE_ROOT; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
@@ -284,6 +291,7 @@
 		A3C17027197079B2008C7A4C /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		A3C215161777F72600B0C6D5 /* MutationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutationInfo.h; sourceTree = "<group>"; };
 		A3C215171777F72600B0C6D5 /* MutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutationInfo.m; sourceTree = "<group>"; };
+		A3C32D5519B0E41C001AB91B /* QBCLT_R105_BC013.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = QBCLT_R105_BC013.fastq; path = ../../../Downloads/QBCLT_R105_BC013.fastq; sourceTree = "<group>"; };
 		A3C61C0719955EC500AED305 /* HamburgerMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerMenuController.h; sourceTree = "<group>"; };
 		A3C61C0819955EC500AED305 /* HamburgerMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerMenuController.m; sourceTree = "<group>"; };
 		A3C61C0B19956F2000AED305 /* AnalysisControllerIPadMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisControllerIPadMenu.h; sourceTree = "<group>"; };
@@ -822,6 +830,10 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A36E1E2219B10552000B9AFC /* QBCLTR105BC0071.fq.1000.fq */,
+				A3C32D5519B0E41C001AB91B /* QBCLT_R105_BC013.fastq */,
+				A316885C19AFDEA800B6FC0C /* QBCLTR105BC0071.100r.fq */,
+				A316885A19AFDDA900B6FC0C /* QBCLTR105BC0071.fq */,
 				A3845658195CB1010030F092 /* rice.fq */,
 				A36CCDF9184A8632004B9327 /* reads.fa */,
 				A36CCDFA184A8632004B9327 /* reads.fq */,
@@ -1148,6 +1160,7 @@
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
+				A36E1E2319B10552000B9AFC /* QBCLTR105BC0071.fq.1000.fq in Resources */,
 				A3971B07158A6342001626F7 /* reeds.txt in Resources */,
 				A3971B09158A634A001626F7 /* aseq.txt in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
@@ -1168,6 +1181,7 @@
 				A3C0FD2F160FA61A00BC2168 /* reedsFile.txt in Resources */,
 				A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */,
 				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
+				A316885B19AFDDA900B6FC0C /* QBCLTR105BC0071.fq in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
 				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
@@ -1179,6 +1193,7 @@
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
+				A316885D19AFDEA800B6FC0C /* QBCLTR105BC0071.100r.fq in Resources */,
 				A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
 				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
@@ -1187,6 +1202,7 @@
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
 				A305AFB419918EA900F35333 /* RealFluImptMuts.txt in Resources */,
+				A3C32D5619B0E41C001AB91B /* QBCLT_R105_BC013.fastq in Resources */,
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,

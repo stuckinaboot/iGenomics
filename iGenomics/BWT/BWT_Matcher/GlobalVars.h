@@ -50,7 +50,9 @@ typedef enum {
 
 //Special File Types
 #define kFa @"fa"
+#define kFasta @"fasta"
 #define kFq @"fq"
+#define kFastq @"fastq"
 
 #define kFaInterval 2
 #define kFqInterval 4
@@ -101,6 +103,11 @@ extern int benchmarkPositions[kMaxBytesForIndexer*kMultipleToCountAt];
 extern int acgtTotalOccs[kACGTLen];
 
 extern NSMutableArray* readAlignmentsArr;//Contains the ED_Info for each aligned read
+
+extern BOOL isOutdatedDevice;
+
+#define kOutdatedDevicesArrayCount 8
+extern NSString * const kOutdatedDevicesArray[];
 
 @interface GlobalVars : NSObject
 + (void)sortArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;

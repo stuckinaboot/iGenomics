@@ -15,11 +15,15 @@
     matchedInDels = [[NSMutableArray alloc] init];
     editDist = [[EditDistance alloc] init];
     isRev = isR;
+    
+    //printf("DK: creating newa\n");
+    
     //    Add space prior to the chars in "a" and prior to the chars in "b"
     int alen = strlen(a);
-    char *newa = calloc(alen+1, 1);
+    char *newa = calloc(alen+2, 1);
     memcpy(newa+1, a, alen);
     newa[0] = ' ';
+    newa[alen+1] = '\0';
     
     /*int blen = strlen(b);
     char *newb = calloc(blen+1, 1);
@@ -27,6 +31,8 @@
     newb[0] = ' ';*/
     
     maxEditDist = maxED;
+    
+    //printf("DK: calling findInDels\n");
     
     [self findInDels:newa andCharB:b andChunks:chunkArray];
     
@@ -43,10 +49,10 @@
     Chunks *chunk = [chunkArray objectAtIndex:0];
     int chunkSize = chunk.range.length;
     ED_Info *edInfo = [[ED_Info alloc] init];
+
     
-    
+    //printf("DK: finding InDels C1\n");
     //    Finding InDels for Chunk 1
-    
     for (int i = 0; i<chunk.matchedPositions.count; i++) {
         matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
         startPos = [self findStartPosForChunkNum:0 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
@@ -57,6 +63,8 @@
         }
     }
     
+    
+    //printf("DK: finding InDels C2 to Cn-1\n");
     //    Finding InDels for Chunk 2 through amtOfChunks-1
     if ([chunkArray count]>2) {
         for (int cNum = 1; cNum<[chunkArray count]-1; cNum++) {
@@ -79,6 +87,7 @@
         }
     }
     
+    //printf("DK: finding InDels Cn\n");
     //    Finding InDels for Final Chunk
     if ([chunkArray count]>1) {
         chunk = [chunkArray objectAtIndex:[chunkArray count]-1];

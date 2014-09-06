@@ -73,26 +73,22 @@
             coverageHistogram.view.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-kIPhonePopoverNavBarLandscapeHeight);
         [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
         [analysisControllerIPadMenu setCoverageHistogram:(gridView.maxCoverageVal > 0) ? coverageHistogram : NULL];
+        
+        covGridView.frame = gridView.frame;
+        covGridView.drawingView.frame = gridView.drawingView.frame;
+        covGridView.scrollingView.frame = gridView.scrollingView.frame;
+        
+        alignmentGridView.frame = gridView.frame;
+        alignmentGridView.drawingView.frame = gridView.drawingView.frame;
+        alignmentGridView.scrollingView.frame = gridView.scrollingView.frame;
+        
+        [pxlOffsetSlider setMinimumValue:0];
     }
-//    [analysisControllerIPhoneToolbar setDelegate:self];
-//    
-//    CGRect rect = self.view.bounds;
-//    [analysisControllerIPhoneToolbar setBounds:rect];
-//    [analysisControllerIPhoneToolbar setFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-//    [self.view addSubview:analysisControllerIPhoneToolbar];
-//    [self.view layoutIfNeeded];
-//    [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
-//    analysisControllerIPhoneToolbar.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    //Fixes problems caused by constraints on old iPhone
-    gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
-    gridView.drawingView.frame = gridView.scrollingView.frame;
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
-    
 //    analysisControllerIPadMenu = [[AnalysisControllerIPadMenu alloc] init];
 }
 
@@ -232,12 +228,14 @@
     
     mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
     
+    //Fixes problems caused by constraints on old iPhone
     if ([GlobalVars isOldIPhone]) {
         CGRect rect = gridView.frame;
         float w = self.view.bounds.size.width;
         gridView.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
-        covGridView.frame = gridView.frame;
-        alignmentGridView.frame = gridView.frame;
+        gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
+        gridView.drawingView.frame = gridView.scrollingView.frame;
+        
         rect = pxlOffsetSlider.frame;
         pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
     }
@@ -492,7 +490,7 @@
         if (gridView.numOfBoxesPerPixel > kPixelWidth) {
             int potentialNewNumOfBoxesPerPixel = 1.0f/(gridView.boxWidthDecimal*s*kBoxWidthMultFactor);
             if (gridView.totalCols/gridView.numOfBoxesPerPixel < gridViewW || gridView.totalCols/potentialNewNumOfBoxesPerPixel < gridViewW)
-                return;
+                return; 
         }
         
         scaleOccurred = TRUE;
@@ -661,7 +659,7 @@
 }
 
 - (NSString*)genomeSegmentNameForIndexInGenomeNameArr:(int)index {
-    return separateGenomeNames[index];
+    return (index < [separateGenomeNames count]) ? [separateGenomeNames objectAtIndex:index] : @"";
 }
 
 - (void)shouldUpdateGenomeNameLabelForIndexInSeparateGenomeLenArray:(int)index {

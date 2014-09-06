@@ -259,11 +259,19 @@
     }
 
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
-        NSArray *sComponents = [NSArray arrayWithArray:[s componentsSeparatedByString:kLineBreak]];
+        NSArray *sComponents = [NSArray arrayWithArray:[[s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:kLineBreak]];
         if ([[sComponents objectAtIndex:kFaInterval] characterAtIndex:0] != kFaFileTitleIndicator) {//Makes sure its not a reads file
-            NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
-            s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
-            s = [NSString stringWithFormat:@"%@\n%@",s,[oldStr stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
+            NSMutableString *newStr = [[NSMutableString alloc] init];
+            for (int i = 0; i < [sComponents count]; i++) {
+                if ([[sComponents objectAtIndex:i] characterAtIndex:0] == kFaFileTitleIndicator)
+                    [newStr appendFormat:@"%@%@\n", (i > 0) ? kLineBreak : @"",[sComponents objectAtIndex:i]];
+                else
+                    [newStr appendString:[sComponents objectAtIndex:i]];
+            }
+            s = newStr;
+//            NSString *oldStr = [s substringFromIndex:[s rangeOfString:kLineBreak].location+1];
+//            s = [[s componentsSeparatedByString:kLineBreak] objectAtIndex:0];//Gets just first line
+//            s = [NSString stringWithFormat:@"%@\n%@",s,[oldStr stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
         }
     }
     CGRect frame = [tblView rectForRowAtIndexPath:[tblView indexPathForSelectedRow]];

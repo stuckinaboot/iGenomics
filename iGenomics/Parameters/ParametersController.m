@@ -48,7 +48,9 @@
         mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
     }
     
-    if ([[GlobalVars extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+    
+    NSString *ext = [GlobalVars extFromFileName:readFileName];
+    if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) {
         [self setTrimmingAllowed:YES];
         [self trimmingValueChanged:nil];
         [trimmingRefCharCtrl setTitle:[NSString stringWithFormat:@"%c",kTrimmingRefChar0] forSegmentAtIndex:kTrimmingRefChar0Index];
@@ -81,7 +83,8 @@
     mutationSupportStpr.value = [[arr objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
     [self mutationSupportValueChanged:nil];
     
-    if ([[GlobalVars extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+    NSString *ext = [GlobalVars extFromFileName:readFileName];
+    if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) {
         trimmingStpr.value = [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue];
         [self trimmingValueChanged:nil];
         
@@ -173,7 +176,8 @@
     else if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar1Index)
         trimRefChar = [NSString stringWithFormat:@"%c",kTrimmingRefChar1];
     
-    if (!trimmingSwitch.on && [[GlobalVars extFromFileName:readFileName] caseInsensitiveCompare:kFq] == NSOrderedSame) {
+    NSString *ext = [GlobalVars extFromFileName:readFileName];
+    if (!trimmingSwitch.on && ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame)) {
         reads = [self readsByRemovingQualityValFromReads:reads];
     }
     
@@ -203,9 +207,9 @@
     
     int interval = 0;
     
-    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame)
+    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame || [ext caseInsensitiveCompare:kFasta] == NSOrderedSame)
         interval = kFaInterval;//Look at .fa file and this makes sense
-    else if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame)
+    else if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame)
         interval = kFqInterval;//Look at .fq file and this makes sense
     
     if (interval > 0) {
@@ -300,7 +304,8 @@
     for (int i = 0; i < [arr count]; i += 3) {
         [readStr appendFormat:@"%@\n%@\n",[arr objectAtIndex:i],[arr objectAtIndex:i+1]];
     }
-    readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break
+    [readStr replaceCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];
+//    readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break
     return (NSString*)readStr;
 }
 

@@ -22,13 +22,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     fileStrLen = strlen(refStr);
     
     for (int i = 0; i<kFoundGenomeArrSize; i++) {
-        foundGenome[i] = calloc(fileStrLen,1);
+        foundGenome[i] = calloc(fileStrLen+1,1);
     }
     
     for (int i = 0; i<kFoundGenomeArrSize; i++) {
         for (int x = 0; x<fileStrLen; x++) {
             foundGenome[i][x] = kFoundGenomeDefaultChar;
         }
+        foundGenome[i][fileStrLen] = '\0';
     }
     
     strcpy(foundGenome[0], refStr);
@@ -42,6 +43,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         for (int x = 0; x<fileStrLen; x++) {
             foundGenome[i][x] = kFoundGenomeDefaultChar;
         }
+        foundGenome[i][fileStrLen] = '\0';
     }
     
     strcpy(foundGenome[0], refStr);
@@ -252,7 +254,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     
     int diffCharsAtPos = 0;
     
-    char *foundChars = calloc(kACGTLen+3, 1);
+    char *foundChars = calloc(kACGTwithInDelsLen+1, 1);
     foundChars[kACGTwithInDelsLen] = '\0';
     int posInFoundChars = 0;
     for (int i = 0; i<arr.count; i++) {

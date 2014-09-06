@@ -40,6 +40,12 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+    self.view.frame = [self.view superview].bounds;
+    txtView.frame = self.view.frame;
+    [self.view layoutSubviews];
+}
+
 - (void)updateTxtViewContents:(NSString *)contents {
     txtViewContents = [NSString stringWithString:contents];
 }

@@ -88,7 +88,7 @@
 }
 
 - (char*)bwtFinalProduct {
-    char *bwt = calloc(sequenceLength, 1);
+    char *bwt = calloc(sequenceLength+1, 1);
     int num;
     for (int i = 0; i<[indexArray count]; i++) {
         num = [[indexArray objectAtIndex:i] intValue]-1;
@@ -98,7 +98,7 @@
         }
         bwt[i] = sequence[num];
     }
-    
+    bwt[sequenceLength] = '\0';
     [bwtCreationTimer stopAndLog];
     return bwt;
 }

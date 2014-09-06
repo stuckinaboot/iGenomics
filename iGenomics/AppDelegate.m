@@ -28,6 +28,20 @@
     } else {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
     }
+    
+    
+    isOutdatedDevice = NO;
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *specificDeviceType = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    
+    for (int i = 0; i < kOutdatedDevicesArrayCount; i++) {
+        if ([specificDeviceType isEqualToString:kOutdatedDevicesArray[i]]) {
+            isOutdatedDevice = YES;
+            break;
+        }
+    }
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

@@ -25,7 +25,7 @@
         
         if (file == nil) {
             refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:[contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]]);
-            originalStr = strdup([bwt_Maker getOriginalString]);
+            originalStr = [bwt_Maker getOriginalString];
             
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             

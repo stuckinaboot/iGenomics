@@ -37,14 +37,14 @@
     [super viewDidLoad];
     
     //Ref
-    NSArray *fileTypesDNA = [NSArray arrayWithObjects:kFa, kFq, nil];
+    NSArray *fileTypesDNA = [NSArray arrayWithObjects:kFa, kFq, kFasta, kFastq, nil];
     
     refFileManager = [[FileManager alloc] init];
     UINib *inputViewNib = [UINib nibWithNibName:kFileInputViewNibName bundle:nil];
     refInputView = [[inputViewNib instantiateWithOwner:refInputView options:nil] objectAtIndex:0];
     
     [refFileManager setUpWithDefaultFileNamesPath:kDefaultRefFilesNamesFile ofType:kTxt];
-    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:[NSArray arrayWithObjects:kFa, nil] andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, nil]];
+    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:[NSArray arrayWithObjects:kFa, kFasta, nil] andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, nil]];
     [refInputView setDelegate:self];
     
     //Reads
@@ -115,7 +115,7 @@
     if (![self allSelectedFilesPassedValidation])
         return;
     filePickerCurrentlySelecting = kFilePickerSelectingRef;
-    if ([refInputView needsInternetToGetFile] || [readsInputView needsInternetToGetFile])
+    if ([refInputView needsInternetToGetFile] || [readsInputView needsInternetToGetFile] || [imptMutsInputView needsInternetToGetFile])
         if (![GlobalVars internetAvailable])
             return;
     parametersController.computingController = [[ComputingController alloc] init];
@@ -180,7 +180,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
     
-    if ([[GlobalVars extFromFileName:rName] caseInsensitiveCompare:kFq] != NSOrderedSame) {
+    
+    NSString *ext = [GlobalVars extFromFileName:rName];
+    if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {
         arr = [arr mutableCopy];
         [arr setObject:[NSNumber numberWithInt:kTrimmingOffVal] atIndexedSubscript:kParameterArrayTrimmingValIndex];//Disables trimming for non-Fq files
     }
@@ -191,7 +193,7 @@
         [defaults synchronize];
     }
     
-    if ([[GlobalVars extFromFileName:rName] caseInsensitiveCompare:kFq] == NSOrderedSame && [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue] == kTrimmingOffVal)
+    if (([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) && [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue] == kTrimmingOffVal)
         r = [parametersController readsByRemovingQualityValFromReads:r];
     
     [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]] andRefFilePath:refFilePath andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
