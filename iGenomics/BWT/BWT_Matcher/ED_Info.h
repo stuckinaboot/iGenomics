@@ -26,4 +26,6 @@
 @property (nonatomic) BOOL insertion;
 - (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse;
 - (int)intValue;
+
+- (void)freeUsedMemory;
 @end

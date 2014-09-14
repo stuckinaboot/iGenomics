@@ -20,6 +20,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
     DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:kDropboxKey secret:kDropboxSecret];
     [DBAccountManager setSharedManager:accountMgr];
     

@@ -27,4 +27,9 @@
     return position;
 }
 
+- (void)freeUsedMemory {
+    free(gappedA);
+    free(gappedB);
+}
+
 @end

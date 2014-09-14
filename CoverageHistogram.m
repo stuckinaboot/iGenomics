@@ -58,17 +58,27 @@
     float y = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-kCoverageHistogramAxisWidth;
     float i = 0;
     float step = 1.0f/kCoverageHistogramNormalCurveLinesPerBox;
-    while (i*boxWidth < rect.size.width) {
-        float normalVal = [self normalCurveFormulaValueForPos:i];
+    
+    float bw = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
+    boxWidth = bw;
+    
+    int addFactor = 1;
+    if (bw < 1) {
+        addFactor = (1.0f/bw);
+        boxWidth = 1;
+    }
+    
+    while (i*addFactor < rect.size.width) {
+        float normalVal = [self normalCurveFormulaValueForPos:i*addFactor];
         float actualYVal = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
        
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
         CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
         CGContextMoveToPoint(UIGraphicsGetCurrentContext(), x, y);
         if (i > 0)
-            CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth+boxWidth/2, actualYVal);
+            CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), kCoverageHistogramYAxisDistFromScreenLeft+i*addFactor+addFactor/2, actualYVal);
         CGContextStrokePath(UIGraphicsGetCurrentContext());
-        x = kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth+boxWidth/2;
+        x = kCoverageHistogramYAxisDistFromScreenLeft+i*addFactor+addFactor/2;
         y = actualYVal;
 //        [self drawRectangle:CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth, actualYVal, 1.0f, 1.0f) withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g, dnaColors.black.b}];
         i += step;
@@ -153,11 +163,27 @@
         
         [xLbls[i] setText:[NSString stringWithFormat:@"%i",pos]];
         [xLbls[i] setAdjustsFontSizeToFitWidth:YES];
-        if (posOfHighestFrequency > 0)
-            [self.view addSubview:xLbls[i]];
-        else if (usingDefaultSD && maxCoverageVal != 0 && currNumOfSD >= 0) {
-            [self.view addSubview:xLbls[i]];
+        
+        BOOL shouldAddX = YES;
+        if (i > 0) {
+            for (int j = 0; j < i; j++)
+                if (CGRectIntersectsRect(xLbls[j].frame, xLbls[i].frame)) {
+                    shouldAddX = NO;
+                    if (currNumOfSD == 0) {
+                        shouldAddX = YES;
+                        for (int l = 0; l < i; l++)
+                            [xLbls[l] removeFromSuperview];
+                    }
+                    break;
+                }
         }
+        if (shouldAddX) {
+            if (posOfHighestFrequency > 0)
+                [self.view addSubview:xLbls[i]];
+            else if (usingDefaultSD && maxCoverageVal != 0 && currNumOfSD >= 0)
+                [self.view addSubview:xLbls[i]];
+        }
+        
         UIFont *font = xLbls[i].font;
         
         if (i <= ceilf(kCoverageHistogramNumOfIntervalLblsPerAxis/2.0f) && pos <= maxCoverageVal && pos >= 0) {//This if is here because at the same SD, there will probably/usually be different frequencies. Also, can't make labels for out of bounds positions
@@ -207,8 +233,16 @@
             posOfHighestFrequency = i;
         }
     
-    boxWidth = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
-    for (int i = 0, x = kCoverageHistogramYAxisDistFromScreenLeft; i <= maxCoverageVal; i++, x += boxWidth) {
+    float bw = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
+    boxWidth = bw;
+    
+    int addFactor = 1;
+    if (bw < 1) {
+        addFactor = (1.0f/bw);
+        boxWidth = 1;
+    }
+    
+    for (int i = 0, x = kCoverageHistogramYAxisDistFromScreenLeft; i <= maxCoverageVal; i += addFactor, x += boxWidth) {
         float ratio = ((float)covFrequencyArr[i]/highestFrequency);
         int height = ratio*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
         [self drawRectangle:CGRectMake(x, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-height, boxWidth, height) withRGB:(double[3]){dnaColors.mutHighlight.r,dnaColors.mutHighlight.g,dnaColors.mutHighlight.b}];

@@ -32,6 +32,8 @@
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A324DA181958BB6400FBE264 /* TESTSEQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = A324DA171958BB6400FBE264 /* TESTSEQ.txt */; };
+		A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */; };
+		A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A32C2B4019C0F99B008D66EE /* flu.H3N2.fa */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
 		A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */; };
@@ -186,6 +188,8 @@
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A324DA171958BB6400FBE264 /* TESTSEQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TESTSEQ.txt; sourceTree = "<group>"; };
+		A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H2N2.fa; sourceTree = SOURCE_ROOT; };
+		A32C2B4019C0F99B008D66EE /* flu.H3N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H3N2.fa; sourceTree = SOURCE_ROOT; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
 		A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilePreviewPopoverController.xib; sourceTree = "<group>"; };
@@ -700,6 +704,8 @@
 		A3890A6F196B3F02002B6048 /* flu.H1N1s */ = {
 			isa = PBXGroup;
 			children = (
+				A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */,
+				A32C2B4019C0F99B008D66EE /* flu.H3N2.fa */,
 				A3890A70196B3F02002B6048 /* flu.H1N1s.fa */,
 				A3890A71196B3F02002B6048 /* flu.H1N1s.reads.fq */,
 			);
@@ -1193,6 +1199,7 @@
 				A3D81EBE1666EF3E00BD5C07 /* NewEcoli.5k.txt in Resources */,
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
 				A3DE20A4166EC3DA00F23AD8 /* New.Ecoli.5k.txt in Resources */,
+				A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */,
 				A316885D19AFDEA800B6FC0C /* QBCLTR105BC0071.100r.fq in Resources */,
 				A3DE20A5166EC3DA00F23AD8 /* Ecoli.5k.reads.txt in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
@@ -1221,6 +1228,7 @@
 				A3890A73196B3F02002B6048 /* flu.H1N1s.reads.fq in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
+				A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,

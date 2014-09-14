@@ -33,7 +33,7 @@
     graph = [[RGB alloc] initWithVals:0.2 :0.3 :0.4];
     segmentDivider = [[RGB alloc] initWithVals:1 :0 :0];
     segmentDividerTxt = [[RGB alloc] initWithVals:0 :0 :0];
-    alignedRead = [[RGB alloc] initWithVals:251/255.0f :209/255.0f :222/255.0f];
+    alignedRead = [[RGB alloc] initWithVals:216/255.0f :230/255.0f :223/255.0f];
     insertionIcon = [[RGB alloc] initWithVals:0/255.0f :0/255.0f :0/255.0f];
     
     matchTypeHeterozygousMutationImportant = [[RGB alloc] initWithVals:220/255.0f :20/255.0f :60/255.0f];

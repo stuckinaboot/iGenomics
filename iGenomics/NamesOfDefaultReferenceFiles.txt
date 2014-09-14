@@ -1,3 +1,5 @@
+flu.H3N2.fa
+flu.H2N2.fa
 flu.H1N1.fa
 flu.H1N1s.fa
 New.Ecoli.5k.txt

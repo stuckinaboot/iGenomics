@@ -577,7 +577,9 @@
         [handler addChildViewController:coverageHistogram];
         [handler setMainViewController:coverageHistogram andTitle:kCoverageHistogramTitleInIPhoneHandlerPopover];
         [coverageHistogram didMoveToParentViewController:handler];
-        [self presentViewController:handler animated:YES completion:nil];
+        [self presentViewController:handler animated:YES completion:^{
+            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
+        }];
     }
 }
 
@@ -702,7 +704,9 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([alertView isEqual:confirmDoneAlert]) {
         if (buttonIndex == kConfirmDoneAlertGoBtnIndex)
-             [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:^{
+                [self freeUsedMemory];
+            }];
     }
 }
 
@@ -812,6 +816,15 @@
 
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
+}
+
+- (void)freeUsedMemory {
+    for (int i = 0; i < [readAlignmentsArr count]; i++) {
+        ED_Info *read = [readAlignmentsArr objectAtIndex:i];
+        [read freeUsedMemory];
+    }
+    [readAlignmentsArr removeAllObjects];
+    [alignmentGridView freeUsedMemory];
 }
 
 //Memory warning

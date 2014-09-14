@@ -22,7 +22,7 @@
 #define kReadLongPressRecognizerMinDuration 1.0f
 
 @interface AlignmentGridView : QuickGridView {
-    __strong AlignmentGridPosition **alignmentGridPositionsArr;//Strong means ARC won't destory this object unless it is set to nil, ** is a Pointer to a pointer
+    __strong AlignmentGridPosition **alignmentGridPositionsArr;//Strong means ARC won't destroy this object unless it is set to nil, ** is a Pointer to a pointer
     int currYOffset;
     
     BOOL isScrollingHorizontally;
@@ -32,7 +32,7 @@
 - (IBAction)readLongPressed:(id)sender;
 - (void)displayReadPopoverForRead:(ED_Info *)read atPosInGenome:(int)pos atPointOnScreen:(CGPoint)point;
 - (void)setUpAlignmentGridPositionsArr;
-- (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount;
+- (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount andStartsBefore0:(BOOL)startsBefore0;
 //- (void)setUpPositionMatchedCharsArr;
 - (void)drawReadStartAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;
 - (void)drawReadEndAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;;
@@ -41,4 +41,6 @@
 //- (void)drawReadWithEDInfo:(ED_Info*)read atX:(float)x andY:(float)y;
 //- (void)drawCharColumnWithTxt:(NSString*)txt atX:(float)x andY:(float)y;
 - (void)drawCharColumnWithAlignmentGridPos:(AlignmentGridPosition*)gridPos withGridPosIndexInGridPosArr:(int)j atX:(float)x andY:(float)y andYToNotCross:(int)yToNotCross;
+
+- (void)freeUsedMemory;
 @end

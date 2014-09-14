@@ -91,4 +91,6 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 //INSERTION/DELETION MATCH
 - (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev;
 - (void)recordInDel:(ED_Info*)info;
+
+- (void)freeUsedMemory;
 @end

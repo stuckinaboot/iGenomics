@@ -22,6 +22,8 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     fileStrLen = strlen(refStr);
     
     for (int i = 0; i<kFoundGenomeArrSize; i++) {
+        if (foundGenome[i] && strlen(foundGenome[i]) > 0)
+            free(foundGenome[i]);
         foundGenome[i] = calloc(fileStrLen+1,1);
     }
     
@@ -236,8 +238,6 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         
         mutCounter = 0;
     }
-    
-    printf("\n");
     
     if (kOnlyPrintFoundGenome == 0) {
         for (int a = 0; a<mutations.count; a++) {

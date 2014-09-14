@@ -32,11 +32,12 @@
 }
 
 - (void)setUpAlignmentGridPositionsArr {
-    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));//Ask about why sizeof(a pointer) works here
     NSString *noCharStr = [NSString stringWithFormat:@"%c",kAlignmentGridViewCharColumnNoChar];
     NSMutableString *noCharLongStr = [[NSMutableString alloc] init];
     for (int i = 0; i < maxCoverageVal; i++)
         [noCharLongStr appendString:noCharStr];
+    
+    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));//Ask about why sizeof(a pointer) works here
     
     for (int i = 0; i < dgenomeLen; i++) {
         AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
@@ -56,56 +57,57 @@
         int placeToInsertChar = -1;
         int insCount = 0;
         for (int x = 0; x < lenA; x++) {
-            
-            AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
-            if (!gridPos) {
-                gridPos = [[AlignmentGridPosition alloc] init];
-                alignmentGridPositionsArr[read.position+x] = gridPos;
-            }
-            
-            gridPos.startIndexInreadAlignmentsArr = read.position;
-            gridPos.positionRelativeToReadStart = x;
-            gridPos.readLen = lenA;
-            
-            int readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
-            
-            if (readInfoNum == kReadInfoReadStart) {
-                counter = 0;
-                placeToInsertChar = 0;
+            if (read.position + x >= 0) {
+                AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
+                if (!gridPos) {
+                    gridPos = [[AlignmentGridPosition alloc] init];
+                    alignmentGridPositionsArr[read.position+x] = gridPos;
+                }
                 
-                while (placeToInsertChar < maxCoverageVal && gridPos.str[placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
-                    placeToInsertChar++;
-            }
-            
-            gridPos.readIndexStr[placeToInsertChar] = i;
-            
-            if (placeToInsertChar+1 > gridPos.highestChar)
-                gridPos.highestChar = placeToInsertChar+1;//+1 because is basically counting the row in normal numbers for math purposes
-            
-            if (read.insertion) {
-                if (placeToInsertChar >= maxCoverageVal)
-                    break;
-                int temp = x+insCount;
-                int prevX = x+insCount;
-                while (temp < lenA && read.gappedB[temp] == kDelMarker) {
-                    insCount++;
-                    temp++;
+                gridPos.startIndexInreadAlignmentsArr = read.position;
+                gridPos.positionRelativeToReadStart = x;
+                gridPos.readLen = lenA;
+                
+                int readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
+                
+                if (readInfoNum == kReadInfoReadStart) {
+                    counter = 0;
+                    placeToInsertChar = 0;
+                    
+                    while (placeToInsertChar < maxCoverageVal && gridPos.str[placeToInsertChar] != kAlignmentGridViewCharColumnNoChar)
+                        placeToInsertChar++;
                 }
-                if (prevX != temp) {
-                    readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
-                    if (readInfoNum == kReadInfoReadEnd)
-                        alignmentGridPositionsArr[read.position+prevX].readInfoStr[placeToInsertChar] = kReadInfoReadPosBeforeEnd;
-                }
-                if (x + insCount >= lenA)
-                    break;
-                gridPos.str[placeToInsertChar] = read.gappedA[x+insCount];
-                gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
-                    counter++;
-            }
-            else {
-                if (placeToInsertChar < maxCoverageVal) {//gridPos.str.length) {
-                    gridPos.str[placeToInsertChar] = read.gappedA[x];
+                
+                gridPos.readIndexStr[placeToInsertChar] = i;
+                
+                if (placeToInsertChar+1 > gridPos.highestChar)
+                    gridPos.highestChar = placeToInsertChar+1;//+1 because is basically counting the row in normal numbers for math purposes
+                
+                if (read.insertion) {
+                    if (placeToInsertChar >= maxCoverageVal)
+                        break;
+                    int temp = x+insCount;
+                    int prevX = x+insCount;
+                    while (temp < lenA && read.gappedB[temp] == kDelMarker) {
+                        insCount++;
+                        temp++;
+                    }
+                    if (prevX != temp) {
+                        readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
+                        if (readInfoNum == kReadInfoReadEnd)
+                            alignmentGridPositionsArr[read.position+prevX].readInfoStr[placeToInsertChar] = kReadInfoReadPosBeforeEnd;
+                    }
+                    if (x + insCount >= lenA)
+                        break;
+                    gridPos.str[placeToInsertChar] = read.gappedA[x+insCount];
                     gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
+                        counter++;
+                }
+                else {
+                    if (placeToInsertChar < maxCoverageVal) {//gridPos.str.length) {
+                        gridPos.str[placeToInsertChar] = read.gappedA[x];
+                        gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
+                    }
                 }
             }
         }
@@ -492,6 +494,16 @@
     [controller setUpWithRead:read];
     controller.preferredContentSize = controller.view.bounds.size;
     [delegate displayPopoverWithViewController:controller atPoint:point withTitle:kReadPopoverTitleInIPhonePopoverHandler];
+}
+
+- (void)freeUsedMemory {
+    for (int i = 0; i < dgenomeLen; i++) {
+        AlignmentGridPosition *pos = alignmentGridPositionsArr[i];
+        free(pos.str);
+        free(pos.readInfoStr);
+        free(pos.readIndexStr);
+    }
+    free(alignmentGridPositionsArr);
 }
 
 @end

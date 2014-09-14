@@ -25,9 +25,12 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs {
     
+    [self freeUsedMemory];
+    
     NSLog(@"==> setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs entered");
     
-    NSArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
+    NSMutableArray *preReadsArray = [[NSMutableArray alloc] initWithArray:[contents componentsSeparatedByString:kReedsArraySeperationStr]];
+    
     reedsArray = [[NSMutableArray alloc] init];
     
     readAlignmentsArr = [[NSMutableArray alloc] init];
@@ -46,6 +49,9 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             Read *read = [[Read alloc] initWithSeq:(char*)[[preReadsArray objectAtIndex:i] UTF8String] andName:(char*)[n UTF8String]];
             [reedsArray addObject:read];
         }
+    
+    [preReadsArray removeAllObjects];
+    preReadsArray = nil;
     
     NSLog(@"About to set basic variables");
     
@@ -126,10 +132,12 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         if (a != NULL) {
             a.readName = reed.name;
             //printf("DK: calling numOfCharsPastSegment\n");
-            int charsToTrim = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
-            if (a.distance + charsToTrim <= maxSubs) {
+            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:readLen];
+            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
+            a.distance += charsToTrimEnd + charsToTrimBeginning;
+            if (a.distance <= maxSubs) {
                 //printf("DK: calling updatePosOccsArray\n");
-                [self updatePosOccsArrayWithRange:NSMakeRange(a.position, strlen(a.gappedA)-charsToTrim) andED_Info:a];
+                [self updatePosOccsArrayWithRange:NSMakeRange(a.position+charsToTrimBeginning, strlen(a.gappedA)-charsToTrimEnd-charsToTrimBeginning) andED_Info:a];
             }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
@@ -146,7 +154,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum {
     
-    NSArray *arr = [[NSMutableArray alloc] init];
+    NSArray *arr;
     
     int forwardMatches = 0;//EX. ACA
 
@@ -199,8 +207,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             for (int o = 0; o<[arr count]; o++)
                 printf("\n%i\n",[[arr objectAtIndex:o] intValue]);
         
-        if ([arr count] > 0)
-            return [arr objectAtIndex:((int)arc4random()%[arr count])];
+        if ([arr count] > 0) {
+            ED_Info *info = [arr objectAtIndex:((int)arc4random()%[arr count])];
+            return info;
+        }
     }
     return NULL;//No match
 }
@@ -208,6 +218,16 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 - (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info {
 //    if (info.isRev)
 //        query = [self getReverseComplementForSeq:query];
+    if (range.length != strlen(info.gappedA)) {
+        int startLoc = (info.position < 0) ? abs(info.position) : 0;
+        strlcpy(info.gappedA, &info.gappedA[startLoc], range.length+1);
+        
+        if (strlen(info.gappedB) > 1) {
+            strlcpy(info.gappedB, &info.gappedB[startLoc], range.length+1);
+        }
+        if (startLoc > 0)
+            info.position = 0;
+    }
     if (!info.insertion && info.distance > 0) {
         for (int i = range.location; i<range.length+range.location; i++) {
             int c = [BWT_MatcherSC whichChar:info.gappedA[i-range.location] inContainer:acgt];
@@ -288,6 +308,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     //  Find In/Del by using the matched positions of the chunks
     NSMutableArray *matchedInDels = [[NSMutableArray alloc] initWithArray:[bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev]];
 
+    [chunkArray removeAllObjects];
+    
     return matchedInDels;
 }
 
@@ -450,5 +472,14 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         revSeq[i] = acgt[kACGTLen-[BWT_MatcherSC whichChar:seq[len-i-1] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
     revSeq[len] = '\0';
     return revSeq;
+}
+
+//Free memory
+- (void)freeUsedMemory {
+    reedsArray = nil;
+//    if (firstCol && strlen(firstCol) > 0)
+//        free(firstCol);
+//    if (refStrBWT && strlen(refStrBWT) > 0)
+//        free(refStrBWT);
 }
 @end

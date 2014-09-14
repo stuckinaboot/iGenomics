@@ -118,6 +118,7 @@
         }
     }
 }
+
 - (void)checkForInDelMatch:(ED_Info*)edInfo andMatchedPos:(int)matchedPos andChunkNum:(int)cNum andChunkSize:(int)cSize {
     if (edInfo.distance<=maxEditDist) {//Match Occurred
         BOOL alreadyRecorded = FALSE;
@@ -134,6 +135,9 @@
                 if (data.position == matchedPos) //If pos is the same
                     alreadyRecorded = TRUE;
             }
+            
+            if (matchedPos == -1)
+                printf("Shit\n");
         }
         
         if (!alreadyRecorded) {
@@ -141,7 +145,11 @@
             edInfo.isRev = isRev;
             [matchedInDels addObject:edInfo];
         }
+        else
+            [edInfo freeUsedMemory];
     }
+    else
+        [edInfo freeUsedMemory];
 }
 
 - (int)findStartPosForChunkNum:(int)cNum andSizeOfChunks:(int)cSize andMatchedPos:(int)mPos {

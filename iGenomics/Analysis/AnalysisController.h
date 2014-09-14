@@ -250,4 +250,6 @@
 - (void)resetGridViewForType:(QuickGridView*)gViewType;
 
 - (void)setUpGridLbls;
+
+- (void)freeUsedMemory;
 @end
