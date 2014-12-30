@@ -73,14 +73,8 @@
                 matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
                 startPos = [self findStartPosForChunkNum:cNum andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
                 if (startPos>=0) {
-                    if (startPos-maxEditDist>=0) {
-                        edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+(maxEditDist*2)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];
+                    edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+(maxEditDist*2)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];
 //                        edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+(maxEditDist*2)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
-                    }
-                    else {
-                        edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos, lenA+maxEditDist) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];
-//                        edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+(maxEditDist)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
-                    }
                     [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:cNum andChunkSize:chunkSize];
                 }
             }
@@ -95,14 +89,8 @@
             matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
             startPos = [self findStartPosForChunkNum:[chunkArray count]-1 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
             if (startPos>=0) {
-                if (startPos-maxEditDist>=0) {
-                    edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+maxEditDist) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];
+                edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+maxEditDist) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];
 //                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+maxEditDist) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
-                }
-                else {
-                    edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos, lenA) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];
-//                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
-                }
                 [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize];
             }
         }
@@ -135,9 +123,6 @@
                 if (data.position == matchedPos) //If pos is the same
                     alreadyRecorded = TRUE;
             }
-            
-            if (matchedPos == -1)
-                printf("Shit\n");
         }
         
         if (!alreadyRecorded) {

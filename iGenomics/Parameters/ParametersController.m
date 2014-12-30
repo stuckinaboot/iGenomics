@@ -304,7 +304,7 @@
     for (int i = 0; i < [arr count]; i += 3) {
         [readStr appendFormat:@"%@\n%@\n",[arr objectAtIndex:i],[arr objectAtIndex:i+1]];
     }
-    [readStr replaceCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];
+    readStr = (NSMutableString*)[readStr stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 //    readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break
     return (NSString*)readStr;
 }

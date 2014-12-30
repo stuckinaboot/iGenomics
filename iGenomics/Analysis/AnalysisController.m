@@ -60,6 +60,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     if (!firstAppeared) {
         [self resetDisplay];
+        
         [self resetGridViewForType:alignmentGridView];
         
         [self setUpIPhoneToolbar];
@@ -211,6 +212,17 @@
     else if (!(gridView.kTxtFontSize >= gridView.kMinTxtFontSize && gridView.boxWidth >= kThresholdBoxWidth))
         for (int i = 0; i < kNumOfRowsInGridView; i++)
             nLbl[i].hidden = YES;
+    
+    if ([GlobalVars isOldIPhone]) {
+        CGRect rect = gridView.frame;
+        float w = self.view.bounds.size.width;
+        gridView.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
+        gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
+        gridView.drawingView.frame = gridView.scrollingView.frame;
+        
+        rect = pxlOffsetSlider.frame;
+        pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
+    }
 }
 
 - (void)resetDisplay {
@@ -227,18 +239,6 @@
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
     
     mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
-    
-    //Fixes problems caused by constraints on old iPhone
-    if ([GlobalVars isOldIPhone]) {
-        CGRect rect = gridView.frame;
-        float w = self.view.bounds.size.width;
-        gridView.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
-        gridView.scrollingView.frame = CGRectMake(0, 0, gridView.frame.size.width, gridView.frame.size.height);
-        gridView.drawingView.frame = gridView.scrollingView.frame;
-        
-        rect = pxlOffsetSlider.frame;
-        pxlOffsetSlider.frame = CGRectMake(rect.origin.x, rect.origin.y, w-rect.origin.x, rect.size.height);
-    }
     
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];
     currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:0] intValue]];
@@ -822,9 +822,18 @@
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
         ED_Info *read = [readAlignmentsArr objectAtIndex:i];
         [read freeUsedMemory];
+        read = nil;
     }
+    [mutPosArray removeAllObjects];
+    mutPosArray = nil;
+    [allMutPosArray removeAllObjects];
+    allMutPosArray = nil;
     [readAlignmentsArr removeAllObjects];
+    readAlignmentsArr = nil;
     [alignmentGridView freeUsedMemory];
+    coverageHistogram = nil;
+    covGridView = nil;
+    alignmentGridView = nil;
 }
 
 //Memory warning

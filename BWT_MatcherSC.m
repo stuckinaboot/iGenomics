@@ -72,15 +72,11 @@
     return posArray;
 }
 
-- (BOOL)isNotDuplicateAlignment:(NSArray *)subsArray andChunkNum:(int)chunkNum {//TRUE IS NO DUPLICATE
+- (BOOL)isNotDuplicateAlignment:(ED_Info *)info inArr:(NSMutableArray *)posArr {//TRUE IS NO DUPLICATE
     
-    if (chunkNum == 0) //No Duplicates If it is first chunk (nothing come before it)
-        return TRUE;
-    int s = [subsArray count];
-    for (int i = 0; i<s-(s-chunkNum); i++) {
-        if ([[subsArray objectAtIndex:i] intValue] == 0)
+    for (ED_Info *obj in posArr)
+        if ([ED_Info areEqualEditDistance1:obj andEditDistance2:info])
             return FALSE;
-    }
     
     return TRUE;
 }

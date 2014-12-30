@@ -23,6 +23,10 @@
     return self;
 }
 
++ (BOOL)areEqualEditDistance1:(ED_Info *)ed1 andEditDistance2:(ED_Info *)ed2 {
+    return (ed1.position == ed2.position && ed1.isRev == ed2.isRev && strcmp(ed1.gappedA, ed2.gappedA) == 0 && strcmp(ed1.gappedB, ed2.gappedB) == 0 && ed1.distance == ed2.distance);
+}
+
 - (int)intValue {
     return position;
 }

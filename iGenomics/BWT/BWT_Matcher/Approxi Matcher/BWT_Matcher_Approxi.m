@@ -23,11 +23,15 @@
     sizeOfChunks = queryLength/numOfChunks;
     
     Chunks *chunks[numOfChunks];
-    int subsInChunk[numOfChunks], start = 0;
+    int start = 0;
     
     for (int i = 0; i<numOfChunks; i++)
         chunks[i] = [[Chunks alloc] initWithString:query];
     
+    if (positionsArray) {
+        [positionsArray removeAllObjects];
+        positionsArray = NULL;
+    }
     positionsArray = [[NSMutableArray alloc] init];
     
     if (amtOfSubs>0) {
@@ -48,44 +52,37 @@
                 rightStrStart = [[chunks[i].matchedPositions objectAtIndex:x] intValue]+chunks[i].range.length;
                 
                 for (int l = 0; l<charsToCheckLeft; l++) {
-                    if (originalStr[l+leftStrStart] != query[l]) {
+                    if (originalStr[l+leftStrStart] != query[l])
                         numOfSubstitutions++;
-                        subsInChunk[numOfChunks-(int)floorf((float)(l/sizeOfChunks)+1)-(numOfChunks-i-1)-1]++;
-                    }
                 }
+                
                 
                 if (rightStrStart>=dgenomeLen-1)
                     charsToCheckRight = 0;
                 for (int l = 0; l<charsToCheckRight && numOfSubstitutions <= amtOfSubs; l++) {
-                    if (originalStr[l+rightStrStart] != query[(i+1)*sizeOfChunks+l]) {
+                    if (originalStr[l+rightStrStart] != query[(i+1)*sizeOfChunks+l])
                         numOfSubstitutions++;
-                        subsInChunk[(int)floorf((float)l/sizeOfChunks)+1+i]++;
-                    }
                 }
+                 
                 
-                if (numOfSubstitutions<=amtOfSubs) {
-                    NSMutableArray *array = [[NSMutableArray alloc] init];
-                    for (int r = 0; r<numOfChunks; r++)
-                        [array addObject:[NSNumber numberWithInt:subsInChunk[r]]];
-                    
-                    [self addAlignmentsToPosArrayForFullSubsArr:array chunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev andED:numOfSubstitutions andQuery:query];
-                }
+                if (numOfSubstitutions<=amtOfSubs)
+                    [self addAlignmentsToPosArrayForChunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev andED:numOfSubstitutions andQuery:query];
                 
                 numOfSubstitutions = 0;
-                for (int r = 0; r<numOfChunks; r++)
-                    subsInChunk[r] = 0;
             }
         }
     }
     return positionsArray;
 }
 
-- (void)addAlignmentsToPosArrayForFullSubsArr:(NSArray*)subsArr chunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev andED:(int)distance andQuery:(char*)query {
-    if ([self isNotDuplicateAlignment:subsArr andChunkNum:cNum]) {
-        int pos = [[chunk.matchedPositions objectAtIndex:x] intValue] - cNum*len;
-        
+- (void)addAlignmentsToPosArrayForChunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev andED:(int)distance andQuery:(char*)query {
+    
+    int pos = [[chunk.matchedPositions objectAtIndex:x] intValue] - cNum*len;
+    ED_Info *info = [[ED_Info alloc] initWithPos:pos editDistance:distance gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev];
+    
+    if ([self isNotDuplicateAlignment:info inArr:positionsArray]) {
         if (pos+qLen<=dgenomeLen && pos>-1)
-            [positionsArray addObject:[[ED_Info alloc] initWithPos:pos editDistance:distance gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
+            [positionsArray addObject:info];
     }
 }
 

@@ -82,6 +82,8 @@
     
     NSLog(@"About to build the BWT");
     
+    if (bwt_Matcher)
+        bwt_Matcher = nil;
     bwt_Matcher = [[BWT_Matcher alloc] init];
 
     /*

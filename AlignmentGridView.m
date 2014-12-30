@@ -34,16 +34,17 @@
 - (void)setUpAlignmentGridPositionsArr {
     NSString *noCharStr = [NSString stringWithFormat:@"%c",kAlignmentGridViewCharColumnNoChar];
     NSMutableString *noCharLongStr = [[NSMutableString alloc] init];
+
     for (int i = 0; i < maxCoverageVal; i++)
         [noCharLongStr appendString:noCharStr];
     
-    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));//Ask about why sizeof(a pointer) works here
+    alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));
     
     for (int i = 0; i < dgenomeLen; i++) {
         AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
         gridPos.str = strdup([noCharLongStr UTF8String]);
         gridPos.readInfoStr = calloc(noCharLongStr.length, sizeof(int));
-        gridPos.readIndexStr = calloc(noCharLongStr.length, sizeof(int));//+1 rather than initialize the whole array to -1, I will just later on subtract 1
+        gridPos.readIndexStr = calloc(noCharLongStr.length, sizeof(int));
         for (int j = 0; j < maxCoverageVal; j++) {
             gridPos.readIndexStr[j] = -1;
         }
@@ -112,6 +113,9 @@
             }
         }
     }
+    
+    noCharStr = nil;
+    noCharLongStr = nil;
 }
 
 - (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount {
@@ -502,6 +506,7 @@
         free(pos.str);
         free(pos.readInfoStr);
         free(pos.readIndexStr);
+        alignmentGridPositionsArr[i] = nil;
     }
     free(alignmentGridPositionsArr);
 }

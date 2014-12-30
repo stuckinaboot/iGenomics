@@ -32,7 +32,6 @@
 - (IBAction)readLongPressed:(id)sender;
 - (void)displayReadPopoverForRead:(ED_Info *)read atPosInGenome:(int)pos atPointOnScreen:(CGPoint)point;
 - (void)setUpAlignmentGridPositionsArr;
-- (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount andStartsBefore0:(BOOL)startsBefore0;
 //- (void)setUpPositionMatchedCharsArr;
 - (void)drawReadStartAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;
 - (void)drawReadEndAtPoint:(CGPoint)point withColorRef:(CGColorRef)colorRef;;

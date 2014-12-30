@@ -464,7 +464,7 @@
     int index = 0;
     BOOL alreadyUpdatedGenomeNameLbl = FALSE;
 
-    if ([arr count] > 1) {
+    if ([arr count] >= 1) {
         UIFont *font = [UIFont systemFontOfSize:kSegmentDividerFontSize];
         
         CGSize strFontSize;

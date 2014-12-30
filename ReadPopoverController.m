@@ -65,8 +65,10 @@
     NSMutableAttributedString *gappedBStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:kReadPopoverGappedBLblTxt,read.gappedB]];
     
     int startIndex = (int)kReadPopoverGappedALblTxt.length-2;//-2 subtracts off the %s
-    for (int i = 0; i < gappedAStr.length; i++) {
+    int lenA = (int)strlen(read.gappedA);
+    for (int i = 0; i < lenA; i++) {
         if (read.gappedA[i] != read.gappedB[i]) {
+            NSLog(@"%i, %i",startIndex+i, (int)gappedAStr.length);
             [gappedAStr addAttribute:NSBackgroundColorAttributeName value:[dnaColors.mutHighlight UIColorObj] range:NSMakeRange(startIndex+i, 1)];
             [gappedBStr addAttribute:NSBackgroundColorAttributeName value:[dnaColors.mutHighlight UIColorObj] range:NSMakeRange(startIndex+i, 1)];
         }

@@ -24,9 +24,6 @@ static int counter;
     
     counter++;
     
-    if (range.location == 2)
-        NSLog(@"%i",counter);
-    
 //    int editDistanceTable[lenA][lenB];
     int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
 //    int arrowTable[lenA][lenB];//0 is left, 1 is diag, 2 is up, 3 is created

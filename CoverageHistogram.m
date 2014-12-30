@@ -62,14 +62,15 @@
     float bw = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
     boxWidth = bw;
     
-    int addFactor = 1;
+    int addFactor = boxWidth;
     if (bw < 1) {
         addFactor = (1.0f/bw);
         boxWidth = 1;
     }
     
-    while (i*addFactor < rect.size.width) {
-        float normalVal = [self normalCurveFormulaValueForPos:i*addFactor];
+//    while (i*addFactor < rect.size.width) {
+    while (i < maxCoverageVal) {
+        float normalVal = [self normalCurveFormulaValueForPos:i];
         float actualYVal = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
        
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
@@ -81,13 +82,13 @@
         x = kCoverageHistogramYAxisDistFromScreenLeft+i*addFactor+addFactor/2;
         y = actualYVal;
 //        [self drawRectangle:CGRectMake(kCoverageHistogramYAxisDistFromScreenLeft+i*boxWidth, actualYVal, 1.0f, 1.0f) withRGB:(double[3]){dnaColors.black.r, dnaColors.black.g, dnaColors.black.b}];
-        i += step;
+        i += 1;//step;
     }
 }
 
 - (float)normalCurveFormulaValueForPos:(float)x {
     //Everything in here is following the normal distribution formula as defined here: http://upload.wikimedia.org/math/7/3/a/73ad15f79b11af99bd2477ff3ffc5a35.png
-
+    
     float sd = sqrtf(posOfHighestFrequency);
     if (sd == 0)
         sd = kCoverageHistogramSDDefault;

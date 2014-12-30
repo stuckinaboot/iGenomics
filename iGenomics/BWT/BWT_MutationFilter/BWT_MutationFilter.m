@@ -17,8 +17,8 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 @synthesize kHeteroAllowance;
 
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher {
-    acgt = strdup(kACGTStr);
-    refStr = strdup(originalSeq);
+    acgt = kACGTStr;
+    refStr = originalSeq;
     fileStrLen = strlen(refStr);
     
     for (int i = 0; i<kFoundGenomeArrSize; i++) {
@@ -245,6 +245,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             printf("\n%i-%c-%s",mutPos,refStr[mutPos],mutStr[a]);//MutPos-Original-New//NEED TO DO HETERO (mutPos,originalStr[mutPos],mutStr[a],heteroStr[a])
         }
     }
+    
     return NULL;
     //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
 }

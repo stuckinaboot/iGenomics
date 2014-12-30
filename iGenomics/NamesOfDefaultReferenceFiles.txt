@@ -1,10 +1,6 @@
 flu.H3N2.fa
 flu.H2N2.fa
 flu.H1N1.fa
-flu.H1N1s.fa
-New.Ecoli.5k.txt
-TESTSEQ.txt
-Ecoli.50k.txt
 Ecoli.50k.fa
 anthrax.capsule.fa
 lambdaphage.fa
