@@ -83,6 +83,8 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 
 - (void)setUpNumberOfOccurencesArray;
 
+- (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info*)info;
+
 //APPROXI MATCH
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently
 

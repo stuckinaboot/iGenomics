@@ -132,14 +132,16 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         if (a != NULL) {
             a.readName = reed.name;
             //printf("DK: calling numOfCharsPastSegment\n");
-            int gappedALen = strlen(a.gappedA);
-            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
-            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
+//            int gappedALen = strlen(a.gappedA);
+//            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
+//            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
             
-            a.distance += charsToTrimEnd + charsToTrimBeginning;
+            a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a];
+            
+//            a.distance += charsToTrimEnd + charsToTrimBeginning;
             if (a.distance <= maxSubs) {
                 //printf("DK: calling updatePosOccsArray\n");
-                [self updatePosOccsArrayWithRange:NSMakeRange(a.position+charsToTrimBeginning, gappedALen-charsToTrimEnd-charsToTrimBeginning) andED_Info:a];
+                [self updatePosOccsArrayWithRange:NSMakeRange(a.position, strlen(a.gappedA)) andED_Info:a];
             }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
@@ -153,6 +155,54 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     [matchingTimer stopAndLog];
 }
 
+- (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info {
+    int gappedALen = (int)strlen(info.gappedA);
+    int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen];//This here is wrong, fix this
+    int charsToTrimBeginning = (info.position < 0) ? abs(info.position) : 0;//This here is wrong, fix this
+    
+    if (charsToTrimEnd == 0 && charsToTrimBeginning == 0)
+        return info;
+    
+    ED_Info *newInfo = [[ED_Info alloc] init];
+    
+    
+    int numOfCharsToTrimFromBeginningFromED = 0;
+    
+    for (int i = 0; i < charsToTrimBeginning; i++)
+        if (info.gappedA[i] == info.gappedB[i])
+            numOfCharsToTrimFromBeginningFromED++;
+    
+    int numOfCharsToTrimFromEndFromED = 0;
+
+    for (int i = gappedALen-charsToTrimEnd; i < (gappedALen-charsToTrimEnd-1)+charsToTrimEnd+1; i++)
+        if (info.gappedA[i] == info.gappedB[i])
+            numOfCharsToTrimFromEndFromED++;
+    
+    newInfo.gappedA = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+    strncpy(newInfo.gappedA, info.gappedA+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
+    newInfo.gappedA[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
+    
+    newInfo.gappedB = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+    strncpy(newInfo.gappedB, info.gappedB+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
+    newInfo.gappedB[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
+    
+    newInfo.distance = info.distance;
+
+    newInfo.distance += numOfCharsToTrimFromBeginningFromED;
+    newInfo.position += numOfCharsToTrimFromBeginningFromED;
+
+    newInfo.distance += numOfCharsToTrimFromEndFromED;
+    
+    newInfo.insertion = info.insertion;
+    newInfo.position = info.position;
+    newInfo.isRev = info.isRev;
+    newInfo.readName = info.readName;
+    newInfo.rowInAlignmentGrid = info.rowInAlignmentGrid;
+    
+    [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
+    
+    return newInfo;
+}
 
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum {
     
@@ -459,10 +509,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         }
     }
     
-    if (info.position + readL-1 < closestLen)
+    if (info.position - info.numOfInsertions + readL-1 < closestLen)
         return 0;
     
-    int charsToTrim = info.position+readL-closestLen;
+    int charsToTrim = info.position - info.numOfInsertions +readL-closestLen;
     
     return charsToTrim;
 }

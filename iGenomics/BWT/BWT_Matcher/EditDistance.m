@@ -99,6 +99,7 @@ static int counter;
         }
         else if (arrowTable[i*lenB+j] == kUp) {
             edInfo.insertion = TRUE;
+            edInfo.numOfInsertions++;
             i -= 1;
             gapsInB++;
         }
@@ -240,6 +241,7 @@ static int counter;
         }
         else if (arrowTable[i][j] == kUp) {
             edInfo.insertion = TRUE;
+            edInfo.numOfInsertions++;
             i -= 1;
             gapsInB++;
         }

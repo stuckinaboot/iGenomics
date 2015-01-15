@@ -21,7 +21,7 @@
 }
 @property (nonatomic) BOOL isRev;
 @property (nonatomic) char *gappedA, *gappedB, *readName;
-@property (nonatomic) int position, distance;
+@property (nonatomic) int position, distance, numOfInsertions;
 @property (nonatomic) int rowInAlignmentGrid;//Should only be modified/accessed by AlignmentGridView class
 @property (nonatomic) BOOL insertion;
 - (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse;
