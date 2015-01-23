@@ -11,7 +11,8 @@
 @implementation BWT_MatcherSC
 
 - (NSArray*)exactMatchForQuery:(char*)query andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
-    int i = strlen(query)-1;
+    int queryLen = strlen(query);
+    int i = queryLen-1;
     char c = query[i];
     int startPos = [self charsBeforeChar:c];
     

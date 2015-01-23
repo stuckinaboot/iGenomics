@@ -136,7 +136,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
 //            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
             
-            a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a];
+            a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxSubs];
             
 //            a.distance += charsToTrimEnd + charsToTrimBeginning;
             if (a.distance <= maxSubs) {
@@ -155,49 +155,87 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     [matchingTimer stopAndLog];
 }
 
-- (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info {
+- (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info forNumOfSubs:(int)subs {
     int gappedALen = (int)strlen(info.gappedA);
-    int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen];//This here is wrong, fix this
-    int charsToTrimBeginning = (info.position < 0) ? abs(info.position) : 0;//This here is wrong, fix this
     
-    if (charsToTrimEnd == 0 && charsToTrimBeginning == 0)
+    int index = [self indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:info];
+    
+    int closeEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    
+    BOOL shouldTrim = (closeEnding - (info.position + gappedALen) <= 0);
+    
+    BOOL trimEnding = NO;
+    BOOL trimBeginning = NO;
+    
+    if (shouldTrim) {
+        if (abs(closeEnding - (info.position + gappedALen)) < closeEnding - info.position)
+            trimEnding = TRUE;
+        else
+            trimBeginning = TRUE;
+    }
+//    BOOL trimEnding = (closeEnding - (info.position + gappedALen) <= 0);
+//    BOOL trimBeginning = trimEnding && (closeEnding - info.position > 0 && (closeEnding - (info.position + gappedALen) <= 0));
+    
+    if (index < 0 || (!trimBeginning && !trimEnding))
+        return info;
+    
+    int charsToTrimEnd = (trimEnding) ? [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
+    
+    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
+    
+    int amtOfCharsToAddToPosition = (trimBeginning) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] - info.position : 0;
+    
+    BOOL noGappedB = strcmp(info.gappedB, kNoGappedBChar) == 0;
+    
+    if (charsToTrimEnd <= 0 && charsToTrimBeginning <= 0)
         return info;
     
     ED_Info *newInfo = [[ED_Info alloc] init];
-    
-    
-    int numOfCharsToTrimFromBeginningFromED = 0;
-    
-    for (int i = 0; i < charsToTrimBeginning; i++)
-        if (info.gappedA[i] == info.gappedB[i])
-            numOfCharsToTrimFromBeginningFromED++;
-    
-    int numOfCharsToTrimFromEndFromED = 0;
-
-    for (int i = gappedALen-charsToTrimEnd; i < (gappedALen-charsToTrimEnd-1)+charsToTrimEnd+1; i++)
-        if (info.gappedA[i] == info.gappedB[i])
-            numOfCharsToTrimFromEndFromED++;
-    
-    newInfo.gappedA = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
-    strncpy(newInfo.gappedA, info.gappedA+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
-    newInfo.gappedA[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
-    
-    newInfo.gappedB = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
-    strncpy(newInfo.gappedB, info.gappedB+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
-    newInfo.gappedB[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
-    
-    newInfo.distance = info.distance;
-
-    newInfo.distance += numOfCharsToTrimFromBeginningFromED;
-    newInfo.position += numOfCharsToTrimFromBeginningFromED;
-
-    newInfo.distance += numOfCharsToTrimFromEndFromED;
     
     newInfo.insertion = info.insertion;
     newInfo.position = info.position;
     newInfo.isRev = info.isRev;
     newInfo.readName = info.readName;
     newInfo.rowInAlignmentGrid = info.rowInAlignmentGrid;
+    
+    int numOfCharsToTrimFromBeginningFromED = 0;
+    
+    if (noGappedB)
+        numOfCharsToTrimFromBeginningFromED = charsToTrimBeginning;
+    else {
+        for (int i = 0; i < charsToTrimBeginning; i++)
+            if (info.gappedA[i] == info.gappedB[i])
+                numOfCharsToTrimFromBeginningFromED++;
+    }
+    
+    int numOfCharsToTrimFromEndFromED = 0;
+
+    if (noGappedB)
+        numOfCharsToTrimFromEndFromED = charsToTrimEnd;
+    else {
+        for (int i = gappedALen-charsToTrimEnd; i < (gappedALen-charsToTrimEnd-1)+charsToTrimEnd+1; i++)
+            if (info.gappedA[i] == info.gappedB[i])
+                numOfCharsToTrimFromEndFromED++;
+    }
+    
+    newInfo.gappedA = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+    strncpy(newInfo.gappedA, info.gappedA+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
+    newInfo.gappedA[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
+    
+    if (!noGappedB) {
+        newInfo.gappedB = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+        strncpy(newInfo.gappedB, info.gappedB+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
+        newInfo.gappedB[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
+    }
+    else
+        newInfo.gappedB = strdup(kNoGappedBChar);
+        
+    newInfo.distance = info.distance;
+
+    newInfo.distance += numOfCharsToTrimFromBeginningFromED;
+    newInfo.position += amtOfCharsToAddToPosition;
+
+    newInfo.distance += numOfCharsToTrimFromEndFromED;
     
     [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
     
@@ -499,15 +537,19 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     NSLog(@"Set up number of occurences array COMPLETED!!");
 }
 
-- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL {
-    int closestLen = 0;
+- (int)indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:(ED_Info*)info {
     for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
         int v = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
         if (info.position < v) {
-            closestLen = v;
-            break;
+            return i;
         }
     }
+    return -1;
+}
+
+- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
+    
+    int closestLen = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
     
     if (info.position - info.numOfInsertions + readL-1 < closestLen)
         return 0;
@@ -515,6 +557,19 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     int charsToTrim = info.position - info.numOfInsertions +readL-closestLen;
     
     return charsToTrim;
+}
+
+- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
+   
+    int closestBeginning = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    
+    int k = closestBeginning;
+    
+    for (int i = info.position; i <= k; i++)
+        if (info.gappedB[i-info.position] == kDelMarker)
+            k++;
+    
+    return k-info.position;
 }
 
 //Getters

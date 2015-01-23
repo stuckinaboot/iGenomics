@@ -34,7 +34,7 @@
     foRevLbl.text = [NSString stringWithFormat:kReadPopoverFoRevLblTxt,(!read.isRev) ? kReadPopoverFoRevLblForwardTxt : kReadPopoverFoRevLblReverseTxt];
     
     UIFont *font = gappedALbl.font;
-    CGSize gappedATxtSize = [gappedALbl.text sizeWithFont:font];
+    CGSize gappedATxtSize = [[NSString stringWithFormat:kReadPopoverGappedALblTxt,read.gappedA] sizeWithFont:font];
     
 //    gappedLblsScrollView.contentSize = CGSizeMake(gappedATxtSize.width, gappedLblsScrollView.frame.size.height);
     // Do any additional setup after loading the view from its nib.
@@ -64,6 +64,9 @@
     NSMutableAttributedString *gappedAStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:kReadPopoverGappedALblTxt,read.gappedA]];
     NSMutableAttributedString *gappedBStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:kReadPopoverGappedBLblTxt,read.gappedB]];
     
+    [gappedAStr addAttribute:NSBackgroundColorAttributeName value:[UIColor clearColor] range:NSMakeRange(0, gappedAStr.length)];
+    [gappedBStr addAttribute:NSBackgroundColorAttributeName value:[UIColor clearColor] range:NSMakeRange(0, gappedBStr.length)];
+    
     int startIndex = (int)kReadPopoverGappedALblTxt.length-2;//-2 subtracts off the %s
     int lenA = (int)strlen(read.gappedA);
     for (int i = 0; i < lenA; i++) {
@@ -74,6 +77,8 @@
         }
     }
     
+    gappedALbl.text = nil;
+    gappedBLbl.text = nil;
     gappedALbl.attributedText = gappedAStr;
     gappedBLbl.attributedText = gappedBStr;
 }

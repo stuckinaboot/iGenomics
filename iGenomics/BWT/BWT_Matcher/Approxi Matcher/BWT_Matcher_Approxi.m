@@ -17,8 +17,8 @@
     
     numOfChunks = amtOfSubs+1;
     
-    if (fmod(queryLength, 2) != 0) //Odd
-        queryLength++;
+//    if (fmod(queryLength, 2) != 0) //Odd
+//        queryLength++;
     
     sizeOfChunks = queryLength/numOfChunks;
     
@@ -63,7 +63,6 @@
                     if (originalStr[l+rightStrStart] != query[(i+1)*sizeOfChunks+l])
                         numOfSubstitutions++;
                 }
-                 
                 
                 if (numOfSubstitutions<=amtOfSubs)
                     [self addAlignmentsToPosArrayForChunkNum:i posIndex:x sizeOfChunks:sizeOfChunks matchedChunk:chunks[i] queryLen:queryLength andIsRev:isRev andED:numOfSubstitutions andQuery:query];
@@ -78,7 +77,11 @@
 - (void)addAlignmentsToPosArrayForChunkNum:(int)cNum posIndex:(int)x sizeOfChunks:(int)len matchedChunk:(Chunks*)chunk queryLen:(int)qLen andIsRev:(BOOL)isRev andED:(int)distance andQuery:(char*)query {
     
     int pos = [[chunk.matchedPositions objectAtIndex:x] intValue] - cNum*len;
-    ED_Info *info = [[ED_Info alloc] initWithPos:pos editDistance:distance gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev];
+    
+    char *gappedB = strndup(originalStr+pos, qLen);
+    
+    ED_Info *info = [[ED_Info alloc] initWithPos:pos editDistance:distance gappedAStr:query gappedBStr:gappedB isIns:NO isReverse:isRev];
+    free(gappedB);
     
     if ([self isNotDuplicateAlignment:info inArr:positionsArray]) {
         if (pos+qLen<=dgenomeLen && pos>-1)
@@ -90,7 +93,7 @@
     if (cNum < num-1)
         chunk.range = NSMakeRange(start, len);
     else
-        chunk.range = NSMakeRange(start, len+1);
+        chunk.range = NSMakeRange(start, strlen(query)-(num-1)*len);
     start += len;
 }
 
@@ -113,12 +116,14 @@
 - (int)figureOutCharsToCheckRightForI:(int)i andChunkLen:(int)cLen andQueryLen:(int)qLen andNumOfChunks:(int)num {
     int charsToCheck = 0;
     
-    if (i>0 && i<num-1)
-        charsToCheck = (qLen-1)-((cLen*i+1)+(cLen-1));
+    if (i>0 && i<num-1) {
+//        charsToCheck = (qLen-1)-((cLen*i+1)+(cLen-1));
+//        if ((i+1)*cLen + charsToCheck < qLen)
+//            charsToCheck += qLen-((i+1)*cLen + charsToCheck);
+        charsToCheck = qLen - (i+1)*cLen;
+    }
     else if (i == 0)
-        charsToCheck = (num-1)*cLen;
-        if (qLen%2 != 0)
-            charsToCheck -= 1;
+        charsToCheck = qLen-cLen;
     else if (i == num-1)
         charsToCheck = 0;
     
