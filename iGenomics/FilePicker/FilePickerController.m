@@ -44,7 +44,7 @@
     refInputView = [[inputViewNib instantiateWithOwner:refInputView options:nil] objectAtIndex:0];
     
     [refFileManager setUpWithDefaultFileNamesPath:kDefaultRefFilesNamesFile ofType:kTxt];
-    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:[NSArray arrayWithObjects:kFa, kFasta, nil] andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, nil]];
+    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:[NSArray arrayWithObjects:kFa, kFasta, nil] andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, nil] andMaxFileSize:kFileSizeMaxRef];
     [refInputView setDelegate:self];
     
     //Reads
@@ -52,7 +52,7 @@
     readsInputView = [[inputViewNib instantiateWithOwner:readsInputView options:nil] objectAtIndex:0];
     
     [readsFileManager setUpWithDefaultFileNamesPath:kDefaultReadsFilesNamesFile ofType:kTxt];
-    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, kFilePickerFastqValidationStr, nil]];
+    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, kFilePickerFastqValidationStr, nil] andMaxFileSize:kFileSizeMaxReads];
     [readsInputView setDelegate:self];
     
     //Impt muts
@@ -62,7 +62,7 @@
     imptMutsInputView = [[inputViewNib instantiateWithOwner:imptMutsInputView options:nil] objectAtIndex:0];
     
     [imptMutsFileManager setUpWithDefaultFileNamesPath:kDefaultImptMutsFilesNamesFile ofType:kTxt];
-    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesImptMuts andValidationStrings:nil];
+    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesImptMuts andValidationStrings:nil andMaxFileSize:kFileSizeMaxImptMuts];
     [imptMutsInputView setDelegate:self];
 }
 

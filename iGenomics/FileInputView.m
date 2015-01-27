@@ -21,14 +21,18 @@
     return self;
 }
 
-- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes andValidationStrings:(NSArray *)valStrs {
+- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes andValidationStrings:(NSArray *)valStrs andMaxFileSize:(int)maxFS {
+    
     fileManager = manager;
+    [manager setMaxFileSize:maxFS];
+    
     instructLbl.text = instructTxt;
     searchBar.placeholder = placeHolderTxt;
     validationStrings = valStrs;
     
     supportedFileTypes = supportedTypes;
     
+    maxFileSize = maxFS;
     UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kKeyboardToolbarHeight)];
     
     keyboardToolbar.items = [NSArray arrayWithObjects:[[UIBarButtonItem alloc] initWithTitle:kKeyboardDoneBtnTxt style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)], nil];
@@ -142,7 +146,7 @@
                         parentPath = info.path;
                     }
                     shouldShowSelectedRow = !info.isFolder;
-                    if (!info.isFolder && info.size > kDropboxFileSizeMax) {
+                    if (!info.isFolder && info.size > maxFileSize) {
                         [GlobalVars displayiGenomicsAlertWithMsg:[NSString stringWithFormat:kDropboxFileTooLargeAlertMsg]];
                         shouldShowSelectedRow = NO;
                     }

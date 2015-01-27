@@ -17,12 +17,15 @@
 @interface FileManager : NSObject {
     NSString *lastOpenedFileName;
     NSString *lastOpenedFileContents;
+    
+    int maxFileSize;
 }
 @property (nonatomic) NSMutableArray *defaultFileNames;
 @property (nonatomic) NSMutableArray *dropboxFileNames;
 @property (nonatomic, readonly) DBFilesystem *dbFileSys;
 - (void)setUpWithDefaultFileNamesPath:(NSString*)path ofType:(NSString*)type;
 - (void)setUpForDropbox;
+- (void)setMaxFileSize:(int)maxFS;
 
 - (NSMutableArray*)fileNamesArrayWithNamesContainingTxt:(NSString*)txt inArr:(NSArray*)arr;
 - (NSMutableArray*)fileNamesForPath:(DBPath*)path;

@@ -111,6 +111,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         coverageArray[i] = coverageCounter;
         
         if (coverageCounter<kLowestAllowedCoverage) { //Less than 5x coverage, report all matches
+            posInFoundGenomeCounter = 1;//Must be reset back to 1, so that all matches are reported and copied into the correct position in memory with no gaps in found genome
             for (int a = 0; a < kACGTLen+1; a++) {
                 if (charWMostOccs != a) {
                     if (posOccArray[a][i]>0) {  //Character did match, report it

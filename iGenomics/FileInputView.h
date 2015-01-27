@@ -52,6 +52,8 @@
     NSIndexPath *lastSelectedIndexPath;
     
     NSArray *validationStrings;//Compares each str to the beginning of the file and if one of them matches, it passes validation
+    
+    int maxFileSize;
 }
 @property (nonatomic) id <FileInputViewDelegate> delegate;
 @property (nonatomic, readonly) IBOutlet UITableView *tblView;
@@ -61,5 +63,5 @@
 - (NSString*)nameOfSelectedRow;
 - (NSString*)contentsOfSelectedRow;
 - (BOOL)selectedFilePassedValidation;
-- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes andValidationStrings:(NSArray*)valStrs;
+- (void)setUpWithFileManager:(FileManager *)manager andInstructLblText:(NSString *)instructTxt andSearchBarPlaceHolderTxt:(NSString *)placeHolderTxt andSupportFileTypes:(NSArray*)supportedTypes andValidationStrings:(NSArray*)valStrs andMaxFileSize:(int)maxFS;
 @end

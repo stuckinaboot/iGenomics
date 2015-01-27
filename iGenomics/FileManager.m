@@ -28,6 +28,10 @@
     dropboxFileNames = [[NSMutableArray alloc] initWithArray:[dbFileSys listFolder:[DBPath root] error:nil]];
 }
 
+- (void)setMaxFileSize:(int)maxFS {
+    maxFileSize = maxFS;
+}
+
 - (NSMutableArray*)fileNamesArrayWithNamesContainingTxt:(NSString*)txt inArr:(NSArray*)arr {
     NSMutableArray *filteredArr = [[NSMutableArray alloc] init];
     for (id a in arr) {
@@ -51,7 +55,7 @@
     if ([path.name isEqualToString:lastOpenedFileName])
         return lastOpenedFileContents;
     DBFile *file = [dbFileSys openFile:path error:nil];
-    if (file.info.size > kDropboxFileSizeMax) {
+    if (file.info.size > maxFileSize) {
         [GlobalVars displayiGenomicsAlertWithMsg:[NSString stringWithFormat:kDropboxFileTooLargeAlertMsg]];
         return @"";
     }
