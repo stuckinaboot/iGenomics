@@ -50,8 +50,12 @@
 - (NSString*)fileContentsForPath:(DBPath*)path {
     if ([path.name isEqualToString:lastOpenedFileName])
         return lastOpenedFileContents;
-    lastOpenedFileName = path.name;
     DBFile *file = [dbFileSys openFile:path error:nil];
+    if (file.info.size > kDropboxFileSizeMax) {
+        [GlobalVars displayiGenomicsAlertWithMsg:[NSString stringWithFormat:kDropboxFileTooLargeAlertMsg]];
+        return @"";
+    }
+    lastOpenedFileName = path.name;
     lastOpenedFileContents = [file readString:nil];
     [file close];
     return lastOpenedFileContents;

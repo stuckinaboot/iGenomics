@@ -142,7 +142,12 @@
                         parentPath = info.path;
                     }
                     shouldShowSelectedRow = !info.isFolder;
-                    [delegate fileSelected:!info.isFolder InFileInputView:self];
+                    if (!info.isFolder && info.size > kDropboxFileSizeMax) {
+                        [GlobalVars displayiGenomicsAlertWithMsg:[NSString stringWithFormat:kDropboxFileTooLargeAlertMsg]];
+                        shouldShowSelectedRow = NO;
+                    }
+                    else
+                        [delegate fileSelected:!info.isFolder InFileInputView:self];
                 }
             }
             else
@@ -257,6 +262,9 @@
             return;
         s = [fileManager fileContentsForPath:info.path];
     }
+    
+    if ([s isEqualToString:@""])
+        return;
 
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
         NSArray *sComponents = [NSArray arrayWithArray:[[s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:kLineBreak]];

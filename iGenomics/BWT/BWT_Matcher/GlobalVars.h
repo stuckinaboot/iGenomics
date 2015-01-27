@@ -24,6 +24,8 @@ typedef enum {
 //End debugging constants
 
 #define kDropboxLinkedSuccessfullyAlertMsg @"Dropbox account linked successfully. Please select the Dropbox function you were intending to use again."
+#define kDropboxFileTooLargeAlertMsg @"Selected file is too large."
+#define kDropboxFileSizeMax 100000000
 
 #define kReadExportDataBasicInfo @"%s,%i,%c,%i,%s,%s\n"//read name, position, forward/reverse, gapped b, gapped a
 #define kReadExportDataCompleteInfo @"%s,%i,%s,%c,%i,%s,%s\n"//read name, position relative to segment, segment, forward/reverse, gapped b, gapped a --May not even need to be used but is good to have to show the format
