@@ -58,6 +58,8 @@ typedef enum {
 #define kFq @"fq"
 #define kFastq @"fastq"
 
+#define kImptMutsFileExt @"mpl"
+
 #define kFaInterval 2
 #define kFqInterval 4
 

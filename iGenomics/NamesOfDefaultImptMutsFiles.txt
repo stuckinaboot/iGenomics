@@ -1,1 +1,1 @@
-flu.H3N2.txt
+flu.H3N2.mpl

@@ -56,7 +56,7 @@
     [readsInputView setDelegate:self];
     
     //Impt muts
-    NSArray *fileTypesImptMuts = [NSArray arrayWithObjects:kTxt, nil];
+    NSArray *fileTypesImptMuts = [NSArray arrayWithObjects:kImptMutsFileExt, nil];
     
     imptMutsFileManager = [[FileManager alloc] init];
     imptMutsInputView = [[inputViewNib instantiateWithOwner:imptMutsInputView options:nil] objectAtIndex:0];

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
-		A305AFB419918EA900F35333 /* flu.H3N2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A305AFB319918EA900F35333 /* flu.H3N2.txt */; };
+		A305AFB419918EA900F35333 /* flu.H3N2.mpl in Resources */ = {isa = PBXBuildFile; fileRef = A305AFB319918EA900F35333 /* flu.H3N2.mpl */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -137,7 +137,7 @@
 /* Begin PBXFileReference section */
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
-		A305AFB319918EA900F35333 /* flu.H3N2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H3N2.txt; sourceTree = "<group>"; };
+		A305AFB319918EA900F35333 /* flu.H3N2.mpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H3N2.mpl; sourceTree = "<group>"; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A310AF4E158A5F7200E892AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A310AF50158A5F7200E892AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -997,7 +997,7 @@
 			isa = PBXGroup;
 			children = (
 				A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */,
-				A305AFB319918EA900F35333 /* flu.H3N2.txt */,
+				A305AFB319918EA900F35333 /* flu.H3N2.mpl */,
 			);
 			name = "Default Impt Muts Files";
 			sourceTree = "<group>";
@@ -1123,7 +1123,7 @@
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
-				A305AFB419918EA900F35333 /* flu.H3N2.txt in Resources */,
+				A305AFB419918EA900F35333 /* flu.H3N2.mpl in Resources */,
 				A37D7DF01A1D484B009007A3 /* QBCLT_R105_BC013.trimmed.30x.fq in Resources */,
 				A3C32D5619B0E41C001AB91B /* QBCLT_R105_BC013.fastq in Resources */,
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
