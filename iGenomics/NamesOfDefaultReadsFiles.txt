@@ -1,14 +1,4 @@
-QBCLT_R105_BC013.trimmed.30x.fq
-QBCLTR105BC0071.fq.1000.fq
-QBCLT_R105_BC013.fastq
-QBCLTR105BC0071.fq
-QBCLTR105BC0071.100r.fq
-QBCLTR105BC0071.100r.shortened.fq
 flu.H1N1.reads.fq
-rice.fq
-e_coli_1000_1.fq
-reads.fa
-reads.fq
 anthrax.capsule.reads.fa
 lambdaphage.reads.fa
 phix174.reads.fa

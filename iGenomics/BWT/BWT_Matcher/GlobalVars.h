@@ -86,7 +86,7 @@ typedef enum {
 
 #define kAlertBtnTitleCancel @"Cancel"
 
-#define kOldIPhoneScreenSize 480
+#define kOldIPhoneScreenSize 480 //B/c in landscape
 
 #define kBWTFileExt @"bwt"
 #define kBWTFileDividerBtwBWTandBenchmarkPosList @"\n--------\n"

@@ -1,7 +1,6 @@
 flu.H3N2.fa
 flu.H2N2.fa
 flu.H1N1.fa
-Ecoli.50k.fa
 anthrax.capsule.fa
 lambdaphage.fa
 phix174.fa

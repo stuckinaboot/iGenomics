@@ -14,7 +14,7 @@
 #import "IPhonePopoverHandler.h"
 
 #define kGenomeLengthLblStart @"Genome Len: "
-#define kReadLengthLblStart @"Read Len: "
+#define kReadLengthLblStart @"First Read Len: "
 #define kNumOfReadsLblStart @"Num Reads: "
 
 #define kCoverageHistogramPopoverWidth 600

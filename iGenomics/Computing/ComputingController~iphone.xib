@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComputingController">
             <connections>
                 <outlet property="readProgressView" destination="23" id="32"/>
                 <outlet property="readsProcessedLbl" destination="GQI-UT-BUB" id="oc9-uO-oeM"/>
+                <outlet property="timeRemainingLbl" destination="har-rd-UpS" id="jEJ-cj-rkx"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analyzing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="0.0" y="15" width="320" height="213"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="0.0" y="48" width="320" height="66"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="320" id="11"/>
-                        <constraint firstAttribute="height" constant="213" id="12"/>
+                        <constraint firstAttribute="height" constant="66" id="14Z-pB-VYU"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="55"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                    <rect key="frame" x="9" y="349" width="302" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="8" y="361" width="302" height="2"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="302" id="29"/>
+                        <constraint firstAttribute="height" constant="2" id="FBS-Vh-TXR"/>
                     </constraints>
                 </progressView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GQI-UT-BUB">
-                    <rect key="frame" x="34" y="211" width="253" height="82"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="34" y="273" width="253" height="55"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="82" id="gIC-nj-cUp"/>
+                        <constraint firstAttribute="height" constant="55" id="gtI-eD-lR8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconIdea2-Small.png" translatesAutoresizingMaskIntoConstraints="NO" id="flc-wd-B2v">
+                    <rect key="frame" x="111" y="169" width="98" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="98" id="GbB-x2-Chf"/>
+                        <constraint firstAttribute="height" constant="70" id="w3l-hX-IYQ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="har-rd-UpS">
+                    <rect key="frame" x="33" y="410" width="253" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="dI7-id-rr1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -48,15 +62,33 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="13"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="15" id="14"/>
-                <constraint firstAttribute="bottom" secondItem="23" secondAttribute="bottom" constant="217" id="27"/>
-                <constraint firstItem="23" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="9" id="30"/>
-                <constraint firstItem="GQI-UT-BUB" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="34" id="8aj-RZ-2lf"/>
-                <constraint firstItem="GQI-UT-BUB" firstAttribute="centerX" secondItem="23" secondAttribute="centerX" id="FA0-99-R6H"/>
-                <constraint firstItem="23" firstAttribute="top" secondItem="GQI-UT-BUB" secondAttribute="bottom" constant="56" id="lkU-uO-s2A"/>
+                <constraint firstItem="har-rd-UpS" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="47" id="0ky-SS-RHx"/>
+                <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="10" id="5yO-Ye-fPO"/>
+                <constraint firstItem="har-rd-UpS" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="33" id="6Xu-rE-lNp"/>
+                <constraint firstItem="GQI-UT-BUB" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="34" id="6rH-4A-uTg"/>
+                <constraint firstItem="flc-wd-B2v" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="55" id="9TL-ET-Rvz"/>
+                <constraint firstItem="23" firstAttribute="leading" secondItem="2" secondAttribute="leadingMargin" id="DO7-h8-zY4"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Hmp-ky-bxQ"/>
+                <constraint firstItem="flc-wd-B2v" firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="Htd-Qp-Lbo"/>
+                <constraint firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="12" id="UFf-69-2ir"/>
+                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="X1T-TV-ff0"/>
+                <constraint firstItem="GQI-UT-BUB" firstAttribute="top" secondItem="flc-wd-B2v" secondAttribute="bottom" priority="999" constant="34" id="jjY-lx-PRW"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="48" id="jrl-Fl-AN3"/>
+                <constraint firstItem="23" firstAttribute="centerX" secondItem="har-rd-UpS" secondAttribute="centerX" id="mUz-8F-0TL"/>
+                <constraint firstItem="flc-wd-B2v" firstAttribute="centerX" secondItem="GQI-UT-BUB" secondAttribute="centerX" id="txP-ei-Ero"/>
+                <constraint firstItem="23" firstAttribute="top" secondItem="GQI-UT-BUB" secondAttribute="bottom" constant="33" id="x6y-8g-hcx"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="307" y="398"/>
         </view>
     </objects>
+    <resources>
+        <image name="IconIdea2-Small.png" width="300" height="300"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina47"/>
+    </simulatedMetricsContainer>
 </document>

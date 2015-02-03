@@ -79,7 +79,8 @@ NSString * const kOutdatedDevicesArray[] = {@"iPad1,1", @"iPad2,1", @"iPad2,2", 
 }
 
 + (BOOL)isOldIPhone {
-    return [[UIScreen mainScreen] bounds].size.height == kOldIPhoneScreenSize;
+    int width = [[UIScreen mainScreen] bounds].size.width;
+    return width == kOldIPhoneScreenSize;
 }
 
 + (NSString*)extFromFileName:(NSString *)name {

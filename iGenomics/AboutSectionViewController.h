@@ -11,7 +11,7 @@
 
 #define kAboutSectionFileName @"About"
 #define kAboutSectionFileExt @"txt"
-#define kAboutSectionFontSize 30
+#define kAboutSectionFontSize 20
 
 @interface AboutSectionViewController : UIViewController {
     IBOutlet UITextView *abtView;

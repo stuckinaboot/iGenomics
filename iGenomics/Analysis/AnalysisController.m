@@ -65,7 +65,7 @@
         
         [self setUpIPhoneToolbar];
         [analysisControllerIPadToolbar setUp];
-        firstAppeared = TRUE;
+
         if (gridView.maxCoverageVal == 0)
             [gridView setMaxCovValWithNumOfCols:dgenomeLen-1];
         if ([GlobalVars isIpad])
@@ -88,8 +88,15 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+    
+    if ([GlobalVars isOldIPhone] && !firstAppeared) {
+        [self setUpIPhoneToolbar];
+    }
+    
+    firstAppeared = TRUE;
 //    analysisControllerIPadMenu = [[AnalysisControllerIPadMenu alloc] init];
 }
 
@@ -804,6 +811,7 @@
     
     CGRect rect = self.view.bounds;
     [analysisControllerIPhoneToolbar setFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+    [analysisControllerIPhoneToolbar removeFromSuperview];
     [self.view addSubview:analysisControllerIPhoneToolbar];
     [analysisControllerIPhoneToolbar layoutIfNeeded];
 

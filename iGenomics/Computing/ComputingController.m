@@ -51,13 +51,27 @@
     if (trimmingValue != kTrimmingOffVal)
         myReads = [self readsAfterTrimmingForReads:myReads andTrimValue:trimmingValue andReferenceQualityChar:[[myParameterArray objectAtIndex:kParameterArrayTrimmingRefCharIndex] characterAtIndex:0]];
     
+    timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
+    
     //Set up parameters
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
     dispatch_async(queue, ^{//Opens up a background thread
+        readTimer = [[APTimer alloc] init];
+        [readTimer start];
+        
         [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
-
+            [timeRemainingUpdateTimer invalidate];
+            timeRemainingUpdateTimer = nil;
+            
+            timeRemaining = 0;
+            [self updateReadsProcessedLblTimeRemaining];
+            
+            timeRemaining = 0;
+            [readTimer stop];
+            readTimer = nil;
+            
             bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
             [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
             [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
@@ -118,6 +132,18 @@
         readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     }];
 }
+
+- (void)updateReadsProcessedLblTimeRemaining {
+    int seconds = timeRemaining % 60;
+    int minutes = (timeRemaining / 60) % 60;
+    int hours = timeRemaining / 3600;
+    
+    if (timeRemaining >= 0) {
+        timeRemainingLbl.text = [NSString stringWithFormat:kComputingTimeRaminingCalculatedTxt, hours, minutes, seconds];
+        timeRemaining -= kComputingTimeRemainingUpdateInterval;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -126,6 +152,11 @@
 
 //BWT_Delegate
 - (void)readProccesed:(NSString *)readData {
+    if (readsProcessed < kComputingTimeRemainingNumOfReadsToBaseTimeOffOf) {
+        [readTimer stop];
+        timesToProcessComputingReads[readsProcessed] = [readTimer getTotalRecordedTime];
+        [readTimer start];
+    }
     readsProcessed++;
     [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
     [exportDataStr appendFormat:@"%@",readData];
@@ -140,10 +171,39 @@
 }
 
 - (void)updateProgressView {
+    if (readsProcessed >= kComputingTimeRemainingNumOfReadsToBaseTimeOffOf && timeRemainingUpdateTimer == nil) {
+        [readTimer stop];
+        [self computeInitialTimeRemaining];
+        
+        timeRemainingUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:kComputingTimeRemainingUpdateInterval target:self selector:@selector(updateReadsProcessedLblTimeRemaining) userInfo:nil repeats:YES];
+    }
+    else if (readsProcessed >= (int)bwt.numOfReads*kComputingTimeRemainingFracOfReadsToBeginFreqUpdatingAt && readsProcessed % kComputingTimeRemainingNumOfReadsToBaseTimeOffOf == 0) {
+        [readTimer stop];
+        timeRemaining = (bwt.numOfReads-readsProcessed)*([readTimer getTotalRecordedTime]/readsProcessed);
+        [readTimer start];
+    }
+    
     readProgressView.progress += (1.0f/bwt.numOfReads);
     readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     if (kPrintReadProcessedInConsole>0)
         printf("\n%i reads processed",readsProcessed);
+}
+
+- (void)computeInitialTimeRemaining {
+    timeRemaining = [readTimer getTotalRecordedTime] * (bwt.numOfReads-kComputingTimeRemainingNumOfReadsToBaseTimeOffOf) / kComputingTimeRemainingNumOfReadsToBaseTimeOffOf;
+    
+    double timeRemainingSD = 0;
+    
+    double sumOfSquaredDiffs = 0;
+    for (int i = 0; i < kComputingTimeRemainingNumOfReadsToBaseTimeOffOf; i++) {
+        sumOfSquaredDiffs += pow((timesToProcessComputingReads[i]-((i > 0) ? timesToProcessComputingReads[i-1] : 0)) - timeRemaining, 2);
+    }
+    
+    timeRemainingSD = sqrt(sumOfSquaredDiffs/kComputingTimeRemainingNumOfReadsToBaseTimeOffOf);
+    
+    timeRemaining += kComputingTimeRemainingNumOfSDsToAddToMeanTimeRemaining * timeRemainingSD;
+    
+    [readTimer start];
 }
 
 //Supported Orientations

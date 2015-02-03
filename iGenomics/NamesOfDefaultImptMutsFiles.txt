@@ -1,2 +1,1 @@
-FluImptMuts.txt
-RealFluImptMuts.txt
+flu.H3N2.txt

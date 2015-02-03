@@ -30,6 +30,8 @@
     abtView.text = [NSString stringWithFormat:abtView.text,[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]];
     abtView.font = [UIFont systemFontOfSize:kAboutSectionFontSize];
     abtView.textAlignment = NSTextAlignmentCenter;
+    abtView.dataDetectorTypes = UIDataDetectorTypeLink;
+    abtView.selectable = YES;
     
     // Do any additional setup after loading the view from its nib.
 }

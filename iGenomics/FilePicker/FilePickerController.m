@@ -83,6 +83,17 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
+    refInputView.frame = CGRectMake(refInputView.frame.origin.x, refInputView.frame.origin.y, refFileInputContainerView.frame.size.width, refFileInputContainerView.frame.size.height);
+    [refFileInputContainerView addSubview:refInputView];
+    
+    readsInputView.frame = CGRectMake(readsInputView.frame.origin.x, readsInputView.frame.origin.y, readsFileInputContainerView.frame.size.width, readsFileInputContainerView.frame.size.height);
+    [readsFileInputContainerView addSubview:readsInputView];
+    
+    imptMutsInputView.frame = CGRectMake(imptMutsInputView.frame.origin.x, imptMutsInputView.frame.origin.y, imptMutsFileInputContainerView.frame.size.width, imptMutsFileInputContainerView.frame.size.height);
+    [imptMutsFileInputContainerView addSubview:imptMutsInputView];
+    
+    [scrollView setContentOffset:CGPointMake(self.view.frame.size.width*filePickerCurrentlySelecting, 0)];
 }
 
 - (void)resetScrollViewOffset {
