@@ -35,7 +35,7 @@
     mutationsArray = (NSMutableArray*)arr;
     [mutationsTBView reloadData];
     [delegate mutationsPopoverDidFinishUpdating];
-    if ([lenArr count] > 1) {
+    if ([lenArr count] >= 1) {
         int index = 0;
         int numOfRowsInSection = 0;
         for (int x = 0; x < [mutationsArray count]; x++) {

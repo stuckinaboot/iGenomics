@@ -24,8 +24,8 @@
     CGRect rect = CGRectMake(0, 0, imgView.bounds.size.width, imgView.bounds.size.height);
     if (UIGraphicsBeginImageContextWithOptions != NULL)
         UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);//0.0 sets the scale factor to the scale of the device's main screen
-    else
-        UIGraphicsBeginImageContext(rect.size);
+//    else
+//        UIGraphicsBeginImageContext(rect.size);
     [imgView.image drawInRect:rect];
     [self drawPlotInRect:rect];
     [self drawAxisesInRect:rect];
@@ -57,7 +57,6 @@
     float x = kCoverageHistogramYAxisDistFromScreenLeft+kCoverageHistogramAxisWidth+boxWidth/2;
     float y = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-kCoverageHistogramAxisWidth;
     float i = 0;
-    float step = 1.0f/kCoverageHistogramNormalCurveLinesPerBox;
     
     float bw = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
     boxWidth = bw;

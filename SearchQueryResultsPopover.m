@@ -58,7 +58,7 @@
     }
     else {
         //Show total number of results
-        [cell.textLabel setText:[NSString stringWithFormat:@"Total Results: %i",[foundResults count]]];
+        [cell.textLabel setText:[NSString stringWithFormat:@"Total Results: %i",(int)[foundResults count]]];
     }
     
     return cell;

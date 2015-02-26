@@ -181,7 +181,7 @@
 
 - (NSMutableString*)getMutationsExportStr {
     NSMutableString *mutString = [[NSMutableString alloc] init];
-    [mutString appendFormat:kMutationTotalFormat,[mutPosArray count]];
+    [mutString appendFormat:kMutationTotalFormat,(int)[mutPosArray count]];
     MutationInfo *inf;
     if ([mutPosArray count] > 0)
         inf = [mutPosArray objectAtIndex:0];
