@@ -44,10 +44,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconIdea2-Small.png" translatesAutoresizingMaskIntoConstraints="NO" id="flc-wd-B2v">
-                    <rect key="frame" x="111" y="169" width="98" height="70"/>
+                    <rect key="frame" x="111" y="169" width="98" height="85"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="98" id="GbB-x2-Chf"/>
-                        <constraint firstAttribute="height" constant="70" id="w3l-hX-IYQ"/>
+                        <constraint firstAttribute="height" constant="85" id="w3l-hX-IYQ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="har-rd-UpS">
@@ -72,7 +72,7 @@
                 <constraint firstItem="flc-wd-B2v" firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="Htd-Qp-Lbo"/>
                 <constraint firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="12" id="UFf-69-2ir"/>
                 <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="X1T-TV-ff0"/>
-                <constraint firstItem="GQI-UT-BUB" firstAttribute="top" secondItem="flc-wd-B2v" secondAttribute="bottom" priority="999" constant="34" id="jjY-lx-PRW"/>
+                <constraint firstItem="GQI-UT-BUB" firstAttribute="top" secondItem="flc-wd-B2v" secondAttribute="bottom" priority="999" constant="19" id="jjY-lx-PRW"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="48" id="jrl-Fl-AN3"/>
                 <constraint firstItem="23" firstAttribute="centerX" secondItem="har-rd-UpS" secondAttribute="centerX" id="mUz-8F-0TL"/>
                 <constraint firstItem="flc-wd-B2v" firstAttribute="centerX" secondItem="GQI-UT-BUB" secondAttribute="centerX" id="txP-ei-Ero"/>
