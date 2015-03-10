@@ -1,4 +1,4 @@
-gi|229783392|gb|CY039900.1|   980   G   C   You will literally turn into a donut
-gi|229783392|gb|CY039900.1|   1310   A   C   Dinosaurs will come back again
-gi|229783390|gb|CY039899.1|   486   A   G   Fish will be fried
-gi|229783388|gb|CY039898.1|   228   A   C   Wow!
+gi|229783392|gb|CY039900.1|    980    G    C    You will literally turn into a donut
+gi|229783392|gb|CY039900.1|    1310    A    C    Dinosaurs will come back again
+gi|229783390|gb|CY039899.1|    486    A    G    Fish will be fried
+gi|229783388|gb|CY039898.1|    228    A    C    Wow!

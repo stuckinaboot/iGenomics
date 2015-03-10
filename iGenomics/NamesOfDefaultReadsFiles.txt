@@ -1,4 +1,5 @@
-flu.H1N1.reads.fq
+flu.H1N1.clean.fq
+flu.H1N1.resistant.fq
 anthrax.capsule.reads.fa
 lambdaphage.reads.fa
 phix174.reads.fa

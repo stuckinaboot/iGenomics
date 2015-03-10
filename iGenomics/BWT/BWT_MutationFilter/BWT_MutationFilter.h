@@ -35,7 +35,7 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
 #define kImptMutsStrRefCharIndex 2
 #define kImptMutsStrFoundCharIndex 3
 #define kImptMutsStrDescriptionIndex 4
-#define kImptMutsStrComponentSeparator @"   "
+#define kImptMutsStrComponentSeparator @"    "
 
 @class ImportantMutationInfo;
 
