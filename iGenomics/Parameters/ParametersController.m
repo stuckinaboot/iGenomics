@@ -44,7 +44,7 @@
         keyboardToolbar.items = [NSArray arrayWithObjects:
                                [[UIBarButtonItem alloc]initWithTitle:kKeyboardDoneBtnTxt style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)],
                                nil];
-        maxEDTxtFld.inputAccessoryView = keyboardToolbar;
+        maxERTxtFld.inputAccessoryView = keyboardToolbar;
         mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
     }
     
@@ -61,13 +61,15 @@
         trimmingSwitch.on = NO;
         [self trimmingSwitchValueChanged:nil];
     }
+    maxERSldr.maximumValue = kMaxER;
     [self mutationSupportValueChanged:nil];
-    [self maxEDValueChanged:nil];
+    [self maxERValueChangedViaSldr:nil];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
     [mutationSupportTxtFld resignFirstResponder];
-    [maxEDTxtFld resignFirstResponder];
+    [maxERTxtFld resignFirstResponder];
+    [self maxERValueChangedViaTxtFld:nil];
 }
 
 - (IBAction)useLastUsedParameters:(id)sender {
@@ -77,8 +79,8 @@
     matchTypeCtrl.selectedSegmentIndex = [[arr objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
     [self matchTypeChanged:nil];
     
-    maxEDStpr.value = [[arr objectAtIndex:kParameterArrayEDIndex] intValue];
-    [self maxEDValueChanged:nil];
+    maxERSldr.value = [[arr objectAtIndex:kParameterArrayERIndex] doubleValue];
+    [self maxERValueChangedViaSldr:nil];
     
     mutationSupportStpr.value = [[arr objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
     [self mutationSupportValueChanged:nil];
@@ -109,14 +111,14 @@
 - (IBAction)matchTypeChanged:(id)sender {
     if (matchTypeCtrl.selectedSegmentIndex > 0) {
         //Show ED picker
-        maxEDLbl.hidden = FALSE;
-        maxEDStpr.hidden = FALSE;
-        maxEDTxtFld.hidden = FALSE;
+        maxERLbl.hidden = FALSE;
+        maxERSldr.hidden = FALSE;
+        maxERTxtFld.hidden = FALSE;
     }
     else {
-        maxEDLbl.hidden = TRUE;
-        maxEDStpr.hidden = TRUE;
-        maxEDTxtFld.hidden = TRUE;
+        maxERLbl.hidden = TRUE;
+        maxERSldr.hidden = TRUE;
+        maxERTxtFld.hidden = TRUE;
     }
 }
 
@@ -143,8 +145,12 @@
 - (IBAction)mutationSupportValueChanged:(id)sender {
     mutationSupportLbl.text = [NSString stringWithFormat:kMutSupportLblTxt,(int)mutationSupportStpr.value];
 }
-- (IBAction)maxEDValueChanged:(id)sender {
-    maxEDLbl.text = [NSString stringWithFormat:kMaxEDLblTxt,(int)maxEDStpr.value];
+- (IBAction)maxERValueChangedViaSldr:(id)sender {
+    maxERTxtFld.text = [NSString stringWithFormat:@"%.02f", maxERSldr.value];
+}
+
+- (IBAction)maxERValueChangedViaTxtFld:(id)sender {
+    maxERSldr.value = [maxERTxtFld.text doubleValue];
 }
 
 - (IBAction)trimmingValueChanged:(id)sender {
@@ -181,7 +187,7 @@
         reads = [self readsByRemovingQualityValFromReads:reads];
     }
     
-    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithInt:(matchTypeCtrl.selectedSegmentIndex > 0) ? (int)maxEDStpr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar,nil];//contains everything except refFilename and readsFileName
+    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar,nil];//contains everything except refFilename and readsFileName
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];

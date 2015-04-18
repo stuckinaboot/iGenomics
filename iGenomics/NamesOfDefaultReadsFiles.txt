@@ -3,3 +3,4 @@ flu.H1N1.resistant.fq
 anthrax.capsule.reads.fa
 lambdaphage.reads.fa
 phix174.reads.fa
+flu.H1N1.longReads.fa

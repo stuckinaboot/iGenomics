@@ -108,7 +108,7 @@
 #define kBasicInfoArrReadLenIndex 2
 #define kBasicInfoArrGenomeLenIndex 3
 #define kBasicInfoArrNumOfReadsIndex 4
-#define kBasicInfoArrEDIndex 5
+#define kBasicInfoArrERIndex 5
 #define kBasicInfoArrNumOfReadsMatchedIndex 6
 #define kBasicInfoArrMutationSupportIndex 7
 
@@ -174,7 +174,7 @@
     int genomeLen;
     int numOfReads;
     int numOfReadsMatched;
-    int editDistance;
+    float errorRate;
     
     NSString *imptMutsFileContents;
     NSMutableArray *imptMutationsArr;

@@ -54,7 +54,7 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
     int alignmentType;
     
     //New Vars
-    int maxSubs;
+    float maxErrorRate;
     NSMutableArray *reedsArray;
     int readNum;
     
@@ -73,7 +73,7 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 @property (nonatomic) int kBytesForIndexer, /*kMultipleToCountAt, */alignmentType, matchType;
 @property (nonatomic) int readLen, refSeqLen, numOfReads;
 
-- (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs;
+- (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxErrorRate:(double)maxER;
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 

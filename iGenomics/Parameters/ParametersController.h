@@ -36,7 +36,8 @@
 //Special File Types End
 
 #define kLastUsedParamsSaveKey @"LastUsedParamsKey"
-#define kMaxEDLblTxt @"Max Edit Distance: %i"
+#define kMaxERLblTxt @"Maximum Error Rate:"
+#define kMaxER 0.5
 #define kMutSupportLblTxt @"Mutation Coverage: %i"
 
 #define kStartSeqDelay 0.2
@@ -48,9 +49,9 @@
     
     //Parameters
     IBOutlet UISegmentedControl *matchTypeCtrl;
-    IBOutlet UILabel *maxEDLbl;
-    IBOutlet UITextField *maxEDTxtFld;
-    IBOutlet UIStepper *maxEDStpr;
+    IBOutlet UILabel *maxERLbl;
+    IBOutlet UITextField *maxERTxtFld;
+    IBOutlet UISlider *maxERSldr;
     
     IBOutlet UISegmentedControl *alignmentTypeCtrl;
     
@@ -75,7 +76,8 @@
 - (IBAction)mutationSupportValueChanged:(id)sender;
 - (IBAction)trimmingValueChanged:(id)sender;
 - (IBAction)trimmingSwitchValueChanged:(id)sender;
-- (IBAction)maxEDValueChanged:(id)sender;
+- (IBAction)maxERValueChangedViaSldr:(id)sender;
+- (IBAction)maxERValueChangedViaTxtFld:(id)sender;
 
 - (IBAction)useLastUsedParameters:(id)sender;
 

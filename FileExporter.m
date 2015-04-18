@@ -12,10 +12,10 @@
 
 @synthesize delegate;
 
-- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andEditDistance:(int)ed andExportDataStr:(NSString *)expDataStr {
+- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr {
     genomeFileName = [NSString stringWithString:gName];
     readsFileName = [NSString stringWithString:rName];
-    editDistance = ed;
+    errorRate = er;
     exportDataStr = [NSString stringWithString:expDataStr];
     [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
 }
@@ -160,7 +160,7 @@
     
     if (option == EmailInfoOptionMutations) {
         [exportMailController setSubject:[NSString stringWithFormat:kExportMutsEmailSubject,readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, editDistance, mutationSupportVal] isHTML:NO];
+        [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, errorRate, mutationSupportVal] isHTML:NO];
         
         NSMutableString *mutString = [self getMutationsExportStr];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,@""]];
@@ -168,7 +168,7 @@
     }
     else if (option == EmailInfoOptionData) {
         [exportMailController setSubject:[NSString stringWithFormat:kExportDataEmailSubject,readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:kExportDataEmailMsg, readsFileName, genomeFileName, editDistance] isHTML:NO];
+        [exportMailController setMessageBody:[NSString stringWithFormat:kExportDataEmailMsg, readsFileName, genomeFileName, errorRate] isHTML:NO];
         
         [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName,@""]];
         [[delegate getVC] presentViewController:exportMailController animated:YES completion:nil];

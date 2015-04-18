@@ -117,7 +117,7 @@
     readLen = [[basicInfArr objectAtIndex:kBasicInfoArrReadLenIndex] intValue];
     genomeLen = [[basicInfArr objectAtIndex:kBasicInfoArrGenomeLenIndex] intValue];
     numOfReads = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsIndex] intValue];
-    editDistance = [[basicInfArr objectAtIndex:kBasicInfoArrEDIndex] intValue];
+    errorRate = [[basicInfArr objectAtIndex:kBasicInfoArrERIndex] floatValue];
     numOfReadsMatched = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsMatchedIndex] intValue];
     bwt.bwtMutationFilter.kHeteroAllowance = [[basicInfArr objectAtIndex:kBasicInfoArrMutationSupportIndex] intValue];
     
@@ -144,7 +144,7 @@
     
     fileExporter = [[FileExporter alloc] init];
     [fileExporter setDelegate:self];
-    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andEditDistance:editDistance andExportDataStr:exportDataStr];
+    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr];
 }
 
 - (void)readyViewForCovProfile {

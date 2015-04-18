@@ -23,7 +23,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     return self;
 }
 
-- (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxSubs:(int)subs {
+- (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxErrorRate:(double)maxER {
     
     [self freeUsedMemory];
     
@@ -62,7 +62,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     refStrBWT = bwt;
     
-    maxSubs = subs;
+    maxErrorRate = maxER;
     readNum = 0;
     
     dgenomeLen = strlen(refStrBWT);
@@ -123,11 +123,11 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
         
         reed = [reedsArray objectAtIndex:readNum];
-        readLen = strlen(reed.sequence);
+        readLen = (int)strlen(reed.sequence);
         
         //printf("DK: calling getBestMatchForQuery\n");
-        
-        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxSubs andReadNum:readNum];
+        int maxNumOfSubs = maxErrorRate * readLen;
+        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum];
         
         if (a != NULL) {
             a.readName = reed.name;
@@ -136,10 +136,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
 //            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
             
-            a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxSubs];
+            a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs];
             
 //            a.distance += charsToTrimEnd + charsToTrimBeginning;
-            if (a.distance <= maxSubs) {
+            if (a.distance <= maxNumOfSubs) {
                 //printf("DK: calling updatePosOccsArray\n");
                 [self updatePosOccsArrayWithRange:NSMakeRange(a.position, strlen(a.gappedA)) andED_Info:a];
             }

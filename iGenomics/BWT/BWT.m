@@ -105,7 +105,7 @@
     NSLog(@"About to load parameters");
     
     bwt_Matcher.matchType = [[parameters objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
-    maxSubs = [[parameters objectAtIndex:kParameterArrayEDIndex] intValue];
+    maxErrorRate = [[parameters objectAtIndex:kParameterArrayERIndex] floatValue];
     bwt_Matcher.alignmentType = [[parameters objectAtIndex:kParameterArrayFoRevIndex] intValue];
     
     NSString *genomeFileSegmentNames = [parameters objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
@@ -138,7 +138,7 @@
     [bwt_Matcher setDelegate:self];
     
     NSLog(@"About to setUpReedsFileContents");
-    [bwt_Matcher setUpReedsFileContents:contents refStrBWT:refStrBWT andMaxSubs:maxSubs];
+    [bwt_Matcher setUpReedsFileContents:contents refStrBWT:refStrBWT andMaxErrorRate:maxErrorRate];
     
     readLen = bwt_Matcher.readLen;
     refSeqLen = bwt_Matcher.refSeqLen;

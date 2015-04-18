@@ -51,11 +51,11 @@ typedef enum {
 
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
-#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum edit distance of %i. The format is for the export is as follows: Read Number, Position Matched, Segment, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as an ACP (Alignment Compressed Protocol) file. \n\nPowered by iGenomics"
+#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum error rate of %.02f. The format of the export data is as follows: Read Number, Position Matched, Segment, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as an ACP (Alignment Compressed Protocol) file. \n\nPowered by iGenomics"
 
 #define kExportMutsFileName @"Mutations"
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
-#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum edit distance of %i. Also, for a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compressed String) file. \n\nPowered by iGenomics"
+#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum error rate of %.02f. For a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compressed String) file. \n\nPowered by iGenomics"
 
 #define kNoMutationsFoundStr @"No Mutations Found"
 
@@ -81,12 +81,12 @@ typedef enum {
     
     NSString *genomeFileName;
     NSString *readsFileName;
-    int editDistance;
+    float errorRate;
     int mutationSupportVal;
     NSArray *mutPosArray;
 }
 @property (nonatomic) id <FileExporterDelegate> delegate;
-- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andEditDistance:(int)ed andExportDataStr:(NSString*)expDataStr;
+- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr;
 - (void)fixExportDataStr;
 
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray*)mutPosArr;

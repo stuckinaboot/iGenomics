@@ -69,7 +69,7 @@ typedef enum {
 #define kFaFileTitleIndicator '>'
 
 #define kParameterArrayMatchTypeIndex 0
-#define kParameterArrayEDIndex 1
+#define kParameterArrayERIndex 1
 #define kParameterArrayFoRevIndex 2
 #define kParameterArrayMutationCoverageIndex 3
 #define kParameterArrayTrimmingValIndex 4

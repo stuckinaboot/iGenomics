@@ -46,7 +46,7 @@
     BWT_MatcherSC *bwt_MatcherSC;
     
     NSMutableArray *insertions;
-    int maxSubs;
+    float maxErrorRate;
 }
 @property (nonatomic) id <BWT_Delegate> delegate;
 @property (nonatomic, retain) BWT_MutationFilter *bwtMutationFilter;
