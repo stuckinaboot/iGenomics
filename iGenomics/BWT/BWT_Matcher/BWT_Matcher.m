@@ -248,8 +248,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     int forwardMatches = 0;//EX. ACA
 
+    int step = (amtOfSubs > kReadLoopMaxSmallEditDist) ? ceilf(amtOfSubs * kReadLoopLargeEditDistStepFactor) : 1;
+    
     BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];
-    for (int subs = 0; subs < amtOfSubs+1; subs++) {
+    for (int subs = 0; subs < amtOfSubs+1; subs += step) {
         if (subs == 0 || matchType == MatchTypeExactOnly)
             arr = [exactMatcher exactMatchForQuery:query andIsReverse:NO andForOnlyPos:NO];
         else {
@@ -302,6 +304,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             arr = nil;
             return info;
         }
+        if (subs + step > amtOfSubs)
+            subs = amtOfSubs-step;
     }
     return NULL;//No match
 }

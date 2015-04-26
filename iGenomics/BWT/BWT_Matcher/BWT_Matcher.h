@@ -24,6 +24,9 @@
 
 #define kReedsArraySeperationStr @"\n"
 
+#define kReadLoopMaxSmallEditDist 10
+#define kReadLoopLargeEditDistStepFactor 0.15 //kReadLoopLargeEditDistStepFactor * maxEdit
+
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
 
