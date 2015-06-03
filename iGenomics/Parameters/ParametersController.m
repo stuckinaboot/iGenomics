@@ -76,6 +76,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
     
+    if (!arr)
+        return;
+    
     matchTypeCtrl.selectedSegmentIndex = [[arr objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
     [self matchTypeChanged:nil];
     
@@ -84,6 +87,8 @@
     
     mutationSupportStpr.value = [[arr objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
     [self mutationSupportValueChanged:nil];
+    
+    seedingSwitch.on = [[arr objectAtIndex:kParameterArraySeedingOnIndex] boolValue];
     
     NSString *ext = [GlobalVars extFromFileName:readFileName];
     if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) {
@@ -187,7 +192,7 @@
         reads = [self readsByRemovingQualityValFromReads:reads];
     }
     
-    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar,nil];//contains everything except refFilename and readsFileName
+    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar, [NSNumber numberWithBool:seedingSwitch.on],nil];//contains everything except refFilename and readsFileName
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:arr forKey:kLastUsedParamsSaveKey];

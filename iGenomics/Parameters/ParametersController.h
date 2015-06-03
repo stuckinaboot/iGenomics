@@ -65,6 +65,8 @@
     IBOutlet UISegmentedControl *trimmingRefCharCtrl;
     IBOutlet UISwitch *trimmingSwitch;
     IBOutlet UILabel *trimmingEnabledLbl;
+    
+    IBOutlet UISwitch *seedingSwitch;
     //Parameters end
     
     ComputingController *computingController;

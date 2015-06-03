@@ -144,7 +144,9 @@
     refSeqLen = bwt_Matcher.refSeqLen;
     numOfReads = bwt_Matcher.numOfReads;
     
-    [bwt_Matcher matchReeds];
+    BOOL seedingIsOn = [[parameters objectAtIndex:kParameterArraySeedingOnIndex] boolValue];
+    
+    [bwt_Matcher matchReedsWithSeedingState:seedingIsOn];
     
     insertions = bwt_Matcher.insertionsArray;
 

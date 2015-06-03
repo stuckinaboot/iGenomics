@@ -106,7 +106,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }*/
 }
 
-- (void)matchReeds {
+- (void)matchReedsWithSeedingState:(BOOL)seedingState {
     
     NSLog(@"Match Reeds Entered");
     
@@ -127,7 +127,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         
         //printf("DK: calling getBestMatchForQuery\n");
         int maxNumOfSubs = maxErrorRate * readLen;
-        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum];
+        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState];
         
         if (a != NULL) {
             a.readName = reed.name;
@@ -242,7 +242,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     return newInfo;
 }
 
-- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum {
+- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed {
     
     NSArray *arr;
     
@@ -250,8 +250,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 
     int step = (amtOfSubs > kReadLoopMaxSmallEditDist) ? ceilf(amtOfSubs * kReadLoopLargeEditDistStepFactor) : 1;
     
+    int initialNumOfSubs = (shouldSeed) ? 0 : amtOfSubs;
+    
     BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];
-    for (int subs = 0; subs < amtOfSubs+1; subs += step) {
+    for (int subs = initialNumOfSubs; subs < amtOfSubs+1; subs += step) {
         if (subs == 0 || matchType == MatchTypeExactOnly)
             arr = [exactMatcher exactMatchForQuery:query andIsReverse:NO andForOnlyPos:NO];
         else {
@@ -259,7 +261,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                 arr = [approxiMatcher approxiMatchForQuery:query andNumOfSubs:subs andIsReverse:NO andReadLen:readLen];
             else if (matchType == MatchTypeSubsAndIndels) {
                 //printf("DK: calling insertionDeletionMatches (Forward)\n");
-                arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs andIsReverse:NO];
+                arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs andIsReverse:NO andShouldSeed:shouldSeed];
             }
         }
         
@@ -273,7 +275,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                     arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] andNumOfSubs:subs andIsReverse:YES andReadLen:readLen]];
                 else if (matchType == MatchTypeSubsAndIndels) {
                     //printf("DK: calling insertionDeletionMatches (Reverse)\n");
-                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES]];
+                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES andShouldSeed:shouldSeed]];
                 }
             }
         }
@@ -304,7 +306,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             arr = nil;
             return info;
         }
-        if (subs + step > amtOfSubs)
+        if (subs + step > amtOfSubs && subs != amtOfSubs)
             subs = amtOfSubs-step;
     }
     return NULL;//No match
@@ -330,6 +332,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             if (c == -1) {//DEL --- Not positive though
                 if (info.gappedA[i-range.location] == kDelMarker)
                     c = kACGTLen;
+                else
+                    NSLog(@"Shit going down");
             }
             
             posOccArray[c][i]++;
@@ -363,50 +367,54 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 }
 
 //INSERTION/DELETION
-- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev {
+- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed {
     //    Create BWT Matcher for In/Del
     BWT_Matcher_InsertionDeletion *bwtIDMatcher = [[BWT_Matcher_InsertionDeletion alloc] init];
-    
-    //    Split read into chunks
-    int numOfChunks = numOfSubs+1;
-    int queryLength = readLen;
-    int sizeOfChunks = queryLength/numOfChunks;
-    
-    if (fmod(queryLength, 2) != 0) {
-        //Odd
-        queryLength++;
-        sizeOfChunks = (float)queryLength/numOfChunks;
-    }
-    
-    //printf("DK: creating Chunk Array with query: %s\n",query);
-    
-    //    Fill Chunks with their respective string, and then use exact match to match the chunks to the reference
-    int start = 0;
-    NSMutableArray *chunkArray = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i<numOfChunks; i++) {
-        Chunks *chunk = [[Chunks alloc] initWithString:query];
-        if (i < numOfChunks-1)
-            chunk.range = NSMakeRange(start, sizeOfChunks);
-        else
-            chunk.range = NSMakeRange(start, sizeOfChunks+(int)(float)queryLength % numOfChunks);
+    if (shouldSeed) {
+        //    Split read into chunks
+        int numOfChunks = numOfSubs+1;
+        int queryLength = readLen;
+        int sizeOfChunks = queryLength/numOfChunks;
         
-        chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForChunk:chunk andIsReverse:isRev andForOnlyPos:YES];
-        [chunkArray addObject:chunk];
-        start += sizeOfChunks;
+        if (fmod(queryLength, 2) != 0) {
+            //Odd
+            queryLength++;
+            sizeOfChunks = (float)queryLength/numOfChunks;
+        }
         
-        //printf("DK: log Chunk Matched Position State: %i, Str State: %s\n",chunk.str != NULL, chunk.str);
+        //printf("DK: creating Chunk Array with query: %s\n",query);
+        
+        //    Fill Chunks with their respective string, and then use exact match to match the chunks to the reference
+        int start = 0;
+        NSMutableArray *chunkArray = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i<numOfChunks; i++) {
+            Chunks *chunk = [[Chunks alloc] initWithString:query];
+            if (i < numOfChunks-1)
+                chunk.range = NSMakeRange(start, sizeOfChunks);
+            else
+                chunk.range = NSMakeRange(start, sizeOfChunks+(int)(float)queryLength % numOfChunks);
+            
+            chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForChunk:chunk andIsReverse:isRev andForOnlyPos:YES];
+            [chunkArray addObject:chunk];
+            start += sizeOfChunks;
+            
+            //printf("DK: log Chunk Matched Position State: %i, Str State: %s\n",chunk.str != NULL, chunk.str);
+        }
+        
+        //printf("DK: calling setUpWithCharA:query andCharB:originalStr andChunks\n");
+        
+        //  Find In/Del by using the matched positions of the chunks
+        NSMutableArray *matchedInDels = [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev];
+        
+        [chunkArray removeAllObjects];
+        chunkArray = nil;
+        
+        return matchedInDels;
     }
-    
-    //printf("DK: calling setUpWithCharA:query andCharB:originalStr andChunks\n");
-    
-    //  Find In/Del by using the matched positions of the chunks
-    NSMutableArray *matchedInDels = [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev];
-
-    [chunkArray removeAllObjects];
-    chunkArray = nil;
-    
-    return matchedInDels;
+    else {
+        return [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andMaximumEditDist:numOfSubs andIsReverse:isRev withCumulativeSegmentLengthsArr:cumulativeSeparateGenomeLens];
+    }
 }
 
 - (void)recordInDel:(ED_Info*)info {

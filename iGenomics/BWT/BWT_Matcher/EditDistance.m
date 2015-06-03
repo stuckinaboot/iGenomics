@@ -16,7 +16,9 @@
 
 static int counter;
 
-- (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED {
+- (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED andKillIfLargerThanDistance:(int)minDist {
+    
+    BOOL shouldKillIfLargerThanMinDist = minDist != kEditDistanceDoNotKill;
     
     //printf("DK: creating/filling arrowTable and editDistanceTable\n");
     
@@ -25,9 +27,10 @@ static int counter;
     counter++;
     
 //    int editDistanceTable[lenA][lenB];
-    int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
+    short* editDistanceTable = (short*)calloc(lenA*lenB, sizeof(short));
 //    int arrowTable[lenA][lenB];//0 is left, 1 is diag, 2 is up, 3 is created
-    int* arrowTable = (int*)calloc(lenA*lenB, sizeof(int));
+    char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
+    
     int gapsInA = 0, gapsInB = 0;
     
 //    for (int i = 0; i < lenA; i++) {
@@ -37,43 +40,44 @@ static int counter;
 //        }
 //    }
     
-    for (int i = 0; i<lenA; i++) {
-        for (int j = 0; j<lenB; j++) {
-//            if (counter == 10498)
-//                printf("Counter Hit 10498\n");
+//    int bandwidth = 300; // readlength * max_error_rate
+    
+    for (int j = 0; j < lenB; j++) {
+        editDistanceTable[j] = 0;//j
+        arrowTable[j] = kInitialize;
+    }
+    
+    for (int i = 0; i < lenA; i++) {
+        editDistanceTable[i*lenB] = 0;//j
+        arrowTable[i*lenB] = kInitialize;
+    }
+    
+    for (int i = 1; i<lenA; i++) {
+        for (int j = 1; j<lenB; j++) {
             
-                //printf("DK: val: %i, i: %i, j: %i",arrowTable[i][j],i,j);
-            if (i == 0) {
-                editDistanceTable[i*lenB+j] = 0;//j
-                arrowTable[i*lenB+j] = kInitialize;
+            int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[i] == b[range.location+j-1]) ? 0 : 1);
+            arrowTable[i*lenB+j] = kDiag;
+            
+            int possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[i*lenB+j] = kLeft;
             }
-            else if (j == 0) {
-                editDistanceTable[i*lenB+j] = i;
+            
+            possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
                 arrowTable[i*lenB+j] = kUp;
             }
-            else {
-                int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[i] == b[range.location+j-1]) ? 0 : 1);
-                arrowTable[i*lenB+j] = kDiag;
-                
-                int possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
-                if (possibleMin < min) {
-                    min = possibleMin;
-                    arrowTable[i*lenB+j] = kLeft;
-                }
-                
-                possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
-                if (possibleMin < min) {
-                    min = possibleMin;
-                    arrowTable[i*lenB+j] = kUp;
-                }
-                
-                editDistanceTable[i*lenB+j] = min;
-            }
+            
+            editDistanceTable[i*lenB+j] = min;
         }
     }
     
+    
     //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
     int smallestED = editDistanceTable[(lenA-1)*lenB];//-2 to account for ' ' in beginning
+    
     int smallestEDPos = 0;
     
     for (int t = 0; t<lenB; t++) {
@@ -85,6 +89,17 @@ static int counter;
             smallestEDPos = t;
             break;
         }
+    }
+    
+    if (shouldKillIfLargerThanMinDist && minDist < smallestED) {
+        free(editDistanceTable);
+        free(arrowTable);
+        return NULL;
+    }
+    else if (smallestED > maxED) {
+        free(editDistanceTable);
+        free(arrowTable);
+        return NULL;
     }
     
     int i = lenA-1;
@@ -162,8 +177,6 @@ static int counter;
     
     free(editDistanceTable);
     free(arrowTable);
-    
-    //printf("DK: returning edInfo\n");
     
     return edInfo;
 }

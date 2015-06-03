@@ -42,6 +42,37 @@
     return matchedInDels;
 }
 
+- (NSMutableArray*)setUpWithCharA:(char*)a andCharB:(char*)b andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR withCumulativeSegmentLengthsArr:(NSArray *)cumLens {
+    matchedInDels = [[NSMutableArray alloc] init];
+    editDist = [[EditDistance alloc] init];
+    isRev = isR;
+    
+    //printf("DK: creating newa\n");
+    
+    //    Add space prior to the chars in "a" and prior to the chars in "b"
+    int alen = strlen(a);
+    char *newa = calloc(alen+2, 1);
+    memcpy(newa+1, a, alen);
+    newa[0] = ' ';
+    newa[alen+1] = '\0';
+    
+    /*int blen = strlen(b);
+     char *newb = calloc(blen+1, 1);
+     memcpy(newb+1, b, blen);
+     newb[0] = ' ';*/
+    
+    maxEditDist = maxED;
+    
+    //printf("DK: calling findInDels\n");
+    
+    [self findInDels:newa andCharB:b withCumulativeSegmentLengthsArr:cumLens];
+    
+    //    Free memory---NEEDS TO BE DONE
+    free(newa);
+    
+    return matchedInDels;
+}
+
 - (void)findInDels:(char*)a andCharB:(char*)b andChunks:(NSMutableArray*)chunkArray {//REMEMBER TO REMOVE SPACE
     int matchedPos = 0;
     int startPos = 0;//+1 is added during substring to account for the space when finding the pos
@@ -57,7 +88,7 @@
         matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
         startPos = [self findStartPosForChunkNum:0 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
         if (startPos>=0) {
-            edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos, lenA+maxEditDist) andChunkNum:0 andChunkSize:chunkSize andMaxED:maxEditDist];
+            edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos, lenA+maxEditDist) andChunkNum:0 andChunkSize:chunkSize andMaxED:maxEditDist andKillIfLargerThanDistance:kEditDistanceDoNotKill];
 //            edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos, lenA+maxEditDist) andChunkNum:0 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1 yet
             [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:0 andChunkSize:chunkSize];
         }
@@ -73,7 +104,7 @@
                 matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
                 startPos = [self findStartPosForChunkNum:cNum andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
                 if (startPos>=0) {
-                    edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+(maxEditDist*2)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];
+                    edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+(maxEditDist*2)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist andKillIfLargerThanDistance:kEditDistanceDoNotKill];
 //                        edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+(maxEditDist*2)) andChunkNum:cNum andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
                     [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:cNum andChunkSize:chunkSize];
                 }
@@ -89,7 +120,7 @@
             matchedPos = [[chunk.matchedPositions objectAtIndex:i] intValue];
             startPos = [self findStartPosForChunkNum:[chunkArray count]-1 andSizeOfChunks:chunkSize andMatchedPos:matchedPos];
             if (startPos>=0) {
-                edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+maxEditDist) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];
+                edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos-maxEditDist, lenA+maxEditDist) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist andKillIfLargerThanDistance:kEditDistanceDoNotKill];
 //                    edInfo = [editDist editDistanceForInfo:a andB:substring(b, startPos-maxEditDist, lenA+maxEditDist) andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize andMaxED:maxEditDist];//Not sure why +1
                 [self checkForInDelMatch:edInfo andMatchedPos:matchedPos andChunkNum:[chunkArray count]-1 andChunkSize:chunkSize];
             }
@@ -107,8 +138,35 @@
     }
 }
 
+- (void)findInDels:(char*)a andCharB:(char*)b withCumulativeSegmentLengthsArr:(NSArray *)cumLens {//REMEMBER TO REMOVE SPACE
+    int startPos = 0;//+1 is added during substring to account for the space when finding the pos
+    int lenA = strlen(a)-1;
+    
+    ED_Info *bestMatchedInfo;
+    
+    APTimer *timer = [[APTimer alloc] init];
+    NSLog(@"New Read Being Aligned");
+    for (int i = 0; i < cumLens.count; i++) {
+        int cumLen = [[cumLens objectAtIndex:i] intValue];
+        int segLen = cumLen - startPos;
+        [timer start];
+        ED_Info *edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos, segLen) andChunkNum:0 andChunkSize:lenA andMaxED:maxEditDist andKillIfLargerThanDistance:(!bestMatchedInfo) ? kEditDistanceDoNotKill : bestMatchedInfo.distance];
+        [timer stopAndLog];
+        if (!bestMatchedInfo && edInfo.distance <= maxEditDist)
+            bestMatchedInfo = edInfo;
+        else if (edInfo != NULL && edInfo.distance < bestMatchedInfo.distance) {
+            [bestMatchedInfo freeUsedMemory];
+            bestMatchedInfo = edInfo;
+        }
+        
+        startPos = cumLen;
+    }
+    if (bestMatchedInfo && bestMatchedInfo.distance <= maxEditDist)
+        [matchedInDels addObject:bestMatchedInfo];
+}
+
 - (void)checkForInDelMatch:(ED_Info*)edInfo andMatchedPos:(int)matchedPos andChunkNum:(int)cNum andChunkSize:(int)cSize {
-    if (edInfo.distance<=maxEditDist) {//Match Occurred
+    if (edInfo && edInfo.distance<=maxEditDist) {//Match Occurred
         BOOL alreadyRecorded = FALSE;
         //First matchPos needs to be set to the matchedPos w/o gaps, then use edInfo.position to account for gaps
         if (cNum == 0) {

@@ -84,19 +84,19 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 - (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
 - (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
 
-- (void)matchReeds;
+- (void)matchReedsWithSeedingState:(BOOL)seedingState;
 
 - (void)setUpNumberOfOccurencesArray;
 
 - (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info*)info forNumOfSubs:(int)subs;
 
 //APPROXI MATCH
-- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum;//readNum is only for printing to console, serves no other purpose currently
+- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed;//readNum is only for printing to console, serves no other purpose currently
 
 - (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info;//info is NULL for a non indel match
 
 //INSERTION/DELETION MATCH
-- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev;
+- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed;
 - (void)recordInDel:(ED_Info*)info;
 
 - (void)freeUsedMemory;

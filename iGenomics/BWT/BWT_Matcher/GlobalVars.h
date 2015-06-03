@@ -74,8 +74,9 @@ typedef enum {
 #define kParameterArrayMutationCoverageIndex 3
 #define kParameterArrayTrimmingValIndex 4
 #define kParameterArrayTrimmingRefCharIndex 5
-#define kParameterArrayRefFileSegmentNamesIndex 6
-#define kParameterArrayReadFileNameIndex 7
+#define kParameterArraySeedingOnIndex 6
+#define kParameterArrayRefFileSegmentNamesIndex 7
+#define kParameterArrayReadFileNameIndex 8
 
 #define kScrollViewSliderUpdateInterval 0.001
 

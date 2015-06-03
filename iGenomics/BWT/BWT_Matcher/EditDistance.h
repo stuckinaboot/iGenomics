@@ -15,6 +15,8 @@
 #define kAllowedNumOfDiffs 10
 #define kCharsToLookForAfter 2
 
+#define kEditDistanceDoNotKill -1
+
 #define kLeft 0
 #define kDiag 1
 #define kUp 2
@@ -24,6 +26,6 @@
     NSMutableArray *deletionPositions;
     NSMutableArray *insertionPositions;
 }
-- (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
+- (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED andKillIfLargerThanDistance:(int)minDist;
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
 @end
