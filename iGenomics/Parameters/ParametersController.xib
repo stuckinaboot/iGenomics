@@ -13,6 +13,7 @@
                 <outlet property="maxERTxtFld" destination="HbY-56-mXJ" id="c3F-Wf-cbF"/>
                 <outlet property="mutationSupportLbl" destination="Wwx-fv-nwq" id="WmN-0d-vSW"/>
                 <outlet property="mutationSupportStpr" destination="SrL-fV-uuH" id="V5R-vt-pYT"/>
+                <outlet property="seedingSwitch" destination="okp-ER-800" id="H7X-go-hK8"/>
                 <outlet property="trimmingEnabledLbl" destination="g5V-co-R9s" id="S1Q-JL-qcN"/>
                 <outlet property="trimmingLbl" destination="sXX-6f-rKh" id="nRj-5k-VRY"/>
                 <outlet property="trimmingRefCharCtrl" destination="LxU-z6-AvS" id="7D5-YM-av7"/>
@@ -89,38 +90,38 @@
                     </connections>
                 </stepper>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXX-6f-rKh">
-                    <rect key="frame" x="70" y="459" width="252" height="40"/>
+                    <rect key="frame" x="70" y="483" width="252" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stepper hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="3ta-zU-0YB">
-                    <rect key="frame" x="375" y="465" width="94" height="29"/>
+                    <rect key="frame" x="375" y="489" width="94" height="29"/>
                     <connections>
                         <action selector="trimmingValueChanged:" destination="-1" eventType="valueChanged" id="Fpv-Sb-iHZ"/>
                     </connections>
                 </stepper>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Ref Char:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6F-FW-TG9">
-                    <rect key="frame" x="70" y="543" width="266" height="38"/>
+                    <rect key="frame" x="70" y="567" width="266" height="38"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Trimming Enabled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5V-co-R9s">
-                    <rect key="frame" x="70" y="378" width="266" height="38"/>
+                    <rect key="frame" x="70" y="402" width="266" height="38"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LxU-z6-AvS">
-                    <rect key="frame" x="375" y="549" width="94" height="29"/>
+                    <rect key="frame" x="375" y="573" width="94" height="29"/>
                     <segments>
                         <segment title="!"/>
                         <segment title="@"/>
                     </segments>
                 </segmentedControl>
                 <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qSS-mx-gz9">
-                    <rect key="frame" x="398" y="384" width="51" height="31"/>
+                    <rect key="frame" x="398" y="408" width="51" height="31"/>
                     <connections>
                         <action selector="trimmingSwitchValueChanged:" destination="-1" eventType="valueChanged" id="vkc-Hn-iHN"/>
                     </connections>
@@ -136,6 +137,15 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Seeding Enabled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8N-xM-npx">
+                    <rect key="frame" x="70" y="339" width="266" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="okp-ER-800">
+                    <rect key="frame" x="398" y="345" width="51" height="31"/>
+                </switch>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>

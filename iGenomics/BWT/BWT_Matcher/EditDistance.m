@@ -27,20 +27,12 @@ static int counter;
     counter++;
     
 //    int editDistanceTable[lenA][lenB];
-    short* editDistanceTable = (short*)calloc(lenA*lenB, sizeof(short));
+    int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
 //    int arrowTable[lenA][lenB];//0 is left, 1 is diag, 2 is up, 3 is created
+    
     char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
-    
     int gapsInA = 0, gapsInB = 0;
-    
-//    for (int i = 0; i < lenA; i++) {
-//        for (int j = 0; j < lenB; j++) {
-//            arrowTable[i][j] = kInitialize;
-//            editDistanceTable[i][j] = kInitialize;
-//        }
-//    }
-    
-//    int bandwidth = 300; // readlength * max_error_rate
+
     
     for (int j = 0; j < lenB; j++) {
         editDistanceTable[j] = 0;//j
@@ -48,8 +40,8 @@ static int counter;
     }
     
     for (int i = 0; i < lenA; i++) {
-        editDistanceTable[i*lenB] = 0;//j
-        arrowTable[i*lenB] = kInitialize;
+        editDistanceTable[i*lenB] = i;//j
+        arrowTable[i*lenB] = kUp;
     }
     
     for (int i = 1; i<lenA; i++) {
