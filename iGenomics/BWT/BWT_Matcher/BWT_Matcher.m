@@ -413,7 +413,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         return matchedInDels;
     }
     else {
-        return [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andMaximumEditDist:numOfSubs andIsReverse:isRev withCumulativeSegmentLengthsArr:cumulativeSeparateGenomeLens];
+        return [bwtIDMatcher setUpWithNonSeededCharA:query andCharB:originalStr andMaximumEditDist:numOfSubs andIsReverse:isRev andExactMatcher:exactMatcher];
+//        return [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andMaximumEditDist:numOfSubs andIsReverse:isRev withCumulativeSegmentLengthsArr:cumulativeSeparateGenomeLens];
     }
 }
 

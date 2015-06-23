@@ -14,6 +14,145 @@
     return self;
 }
 
+//New Stuff
+- (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
+    int lenA = rangeA.length, lenB = rangeB.length+1;//First char (range.location-1) will be a "space"
+    
+    int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
+
+    char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
+    int gapsInA = 0, gapsInB = 0;
+    
+    for (int j = 0; j < lenB; j++) {
+        editDistanceTable[j] = 0;//j
+        arrowTable[j] = kInitialize;
+    }
+
+    for (int i = 0; i < lenA; i++) {
+        editDistanceTable[i*lenB] = i;//j
+        arrowTable[i*lenB] = kUp;
+    }
+    
+    for (int i = 1; i<lenA; i++) {
+        for (int j = 1; j<lenB; j++) {
+            
+            int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
+            arrowTable[i*lenB+j] = kDiag;
+            
+            int possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[i*lenB+j] = kLeft;
+            }
+            
+            possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[i*lenB+j] = kUp;
+            }
+            
+            editDistanceTable[i*lenB+j] = min;
+        }
+    }
+    
+    
+    //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
+    int smallestED = editDistanceTable[(lenA-1)*lenB];//-2 to account for ' ' in beginning
+    
+    int smallestEDPos = 0;
+    
+    for (int t = 0; t<lenB; t++) {
+        smallestED = MIN(editDistanceTable[(lenA-1)*lenB+t], smallestED);
+        if (smallestED == editDistanceTable[(lenA-1)*lenB+t]) {
+            smallestEDPos = t;
+        }
+        if (smallestED == 0) {
+            smallestEDPos = t;
+            break;
+        }
+    }
+    
+    if (smallestED > maxED) {
+        free(editDistanceTable);
+        free(arrowTable);
+        return NULL;
+    }
+    
+    int i = lenA-1;
+    int j = smallestEDPos;
+    
+    ED_Info *edInfo = [[ED_Info alloc] init];
+    
+    while (i > 0 || j > 0) {
+        if (arrowTable[i*lenB+j] == kLeft) {
+            j -= 1;
+            gapsInA++;
+        }
+        else if (arrowTable[i*lenB+j] == kUp) {
+            edInfo.insertion = TRUE;
+            edInfo.numOfInsertions++;
+            i -= 1;
+            gapsInB++;
+        }
+        else if (arrowTable[i*lenB+j] == kDiag) {
+            i -= 1;
+            j -= 1;
+        }
+        else if (arrowTable[i*lenB+j] == kInitialize) {
+            if (i>0) {
+                gapsInB += i;
+            }
+            break;
+        }
+    }
+    
+    int gappedLength = lenA+gapsInA-1;
+    
+    edInfo.gappedA = calloc(gappedLength+1, 1);
+    edInfo.gappedB = calloc(gappedLength+1, 1);
+    
+    edInfo.gappedA[gappedLength] = '\0';
+    edInfo.gappedB[gappedLength] = '\0';
+    
+    int pos = gappedLength-1;//Check -2, but it is because subtracting the space in the beginning " GA..." and gets to the last position
+    
+    i = lenA-1;
+    j = smallestEDPos;
+    
+    while (i > 0 || j > 0) {
+        if (arrowTable[i*lenB+j] == kLeft) {
+            edInfo.gappedA[pos] = '-';
+            edInfo.gappedB[pos] = b[rangeB.location+j-1];
+            j -= 1;
+        }
+        else if (arrowTable[i*lenB+j] == kUp) {
+            edInfo.gappedB[pos] = '-';
+            edInfo.gappedA[pos] = a[rangeA.location+i];
+            i -= 1;
+        }
+        else if (arrowTable[i*lenB+j] == kDiag) {
+            edInfo.gappedA[pos] = a[rangeA.location+i];
+            edInfo.gappedB[pos] = b[rangeB.location+j-1];
+            i -= 1;
+            j -= 1;
+        }
+        else if (i == 0)
+            break;
+        
+        pos--;
+    }
+    
+    edInfo.distance = smallestED;
+    edInfo.position = j;
+    
+    free(editDistanceTable);
+    free(arrowTable);
+    
+    return edInfo;
+}
+
+//End New Stuff
+
 static int counter;
 
 - (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED andKillIfLargerThanDistance:(int)minDist {

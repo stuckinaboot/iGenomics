@@ -28,4 +28,6 @@
 }
 - (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b andRangeOfActualB:(NSRange)range andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED andKillIfLargerThanDistance:(int)minDist;
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED;
+
+- (ED_Info*)editDistanceForInfoWithFullA:(char*)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED;
 @end

@@ -52,6 +52,13 @@ typedef enum {
 #define kTxt @"txt"
 #define kExtDot '.'
 
+//Notifications
+
+//For Passing Files with names
+#define kFileExtKey @"type"
+#define kFileContentsKey @"contents"
+#define kFileNameKey @"name"
+
 //Special File Types
 #define kFa @"fa"
 #define kFasta @"fasta"

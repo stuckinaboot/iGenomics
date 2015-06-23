@@ -52,14 +52,32 @@
 //For dropbox
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
   sourceApplication:(NSString *)source annotation:(id)annotation {
-    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
-    if (account) {
-        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
-        [DBFilesystem setSharedFilesystem:filesystem];
-        [GlobalVars displayiGenomicsAlertWithMsg:kDropboxLinkedSuccessfullyAlertMsg];
-        return YES;
+    if (url != nil && [url isFileURL]) {
+        NSString *ext = [url pathExtension];
+        
+        NSString *name = [[url absoluteString] lastPathComponent];
+        
+        if ([ext isEqualToString:kFa] || [ext isEqualToString:kFasta] || [ext isEqualToString:kFq] || [ext isEqualToString:kFastq] || [ext isEqualToString:kImptMutsFileExt]) {
+            NSString *contents = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+            
+            NSDictionary *dict = @{kFileExtKey : ext, kFileContentsKey : contents, kFileNameKey : name};
+            
+            //Do something with the dict
+            
+            return YES;
+        }
+        return NO;
     }
-    return NO;
+    else {
+        DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+        if (account) {
+            DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+            [DBFilesystem setSharedFilesystem:filesystem];
+            [GlobalVars displayiGenomicsAlertWithMsg:kDropboxLinkedSuccessfullyAlertMsg];
+            return YES;
+        }
+        return NO;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

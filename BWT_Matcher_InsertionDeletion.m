@@ -11,6 +11,152 @@
 
 @implementation BWT_Matcher_InsertionDeletion
 
+//New Stuff
+
+- (NSMutableArray*)setUpWithNonSeededCharA:(char*)a andCharB:(char*)b andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR andExactMatcher:(BWT_MatcherSC *)exactMatcher {
+    matchedInDels = [[NSMutableArray alloc] init];
+    editDist = [[EditDistance alloc] init];
+    isRev = isR;
+    
+    //printf("DK: creating newa\n");
+    
+    //    Add space prior to the chars in "a" and prior to the chars in "b"
+    int alen = strlen(a);
+    char *newa = calloc(alen+2, 1);
+    memcpy(newa+1, a, alen);
+    newa[0] = ' ';
+    newa[alen+1] = '\0';
+    
+    /*int blen = strlen(b);
+     char *newb = calloc(blen+1, 1);
+     memcpy(newb+1, b, blen);
+     newb[0] = ' ';*/
+    
+    maxEditDist = maxED;
+    
+    //printf("DK: calling findInDels\n");
+    
+    [self findInDelsNonSeededWithA:newa b:b usingExactMatcher:exactMatcher];
+    
+    //    Free memory---NEEDS TO BE DONE
+    free(newa);
+    
+    return matchedInDels;
+}
+
+- (void)findInDelsNonSeededWithA:(char *)a b:(char *)b usingExactMatcher:(BWT_MatcherSC *)exactMatcher {
+    int lenA = (int)strlen(a);
+    int lenB = (int)strlen(b);
+    
+    ED_Info *match;
+    
+    char *shortA = malloc(kNonSeedShortSeqSize+1);
+    for (int i = 0; i < lenA-kNonSeedShortSeqSize; i++) {
+        strncpy(shortA, a+i, kNonSeedShortSeqSize);
+        shortA[kNonSeedShortSeqSize] = '\0';
+        
+        //ASK MIKE: <<<What about forward/reverse???>>>
+        
+        NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
+        
+        for (ED_Info *ed in exactMatches) {
+            
+//            ED_Info *edL = (ed.position > 0) ? [self nonSeededEDForFullA:a fullALen:lenA andB:b startPos:ed.position-1 andIsComputingForward:NO] : NULL;
+//            ED_Info *edR = (ed.position < lenB) ? [self nonSeededEDForFullA:a fullALen:lenA andB:b startPos:ed.position+lenA andIsComputingForward:YES] : NULL;
+            int bLoc = ed.position-i-maxEditDist;
+            ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, lenA+2*maxEditDist) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
+//            edFinal = [ED_Info mergedED_Infos:edFinal andED2:edR];
+//            edFinal.position = ed.position-(int)strlen(edL.gappedA);
+            
+            
+            edFinal.position = bLoc+edFinal.position;
+            
+            if (edFinal.distance <= maxEditDist) {
+                match = edFinal;
+                break;
+            }
+            else
+                [edFinal freeUsedMemory];
+        }
+        if (match)
+            break;
+    }
+    
+    free(shortA);
+    //Do something with the match if there was one
+    if (match)
+        [matchedInDels addObject:match];
+}
+
+- (ED_Info*)nonSeededEDForFullA:(char *)fullA fullALen:(int)lenA andB:(char*)b startPos:(int)startPos andIsComputingForward:(BOOL)forward {
+    ED_Info *finalInfo;
+    int lenB = strlen(b);
+    
+    if (forward) {
+        for (int i = 0; i < lenA; i += kNonSeedLongSeqSize) {
+            ED_Info *newInfo;
+            int aPos = i, aLen = kNonSeedLongSeqSize, bPos = startPos+kNonSeedShortSeqSize+i, bLen = aLen;
+            
+            //Checks for extension past end of a
+            if (i < lenA && i + kNonSeedLongSeqSize > lenA) {
+                aLen = lenA-i;
+                bLen = aLen;
+            }
+            
+            //Checks for extension past end of b
+            if (bPos < lenB && bPos + kNonSeedLongSeqSize > lenB) {
+                bLen = lenB-bPos;
+                aLen = bLen;
+                
+                i = lenA;//Breaks the loop
+            }
+            
+            NSRange rangeA = NSMakeRange(aPos, aLen);
+            newInfo = [editDist editDistanceForInfoWithFullA:fullA rangeInA:rangeA andFullB:b rangeInB:NSMakeRange(bPos, bLen) andMaxED:maxEditDist];
+            if (newInfo)
+                finalInfo = [ED_Info mergedED_Infos:finalInfo andED2:newInfo];
+        }
+    }
+    else if (!forward) {
+        for (int i = lenA-kNonSeedLongSeqSize; i >= 0; i -= kNonSeedLongSeqSize) {
+            ED_Info *newInfo;
+            int aPos = i, aLen = kNonSeedLongSeqSize, bPos = startPos-(lenA-i), bLen = kNonSeedLongSeqSize;
+            
+            //Checks for extension past beginning of b
+            if (bPos < 0) {
+                bLen = bPos + kNonSeedLongSeqSize;
+                bPos = 0;
+                aPos += (kNonSeedLongSeqSize-bLen);
+                aLen = bLen;
+                
+                i = -1;//Breaks the loop
+            }
+            
+            NSRange rangeA = NSMakeRange(aPos, aLen);
+            newInfo = [editDist editDistanceForInfoWithFullA:fullA rangeInA:rangeA andFullB:b rangeInB:NSMakeRange(bPos, bLen) andMaxED:maxEditDist];
+            if (newInfo)
+                finalInfo = [ED_Info mergedED_Infos:newInfo andED2:finalInfo];
+            
+            NSLog(@"%i, %i",(int)strlen(finalInfo.gappedA), (int)strlen(finalInfo.gappedB));
+            //Checks for extension past beginning of a
+            if (i > 0 && i - kNonSeedLongSeqSize < 0) {
+                aPos = 0;
+                aLen = i;
+                bPos = startPos-lenA;
+                bLen = aLen;
+                
+                rangeA = NSMakeRange(aPos, aLen);
+                newInfo = [editDist editDistanceForInfoWithFullA:fullA rangeInA:rangeA andFullB:b rangeInB:NSMakeRange(bPos, bLen) andMaxED:maxEditDist];
+                if (newInfo)
+                    finalInfo = [ED_Info mergedED_Infos:newInfo andED2:finalInfo];
+            }
+        }
+    }
+    return finalInfo;
+}
+
+//End New Stuff
+
 - (NSMutableArray*)setUpWithCharA:(char*)a andCharB:(char*)b andChunks:(NSMutableArray*)chunkArray andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR {
     matchedInDels = [[NSMutableArray alloc] init];
     editDist = [[EditDistance alloc] init];
