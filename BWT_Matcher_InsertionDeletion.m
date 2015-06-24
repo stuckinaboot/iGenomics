@@ -36,7 +36,7 @@
     
     //printf("DK: calling findInDels\n");
     
-    [self findInDelsNonSeededWithA:newa b:b usingExactMatcher:exactMatcher];
+    [self findInDelsNonSeededWithA:newa b:b usingExactMatcher:exactMatcher isReverse:isR];
     
     //    Free memory---NEEDS TO BE DONE
     free(newa);
@@ -44,7 +44,7 @@
     return matchedInDels;
 }
 
-- (void)findInDelsNonSeededWithA:(char *)a b:(char *)b usingExactMatcher:(BWT_MatcherSC *)exactMatcher {
+- (void)findInDelsNonSeededWithA:(char *)a b:(char *)b usingExactMatcher:(BWT_MatcherSC *)exactMatcher isReverse:(BOOL)isReverse {
     int lenA = (int)strlen(a);
     int lenB = (int)strlen(b);
     
@@ -84,8 +84,10 @@
     
     free(shortA);
     //Do something with the match if there was one
-    if (match)
+    if (match) {
+        match.isRev = isReverse;
         [matchedInDels addObject:match];
+    }
 }
 
 - (ED_Info*)nonSeededEDForFullA:(char *)fullA fullALen:(int)lenA andB:(char*)b startPos:(int)startPos andIsComputingForward:(BOOL)forward {

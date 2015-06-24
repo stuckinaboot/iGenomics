@@ -55,7 +55,6 @@
         }
     }
     
-    
     //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
     int smallestED = editDistanceTable[(lenA-1)*lenB];//-2 to account for ' ' in beginning
     

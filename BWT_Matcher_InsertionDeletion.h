@@ -32,7 +32,7 @@
 
 
 - (NSMutableArray*)setUpWithNonSeededCharA:(char*)a andCharB:(char*)b andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR andExactMatcher:(BWT_MatcherSC*)exactMatcher;
-- (void)findInDelsNonSeededWithA:(char*)a b:(char*)b usingExactMatcher:(BWT_MatcherSC*)exactMatcher;
+- (void)findInDelsNonSeededWithA:(char*)a b:(char*)b usingExactMatcher:(BWT_MatcherSC*)exactMatcher isReverse:(BOOL)isReverse;
 - (ED_Info*)nonSeededEDForFullA:(char*)fullA fullALen:(int)lenA andB:(char*)b startPos:(int)startPos andIsComputingForward:(BOOL)forward;
 
 
