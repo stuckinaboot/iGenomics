@@ -173,10 +173,12 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         else
             trimBeginning = TRUE;
     }
+    else
+        return info;
 //    BOOL trimEnding = (closeEnding - (info.position + gappedALen) <= 0);
 //    BOOL trimBeginning = trimEnding && (closeEnding - info.position > 0 && (closeEnding - (info.position + gappedALen) <= 0));
     
-    if (index < 0 || (!trimBeginning && !trimEnding))
+    if (index < 0)
         return info;
     
     int charsToTrimEnd = (trimEnding) ? [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
@@ -238,7 +240,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     newInfo.distance += numOfCharsToTrimFromEndFromED;
     
     [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
-    
+    if (shouldTrim)
+        return [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:newInfo forNumOfSubs:subs];
     return newInfo;
 }
 

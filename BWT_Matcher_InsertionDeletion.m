@@ -64,7 +64,17 @@
 //            ED_Info *edL = (ed.position > 0) ? [self nonSeededEDForFullA:a fullALen:lenA andB:b startPos:ed.position-1 andIsComputingForward:NO] : NULL;
 //            ED_Info *edR = (ed.position < lenB) ? [self nonSeededEDForFullA:a fullALen:lenA andB:b startPos:ed.position+lenA andIsComputingForward:YES] : NULL;
             int bLoc = ed.position-i-maxEditDist;
-            ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, lenA+2*maxEditDist) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
+            int bRangeLen = lenA+2*maxEditDist;
+            if (bLoc < 0) {
+                bRangeLen += bLoc;
+                bLoc = 0;
+            }
+            if (bLoc + bRangeLen - 1 >= lenB) {
+                bLoc -= maxEditDist;
+                bRangeLen = lenB-bLoc+maxEditDist;
+            }
+            
+            ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
 //            edFinal = [ED_Info mergedED_Infos:edFinal andED2:edR];
 //            edFinal.position = ed.position-(int)strlen(edL.gappedA);
             

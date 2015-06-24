@@ -14,7 +14,202 @@
     return self;
 }
 
+//Attempting banding
+
+/*- (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
+    int lenA = rangeA.length, lenB = rangeB.length+1;//First char (range.location-1) will be a "space"
+    
+    int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
+    
+    char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
+    int gapsInA = 0, gapsInB = 0;
+    
+    
+    for (int j = 0; j < lenB; j++) {
+        editDistanceTable[j] = 0;//j
+        arrowTable[j] = kInitialize;
+    }
+    
+    for (int i = 0; i < lenA; i++) {
+        editDistanceTable[i*lenB] = i;//j
+        arrowTable[i*lenB] = kUp;
+    }
+    
+    int n = maxED;//n = max ED
+    int i = 1, j = 1;
+    while (i + n < lenA && j + n < lenB) {
+        for (int k = i; k <= i + n; k++) {
+            int min = editDistanceTable[(k-1)*lenB+(j-1)] + ((a[rangeA.location+k] == b[rangeB.location+j-1]) ? 0 : 1);
+            arrowTable[k*lenB+j] = kDiag;
+            
+            int possibleMin = min;
+            if (k <= (i-1 + n)) {
+                possibleMin = editDistanceTable[(k*lenB)+(j-1)]+1;
+                if (possibleMin < min) {
+                    min = possibleMin;
+                    arrowTable[k*lenB+j] = kLeft;
+                }
+            }
+            
+            possibleMin = editDistanceTable[(k-1)*lenB+j]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[k*lenB+j] = kUp;
+            }
+            
+            
+            editDistanceTable[k*lenB+j] = min;
+        }
+        for (int k = j; k <= j + n; k++) {
+            int min = editDistanceTable[(i-1)*lenB+(k-1)] + ((a[rangeA.location+i] == b[rangeB.location+k-1]) ? 0 : 1);
+            arrowTable[i*lenB+k] = kDiag;
+            
+            int possibleMin;
+            
+            //				if (k <= (i-1 + n)) {
+            possibleMin = editDistanceTable[(i*lenB)+(k-1)]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[i*lenB+k] = kLeft;
+            }
+            //				}
+            
+            if (k <= (j-1)+n) {
+                possibleMin = editDistanceTable[(i-1)*lenB+k]+1;
+                if (possibleMin < min) {
+                    min = possibleMin;
+                    arrowTable[i*lenB+k] = kUp;
+                }
+            }
+            
+            editDistanceTable[i*lenB+k] = min;
+        }
+        i++;
+        j++;
+    }
+    
+    int transitionPt = j;
+    
+    for (int c = i; c < lenA; c++) {
+        for (int d = j; d < lenB; d++) {
+            int min = editDistanceTable[(c-1)*lenB+(d-1)] + ((a[rangeA.location+c] == b[rangeB.location+d-1]) ? 0 : 1);
+            arrowTable[c*lenB+d] = kDiag;
+            
+            int possibleMin = editDistanceTable[(c*lenB)+(d-1)]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[c*lenB+d] = kLeft;
+            }
+            
+            possibleMin = editDistanceTable[(c-1)*lenB+d]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[c*lenB+d] = kUp;
+            }
+            
+            editDistanceTable[c*lenB+d] = min;
+        }
+    }
+    
+    //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
+    int smallestED = editDistanceTable[(lenA-1)*lenB];//-2 to account for ' ' in beginning
+    
+    int smallestEDPos = 0;
+    
+    for (int t = transitionPt; t<lenB; t++) {
+        smallestED = MIN(editDistanceTable[(lenA-1)*lenB+t], smallestED);
+        if (smallestED == editDistanceTable[(lenA-1)*lenB+t]) {
+            smallestEDPos = t;
+        }
+        if (smallestED == 0) {
+            smallestEDPos = t;
+            break;
+        }
+    }
+    
+    if (smallestED > maxED) {
+        free(editDistanceTable);
+        free(arrowTable);
+        return NULL;
+    }
+    
+    i = lenA-1;
+    j = smallestEDPos;
+    
+    ED_Info *edInfo = [[ED_Info alloc] init];
+    
+    while (i > 0 || j > 0) {
+        if (arrowTable[i*lenB+j] == kLeft) {
+            j -= 1;
+            gapsInA++;
+        }
+        else if (arrowTable[i*lenB+j] == kUp) {
+            edInfo.insertion = TRUE;
+            edInfo.numOfInsertions++;
+            i -= 1;
+            gapsInB++;
+        }
+        else if (arrowTable[i*lenB+j] == kDiag) {
+            i -= 1;
+            j -= 1;
+        }
+        else if (arrowTable[i*lenB+j] == kInitialize) {
+            if (i>0) {
+                gapsInB += i;
+            }
+            break;
+        }
+    }
+    
+    int gappedLength = lenA+gapsInA-1;
+    
+    edInfo.gappedA = calloc(gappedLength+1, 1);
+    edInfo.gappedB = calloc(gappedLength+1, 1);
+    
+    edInfo.gappedA[gappedLength] = '\0';
+    edInfo.gappedB[gappedLength] = '\0';
+    
+    int pos = gappedLength-1;//Check -2, but it is because subtracting the space in the beginning " GA..." and gets to the last position
+    
+    i = lenA-1;
+    j = smallestEDPos;
+    
+    while (i > 0 || j > 0) {
+        if (arrowTable[i*lenB+j] == kLeft) {
+            edInfo.gappedA[pos] = '-';
+            edInfo.gappedB[pos] = b[rangeB.location+j-1];
+            j -= 1;
+        }
+        else if (arrowTable[i*lenB+j] == kUp) {
+            edInfo.gappedB[pos] = '-';
+            edInfo.gappedA[pos] = a[rangeA.location+i];
+            i -= 1;
+        }
+        else if (arrowTable[i*lenB+j] == kDiag) {
+            edInfo.gappedA[pos] = a[rangeA.location+i];
+            edInfo.gappedB[pos] = b[rangeB.location+j-1];
+            i -= 1;
+            j -= 1;
+        }
+        else if (i == 0)
+            break;
+        
+        pos--;
+    }
+    
+    edInfo.distance = smallestED;
+    edInfo.position = j;
+    
+    free(editDistanceTable);
+    free(arrowTable);
+    
+    return edInfo;
+}*/
+
+//End banding attempt
+
 //New Stuff
+
 - (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
     int lenA = rangeA.length, lenB = rangeB.length+1;//First char (range.location-1) will be a "space"
     
