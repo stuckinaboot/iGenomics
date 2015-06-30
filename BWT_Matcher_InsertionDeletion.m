@@ -240,7 +240,7 @@
     int matchedPos = 0;
     int startPos = 0;//+1 is added during substring to account for the space when finding the pos
     int lenA = (int)strlen(a);
-    int lenAWithoutSpace = lenA;
+    int lenAWithoutSpace = lenA-1;
     Chunks *chunk = [chunkArray objectAtIndex:0];
     int chunkSize = chunk.range.length;
     ED_Info *edInfo = [[ED_Info alloc] init];

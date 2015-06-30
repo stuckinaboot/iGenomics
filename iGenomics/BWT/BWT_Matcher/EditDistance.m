@@ -17,7 +17,7 @@
 //Attempting banding
 
 - (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
-    BOOL testingOn = YES;
+    BOOL testingOn = NO;
     
     int lenA = rangeA.length, lenB = rangeB.length+1;//First char (range.location-1) will be a "space"
     
@@ -25,13 +25,13 @@
     
     char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
     int gapsInA = 0, gapsInB = 0;
-    
-    for (int i = 0; i < lenA; i++) {
-        for (int j = 0; j < lenB; j++) {
-            editDistanceTable[i*lenB+j] = INT16_MAX;
-        }
-    }
-    
+//    
+//    for (int i = 0; i < lenA; i++) {
+//        for (int j = 0; j < lenB; j++) {
+//            editDistanceTable[i*lenB+j] = -1;
+//        }
+//    }
+//    
     for (int j = 0; j < lenB; j++) {
         editDistanceTable[j] = 0;//j
         arrowTable[j] = kInitialize;
@@ -46,7 +46,7 @@
     
     int numOfBoxesToComputeFor = lenB-lenA+1;//maxED+1;
     
-    for (int i = 1; i <= maxED; i++, numOfBoxesToComputeFor++) {
+    for (int i = 1; i <= maxED+1; i++, numOfBoxesToComputeFor++) {
         for (int j = 1; j < numOfBoxesToComputeFor && j < lenB; j++) {
             int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
             arrowTable[i*lenB+j] = kDiag;
@@ -82,9 +82,9 @@
     
     int temp = numOfBoxesToComputeFor;
     numOfBoxesToComputeFor = 2*maxED+1;
-    int startColumn = temp+1-numOfBoxesToComputeFor;//numOfBoxesToComputeFor;
+    int startColumn = temp-numOfBoxesToComputeFor;//numOfBoxesToComputeFor;
 
-    for (int i = maxED+1; i < lenA; i++, startColumn++) {
+    for (int i = maxED+2; i < lenA; i++, startColumn++) {
         for (int j = startColumn; j < startColumn+numOfBoxesToComputeFor && j < lenB; j++) {
             int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
             arrowTable[i*lenB+j] = kDiag;
@@ -126,7 +126,7 @@
     smallestED = editDistanceTable[(lenA-1)*lenB+startColumn];//-2 to account for ' ' in beginning
     
     smallestEDPos = startColumn;
-    for (int t = startColumn; t<startColumn+numOfBoxesToComputeFor && t < lenB; t++) {
+    for (int t = startColumn; t<startColumn+numOfBoxesToComputeFor-1 && t < lenB; t++) {
         smallestED = MIN(editDistanceTable[(lenA-1)*lenB+t], smallestED);
         if (smallestED == editDistanceTable[(lenA-1)*lenB+t]) {
             smallestEDPos = t;

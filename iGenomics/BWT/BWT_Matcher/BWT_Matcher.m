@@ -168,7 +168,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     BOOL trimBeginning = NO;
     
     if (shouldTrim) {
-        if (abs(closeEnding - (info.position + gappedALen)) < closeEnding - info.position)
+        if (abs(closeEnding - (info.position + gappedALen-info.numOfInsertions)) < closeEnding - info.position)
             trimEnding = TRUE;
         else
             trimBeginning = TRUE;
@@ -183,7 +183,9 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     int charsToTrimEnd = (trimEnding) ? [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
     
-    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
+    
+    int numOfInsertionsBeforeBeginning = (trimBeginning) ? [self numOfInsertionsBeforeSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
+    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index andNumOfInsertionsBeforeEnding:numOfInsertionsBeforeBeginning] : 0;
     
     int amtOfCharsToAddToPosition = (trimBeginning) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] - info.position : 0;
     
@@ -199,6 +201,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     newInfo.isRev = info.isRev;
     newInfo.readName = info.readName;
     newInfo.rowInAlignmentGrid = info.rowInAlignmentGrid;
+    newInfo.numOfInsertions = info.numOfInsertions - numOfInsertionsBeforeBeginning;
     
     int numOfCharsToTrimFromBeginningFromED = 0;
     
@@ -576,17 +579,21 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     return charsToTrim;
 }
 
-- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
+- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index andNumOfInsertionsBeforeEnding:(int)numOfInsertions {
    
     int closestBeginning = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
     
-    int k = closestBeginning;
+    int k = closestBeginning+numOfInsertions;
     
+    return k-info.position;
+}
+
+- (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
+    int k = 0;
     for (int i = info.position; i <= k; i++)
         if (info.gappedB[i-info.position] == kDelMarker)
             k++;
-    
-    return k-info.position;
+    return k;
 }
 
 //Getters

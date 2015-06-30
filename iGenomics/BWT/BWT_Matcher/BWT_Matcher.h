@@ -81,8 +81,9 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 - (char*)getReverseComplementForSeq:(char*)seq;
 
 - (int)indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:(ED_Info*)info;
-- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
+- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index andNumOfInsertionsBeforeEnding:(int)numOfInsertions;
 - (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
+- (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
 
 - (void)matchReedsWithSeedingState:(BOOL)seedingState;
 
