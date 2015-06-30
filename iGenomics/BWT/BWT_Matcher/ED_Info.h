@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GlobalVars.h"
 
 //used for info returned by the EditDist class
 

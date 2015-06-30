@@ -18,7 +18,7 @@
 #define kComputingTimeRaminingCalculatedTxt @"%02d:%02d:%02d remaining"
 
 #define kComputingTimeRemainingUpdateInterval 1.0f
-#define kComputingTimeRemainingNumOfReadsToBaseTimeOffOf 500
+#define kComputingTimeRemainingNumOfReadsToBaseTimeOffOf 100
 #define kComputingTimeRemainingFracOfReadsToBeginFreqUpdatingAt .5
 #define kComputingTimeRemainingNumOfSDsToAddToMeanTimeRemaining 1
 

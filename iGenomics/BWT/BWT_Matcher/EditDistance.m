@@ -16,7 +16,9 @@
 
 //Attempting banding
 
-/*- (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
+- (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
+    BOOL testingOn = YES;
+    
     int lenA = rangeA.length, lenB = rangeB.length+1;//First char (range.location-1) will be a "space"
     
     int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
@@ -24,6 +26,11 @@
     char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
     int gapsInA = 0, gapsInB = 0;
     
+    for (int i = 0; i < lenA; i++) {
+        for (int j = 0; j < lenB; j++) {
+            editDistanceTable[i*lenB+j] = INT16_MAX;
+        }
+    }
     
     for (int j = 0; j < lenB; j++) {
         editDistanceTable[j] = 0;//j
@@ -35,88 +42,91 @@
         arrowTable[i*lenB] = kUp;
     }
     
-    int n = maxED;//n = max ED
-    int i = 1, j = 1;
-    while (i + n < lenA && j + n < lenB) {
-        for (int k = i; k <= i + n; k++) {
-            int min = editDistanceTable[(k-1)*lenB+(j-1)] + ((a[rangeA.location+k] == b[rangeB.location+j-1]) ? 0 : 1);
-            arrowTable[k*lenB+j] = kDiag;
+    maxED = (maxED >= lenA) ? lenA-1 : maxED;
+    
+    int numOfBoxesToComputeFor = lenB-lenA+1;//maxED+1;
+    
+    for (int i = 1; i <= maxED; i++, numOfBoxesToComputeFor++) {
+        for (int j = 1; j < numOfBoxesToComputeFor && j < lenB; j++) {
+            int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
+            arrowTable[i*lenB+j] = kDiag;
             
-            int possibleMin = min;
-            if (k <= (i-1 + n)) {
-                possibleMin = editDistanceTable[(k*lenB)+(j-1)]+1;
+            int possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
+            if (possibleMin < min) {
+                min = possibleMin;
+                arrowTable[i*lenB+j] = kLeft;
+            }
+            
+            if (j < numOfBoxesToComputeFor) {
+                possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
                 if (possibleMin < min) {
                     min = possibleMin;
-                    arrowTable[k*lenB+j] = kLeft;
+                    arrowTable[i*lenB+j] = kUp;
                 }
             }
             
-            possibleMin = editDistanceTable[(k-1)*lenB+j]+1;
-            if (possibleMin < min) {
-                min = possibleMin;
-                arrowTable[k*lenB+j] = kUp;
-            }
-            
-            
-            editDistanceTable[k*lenB+j] = min;
+            editDistanceTable[i*lenB+j] = min;
         }
-        for (int k = j; k <= j + n; k++) {
-            int min = editDistanceTable[(i-1)*lenB+(k-1)] + ((a[rangeA.location+i] == b[rangeB.location+k-1]) ? 0 : 1);
-            arrowTable[i*lenB+k] = kDiag;
+    }
+//
+//    if (testingOn) {
+//        printf("\n\nED:\n");
+//        
+//        for (int i = 0; i < lenA; i++) {
+//            for (int j = 0; j < lenB; j++) {
+//                printf("%i ",editDistanceTable[i*lenB+j]);
+//            }
+//            printf("\n");
+//        }
+//    }
+    
+    int temp = numOfBoxesToComputeFor;
+    numOfBoxesToComputeFor = 2*maxED+1;
+    int startColumn = temp+1-numOfBoxesToComputeFor;//numOfBoxesToComputeFor;
+
+    for (int i = maxED+1; i < lenA; i++, startColumn++) {
+        for (int j = startColumn; j < startColumn+numOfBoxesToComputeFor && j < lenB; j++) {
+            int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
+            arrowTable[i*lenB+j] = kDiag;
             
             int possibleMin;
-            
-            //				if (k <= (i-1 + n)) {
-            possibleMin = editDistanceTable[(i*lenB)+(k-1)]+1;
-            if (possibleMin < min) {
-                min = possibleMin;
-                arrowTable[i*lenB+k] = kLeft;
-            }
-            //				}
-            
-            if (k <= (j-1)+n) {
-                possibleMin = editDistanceTable[(i-1)*lenB+k]+1;
+            if (j > startColumn) {
+                possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
                 if (possibleMin < min) {
                     min = possibleMin;
-                    arrowTable[i*lenB+k] = kUp;
+                    arrowTable[i*lenB+j] = kLeft;
                 }
             }
             
-            editDistanceTable[i*lenB+k] = min;
-        }
-        i++;
-        j++;
-    }
-    
-    int transitionPt = j;
-    
-    for (int c = i; c < lenA; c++) {
-        for (int d = j; d < lenB; d++) {
-            int min = editDistanceTable[(c-1)*lenB+(d-1)] + ((a[rangeA.location+c] == b[rangeB.location+d-1]) ? 0 : 1);
-            arrowTable[c*lenB+d] = kDiag;
-            
-            int possibleMin = editDistanceTable[(c*lenB)+(d-1)]+1;
-            if (possibleMin < min) {
-                min = possibleMin;
-                arrowTable[c*lenB+d] = kLeft;
+            if (j < startColumn + numOfBoxesToComputeFor-1) {
+                possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
+                if (possibleMin < min) {
+                    min = possibleMin;
+                    arrowTable[i*lenB+j] = kUp;
+                }
             }
             
-            possibleMin = editDistanceTable[(c-1)*lenB+d]+1;
-            if (possibleMin < min) {
-                min = possibleMin;
-                arrowTable[c*lenB+d] = kUp;
-            }
-            
-            editDistanceTable[c*lenB+d] = min;
+            editDistanceTable[i*lenB+j] = min;
         }
     }
-    
+    if (testingOn) {
+        printf("\n\nED:\n");
+        
+        for (int i = 0; i < lenA; i++) {
+            for (int j = 0; j < lenB; j++) {
+                printf("%i ",editDistanceTable[i*lenB+j]);
+            }
+            printf("\n");
+        }
+    }
     //ED = Edit Distance, Starts out being smallestEditDistance than becomes the pos of smallest edit distance
-    int smallestED = editDistanceTable[(lenA-1)*lenB];//-2 to account for ' ' in beginning
+    int smallestED, smallestEDPos;
     
-    int smallestEDPos = 0;
+   
+    smallestED = editDistanceTable[(lenA-1)*lenB+startColumn];//-2 to account for ' ' in beginning
     
-    for (int t = transitionPt; t<lenB; t++) {
+    smallestEDPos = startColumn;
+    for (int t = startColumn; t<startColumn+numOfBoxesToComputeFor && t < lenB; t++) {
         smallestED = MIN(editDistanceTable[(lenA-1)*lenB+t], smallestED);
         if (smallestED == editDistanceTable[(lenA-1)*lenB+t]) {
             smallestEDPos = t;
@@ -133,8 +143,8 @@
         return NULL;
     }
     
-    i = lenA-1;
-    j = smallestEDPos;
+    int i = lenA-1;
+    int j = smallestEDPos;
     
     ED_Info *edInfo = [[ED_Info alloc] init];
     
@@ -204,13 +214,13 @@
     free(arrowTable);
     
     return edInfo;
-}*/
+}
 
 //End banding attempt
 
 //New Stuff
-
-- (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED {
+/*
+- (ED_Info*)editDistanceForInfoWithFullA:(char *)a rangeInA:(NSRange)rangeA andFullB:(char *)b rangeInB:(NSRange)rangeB andMaxED:(int)maxED andBacktrackingPosition:(int)backtrackingPosition {
     int lenA = rangeA.length, lenB = rangeB.length+1;//First char (range.location-1) will be a "space"
     
     int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
@@ -344,7 +354,7 @@
     
     return edInfo;
 }
-
+*/
 //End New Stuff
 
 static int counter;
@@ -505,7 +515,7 @@ static int counter;
     
     return edInfo;
 }
-
+/*
 - (ED_Info*)editDistanceForInfo:(char *)a andB:(char *)b andChunkNum:(int)chunkNum andChunkSize:(int)chunkSize andMaxED:(int)maxED {
     int lenA = strlen(a), lenB = strlen(b);
     
@@ -600,7 +610,7 @@ static int counter;
     edInfo.gappedB[gappedLength] = '\0';
     int pos = gappedLength-1;//Check -2, but it is because subtracting the space in the beginning " GA..." and gets to the last position
     
-    /*
+    
      for (int r = 0; r<lenA; r++) {
      for (int c = 0; c<lenB; c++) {
      printf("%i ",editDistanceTable[r][c]);
@@ -616,7 +626,7 @@ static int counter;
      printf("\n");
      }
      printf("\n");
-     */
+ 
     
     i = lenA-1;
     j = smallestEDPos;
@@ -654,5 +664,5 @@ static int counter;
     edInfo.position = j;
     
     return edInfo;
-}
+}*/
 @end

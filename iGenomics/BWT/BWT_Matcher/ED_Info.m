@@ -45,8 +45,8 @@
     newGappedB[combinedLen] = '\0';
     strcpy(newGappedA, ed1.gappedA);
     strcat(newGappedA, ed2.gappedA);
-    strcpy(newGappedB, ed1.gappedB);
-    strcat(newGappedB, ed2.gappedB);
+    strcpy(newGappedB, (ed1.gappedB[0] == kNoGappedBChar[0]) ? ed1.gappedA : ed1.gappedB);
+    strcat(newGappedB, (ed2.gappedB[0] == kNoGappedBChar[0]) ? ed2.gappedA : ed2.gappedB);
     
     return [[ED_Info alloc] initWithPos:ed1.position editDistance:ed1.distance+ed2.distance gappedAStr:newGappedA gappedBStr:newGappedB isIns:(ed1.insertion || ed2.insertion) isReverse:(ed1.isRev && ed2.isRev)];
 }

@@ -560,6 +560,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             return i;
         }
     }
+        
     return -1;
 }
 
