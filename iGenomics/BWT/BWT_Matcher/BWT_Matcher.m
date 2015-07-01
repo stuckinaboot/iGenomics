@@ -339,8 +339,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             if (c == -1) {//DEL --- Not positive though
                 if (info.gappedA[i-range.location] == kDelMarker)
                     c = kACGTLen;
-                else
-                    NSLog(@"Shit going down");
             }
             
             posOccArray[c][i]++;
