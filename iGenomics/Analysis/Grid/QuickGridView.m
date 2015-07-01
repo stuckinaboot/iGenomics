@@ -91,10 +91,11 @@
 - (void)setMaxCovValWithNumOfCols:(int)cols {
     //For the graph find the maxCoverageVal
     //First find highest value to make the max scale
-    
+    int potentialMax = 0;
     for (int i = 0; i<cols; i++) {//This is totalCols because that is the len of the seq, if this is no longer the len of the seq, then this needs to be changed
-        if (coverageArray[i]-posOccArray[kACGTLen+1][i]>maxCoverageVal) {//Don't count insertions
-            maxCoverageVal = coverageArray[i];
+        potentialMax = coverageArray[i]-posOccArray[kACGTLen+1][i];
+        if (potentialMax>maxCoverageVal) {//Don't count insertions
+            maxCoverageVal = potentialMax;
         }
     }
 }

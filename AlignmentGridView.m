@@ -59,14 +59,17 @@
         int insCount = 0;
         for (int x = 0; x < lenA; x++) {
             if (read.position + x >= 0) {
-                AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x];
+                AlignmentGridPosition *gridPos = alignmentGridPositionsArr[read.position+x-insCount];
                 if (!gridPos) {
                     gridPos = [[AlignmentGridPosition alloc] init];
-                    alignmentGridPositionsArr[read.position+x] = gridPos;
+                    alignmentGridPositionsArr[read.position+x-insCount] = gridPos;
                 }
                 
+                if (read.gappedB[x] == kDelMarker)
+                    insCount++;
+                
                 gridPos.startIndexInreadAlignmentsArr = read.position;
-                gridPos.positionRelativeToReadStart = x;
+                gridPos.positionRelativeToReadStart = x-insCount;
                 gridPos.readLen = lenA;
                 
                 int readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
@@ -87,22 +90,24 @@
                 if (read.insertion) {
                     if (placeToInsertChar >= maxCoverageVal)
                         break;
-                    int temp = x+insCount;
-                    int prevX = x+insCount;
-                    while (temp < lenA && read.gappedB[temp] == kDelMarker) {
-                        insCount++;
-                        temp++;
-                    }
-                    if (prevX != temp) {
+//                    int temp = x+insCount;
+//                    int prevX = x+insCount;
+//                    while (temp < lenA && read.gappedB[temp] == kDelMarker) {
+//                        insCount++;
+//                        temp++;
+//                    }
+                    if (read.gappedB[x] != kDelMarker) {
+//                    if (prevX != temp) {
                         readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
                         if (readInfoNum == kReadInfoReadEnd)
-                            alignmentGridPositionsArr[read.position+prevX].readInfoStr[placeToInsertChar] = kReadInfoReadPosBeforeEnd;
+                            alignmentGridPositionsArr[read.position+x-insCount].readInfoStr[placeToInsertChar] = kReadInfoReadPosBeforeEnd;
+    //                    }
+    //                    if (x + insCount >= lenA)
+    //                        break;
+                        gridPos.str[placeToInsertChar] = read.gappedA[x];
+                        gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
+                            counter++;
                     }
-                    if (x + insCount >= lenA)
-                        break;
-                    gridPos.str[placeToInsertChar] = read.gappedA[x+insCount];
-                    gridPos.readInfoStr[placeToInsertChar] = readInfoNum;
-                        counter++;
                 }
                 else {
                     if (placeToInsertChar < maxCoverageVal) {//gridPos.str.length) {
@@ -119,13 +124,13 @@
 }
 
 - (int)readInfoNumForX:(int)x len:(int)len andInsCount:(int)insCount {
-    if (x+insCount == 0)
+    if (x -insCount == 0)
          return kReadInfoReadStart;
-    else if (x+insCount == len-1)
+    else if (x == len-1)
         return kReadInfoReadEnd;
-    else if (x+insCount == 1)
+    else if (x-insCount == 1)
          return kReadInfoReadPosAfterStart;
-    else if (x+insCount == len-2)
+    else if (x == len-2)
          return kReadInfoReadPosBeforeEnd;
     else
          return kReadInfoReadMiddle;
