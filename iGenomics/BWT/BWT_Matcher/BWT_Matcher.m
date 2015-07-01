@@ -154,7 +154,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //    [exactMatcher timerPrint];
     [matchingTimer stopAndLog];
 }
-
 - (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info forNumOfSubs:(int)subs {
     int gappedALen = (int)strlen(info.gappedA);
     
@@ -168,24 +167,24 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     BOOL trimBeginning = NO;
     
     if (shouldTrim) {
-        if (abs(closeEnding - (info.position + gappedALen-info.numOfInsertions)) < closeEnding - info.position)
+        if (abs(closeEnding - (info.position + gappedALen)) < closeEnding - info.position)
             trimEnding = TRUE;
         else
             trimBeginning = TRUE;
     }
     else
         return info;
-//    BOOL trimEnding = (closeEnding - (info.position + gappedALen) <= 0);
-//    BOOL trimBeginning = trimEnding && (closeEnding - info.position > 0 && (closeEnding - (info.position + gappedALen) <= 0));
+    //    BOOL trimEnding = (closeEnding - (info.position + gappedALen) <= 0);
+    //    BOOL trimBeginning = trimEnding && (closeEnding - info.position > 0 && (closeEnding - (info.position + gappedALen) <= 0));
     
     if (index < 0)
         return info;
     
     int charsToTrimEnd = (trimEnding) ? [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
     
+    int numOfInsertionsInBeginning = (trimBeginning) ? [self numOfInsertionsBeforeSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
     
-    int numOfInsertionsBeforeBeginning = (trimBeginning) ? [self numOfInsertionsBeforeSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
-    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index andNumOfInsertionsBeforeEnding:numOfInsertionsBeforeBeginning] : 0;
+    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index andNumOfInsertionsBeforeEnding:numOfInsertionsInBeginning] : 0;
     
     int amtOfCharsToAddToPosition = (trimBeginning) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] - info.position : 0;
     
@@ -201,7 +200,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     newInfo.isRev = info.isRev;
     newInfo.readName = info.readName;
     newInfo.rowInAlignmentGrid = info.rowInAlignmentGrid;
-    newInfo.numOfInsertions = info.numOfInsertions - numOfInsertionsBeforeBeginning;
+    newInfo.numOfInsertions = info.numOfInsertions-numOfInsertionsInBeginning;
     
     int numOfCharsToTrimFromBeginningFromED = 0;
     
@@ -214,7 +213,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }
     
     int numOfCharsToTrimFromEndFromED = 0;
-
+    
     if (noGappedB)
         numOfCharsToTrimFromEndFromED = charsToTrimEnd;
     else {
@@ -234,12 +233,12 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }
     else
         newInfo.gappedB = strdup(kNoGappedBChar);
-        
+    
     newInfo.distance = info.distance;
-
+    
     newInfo.distance += numOfCharsToTrimFromBeginningFromED;
     newInfo.position += amtOfCharsToAddToPosition;
-
+    
     newInfo.distance += numOfCharsToTrimFromEndFromED;
     
     [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
@@ -431,7 +430,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //        [self updatePosOccsArrayWithRange:NSMakeRange(info.position,aLen) andQuery:info.gappedA andED_Info:NULL andIsReverse:NO];
     
     //        INSERTIONS
-    if (info.position >= 0 && info.position+aLen<=dgenomeLen) {//ISN'T Negative and doesn't go over
+    if (info.position >= 0 && info.position+aLen-info.numOfInsertions<=dgenomeLen) {//ISN'T Negative and doesn't go over
         int bLen = strlen(info.gappedB);
         int insCount = 0;
 
@@ -583,16 +582,21 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
    
     int closestBeginning = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
     
-    int k = closestBeginning+numOfInsertions;
+//    int k = closestBeginning+numOfInsertions;
     
+    int k = closestBeginning+numOfInsertions;
+
     return k-info.position;
 }
 
 - (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
     int k = 0;
-    for (int i = info.position; i <= k; i++)
-        if (info.gappedB[i-info.position] == kDelMarker)
+    int closestEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    for (int i = info.position; i <= closestEnding; i++)
+        if (info.gappedB[i-info.position] == kDelMarker) {
             k++;
+            closestEnding++;
+        }
     return k;
 }
 
