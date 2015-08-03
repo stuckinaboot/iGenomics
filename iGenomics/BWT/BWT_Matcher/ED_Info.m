@@ -28,12 +28,11 @@
 }
 
 + (ED_Info*)mergedED_Infos:(ED_Info *)ed1 andED2:(ED_Info *)ed2 {
-    
-    if (ed1.gappedA && !ed2.gappedA)
-        return [ED_Info copyOfEDInfo:ed1];
-    else if (ed2.gappedA && !ed1.gappedA)
-        return [ED_Info copyOfEDInfo:ed2];
-    else if (!ed1.gappedA && !ed2.gappedA)
+    if (ed1 && !ed2)
+        return ed1;
+    else if (ed2 && !ed1)
+        return ed2;
+    else if (!ed1 && !ed2)
         return NULL;
     
     int ed1ALen = (int)strlen(ed1.gappedA);
@@ -49,15 +48,7 @@
     strcpy(newGappedB, (ed1.gappedB[0] == kNoGappedBChar[0]) ? ed1.gappedA : ed1.gappedB);
     strcat(newGappedB, (ed2.gappedB[0] == kNoGappedBChar[0]) ? ed2.gappedA : ed2.gappedB);
     
-    ED_Info *finalInfo = [[ED_Info alloc] initWithPos:ed1.position editDistance:ed1.distance+ed2.distance gappedAStr:newGappedA gappedBStr:newGappedB isIns:(ed1.insertion || ed2.insertion) isReverse:(ed1.isRev && ed2.isRev)];
-    finalInfo.numOfInsertions = ed1.numOfInsertions+ed2.numOfInsertions;
-    return finalInfo;
-}
-
-+ (ED_Info*)copyOfEDInfo:(ED_Info*)info {
-    ED_Info *inf = [[ED_Info alloc] initWithPos:info.position editDistance:info.distance gappedAStr:info.gappedA gappedBStr:info.gappedB isIns:info.insertion isReverse:info.isRev];
-    inf.numOfInsertions = info.numOfInsertions;
-    return inf;
+    return [[ED_Info alloc] initWithPos:ed1.position editDistance:ed1.distance+ed2.distance gappedAStr:newGappedA gappedBStr:newGappedB isIns:(ed1.insertion || ed2.insertion) isReverse:(ed1.isRev && ed2.isRev)];
 }
 
 - (int)intValue {

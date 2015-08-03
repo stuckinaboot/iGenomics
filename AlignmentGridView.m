@@ -65,12 +65,12 @@
                     alignmentGridPositionsArr[read.position+x-insCount] = gridPos;
                 }
                 
-                if (read.gappedB[x] == kDelMarker)
-                    insCount++;
-                
                 gridPos.startIndexInreadAlignmentsArr = read.position;
                 gridPos.positionRelativeToReadStart = x-insCount;
                 gridPos.readLen = lenA;
+                
+                if (read.gappedB[x] == kDelMarker)
+                    insCount++;
                 
                 int readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
                 

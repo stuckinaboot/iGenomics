@@ -130,7 +130,5 @@ extern NSString * const kOutdatedDevicesArray[];
 + (BOOL)isOldIPhone;
 + (NSString*)extFromFileName:(NSString *)name;
 + (void)displayiGenomicsAlertWithMsg:(NSString*)msg;
-
-+ (char*)reverseChars:(char*)chars;
 //+ (void)displayReadAlignmentDataInConsole;
 @end
