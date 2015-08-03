@@ -26,14 +26,14 @@
     char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
     int gapsInA = 0, gapsInB = 0;
 //    
-//    for (int i = 0; i < lenA; i++) {
-//        for (int j = 0; j < lenB; j++) {
-//            editDistanceTable[i*lenB+j] = -1;
-//        }
-//    }
-//    
+    for (int i = 0; i < lenA; i++) {
+        for (int j = 0; j < lenB; j++) {
+            editDistanceTable[i*lenB+j] = -1;
+        }
+    }
+//
     for (int j = 0; j < lenB; j++) {
-        editDistanceTable[j] = 0;//j
+        editDistanceTable[j] = j;//j
         arrowTable[j] = kInitialize;
     }
     
@@ -42,12 +42,12 @@
         arrowTable[i*lenB] = kUp;
     }
     
-    maxED = (maxED >= lenA) ? lenA-1 : maxED;
+//    maxED = (maxED >= lenA) ? lenA-1 : maxED;
     
     int numOfBoxesToComputeFor = lenB-lenA+1;//maxED+1;
     
-    for (int i = 1; i <= maxED+1; i++, numOfBoxesToComputeFor++) {
-        for (int j = 1; j < numOfBoxesToComputeFor && j < lenB; j++) {
+    for (int i = 1; i <= maxED+1 && i < lenA; i++, numOfBoxesToComputeFor++) {
+        for (int j = 1; j <= numOfBoxesToComputeFor && j < lenB; j++) {
             int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
             arrowTable[i*lenB+j] = kDiag;
             
@@ -68,46 +68,53 @@
             editDistanceTable[i*lenB+j] = min;
         }
     }
-//
-//    if (testingOn) {
-//        printf("\n\nED:\n");
-//        
-//        for (int i = 0; i < lenA; i++) {
-//            for (int j = 0; j < lenB; j++) {
-//                printf("%i ",editDistanceTable[i*lenB+j]);
-//            }
-//            printf("\n");
-//        }
-//    }
+
+    if (testingOn) {
+        printf("\n\nED:\n");
+        
+        for (int i = 0; i < lenA; i++) {
+            for (int j = 0; j < lenB; j++) {
+                printf("%i ",editDistanceTable[i*lenB+j]);
+            }
+            printf("\n");
+        }
+    }
     
     int temp = numOfBoxesToComputeFor;
     numOfBoxesToComputeFor = 2*maxED+1;
     int startColumn = temp-numOfBoxesToComputeFor;//numOfBoxesToComputeFor;
-
-    for (int i = maxED+2; i < lenA; i++, startColumn++) {
-        for (int j = startColumn; j < startColumn+numOfBoxesToComputeFor && j < lenB; j++) {
-            int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
-            arrowTable[i*lenB+j] = kDiag;
-            
-            int possibleMin;
-            if (j > startColumn) {
-                possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
-                if (possibleMin < min) {
-                    min = possibleMin;
-                    arrowTable[i*lenB+j] = kLeft;
+    if (startColumn >= 0) {
+        // Else - The entire table that is necessary to compute has not fully been computed
+        
+        for (int i = maxED+2; i < lenA; i++, startColumn++) {
+            for (int j = startColumn; j < startColumn+numOfBoxesToComputeFor && j < lenB; j++) {
+                int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
+                arrowTable[i*lenB+j] = kDiag;
+                
+                int possibleMin;
+                if (j > startColumn) {
+                    possibleMin = editDistanceTable[(i*lenB)+(j-1)]+1;
+                    if (possibleMin < min) {
+                        min = possibleMin;
+                        arrowTable[i*lenB+j] = kLeft;
+                    }
                 }
-            }
-            
-            if (j < startColumn + numOfBoxesToComputeFor-1) {
-                possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
-                if (possibleMin < min) {
-                    min = possibleMin;
-                    arrowTable[i*lenB+j] = kUp;
+                
+                if (j < startColumn + numOfBoxesToComputeFor-1) {
+                    possibleMin = editDistanceTable[(i-1)*lenB+j]+1;
+                    if (possibleMin < min) {
+                        min = possibleMin;
+                        arrowTable[i*lenB+j] = kUp;
+                    }
                 }
+                
+                editDistanceTable[i*lenB+j] = min;
             }
-            
-            editDistanceTable[i*lenB+j] = min;
         }
+    }
+    else {
+        startColumn = 0;
+        numOfBoxesToComputeFor++;//Adds because in a later for loop it subs one because it expected that the numOfBoxesToComputeFor was beyond amount needed to compute (satisfied the for loops break condition)
     }
     if (testingOn) {
         printf("\n\nED:\n");

@@ -92,6 +92,17 @@ NSString * const kOutdatedDevicesArray[] = {@"iPad1,1", @"iPad2,1", @"iPad2,2", 
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kBasicAlertTitle message:msg delegate:nil cancelButtonTitle:kBasicAlertDoneBtn otherButtonTitles:nil];
     [alert show];
 }
+
++ (char*)reverseChars:(char *)chars {
+    int len = (int)strlen(chars);
+    char* newChars = malloc(len+1);
+    newChars[len] = '\0';
+    
+    for (int i = 0; i < len; i++) {
+        newChars[i] = chars[len-i-1];
+    }
+    return newChars;
+}
 /*
 + (void)displayReadAlignmentDataInConsole {
     for (ED_Info *info in readAlignmentsArr) {

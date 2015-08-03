@@ -28,6 +28,7 @@
 - (id)initWithPos:(int)pos editDistance:(int)dist gappedAStr:(char*)gA gappedBStr:(char*)gB isIns:(BOOL)ins isReverse:(BOOL)isReverse;
 + (BOOL)areEqualEditDistance1:(ED_Info*)ed1 andEditDistance2:(ED_Info*)ed2;
 + (ED_Info*)mergedED_Infos:(ED_Info*)ed1 andED2:(ED_Info*)ed2;//Pre-condition: ed1.position <= ed2.position
++ (ED_Info*)copyOfEDInfo:(ED_Info*)info;
 - (int)intValue;
 
 - (void)freeUsedMemory;

@@ -51,7 +51,7 @@
     ED_Info *match;
     
     char *shortA = malloc(kNonSeedShortSeqSize+1);
-    for (int i = 0; i < lenA-kNonSeedShortSeqSize; i++) {
+    for (int i = 1; i < lenA-kNonSeedShortSeqSize; i++) {
         strncpy(shortA, a+i, kNonSeedShortSeqSize);
         shortA[kNonSeedShortSeqSize] = '\0';
         
@@ -62,32 +62,96 @@
         for (ED_Info *ed in exactMatches) {
 
             int bLoc = ed.position-i-maxEditDist;
-            int bRangeLen = lenA+2*maxEditDist;
+            int bRangeLen = i+kNonSeedShortSeqSize+maxEditDist;
             if (bLoc < 0) {
-                bRangeLen += bLoc;
+                bRangeLen = ((i < ed.position) ? i : ed.position)+kNonSeedShortSeqSize;
                 bLoc = 0;
             }
             if (bLoc + bRangeLen - 1 >= lenB) {
                 bLoc -= maxEditDist;
-                bRangeLen = lenB-bLoc+maxEditDist;
+                bRangeLen = lenB-bLoc;
             }
             
-//            ED_Info *edL = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, i+kNonSeedShortSeqSize) andFullB:b rangeInB:NSMakeRange(bLoc, i+maxEditDist+kNonSeedShortSeqSize) andMaxED:maxEditDist andBacktrackingPosition:i+kNonSeedShortSeqSize+maxEditDist];
+            char *revA = [GlobalVars reverseChars:a];
+            int revPortionOfALen = i+kNonSeedShortSeqSize;
+            char *revPortionOfA = malloc(i+kNonSeedShortSeqSize+2);
             
-//            int charsToTheRightOfExactMatchInA = lenA-(i+kNonSeedShortSeqSize);
+            memcpy(revPortionOfA, revA+(lenA-i-kNonSeedShortSeqSize), revPortionOfALen);
+            memcpy(revPortionOfA+1, revPortionOfA, revPortionOfALen);
             
-//            ED_Info *edR = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(i+kNonSeedShortSeqSize, charsToTheRightOfExactMatchInA) andFullB:b rangeInB:NSMakeRange(bLoc+kNonSeedShortSeqSize, charsToTheRightOfExactMatchInA+maxEditDist) andMaxED:maxEditDist andBacktrackingPosition:-1];
+            revPortionOfA[0] = ' ';
+            revPortionOfA[revPortionOfALen] = '\0';
             
-//            ED_Info *edFinal = [ED_Info mergedED_Infos:edL andED2:ed];
-//            edFinal = [ED_Info mergedED_Infos:edFinal andED2:edR];
-            ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
+            char *bSubstr = malloc(bRangeLen+1);
+            memcpy(bSubstr, b+bLoc, bRangeLen);
+            bSubstr[bRangeLen] = '\0';
+            char *revB = [GlobalVars reverseChars:bSubstr];
+            free(bSubstr);
+            
+            ED_Info *edRevL = [editDist editDistanceForInfoWithFullA:revPortionOfA rangeInA:NSMakeRange(0, i+kNonSeedShortSeqSize) andFullB:revB rangeInB:NSMakeRange(0, bRangeLen) andMaxED:maxEditDist];
+            
+            free(revA);
+            free(revB);
+            free(revPortionOfA);
+            
+            ED_Info *edFinal = [[ED_Info alloc] init];
+            
+            ED_Info *edL = NULL;
+            if (edRevL) {
+                char *revGappedA = [GlobalVars reverseChars:edRevL.gappedA];
+                char *revGappedB = [GlobalVars reverseChars:edRevL.gappedB];
+                
+                edL = [[ED_Info alloc] initWithPos:edRevL.position editDistance:edRevL.distance gappedAStr:revGappedA gappedBStr:revGappedB isIns:edRevL.insertion isReverse:edRevL.isRev];
+                edL.numOfInsertions = edRevL.numOfInsertions;
+                
+                [edRevL freeUsedMemory];
+                free(revGappedA);
+                free(revGappedB);
+                
+                edFinal = [ED_Info mergedED_Infos:edL andED2:edFinal];
+            }
+            else
+                edFinal.distance += i;
             
             
-            edFinal.position += bLoc;
-//            edFinal.position = ed.position - (int)strlen(edL.gappedA) + edL.numOfInsertions;
+            int charsToTheRightOfExactMatchInA = lenA-(i+kNonSeedShortSeqSize);
+            int bLen = lenA-i+maxEditDist;
+            if (bLen+ed.position-1 >= lenB)
+                bLen = lenB-ed.position;
+            ED_Info *edR = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange((i>0) ? i-1 : i, lenA-i+1) andFullB:b rangeInB:NSMakeRange(ed.position, bLen) andMaxED:maxEditDist];//-1 and + 1 creates a necessary "space" at the start of the ED computation
+            if (edR) {
+                char *newa = malloc(strlen(edR.gappedA)-kNonSeedShortSeqSize+1);
+                char *newb = malloc(strlen(edR.gappedB)-kNonSeedShortSeqSize+1);
+                
+                memcpy(newa, edR.gappedA + kNonSeedShortSeqSize, strlen(edR.gappedA)-kNonSeedShortSeqSize);
+                memcpy(newb, edR.gappedB + kNonSeedShortSeqSize, strlen(edR.gappedB)-kNonSeedShortSeqSize);
+                newa[strlen(edR.gappedA)-kNonSeedShortSeqSize] = '\0';
+                newb[strlen(edR.gappedA)-kNonSeedShortSeqSize] = '\0';
+                
+                edR.gappedA = newa;
+                edR.gappedB = newb;
+//                edR.gappedA += kNonSeedShortSeqSize;
+//                edR.gappedB += kNonSeedShortSeqSize;
+                edFinal = [ED_Info mergedED_Infos:edFinal andED2:edR];
+            }
+            else
+                edFinal.distance += lenA-i-kNonSeedShortSeqSize;
+//            ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
+            
+            int edLgappedALen = (edL.gappedA) ? (int)strlen(edL.gappedA) : 0;
+//            edFinal.position += bLoc;
+            edFinal.position = ed.position - edLgappedALen + edL.numOfInsertions + kNonSeedShortSeqSize;
+            
+            [edL freeUsedMemory];
+            [edR freeUsedMemory];
+            
+            if (edFinal.position < 0 || edFinal.position+(int)strlen(edFinal.gappedA) >= lenB-1) {
+                edFinal = NULL;
+            }
             
             if (edFinal.distance <= maxEditDist) {
                 match = edFinal;
+                match.isRev = isReverse;
                 break;
             }
             else
