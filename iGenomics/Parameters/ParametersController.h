@@ -70,6 +70,9 @@
     //Parameters end
     
     ComputingController *computingController;
+    
+    NSArray *refSegmentNames;
+    NSArray *refSegmentLens;
 }
 @property (nonatomic) ComputingController *computingController;
 @property (nonatomic) APFile *refFile, *readsFile, *imptMutsFile;

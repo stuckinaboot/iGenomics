@@ -92,6 +92,8 @@ typedef enum {
 #define kParameterArraySeedingOnKey @"ParameterArraySeedingOnKey"
 #define kParameterArrayRefFileSegmentNamesKey @"ParameterArrayRefFileSegmentNamesKey"
 #define kParameterArrayReadFileNameKey @"ParameterArrayReadFileNameKey"
+#define kParameterArraySegmentNamesKey @"ParameterArraySegmentNamesKey"
+#define kParameterArraySegmentLensKey @"ParameterArraySegmentLensKey"
 
 #define kScrollViewSliderUpdateInterval 0.001
 

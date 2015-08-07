@@ -244,7 +244,7 @@
 
 //- (void)displaySuccessBox;
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA andImptMutsFileContents:(NSString*)mutsFileContents;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA andImptMutsFileContents:(NSString*)mutsFileContents andRefFile:(APFile*)refFile;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;
 
 - (void)resetGridViewForType:(QuickGridView*)gViewType;

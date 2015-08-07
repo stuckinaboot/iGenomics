@@ -107,26 +107,18 @@
     
     NSString *genomeFileSegmentNames = parameters[kParameterArrayRefFileSegmentNamesKey];
     
-    NSMutableArray *segArr = (NSMutableArray*)[genomeFileSegmentNames componentsSeparatedByString:kRefFileInternalDivider];
+    separateGenomeNames = parameters[kParameterArraySegmentNamesKey];
+    separateGenomeLens = parameters[kParameterArraySegmentLensKey];
     
-    separateGenomeNames = [[NSMutableArray alloc] init];
-    separateGenomeLens = [[NSMutableArray alloc] init];
     cumulativeSeparateGenomeLens = [[NSMutableArray alloc] init];
     
-    for (int i = 0, x = 0; i < [segArr count]; i += 2, x++) {
-        NSString *seg = [segArr objectAtIndex:i];
-        NSRange r = [seg rangeOfString:kSeparateGenomeNamesSubstringToIndexStr];
-        if (r.location != NSNotFound)
-            [separateGenomeNames addObject:[seg substringToIndex:r.location]];
-        else
-            [separateGenomeNames addObject:seg];
-        [separateGenomeLens addObject:[NSNumber numberWithInt:[[segArr objectAtIndex:i+1] intValue]]];
+    for (int i = 0; i < [separateGenomeLens count]; i++) {
+        int len = [[separateGenomeLens objectAtIndex:i] intValue];
         if (i > 0)
-            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]+[[cumulativeSeparateGenomeLens objectAtIndex:x-1] intValue]]];
+            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[cumulativeSeparateGenomeLens objectAtIndex:i-1] intValue]+len]];
         else
-            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:[[separateGenomeLens objectAtIndex:x] intValue]]];
+            [cumulativeSeparateGenomeLens addObject:[NSNumber numberWithInt:len]];
     }
-    
     bwt_Matcher.cumulativeSeparateGenomeLens = [[NSMutableArray alloc] initWithArray:cumulativeSeparateGenomeLens];
     
     [bwt_Matcher setDelegate:self];

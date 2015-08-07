@@ -100,7 +100,7 @@
 //    analysisControllerIPadMenu = [[AnalysisControllerIPadMenu alloc] init];
 }
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents {
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents andRefFile:(APFile*)refFile {
     NSLog(@"About to ready view for display");
     
     originalStr = unraveledStr;
@@ -121,11 +121,7 @@
     numOfReadsMatched = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsMatchedIndex] intValue];
     bwt.bwtMutationFilter.kHeteroAllowance = [[basicInfArr objectAtIndex:kBasicInfoArrMutationSupportIndex] intValue];
     
-    NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
-    genomeFileName = [genomeFileSegmentNames substringWithRange:genomeFileNameRange];
-//    genomeFileSegmentNames = [genomeFileSegmentNames substringFromIndex:genomeFileNameRange.length+kRefFileInternalDivider.length];
-    
-//    NSMutableArray *arr = (NSMutableArray*)[genomeFileSegmentNames componentsSeparatedByString:kRefFileInternalDivider];
+    genomeFileName = refFile.name;
     
     separateGenomeNames = sepGNA;
     separateGenomeLens = sepGLA;

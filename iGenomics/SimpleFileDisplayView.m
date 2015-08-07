@@ -164,10 +164,13 @@
 }
 
 - (void)displayDeleteBtnForGestureRecognizer:(UIGestureRecognizer*)recognizer {
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    if (![menuController isMenuVisible])
+        return;
+    
     UIMenuItem *itemDel = [[UIMenuItem alloc] initWithTitle:kSimpleFileDisplayTblItemDeleteBtnTitle action:@selector(deletePressed:)];
     UIMenuItem *itemRename = [[UIMenuItem alloc] initWithTitle:kSimpleFileDisplayTblItemRenameBtnTitle action:@selector(renamePressed:)];
-    
-    UIMenuController *menuController = [UIMenuController sharedMenuController];
+
     [menuController setMenuItems:@[itemRename, itemDel]];
     
     APTableViewCell *cell = (APTableViewCell*)[tblView cellForRowAtIndexPath:[tblView indexPathForRowAtPoint:[recognizer locationInView:tblView]]];
@@ -175,8 +178,8 @@
     
     [menuController setTargetRect:rect inView:cell.superview];
     [cell becomeFirstResponder];
-    if (![menuController isMenuVisible])
-        [menuController setMenuVisible:YES animated:YES];
+    
+    [menuController setMenuVisible:YES animated:YES];
 }
 
 - (void)hideUtilityMenu:(NSNotification *)notif {

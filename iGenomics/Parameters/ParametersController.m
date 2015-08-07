@@ -207,6 +207,8 @@
     parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:seedingSwitch.on];
     parameters[kParameterArrayRefFileSegmentNamesKey] = refFileSegmentNames;
     parameters[kParameterArrayReadFileNameKey] = readsFile.name;
+    parameters[kParameterArraySegmentNamesKey] = refSegmentNames;
+    parameters[kParameterArraySegmentLensKey] = refSegmentLens;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:parameters forKey:kLastUsedParamsSaveKey];
@@ -285,7 +287,7 @@
         for (int i = 0; i < [lineArray count]; i++) {
             NSString *str = [lineArray objectAtIndex:i];
             if ([str characterAtIndex:0] == kFaFileTitleIndicator) {
-                [namesArray addObject:[str substringFromIndex:1]];//Removes the >
+                [namesArray addObject:[str substringWithRange:NSMakeRange(1, [str rangeOfString:kSeparateGenomeNamesSubstringToIndexStr].location)]];//Removes the >
                 [lineArray removeObjectAtIndex:i];
                 if (prevLenIndex != -1)
                     [lengthArray addObject:[NSNumber numberWithInt:len]];//lineLen*(i-prevLenIndex)]];
@@ -302,6 +304,9 @@
 //        int lineArrCount = [lineArray count];
         [lengthArray addObject:[NSNumber numberWithInt:len]];//Last line may have a different length
         seq = [newSeq stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        
+        refSegmentNames = namesArray;
+        refSegmentLens = lengthArray;
         
         NSMutableString *newRefFileName = [[NSMutableString alloc] initWithFormat:@"%@%@",file.name,kRefFileInternalDivider];
         for (int i = 0; i < [namesArray count]; i++) {
