@@ -41,6 +41,8 @@
     NSMutableArray *searchedFileArr;
     
     UIAlertView *renameFileAlert;
+    
+    UITapGestureRecognizer *dismissKeyboardRecog;
 }
 @property (nonatomic) id <SimpleFileDisplayViewDelegate> delegate;
 - (IBAction)donePressed:(id)sender;
@@ -56,4 +58,6 @@
 - (void)hideUtilityMenu:(NSNotification*)notif;
 - (IBAction)deletePressed:(id)sender;
 - (IBAction)renamePressed:(id)sender;
+
+- (void)dismissKeyboard;
 @end

@@ -307,7 +307,7 @@
 }
 
 #pragma File Input View Delegate
-- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc fromFileInputView:(FileInputView *)fileInputView {
+- (void)displayFilePreviewPopoverWithContents:(NSString*)contents atLocation:(CGPoint)loc fromFileInputView:(AdvancedFileInputView *)fileInputView {
     CGPoint location = [self.view convertPoint:loc fromView:fileInputView];
     [self displayPopoverOutOfCellWithContents:contents atLocation:location];
 }

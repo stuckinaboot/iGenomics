@@ -14,6 +14,8 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        dismissKeyboardRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+        
         float utilBtnWidth = frame.size.width * kSimpleFileDisplayViewUtilityBtnWidthScaleFactor;
         
         CGRect frame = self.frame;
@@ -96,10 +98,15 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [searchedFileArr removeAllObjects];
-    for (APFile *file in entireFileArr) {
-        if ([[file.name lowercaseString] rangeOfString:[searchText lowercaseString]].location == 0)
-            [searchedFileArr addObject:file];
+    if (![searchText isEqualToString:@""]) {
+        for (APFile *file in entireFileArr) {
+            if ([[file.name lowercaseString] rangeOfString:[searchText lowercaseString]].location == 0)
+                [searchedFileArr addObject:file];
+        }
     }
+    else
+        searchedFileArr = [[NSMutableArray alloc] initWithArray:entireFileArr];
+    [tblView reloadData];
 }
 
 - (void)setLocalFilesArray:(NSArray *)array {
@@ -131,8 +138,10 @@
                                        reuseIdentifier:MyIdentifier];
     }
     
-    APFile *file = [searchedFileArr objectAtIndex:indexPath.row];
-    cell.textLabel.text = file.name;
+    if ([searchedFileArr count] > 0) {
+        APFile *file = [searchedFileArr objectAtIndex:indexPath.row];
+        cell.textLabel.text = file.name;
+    }
     return cell;
 }
 
@@ -186,10 +195,10 @@
     [self resignFirstResponder];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([UIMenuController sharedMenuController].isMenuVisible)
-        [self hideUtilityMenu:nil];
-}
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//    if ([UIMenuController sharedMenuController].isMenuVisible)
+//        [self hideUtilityMenu:nil];
+//}
 
 - (IBAction)deletePressed:(id)sender {
     APFile *file = searchedFileArr[[tblView indexPathForSelectedRow].row];
@@ -223,6 +232,24 @@
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self addGestureRecognizer:dismissKeyboardRecog];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)aSearchBar {
+    [aSearchBar resignFirstResponder];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)search
+{
+    [search resignFirstResponder];
+}
+
+- (void)dismissKeyboard {
+    [searchBar resignFirstResponder];
+    [self removeGestureRecognizer:dismissKeyboardRecog];
 }
 
 @end

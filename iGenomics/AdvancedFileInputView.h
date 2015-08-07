@@ -19,6 +19,8 @@
 #define kAdvancedFileInputViewBtnScaleFactorWidth .9
 #define kAdvancedFileInputViewBtnFontSize 25.0f
 
+#define kLockedBtnAlpha 0.5
+
 #define kFileTypeSelectionOptionLblFontSize 30.0f
 #define kFileTypeSelectionOptionLblTxt @"Choose %@ File:" //%@ is a title from kFileTypeSelectionOptionTitles
 #define kFileTypeSelectionOptionTitles @[@"Reference", @"Reads", @"Important Mutations"]//Should be in same order as the FileTypeSelectionOption enum
