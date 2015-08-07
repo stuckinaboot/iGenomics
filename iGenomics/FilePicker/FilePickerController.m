@@ -27,50 +27,46 @@
 
 #pragma Set up methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadExternalFileWithDict:) name:kFilePickerControllerNotificationExternalFileLoadedKey object:nil];
+    
     parametersController = [[ParametersController alloc] init];
     filePickerCurrentlySelecting = kFilePickerSelectingRef;
     
     [self lockContinueBtns];
-
-    [super viewDidLoad];
     
-    //Ref
+    [FileManager intilializeDefaultFilesDict];
+    
     NSArray *fileTypesDNA = [NSArray arrayWithObjects:kFa, kFq, kFasta, kFastq, nil];
     
-    refFileManager = [[FileManager alloc] init];
-    UINib *inputViewNib = [UINib nibWithNibName:kFileInputViewNibName bundle:nil];
-    refInputView = [[inputViewNib instantiateWithOwner:refInputView options:nil] objectAtIndex:0];
+    //Ref
+    CGRect inputViewRect = CGRectMake(0, 0, refFileInputContainerView.frame.size.width, refFileInputContainerView.frame.size.height);
     
-    [refFileManager setUpWithDefaultFileNamesPath:kDefaultRefFilesNamesFile ofType:kTxt];
-    [refInputView setUpWithFileManager:refFileManager andInstructLblText:kRefInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kRefInputViewSearchPlaceholderTxt andSupportFileTypes:[NSArray arrayWithObjects:kFa, kFasta, nil] andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, nil] andMaxFileSize:kFileSizeMaxRef];
+    refInputView = [[AdvancedFileInputView alloc] initWithFrame:inputViewRect];
     [refInputView setDelegate:self];
+    [refInputView loadWithFileTypeSelectionOption:FileTypeSelectionOptionRef containingController:self validationExts:fileTypesDNA];
+    [refInputView setLocalFiles:[FileManager getLocalFileNamesArrayFromFileName:kLocalRefFilesNamesFileName]];
     
     //Reads
-    readsFileManager = [[FileManager alloc] init];
-    readsInputView = [[inputViewNib instantiateWithOwner:readsInputView options:nil] objectAtIndex:0];
+    inputViewRect = CGRectMake(0, 0, readsFileInputContainerView.frame.size.width, readsFileInputContainerView.frame.size.height);
     
-    [readsFileManager setUpWithDefaultFileNamesPath:kDefaultReadsFilesNamesFile ofType:kTxt];
-    [readsInputView setUpWithFileManager:readsFileManager andInstructLblText:kReadsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kReadsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesDNA andValidationStrings:[NSArray arrayWithObjects:kFilePickerFastaValidationStr, kFilePickerFastqValidationStr, nil] andMaxFileSize:kFileSizeMaxReads];
+    readsInputView = [[AdvancedFileInputView alloc] initWithFrame:inputViewRect];
     [readsInputView setDelegate:self];
+    [readsInputView loadWithFileTypeSelectionOption:FileTypeSelectionOptionReads containingController:self validationExts:fileTypesDNA];
+    [readsInputView setLocalFiles:[FileManager getLocalFileNamesArrayFromFileName:kLocalReadsFilesNamesFileName]];
     
     //Impt muts
     NSArray *fileTypesImptMuts = [NSArray arrayWithObjects:kImptMutsFileExt, nil];
     
-    imptMutsFileManager = [[FileManager alloc] init];
-    imptMutsInputView = [[inputViewNib instantiateWithOwner:imptMutsInputView options:nil] objectAtIndex:0];
+    inputViewRect = CGRectMake(0, 0, imptMutsFileInputContainerView.frame.size.width, imptMutsFileInputContainerView.frame.size.height);
     
-    [imptMutsFileManager setUpWithDefaultFileNamesPath:kDefaultImptMutsFilesNamesFile ofType:kTxt];
-    [imptMutsInputView setUpWithFileManager:imptMutsFileManager andInstructLblText:kImptMutsInputViewInstructLblTxt andSearchBarPlaceHolderTxt:kImptMutsInputViewSearchPlaceholderTxt andSupportFileTypes:fileTypesImptMuts andValidationStrings:nil andMaxFileSize:kFileSizeMaxImptMuts];
+    imptMutsInputView = [[AdvancedFileInputView alloc] initWithFrame:inputViewRect];
     [imptMutsInputView setDelegate:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.view layoutIfNeeded];
+    [imptMutsInputView loadWithFileTypeSelectionOption:FileTypeSelectionOptionImptMuts containingController:self validationExts:fileTypesImptMuts];
+    [imptMutsInputView setLocalFiles:[FileManager getLocalFileNamesArrayFromFileName:kLocalImptMutsFilesNamesFileName]];
     
-    refInputView.frame = CGRectMake(refInputView.frame.origin.x, refInputView.frame.origin.y, refFileInputContainerView.frame.size.width, refFileInputContainerView.frame.size.height);
     [refFileInputContainerView addSubview:refInputView];
     
     readsInputView.frame = CGRectMake(readsInputView.frame.origin.x, readsInputView.frame.origin.y, readsFileInputContainerView.frame.size.width, readsFileInputContainerView.frame.size.height);
@@ -80,6 +76,12 @@
     [imptMutsFileInputContainerView addSubview:imptMutsInputView];
     
     [scrollView setContentOffset:CGPointMake(self.view.frame.size.width*filePickerCurrentlySelecting, 0)];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view layoutIfNeeded];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -104,31 +106,13 @@
 #pragma Button Actions
 
 - (IBAction)showParametersPressed:(id)sender {
-    if (![self allSelectedFilesPassedValidation])
-        return;
-    
-    NSString *s = @"";
-    NSString *sName = @"";
-    NSString *r = @"";
-    NSString *rName = @"";
-    
-    sName = [refInputView nameOfSelectedRow];
-    s = [refInputView contentsOfSelectedRow];
-
-    rName = [readsInputView nameOfSelectedRow];
-    r = [readsInputView contentsOfSelectedRow];
-    
-    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
+    [parametersController passInRefFile:[refInputView getSelectedFile] readsFile:[readsInputView getSelectedFile] andImptMutsFileContents:[imptMutsInputView getSelectedFile]];
     [self presentViewController:parametersController animated:YES completion:nil];
 }
 
 - (IBAction)analyzePressed:(id)sender {
-    if (![self allSelectedFilesPassedValidation])
-        return;
     filePickerCurrentlySelecting = kFilePickerSelectingRef;
-    if ([refInputView needsInternetToGetFile] || [readsInputView needsInternetToGetFile] || [imptMutsInputView needsInternetToGetFile])
-        if (![GlobalVars internetAvailable])
-            return;
+
     parametersController.computingController = [[ComputingController alloc] init];
 
     [self presentViewController:parametersController.computingController animated:NO completion:nil];
@@ -148,8 +132,8 @@
     
 //    [scrollView setContentOffset:CGPointMake(filePickerCurrentlySelecting*self.view.frame.size.width, 0) animated:YES];
 
-    if ([refInputView nameOfSelectedRow] == nil)
-        [self lockContinueBtns];
+//<<    if ([refInputView nameOfSelectedRow] == nil)
+//<<        [self lockContinueBtns];
 }
 
 - (void)lockContinueBtns {
@@ -168,46 +152,47 @@
 - (void)beginActualSequencingPredefinedParameters {
     NSLog(@"Entered beginActualSequencingPredefinedParameters");
     
-    NSString *s = @"";
-    NSString *sName = @"";
-    NSString *r = @"";
-    NSString *rName = @"";
+    APFile *refFile = [refInputView getSelectedFile];
+    APFile *readsFile = [readsInputView getSelectedFile];
+    APFile *imptMutsFile = [imptMutsInputView getSelectedFile];
     
-    NSString *refFilePath = @"";
+    [parametersController passInRefFile:refFile readsFile:readsFile andImptMutsFileContents:imptMutsFile];
+    refFile = parametersController.refFile;
+    readsFile = parametersController.readsFile;
     
-    sName = [refInputView nameOfSelectedRow];
-    s = [refInputView contentsOfSelectedRow];
-    
-    rName = [readsInputView nameOfSelectedRow];
-    r = [readsInputView contentsOfSelectedRow];
-
-    [parametersController passInSeq:s andReads:r andRefFileName:sName andReadFileName:rName andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
-    s = parametersController.seq;
-    r = parametersController.reads;
-    sName = parametersController.refFileSegmentNames;
-    rName = parametersController.readFileName;
+    refFile = [[APFile alloc] initWithName:parametersController.refFileSegmentNames contents:refFile.contents fileType:refFile.fileType];
+//    refFile.name = parametersController.refFileSegmentNames;
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
+    NSMutableDictionary *parameters = [defaults objectForKey:kLastUsedParamsSaveKey];
     
     
-    NSString *ext = [GlobalVars extFromFileName:rName];
+    NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {
-        arr = [arr mutableCopy];
-        [arr setObject:[NSNumber numberWithInt:kTrimmingOffVal] atIndexedSubscript:kParameterArrayTrimmingValIndex];//Disables trimming for non-Fq files
+        parameters = [parameters mutableCopy];
+        [parameters setObject:[NSNumber numberWithInt:kTrimmingOffVal] forKey:kParameterArrayTrimmingValKey];//Disables trimming for non-Fq files
     }
     
-    if (arr == NULL) {
-        arr = (NSMutableArray*)[NSArray arrayWithObjects:[NSNumber numberWithInt:2/*Subs and In/Dels*/], [NSNumber numberWithInt:2] /*ED*/, [NSNumber numberWithInt:1] /*Alignment type (forward and reverse)*/, [NSNumber numberWithInt:2] /*Mut support*/, [NSNumber numberWithInt:kTrimmingOffVal] /*Trimming*/, [NSString stringWithFormat:@"%c",kTrimmingRefChar0], nil];//Contains everything except refFileName and readFileName
-        [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
+    if (parameters == NULL) {
+        parameters = [[NSMutableDictionary alloc] init];
+        
+        parameters[kParameterArrayMatchTypeKey] = [NSNumber numberWithInt:2/*Subs and In/Dels*/];
+        parameters[kParameterArrayERKey] = [NSNumber numberWithInt:0.1];
+        parameters[kParameterArrayFoRevKey] = [NSNumber numberWithInt:1]; /*Alignment type (forward and reverse)*/
+        parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:2];
+        parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:kTrimmingOffVal];
+        parameters[kParameterArrayTrimmingRefCharKey] = [NSString stringWithFormat:@"%c",kTrimmingRefChar0];
+        parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:YES];
+        
+        [defaults setObject:parameters forKey:kLastUsedParamsSaveKey];
         [defaults synchronize];
     }
     
-    if (([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) && [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue] == kTrimmingOffVal)
-        r = [parametersController readsByRemovingQualityValFromReads:r];
+    if (([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) && [parameters[kParameterArrayTrimmingValKey] intValue] == kTrimmingOffVal)
+        readsFile = [parametersController readsFileByRemovingQualityValFromReadsFile:readsFile];
     
-    [parametersController.computingController setUpWithReads:r andSeq:s andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:sName, rName, nil]] andRefFilePath:refFilePath andImptMutsFileContents:[imptMutsInputView contentsOfSelectedRow]];
+    [parametersController.computingController setUpWithReadsFile:readsFile andRefFile:refFile andParameters:parameters andImptMutsFile:imptMutsFile];
 }
 
 - (IBAction)backPressed:(id)sender {
@@ -223,8 +208,71 @@
     }
 }
 
-- (BOOL)allSelectedFilesPassedValidation {
-    return ([refInputView selectedFilePassedValidation] && [readsInputView selectedFilePassedValidation] && [imptMutsInputView selectedFilePassedValidation]);
+- (void)loadExternalFileWithDict:(NSNotification*)notification {
+    NSDictionary *dict = notification.userInfo;
+    APFile *file = dict[kFilePickerControllerNotificationExternalFileLoadedDictAPFileKey];
+    FileTypeSelectionOption option = [FileManager getFileTypeSelectionOptionOfFile:file];
+    
+    externalFile = file;
+    
+    if (option == FileTypeSelectionOptionDNATypeUndetermined) {
+        externalFileSelectionOptionAlert = [[UIAlertView alloc] initWithTitle:kFilePickerControllerExternalFileSelectionOptionAlertTitle message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:kFilePickerControllerExternalFileSelectionOptionAlertBtnRefTxt, kFilePickerControllerExternalFileSelectionOptionAlertBtnReadsTxt, nil];
+        [externalFileSelectionOptionAlert show];
+    }
+    else if (option == FileTypeSelectionOptionReads) {
+        [self adjustInterfaceForExternalFileWithNewFilePickerCurrentlySelecting:kFilePickerSelectingReads];
+    }
+    else if (option == FileTypeSelectionOptionImptMuts) {
+        [self adjustInterfaceForExternalFileWithNewFilePickerCurrentlySelecting:kFilePickerSelectingImptMuts];
+    }
+}
+
+- (void)scrollToGivenFilePickerSelection:(int)selection {
+    if ([GlobalVars isIpad])
+        return;
+    filePickerCurrentlySelecting = selection;
+    [UIView animateWithDuration:kFilePickerScrollViewAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        [scrollView setContentOffset:CGPointMake(filePickerCurrentlySelecting*self.view.frame.size.width, 0) animated:NO];
+    } completion:^(BOOL finished){
+        self.view.userInteractionEnabled = YES;
+    }];
+}
+
+- (void)adjustInterfaceForExternalFileWithNewFilePickerCurrentlySelecting:(int)selection {
+    filePickerCurrentlySelecting = selection;
+    AdvancedFileInputView *inputView;
+    
+    NSString *fileNameToWriteTo;
+    if (filePickerCurrentlySelecting == kFilePickerSelectingRef) {
+        fileNameToWriteTo = kLocalRefFilesNamesFileName;
+        inputView = refInputView;
+    }
+    else if (filePickerCurrentlySelecting == kFilePickerSelectingReads) {
+        fileNameToWriteTo = kLocalReadsFilesNamesFileName;
+        inputView = readsInputView;
+    }
+    else if (filePickerCurrentlySelecting == kFilePickerSelectingImptMuts) {
+        fileNameToWriteTo = kLocalImptMutsFilesNamesFileName;
+        inputView = imptMutsInputView;
+    }
+    
+    [FileManager addLocalFile:externalFile forLocalFileNamesFileName:fileNameToWriteTo];
+    [self scrollToGivenFilePickerSelection:filePickerCurrentlySelecting];
+    NSArray *files = [FileManager getLocalFileNamesArrayFromFileName:fileNameToWriteTo];
+    [inputView setLocalFiles:files];
+    [inputView forceDisplayLocalFiles];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:externalFileSelectionOptionAlert]) {
+        NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+        if ([title isEqualToString:kFilePickerControllerExternalFileSelectionOptionAlertBtnRefTxt]) {
+            [self adjustInterfaceForExternalFileWithNewFilePickerCurrentlySelecting:kFilePickerSelectingRef];
+        }
+        else if ([title isEqualToString:kFilePickerControllerExternalFileSelectionOptionAlertBtnReadsTxt]) {
+            [self adjustInterfaceForExternalFileWithNewFilePickerCurrentlySelecting:kFilePickerSelectingReads];
+        }
+    }
 }
 
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc {
@@ -268,12 +316,15 @@
     return self;
 }
 
-- (void)fileSelected:(BOOL)isSelected InFileInputView:(UIView*)inputView {
+- (void)fileSelected:(BOOL)isSelected inFileInputView:(id)inputView {
     if ([inputView isEqual:refInputView])
-        refSelected = isSelected;
+        refFileSelected = isSelected;
     else if ([inputView isEqual:readsInputView])
-        readsSelected = isSelected;
-    if (readsSelected && refSelected)
+        readsFileSelected = isSelected;
+    else if ([inputView isEqual:imptMutsInputView])
+        return;
+    
+    if (refFileSelected && readsFileSelected)
         [self unlockContinueBtns];
     else
         [self lockContinueBtns];

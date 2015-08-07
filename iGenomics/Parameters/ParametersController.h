@@ -72,7 +72,8 @@
     ComputingController *computingController;
 }
 @property (nonatomic) ComputingController *computingController;
-@property (nonatomic) NSString *seq, *reads, *refFileSegmentNames, *refFilePath, *readFileName, *imptMutsFileContents;
+@property (nonatomic) APFile *refFile, *readsFile, *imptMutsFile;
+@property (nonatomic) NSString *refFileSegmentNames;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;
@@ -85,14 +86,14 @@
 
 - (IBAction)startSequencingPressed:(id)sender;
 - (void)beginActualSequencing;
-- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString*)refN andReadFileName:(NSString*)readN andImptMutsFileContents:(NSString*)imptMutsContents;
+- (void)passInRefFile:(APFile*)myRefFile readsFile:(APFile*)myReadsFile andImptMutsFileContents:(APFile*)myImptMutsFile;
 - (IBAction)backPressed:(id)sender;
 
 - (void)setTrimmingAllowed:(BOOL)allowed;
 
 - (int)unknownBaseTrimmingIndexForRead:(NSString*)read;//-1 if shouldn't trim at all
 
-- (NSString*)fixReadsForReadsFileName:(NSString*)name;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
-- (NSString*)fixGenomeForGenomeFileName:(NSString*)name;//Checks for .fq
-- (NSString*)readsByRemovingQualityValFromReads:(NSString*)r;
+- (void)fixReadsFile:(APFile*)file;//Checks for .fa and .fq,returns types NSString so it can be accessed from FilePickerController
+- (void)fixGenomeFile:(APFile*)file;//Checks for .fq
+- (APFile*)readsFileByRemovingQualityValFromReadsFile:(APFile*)f;
 @end

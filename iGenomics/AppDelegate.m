@@ -60,13 +60,19 @@
         if ([ext isEqualToString:kFa] || [ext isEqualToString:kFasta] || [ext isEqualToString:kFq] || [ext isEqualToString:kFastq] || [ext isEqualToString:kImptMutsFileExt]) {
             NSString *contents = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
             
-            NSDictionary *dict = @{kFileExtKey : ext, kFileContentsKey : contents, kFileNameKey : name};
-            
-            //Do something with the dict
-            
+            APFile *file = [[APFile alloc] initWithName:name contents:contents fileType:APFileTypeLocal];
+            NSDictionary *dict = @{kFilePickerControllerNotificationExternalFileLoadedDictAPFileKey : file};
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:kFilePickerControllerNotificationExternalFileLoadedKey object:nil userInfo:dict];
+
             return YES;
         }
         return NO;
+    }
+    else if ([[DBChooser defaultChooser] handleOpenURL:url]) {
+        // This was a Chooser response and handleOpenURL automatically ran the
+        // completion block
+        return YES;
     }
     else {
         DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];

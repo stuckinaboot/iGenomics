@@ -29,7 +29,7 @@
 }
 
 - (void)setUpNumOfRowsInSectionArr {
-    if (!mutationsArray)
+    if (!mutationsArray || [mutationsArray count] == 0)
         return;
     
     numOfRowsInSectionArr = [[NSMutableArray alloc] init];

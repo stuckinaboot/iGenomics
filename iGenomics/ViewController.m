@@ -19,12 +19,12 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileIntoFilePicker:) name:kFilePickerControllerNotificationExternalFileLoadedKey object:self];
     
     filePickerController = [[FilePickerController alloc] init];
-    
     abtSectController = [[AboutSectionViewController alloc] init];
-    
-    [super viewDidLoad];
 }
 
 - (IBAction)showFilePickerPressed:(id)sender {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <dropbox/dropbox.h>
+#import <DBChooser/DBChooser.h>
 #import <sys/utsname.h>
 
 #define kDropboxKey @"z7srp09ctjcw53l"

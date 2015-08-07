@@ -13,6 +13,7 @@
 #import "FilePreviewPopoverController.h"
 #import "AnalysisPopoverController.h"
 #import "FileInputView.h"
+#import "AdvancedFileInputView.h"
 
 #import "ParametersController.h"
 
@@ -40,29 +41,33 @@
 
 #define kFilePickerScrollViewAnimationDuration 0.4f
 
-@interface FilePickerController : UIViewController <UIPopoverControllerDelegate, FileInputViewDelegate> {
+#define kFilePickerControllerNotificationExternalFileLoadedKey @"FilePickerControllerNotificationExternalFileLoadedKey"
+#define kFilePickerControllerNotificationExternalFileLoadedDictAPFileKey @"FilePickerControllerNotificationExternalFileLoadedDictAPFileKey"
+
+#define kFilePickerControllerExternalFileSelectionOptionAlertTitle @"Select Type:"
+#define kFilePickerControllerExternalFileSelectionOptionAlertBtnRefTxt @"Reference"
+#define kFilePickerControllerExternalFileSelectionOptionAlertBtnReadsTxt @"Reads"
+
+@interface FilePickerController : UIViewController <UIPopoverControllerDelegate, AdvancedFileInputViewDelegate, UIAlertViewDelegate> {
     ParametersController *parametersController;
     
     IBOutlet UIView *contentView;
     
     IBOutlet UIView *refFileInputContainerView;
-    FileInputView *refInputView;
-    FileManager *refFileManager;
+    AdvancedFileInputView *refInputView;
+    BOOL refFileSelected;
     
     IBOutlet UIView *readsFileInputContainerView;
-    FileInputView *readsInputView;
-    FileManager *readsFileManager;
+    AdvancedFileInputView *readsInputView;
+    BOOL readsFileSelected;
     
     IBOutlet UIView *imptMutsFileInputContainerView;
-    FileInputView *imptMutsInputView;
-    FileManager *imptMutsFileManager;
-    
+    AdvancedFileInputView *imptMutsInputView;
+
     IBOutlet UIButton *analyzeBtn;
     IBOutlet UIButton *configBtn;
     IBOutlet UIButton *nextBtn;
     IBOutlet UINavigationBar *secondDataSelectionBarIPhoneOnly;
-    BOOL refSelected;
-    BOOL readsSelected;
     
     IBOutlet UIScrollView *scrollView;
     
@@ -70,6 +75,9 @@
     
     //Only for old iphone
     BOOL updatedScrollViewSize;
+    
+    UIAlertView *externalFileSelectionOptionAlert;
+    APFile *externalFile;
 }
 @property (nonatomic, strong) UIPopoverController *previewPopoverController;
 - (IBAction)showParametersPressed:(id)sender;
@@ -77,9 +85,13 @@
 - (IBAction)nextPressedOnIPhone:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
-- (void)resetScrollViewOffset;
+- (void)loadExternalFileWithDict:(NSNotification*)notification;
+- (void)adjustInterfaceForExternalFileWithNewFilePickerCurrentlySelecting:(int)selection;
+- (void)determineExternalFileSelectionOptionThroughUserAlert;
 
-- (BOOL)allSelectedFilesPassedValidation;
+- (void)scrollToGivenFilePickerSelection:(int)selection;
+
+- (void)resetScrollViewOffset;
 
 //- (void)displayPopoverOutOfCellWithContents:(NSString*)contents;//Popover with textview
 - (void)displayPopoverOutOfCellWithContents:(NSString *)contents atLocation:(CGPoint)loc;

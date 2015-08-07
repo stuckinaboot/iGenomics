@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString *)path andImptMutsFileContents:(NSString*)imptMutsContents {
+- (void)setUpWithReadsFile:(APFile*)myReadsFile andRefFile:(APFile*)myRefFile andParameters:(NSMutableDictionary*)myParameters andImptMutsFile:(APFile*)imptMutsFile {
     
     readProgressView.progress = 0;
     readsProcessed = 0;//In case view loaded late
@@ -43,13 +43,13 @@
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];
-    [bwt setUpForRefFileContents:mySeq andFilePath:path];
+    [bwt setUpForRefFile:myRefFile];
     exportDataStr = [[NSMutableString alloc] init];
     
-    int trimmingValue = [[myParameterArray objectAtIndex:kParameterArrayTrimmingValIndex] intValue];
+    int trimmingValue = [myParameters[kParameterArrayTrimmingValKey] intValue];
     
     if (trimmingValue != kTrimmingOffVal)
-        myReads = [self readsAfterTrimmingForReads:myReads andTrimValue:trimmingValue andReferenceQualityChar:[[myParameterArray objectAtIndex:kParameterArrayTrimmingRefCharIndex] characterAtIndex:0]];
+        myReadsFile.contents = [self readsAfterTrimmingForReads:myReadsFile.contents andTrimValue:trimmingValue andReferenceQualityChar:[myParameters[kParameterArrayTrimmingRefCharKey] characterAtIndex:0]];
     
     timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
     
@@ -59,7 +59,7 @@
         readTimer = [[APTimer alloc] init];
         [readTimer start];
         
-        [bwt matchReedsFileContentsAndParametersArr:[NSArray arrayWithObjects:myReads, myParameterArray, nil]];
+        [bwt matchReadsFile:myReadsFile withParameters:myParameters];
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             [timeRemainingUpdateTimer invalidate];
@@ -78,12 +78,12 @@
 //            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
             [bwt.bwtMutationFilter filterMutationsForDetails];
             
-            NSString *refFileSegmentNames = [myParameterArray objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
-            NSString *readFileName = [myParameterArray objectAtIndex:kParameterArrayReadFileNameIndex];
+            NSString *refFileSegmentNames = myParameters[kParameterArrayRefFileSegmentNamesKey];
+            NSString *readFileName = myParameters[kParameterArrayReadFileNameKey];
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
-            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[[myParameterArray objectAtIndex:kParameterArrayERIndex] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue]], nil];
-            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsContents];
+            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
+            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
             
         });

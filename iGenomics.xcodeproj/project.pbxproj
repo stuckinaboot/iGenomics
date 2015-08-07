@@ -22,6 +22,7 @@
 		A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */; };
 		A316743519994BB9009C8EC8 /* BackBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = A316743419994BB9009C8EC8 /* BackBtn.png */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
+		A31FC7C51B73BBD000721921 /* APTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31FC7C41B73BBD000721921 /* APTableViewCell.m */; };
 		A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */; };
 		A3208B38197EED4700299A30 /* ImportantMutationsDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3208B37197EED4700299A30 /* ImportantMutationsDisplayView.m */; };
 		A3208B3C197EFDC000299A30 /* ImportantMutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */; };
@@ -74,6 +75,11 @@
 		A3558AE3197035F300BF0821 /* AlignmentGridPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3558AE2197035F300BF0821 /* AlignmentGridPosition.m */; };
 		A35E39B41885FB7500651C41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E39B31885FB7500651C41 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
+		A364B8961B71036D007A9E69 /* AdvancedFileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A364B8951B71036D007A9E69 /* AdvancedFileInputView.m */; };
+		A364B8991B711C3B007A9E69 /* SimpleFileDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A364B8981B711C3B007A9E69 /* SimpleFileDisplayView.m */; };
+		A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A364B89A1B713F97007A9E69 /* DBChooser.bundle */; };
+		A364B89D1B713F97007A9E69 /* DBChooser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A364B89B1B713F97007A9E69 /* DBChooser.framework */; };
+		A364B8A01B714618007A9E69 /* APFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A364B89F1B714618007A9E69 /* APFile.m */; };
 		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
 		A36C7C0E1964AFAD004CA5EF /* CoverageHistogram.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */; };
 		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
@@ -174,6 +180,8 @@
 		A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iGenomicsLogoDNAIcon.png; sourceTree = "<group>"; };
 		A316743419994BB9009C8EC8 /* BackBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackBtn.png; sourceTree = SOURCE_ROOT; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A31FC7C31B73BBD000721921 /* APTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTableViewCell.h; sourceTree = "<group>"; };
+		A31FC7C41B73BBD000721921 /* APTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTableViewCell.m; sourceTree = "<group>"; };
 		A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImportantMutationsDisplayView.xib; sourceTree = "<group>"; };
 		A3208B36197EED4700299A30 /* ImportantMutationsDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportantMutationsDisplayView.h; sourceTree = "<group>"; };
 		A3208B37197EED4700299A30 /* ImportantMutationsDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportantMutationsDisplayView.m; sourceTree = "<group>"; };
@@ -241,6 +249,14 @@
 		A35E39B31885FB7500651C41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
 		A3645BC3162CA2FB00983291 /* EditDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDistance.m; sourceTree = "<group>"; };
+		A364B8941B71036D007A9E69 /* AdvancedFileInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedFileInputView.h; sourceTree = "<group>"; };
+		A364B8951B71036D007A9E69 /* AdvancedFileInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedFileInputView.m; sourceTree = "<group>"; };
+		A364B8971B711C3B007A9E69 /* SimpleFileDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFileDisplayView.h; sourceTree = "<group>"; };
+		A364B8981B711C3B007A9E69 /* SimpleFileDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleFileDisplayView.m; sourceTree = "<group>"; };
+		A364B89A1B713F97007A9E69 /* DBChooser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DBChooser.bundle; sourceTree = "<group>"; };
+		A364B89B1B713F97007A9E69 /* DBChooser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DBChooser.framework; sourceTree = "<group>"; };
+		A364B89E1B714618007A9E69 /* APFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APFile.h; sourceTree = "<group>"; };
+		A364B89F1B714618007A9E69 /* APFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APFile.m; sourceTree = "<group>"; };
 		A3669B3316F689750034A1CC /* DNAColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNAColors.h; path = iGenomics/Analysis/Grid/DNAColors.h; sourceTree = "<group>"; };
 		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
 		A36C7C0C1964AFAC004CA5EF /* CoverageHistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CoverageHistogram.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -352,6 +368,7 @@
 			files = (
 				A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */,
 				A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */,
+				A364B89D1B713F97007A9E69 /* DBChooser.framework in Frameworks */,
 				A375FBFF19391FBD00F69E07 /* QuartzCore.framework in Frameworks */,
 				A375FBFD19391FB900F69E07 /* Security.framework in Frameworks */,
 				A375FBFB19391FB600F69E07 /* SystemConfiguration.framework in Frameworks */,
@@ -402,6 +419,8 @@
 		A310AF4D158A5F7200E892AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A364B89A1B713F97007A9E69 /* DBChooser.bundle */,
+				A364B89B1B713F97007A9E69 /* DBChooser.framework */,
 				A375FC0219391FCB00F69E07 /* libc++.dylib */,
 				A375FC0019391FC600F69E07 /* CFNetwork.framework */,
 				A375FBFE19391FBD00F69E07 /* QuartzCore.framework */,
@@ -1053,6 +1072,12 @@
 			children = (
 				A3E282D4197D687100E64DD7 /* FileInputView.h */,
 				A3E282D5197D687100E64DD7 /* FileInputView.m */,
+				A364B8941B71036D007A9E69 /* AdvancedFileInputView.h */,
+				A364B8951B71036D007A9E69 /* AdvancedFileInputView.m */,
+				A364B8971B711C3B007A9E69 /* SimpleFileDisplayView.h */,
+				A364B8981B711C3B007A9E69 /* SimpleFileDisplayView.m */,
+				A31FC7C31B73BBD000721921 /* APTableViewCell.h */,
+				A31FC7C41B73BBD000721921 /* APTableViewCell.m */,
 				A3E282DC197D96FA00E64DD7 /* FileInputView.xib */,
 				A3E282DB197D6B0200E64DD7 /* File Manager */,
 			);
@@ -1064,6 +1089,8 @@
 			children = (
 				A3E282D8197D6B0000E64DD7 /* FileManager.h */,
 				A3E282D9197D6B0000E64DD7 /* FileManager.m */,
+				A364B89E1B714618007A9E69 /* APFile.h */,
+				A364B89F1B714618007A9E69 /* APFile.m */,
 			);
 			name = "File Manager";
 			sourceTree = "<group>";
@@ -1195,6 +1222,7 @@
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
 				A351608C1AA3FD7B0004FD32 /* iTunesArtwork in Resources */,
 				A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */,
+				A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */,
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
 				A351608B1AA3FD7B0004FD32 /* Icon@2x.png in Resources */,
@@ -1267,10 +1295,12 @@
 				A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */,
 				A3C0FD29160FA5AC00BC2168 /* BWT_Maker.m in Sources */,
 				A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */,
+				A31FC7C51B73BBD000721921 /* APTableViewCell.m in Sources */,
 				A3C0FD2A160FA5AC00BC2168 /* BWT_Matcher.m in Sources */,
 				A3C0FD2B160FA5AC00BC2168 /* BWT_MutationFilter.m in Sources */,
 				A3208B38197EED4700299A30 /* ImportantMutationsDisplayView.m in Sources */,
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
+				A364B8961B71036D007A9E69 /* AdvancedFileInputView.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
 				A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */,
@@ -1282,6 +1312,7 @@
 				A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */,
 				A3C61C0919955EC500AED305 /* HamburgerMenuController.m in Sources */,
 				A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */,
+				A364B8991B711C3B007A9E69 /* SimpleFileDisplayView.m in Sources */,
 				A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */,
 				A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */,
 				A3D9B74F19AD2EA500D9AA35 /* IPhonePopoverHandler.m in Sources */,
@@ -1300,6 +1331,7 @@
 				A337B1A018E78D1B00919612 /* AnalysisControllerIPhoneToolbar.m in Sources */,
 				A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */,
 				A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */,
+				A364B8A01B714618007A9E69 /* APFile.m in Sources */,
 				A3C215181777F72600B0C6D5 /* MutationInfo.m in Sources */,
 				A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */,
 				A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */,

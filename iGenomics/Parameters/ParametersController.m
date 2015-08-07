@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController, seq, reads, refFileSegmentNames, readFileName, refFilePath, imptMutsFileContents;
+@synthesize computingController, refFile, readsFile, refFileSegmentNames, imptMutsFile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +49,7 @@
     }
     
     
-    NSString *ext = [GlobalVars extFromFileName:readFileName];
+    NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) {
         [self setTrimmingAllowed:YES];
         [self trimmingValueChanged:nil];
@@ -74,28 +74,28 @@
 
 - (IBAction)useLastUsedParameters:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *arr = [defaults objectForKey:kLastUsedParamsSaveKey];
+    NSMutableDictionary *parameters = [defaults objectForKey:kLastUsedParamsSaveKey];
     
-    if (!arr)
+    if (!parameters)
         return;
     
-    matchTypeCtrl.selectedSegmentIndex = [[arr objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
+    matchTypeCtrl.selectedSegmentIndex = [parameters[kParameterArrayMatchTypeKey] intValue];
     [self matchTypeChanged:nil];
     
-    maxERSldr.value = [[arr objectAtIndex:kParameterArrayERIndex] doubleValue];
+    maxERSldr.value = [parameters[kParameterArrayERKey] doubleValue];
     [self maxERValueChangedViaSldr:nil];
     
-    mutationSupportStpr.value = [[arr objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+    mutationSupportStpr.value = [parameters[kParameterArrayMutationCoverageKey] intValue];
     [self mutationSupportValueChanged:nil];
     
-    seedingSwitch.on = [[arr objectAtIndex:kParameterArraySeedingOnIndex] boolValue];
+    seedingSwitch.on = [parameters[kParameterArraySeedingOnKey] boolValue];
     
-    NSString *ext = [GlobalVars extFromFileName:readFileName];
+    NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) {
-        trimmingStpr.value = [[arr objectAtIndex:kParameterArrayTrimmingValIndex] intValue];
+        trimmingStpr.value = [parameters[kParameterArrayTrimmingValKey] intValue];
         [self trimmingValueChanged:nil];
         
-        NSString *trimmingRefCharStr = [arr objectAtIndex:kParameterArrayTrimmingRefCharIndex];
+        NSString *trimmingRefCharStr = parameters[kParameterArrayTrimmingRefCharKey];
         if ([trimmingRefCharStr isEqualToString:[NSString stringWithFormat:@"%c",kTrimmingRefChar0]])
             trimmingRefCharCtrl.selectedSegmentIndex = kTrimmingRefChar0Index;
         else if ([trimmingRefCharStr isEqualToString:[NSString stringWithFormat:@"%c", kTrimmingRefChar1]])
@@ -110,7 +110,7 @@
         [self trimmingSwitchValueChanged:nil];
     }
     
-    alignmentTypeCtrl.selectedSegmentIndex = [[arr objectAtIndex:kParameterArrayFoRevIndex] intValue];
+    alignmentTypeCtrl.selectedSegmentIndex = [parameters[kParameterArrayFoRevKey] intValue];
 }
 
 - (IBAction)matchTypeChanged:(id)sender {
@@ -162,14 +162,16 @@
     trimmingLbl.text = [NSString stringWithFormat:kTrimmingStprLblTxt,(int)trimmingStpr.value];
 }
 
-- (void)passInSeq:(NSString*)mySeq andReads:(NSString*)myReads andRefFileName:(NSString *)refN andReadFileName:(NSString *)readN andImptMutsFileContents:(NSString *)imptMutsContents {
-    seq = mySeq;
-    reads = myReads;
-    refFileSegmentNames = refN;
-    readFileName = readN;
-    imptMutsFileContents = imptMutsContents;
-    [self fixGenomeForGenomeFileName:refFileSegmentNames];
-    [self fixReadsForReadsFileName:readFileName];
+- (void)passInRefFile:(APFile*)myRefFile readsFile:(APFile*)myReadsFile andImptMutsFileContents:(APFile*)myImptMutsFile {
+    refFile = myRefFile;
+    readsFile = myReadsFile;
+//    refFileSegmentNames = refN;
+    imptMutsFile = myImptMutsFile;
+    
+//    refFile.name = refFileSegmentNames;//Necessary for some later organization of the diff segments -- could possibly be simplified in the future but I have limited time now (leaving for college soon)
+    [self fixGenomeFile:refFile];
+    
+    [self fixReadsFile:readsFile];
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
@@ -187,31 +189,45 @@
     else if (trimmingRefCharCtrl.selectedSegmentIndex == kTrimmingRefChar1Index)
         trimRefChar = [NSString stringWithFormat:@"%c",kTrimmingRefChar1];
     
-    NSString *ext = [GlobalVars extFromFileName:readFileName];
+    NSString *ext = readsFile.ext;
     if (!trimmingSwitch.on && ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame)) {
-        reads = [self readsByRemovingQualityValFromReads:reads];
+        readsFile = [self readsFileByRemovingQualityValFromReadsFile:readsFile];
     }
     
-    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar, [NSNumber numberWithBool:seedingSwitch.on],nil];//contains everything except refFilename and readsFileName
+//    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar, [NSNumber numberWithBool:seedingSwitch.on],nil];//contains everything except refFilename and readsFileName
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    parameters[kParameterArrayMatchTypeKey] = [NSNumber numberWithInt:(int)matchTypeCtrl.selectedSegmentIndex];
+    parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0];
+    parameters[kParameterArrayFoRevKey] = [NSNumber numberWithInt:i];
+    parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:(int)mutationSupportStpr.value];
+    parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal];
+    parameters[kParameterArrayTrimmingRefCharKey] = trimRefChar;
+    parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:seedingSwitch.on];
+    parameters[kParameterArrayRefFileSegmentNamesKey] = refFileSegmentNames;
+    parameters[kParameterArrayReadFileNameKey] = readsFile.name;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:arr forKey:kLastUsedParamsSaveKey];
+    [defaults setObject:parameters forKey:kLastUsedParamsSaveKey];
     [defaults synchronize];
 
-    [computingController setUpWithReads:reads andSeq:seq andParameters:[arr arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:refFileSegmentNames, readFileName, nil]] andRefFilePath:refFilePath andImptMutsFileContents:imptMutsFileContents];
+    [computingController setUpWithReadsFile:readsFile andRefFile:refFile andParameters:parameters andImptMutsFile:imptMutsFile];
 }
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (NSString*)fixReadsForReadsFileName:(NSString *)name {
-    NSString *ext = [GlobalVars extFromFileName:name];
+- (void)fixReadsFile:(APFile *)file {
+    NSString *ext = file.ext;
+    
+    NSString *reads = file.contents;
     
     reads = [reads stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     if ([ext isEqualToString:kTxt])
-        return reads;
+        return;
     
     NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[reads componentsSeparatedByString:kLineBreak]];
     NSMutableString *newReads = [[NSMutableString alloc] init];
@@ -244,11 +260,12 @@
             }
         }
         reads = [newReads stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];//Takes away trailing line breaks
+        readsFile.contents = reads;
     }
-    return reads;
 }
-- (NSString*)fixGenomeForGenomeFileName:(NSString *)name {
-    NSString *ext = [GlobalVars extFromFileName:name];
+- (void)fixGenomeFile:(APFile *)file {
+    NSString *ext = file.ext;
+    NSString *seq = file.contents;
     if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
         //Remove every line break, and remove the first line because it just has random stuff
         //Finds first line break and removes characters up to and including that point
@@ -286,7 +303,7 @@
         [lengthArray addObject:[NSNumber numberWithInt:len]];//Last line may have a different length
         seq = [newSeq stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
-        NSMutableString *newRefFileName = [[NSMutableString alloc] initWithFormat:@"%@%@",name,kRefFileInternalDivider];
+        NSMutableString *newRefFileName = [[NSMutableString alloc] initWithFormat:@"%@%@",file.name,kRefFileInternalDivider];
         for (int i = 0; i < [namesArray count]; i++) {
             [newRefFileName appendFormat:@"%@%@%i%@",[namesArray objectAtIndex:i], kRefFileInternalDivider, [[lengthArray objectAtIndex:i] intValue], kRefFileInternalDivider];
         }
@@ -296,7 +313,7 @@
     }
     if ([seq characterAtIndex:seq.length-1] != '$')
         seq = [NSString stringWithFormat:@"%@$",seq];
-    return seq;
+    file.contents = seq;
 }
 
 - (int)unknownBaseTrimmingIndexForRead:(NSString *)read {
@@ -308,8 +325,8 @@
     return -1;
 }
 
-- (NSString*)readsByRemovingQualityValFromReads:(NSString*)r {
-    NSArray *arr = [r componentsSeparatedByString:kLineBreak];
+- (APFile*)readsFileByRemovingQualityValFromReadsFile:(APFile *)f {
+    NSArray *arr = [f.contents componentsSeparatedByString:kLineBreak];
     NSMutableString *readStr = [[NSMutableString alloc] init];
     
     for (int i = 0; i < [arr count]; i += 3) {
@@ -317,7 +334,8 @@
     }
     readStr = (NSMutableString*)[readStr stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 //    readStr = (NSMutableString*)[readStr stringByReplacingCharactersInRange:NSMakeRange(readStr.length-1, 1) withString:@""];//Removes the last line break
-    return (NSString*)readStr;
+    f.contents = readStr;
+    return f;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

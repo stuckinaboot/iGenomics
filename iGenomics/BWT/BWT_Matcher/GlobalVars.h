@@ -52,8 +52,6 @@ typedef enum {
 #define kTxt @"txt"
 #define kExtDot '.'
 
-//Notifications
-
 //For Passing Files with names
 #define kFileExtKey @"type"
 #define kFileContentsKey @"contents"
@@ -75,15 +73,25 @@ typedef enum {
 
 #define kFaFileTitleIndicator '>'
 
-#define kParameterArrayMatchTypeIndex 0
-#define kParameterArrayERIndex 1
-#define kParameterArrayFoRevIndex 2
-#define kParameterArrayMutationCoverageIndex 3
-#define kParameterArrayTrimmingValIndex 4
-#define kParameterArrayTrimmingRefCharIndex 5
-#define kParameterArraySeedingOnIndex 6
-#define kParameterArrayRefFileSegmentNamesIndex 7
-#define kParameterArrayReadFileNameIndex 8
+//#define kParameterArrayMatchTypeIndex 0
+//#define kParameterArrayERIndex 1
+//#define kParameterArrayFoRevIndex 2
+//#define kParameterArrayMutationCoverageIndex 3
+//#define kParameterArrayTrimmingValIndex 4
+//#define kParameterArrayTrimmingRefCharIndex 5
+//#define kParameterArraySeedingOnIndex 6
+//#define kParameterArrayRefFileSegmentNamesIndex 7
+//#define kParameterArrayReadFileNameIndex 8
+
+#define kParameterArrayMatchTypeKey @"ParameterArrayMatchTypeKey"
+#define kParameterArrayERKey @"ParameterArrayERKey"
+#define kParameterArrayFoRevKey @"ParameterArrayFoRevKey"
+#define kParameterArrayMutationCoverageKey @"ParameterArrayMutationCoverageKey"
+#define kParameterArrayTrimmingValKey @"ParameterArrayTrimmingValKey"
+#define kParameterArrayTrimmingRefCharKey @"ParameterArrayTrimmingRefCharKey"
+#define kParameterArraySeedingOnKey @"ParameterArraySeedingOnKey"
+#define kParameterArrayRefFileSegmentNamesKey @"ParameterArrayRefFileSegmentNamesKey"
+#define kParameterArrayReadFileNameKey @"ParameterArrayReadFileNameKey"
 
 #define kScrollViewSliderUpdateInterval 0.001
 

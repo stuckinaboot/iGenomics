@@ -15,6 +15,7 @@
 @property (nonatomic) RGB *defaultBackground,
                         *defaultLighterBackground,
                         *defaultLbl,
+                        *defaultBtn,
                         *covLbl,
                         *refLbl,
                         *foundLbl,

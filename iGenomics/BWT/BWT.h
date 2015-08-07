@@ -21,6 +21,7 @@
 #import "BWT_Matcher.h"
 #import "BWT_MutationFilter.h"
 #import "APTimer.h"
+#import "APFile.h"
 #import <Dropbox/Dropbox.h>
 //BWT_ Imports End
 
@@ -54,8 +55,8 @@
 
 @property (nonatomic) int readLen, refSeqLen, numOfReads, numOfReadsMatched;
 
-- (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath;
-- (void)matchReedsFileContentsAndParametersArr:(NSArray*)arr;//The arr - index 0 is read file contents, index 1 is parameters arr
+- (void)setUpForRefFile:(APFile*)myRefFile;
+- (void)matchReadsFile:(APFile*)readsFile withParameters:(NSMutableDictionary*)parameters;
 
 - (NSArray*)simpleSearchForQuery:(char*)query;//searches for the query using exact match, returns all matches
 

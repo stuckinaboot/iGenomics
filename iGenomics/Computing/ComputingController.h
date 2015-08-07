@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AnalysisController.h"
+#import "APFile.h"
 #import "BWT.h"
 #import "APTimer.h"
 
@@ -47,7 +48,7 @@
     NSTimer *timeRemainingUpdateTimer;
     
 }
-- (void)setUpWithReads:(NSString*)myReads andSeq:(NSString*)mySeq andParameters:(NSArray*)myParameterArray andRefFilePath:(NSString*)path andImptMutsFileContents:(NSString*)imptMutsContents;//path is empty if not dropbox
+- (void)setUpWithReadsFile:(APFile*)myReadsFile andRefFile:(APFile*)myRefFile andParameters:(NSMutableDictionary*)myParameters andImptMutsFile:(APFile*)imptMutsFile;//path is empty if not dropbox
 - (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar;
 - (void)showAnalysisController;
 - (void)updateReadsProcessedLblTimeRemaining;

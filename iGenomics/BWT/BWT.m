@@ -15,16 +15,16 @@
 @synthesize delegate;
 @synthesize separateGenomeLens, separateGenomeNames, cumulativeSeparateGenomeLens;
 
-- (void)setUpForRefFileContents:(NSString *)contents andFilePath:(NSString*)filePath {
+- (void)setUpForRefFile:(APFile*)myRefFile {
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
     [delegate bwtLoadedWithLoadingText:kBWTCreatingTxt];
-    if (filePath != nil && ![filePath isEqualToString:@""]) {//filePath is from dropbox
+    if (myRefFile.fileType == APFileTypeDropbox) {//filePath is from dropbox
         DBFilesystem *dbFileSys = [DBFilesystem sharedFilesystem];
-        DBPath *newPath = [[DBPath alloc] initWithString:[filePath stringByAppendingFormat:@".%@",kBWTFileExt]];
+        DBPath *newPath = [[DBPath alloc] initWithString:[myRefFile.name stringByAppendingFormat:@".%@",kBWTFileExt]];
         DBFile *file = [dbFileSys openFile:newPath error:nil];
         
         if (file == nil) {
-            refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:[contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]]);
+            refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:[myRefFile.contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]]);
             originalStr = [bwt_Maker getOriginalString];
             
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -39,7 +39,7 @@
                 }
                 
                 DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-                DBPath *newFilePath = [[DBPath alloc] initWithString:[NSString stringWithFormat:@"%@.%@",filePath,kBWTFileExt]];
+                DBPath *newFilePath = [[DBPath alloc] initWithString:[NSString stringWithFormat:@"%@.%@",myRefFile.name,kBWTFileExt]];
                 DBFile *file = [sys createFile:newFilePath error:nil];
                 [file writeString:[NSString stringWithFormat:@"%s%@%@",refStrBWT,kBWTFileDividerBtwBWTandBenchmarkPosList,benchmarkPosStr] error:nil];
             });
@@ -53,7 +53,7 @@
             NSString *bwtFileStr = [file readString:nil];
             NSArray *bwtFileStrComponents = [bwtFileStr componentsSeparatedByString:kBWTFileDividerBtwBWTandBenchmarkPosList];
             refStrBWT = strdup((char*)[[bwtFileStrComponents objectAtIndex:0] UTF8String]);
-            originalStr = strdup([contents UTF8String]);
+            originalStr = strdup([myRefFile.contents UTF8String]);
             
             NSArray *benchmarkPosComponents = [[bwtFileStrComponents objectAtIndex:1] componentsSeparatedByString:kLineBreak];
             for (int i = 0; i < [benchmarkPosComponents count]; i++) {
@@ -62,8 +62,8 @@
         }
     }
     else {//Local file
-        refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:contents]);
-        originalStr = strdup([contents UTF8String]);
+        refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:myRefFile.contents]);
+        originalStr = strdup([myRefFile.contents UTF8String]);
     }
     
     bwtMutationFilter = [[BWT_MutationFilter alloc] init];
@@ -72,13 +72,10 @@
         printf("\n%s",refStrBWT);
 }
 
-- (void)matchReedsFileContentsAndParametersArr:(NSArray *)arr {
+- (void)matchReadsFile:(APFile *)readsFile withParameters:(NSMutableDictionary *)parameters {
     NSLog(@"matchReedsFileContentsAndParametersArr entered");
     
     numOfReadsMatched = 0;
-    
-    NSString *contents = [arr objectAtIndex:0];
-    NSArray *parameters = [arr objectAtIndex:1];
     
     NSLog(@"About to build the BWT");
     
@@ -104,11 +101,11 @@
      */
     NSLog(@"About to load parameters");
     
-    bwt_Matcher.matchType = [[parameters objectAtIndex:kParameterArrayMatchTypeIndex] intValue];
-    maxErrorRate = [[parameters objectAtIndex:kParameterArrayERIndex] floatValue];
-    bwt_Matcher.alignmentType = [[parameters objectAtIndex:kParameterArrayFoRevIndex] intValue];
+    bwt_Matcher.matchType = [parameters[kParameterArrayMatchTypeKey] intValue];
+    maxErrorRate = [parameters[kParameterArrayERKey] floatValue];
+    bwt_Matcher.alignmentType = [parameters[kParameterArrayFoRevKey] intValue];
     
-    NSString *genomeFileSegmentNames = [parameters objectAtIndex:kParameterArrayRefFileSegmentNamesIndex];
+    NSString *genomeFileSegmentNames = parameters[kParameterArrayRefFileSegmentNamesKey];
     
     NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
     genomeFileSegmentNames = [genomeFileSegmentNames substringFromIndex:genomeFileNameRange.length+kRefFileInternalDivider.length];
@@ -138,19 +135,19 @@
     [bwt_Matcher setDelegate:self];
     
     NSLog(@"About to setUpReedsFileContents");
-    [bwt_Matcher setUpReedsFileContents:contents refStrBWT:refStrBWT andMaxErrorRate:maxErrorRate];
+    [bwt_Matcher setUpReedsFileContents:readsFile.contents refStrBWT:refStrBWT andMaxErrorRate:maxErrorRate];
     
     readLen = bwt_Matcher.readLen;
     refSeqLen = bwt_Matcher.refSeqLen;
     numOfReads = bwt_Matcher.numOfReads;
     
-    BOOL seedingIsOn = [[parameters objectAtIndex:kParameterArraySeedingOnIndex] boolValue];
+    BOOL seedingIsOn = [parameters[kParameterArraySeedingOnKey] boolValue];
     
     [bwt_Matcher matchReedsWithSeedingState:seedingIsOn];
     
     insertions = bwt_Matcher.insertionsArray;
 
-    bwtMutationFilter.kHeteroAllowance = [[parameters objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+    bwtMutationFilter.kHeteroAllowance = [parameters[kParameterArrayMutationCoverageKey] intValue];
     
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalStr andMatcher:bwt_Matcher];
     
