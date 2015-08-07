@@ -107,9 +107,6 @@
     
     NSString *genomeFileSegmentNames = parameters[kParameterArrayRefFileSegmentNamesKey];
     
-    NSRange genomeFileNameRange = NSMakeRange(0, [genomeFileSegmentNames rangeOfString:kRefFileInternalDivider].location);
-    genomeFileSegmentNames = [genomeFileSegmentNames substringFromIndex:genomeFileNameRange.length+kRefFileInternalDivider.length];
-    
     NSMutableArray *segArr = (NSMutableArray*)[genomeFileSegmentNames componentsSeparatedByString:kRefFileInternalDivider];
     
     separateGenomeNames = [[NSMutableArray alloc] init];

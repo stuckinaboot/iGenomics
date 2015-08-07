@@ -15,9 +15,9 @@
 #define kDefaultReadsFilesNamesFile @"NamesOfDefaultReadsFiles"
 #define kDefaultImptMutsFilesNamesFile @"NamesOfDefaultImptMutsFiles"
 
-#define kLocalRefFilesNamesFileName @"NamesOfLocalReferenceFiles.txt"
-#define kLocalReadsFilesNamesFileName @"NamesOfLocalReadsFiles.txt"
-#define kLocalImptMutsFilesNamesFileName @"NamesOfLocalImptMutsFiles.txt"
+#define kLocalRefFilesDirectoryName @"NamesOfLocalReferenceFiles"
+#define kLocalReadsFilesDirectoryName @"NamesOfLocalReadsFiles"
+#define kLocalImptMutsFilesDirectoryName @"NamesOfLocalImptMutsFiles"
 
 static NSMutableDictionary *defaultFiles;
 
@@ -38,18 +38,19 @@ typedef enum {
 @property (nonatomic) NSMutableArray *dropboxFileNames;
 @property (nonatomic, readonly) DBFilesystem *dbFileSys;
 
++ (void)initializeFileSystems;
 + (void)intilializeDefaultFilesDict;//Only needs to be called once total (static Dict) --Initializes the dict with the file names, no contents are loaded so that memory can be saved and contents will only be loaded individually and when they need to be
++ (void)initializeLocalFilesDirectories;
 + (NSArray*)defaultFilesForFileNameFile:(NSString *)fileName ofType:(NSString*)ext;
 + (APFile*)defaultFileForFileWithOnlyName:(APFile*)file;
 + (NSArray*)defaultFilesForKey:(NSString*)key;
 
-+ (void)addLocalFile:(APFile*)file forLocalFileNamesFileName:(NSString*)fileName;
-+ (void)deleteLocalFile:(APFile*)file forLocalFileNamesFileName:(NSString*)fileName;
-+ (void)renameLocalFile:(APFile*)file forNewFileName:(NSString*)newName forLocalFileNamesFileName:(NSString*)fileName;
-+ (void)writeLocalFileToDocuments:(APFile*)file;
-+ (void)writeLocalFileNamesArrayToFile:(NSArray*)fileNames fileNameToWriteTo:(NSString*)fileNameToWriteTo;
-+ (NSArray*)getLocalFileNamesArrayFromFileName:(NSString*)fileName;
-+ (APFile*)localFileForFileWithOnlyName:(APFile*)file;
++ (void)addLocalFile:(APFile*)file inDirectory:(NSString*)directory;
++ (void)deleteLocalFile:(APFile*)file inDirectory:(NSString*)directory;
++ (void)renameLocalFile:(APFile*)file forNewFileName:(NSString*)newName inDirectory:(NSString*)directory;
+
++ (NSArray*)getLocalFileWithoutContentsArrayFromDirectory:(NSString*)fileName;
++ (APFile*)localFileForFileWithOnlyName:(APFile*)file inDirectory:(NSString*)directory;
 
 - (void)setUpWithDefaultFileNamesPath:(NSString*)path ofType:(NSString*)type;
 - (void)setUpForDropbox;

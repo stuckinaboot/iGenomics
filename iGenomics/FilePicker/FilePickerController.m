@@ -37,7 +37,7 @@
     
     [self lockContinueBtns];
     
-    [FileManager intilializeDefaultFilesDict];
+    [FileManager initializeFileSystems];
     
     NSArray *fileTypesDNA = [NSArray arrayWithObjects:kFa, kFq, kFasta, kFastq, nil];
     
@@ -47,7 +47,7 @@
     refInputView = [[AdvancedFileInputView alloc] initWithFrame:inputViewRect];
     [refInputView setDelegate:self];
     [refInputView loadWithFileTypeSelectionOption:FileTypeSelectionOptionRef containingController:self validationExts:fileTypesDNA];
-    [refInputView setLocalFiles:[FileManager getLocalFileNamesArrayFromFileName:kLocalRefFilesNamesFileName]];
+    [refInputView setLocalFiles:[FileManager getLocalFileWithoutContentsArrayFromDirectory:kLocalRefFilesDirectoryName]];
     
     //Reads
     inputViewRect = CGRectMake(0, 0, readsFileInputContainerView.frame.size.width, readsFileInputContainerView.frame.size.height);
@@ -55,7 +55,7 @@
     readsInputView = [[AdvancedFileInputView alloc] initWithFrame:inputViewRect];
     [readsInputView setDelegate:self];
     [readsInputView loadWithFileTypeSelectionOption:FileTypeSelectionOptionReads containingController:self validationExts:fileTypesDNA];
-    [readsInputView setLocalFiles:[FileManager getLocalFileNamesArrayFromFileName:kLocalReadsFilesNamesFileName]];
+    [readsInputView setLocalFiles:[FileManager getLocalFileWithoutContentsArrayFromDirectory:kLocalReadsFilesDirectoryName]];
     
     //Impt muts
     NSArray *fileTypesImptMuts = [NSArray arrayWithObjects:kImptMutsFileExt, nil];
@@ -65,7 +65,7 @@
     imptMutsInputView = [[AdvancedFileInputView alloc] initWithFrame:inputViewRect];
     [imptMutsInputView setDelegate:self];
     [imptMutsInputView loadWithFileTypeSelectionOption:FileTypeSelectionOptionImptMuts containingController:self validationExts:fileTypesImptMuts];
-    [imptMutsInputView setLocalFiles:[FileManager getLocalFileNamesArrayFromFileName:kLocalImptMutsFilesNamesFileName]];
+    [imptMutsInputView setLocalFiles:[FileManager getLocalFileWithoutContentsArrayFromDirectory:kLocalImptMutsFilesDirectoryName]];
     
     [refFileInputContainerView addSubview:refInputView];
     
@@ -244,21 +244,21 @@
     
     NSString *fileNameToWriteTo;
     if (filePickerCurrentlySelecting == kFilePickerSelectingRef) {
-        fileNameToWriteTo = kLocalRefFilesNamesFileName;
+        fileNameToWriteTo = kLocalRefFilesDirectoryName;
         inputView = refInputView;
     }
     else if (filePickerCurrentlySelecting == kFilePickerSelectingReads) {
-        fileNameToWriteTo = kLocalReadsFilesNamesFileName;
+        fileNameToWriteTo = kLocalReadsFilesDirectoryName;
         inputView = readsInputView;
     }
     else if (filePickerCurrentlySelecting == kFilePickerSelectingImptMuts) {
-        fileNameToWriteTo = kLocalImptMutsFilesNamesFileName;
+        fileNameToWriteTo = kLocalImptMutsFilesDirectoryName;
         inputView = imptMutsInputView;
     }
     
-    [FileManager addLocalFile:externalFile forLocalFileNamesFileName:fileNameToWriteTo];
+    [FileManager addLocalFile:externalFile inDirectory:fileNameToWriteTo];
     [self scrollToGivenFilePickerSelection:filePickerCurrentlySelecting];
-    NSArray *files = [FileManager getLocalFileNamesArrayFromFileName:fileNameToWriteTo];
+    NSArray *files = [FileManager getLocalFileWithoutContentsArrayFromDirectory:fileNameToWriteTo];
     [inputView setLocalFiles:files];
     [inputView forceDisplayLocalFiles];
 }

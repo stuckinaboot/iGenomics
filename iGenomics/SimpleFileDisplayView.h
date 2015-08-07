@@ -21,12 +21,17 @@
 #define kSimpleFileDisplayViewFadeAnimationDuration 0.25f
 #define kSimpleFileDisplayViewUtilityBtnWidthScaleFactor 0.25f;
 
+#define kSimpleFileDisplayViewAlertRenameFileTitle @"Rename File:"
+#define kSimpleFileDisplayViewAlertRenameFileMsg @"Enter a new file name (extension will be automatically appended):"
+#define kSimpleFileDisplayViewAlertRenameFileBtnCancel @"Cancel"
+#define kSimpleFileDisplayViewAlertRenameFileBtnRename @"Rename"
+
 @protocol SimpleFileDisplayViewDelegate <NSObject>
 - (void)fileSelected:(APFile*)file inSimpleFileDisplayView:(id)sfdv;
 - (void)deletePressedForFile:(APFile*)file inSimpleFileDisplayView:(id)sfdv;
-- (void)renamePressedForFile:(APFile*)file inSimpleFileDisplayView:(id)sfdv;
+- (void)renamePressedForFile:(APFile*)file withNewName:(NSString*)newName inSimpleFileDisplayView:(id)sfdv;
 @end
-@interface SimpleFileDisplayView : UIView <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
+@interface SimpleFileDisplayView : UIView <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIAlertViewDelegate> {
     UITableView *tblView;
     
     UIView *utilityContainerView;
@@ -34,12 +39,16 @@
     
     NSArray *entireFileArr;
     NSMutableArray *searchedFileArr;
+    
+    UIAlertView *renameFileAlert;
 }
 @property (nonatomic) id <SimpleFileDisplayViewDelegate> delegate;
 - (IBAction)donePressed:(id)sender;
 - (void)displayWithFilesArray:(NSArray*)filesArray deletingFilesEnabled:(BOOL)deletingEnabled;
 - (void)presentInView:(UIView*)view;
 - (void)removeFromView;
+
+- (void)setLocalFilesArray:(NSArray*)array;
 
 //Long Press Delete
 - (void)handleLongPressDeleteGesture:(UILongPressGestureRecognizer *)gestureRecognizer;

@@ -102,6 +102,12 @@
     }
 }
 
+- (void)setLocalFilesArray:(NSArray *)array {
+    entireFileArr = array;
+    searchedFileArr = [[NSMutableArray alloc] initWithArray:array];
+    [tblView reloadData];
+}
+
 #pragma Table View Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -188,8 +194,19 @@
 }
 
 - (IBAction)renamePressed:(id)sender {
-    APFile *file = searchedFileArr[[tblView indexPathForSelectedRow].row];
-    [delegate renamePressedForFile:file inSimpleFileDisplayView:self];
+    renameFileAlert = [[UIAlertView alloc] initWithTitle:kSimpleFileDisplayViewAlertRenameFileTitle message:kSimpleFileDisplayViewAlertRenameFileMsg delegate:self cancelButtonTitle:kSimpleFileDisplayViewAlertRenameFileBtnCancel otherButtonTitles:kSimpleFileDisplayViewAlertRenameFileBtnRename, nil];
+    [renameFileAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [renameFileAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:renameFileAlert]) {
+        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:kSimpleFileDisplayViewAlertRenameFileBtnRename]) {
+            NSString *str = [renameFileAlert textFieldAtIndex:0].text;
+            APFile *file = searchedFileArr[[tblView indexPathForSelectedRow].row];
+            [delegate renamePressedForFile:file withNewName:str inSimpleFileDisplayView:self];
+        }
+    }
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {

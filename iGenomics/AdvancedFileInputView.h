@@ -67,4 +67,6 @@
 - (void)forceDisplayLocalFiles;
 
 - (APFile*)getSelectedFile;
+
++ (NSString*)getLocalFileDirectoryForFileTypeSelectionOption:(FileTypeSelectionOption)option;
 @end

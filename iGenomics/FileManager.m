@@ -12,6 +12,11 @@
 
 @synthesize defaultFileNames, dropboxFileNames, dbFileSys;
 
++ (void)initializeFileSystems {
+    [FileManager initializeLocalFilesDirectories];
+    [FileManager intilializeDefaultFilesDict];
+}
+
 + (void)intilializeDefaultFilesDict {
     if (defaultFiles)
         return;
@@ -20,6 +25,20 @@
     defaultFiles[kDefaultRefFilesNamesFile] = [FileManager defaultFilesForFileNameFile:kDefaultRefFilesNamesFile ofType:kTxt];
     defaultFiles[kDefaultReadsFilesNamesFile] = [FileManager defaultFilesForFileNameFile:kDefaultReadsFilesNamesFile ofType:kTxt];
     defaultFiles[kDefaultImptMutsFilesNamesFile] = [FileManager defaultFilesForFileNameFile:kDefaultImptMutsFilesNamesFile ofType:kTxt];
+}
+
++ (void)initializeLocalFilesDirectories {
+    NSArray *localFileDirectoryNames = @[kLocalRefFilesDirectoryName, kLocalReadsFilesDirectoryName, kLocalImptMutsFilesDirectoryName];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+   
+    for (NSString *n in localFileDirectoryNames) {
+        NSString *newDirectory = [documentsDirectory stringByAppendingPathComponent:n];
+        
+        if (![fileManager fileExistsAtPath:newDirectory])
+            [fileManager createDirectoryAtPath:newDirectory withIntermediateDirectories:NO attributes:nil error:nil];
+    }
 }
 
 + (NSArray*)defaultFilesForFileNameFile:(NSString *)fileName ofType:(NSString*)ext {
@@ -42,83 +61,46 @@
     return defaultFiles[key];
 }
 
-+ (void)addLocalFile:(APFile*)file forLocalFileNamesFileName:(NSString*)fileName {
-    NSMutableArray *names = [[NSMutableArray alloc] initWithArray:[FileManager getLocalFileNamesArrayFromFileName:fileName]];
-    [names addObject:file];
-    [FileManager writeLocalFileNamesArrayToFile:names fileNameToWriteTo:fileName];
-    [FileManager writeLocalFileToDocuments:file];
++ (void)addLocalFile:(APFile*)file inDirectory:(NSString*)directory {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *directoryToWriteTo = [documentsDirectory stringByAppendingPathComponent:directory];
+    
+    [manager createFileAtPath:[directoryToWriteTo stringByAppendingPathComponent:file.name] contents:[file.contents dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
 }
 
-+ (void)deleteLocalFile:(APFile*)file forLocalFileNamesFileName:(NSString*)fileName {
++ (void)deleteLocalFile:(APFile*)file inDirectory:(NSString*)directory {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *specificDirectory = [documentsDirectory stringByAppendingPathComponent:directory];
     
+    [manager removeItemAtPath:[specificDirectory stringByAppendingPathComponent:file.name] error:nil];
 }
 
-+ (void)renameLocalFile:(APFile*)file forNewFileName:(NSString*)newName forLocalFileNamesFileName:(NSString*)fileName {
++ (void)renameLocalFile:(APFile*)file forNewFileName:(NSString*)newName inDirectory:(NSString*)directory {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *specificDirectory = [documentsDirectory stringByAppendingPathComponent:directory];
     
+    [manager copyItemAtPath:[specificDirectory stringByAppendingPathComponent:file.name] toPath:[specificDirectory stringByAppendingPathComponent:[newName stringByAppendingPathExtension:file.ext]] error:nil];
+    [FileManager deleteLocalFile:file inDirectory:directory];
 }
 
-+ (void)writeLocalFileToDocuments:(APFile *)file {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
++ (NSArray*)getLocalFileWithoutContentsArrayFromDirectory:(NSString*)directory {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSArray *arr = [fileManager subpathsAtPath:[documentsDirectory stringByAppendingPathComponent:directory]];
     
-    //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/%@",
-                          documentsDirectory,file.name];
-    
-    //save content to the documents directory
-    [file.contents writeToFile:fileName atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+    NSMutableArray *filesArr = [[NSMutableArray alloc] init];
+    for (NSString *n in arr)
+        [filesArr addObject:[[APFile alloc] initWithName:n contents:@"" fileType:APFileTypeLocal]];
+    return (NSArray*)filesArr;
 }
 
-+ (void)writeLocalFileNamesArrayToFile:(NSArray*)fileNames fileNameToWriteTo:(NSString*)fileNameToWriteTo {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/%@",
-                          documentsDirectory,fileNameToWriteTo];
-    //create content - four lines of text
-    NSMutableString *content = [[NSMutableString alloc] init];
-    for (int i = 0; i < [fileNames count]; i++) {
-        NSString *name = ((APFile*)[fileNames objectAtIndex:i]).name;
-        if (i < [fileNames count]-1)
-            [content appendFormat:@"%@\n",name];
-        else
-            [content appendFormat:@"%@",name];
-    }
-    
-    //save content to the documents directory
-    [content writeToFile:fileName atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
-}
-
-+ (NSArray*)getLocalFileNamesArrayFromFileName:(NSString*)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    //make a file name to write the data to using the documents directory:
-    NSString *fName = [NSString stringWithFormat:@"%@/%@",
-                          documentsDirectory, fileName];
-    NSArray *nameArr = [[[NSString alloc] initWithContentsOfFile:fName usedEncoding:nil error:nil] componentsSeparatedByString:kLineBreak];
-    NSMutableArray *fileArr = [[NSMutableArray alloc] init];
-    
-    for (NSString* n in nameArr)
-        [fileArr addObject:[[APFile alloc] initWithName:n contents:@"" fileType:APFileTypeLocal]];
-    return fileArr;
-}
-
-+ (APFile*)localFileForFileWithOnlyName:(APFile*)file {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    //make a file name to write the data to using the documents directory:
-    NSString *fName = [NSString stringWithFormat:@"%@/%@",
-                       documentsDirectory, file.name];
-    NSString *contents = [[NSString alloc] initWithContentsOfFile:fName usedEncoding:nil error:nil];
-    file.contents = contents;
-    
++ (APFile*)localFileForFileWithOnlyName:(APFile*)file inDirectory:(NSString*)directory {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    file.contents = [[NSString alloc] initWithData:[fileManager contentsAtPath:[[documentsDirectory stringByAppendingPathComponent:directory] stringByAppendingPathComponent:file.name]] encoding:NSUTF8StringEncoding];
     return file;
 }
 

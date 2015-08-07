@@ -130,13 +130,26 @@
     [simpleFileDisplayView displayWithFilesArray:localFiles deletingFilesEnabled:YES];
 }
 
++ (NSString*)getLocalFileDirectoryForFileTypeSelectionOption:(FileTypeSelectionOption)option {
+    if (option == FileTypeSelectionOptionRef)
+        return kLocalRefFilesDirectoryName;
+    else if (option == FileTypeSelectionOptionReads)
+        return kLocalReadsFilesDirectoryName;
+    else if (option == FileTypeSelectionOptionImptMuts)
+        return kLocalImptMutsFilesDirectoryName;
+    return @"";
+}
+
 #pragma SimpleFileDisplayViewDelegate
 
 - (void)fileSelected:(APFile *)file inSimpleFileDisplayView:(id)sfdv {
     if (file.fileType == APFileTypeDefault)
         file = [FileManager defaultFileForFileWithOnlyName:file];
-    else if (file.fileType == APFileTypeLocal)
-        file = [FileManager localFileForFileWithOnlyName:file];
+    else if (file.fileType == APFileTypeLocal) {
+        NSString *directory = [AdvancedFileInputView getLocalFileDirectoryForFileTypeSelectionOption:fileTypeSelectionOption];
+        
+        file = [FileManager localFileForFileWithOnlyName:file inDirectory:directory];
+    }
     if (file)
         [self selectFile:file];
     else
@@ -144,11 +157,17 @@
 }
 
 - (void)deletePressedForFile:(APFile *)file inSimpleFileDisplayView:(id)sfdv {
-    
+    NSString *directory = [AdvancedFileInputView getLocalFileDirectoryForFileTypeSelectionOption:fileTypeSelectionOption];
+    [FileManager deleteLocalFile:file inDirectory:directory];
+    localFiles = [FileManager getLocalFileWithoutContentsArrayFromDirectory:directory];
+    [sfdv setLocalFilesArray:localFiles];
 }
 
-- (void)renamePressedForFile:(APFile*)file inSimpleFileDisplayView:(id)sfdv {
-
+- (void)renamePressedForFile:(APFile*)file withNewName:(NSString*)newName inSimpleFileDisplayView:(id)sfdv {
+    NSString *directory = [AdvancedFileInputView getLocalFileDirectoryForFileTypeSelectionOption:fileTypeSelectionOption];
+    [FileManager renameLocalFile:file forNewFileName:newName inDirectory:directory];
+    localFiles = [FileManager getLocalFileWithoutContentsArrayFromDirectory:directory];
+    [sfdv setLocalFilesArray:localFiles];
 }
 
 @end
