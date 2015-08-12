@@ -105,8 +105,6 @@
     maxErrorRate = [parameters[kParameterArrayERKey] floatValue];
     bwt_Matcher.alignmentType = [parameters[kParameterArrayFoRevKey] intValue];
     
-    NSString *genomeFileSegmentNames = parameters[kParameterArrayRefFileSegmentNamesKey];
-    
     separateGenomeNames = parameters[kParameterArraySegmentNamesKey];
     separateGenomeLens = parameters[kParameterArraySegmentLensKey];
     

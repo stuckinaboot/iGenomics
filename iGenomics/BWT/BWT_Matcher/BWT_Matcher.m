@@ -135,8 +135,11 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //            int gappedALen = strlen(a.gappedA);
 //            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
 //            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
-            
+            int oldGappedALen = (int)strlen(a.gappedA);
             a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs];
+            int updatedGappedALen = (int)strlen(a.gappedA);
+            int diffInALen = updatedGappedALen-oldGappedALen;//Gives the number of characters cut off
+            maxNumOfSubs = maxErrorRate * (readLen-diffInALen);//Removes that number of characters from the initial readLen when determining maxED
             
 //            a.distance += charsToTrimEnd + charsToTrimBeginning;
             if (a.distance <= maxNumOfSubs) {
@@ -210,7 +213,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         numOfCharsToTrimFromBeginningFromED = charsToTrimBeginning;
     else {
         for (int i = 0; i < charsToTrimBeginning; i++)
-            if (info.gappedA[i] == info.gappedB[i])
+            if (info.gappedA[i] != info.gappedB[i])
                 numOfCharsToTrimFromBeginningFromED++;
     }
     
@@ -220,7 +223,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         numOfCharsToTrimFromEndFromED = charsToTrimEnd;
     else {
         for (int i = gappedALen-info.numOfInsertions-charsToTrimEnd; i < (gappedALen-info.numOfInsertions-charsToTrimEnd-1)+charsToTrimEnd+1; i++)
-            if (info.gappedA[i] == info.gappedB[i])
+            if (info.gappedA[i] != info.gappedB[i])
                 numOfCharsToTrimFromEndFromED++;
     }
     
@@ -238,10 +241,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     newInfo.distance = info.distance;
     
-    newInfo.distance += numOfCharsToTrimFromBeginningFromED;
+    newInfo.distance -= numOfCharsToTrimFromBeginningFromED;
     newInfo.position += amtOfCharsToAddToPosition;
     
-    newInfo.distance += numOfCharsToTrimFromEndFromED;
+    newInfo.distance -= numOfCharsToTrimFromEndFromED;
     
     [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
     if (shouldTrim)

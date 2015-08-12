@@ -142,7 +142,7 @@
         free(arrowTable);
         return NULL;
     }
-    
+
     int i = lenA-1;
     int j = smallestEDPos;
     
