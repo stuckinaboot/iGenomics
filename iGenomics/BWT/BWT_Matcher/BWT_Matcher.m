@@ -104,6 +104,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             printf("\nPos: %i, Count: %i, Seq: %s",h.pos,h.count,h.seq);
         }
     }*/
+    [self createOriginalStrWithDividers];
 }
 
 - (void)matchReedsWithSeedingState:(BOOL)seedingState {
@@ -127,7 +128,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         
         //printf("DK: calling getBestMatchForQuery\n");
         int maxNumOfSubs = maxErrorRate * readLen;
+        int actualDGenomeLen = dgenomeLen;
+        dgenomeLen = (int)strlen(originalStrWithDividers);
         ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState];
+        dgenomeLen = actualDGenomeLen;
         
         if (a != NULL) {
             a.readName = reed.name;
@@ -135,16 +139,17 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //            int gappedALen = strlen(a.gappedA);
 //            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
 //            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
-            int oldGappedALen = (int)strlen(a.gappedA);
-            a = [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs];
-            int updatedGappedALen = (int)strlen(a.gappedA);
-            int diffInALen = updatedGappedALen-oldGappedALen;//Gives the number of characters cut off
-            maxNumOfSubs = maxErrorRate * (readLen-diffInALen);//Removes that number of characters from the initial readLen when determining maxED
+//
+//            a = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs withCumSepGenomeLens:cumulativeSeparateGenomeLens maxErrorRate:maxErrorRate originalReadLen:readLen];
+            if (!a.alreadyHasPosAdjusted && a.distance > 0)//Exact matches are never unjusted
+                a = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:a cumSepSegLens:cumulativeSeparateGenomeLens];
             
 //            a.distance += charsToTrimEnd + charsToTrimBeginning;
-            if (a.distance <= maxNumOfSubs) {
-                //printf("DK: calling updatePosOccsArray\n");
-                [self updatePosOccsArrayWithRange:NSMakeRange(a.position, strlen(a.gappedA)) andED_Info:a];
+            if (a != NULL) {
+                int aGappedALen = (int)strlen(a.gappedA);
+                maxNumOfSubs = maxErrorRate * aGappedALen;
+                if (a.distance <= maxNumOfSubs)
+                    [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a];
             }
             else
                 a = NULL;//So it is not counted as matchedAtLeastOnce
@@ -157,100 +162,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //    [exactMatcher timerPrint];
     [matchingTimer stopAndLog];
 }
-- (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info forNumOfSubs:(int)subs {
-    int gappedALen = (int)strlen(info.gappedA);
-    
-    int index = [self indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:info];
-    
-    int closeEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
-    
-    BOOL shouldTrim = (closeEnding - (info.position + gappedALen - info.numOfInsertions) < 0);
-    
-    BOOL trimEnding = NO;
-    BOOL trimBeginning = NO;
-    
-    if (shouldTrim) {
-        if (abs(closeEnding - (info.position + gappedALen-info.numOfInsertions)) < closeEnding - info.position)
-            trimEnding = TRUE;
-        else
-            trimBeginning = TRUE;
-    }
-    else
-        return info;
-    //    BOOL trimEnding = (closeEnding - (info.position + gappedALen) <= 0);
-    //    BOOL trimBeginning = trimEnding && (closeEnding - info.position > 0 && (closeEnding - (info.position + gappedALen) <= 0));
-    
-    if (index < 0)
-        return info;
-    
-    int numOfInsertionsInEnding = (trimEnding) ? [self numOfInsertionsPastSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
-    
-    int charsToTrimEnd = (trimEnding) ? [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index]+numOfInsertionsInEnding : 0;
-    
-    int numOfInsertionsInBeginning = (trimBeginning) ? [self numOfInsertionsBeforeSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index] : 0;
-    
-    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index andNumOfInsertionsBeforeEnding:numOfInsertionsInBeginning] : 0;
-    
-    int amtOfCharsToAddToPosition = (trimBeginning) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] - info.position : 0;
-    
-    BOOL noGappedB = strcmp(info.gappedB, kNoGappedBChar) == 0;
-    
-    if (charsToTrimEnd <= 0 && charsToTrimBeginning <= 0)
-        return info;
-    
-    ED_Info *newInfo = [[ED_Info alloc] init];
-    
-    newInfo.insertion = info.insertion;
-    newInfo.position = info.position;
-    newInfo.isRev = info.isRev;
-    newInfo.readName = info.readName;
-    newInfo.rowInAlignmentGrid = info.rowInAlignmentGrid;
-    newInfo.numOfInsertions = info.numOfInsertions-numOfInsertionsInBeginning-numOfInsertionsInEnding;
-    
-    int numOfCharsToTrimFromBeginningFromED = 0;
-    
-    if (noGappedB)
-        numOfCharsToTrimFromBeginningFromED = charsToTrimBeginning;
-    else {
-        for (int i = 0; i < charsToTrimBeginning; i++)
-            if (info.gappedA[i] != info.gappedB[i])
-                numOfCharsToTrimFromBeginningFromED++;
-    }
-    
-    int numOfCharsToTrimFromEndFromED = 0;
-    
-    if (noGappedB)
-        numOfCharsToTrimFromEndFromED = charsToTrimEnd;
-    else {
-        for (int i = gappedALen-info.numOfInsertions-charsToTrimEnd; i < (gappedALen-info.numOfInsertions-charsToTrimEnd-1)+charsToTrimEnd+1; i++)
-            if (info.gappedA[i] != info.gappedB[i])
-                numOfCharsToTrimFromEndFromED++;
-    }
-    
-    newInfo.gappedA = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
-    strncpy(newInfo.gappedA, info.gappedA+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
-    newInfo.gappedA[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
-    
-    if (!noGappedB) {
-        newInfo.gappedB = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
-        strncpy(newInfo.gappedB, info.gappedB+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
-        newInfo.gappedB[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
-    }
-    else
-        newInfo.gappedB = strdup(kNoGappedBChar);
-    
-    newInfo.distance = info.distance;
-    
-    newInfo.distance -= numOfCharsToTrimFromBeginningFromED;
-    newInfo.position += amtOfCharsToAddToPosition;
-    
-    newInfo.distance -= numOfCharsToTrimFromEndFromED;
-    
-    [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
-    if (shouldTrim)
-        return [self updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:newInfo forNumOfSubs:subs];
-    return newInfo;
-}
 
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed {
     
@@ -262,13 +173,19 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     int initialNumOfSubs = (shouldSeed) ? 0 : amtOfSubs;
     
+    int lastColLen = (int)strlen(lastCol);
+    
     BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];
     for (int subs = initialNumOfSubs; subs < amtOfSubs+1; subs += step) {
-        if (subs == 0 || matchType == MatchTypeExactOnly)
+        if (subs == 0 || matchType == MatchTypeExactOnly) {
+            int temp = dgenomeLen;
+            dgenomeLen = lastColLen;
             arr = [exactMatcher exactMatchForQuery:query andIsReverse:NO andForOnlyPos:NO];
+            dgenomeLen = temp;
+        }
         else {
             if (matchType == MatchTypeExactAndSubs)
-                arr = [approxiMatcher approxiMatchForQuery:query andNumOfSubs:subs andIsReverse:NO andReadLen:readLen];
+                arr = [approxiMatcher approxiMatchForQuery:query andNumOfSubs:subs andIsReverse:NO andReadLen:readLen cumSepGenomeLens:cumulativeSeparateGenomeLens];
             else if (matchType == MatchTypeSubsAndIndels) {
                 //printf("DK: calling insertionDeletionMatches (Forward)\n");
                 arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs andIsReverse:NO andShouldSeed:shouldSeed];
@@ -278,11 +195,15 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         forwardMatches = [arr count];
         
         if (alignmentType == kAlignmentTypeForwardAndReverse) {//Reverse also
-            if (subs == 0 || matchType == MatchTypeExactOnly)
+            if (subs == 0 || matchType == MatchTypeExactOnly) {
+                int temp = dgenomeLen;
+                dgenomeLen = lastColLen;
                 arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query] andIsReverse:YES andForOnlyPos:NO]];
+                dgenomeLen = temp;
+            }
             else {
                 if (matchType == MatchTypeExactAndSubs)
-                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] andNumOfSubs:subs andIsReverse:YES andReadLen:readLen]];
+                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] andNumOfSubs:subs andIsReverse:YES andReadLen:readLen cumSepGenomeLens:cumulativeSeparateGenomeLens]];
                 else if (matchType == MatchTypeSubsAndIndels) {
                     //printf("DK: calling insertionDeletionMatches (Reverse)\n");
                     arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES andShouldSeed:shouldSeed]];
@@ -371,12 +292,39 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }
     [readDataStr setString:@""];
     [readDataStr appendFormat:kReadExportDataBasicInfo, info.readName,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
+
     [readAlignmentsArr addObject:info];
+}
+
+- (void)createOriginalStrWithDividers {
+    int originalStrWithDividersSize = dgenomeLen + ([cumulativeSeparateGenomeLens count] + 1) * kOriginalStrSegmentLetterDividersLen + 1;
+    originalStrWithDividers = malloc(originalStrWithDividersSize);
+    originalStrWithDividers[originalStrWithDividersSize - 1] = '\0';
+    char *strOfLetterDividers = malloc(kOriginalStrSegmentLetterDividersLen + 1);
+    strOfLetterDividers[kOriginalStrSegmentLetterDividersLen] = '\0';
+    for (int i = 0; i < kOriginalStrSegmentLetterDividersLen; i++) {
+        strOfLetterDividers[i] = kOriginalStrSegmentLetterDivider;
+    }
+    strcpy(originalStrWithDividers, strOfLetterDividers);
+    int posInOriginalStrWithDividers = kOriginalStrSegmentLetterDividersLen;
+    int indexInCumulativeSegLens = 0;
+    for (int i = 0; i < dgenomeLen; i++) {
+        if (i == [[cumulativeSeparateGenomeLens objectAtIndex:indexInCumulativeSegLens] intValue]) {
+            strcpy(originalStrWithDividers + posInOriginalStrWithDividers, strOfLetterDividers);
+            posInOriginalStrWithDividers += kOriginalStrSegmentLetterDividersLen;
+            indexInCumulativeSegLens++;
+        }
+        originalStrWithDividers[posInOriginalStrWithDividers] = originalStr[i];
+        posInOriginalStrWithDividers++;
+    }
+    free(strOfLetterDividers);
 }
 
 //INSERTION/DELETION
 - (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed {
     //    Create BWT Matcher for In/Del
+    
+
     BWT_Matcher_InsertionDeletion *bwtIDMatcher = [[BWT_Matcher_InsertionDeletion alloc] init];
     if (shouldSeed) {
         //    Split read into chunks
@@ -403,7 +351,14 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             else
                 chunk.range = NSMakeRange(start, sizeOfChunks+(int)(float)queryLength % numOfChunks);
             
-            chunk.matchedPositions = (NSMutableArray*)[exactMatcher exactMatchForChunk:chunk andIsReverse:isRev andForOnlyPos:YES];
+            chunk.matchedPositions = [NSMutableArray arrayWithArray:[exactMatcher exactMatchForChunk:chunk andIsReverse:isRev andForOnlyPos:YES]];
+            for (int j = 0; j < [chunk.matchedPositions count]; j++) {
+                int pos = [[chunk.matchedPositions objectAtIndex:j] intValue];
+                ED_Info *temp = [[ED_Info alloc] init];
+                temp.position = pos;
+                pos = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:temp cumSepSegLens:cumulativeSeparateGenomeLens].position;
+                [chunk.matchedPositions setObject:[NSNumber numberWithInt:pos] atIndexedSubscript:j];
+            }
             [chunkArray addObject:chunk];
             start += sizeOfChunks;
             
@@ -413,7 +368,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         //printf("DK: calling setUpWithCharA:query andCharB:originalStr andChunks\n");
         
         //  Find In/Del by using the matched positions of the chunks
-        NSMutableArray *matchedInDels = [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev];
+        NSMutableArray *matchedInDels = [bwtIDMatcher setUpWithCharA:query andCharB:originalStrWithDividers andChunks:chunkArray andMaximumEditDist:numOfSubs andIsReverse:isRev];
         
         [chunkArray removeAllObjects];
         chunkArray = nil;
@@ -421,7 +376,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         return matchedInDels;
     }
     else {
-        return [bwtIDMatcher setUpWithNonSeededCharA:query andCharB:originalStr andMaximumEditDist:numOfSubs andIsReverse:isRev andExactMatcher:exactMatcher];
+        return [bwtIDMatcher setUpWithNonSeededCharA:query andCharB:originalStrWithDividers andMaximumEditDist:numOfSubs andIsReverse:isRev andExactMatcher:exactMatcher andCumSegLensArr:cumulativeSeparateGenomeLens andErrorRate:maxErrorRate];
 //        return [bwtIDMatcher setUpWithCharA:query andCharB:originalStr andMaximumEditDist:numOfSubs andIsReverse:isRev withCumulativeSegmentLengthsArr:cumulativeSeparateGenomeLens];
     }
 }
@@ -448,10 +403,14 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                 int tIDSeqLen = strlen(tID.seq);
                 
                 while (info.gappedB[a+1] == kDelMarker) {
+                    if (tIDSeqLen > strlen(tID.seq) + 1) {
+                        tID.seq = realloc(tID.seq, tIDSeqLen + 1);
+                    }
                     tID.seq[tIDSeqLen] = info.gappedA[a+1];
                     tID.seq[tIDSeqLen+1] = '\0';
                     insCount++;
                     a++;
+                    tIDSeqLen++;
                 }
                 //Check if insertions array already has it
                 BOOL alreadyRec = FALSE;
@@ -516,8 +475,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }
 }
 
-
-
 - (void)setUpNumberOfOccurencesArrayFast {
     int len = dgenomeLen;
     
@@ -556,76 +513,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         }
     }
     NSLog(@"Set up number of occurences array COMPLETED!!");
-}
-
-- (int)indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:(ED_Info*)info {
-    for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
-        int v = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
-        if (info.position < v) {
-            return i;
-        }
-    }
-        
-    return -1;
-}
-
-- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
-    
-    int closestLen = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
-    
-    if (info.position - info.numOfInsertions + readL-1 < closestLen)
-        return 0;
-    
-    int charsToTrim = info.position - info.numOfInsertions +readL-closestLen;
-    
-    return charsToTrim;
-}
-
-- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index andNumOfInsertionsBeforeEnding:(int)numOfInsertions {
-   
-    int closestBeginning = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
-    
-//    int k = closestBeginning+numOfInsertions;
-    
-    int k = closestBeginning+numOfInsertions;
-
-    return k-info.position;
-}
-
-- (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
-    int k = 0;
-    int closestEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
-    for (int i = info.position; i <= closestEnding; i++)
-        if (info.gappedB[i-info.position] == kDelMarker) {
-            k++;
-            closestEnding++;
-        }
-    return k;
-}
-
-- (int)numOfInsertionsPastSegmentEndingForEDInfo:(ED_Info *)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index {
-//    int k = 0;
-    int closestEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
-//    int len = (int)strlen(info.gappedA)-info.numOfInsertions;
-//    for (int i = closestEnding-info.numOfInsertions; i < info.position+len; i++) {
-//        if (info.gappedB[i-info.position] == kDelMarker) {
-//            k++;
-//            len++;
-//        }
-//    }
-//    return k;
-    int numOfInsBeforeEnding = 0;
-    int k = 0;
-    int len = (int)strlen(info.gappedA);
-    for (int i = len-1; i >= 0; i--) {
-        if (info.gappedB[i] == kDelMarker) {
-            k++;
-        }
-        if (info.position+i-(info.numOfInsertions-k) == closestEnding) {
-            numOfInsBeforeEnding = k;
-        }
-    }
-    return numOfInsBeforeEnding;
 }
 
 //Getters

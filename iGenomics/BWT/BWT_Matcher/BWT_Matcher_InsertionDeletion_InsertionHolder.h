@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kMaxInsertionSeqLen 5
+#define kMaxInsertionSeqLen 20
 
 @interface BWT_Matcher_InsertionDeletion_InsertionHolder : NSObject //Used to keep track of insertions
 {

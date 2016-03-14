@@ -37,7 +37,6 @@
 
 #define kLastUsedParamsSaveKey @"LastUsedParamsKey"
 #define kMaxERLblTxt @"Maximum Error Rate:"
-#define kMaxER 0.5
 #define kMutSupportLblTxt @"Mutation Coverage: %i"
 
 #define kStartSeqDelay 0.2
@@ -77,6 +76,7 @@
 @property (nonatomic) ComputingController *computingController;
 @property (nonatomic) APFile *refFile, *readsFile, *imptMutsFile;
 @property (nonatomic) NSString *refFileSegmentNames;
+@property (nonatomic) NSArray *refSegmentLens;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;

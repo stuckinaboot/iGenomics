@@ -13,6 +13,12 @@
 #import "GlobalVars.h"
 #import "APTimer.h"
 
+#define kDelMarker '-'
+#define kInsMarker '+'
+
+#define kOriginalStrSegmentLetterDividersLen 1000
+#define kOriginalStrSegmentLetterDivider 'B'
+#define kSoftClippingCharsInARowThresholdToFinish 5
 
 @interface BWT_MatcherSC : NSObject {
     APTimer *timer;
@@ -32,4 +38,17 @@
 - (char*)unravelCharWithLastColumn:(char*)lastColumn firstColumn:(char*)firstColumn;
 
 - (void)timerPrint;
+
+//Clipping
++ (ED_Info*)infoByAdjustingForSegmentDividerLettersForInfo:(ED_Info*)info cumSepSegLens:(NSMutableArray*)cumulativeSeparateGenomeLens;
++ (ED_Info*)infoByUnjustingForSegmentDividerLettersForInfo:(ED_Info*)info cumSepSegLens:(NSMutableArray*)cumulativeSeparateGenomeLens;
++ (NSArray*)arrayByUnjustingForsegmentDividerLettersForArr:(NSArray*)arr cumSepSegLens:(NSMutableArray*)lens;
++ (NSArray*)positionsArrayByUnjustingForsegmentDividerLettersForArr:(NSArray*)arr cumSepSegLens:(NSMutableArray*)lens;
+
++ (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info forNumOfSubs:(int)subs withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens maxErrorRate:(float)errorRate originalReadLen:(int)originalReadLen;
++ (int)indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:(ED_Info*)info withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens;
++ (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens;
++ (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index andNumOfInsertionsBeforeEnding:(int)numOfInsertions withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens;
++ (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens;
++ (int)numOfInsertionsPastSegmentEndingForEDInfo:(ED_Info *)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens;
 @end

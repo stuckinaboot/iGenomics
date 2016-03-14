@@ -43,8 +43,10 @@
     for (int i = 0; i < dgenomeLen; i++) {
         AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
         gridPos.str = strdup([noCharLongStr UTF8String]);
-        gridPos.readInfoStr = calloc(noCharLongStr.length, sizeof(int));
-        gridPos.readIndexStr = calloc(noCharLongStr.length, sizeof(int));
+        gridPos.readInfoStr = calloc(noCharLongStr.length + 1, sizeof(int));
+        gridPos.readInfoStr[noCharLongStr.length] = '\0';
+        gridPos.readIndexStr = calloc(noCharLongStr.length + 1, sizeof(int));
+        gridPos.readIndexStr[noCharLongStr.length] = '\0';
         for (int j = 0; j < maxCoverageVal; j++) {
             gridPos.readIndexStr[j] = -1;
         }
@@ -55,6 +57,7 @@
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
         ED_Info *read = [readAlignmentsArr objectAtIndex:i];
         int lenA = (int)strlen(read.gappedA);
+        int lenB = (int)strlen(read.gappedB);
         int placeToInsertChar = -1;
         int insCount = 0;
         for (int x = 0; x < lenA; x++) {
@@ -69,7 +72,7 @@
                 gridPos.positionRelativeToReadStart = x-insCount;
                 gridPos.readLen = lenA;
                 
-                if (read.gappedB[x] == kDelMarker)
+                if (read.gappedB[x] == kDelMarker && lenB > 1)
                     insCount++;
                 
                 int readInfoNum = [self readInfoNumForX:x len:lenA andInsCount:insCount];
@@ -495,6 +498,7 @@
     if (index < 0 || alignmentGridPositionsArr[(int)box.x].str[(int)box.y] == kAlignmentGridViewCharColumnNoChar)
         return;
     ED_Info *read = [readAlignmentsArr objectAtIndex:index];
+    printf("\n\n%s\n\n%s",read.gappedA, read.gappedB);
     [self displayReadPopoverForRead:read atPosInGenome:box.x atPointOnScreen:[sender locationInView:self.superview]];
 }
 

@@ -253,4 +253,337 @@
 - (void)timerPrint {
     [timer printTotalRecTime];
 }
+
+#pragma Clipping
+
++ (ED_Info*)infoByAdjustingForSegmentDividerLettersForInfo:(ED_Info*)info cumSepSegLens:(NSMutableArray*)cumulativeSeparateGenomeLens {
+    int ogPos = info.position;
+    //Trim off all Bs
+    int numOfBsInStart = 0, numOfBsInEnd = 0;
+    int bLen = (int)strlen(info.gappedB);
+    for (int i = 0; i < ceilf(bLen / 2.0f); i++) {
+        BOOL bRecorded = false;
+        if (info.gappedB[i] == kOriginalStrSegmentLetterDivider) {
+            numOfBsInStart++;
+            bRecorded = TRUE;
+        }
+        if (info.gappedB[bLen - i - 1] == kOriginalStrSegmentLetterDivider) {
+            numOfBsInEnd++;
+            bRecorded = TRUE;
+        }
+        if (!bRecorded)
+            break;
+    }
+    
+    if (numOfBsInStart > 0 || numOfBsInEnd > 0) {
+        char *newa = malloc(bLen - numOfBsInEnd - numOfBsInStart + 1);
+        newa[bLen - numOfBsInEnd - numOfBsInStart] = '\0';
+        char *newb = malloc(bLen - numOfBsInEnd - numOfBsInStart + 1);
+        newb[bLen - numOfBsInEnd - numOfBsInStart] = '\0';
+        
+        for (int i = numOfBsInStart; i < bLen - numOfBsInEnd; i++) {
+            newa[i - numOfBsInStart] = info.gappedA[i];
+            newb[i - numOfBsInStart] = info.gappedB[i];
+        }
+        
+        free(info.gappedA);
+        free(info.gappedB);
+        
+        info.gappedA = newa;
+        info.gappedB = newb;
+        info.position += numOfBsInStart;
+        info.distance = info.distance - numOfBsInStart - numOfBsInEnd;
+        bLen = (int)strlen(info.gappedB);
+    }
+    
+//    Soft-Clip like a boss
+    int numOfCharsToClip = 0;
+    if (bLen >= kSoftClippingCharsInARowThresholdToFinish) {
+        int pos = 0;
+        BOOL nInARowExactMatch = FALSE;
+        int numOfIns = 0;
+        int edToSub = 0;
+        while (!nInARowExactMatch) {
+            nInARowExactMatch = TRUE;
+            for (int i = pos; i < pos + kSoftClippingCharsInARowThresholdToFinish; i++) {
+                if (info.gappedB[i] != info.gappedA[i]) {
+                    nInARowExactMatch = FALSE;
+                    numOfCharsToClip++;
+                    break;
+                }
+            }
+            if (info.gappedB[pos] == kDelMarker)
+                numOfIns++;
+            if (info.gappedB[pos] != info.gappedA[pos])
+                edToSub++;
+            if (!nInARowExactMatch)
+                pos++;
+        }
+        
+        int endPos = bLen - 1;
+        nInARowExactMatch = FALSE;
+        while (!nInARowExactMatch) {
+            nInARowExactMatch = TRUE;
+            for (int i = endPos; i > endPos - kSoftClippingCharsInARowThresholdToFinish; i--) {
+                if (info.gappedB[i] != info.gappedA[i]) {
+                    nInARowExactMatch = FALSE;
+                    numOfCharsToClip++;
+                    break;
+                }
+            }
+            if (info.gappedB[endPos] != info.gappedA[endPos])
+                edToSub++;
+            if (!nInARowExactMatch)
+                endPos--;
+        }
+        
+        if (info.distance < 0) {
+            NSLog(@"SOMETHING SCREWED UP WITH DISTANCE COMPUTATION");
+            return NULL;
+        }
+        
+        //Clip from pos to the endPos
+        char *newa = malloc(endPos-pos + 2);
+        char *newb = malloc(endPos-pos + 2);
+        for (int i = pos; i <= endPos; i++) {
+            newa[i - pos] = info.gappedA[i];
+            newb[i - pos] = info.gappedB[i];
+        }
+        
+        newa[endPos - pos + 1] = '\0';
+        newb[endPos - pos + 1] = '\0';
+        free(info.gappedA);
+        free(info.gappedB);
+        info.gappedA = newa;
+        info.gappedB = newb;
+        info.position += pos - numOfIns;
+        info.distance -= edToSub;//= info.distance - pos - (bLen - endPos + 1);
+    }
+    
+    //First determine which segment the info is in while accounting for Bs
+    int pos;
+    for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
+        int val = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
+        pos = (i + 1) * kOriginalStrSegmentLetterDividersLen + val;
+        if (info.position < pos) {
+            info.position -= (i + 1) * kOriginalStrSegmentLetterDividersLen;
+            break;
+        }
+    }
+    
+    return info;
+}
+
++ (ED_Info*)infoByUnjustingForSegmentDividerLettersForInfo:(ED_Info*)info cumSepSegLens:(NSMutableArray*)cumulativeSeparateGenomeLens {
+//    return info;
+    //First determine which segment the info is in while accounting for Bs
+    for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
+        int val = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
+        if (info.position < val) {
+            info.position += (i + 1) * kOriginalStrSegmentLetterDividersLen;
+            break;
+        }
+    }
+    return info;
+}
+
++ (NSMutableArray*)arrayByUnjustingForsegmentDividerLettersForArr:(NSMutableArray*)arr cumSepSegLens:(NSMutableArray*)lens {
+    NSMutableArray *newArr = [NSMutableArray arrayWithArray:arr];
+    for (int i = 0; i < [newArr count]; i++) {
+        ED_Info *temp = [newArr objectAtIndex:i];
+        temp = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:temp cumSepSegLens:lens];
+        [newArr setObject:temp atIndexedSubscript:i];
+    }
+    return newArr;
+}
+
++ (NSArray*)positionsArrayByUnjustingForsegmentDividerLettersForArr:(NSArray*)arr cumSepSegLens:(NSMutableArray*)lens {
+    ED_Info *temp = [[ED_Info alloc] init];
+    NSMutableArray *newArr = [NSMutableArray arrayWithArray:arr];
+    for (int i = 0; i < [newArr count]; i++) {
+        temp.position = [[arr objectAtIndex:i] intValue];
+        temp = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:temp cumSepSegLens:lens];
+        [newArr setObject:[NSNumber numberWithInt:temp.position] atIndexedSubscript:i];
+    }
+    return newArr;
+}
+
++ (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info forNumOfSubs:(int)subs withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens maxErrorRate:(float)errorRate originalReadLen:(int)originalReadLen {
+    return info;
+    int gappedALen = (int)strlen(info.gappedA);
+    
+    int index = [self indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:info withCumSepGenomeLens:cumulativeSeparateGenomeLens];
+    
+    int closeEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    
+    BOOL shouldTrim = (closeEnding - (info.position + gappedALen - info.numOfInsertions) < 0);
+    
+    BOOL trimEnding = NO;
+    BOOL trimBeginning = NO;
+    
+    if (shouldTrim) {
+        if (abs(closeEnding - (info.position + gappedALen-info.numOfInsertions)) < closeEnding - info.position)
+            trimEnding = TRUE;
+        else
+            trimBeginning = TRUE;
+    }
+    else
+        return info;
+    //    BOOL trimEnding = (closeEnding - (info.position + gappedALen) <= 0);
+    //    BOOL trimBeginning = trimEnding && (closeEnding - info.position > 0 && (closeEnding - (info.position + gappedALen) <= 0));
+    
+    int newLen = 0;
+    if (trimBeginning)
+        newLen = originalReadLen-(closeEnding-info.position);
+    else if (trimEnding)
+        newLen = originalReadLen-(info.position+originalReadLen-closeEnding);
+    
+    int maxSubsNew = newLen * errorRate;
+    
+    if (index < 0)
+        return info;
+    
+    int numOfInsertionsInEnding = (trimEnding) ? [self numOfInsertionsPastSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index withCumSepGenomeLens:cumulativeSeparateGenomeLens] : 0;
+    
+    int charsToTrimEnd = (trimEnding) ? [self numOfCharsPastSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index withCumSepGenomeLens:cumulativeSeparateGenomeLens]+numOfInsertionsInEnding : 0;
+    
+    int numOfInsertionsInBeginning = (trimBeginning) ? [self numOfInsertionsBeforeSegmentEndingForEDInfo:info andIndexInCumSepGenomesOfClosestSegmentEndingPos:index withCumSepGenomeLens:cumulativeSeparateGenomeLens] : 0;
+    
+    int charsToTrimBeginning = (trimBeginning) ? [self numOfCharsBeforeSegmentEndingForEDInfo:info andReadLen:gappedALen andIndexInCumSepGenomesOfClosestSegmentEndingPos:index andNumOfInsertionsBeforeEnding:numOfInsertionsInBeginning withCumSepGenomeLens:cumulativeSeparateGenomeLens] : 0;
+    
+    int amtOfCharsToAddToPosition = (trimBeginning) ? [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue] - info.position : 0;
+    
+    BOOL noGappedB = strcmp(info.gappedB, kNoGappedBChar) == 0;
+    
+    if (charsToTrimEnd <= 0 && charsToTrimBeginning <= 0)
+        return info;
+    
+    ED_Info *newInfo = [[ED_Info alloc] init];
+    
+    newInfo.insertion = info.insertion;
+    newInfo.position = info.position;
+    newInfo.isRev = info.isRev;
+    newInfo.readName = info.readName;
+    newInfo.rowInAlignmentGrid = info.rowInAlignmentGrid;
+    newInfo.numOfInsertions = info.numOfInsertions-numOfInsertionsInBeginning-numOfInsertionsInEnding;
+    
+    int numOfCharsToTrimFromBeginningFromED = 0;
+    
+    if (noGappedB)
+        numOfCharsToTrimFromBeginningFromED = charsToTrimBeginning;
+    else {
+        for (int i = 0; i < charsToTrimBeginning; i++)
+            if (info.gappedA[i] != info.gappedB[i])
+                numOfCharsToTrimFromBeginningFromED++;
+    }
+    
+    int numOfCharsToTrimFromEndFromED = 0;
+    
+    if (noGappedB)
+        numOfCharsToTrimFromEndFromED = charsToTrimEnd;
+    else {
+        for (int i = gappedALen-info.numOfInsertions-charsToTrimEnd; i < (gappedALen-info.numOfInsertions-charsToTrimEnd-1)+charsToTrimEnd+1; i++)
+            if (info.gappedA[i] != info.gappedB[i])
+                numOfCharsToTrimFromEndFromED++;
+    }
+    
+    newInfo.gappedA = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+    strncpy(newInfo.gappedA, info.gappedA+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
+    newInfo.gappedA[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
+    
+    if (!noGappedB) {
+        newInfo.gappedB = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+        strncpy(newInfo.gappedB, info.gappedB+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
+        newInfo.gappedB[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
+    }
+    else
+        newInfo.gappedB = strdup(kNoGappedBChar);
+    
+    newInfo.distance = info.distance;
+    
+    newInfo.distance -= numOfCharsToTrimFromBeginningFromED;
+    newInfo.position += amtOfCharsToAddToPosition;
+    
+    newInfo.distance -= numOfCharsToTrimFromEndFromED;
+    
+    if (!shouldTrim && newInfo.distance > maxSubsNew)
+        return NULL;
+    
+    [info freeUsedMemory];//Doesn't free readName, so the above code where I set all of newInfo. should be good
+    
+    if (shouldTrim)
+        return [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:newInfo forNumOfSubs:subs withCumSepGenomeLens:cumulativeSeparateGenomeLens maxErrorRate:errorRate originalReadLen:originalReadLen];
+    return newInfo;
+}
+
++ (int)indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:(ED_Info*)info withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens {
+    for (int i = 0; i < [cumulativeSeparateGenomeLens count]; i++) {
+        int v = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
+        if (info.position < v) {
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
++ (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens {
+    
+    int closestLen = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    
+    if (info.position - info.numOfInsertions + readL-1 < closestLen)
+        return 0;
+    
+    int charsToTrim = info.position - info.numOfInsertions +readL-closestLen;
+    
+    return charsToTrim;
+}
+
++ (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index andNumOfInsertionsBeforeEnding:(int)numOfInsertions withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens {
+    
+    int closestBeginning = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    
+    //    int k = closestBeginning+numOfInsertions;
+    
+    int k = closestBeginning+numOfInsertions;
+    
+    return k-info.position;
+}
+
++ (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens {
+    int k = 0;
+    int closestEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    for (int i = info.position; i <= closestEnding; i++)
+        if (info.gappedB[i-info.position] == kDelMarker) {
+            k++;
+            closestEnding++;
+        }
+    return k;
+}
+
++ (int)numOfInsertionsPastSegmentEndingForEDInfo:(ED_Info *)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens {
+    //    int k = 0;
+    int closestEnding = [[cumulativeSeparateGenomeLens objectAtIndex:index] intValue];
+    //    int len = (int)strlen(info.gappedA)-info.numOfInsertions;
+    //    for (int i = closestEnding-info.numOfInsertions; i < info.position+len; i++) {
+    //        if (info.gappedB[i-info.position] == kDelMarker) {
+    //            k++;
+    //            len++;
+    //        }
+    //    }
+    //    return k;
+    int numOfInsBeforeEnding = 0;
+    int k = 0;
+    int len = (int)strlen(info.gappedA);
+    for (int i = len-1; i >= 0; i--) {
+        if (info.gappedB[i] == kDelMarker) {
+            k++;
+        }
+        if (info.position+i-(info.numOfInsertions-k) == closestEnding) {
+            numOfInsBeforeEnding = k;
+        }
+    }
+    return numOfInsBeforeEnding;
+}
+
 @end

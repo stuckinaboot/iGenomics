@@ -165,8 +165,8 @@
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *parameters = [defaults objectForKey:kLastUsedParamsSaveKey];
-    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:[defaults objectForKey:kLastUsedParamsSaveKey]];
+    parameters[kParameterArraySegmentLensKey] = parametersController.refSegmentLens;
     
     NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {
@@ -191,7 +191,7 @@
     
     if (([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) && [parameters[kParameterArrayTrimmingValKey] intValue] == kTrimmingOffVal)
         readsFile = [parametersController readsFileByRemovingQualityValFromReadsFile:readsFile];
-    
+
     [parametersController.computingController setUpWithReadsFile:readsFile andRefFile:refFile andParameters:parameters andImptMutsFile:imptMutsFile];
 }
 

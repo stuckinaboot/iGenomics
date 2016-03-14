@@ -114,6 +114,8 @@ typedef enum {
 #define kBasicAlertTitle @"iGenomics"
 #define kBasicAlertDoneBtn @"Ok"
 
+#define kMaxER 0.5
+
 static const int kImplictUnicode[6] = {0xFA3,0x96F,0x2553,0x2222,0x3A3,0xD7B};
 
 extern int bytesForIndexer;

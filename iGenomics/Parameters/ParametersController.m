@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController, refFile, readsFile, refFileSegmentNames, imptMutsFile;
+@synthesize computingController, refFile, readsFile, refFileSegmentNames, imptMutsFile, refSegmentLens;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -287,7 +287,7 @@
         for (int i = 0; i < [lineArray count]; i++) {
             NSString *str = [lineArray objectAtIndex:i];
             if ([str characterAtIndex:0] == kFaFileTitleIndicator) {
-                [namesArray addObject:[str substringWithRange:NSMakeRange(1, [str rangeOfString:kSeparateGenomeNamesSubstringToIndexStr].location)]];//Removes the >
+                [namesArray addObject:[str substringWithRange:NSMakeRange(1, [str rangeOfString:kSeparateGenomeNamesSubstringToIndexStr].location - 1)]];//Removes the > in the beginning and the white space at the end
                 [lineArray removeObjectAtIndex:i];
                 if (prevLenIndex != -1)
                     [lengthArray addObject:[NSNumber numberWithInt:len]];//lineLen*(i-prevLenIndex)]];

@@ -4,3 +4,4 @@ anthrax.capsule.reads.fa
 lambdaphage.reads.fa
 phix174.reads.fa
 flu.H1N1.longReads.fa
+flu.H3N2.realData.trim_1k.fa

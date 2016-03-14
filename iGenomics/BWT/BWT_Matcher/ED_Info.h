@@ -20,7 +20,7 @@
     BOOL insertion;
     BOOL isRev;
 }
-@property (nonatomic) BOOL isRev;
+@property (nonatomic) BOOL isRev, alreadyHasPosAdjusted;
 @property (nonatomic) char *gappedA, *gappedB, *readName;
 @property (nonatomic) int position, distance, numOfInsertions;
 @property (nonatomic) int rowInAlignmentGrid;//Should only be modified/accessed by AlignmentGridView class

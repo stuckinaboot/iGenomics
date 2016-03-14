@@ -24,14 +24,11 @@
 
 #define kReedsArraySeperationStr @"\n"
 
-#define kReadLoopMaxSmallEditDist 10
+#define kReadLoopMaxSmallEditDist 20
 #define kReadLoopLargeEditDistStepFactor 0.15 //kReadLoopLargeEditDistStepFactor * maxEdit
 
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
-
-#define kDelMarker '-'
-#define kInsMarker '+'
 
 #define kLowestAllowedCoverage 5
 
@@ -70,6 +67,8 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
     BWT_MatcherSC *exactMatcher;
     
     NSMutableString *readDataStr;
+    
+    char *originalStrWithDividers;
 }
 @property (nonatomic) id <BWT_MatcherDelegate> delegate;
 @property (nonatomic) NSMutableArray *insertionsArray, *cumulativeSeparateGenomeLens;
@@ -80,17 +79,9 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 
 - (char*)getReverseComplementForSeq:(char*)seq;
 
-- (int)indexInCumSepGenomeLensArrOfClosestSegmentEndingForEDInfo:(ED_Info*)info;
-- (int)numOfCharsBeforeSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index andNumOfInsertionsBeforeEnding:(int)numOfInsertions;
-- (int)numOfCharsPastSegmentEndingForEDInfo:(ED_Info *)info andReadLen:(int)readL andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
-- (int)numOfInsertionsBeforeSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
-- (int)numOfInsertionsPastSegmentEndingForEDInfo:(ED_Info*)info andIndexInCumSepGenomesOfClosestSegmentEndingPos:(int)index;
-
 - (void)matchReedsWithSeedingState:(BOOL)seedingState;
 
 - (void)setUpNumberOfOccurencesArray;
-
-- (ED_Info*)updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info*)info forNumOfSubs:(int)subs;
 
 //APPROXI MATCH
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed;//readNum is only for printing to console, serves no other purpose currently

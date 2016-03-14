@@ -10,7 +10,7 @@
 
 @implementation BWT_Matcher_Approxi
 
-- (NSArray*)approxiMatchForQuery:(char*)query andNumOfSubs:(int)amtOfSubs andIsReverse:(BOOL)isRev andReadLen:(int)queryLength {
+- (NSArray*)approxiMatchForQuery:(char*)query andNumOfSubs:(int)amtOfSubs andIsReverse:(BOOL)isRev andReadLen:(int)queryLength cumSepGenomeLens:(NSArray *)cumSepGenomeLens {
     
     if (amtOfSubs == 0)
         return (NSMutableArray*)[self exactMatchForQuery:query andIsReverse:isRev andForOnlyPos:NO];
@@ -42,6 +42,7 @@
         
         for (int i = 0; i<numOfChunks; i++) {
             chunks[i].matchedPositions = (NSMutableArray*)[self exactMatchForChunk:chunks[i] andIsReverse:isRev andForOnlyPos:YES];
+//            chunks[i].matchedPositions = [BWT_MatcherSC arrayByUnjustingForsegmentDividerLettersForArr:chunks[i].matchedPositions cumSepSegLens:cumSepGenomeLens];
             
             for (int x = 0; x<[chunks[i].matchedPositions count]; x++) {
                 
@@ -84,8 +85,10 @@
     free(gappedB);
     
     if ([self isNotDuplicateAlignment:info inArr:positionsArray]) {
-        if (pos+qLen<=dgenomeLen && pos>-1)
+        if (pos+qLen<=dgenomeLen && pos>-1) {
+            info.alreadyHasPosAdjusted = TRUE;
             [positionsArray addObject:info];
+        }
     }
 }
 

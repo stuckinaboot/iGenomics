@@ -40,7 +40,7 @@
             MutationInfo *info2 = [mutationsArray objectAtIndex:i-1];
             
             numOfRows++;
-            if (info1.indexInSegmentNameArr != info2.indexInSegmentNameArr) {
+            if (![info1.genomeName isEqualToString:info2.genomeName]) {
                 [numOfRowsInSectionArr addObject:[NSNumber numberWithInt:numOfRows]];
                 numOfRows = 0;
             }

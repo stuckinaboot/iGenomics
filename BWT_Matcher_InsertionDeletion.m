@@ -13,15 +13,16 @@
 
 //New Stuff
 
-- (NSMutableArray*)setUpWithNonSeededCharA:(char*)a andCharB:(char*)b andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR andExactMatcher:(BWT_MatcherSC *)exactMatcher {
+- (NSMutableArray*)setUpWithNonSeededCharA:(char*)a andCharB:(char*)b andMaximumEditDist:(int)maxED andIsReverse:(BOOL)isR andExactMatcher:(BWT_MatcherSC *)exactMatcher andCumSegLensArr:(NSArray *)cumLens andErrorRate:(float)errorRate {
     matchedInDels = [[NSMutableArray alloc] init];
     editDist = [[EditDistance alloc] init];
+    cumulativeSegmentLens = cumLens;
     isRev = isR;
-    
+    maxErrorRate = errorRate;
     //printf("DK: creating newa\n");
     
     //    Add space prior to the chars in "a" and prior to the chars in "b"
-    int alen = strlen(a);
+    int alen = (int)strlen(a);
     char *newa = calloc(alen+2, 1);
     memcpy(newa+1, a, alen);
     newa[0] = ' ';
@@ -33,8 +34,6 @@
      newb[0] = ' ';*/
     
     maxEditDist = maxED;
-    
-    //printf("DK: calling findInDels\n");
     
     [self findInDelsNonSeededWithA:newa b:b usingExactMatcher:exactMatcher isReverse:isR];
     
@@ -49,7 +48,6 @@
     int lenB = (int)strlen(b);
     
     ED_Info *match;
-    
     char *shortA = malloc(kNonSeedShortSeqSize+1);
     for (int i = 0; i < lenA-kNonSeedShortSeqSize; i++) {
         strncpy(shortA, a+i, kNonSeedShortSeqSize);
@@ -59,8 +57,9 @@
         
         NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
         
-        for (ED_Info *ed in exactMatches) {
-
+        for (int j = 0; j < [exactMatches count]; j++) {
+            ED_Info *ed = [exactMatches objectAtIndex:j];
+            ed = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:ed cumSepSegLens:cumulativeSegmentLens];
             int bLoc = ed.position-i-maxEditDist;
             int bRangeLen = lenA+2*maxEditDist;
             if (bLoc < 0) {
@@ -72,21 +71,21 @@
                 bRangeLen = lenB-bLoc+maxEditDist;
             }
             
-//            ED_Info *edL = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, i+kNonSeedShortSeqSize) andFullB:b rangeInB:NSMakeRange(bLoc, i+maxEditDist+kNonSeedShortSeqSize) andMaxED:maxEditDist andBacktrackingPosition:i+kNonSeedShortSeqSize+maxEditDist];
-            
-//            int charsToTheRightOfExactMatchInA = lenA-(i+kNonSeedShortSeqSize);
-            
-//            ED_Info *edR = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(i+kNonSeedShortSeqSize, charsToTheRightOfExactMatchInA) andFullB:b rangeInB:NSMakeRange(bLoc+kNonSeedShortSeqSize, charsToTheRightOfExactMatchInA+maxEditDist) andMaxED:maxEditDist andBacktrackingPosition:-1];
-            
-//            ED_Info *edFinal = [ED_Info mergedED_Infos:edL andED2:ed];
-//            edFinal = [ED_Info mergedED_Infos:edFinal andED2:edR];
             ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
             
             
             edFinal.position += bLoc;
 //            edFinal.position = ed.position - (int)strlen(edL.gappedA) + edL.numOfInsertions;
             
-            if (edFinal.distance <= maxEditDist) {
+            
+//            if (edFinal && edFinal.distance < kMaxER * lenA && edFinal.distance > maxEditDist)
+//                edFinal = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:edFinal forNumOfSubs:maxEditDist withCumSepGenomeLens:cumulativeSegmentLens maxErrorRate:maxErrorRate originalReadLen:lenA];
+            if (edFinal) {
+                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
+                edFinal.alreadyHasPosAdjusted = TRUE;
+            }
+            if (edFinal != NULL && edFinal.distance <= maxErrorRate * (int)strlen(edFinal.gappedA)) {
+//                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
                 match = edFinal;
                 break;
             }
@@ -107,7 +106,7 @@
 
 - (ED_Info*)nonSeededEDForFullA:(char *)fullA fullALen:(int)lenA andB:(char*)b startPos:(int)startPos andIsComputingForward:(BOOL)forward {
     ED_Info *finalInfo;
-    int lenB = strlen(b);
+    int lenB = (int)strlen(b);
     
     if (forward) {
         for (int i = 0; i < lenA; i += kNonSeedLongSeqSize) {

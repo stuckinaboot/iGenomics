@@ -341,11 +341,13 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         
         info.genomeName = segName;
         
-        for (int j = 0; j < [nameArr count]; j++)
-            if ([[nameArr objectAtIndex:j] isEqualToString:info.genomeName]) {
+        for (int j = 0; j < [nameArr count]; j++) {
+            NSString *name = [nameArr objectAtIndex:j];
+            if ([name isEqualToString:info.genomeName]) {
                 info.indexInSegmentNameArr = j;
                 break;
             }
+        }
         
         if (info.indexInSegmentNameArr > 0)
             info.pos = [[lenArr objectAtIndex:info.indexInSegmentNameArr-1] intValue]+pos-1;//pos-1 because is inputted as position with first spot as 1 not 0
