@@ -338,9 +338,12 @@
         }
         
         if (info.distance < 0) {
-            NSLog(@"SOMETHING SCREWED UP WITH DISTANCE COMPUTATION");
+            NSLog(@"DISTANCE COMPUTATION WENT NEGATIVE");
             return NULL;
         }
+        
+        if (endPos - pos + 1 < kMinReadLength)
+            return NULL;
         
         //Clip from pos to the endPos
         char *newa = malloc(endPos-pos + 2);
