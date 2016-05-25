@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30051391CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30051361CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq */; };
+		A300513A1CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30051371CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq */; };
+		A300513B1CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30051381CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq */; };
+		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
@@ -158,6 +162,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A30051361CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.advanced.fluH1N1.fastq; path = ../../../../Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/seeded/advanced_test/reads.advanced.fluH1N1.fastq; sourceTree = "<group>"; };
+		A30051371CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.basic.fluH1N1.fastq; path = ../../../../Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/seeded/basic_test/reads.basic.fluH1N1.fastq; sourceTree = "<group>"; };
+		A30051381CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.medium.fluH1N1.fastq; path = ../../../../Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/seeded/medium_test/reads.medium.fluH1N1.fastq; sourceTree = "<group>"; };
+		A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = incorrectsingle.fq; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -852,6 +860,7 @@
 		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
 			isa = PBXGroup;
 			children = (
+				A3B025451CF4CFD3007C98CE /* Reads Files for Alignment Validation */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
 				A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */,
@@ -878,6 +887,7 @@
 			isa = PBXGroup;
 			children = (
 				A3806A561C940F5F00D0C117 /* incorrectsingle.fa */,
+				A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */,
 				A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */,
 				A39182D31C912D8E00937695 /* minion.raw.fasta */,
 				A36CCDF9184A8632004B9327 /* reads.fa */,
@@ -885,6 +895,17 @@
 				A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */,
 			);
 			name = "Default Read Files";
+			sourceTree = "<group>";
+		};
+		A3B025451CF4CFD3007C98CE /* Reads Files for Alignment Validation */ = {
+			isa = PBXGroup;
+			children = (
+				A30051361CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq */,
+				A30051371CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq */,
+				A30051381CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq */,
+			);
+			name = "Reads Files for Alignment Validation";
+			path = flu.H1N1s;
 			sourceTree = "<group>";
 		};
 		A3B92FE1196F017E00EE1C06 /* Alignment Grid View */ = {
@@ -1226,9 +1247,11 @@
 				A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */,
 				A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */,
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
+				A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
 				A351608B1AA3FD7B0004FD32 /* Icon@2x.png in Resources */,
 				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
+				A300513B1CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
@@ -1256,6 +1279,7 @@
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
 				A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */,
+				A300513A1CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
 				A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */,
 				A35160881AA3FD7B0004FD32 /* Icon-Small-50.png in Resources */,
@@ -1269,6 +1293,7 @@
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
+				A30051391CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,

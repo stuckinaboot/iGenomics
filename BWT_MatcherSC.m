@@ -342,8 +342,9 @@
             return NULL;
         }
         
-        if (endPos - pos + 1 < kMinReadLength)
+        if (endPos - pos + 1 < kMinReadLength) {
             return NULL;
+        }
         
         //Clip from pos to the endPos
         char *newa = malloc(endPos-pos + 2);

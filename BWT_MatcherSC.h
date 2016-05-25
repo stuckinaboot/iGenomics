@@ -18,7 +18,7 @@
 
 #define kOriginalStrSegmentLetterDividersLen 1000
 #define kOriginalStrSegmentLetterDivider 'B'
-#define kSoftClippingCharsInARowThresholdToFinish 5
+#define kSoftClippingCharsInARowThresholdToFinish 5 //Originally was 5
 
 @interface BWT_MatcherSC : NSObject {
     APTimer *timer;

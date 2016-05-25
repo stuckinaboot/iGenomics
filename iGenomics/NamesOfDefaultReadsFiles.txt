@@ -1,3 +1,7 @@
+reads.basic.fluH1N1.fastq
+reads.medium.fluH1N1.fastq
+reads.advanced.fluH1N1.fastq
+incorrectsingle.fq
 flu.H1N1.clean.fq
 flu.H1N1.resistant.fq
 anthrax.capsule.reads.fa

@@ -60,7 +60,7 @@
         for (int j = 0; j < [exactMatches count]; j++) {
             ED_Info *ed = [exactMatches objectAtIndex:j];
             ed = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:ed cumSepSegLens:cumulativeSegmentLens];
-            int bLoc = ed.position-i-maxEditDist;
+            int bLoc = ed.position - i - maxEditDist;
             int bRangeLen = lenA+2*maxEditDist;
             if (bLoc < 0) {
                 bRangeLen += bLoc;
