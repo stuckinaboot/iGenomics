@@ -301,7 +301,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 }*/ //I COMMENTED THIS OUT BECAUSE IT LEFT THE LOOP TOO EARLY, BECAUSE WHAT IF diffCharsAtPos == 3 or 4? and the foundChars were A,G,T?
             }
             foundChars[posInFoundChars] = '\0';
-            if (diffCharsAtPos > 1 && !alreadyAdded) //In case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
+            if ((diffCharsAtPos > 1 || foundChars[0] != originalStr[p]) && !alreadyAdded) //We compare foundChars to originalStr because if foundChars has 1 character, then that means at least one other character was also at that position, but that character had an occurence value below the hetero threshold. Also, on a separate note, in case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
                 [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
         }
         for (int t = 0; t < kACGTLen + 2; t++) {
