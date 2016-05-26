@@ -115,8 +115,10 @@
             }
         }
         
-        NSString *newRead = [[arr objectAtIndex:i+1] substringToIndex:maxPos+1];//+1 to include that index
-        if (newRead.length >= kMinReadLength)
+        NSString *oldRead = [arr objectAtIndex:i + 1];
+        NSString *newRead = [oldRead substringToIndex:maxPos+1];//+1 to include that index
+        int minReadLen = kMinReadLengthPercentOfReadsThatMustRemain * oldRead.length;
+        if (newRead.length >= minReadLen)
             [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
     }
     newReads = (NSMutableString*)[newReads stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

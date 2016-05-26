@@ -261,12 +261,15 @@
     //Trim off all Bs
     int numOfBsInStart = 0, numOfBsInEnd = 0;
     int bLen = (int)strlen(info.gappedB);
+    int originalReadLen = bLen; //NOTE: This is essentially an upper bound on the read length, which is fine because the read length is checked against the exact min read len when processing the best match (in a higher level function) - would rather not spend extra time here getting the exact min read len
+    
     for (int i = 0; i < ceilf(bLen / 2.0f); i++) {
         BOOL bRecorded = false;
         if (info.gappedB[i] == kOriginalStrSegmentLetterDivider) {
             numOfBsInStart++;
             bRecorded = TRUE;
         }
+
         if (info.gappedB[bLen - i - 1] == kOriginalStrSegmentLetterDivider) {
             numOfBsInEnd++;
             bRecorded = TRUE;
@@ -342,7 +345,8 @@
             return NULL;
         }
         
-        if (endPos - pos + 1 < kMinReadLength) {
+        int minReadLen = kMinReadLengthPercentOfReadsThatMustRemain * originalReadLen;
+        if (endPos - pos + 1 < minReadLen) {
             return NULL;
         }
         
