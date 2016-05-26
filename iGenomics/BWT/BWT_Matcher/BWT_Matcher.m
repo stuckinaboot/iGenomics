@@ -172,6 +172,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     int step = (amtOfSubs > kReadLoopMaxSmallEditDist) ? ceilf(amtOfSubs * kReadLoopLargeEditDistStepFactor) : 1;
     
     int initialNumOfSubs = (shouldSeed) ? 0 : amtOfSubs;
+    int initialQueryLen = (int)strlen(query);
     
     int lastColLen = (int)strlen(lastCol);
     
@@ -233,9 +234,21 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                 printf("\n%i\n",[[arr objectAtIndex:o] intValue]);
         
         if ([arr count] > 0) {
-            ED_Info *info = [arr objectAtIndex:((int)arc4random()%[arr count])];
-            arr = nil;
-            return info;
+//            ED_Info *info = [arr objectAtIndex:((int)arc4random()%[arr count])];
+//            arr = nil;
+            
+            //Get the best alignment and return it
+            float lowestErrorRate = 1;
+            ED_Info* lowestErrorRateInfo = arr[0];
+            for (ED_Info *info in arr) {
+                float errorRate = info.distance / (float)strlen(info.gappedA);
+                if (errorRate < lowestErrorRate) {
+                    lowestErrorRate = errorRate;
+                    lowestErrorRateInfo = info;
+                }
+                
+            }
+            return lowestErrorRateInfo;
         }
         if (subs + step > amtOfSubs && subs != amtOfSubs)
             subs = amtOfSubs-step;

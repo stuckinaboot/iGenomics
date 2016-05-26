@@ -345,7 +345,7 @@
             return NULL;
         }
         
-        int minReadLen = kMinReadLengthPercentOfReadsThatMustRemain * originalReadLen;
+        int minReadLen = kMinReadLengthPercentOfReadThatMustRemain * originalReadLen;
         if (endPos - pos + 1 < minReadLen) {
             return NULL;
         }

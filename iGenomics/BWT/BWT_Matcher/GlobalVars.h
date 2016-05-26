@@ -29,9 +29,9 @@ typedef enum {
 #define kFileSizeMaxReads 50000000
 #define kFileSizeMaxImptMuts 10000
 
-#define kReadExportDataBasicInfo @"%s,%i,%c,%i,%s,%s\n"//read name, position, forward/reverse, gapped b, gapped a
-#define kReadExportDataCompleteInfo @"%s,%i,%s,%c,%i,%s,%s\n"//read name, position relative to segment, segment, forward/reverse, gapped b, gapped a --May not even need to be used but is good to have to show the format
-#define kReadExportDataComponentDivider @","//What divides each component of the string.
+#define kReadExportDataBasicInfo @"%s\t%i\t%c\t%i\t%s\t%s\n"//read name, position, forward/reverse, gapped b, gapped a
+#define kReadExportDataCompleteInfo @"%s\t%i\t%s\t%c\t%i\t%s\t%s\n"//read name, position relative to segment, segment, forward/reverse, gapped b, gapped a --May not even need to be used but is good to have to show the format
+#define kReadExportDataComponentDivider @"\t"//What divides each component of the string.
 #define kReadExportDataStrPositionIndex 1 //Index of position in the string
 
 #define kMaxMultipleToCountAt 16
@@ -44,7 +44,7 @@ typedef enum {
 #define kACGTwithInDelsLen 6
 
 #define kBaseUnknownChar 'N'
-#define kMinReadLengthPercentOfReadsThatMustRemain .50 //If a read is trimmed below this minimum
+#define kMinReadLengthPercentOfReadThatMustRemain .50 //If a read is trimmed below this minimum
 
 #define kNoGappedBChar "X"
 

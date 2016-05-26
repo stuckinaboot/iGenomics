@@ -49,6 +49,7 @@
     
     ED_Info *match;
     char *shortA = malloc(kNonSeedShortSeqSize+1);
+    ED_Info *bestMatch = NULL;
     for (int i = 0; i < lenA-kNonSeedShortSeqSize; i++) {
         strncpy(shortA, a+i, kNonSeedShortSeqSize);
         shortA[kNonSeedShortSeqSize] = '\0';
@@ -84,23 +85,30 @@
                 edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
                 edFinal.alreadyHasPosAdjusted = TRUE;
             }
+
             if (edFinal != NULL && edFinal.distance <= maxErrorRate * (int)strlen(edFinal.gappedA)) {
 //                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
                 match = edFinal;
-                break;
+                if (bestMatch == NULL) {
+                    bestMatch = match;
+                } else if (match.distance / (float)strlen(match.gappedA) < bestMatch.distance / (float)strlen(bestMatch.gappedA)) {
+//                } else if (match.distance < bestMatch.distance) {
+                    bestMatch = match;
+                }
+//                break;
             }
             else
                 [edFinal freeUsedMemory];
         }
-        if (match)
-            break;
+//        if (match)
+//            break;
     }
     
     free(shortA);
     //Do something with the match if there was one
-    if (match) {
-        match.isRev = isReverse;
-        [matchedInDels addObject:match];
+    if (bestMatch) {
+        bestMatch.isRev = isReverse;
+        [matchedInDels addObject:bestMatch];
     }
 }
 

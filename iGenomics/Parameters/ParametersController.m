@@ -245,7 +245,7 @@
         for (int i = 0; i < [arr count]; i+= interval) {
             NSString *read = [arr objectAtIndex:i+1];
             int trimIndex = [self unknownBaseTrimmingIndexForRead:read];
-            int minReadLen = kMinReadLengthPercentOfReadsThatMustRemain * read.length;
+            int minReadLen = kMinReadLengthPercentOfReadThatMustRemain * read.length;
             if (trimIndex >= minReadLen || trimIndex == -1) {
                 [newReads appendFormat:@"%@\n",[[arr objectAtIndex:i] stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""]];//Read name, takes away the '>' or '@'
                 

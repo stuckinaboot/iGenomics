@@ -117,7 +117,7 @@
         
         NSString *oldRead = [arr objectAtIndex:i + 1];
         NSString *newRead = [oldRead substringToIndex:maxPos+1];//+1 to include that index
-        int minReadLen = kMinReadLengthPercentOfReadsThatMustRemain * oldRead.length;
+        int minReadLen = kMinReadLengthPercentOfReadThatMustRemain * oldRead.length;
         if (newRead.length >= minReadLen)
             [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
     }
