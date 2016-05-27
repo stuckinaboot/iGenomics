@@ -41,7 +41,7 @@
 }
 
 + (char*)createMutCovStrFromFoundChars:(char*)fc andPos:(int)pos {
-    int len = strlen(fc);
+    int len = (int)strlen(fc);
     int covArr[len];
     
     NSMutableString *covStr = [[NSMutableString alloc] init];
@@ -49,7 +49,7 @@
         covArr[i] = posOccArray[[BWT_MatcherSC whichChar:fc[i] inContainer:acgt]][pos];
         [covStr appendFormat:kCovStrFormat,fc[i],covArr[i]];
     }
-    return (char*)[[covStr stringByReplacingCharactersInRange:NSMakeRange(covStr.length-1, 1) withString:@""] UTF8String];//Replaces the final / with nothing
+    return (char*)[covStr UTF8String];//Replaces the final / with nothing
 }
 
 + (BOOL)mutationInfoObjectsHaveSameContents:(MutationInfo *)info1 :(MutationInfo *)info2 {
