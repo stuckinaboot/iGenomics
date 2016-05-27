@@ -55,6 +55,7 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
 - (NSArray*)filterMutationsForDetails;
 - (NSArray*)findMutationsWithOriginalSeq:(char*)seq;
 
-+ (NSMutableArray*)filteredMutations:(NSArray*)arr forHeteroAllowance:(int)heteroAllowance;
++ (NSMutableArray*)filteredMutations:(NSArray*)arr
+                  forHeteroAllowance:(int)heteroAllowance insertionsArr:(NSArray*)insArr;
 + (NSMutableArray*)compareFoundMutationsArr:(NSArray *)arr toImptMutationsString:(NSString *)imptMutsStr andCumulativeLenArr:(NSMutableArray*)lenArr andSegmentNameArr:(NSMutableArray*)nameArr;
 @end

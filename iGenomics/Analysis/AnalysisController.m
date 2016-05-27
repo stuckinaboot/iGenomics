@@ -442,7 +442,8 @@
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
-    mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray forHeteroAllowance:val];
+    mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray
+                                     forHeteroAllowance:val insertionsArr:insertionsArr];
 //    [gridView initialMutationFind];
     
     [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
@@ -651,7 +652,7 @@
         [mutsPopover setDelegate:self];
         if ([mutPosArray count] == 0)
             mutPosArray = [[NSMutableArray alloc] initWithArray:allMutPosArray];
-        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value] andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
+        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value insertionsArr:insertionsArr] andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
         mutsPopoverAlreadyUpdated = !mutsPopoverAlreadyUpdated;
     }
     if (!sizeChanged)

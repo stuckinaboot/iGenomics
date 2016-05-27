@@ -251,7 +251,8 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
 }
 
-+ (NSMutableArray*)filteredMutations:(NSArray*)arr forHeteroAllowance:(int)heteroAllowance {
++ (NSMutableArray*)filteredMutations:(NSArray*)arr
+                  forHeteroAllowance:(int)heteroAllowance insertionsArr:(NSArray *)insArr {
     NSMutableArray *finalArr = [[NSMutableArray alloc] init];
     
     int diffCharsAtPos = 0;
@@ -271,14 +272,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             foundChars[posInFoundChars] = '\0';
         }
         if (diffCharsAtPos == 1)
-            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];//Duplicates it so it doesn't overwrite it (same for below)
+            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];//Duplicates it so it doesn't overwrite it (same for below)
         else if (coverageArray[p]<kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
             for (int a = 0; a<kACGTwithInDelsLen; a++) {
                 if (posOccArray[a][p]>0)
                     diffCharsAtPos++;
                 else if (diffCharsAtPos > 1) {
-                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
+                    [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];
                     break;
                 }
             }
@@ -302,7 +303,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
             foundChars[posInFoundChars] = '\0';
             if ((diffCharsAtPos > 1 || foundChars[0] != originalStr[p]) && !alreadyAdded) //We compare foundChars to originalStr because if foundChars has 1 character, then that means at least one other character was also at that position, but that character had an occurence value below the hetero threshold. Also, on a separate note, in case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
-                [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
+                [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];
         }
         for (int t = 0; t < kACGTLen + 2; t++) {
             if (foundChars[t] == 0)
@@ -337,7 +338,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         char* foundChars = strdup([[componentsArr objectAtIndex:kImptMutsStrFoundCharIndex] UTF8String]);
         NSString *details = [componentsArr objectAtIndex:kImptMutsStrDescriptionIndex];
         
-        ImportantMutationInfo *info = [[ImportantMutationInfo alloc] initWithPos:0 andRefChar:refChar andFoundChars:foundChars andDisplayedPos:pos];
+        ImportantMutationInfo *info = [[ImportantMutationInfo alloc] initWithPos:0 andRefChar:refChar andFoundChars:foundChars andDisplayedPos:pos andInsertionsArr:NULL heteroAllowance:0];
         
         info.genomeName = segName;
         

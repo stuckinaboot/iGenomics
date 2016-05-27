@@ -10,34 +10,47 @@
 
 @implementation MutationInfo
 
-@synthesize pos, displayedPos, refChar, foundChars, genomeName, indexInSegmentNameArr;
+@synthesize pos, displayedPos, refChar,
+    foundChars, genomeName, indexInSegmentNameArr, relevantInsertionsArr;
 
-- (id)initWithPos:(int)p andRefChar:(char)refC andFoundChars:(char *)foundC andDisplayedPos:(int)dispP {
+- (id)initWithPos:(int)p andRefChar:(char)refC andFoundChars:(char *)foundC andDisplayedPos:(int)dispP  andInsertionsArr:(NSArray*)insArr heteroAllowance:(int)heteroAllowance {
     self = [super init];
     pos = p;
     displayedPos = dispP;
     refChar = refC;
     foundChars = strdup(foundC);
+    
+    NSMutableArray *insertions = [[NSMutableArray alloc] init];
+    for (BWT_Matcher_InsertionDeletion_InsertionHolder *holder in insArr) {
+        if (pos == holder.pos && holder.count >= heteroAllowance) {
+            [insertions addObject:holder];
+        }
+    }
+    relevantInsertionsArr = insertions;
     return self;
 }
 
-+ (char*)createMutStrFromOriginalChar:(char)originalC andFoundChars:(char*)fc {
-    int s = strlen(fc);
-    char *mutStr = calloc(2+ ((s > 1) ? (s*2)-1 : 1) + 1, 1);//+1 at the end because of null terminator
-    mutStr[0] = originalC;
-    mutStr[1] = '>';
++ (char*)createMutStrFromOriginalChar:(char)originalC
+                        andFoundChars:(char*)fc pos:(int)pos relevantInsArr:(NSArray*)insertions {
+    int s = (int)strlen(fc);
+    NSMutableString *mutStr = [[NSMutableString alloc] init];
+    [mutStr appendFormat:@"%c",originalC];
+    [mutStr appendFormat:@"%c",'>'];
     
-    int pos = 2;
     for (int i = 0; i<s; i++) {
-        mutStr[pos] = fc[i];
-        pos++;
+        [mutStr appendFormat:@"%c",fc[i]];
+        if (fc[i] == kInsMarker) {
+            for (BWT_Matcher_InsertionDeletion_InsertionHolder *holder in insertions) {
+                if (holder.pos == pos) {
+                    [mutStr appendFormat:kInsStrFormat,holder.seq,holder.count];
+                }
+            }
+        }
         if (i+1 < s) {
-            mutStr[pos] = '/';
-            pos++;
+            [mutStr appendFormat:@"%c",'/'];
         }
     }
-    mutStr[pos] = '\0';
-    return mutStr;
+    return strdup([mutStr UTF8String]);
 }
 
 + (char*)createMutCovStrFromFoundChars:(char*)fc andPos:(int)pos {
@@ -49,7 +62,7 @@
         covArr[i] = posOccArray[[BWT_MatcherSC whichChar:fc[i] inContainer:acgt]][pos];
         [covStr appendFormat:kCovStrFormat,fc[i],covArr[i]];
     }
-    return (char*)[covStr UTF8String];//Replaces the final / with nothing
+    return strdup([covStr UTF8String]);//Replaces the final / with nothing
 }
 
 + (BOOL)mutationInfoObjectsHaveSameContents:(MutationInfo *)info1 :(MutationInfo *)info2 {

@@ -37,7 +37,7 @@ typedef enum {
 #define kExportAlertBody @"Enter file name here:"
 #define kExportAlertBtnExportTitle @"Export"
 
-#define kExportDropboxSaveFileFormatMuts @"%@%@.var.txt"//reads(1..2..3 or no ()).var...
+#define kExportDropboxSaveFileFormatMuts @"%@%@.var.mcs"//reads(1..2..3 or no ()).var...
 #define kExportDropboxSaveFileFormatData @"%@%@.data.acp"//reads(1..2..3 or no ()).data...
 #define kExportDropboxSaveFileExt @".txt"
 #define kExportDropboxSaveDataFileExt @".acp"
@@ -55,7 +55,7 @@ typedef enum {
 
 #define kExportMutsFileName @"Mutations"
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
-#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum error rate of %.02f. For a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compressed String) file. \n\nPowered by iGenomics"
+#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum error rate of %.02f. For a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compact String) file. \n\nPowered by iGenomics"
 
 #define kNoMutationsFoundStr @"No Mutations Found"
 
