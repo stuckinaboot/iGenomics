@@ -39,13 +39,6 @@
     
     for (int i = 0; i<s; i++) {
         [mutStr appendFormat:@"%c",fc[i]];
-        if (fc[i] == kInsMarker) {
-            for (BWT_Matcher_InsertionDeletion_InsertionHolder *holder in insertions) {
-                if (holder.pos == pos) {
-                    [mutStr appendFormat:kInsStrFormat,holder.seq,holder.count];
-                }
-            }
-        }
         if (i+1 < s) {
             [mutStr appendFormat:@"%c",'/'];
         }
@@ -53,14 +46,24 @@
     return strdup([mutStr UTF8String]);
 }
 
-+ (char*)createMutCovStrFromFoundChars:(char*)fc andPos:(int)pos {
++ (char*)createMutCovStrFromFoundChars:(char*)fc
+                                andPos:(int)pos relevantInsArr:(NSArray *)insertions {
     int len = (int)strlen(fc);
     int covArr[len];
     
     NSMutableString *covStr = [[NSMutableString alloc] init];
     for (int i = 0; i < len; i++) {
         covArr[i] = posOccArray[[BWT_MatcherSC whichChar:fc[i] inContainer:acgt]][pos];
-        [covStr appendFormat:kCovStrFormat,fc[i],covArr[i]];
+        if (fc[i] == kInsMarker) {
+            NSMutableString *strToAppend = [[NSMutableString alloc] init];
+            for (BWT_Matcher_InsertionDeletion_InsertionHolder *holder in insertions) {
+                if (holder.pos == pos) {
+                    [strToAppend appendFormat:kInsStrFormat,holder.seq,holder.count];
+                }
+            }
+            [covStr appendFormat:kCovStrInsFormat, kInsMarker, strToAppend];
+        } else
+            [covStr appendFormat:kCovStrFormat,fc[i],covArr[i]];
     }
     return strdup([covStr UTF8String]);//Replaces the final / with nothing
 }

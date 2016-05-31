@@ -12,6 +12,7 @@
 #define kMutationFormat @"Pos: %i, %s | Cov: %s\n"
 #define kMutationExportFormat @"%i\t%s\t%s\t%@\n"
 #define kCovStrFormat @"[%c=%i]"
+#define kCovStrInsFormat @"[%c=%@]"
 #define kInsStrFormat @"{%s=%i}"
 #define kMutationTotalFormat @"Total Mutations: %i\n"
 
@@ -30,6 +31,7 @@
     andInsertionsArr:(NSArray*)insArr heteroAllowance:(int)heteroAllowance;
 + (char*)createMutStrFromOriginalChar:(char)originalC
                         andFoundChars:(char*)fc pos:(int)pos relevantInsArr:(NSArray*)insertions;
-+ (char*)createMutCovStrFromFoundChars:(char*)fc andPos:(int)pos;
++ (char*)createMutCovStrFromFoundChars:(char*)fc
+                                andPos:(int)pos relevantInsArr:(NSArray*)insertions;
 + (BOOL)mutationInfoObjectsHaveSameContents:(MutationInfo*)info1 :(MutationInfo*)info2;
 @end

@@ -101,7 +101,7 @@
         else if ([trimmingRefCharStr isEqualToString:[NSString stringWithFormat:@"%c", kTrimmingRefChar1]])
             trimmingRefCharCtrl.selectedSegmentIndex = kTrimmingRefChar1Index;
         
-        trimmingSwitch.on = (trimmingStpr.value != kTrimmingOffVal);
+        trimmingSwitch.on = (trimmingStpr.value != kTrimmingOffVal && trimmingStpr.value > 0);
         [self trimmingSwitchValueChanged:nil];
     }
     else {

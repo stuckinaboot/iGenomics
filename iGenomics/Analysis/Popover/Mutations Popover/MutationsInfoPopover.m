@@ -103,7 +103,7 @@
         MutationInfo *info = [mutationsArray objectAtIndex:[self indexInMutationsArrayForIndexPath:indexPath]-1];//-1 because first row is always the total number of mutations
 //        MutationInfo *info = [mutationsArray objectAtIndex:rowsToAdd+indexPath.row-1];
         int pos = info.displayedPos;//-1 because first row shows total # of muts
-        [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars pos:info.pos relevantInsArr:info.relevantInsertionsArr], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos]]];//+1 because the first pos is considered 0
+        [cell.textLabel setText:[NSString stringWithFormat:kMutationFormat,pos+1, [MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars pos:info.pos relevantInsArr:info.relevantInsertionsArr], [MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos relevantInsArr:info.relevantInsertionsArr]]];//+1 because the first pos is considered 0
         [cell.textLabel setAdjustsFontSizeToFitWidth:YES];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;//Show the little arrow
     }
