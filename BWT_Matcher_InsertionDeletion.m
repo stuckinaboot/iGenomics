@@ -50,7 +50,8 @@
     ED_Info *match;
     char *shortA = malloc(kNonSeedShortSeqSize+1);
     ED_Info *bestMatch = NULL;
-    for (int i = 0; i < lenA-kNonSeedShortSeqSize; i++) {
+    int interval = 1;
+    for (int i = 0; i < lenA-kNonSeedShortSeqSize; i += interval) {
         strncpy(shortA, a+i, kNonSeedShortSeqSize);
         shortA[kNonSeedShortSeqSize] = '\0';
         
@@ -100,6 +101,8 @@
             else
                 [edFinal freeUsedMemory];
         }
+        if (interval == 1 && bestMatch)
+            interval = kNonSeedShortSeqInterval;
 //        if (match)
 //            break;
     }

@@ -271,7 +271,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
             foundChars[posInFoundChars] = '\0';
         }
-        if (diffCharsAtPos == 1)
+        if (diffCharsAtPos == 1 && coverageArray[p] >= kLowestAllowedCoverage)
             [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];//Duplicates it so it doesn't overwrite it (same for below)
         else if (coverageArray[p] < kLowestAllowedCoverage) {
             diffCharsAtPos = 0;

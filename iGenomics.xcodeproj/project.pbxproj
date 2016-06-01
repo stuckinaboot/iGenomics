@@ -88,6 +88,7 @@
 		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
 		A36CCDFC184A8632004B9327 /* reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF9184A8632004B9327 /* reads.fa */; };
 		A36CCDFD184A8632004B9327 /* reads.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDFA184A8632004B9327 /* reads.fq */; };
+		A36F22F01CFF435600265EF8 /* reads.2sr.1000bp.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A36F22EF1CFF435600265EF8 /* reads.2sr.1000bp.fastq */; };
 		A36F23091AAF99A4005B5A91 /* flu.H1N1.clean.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */; };
 		A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */; };
 		A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */ = {isa = PBXBuildFile; fileRef = A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */; };
@@ -272,6 +273,7 @@
 		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
 		A36CCDF9184A8632004B9327 /* reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fa; path = "ecoli-2.50k/reads.fa"; sourceTree = "<group>"; };
 		A36CCDFA184A8632004B9327 /* reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fq; path = "ecoli-2.50k/reads.fq"; sourceTree = "<group>"; };
+		A36F22EF1CFF435600265EF8 /* reads.2sr.1000bp.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.2sr.1000bp.fastq; sourceTree = "<group>"; };
 		A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.clean.fq; sourceTree = "<group>"; };
 		A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.fa; sourceTree = "<group>"; };
 		A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.important.mpl; sourceTree = "<group>"; };
@@ -762,6 +764,14 @@
 			name = "Coverage Histogram";
 			sourceTree = "<group>";
 		};
+		A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */ = {
+			isa = PBXGroup;
+			children = (
+				A36F22EF1CFF435600265EF8 /* reads.2sr.1000bp.fastq */,
+			);
+			name = "Reads Files for Full Validation";
+			sourceTree = "<group>";
+		};
 		A36F23041AAF99A4005B5A91 /* flu.H1N1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +870,7 @@
 		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
 			isa = PBXGroup;
 			children = (
+				A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */,
 				A3B025451CF4CFD3007C98CE /* Reads Files for Alignment Validation */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
@@ -1249,6 +1260,7 @@
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
 				A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
+				A36F22F01CFF435600265EF8 /* reads.2sr.1000bp.fastq in Resources */,
 				A351608B1AA3FD7B0004FD32 /* Icon@2x.png in Resources */,
 				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
 				A300513B1CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq in Resources */,
