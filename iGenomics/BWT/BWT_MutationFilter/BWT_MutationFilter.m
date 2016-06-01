@@ -174,13 +174,13 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 }
             }
         }
-        else {//Smaller than lowest allowed coverage(5)
-            for (int x = 0; x<kACGTLen+1; x++) {
-                if (posOccArray[x][i] > 0 && acgt[x] != seq[i]) {
-                    [mutationsArray addObject:[NSNumber numberWithInt:i]];
-                    break;
-                }
-            }
+        else {//Smaller than lowest allowed coverage(5) -> SHOULD NOT BE CONSIDERED MUTATIONS
+//            for (int x = 0; x<kACGTLen+1; x++) {
+//                if (posOccArray[x][i] > 0 && acgt[x] != seq[i]) {
+//                    [mutationsArray addObject:[NSNumber numberWithInt:i]];
+//                    break;
+//                }
+//            }
         }
     }
     
@@ -207,16 +207,17 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     for (int i = 0; i<mutations.count; i++) {
         int p = [[mutations objectAtIndex:i] intValue];
         if (coverageArray[p]<kLowestAllowedCoverage) {
-            for (int a = 0; a<kACGTwithInDelsLen; a++) {
-                if (posOccArray[a][p]>0) {
-                    mutStr[i][mutCounter] = acgt[a];
-                    
-                    if (a == kACGTLen)
-                        mutStr[i][mutCounter] = kDelMarker;
-                    
-                    mutCounter++;
-                }
-            }
+            //DO NOT CONSIDER THIS A MUTATION
+//            for (int a = 0; a<kACGTwithInDelsLen; a++) {
+//                if (posOccArray[a][p]>0) {
+//                    mutStr[i][mutCounter] = acgt[a];
+//                    
+//                    if (a == kACGTLen)
+//                        mutStr[i][mutCounter] = kDelMarker;
+//                    
+//                    mutCounter++;
+//                }
+//            }
         }
         else {
             for (int a = 0; a<kACGTwithInDelsLen; a++) {
