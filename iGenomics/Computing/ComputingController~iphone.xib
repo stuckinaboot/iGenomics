@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComputingController">
             <connections>
+                <outlet property="dnaIconImgView" destination="TPG-P7-ESz" id="YWj-4I-IyF"/>
                 <outlet property="readProgressView" destination="23" id="32"/>
                 <outlet property="readsProcessedLbl" destination="GQI-UT-BUB" id="oc9-uO-oeM"/>
                 <outlet property="timeRemainingLbl" destination="har-rd-UpS" id="jEJ-cj-rkx"/>
@@ -52,6 +54,13 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconIdea2-ExtraLarge.png" translatesAutoresizingMaskIntoConstraints="NO" id="TPG-P7-ESz">
+                    <rect key="frame" x="94" y="140" width="132" height="132"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="TPG-P7-ESz" secondAttribute="height" multiplier="1:1" id="Lax-za-EKM"/>
+                        <constraint firstAttribute="width" constant="132" id="r1l-UP-hQw"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -59,8 +68,10 @@
                 <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="10" id="5yO-Ye-fPO"/>
                 <constraint firstItem="har-rd-UpS" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="33" id="6Xu-rE-lNp"/>
                 <constraint firstItem="GQI-UT-BUB" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="34" id="6rH-4A-uTg"/>
+                <constraint firstItem="TPG-P7-ESz" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="94" id="Ap3-yv-FhV"/>
                 <constraint firstItem="23" firstAttribute="leading" secondItem="2" secondAttribute="leadingMargin" id="DO7-h8-zY4"/>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Hmp-ky-bxQ"/>
+                <constraint firstItem="TPG-P7-ESz" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="26" id="RK8-sh-uMs"/>
                 <constraint firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="12" id="UFf-69-2ir"/>
                 <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="X1T-TV-ff0"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="48" id="jrl-Fl-AN3"/>
@@ -73,6 +84,9 @@
             <point key="canvasLocation" x="307" y="398"/>
         </view>
     </objects>
+    <resources>
+        <image name="IconIdea2-ExtraLarge.png" width="1000" height="1000"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -15,8 +15,12 @@
 #import "Chunks.h"
 
 #define kPrintInDelPos 0
-#define kNonSeedShortSeqSize 12
-#define kNonSeedShortSeqInterval 1200
+#define kNonSeedShortSeqSize 30
+
+#define kNonSeedShortSeqMinSize 12
+static int kNonSeedShortSeqSizeIntervals[] = {12};//{16, 12};//{19,12,10};
+#define kNonSeedShortSeqSizeIntervalsCount 1
+#define kNonSeedShortSeqInterval 10//100
 #define kNonSeedLongSeqSize 100
 
 @interface BWT_Matcher_InsertionDeletion : NSObject {

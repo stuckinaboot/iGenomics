@@ -48,72 +48,96 @@
     int lenB = (int)strlen(b);
     
     ED_Info *match;
-    char *shortA = malloc(kNonSeedShortSeqSize+1);
     ED_Info *bestMatch = NULL;
     int interval = 1;
-    for (int i = 0; i < lenA-kNonSeedShortSeqSize; i += interval) {
-        strncpy(shortA, a+i, kNonSeedShortSeqSize);
-        shortA[kNonSeedShortSeqSize] = '\0';
-        
-        //ASK MIKE: <<<What about forward/reverse???>>>
-        
-        NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
-//        if ([exactMatches count] > 1)
-//            continue;
-        
-        for (int j = 0; j < [exactMatches count]; j++) {
-            ED_Info *ed = [exactMatches objectAtIndex:j];
-            ed = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:ed cumSepSegLens:cumulativeSegmentLens];
-            int bLoc = ed.position - i - maxEditDist;
-            int bRangeLen = lenA+2*maxEditDist;
-            if (bLoc < 0) {
-                bRangeLen += bLoc;
-                bLoc = 0;
-            }
-            if (bLoc + bRangeLen - 1 >= lenB) {
-                bLoc -= maxEditDist;
-                bRangeLen = lenB-bLoc+maxEditDist;
-            }
-            
-            ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
-            
-            
-            edFinal.position += bLoc;
-//            edFinal.position = ed.position - (int)strlen(edL.gappedA) + edL.numOfInsertions;
-            
-            
-//            if (edFinal && edFinal.distance < kMaxER * lenA && edFinal.distance > maxEditDist)
-//                edFinal = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:edFinal forNumOfSubs:maxEditDist withCumSepGenomeLens:cumulativeSegmentLens maxErrorRate:maxErrorRate originalReadLen:lenA];
-            if (edFinal) {
-                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
-                edFinal.alreadyHasPosAdjusted = TRUE;
-            }
 
-            if (edFinal != NULL && edFinal.distance <= maxErrorRate * (int)strlen(edFinal.gappedA)) {
-//                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
-                match = edFinal;
-                if (bestMatch == NULL) {
-                    bestMatch = match;
-                } else if (match.distance / (float)strlen(match.gappedA) < bestMatch.distance / (float)strlen(bestMatch.gappedA)) {
-//                } else if (match.distance < bestMatch.distance) {
-                    bestMatch = match;
+//    for (int k = kNonSeedShortSeqSize; k >= kNonSeedShortSeqMinSize; k -= kNonSeedShortSeqSizeInterval) {
+    for (int indexInIntervals = 0; indexInIntervals < kNonSeedShortSeqSizeIntervalsCount; indexInIntervals++) {
+        int k = kNonSeedShortSeqSizeIntervals[indexInIntervals];
+        char *shortA = malloc(k+1);
+        interval = kNonSeedShortSeqInterval;
+        for (int i = 0; i <= lenA - k; i += interval) {
+            strncpy(shortA, a+i, k);
+            shortA[k] = '\0';
+            
+            //ASK MIKE: <<<What about forward/reverse???>>>
+    //        APTimer *timer = [[APTimer alloc] init];
+    //        [timer start];
+            NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
+            if ([exactMatches count] > 1)
+                continue;
+    //        [timer stopAndLog];
+//            printf("%d\n",[exactMatches count]);
+            for (int j = 0; j < [exactMatches count]; j++) {
+                ED_Info *ed = [exactMatches objectAtIndex:j];
+                ed = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:ed cumSepSegLens:cumulativeSegmentLens];
+                
+    //            if (bestMatch) {
+    //                int approxStartOfRead = ed.position - i;
+    //                
+    //                //If the alignment is likely to already have been recorded in bestMatch, then continue
+    //                if (NSLocationInRange(approxStartOfRead,
+    //                                      NSMakeRange(bestMatch.position - maxEditDist, lenA + maxEditDist)))
+    //                    continue;
+    //            }
+    //
+                int bLoc = ed.position - i - maxEditDist;
+                int bRangeLen = lenA+2*maxEditDist;
+                if (bLoc < 0) {
+                    bRangeLen += bLoc;
+                    bLoc = 0;
                 }
-//                break;
+                if (bLoc + bRangeLen - 1 >= lenB) {
+                    bLoc -= maxEditDist;
+                    bRangeLen = lenB-bLoc+maxEditDist;
+                }
+                
+                ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
+                
+                
+                edFinal.position += bLoc;
+    //            edFinal.position = ed.position - (int)strlen(edL.gappedA) + edL.numOfInsertions;
+                
+                
+    //            if (edFinal && edFinal.distance < kMaxER * lenA && edFinal.distance > maxEditDist)
+    //                edFinal = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:edFinal forNumOfSubs:maxEditDist withCumSepGenomeLens:cumulativeSegmentLens maxErrorRate:maxErrorRate originalReadLen:lenA];
+                if (edFinal) {
+                    edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
+                    edFinal.alreadyHasPosAdjusted = TRUE;
+                }
+
+                if (edFinal != NULL && edFinal.distance <= maxErrorRate * (int)strlen(edFinal.gappedA)) {
+    //                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
+                    match = edFinal;
+                    if (bestMatch == NULL) {
+                        bestMatch = match;
+                    } else if (match.distance / (float)strlen(match.gappedA) < bestMatch.distance / (float)strlen(bestMatch.gappedA)) {
+    //                } else if (match.distance < bestMatch.distance) {
+                        bestMatch = match;
+                    }
+                    break;
+                }
+                else
+                    [edFinal freeUsedMemory];
             }
-            else
-                [edFinal freeUsedMemory];
+//            if (interval == 1 && bestMatch)
+//                interval = kNonSeedShortSeqInterval;
+            if (match)
+                break;
+            if (interval != 2 && i + interval >= lenA - k) {
+                i = 0;
+                interval = 2;
+                k = 12;
+            }
         }
-        if (interval == 1 && bestMatch)
-            interval = kNonSeedShortSeqInterval;
-//        if (match)
-//            break;
-    }
-    
-    free(shortA);
-    //Do something with the match if there was one
-    if (bestMatch) {
-        bestMatch.isRev = isReverse;
-        [matchedInDels addObject:bestMatch];
+        
+        free(shortA);
+        //Do something with the match if there was one
+        if (bestMatch) {
+            bestMatch.isRev = isReverse;
+            [matchedInDels addObject:bestMatch];
+            break;
+        }
     }
 }
 

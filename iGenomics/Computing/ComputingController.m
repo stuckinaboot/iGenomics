@@ -53,7 +53,7 @@
     
     timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
     
-    [self runSpinAnimationOnDNA];
+//    [self runSpinAnimationOnDNA];
     
     //Set up parameters
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
