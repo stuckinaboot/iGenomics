@@ -100,7 +100,7 @@
 //    analysisControllerIPadMenu = [[AnalysisControllerIPadMenu alloc] init];
 }
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents andRefFile:(APFile*)refFile {
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents andRefFile:(APFile*)refFile andTotalAlignmentRuntime:(float)totalAlRt {
     NSLog(@"About to ready view for display");
     
     originalStr = unraveledStr;
@@ -127,6 +127,8 @@
     separateGenomeLens = sepGLA;
     cumulativeSeparateGenomeLens = cGLA;
     
+    totalAlignmentRuntime = totalAlRt;
+    
 //    NSLog(@"About to create separateGenomeNames and separateGenomeLens arrays");
     
 //    for (int i = 0, x = 0; i < [arr count]; i += 2, x++) {
@@ -140,7 +142,7 @@
     
     fileExporter = [[FileExporter alloc] init];
     [fileExporter setDelegate:self];
-    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr];
+    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr andTotalAlignmentRuntime:totalAlignmentRuntime andTotalNumOfReads:numOfReads andTotalNumOfReadsAligned:numOfReadsMatched];
 }
 
 - (void)readyViewForCovProfile {
@@ -237,7 +239,7 @@
     mutPosArray = [[NSMutableArray alloc] init];
     allMutPosArray = [[NSMutableArray alloc] init];
     
-    [readPercentMatchedLbl setText:[NSString stringWithFormat:@"%@%1.0f%%",kReadPercentMatchedLblStart, ((float)numOfReadsMatched/numOfReads)*100.0f]];
+    [readPercentMatchedLbl setText:[NSString stringWithFormat:@"%@%0.02 f%%",kReadPercentMatchedLblStart, ((float)numOfReadsMatched/numOfReads)*100.0f]];
     
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
     

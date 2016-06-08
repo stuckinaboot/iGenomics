@@ -121,6 +121,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     NSLog(@"About to enter match reads loop");
     
+    totalAlignmentRuntime = 0;
+    
     for (readNum = 0; readNum < reedsArray.count; readNum++) {
         
         reed = [reedsArray objectAtIndex:readNum];
@@ -161,6 +163,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }
 //    [exactMatcher timerPrint];
     [matchingTimer stopAndLog];
+    totalAlignmentRuntime = [matchingTimer getTotalRecordedTime];
 }
 
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed {
@@ -526,6 +529,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         }
     }
     NSLog(@"Set up number of occurences array COMPLETED!!");
+}
+
+- (float)getTotalAlignmentRuntime {
+    return totalAlignmentRuntime;
 }
 
 //Getters

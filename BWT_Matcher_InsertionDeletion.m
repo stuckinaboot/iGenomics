@@ -58,6 +58,8 @@
         //ASK MIKE: <<<What about forward/reverse???>>>
         
         NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
+//        if ([exactMatches count] > 1)
+//            continue;
         
         for (int j = 0; j < [exactMatches count]; j++) {
             ED_Info *ed = [exactMatches objectAtIndex:j];

@@ -72,7 +72,7 @@
         printf("\n%s",refStrBWT);
 }
 
-- (void)matchReadsFile:(APFile *)readsFile withParameters:(NSMutableDictionary *)parameters {
+- (float)matchReadsFile:(APFile *)readsFile withParameters:(NSMutableDictionary *)parameters {
     NSLog(@"matchReedsFileContentsAndParametersArr entered");
     
     numOfReadsMatched = 0;
@@ -137,7 +137,7 @@
     bwtMutationFilter.kHeteroAllowance = [parameters[kParameterArrayMutationCoverageKey] intValue];
     
     [bwtMutationFilter setUpMutationFilterWithOriginalStr:originalStr andMatcher:bwt_Matcher];
-    
+    return [bwt_Matcher getTotalAlignmentRuntime];
 }
 
 - (NSArray*)simpleSearchForQuery:(char*)query {

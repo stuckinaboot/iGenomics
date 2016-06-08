@@ -88,7 +88,6 @@
 		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
 		A36CCDFC184A8632004B9327 /* reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF9184A8632004B9327 /* reads.fa */; };
 		A36CCDFD184A8632004B9327 /* reads.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDFA184A8632004B9327 /* reads.fq */; };
-		A36F22F01CFF435600265EF8 /* reads.2sr.1000bp.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A36F22EF1CFF435600265EF8 /* reads.2sr.1000bp.fastq */; };
 		A36F23091AAF99A4005B5A91 /* flu.H1N1.clean.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */; };
 		A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */; };
 		A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */ = {isa = PBXBuildFile; fileRef = A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */; };
@@ -121,6 +120,33 @@
 		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
 		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
 		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
+		A3AF083E1D05C7D5000EC63B /* reads-rl100-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08231D05C7D5000EC63B /* reads-rl100-se0.01-mr0.001.fq */; };
+		A3AF083F1D05C7D5000EC63B /* reads-rl100-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08241D05C7D5000EC63B /* reads-rl100-se0.01-mr0.01.fq */; };
+		A3AF08401D05C7D5000EC63B /* reads-rl100-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08251D05C7D5000EC63B /* reads-rl100-se0.01-mr0.1.fq */; };
+		A3AF08411D05C7D5000EC63B /* reads-rl100-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08261D05C7D5000EC63B /* reads-rl100-se0.1-mr0.001.fq */; };
+		A3AF08421D05C7D5000EC63B /* reads-rl100-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08271D05C7D5000EC63B /* reads-rl100-se0.1-mr0.01.fq */; };
+		A3AF08431D05C7D5000EC63B /* reads-rl100-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08281D05C7D5000EC63B /* reads-rl100-se0.1-mr0.1.fq */; };
+		A3AF08441D05C7D5000EC63B /* reads-rl100-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08291D05C7D5000EC63B /* reads-rl100-se0.2-mr0.001.fq */; };
+		A3AF08451D05C7D5000EC63B /* reads-rl100-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF082A1D05C7D5000EC63B /* reads-rl100-se0.2-mr0.01.fq */; };
+		A3AF08461D05C7D5000EC63B /* reads-rl100-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF082B1D05C7D5000EC63B /* reads-rl100-se0.2-mr0.1.fq */; };
+		A3AF08471D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF082C1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.001.fq */; };
+		A3AF08481D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF082D1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.01.fq */; };
+		A3AF08491D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF082E1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.1.fq */; };
+		A3AF084A1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF082F1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.001.fq */; };
+		A3AF084B1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08301D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.01.fq */; };
+		A3AF084C1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08311D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.1.fq */; };
+		A3AF084D1D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08321D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.001.fq */; };
+		A3AF084E1D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08331D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.01.fq */; };
+		A3AF084F1D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08341D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.1.fq */; };
+		A3AF08501D05C7D5000EC63B /* reads-rl250-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08351D05C7D5000EC63B /* reads-rl250-se0.01-mr0.001.fq */; };
+		A3AF08511D05C7D5000EC63B /* reads-rl250-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08361D05C7D5000EC63B /* reads-rl250-se0.01-mr0.01.fq */; };
+		A3AF08521D05C7D5000EC63B /* reads-rl250-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08371D05C7D5000EC63B /* reads-rl250-se0.01-mr0.1.fq */; };
+		A3AF08531D05C7D5000EC63B /* reads-rl250-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08381D05C7D5000EC63B /* reads-rl250-se0.1-mr0.001.fq */; };
+		A3AF08541D05C7D5000EC63B /* reads-rl250-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF08391D05C7D5000EC63B /* reads-rl250-se0.1-mr0.01.fq */; };
+		A3AF08551D05C7D5000EC63B /* reads-rl250-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF083A1D05C7D5000EC63B /* reads-rl250-se0.1-mr0.1.fq */; };
+		A3AF08561D05C7D5000EC63B /* reads-rl250-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF083B1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.001.fq */; };
+		A3AF08571D05C7D5000EC63B /* reads-rl250-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF083C1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.01.fq */; };
+		A3AF08581D05C7D5000EC63B /* reads-rl250-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3AF083D1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.1.fq */; };
 		A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */; };
 		A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
@@ -273,7 +299,6 @@
 		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
 		A36CCDF9184A8632004B9327 /* reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fa; path = "ecoli-2.50k/reads.fa"; sourceTree = "<group>"; };
 		A36CCDFA184A8632004B9327 /* reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fq; path = "ecoli-2.50k/reads.fq"; sourceTree = "<group>"; };
-		A36F22EF1CFF435600265EF8 /* reads.2sr.1000bp.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.2sr.1000bp.fastq; sourceTree = "<group>"; };
 		A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.clean.fq; sourceTree = "<group>"; };
 		A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.fa; sourceTree = "<group>"; };
 		A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.important.mpl; sourceTree = "<group>"; };
@@ -313,6 +338,33 @@
 		A3AC49BD1697936100DD9266 /* ParametersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ParametersController.xib; path = Parameters/ParametersController.xib; sourceTree = "<group>"; };
 		A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReferenceFiles.txt; sourceTree = "<group>"; };
 		A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReadsFiles.txt; sourceTree = "<group>"; };
+		A3AF08231D05C7D5000EC63B /* reads-rl100-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.01-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF08241D05C7D5000EC63B /* reads-rl100-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.01-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF08251D05C7D5000EC63B /* reads-rl100-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.01-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF08261D05C7D5000EC63B /* reads-rl100-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.1-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF08271D05C7D5000EC63B /* reads-rl100-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.1-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF08281D05C7D5000EC63B /* reads-rl100-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.1-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF08291D05C7D5000EC63B /* reads-rl100-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.2-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF082A1D05C7D5000EC63B /* reads-rl100-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.2-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF082B1D05C7D5000EC63B /* reads-rl100-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl100-se0.2-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF082C1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.01-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF082D1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.01-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF082E1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.01-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF082F1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.1-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF08301D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.1-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF08311D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.1-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF08321D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.2-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF08331D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.2-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF08341D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl1000-se0.2-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF08351D05C7D5000EC63B /* reads-rl250-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.01-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF08361D05C7D5000EC63B /* reads-rl250-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.01-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF08371D05C7D5000EC63B /* reads-rl250-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.01-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF08381D05C7D5000EC63B /* reads-rl250-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.1-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF08391D05C7D5000EC63B /* reads-rl250-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.1-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF083A1D05C7D5000EC63B /* reads-rl250-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.1-mr0.1.fq"; sourceTree = "<group>"; };
+		A3AF083B1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.2-mr0.001.fq"; sourceTree = "<group>"; };
+		A3AF083C1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.2-mr0.01.fq"; sourceTree = "<group>"; };
+		A3AF083D1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reads-rl250-se0.2-mr0.1.fq"; sourceTree = "<group>"; };
 		A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridView.h; sourceTree = "<group>"; };
 		A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridView.m; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
@@ -468,6 +520,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3AF08221D05C7D5000EC63B /* simulated_reads_files */,
 				A35160641AA3FD680004FD32 /* App Icons */,
 				A3C1702919707D8D008C7A4C /* OBSlider */,
 				A38C320918EB6E040070F49E /* ThreeLines.png */,
@@ -767,7 +820,6 @@
 		A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */ = {
 			isa = PBXGroup;
 			children = (
-				A36F22EF1CFF435600265EF8 /* reads.2sr.1000bp.fastq */,
 			);
 			name = "Reads Files for Full Validation";
 			sourceTree = "<group>";
@@ -906,6 +958,40 @@
 				A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */,
 			);
 			name = "Default Read Files";
+			sourceTree = "<group>";
+		};
+		A3AF08221D05C7D5000EC63B /* simulated_reads_files */ = {
+			isa = PBXGroup;
+			children = (
+				A3AF08231D05C7D5000EC63B /* reads-rl100-se0.01-mr0.001.fq */,
+				A3AF08241D05C7D5000EC63B /* reads-rl100-se0.01-mr0.01.fq */,
+				A3AF08251D05C7D5000EC63B /* reads-rl100-se0.01-mr0.1.fq */,
+				A3AF08261D05C7D5000EC63B /* reads-rl100-se0.1-mr0.001.fq */,
+				A3AF08271D05C7D5000EC63B /* reads-rl100-se0.1-mr0.01.fq */,
+				A3AF08281D05C7D5000EC63B /* reads-rl100-se0.1-mr0.1.fq */,
+				A3AF08291D05C7D5000EC63B /* reads-rl100-se0.2-mr0.001.fq */,
+				A3AF082A1D05C7D5000EC63B /* reads-rl100-se0.2-mr0.01.fq */,
+				A3AF082B1D05C7D5000EC63B /* reads-rl100-se0.2-mr0.1.fq */,
+				A3AF082C1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.001.fq */,
+				A3AF082D1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.01.fq */,
+				A3AF082E1D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.1.fq */,
+				A3AF082F1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.001.fq */,
+				A3AF08301D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.01.fq */,
+				A3AF08311D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.1.fq */,
+				A3AF08321D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.001.fq */,
+				A3AF08331D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.01.fq */,
+				A3AF08341D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.1.fq */,
+				A3AF08351D05C7D5000EC63B /* reads-rl250-se0.01-mr0.001.fq */,
+				A3AF08361D05C7D5000EC63B /* reads-rl250-se0.01-mr0.01.fq */,
+				A3AF08371D05C7D5000EC63B /* reads-rl250-se0.01-mr0.1.fq */,
+				A3AF08381D05C7D5000EC63B /* reads-rl250-se0.1-mr0.001.fq */,
+				A3AF08391D05C7D5000EC63B /* reads-rl250-se0.1-mr0.01.fq */,
+				A3AF083A1D05C7D5000EC63B /* reads-rl250-se0.1-mr0.1.fq */,
+				A3AF083B1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.001.fq */,
+				A3AF083C1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.01.fq */,
+				A3AF083D1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.1.fq */,
+			);
+			path = simulated_reads_files;
 			sourceTree = "<group>";
 		};
 		A3B025451CF4CFD3007C98CE /* Reads Files for Alignment Validation */ = {
@@ -1224,18 +1310,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3AF08541D05C7D5000EC63B /* reads-rl250-se0.1-mr0.01.fq in Resources */,
 				A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */,
 				A36F230C1AAF99A4005B5A91 /* flu.H1N1.resistant.fq in Resources */,
 				A35160861AA3FD7B0004FD32 /* Icon-72.png in Resources */,
+				A3AF08431D05C7D5000EC63B /* reads-rl100-se0.1-mr0.1.fq in Resources */,
 				A3D350B51A7C989000F39C64 /* IconIdea2-Small.png in Resources */,
 				A351607C1AA3FD7B0004FD32 /* Icon-40@2x.png in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
+				A3AF08461D05C7D5000EC63B /* reads-rl100-se0.2-mr0.1.fq in Resources */,
+				A3AF08411D05C7D5000EC63B /* reads-rl100-se0.1-mr0.001.fq in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
 				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
+				A3AF08561D05C7D5000EC63B /* reads-rl250-se0.2-mr0.001.fq in Resources */,
 				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
 				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
 				A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */,
@@ -1247,61 +1338,79 @@
 				A35160851AA3FD7B0004FD32 /* Icon-60.png in Resources */,
 				A35160831AA3FD7B0004FD32 /* Icon-Small@2x.png in Resources */,
 				A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */,
+				A3AF084A1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.001.fq in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
 				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
+				A3AF08401D05C7D5000EC63B /* reads-rl100-se0.01-mr0.1.fq in Resources */,
 				A351607F1AA3FD7B0004FD32 /* Icon-60@3x.png in Resources */,
 				A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */,
 				A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */,
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
 				A351608C1AA3FD7B0004FD32 /* iTunesArtwork in Resources */,
+				A3AF08471D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */,
+				A3AF084D1D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.001.fq in Resources */,
 				A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */,
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
 				A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
-				A36F22F01CFF435600265EF8 /* reads.2sr.1000bp.fastq in Resources */,
 				A351608B1AA3FD7B0004FD32 /* Icon@2x.png in Resources */,
 				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
+				A3AF08571D05C7D5000EC63B /* reads-rl250-se0.2-mr0.01.fq in Resources */,
+				A3AF08531D05C7D5000EC63B /* reads-rl250-se0.1-mr0.001.fq in Resources */,
+				A3AF08481D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.01.fq in Resources */,
 				A300513B1CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
+				A3AF084C1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
 				A35160871AA3FD7B0004FD32 /* Icon-72@2x.png in Resources */,
+				A3AF08511D05C7D5000EC63B /* reads-rl250-se0.01-mr0.01.fq in Resources */,
 				A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */,
 				A35160911AA400000004FD32 /* Icon-57@2x.png in Resources */,
 				A35160801AA3FD7B0004FD32 /* Icon-76.png in Resources */,
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A35160811AA3FD7B0004FD32 /* Icon-76@2x.png in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
+				A3AF084F1D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.1.fq in Resources */,
 				A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
+				A3AF08551D05C7D5000EC63B /* reads-rl250-se0.1-mr0.1.fq in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
+				A3AF08441D05C7D5000EC63B /* reads-rl100-se0.2-mr0.001.fq in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
+				A3AF08421D05C7D5000EC63B /* reads-rl100-se0.1-mr0.01.fq in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A35160821AA3FD7B0004FD32 /* Icon-Small.png in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
+				A3AF08521D05C7D5000EC63B /* reads-rl250-se0.01-mr0.1.fq in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A351607B1AA3FD7B0004FD32 /* Icon-40.png in Resources */,
 				A351607D1AA3FD7B0004FD32 /* Icon-40@3x.png in Resources */,
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
+				A3AF084B1D05C7D5000EC63B /* reads-rl1000-se0.1-mr0.01.fq in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
 				A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */,
+				A3AF08491D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.1.fq in Resources */,
+				A3AF08451D05C7D5000EC63B /* reads-rl100-se0.2-mr0.01.fq in Resources */,
 				A300513A1CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
 				A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */,
 				A35160881AA3FD7B0004FD32 /* Icon-Small-50.png in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
+				A3AF084E1D05C7D5000EC63B /* reads-rl1000-se0.2-mr0.01.fq in Resources */,
 				A351608D1AA3FD7B0004FD32 /* iTunesArtwork@2x in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A351607E1AA3FD7B0004FD32 /* Icon-60@2x.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
+				A3AF08501D05C7D5000EC63B /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
@@ -1311,7 +1420,10 @@
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
 				A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */,
+				A3AF083F1D05C7D5000EC63B /* reads-rl100-se0.01-mr0.01.fq in Resources */,
+				A3AF08581D05C7D5000EC63B /* reads-rl250-se0.2-mr0.1.fq in Resources */,
 				A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */,
+				A3AF083E1D05C7D5000EC63B /* reads-rl100-se0.01-mr0.001.fq in Resources */,
 				A35160901AA400000004FD32 /* Icon-57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

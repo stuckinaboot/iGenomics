@@ -56,7 +56,7 @@
 @property (nonatomic) int readLen, refSeqLen, numOfReads, numOfReadsMatched;
 
 - (void)setUpForRefFile:(APFile*)myRefFile;
-- (void)matchReadsFile:(APFile*)readsFile withParameters:(NSMutableDictionary*)parameters;
+- (float)matchReadsFile:(APFile*)readsFile withParameters:(NSMutableDictionary*)parameters;
 
 - (NSArray*)simpleSearchForQuery:(char*)query;//searches for the query using exact match, returns all matches
 

@@ -48,6 +48,9 @@ typedef enum {
 #define kErrorAlertExportBodyFileNameAlreadyInUse @"File name already used. Would you like to overwrite or cancel?"
 #define kErrorAlertExportBtnTitleOverwrite @"Overwrite"
 
+#define kErrorAlertExportBodyGeneralFailError @"Export failed. Please check your connection and try again later."
+#define kErrorAlertExportBodyGeneralFailErrorBtnTitleClose @"Dismiss"
+
 
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
@@ -84,9 +87,13 @@ typedef enum {
     float errorRate;
     int mutationSupportVal;
     NSArray *mutPosArray;
+    
+    float totalAlignmentRuntime;
+    int totalNumOfReadsAligned;
+    int totalNumOfReads;
 }
 @property (nonatomic) id <FileExporterDelegate> delegate;
-- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr;
+- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned;
 - (void)fixExportDataStr;
 
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray*)mutPosArr;

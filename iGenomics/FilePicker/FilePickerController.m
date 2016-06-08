@@ -166,13 +166,6 @@
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:[defaults objectForKey:kLastUsedParamsSaveKey]];
-    parameters[kParameterArraySegmentLensKey] = parametersController.refSegmentLens;
-    
-    NSString *ext = readsFile.ext;
-    if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {
-        parameters = [parameters mutableCopy];
-        [parameters setObject:[NSNumber numberWithInt:kTrimmingOffVal] forKey:kParameterArrayTrimmingValKey];//Disables trimming for non-Fq files
-    }
     
     if (parameters == NULL) {
         parameters = [[NSMutableDictionary alloc] init];
@@ -187,6 +180,16 @@
         
         [defaults setObject:parameters forKey:kLastUsedParamsSaveKey];
         [defaults synchronize];
+    }
+    
+    parameters[kParameterArraySegmentLensKey] = parametersController.refSegmentLens;
+    parameters[kParameterArrayReadFileNameKey] = readsFile.name;
+    parameters[kParameterArrayRefFileSegmentNamesKey] = refFile.name;
+    
+    NSString *ext = readsFile.ext;
+    if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {
+        parameters = [parameters mutableCopy];
+        [parameters setObject:[NSNumber numberWithInt:kTrimmingOffVal] forKey:kParameterArrayTrimmingValKey];//Disables trimming for non-Fq files
     }
     
     if (([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) && [parameters[kParameterArrayTrimmingValKey] intValue] == kTrimmingOffVal)

@@ -32,10 +32,15 @@
 #define kTrimmingRefChar1 '@'
 #define kTrimmingRefChar1Index 1
 
+#define kComputingControllerDNASpinDuration 3.0f
+#define kComputingControllerDNASpinAnimationKey @"dna_spin"
+
 @interface ComputingController : UIViewController <BWT_Delegate> {
     IBOutlet UIProgressView *readProgressView;
     IBOutlet UILabel *readsProcessedLbl;
     IBOutlet UILabel *timeRemainingLbl;
+    
+    IBOutlet UIImageView *dnaIconImgView;
     int readsProcessed;
     int timeRemaining;
     double timesToProcessComputingReads[kComputingTimeRemainingNumOfReadsToBaseTimeOffOf];

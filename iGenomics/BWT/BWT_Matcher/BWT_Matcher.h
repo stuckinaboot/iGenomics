@@ -68,6 +68,8 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
     
     NSMutableString *readDataStr;
     
+    float totalAlignmentRuntime;
+    
     char *originalStrWithDividers;
 }
 @property (nonatomic) id <BWT_MatcherDelegate> delegate;
@@ -91,6 +93,7 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 //INSERTION/DELETION MATCH
 - (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed;
 - (void)recordInDel:(ED_Info*)info;
+- (float)getTotalAlignmentRuntime;
 
 - (void)freeUsedMemory;
 @end

@@ -12,11 +12,16 @@
 
 @synthesize delegate;
 
-- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr {
+- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned {
     genomeFileName = [NSString stringWithString:gName];
     readsFileName = [NSString stringWithString:rName];
     errorRate = er;
     exportDataStr = [NSString stringWithString:expDataStr];
+    
+    totalAlignmentRuntime = runtime;
+    totalNumOfReadsAligned = numOfReadsAligned;
+    totalNumOfReads = numOfReads;
+    
     [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
 }
 
@@ -24,6 +29,9 @@
     NSArray *lineArr = [exportDataStr componentsSeparatedByString:kLineBreak];
     NSMutableString *newDataStr = [[NSMutableString alloc] init];
     NSArray *lenArr = [delegate getCumulativeLenArray];
+    
+    //Add error rate and runtime to beginning
+    [newDataStr appendFormat:@"#\tER\tRT\tRC\tARC\n#\t%f\t%f\t%d\t%d\n",errorRate,totalAlignmentRuntime, totalNumOfReads, totalNumOfReadsAligned];
     
     int currLenArrIndex = 0;
     
@@ -69,13 +77,25 @@
         }
     }
     path = [self fixChosenExportPathExt:path forFileType:fileType];
-    DBFile *file = [sys createFile:[[DBPath alloc] initWithString:path] error:nil];
-    if ([file writeString:contents error:nil]) {
+    DBPath *dbPath = [[DBPath alloc] initWithString:path];
+    DBFileInfo *info = [sys fileInfoForPath:dbPath error:nil];
+    DBFile *file;
+    DBError *error;
+    if (!info)
+        file = [sys createFile:dbPath error:&error];
+    else
+        file = [sys openFile:[[DBPath alloc] initWithString:path] error:&error];
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    } else if ([file writeString:contents error:nil]) {
         [delegate displaySuccessBox];
         return YES;
-    }
-    else {
+    } else {
         //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+        [alert show];
         return NO;
     }
 }

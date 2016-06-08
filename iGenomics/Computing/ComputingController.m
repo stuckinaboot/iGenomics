@@ -53,13 +53,15 @@
     
     timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
     
+    [self runSpinAnimationOnDNA];
+    
     //Set up parameters
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
     dispatch_async(queue, ^{//Opens up a background thread
         readTimer = [[APTimer alloc] init];
         [readTimer start];
         
-        [bwt matchReadsFile:myReadsFile withParameters:myParameters];
+        float totalAlignmentRuntime = [bwt matchReadsFile:myReadsFile withParameters:myParameters];
         
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             [timeRemainingUpdateTimer invalidate];
@@ -67,6 +69,7 @@
             
             timeRemaining = 0;
             [self updateReadsProcessedLblTimeRemaining];
+            [self stopSpinAnimationOnDNA];
             
             timeRemaining = 0;
             [readTimer stop];
@@ -83,7 +86,7 @@
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
-            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile];
+            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime];
             [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
             
         });
@@ -214,6 +217,22 @@
         return UIInterfaceOrientationMaskPortrait;
     else
         return UIInterfaceOrientationMaskLandscape;
+}
+
+//Method was taken from herehttp://stackoverflow.com/questions/9844925/uiview-infinite-360-degree-rotation-animation
+- (void)runSpinAnimationOnDNA {
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 /* full rotation*/];
+    rotationAnimation.duration = kComputingControllerDNASpinDuration;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = HUGE_VALF;
+    
+    [dnaIconImgView.layer addAnimation:rotationAnimation forKey:kComputingControllerDNASpinAnimationKey];
+}
+
+- (void)stopSpinAnimationOnDNA {
+    [dnaIconImgView.layer removeAllAnimations];
 }
 
 @end

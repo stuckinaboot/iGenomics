@@ -16,7 +16,7 @@
 
 #define kPrintInDelPos 0
 #define kNonSeedShortSeqSize 12
-#define kNonSeedShortSeqInterval 100
+#define kNonSeedShortSeqInterval 1200
 #define kNonSeedLongSeqSize 100
 
 @interface BWT_Matcher_InsertionDeletion : NSObject {
