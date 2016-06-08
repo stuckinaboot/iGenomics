@@ -114,7 +114,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     if (!matchingTimer)
         matchingTimer = [[APTimer alloc] init];
     [matchingTimer start];
-    Read *reed;
     readDataStr = [[NSMutableString alloc] init];
     if (kDebugOn == 2)
         printf("%s\n",originalStr);
@@ -123,47 +122,66 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     totalAlignmentRuntime = 0;
     
-    for (readNum = 0; readNum < reedsArray.count; readNum++) {
-        
-        reed = [reedsArray objectAtIndex:readNum];
-        readLen = (int)strlen(reed.sequence);
-        
-        //printf("DK: calling getBestMatchForQuery\n");
-        int maxNumOfSubs = maxErrorRate * readLen;
-        int actualDGenomeLen = dgenomeLen;
-        dgenomeLen = (int)strlen(originalStrWithDividers);
-        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState];
-        dgenomeLen = actualDGenomeLen;
-        
-        if (a != NULL) {
-            a.readName = reed.name;
-            //printf("DK: calling numOfCharsPastSegment\n");
-//            int gappedALen = strlen(a.gappedA);
-//            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
-//            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
-//
-//            a = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs withCumSepGenomeLens:cumulativeSeparateGenomeLens maxErrorRate:maxErrorRate originalReadLen:readLen];
-            if (!a.alreadyHasPosAdjusted && a.distance > 0)//Exact matches are never unjusted
-                a = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:a cumSepSegLens:cumulativeSeparateGenomeLens];
+    dispatch_queue_t fetchQ = dispatch_queue_create("Multiple Async Downloader", NULL);
+    dispatch_group_t fetchGroup = dispatch_group_create();
+    
+    // This will allow up to 8 parallel downloads.
+    dispatch_semaphore_t downloadSema = dispatch_semaphore_create(500);
+
+    dispatch_group_t taskGroup = dispatch_group_create();
+    for (Read *reed in reedsArray) {
+        if (readNum >= reedsArray.count)
+            printf("FOO");
+        dispatch_group_enter(taskGroup);
+//            Read *reed = [reedsArray objectAtIndex:readNum];
+            readLen = (int)strlen(reed.sequence);
             
-//            a.distance += charsToTrimEnd + charsToTrimBeginning;
+            //printf("DK: calling getBestMatchForQuery\n");
+            int maxNumOfSubs = maxErrorRate * readLen;
+            int actualDGenomeLen = dgenomeLen;
+            dgenomeLen = (int)strlen(originalStrWithDividers);
+            ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState];
+            dgenomeLen = actualDGenomeLen;
+            
             if (a != NULL) {
-                int aGappedALen = (int)strlen(a.gappedA);
-                maxNumOfSubs = maxErrorRate * aGappedALen;
-                if (a.distance <= maxNumOfSubs)
-                    [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a];
+                a.readName = reed.name;
+                //printf("DK: calling numOfCharsPastSegment\n");
+    //            int gappedALen = strlen(a.gappedA);
+    //            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
+    //            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
+    //
+    //            a = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs withCumSepGenomeLens:cumulativeSeparateGenomeLens maxErrorRate:maxErrorRate originalReadLen:readLen];
+                if (!a.alreadyHasPosAdjusted && a.distance > 0)//Exact matches are never unjusted
+                    a = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:a cumSepSegLens:cumulativeSeparateGenomeLens];
+                
+    //            a.distance += charsToTrimEnd + charsToTrimBeginning;
+                if (a != NULL) {
+                    int aGappedALen = (int)strlen(a.gappedA);
+                    maxNumOfSubs = maxErrorRate * aGappedALen;
+                    if (a.distance <= maxNumOfSubs)
+                        [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a];
+                }
+                else
+                    a = NULL;//So it is not counted as matchedAtLeastOnce
+                
             }
-            else
-                a = NULL;//So it is not counted as matchedAtLeastOnce
-            
+            //printf("DK: calling readProcessed\n");
+            [delegate readProccesed:readDataStr andMatchedAtLeastOnce:a != NULL];
+            [readDataStr setString:@""];
+         dispatch_group_leave(taskGroup);
         }
-        //printf("DK: calling readProcessed\n");
-        [delegate readProccesed:readDataStr andMatchedAtLeastOnce:a != NULL];
-        [readDataStr setString:@""];
-    }
+    
 //    [exactMatcher timerPrint];
+    // Now we wait until ALL our dispatch_group_async are finished.
+    dispatch_group_wait(taskGroup, DISPATCH_TIME_FOREVER);
+
     [matchingTimer stopAndLog];
     totalAlignmentRuntime = [matchingTimer getTotalRecordedTime];
+    
+    // Update your UI
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+        //[self updateUIFunction];
+//    });
 }
 
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed {
