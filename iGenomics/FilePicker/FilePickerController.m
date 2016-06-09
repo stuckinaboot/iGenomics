@@ -160,7 +160,7 @@
     refFile = parametersController.refFile;
     readsFile = parametersController.readsFile;
     
-    refFile = [[APFile alloc] initWithName:parametersController.refFileSegmentNames contents:refFile.contents fileType:refFile.fileType];
+//    refFile = [[APFile alloc] initWithName:refFile.name contents:refFile.contents fileType:refFile.fileType];
 //    refFile.name = parametersController.refFileSegmentNames;
     
     //Loads past parameters, if they are null set a default set of parameters
@@ -184,7 +184,7 @@
     
     parameters[kParameterArraySegmentLensKey] = parametersController.refSegmentLens;
     parameters[kParameterArrayReadFileNameKey] = readsFile.name;
-    parameters[kParameterArrayRefFileSegmentNamesKey] = refFile.name;
+    parameters[kParameterArrayRefFileSegmentNamesKey] = parametersController.refFileSegmentNames;
     
     NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {

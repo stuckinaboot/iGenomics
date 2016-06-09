@@ -123,8 +123,10 @@
     
     //NOTE: This is a band-aid. It does not solve the root problem of passing in a weirdly coded string (fix this during the refactoring process)
     NSRange refFileDividerRange = [refFile.name rangeOfString:kRefFileInternalDivider];
-    if ((int)refFileDividerRange.location != NSNotFound)
+    if (refFileDividerRange.length > 0)
         genomeFileName = [refFile.name substringToIndex:refFileDividerRange.location];
+    else
+        genomeFileName = refFile.name;
     
     separateGenomeNames = sepGNA;
     separateGenomeLens = sepGLA;

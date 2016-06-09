@@ -49,7 +49,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
-                            <real key="value" value="15"/>
+                            <real key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="progress">
                             <real key="value" value="0.29999999999999999"/>
