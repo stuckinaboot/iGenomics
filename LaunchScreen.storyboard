@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed by the Schatz Lab at the Cold Spring Harbor Laboratory" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vl-5y-xj5">
-                                <rect key="frame" x="140" y="546" width="320" height="46"/>
+                                <rect key="frame" x="140" y="547" width="320" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="Vfz-AX-0Aw"/>
                                 </constraints>
@@ -28,11 +28,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogoDNAIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="plU-s7-vLh">
-                                <rect key="frame" x="196" y="153" width="208" height="294"/>
+                                <rect key="frame" x="196" y="136" width="208" height="328"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="plU-s7-vLh" secondAttribute="height" multiplier="8:11" constant="-6.7272727272727479" id="9VX-lG-my1"/>
+                                    <constraint firstAttribute="width" secondItem="plU-s7-vLh" secondAttribute="height" multiplier="8:11" constant="-30.545454545454561" id="9VX-lG-my1"/>
                                     <constraint firstAttribute="width" constant="208" id="DL0-4g-EqF"/>
+                                    <constraint firstAttribute="height" constant="328" id="a9a-BC-NPD"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DL0-4g-EqF"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

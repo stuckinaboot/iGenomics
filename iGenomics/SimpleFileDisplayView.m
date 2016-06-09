@@ -74,6 +74,7 @@
     [view addSubview:self];
     [UIView animateWithDuration:kSimpleFileDisplayViewFadeAnimationDuration animations:^{
         self.alpha = 1.0f;
+        [view bringSubviewToFront:self];
     }];
 }
 

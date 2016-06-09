@@ -27,6 +27,10 @@
     abtSectController = [[AboutSectionViewController alloc] init];
 }
 
+- (void)loadFileIntoFilePicker:(NSNotification*)notification {
+    NSLog(@"occurred");
+}
+
 - (IBAction)showFilePickerPressed:(id)sender {
     [filePickerController resetScrollViewOffset];
     [self presentViewController:filePickerController animated:YES completion:nil];
