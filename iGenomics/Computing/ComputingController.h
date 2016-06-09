@@ -11,6 +11,7 @@
 #import "APFile.h"
 #import "BWT.h"
 #import "APTimer.h"
+#import "CircleProgressBar.h"
 
 #define kPrintReadProcessedInConsole 0
 #define kReadProcessedLblTxt @"%i/%i Reads Processed"
@@ -36,7 +37,8 @@
 #define kComputingControllerDNASpinAnimationKey @"dna_spin"
 
 @interface ComputingController : UIViewController <BWT_Delegate> {
-    IBOutlet UIProgressView *readProgressView;
+//    IBOutlet UIProgressView *readProgressView;
+    IBOutlet CircleProgressBar *readProgressView;
     IBOutlet UILabel *readsProcessedLbl;
     IBOutlet UILabel *timeRemainingLbl;
     

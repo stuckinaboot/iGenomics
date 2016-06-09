@@ -3,12 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComputingController">
             <connections>
-                <outlet property="dnaIconImgView" destination="Kq4-ZO-fnR" id="IK8-qJ-Ooa"/>
-                <outlet property="readProgressView" destination="23" id="32"/>
+                <outlet property="readProgressView" destination="y8t-Wo-8H6" id="G4e-zz-PT2"/>
                 <outlet property="readsProcessedLbl" destination="GQI-UT-BUB" id="oc9-uO-oeM"/>
                 <outlet property="timeRemainingLbl" destination="NyJ-1Q-bQI" id="0ZO-mz-Hhn"/>
                 <outlet property="view" destination="2" id="3"/>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analyzing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="203" y="23" width="622" height="144"/>
+                    <rect key="frame" x="201" y="38" width="622" height="144"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="622" id="11"/>
                         <constraint firstAttribute="height" constant="144" id="12"/>
@@ -29,40 +29,62 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="IconIdea2-ExtraLarge.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kq4-ZO-fnR">
-                    <rect key="frame" x="395" y="175" width="235" height="208"/>
-                </imageView>
-                <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                    <rect key="frame" x="251" y="569" width="520" height="2"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="520" id="29"/>
-                    </constraints>
-                </progressView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GQI-UT-BUB">
                     <rect key="frame" x="249" y="406" width="525" height="82"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NyJ-1Q-bQI">
-                    <rect key="frame" x="251" y="638" width="525" height="82"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NyJ-1Q-bQI">
+                    <rect key="frame" x="250" y="623" width="525" height="82"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8t-Wo-8H6" customClass="CircleProgressBar">
+                    <rect key="frame" x="345" y="217" width="334" height="334"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="y8t-Wo-8H6" secondAttribute="height" multiplier="1:1" id="JXr-2Y-gba"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                            <real key="value" value="0.29999999999999999"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="hintViewSpacing">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
+                            <color key="value" red="0.047058823530000002" green="0.3803921569" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                            <real key="value" value="270"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="203" id="13"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="23" id="14"/>
-                <constraint firstAttribute="bottom" secondItem="23" secondAttribute="bottom" constant="197" id="27"/>
-                <constraint firstItem="23" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="251" id="30"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="201" id="13"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="38" id="14"/>
+                <constraint firstItem="y8t-Wo-8H6" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="35" id="62d-oi-jH9"/>
+                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="201" id="6TP-h7-ZOT"/>
+                <constraint firstAttribute="trailing" secondItem="NyJ-1Q-bQI" secondAttribute="trailing" constant="249" id="76c-sj-mP0"/>
+                <constraint firstItem="NyJ-1Q-bQI" firstAttribute="top" secondItem="y8t-Wo-8H6" secondAttribute="bottom" constant="72" id="DK3-kf-t1Y"/>
+                <constraint firstItem="NyJ-1Q-bQI" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="NQO-qP-6wf"/>
+                <constraint firstAttribute="bottom" secondItem="NyJ-1Q-bQI" secondAttribute="bottom" constant="63" id="Ymt-nx-jhv"/>
+                <constraint firstItem="NyJ-1Q-bQI" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="250" id="Yv0-47-i7c"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="201" id="Zl6-3D-Gp6"/>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="aJA-r6-Hnd"/>
+                <constraint firstItem="y8t-Wo-8H6" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="fSn-KE-SjE"/>
+                <constraint firstItem="y8t-Wo-8H6" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="hPT-yf-HeC"/>
+                <constraint firstItem="y8t-Wo-8H6" firstAttribute="width" secondItem="y8t-Wo-8H6" secondAttribute="height" multiplier="1:1" id="ygN-wS-pLk"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
     </objects>
-    <resources>
-        <image name="IconIdea2-ExtraLarge.png" width="1000" height="1000"/>
-    </resources>
 </document>

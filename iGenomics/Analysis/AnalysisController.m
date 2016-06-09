@@ -121,7 +121,10 @@
     numOfReadsMatched = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsMatchedIndex] intValue];
     bwt.bwtMutationFilter.kHeteroAllowance = [[basicInfArr objectAtIndex:kBasicInfoArrMutationSupportIndex] intValue];
     
-    genomeFileName = refFile.name;
+    //NOTE: This is a band-aid. It does not solve the root problem of passing in a weirdly coded string (fix this during the refactoring process)
+    NSRange refFileDividerRange = [refFile.name rangeOfString:kRefFileInternalDivider];
+    if ((int)refFileDividerRange.location != NSNotFound)
+        genomeFileName = [refFile.name substringToIndex:refFileDividerRange.location];
     
     separateGenomeNames = sepGNA;
     separateGenomeLens = sepGLA;

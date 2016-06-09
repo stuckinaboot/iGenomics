@@ -124,10 +124,10 @@
 //                interval = kNonSeedShortSeqInterval;
             if (match)
                 break;
-            if (interval != 2 && i + interval >= lenA - k) {
+            if (interval != kNonSeedShortSeqMinInterval && i + interval >= lenA - k) {
                 i = 0;
-                interval = 2;
-                k = 12;
+                interval = kNonSeedShortSeqMinInterval;
+                k = kNonSeedShortSeqMinSize;
             }
         }
         

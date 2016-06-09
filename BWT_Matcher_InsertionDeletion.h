@@ -18,8 +18,10 @@
 #define kNonSeedShortSeqSize 30
 
 #define kNonSeedShortSeqMinSize 12
+#define kNonSeedShortSeqMinInterval 2
 static int kNonSeedShortSeqSizeIntervals[] = {16};//{16, 12};//{19,12,10};
 #define kNonSeedShortSeqSizeIntervalsCount 1
+
 #define kNonSeedShortSeqInterval 10//100
 #define kNonSeedLongSeqSize 100
 

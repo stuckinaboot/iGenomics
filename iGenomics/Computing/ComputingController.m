@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad
 {
-    readProgressView.progress = 0;
+    [readProgressView setProgress:0 animated:NO];
     readsProcessed = 0;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -33,7 +33,7 @@
 
 - (void)setUpWithReadsFile:(APFile*)myReadsFile andRefFile:(APFile*)myRefFile andParameters:(NSMutableDictionary*)myParameters andImptMutsFile:(APFile*)imptMutsFile {
     
-    readProgressView.progress = 0;
+    [readProgressView setProgress:0 animated:NO];
     readsProcessed = 0;//In case view loaded late
     
     analysisController = [[AnalysisController alloc] init];
@@ -132,7 +132,7 @@
 - (void)showAnalysisController {
     [self presentViewController:analysisController animated:YES completion:^{
 //        [analysisController setUpIPhoneToolbar];
-        readProgressView.progress = 0;
+        [readProgressView setProgress:0 animated:NO];
         readsProcessed = 0;//In case view loaded late (backup protection for the ones uptop)
         readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     }];
@@ -188,7 +188,7 @@
         [readTimer start];
     }
     
-    readProgressView.progress += (1.0f/bwt.numOfReads);
+    [readProgressView setProgress:(readsProcessed / (float)bwt.numOfReads) animated:NO];
     readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     if (kPrintReadProcessedInConsole>0)
         printf("\n%i reads processed",readsProcessed);

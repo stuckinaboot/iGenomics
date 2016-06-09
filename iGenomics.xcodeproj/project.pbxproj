@@ -172,6 +172,7 @@
 		A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D9B74E19AD2EA500D9AA35 /* IPhonePopoverHandler.xib */; };
 		A3DA1CBB1859609300C10C22 /* Read.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA1CBA1859609300C10C22 /* Read.m */; };
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
+		A3DD60601D08FBD100BC95B9 /* CircleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */; };
 		A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D5197D687100E64DD7 /* FileInputView.m */; };
 		A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D9197D6B0000E64DD7 /* FileManager.m */; };
 		A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E282DC197D96FA00E64DD7 /* FileInputView.xib */; };
@@ -404,6 +405,8 @@
 		A3DA1CBA1859609300C10C22 /* Read.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Read.m; path = ../Read.m; sourceTree = "<group>"; };
 		A3DB376F170214B9007F0B9E /* RGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RGB.h; path = iGenomics/RGB.h; sourceTree = "<group>"; };
 		A3DB3770170214B9007F0B9E /* RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RGB.m; path = iGenomics/RGB.m; sourceTree = "<group>"; };
+		A3DD605E1D08FBD100BC95B9 /* CircleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressBar.h; sourceTree = "<group>"; };
+		A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressBar.m; sourceTree = "<group>"; };
 		A3E282D4197D687100E64DD7 /* FileInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInputView.h; sourceTree = "<group>"; };
 		A3E282D5197D687100E64DD7 /* FileInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInputView.m; sourceTree = "<group>"; };
 		A3E282D8197D6B0000E64DD7 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
@@ -1188,6 +1191,15 @@
 			name = RGB;
 			sourceTree = "<group>";
 		};
+		A3DD605D1D08FBD100BC95B9 /* CircleProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				A3DD605E1D08FBD100BC95B9 /* CircleProgressBar.h */,
+				A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */,
+			);
+			path = CircleProgressBar;
+			sourceTree = "<group>";
+		};
 		A3E282D7197D687500E64DD7 /* File Input View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1227,6 +1239,7 @@
 		A3EE882118FC79D200F9D682 /* Copy Label */ = {
 			isa = PBXGroup;
 			children = (
+				A3DD605D1D08FBD100BC95B9 /* CircleProgressBar */,
 				A3EE881E18FC79CE00F9D682 /* CopyLabel.h */,
 				A3EE881F18FC79CE00F9D682 /* CopyLabel.m */,
 			);
@@ -1455,6 +1468,7 @@
 				A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */,
 				A364B8961B71036D007A9E69 /* AdvancedFileInputView.m in Sources */,
 				A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */,
+				A3DD60601D08FBD100BC95B9 /* CircleProgressBar.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
 				A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */,
 				A3C17028197079B2008C7A4C /* OBSlider.m in Sources */,
