@@ -24,7 +24,7 @@
 #define kComputingTimeRemainingFracOfReadsToBeginFreqUpdatingAt .5
 #define kComputingTimeRemainingNumOfSDsToAddToMeanTimeRemaining 1
 
-#define kShowAnalysisControllerDelay 1.0f // Wait for viewDidAppear/viewDidDisappear to know the current transition has completed' (error from console), this should fix it
+#define kShowAnalysisControllerDelay 0 // Wait for viewDidAppear/viewDidDisappear to know the current transition has completed' (error from console), this should fix it
 
 #define kFirstQualValueIndexInReadsToTrim 2
 #define kTrimmingOffVal -1
@@ -33,16 +33,11 @@
 #define kTrimmingRefChar1 '@'
 #define kTrimmingRefChar1Index 1
 
-#define kComputingControllerDNASpinDuration 3.0f
-#define kComputingControllerDNASpinAnimationKey @"dna_spin"
-
 @interface ComputingController : UIViewController <BWT_Delegate> {
 //    IBOutlet UIProgressView *readProgressView;
     IBOutlet CircleProgressBar *readProgressView;
-    IBOutlet UILabel *readsProcessedLbl;
     IBOutlet UILabel *timeRemainingLbl;
-    
-    IBOutlet UIImageView *dnaIconImgView;
+
     int readsProcessed;
     int timeRemaining;
     double timesToProcessComputingReads[kComputingTimeRemainingNumOfReadsToBaseTimeOffOf];

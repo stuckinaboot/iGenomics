@@ -443,7 +443,7 @@
     float y = kPosLblHeight+graphBoxHeight;
     
     for (int i = 1; i<totalRows; i++) {
-        [self drawRectangle:CGRectMake(x, y, self.frame.size.width+(abs(offset)), kGridLineWidthRow) withRGB:rgb];
+        [self drawRectangle:CGRectMake(x, y, self.frame.size.width+(abs((int)offset)), kGridLineWidthRow) withRGB:rgb];
         y += kGridLineWidthRow+boxHeight;
     }
     y = kPosLblHeight;

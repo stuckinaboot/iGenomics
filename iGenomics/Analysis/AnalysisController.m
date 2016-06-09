@@ -605,8 +605,8 @@
     vc = apc;
     //        popoverController = [[UIPopoverController alloc] initWithContentViewController:apc];
     
-    int index = [cumulativeSeparateGenomeLens count]-1;
-    for (int i = [cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
+    int index = (int)[cumulativeSeparateGenomeLens count]-1;
+    for (int i = (int)[cumulativeSeparateGenomeLens count]-1; i >= 0; i--) {
         int len = [[cumulativeSeparateGenomeLens objectAtIndex:i] intValue];
         if (c.x < len) {
             apc.segment = [separateGenomeNames objectAtIndex:i];
@@ -826,7 +826,7 @@
     analysisControllerIPhoneToolbar.hidden = NO;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
 }
 

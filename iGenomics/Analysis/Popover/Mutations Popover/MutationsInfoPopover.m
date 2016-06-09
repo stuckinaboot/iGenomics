@@ -40,7 +40,7 @@
         int numOfRowsInSection = 0;
         for (int x = 0; x < [mutationsArray count]; x++) {
             MutationInfo *info = [mutationsArray objectAtIndex:x];
-            for (int i = [lenArr count]-1; i >= 0; i--) {
+            for (int i = (int)[lenArr count]-1; i >= 0; i--) {
                 int len = [[lenArr objectAtIndex:i] intValue];
                 if (info.pos < len) {
                     info.genomeName = [nameArr objectAtIndex:i];

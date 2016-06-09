@@ -122,12 +122,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     totalAlignmentRuntime = 0;
     
-    dispatch_queue_t fetchQ = dispatch_queue_create("Multiple Async Downloader", NULL);
-    dispatch_group_t fetchGroup = dispatch_group_create();
-    
-    // This will allow up to 8 parallel downloads.
-    dispatch_semaphore_t downloadSema = dispatch_semaphore_create(500);
-
     dispatch_group_t taskGroup = dispatch_group_create();
     for (Read *reed in reedsArray) {
         if (readNum >= reedsArray.count)
@@ -193,8 +187,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     int step = (amtOfSubs > kReadLoopMaxSmallEditDist) ? ceilf(amtOfSubs * kReadLoopLargeEditDistStepFactor) : 1;
     
     int initialNumOfSubs = (shouldSeed) ? 0 : amtOfSubs;
-    int initialQueryLen = (int)strlen(query);
-    
+
     int lastColLen = (int)strlen(lastCol);
     
     BWT_Matcher_Approxi *approxiMatcher = [[BWT_Matcher_Approxi alloc] init];

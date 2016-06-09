@@ -103,6 +103,7 @@
 		A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3806A561C940F5F00D0C117 /* incorrectsingle.fa */; };
 		A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */; };
 		A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */; };
+		A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */; };
 		A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A38C320918EB6E040070F49E /* ThreeLines.png */; };
 		A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */ = {isa = PBXBuildFile; fileRef = A39182D31C912D8E00937695 /* minion.raw.fasta */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
@@ -316,6 +317,7 @@
 		A3806A561C940F5F00D0C117 /* incorrectsingle.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = incorrectsingle.fa; path = ../../../Desktop/incorrectsingle.fa; sourceTree = "<group>"; };
 		A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.realData.trim_1k.fa; path = BWA_Comparison/aligmentComparison/comparison6/flu.H3N2.realData.trim_1k.fa; sourceTree = SOURCE_ROOT; };
 		A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.longReads.fa; sourceTree = SOURCE_ROOT; };
+		A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A38C320918EB6E040070F49E /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
 		A39182D31C912D8E00937695 /* minion.raw.fasta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minion.raw.fasta; path = ../../../Desktop/minion.raw.fasta; sourceTree = "<group>"; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 		A310AF3F158A5F7200E892AA = {
 			isa = PBXGroup;
 			children = (
+				A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */,
 				A321162C177B3EBE002A1678 /* IconIdea1.png */,
 				A3EE882218FC7DC000F9D682 /* IconIdea2.png */,
 				A3D350B41A7C989000F39C64 /* IconIdea2-Small.png */,
@@ -1428,6 +1431,7 @@
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
 				A30051391CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq in Resources */,
+				A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,

@@ -218,7 +218,7 @@
     //printf("DK: creating newa\n");
     
     //    Add space prior to the chars in "a" and prior to the chars in "b"
-    int alen = strlen(a);
+    int alen = (int)strlen(a);
     char *newa = calloc(alen+2, 1);
     memcpy(newa+1, a, alen);
     newa[0] = ' ';

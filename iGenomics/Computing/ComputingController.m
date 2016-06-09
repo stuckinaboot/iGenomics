@@ -69,7 +69,6 @@
             
             timeRemaining = 0;
             [self updateReadsProcessedLblTimeRemaining];
-            [self stopSpinAnimationOnDNA];
             
             timeRemaining = 0;
             [readTimer stop];
@@ -87,8 +86,7 @@
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
             [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime];
-            [NSTimer scheduledTimerWithTimeInterval:kShowAnalysisControllerDelay target:self selector:@selector(showAnalysisController) userInfo:nil repeats:NO];
-            
+            [self performSelector:@selector(showAnalysisController) withObject:nil afterDelay:kShowAnalysisControllerDelay];
         });
     });
 }
@@ -134,7 +132,6 @@
 //        [analysisController setUpIPhoneToolbar];
         [readProgressView setProgress:0 animated:NO];
         readsProcessed = 0;//In case view loaded late (backup protection for the ones uptop)
-        readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     }];
 }
 
@@ -168,11 +165,7 @@
 }
 
 - (void)bwtLoadedWithLoadingText:(NSString*)txt {
-    [self performSelectorOnMainThread:@selector(setReadProcessLblText:) withObject:txt waitUntilDone:NO];
-}
-
-- (void)setReadProcessLblText:(NSString*)txt {//Method so that performSelectorOnMainThread can call it
-    [readsProcessedLbl setText:txt];
+    
 }
 
 - (void)updateProgressView {
@@ -189,7 +182,6 @@
     }
     
     [readProgressView setProgress:(readsProcessed / (float)bwt.numOfReads) animated:NO];
-    readsProcessedLbl.text = [NSString stringWithFormat:kReadProcessedLblTxt,readsProcessed,bwt.numOfReads];
     if (kPrintReadProcessedInConsole>0)
         printf("\n%i reads processed",readsProcessed);
 }
@@ -212,27 +204,11 @@
 }
 
 //Supported Orientations
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     if (![GlobalVars isIpad])
         return UIInterfaceOrientationMaskPortrait;
     else
         return UIInterfaceOrientationMaskLandscape;
-}
-
-//Method was taken from herehttp://stackoverflow.com/questions/9844925/uiview-infinite-360-degree-rotation-animation
-- (void)runSpinAnimationOnDNA {
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 /* full rotation*/];
-    rotationAnimation.duration = kComputingControllerDNASpinDuration;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = HUGE_VALF;
-    
-    [dnaIconImgView.layer addAnimation:rotationAnimation forKey:kComputingControllerDNASpinAnimationKey];
-}
-
-- (void)stopSpinAnimationOnDNA {
-    [dnaIconImgView.layer removeAllAnimations];
 }
 
 @end

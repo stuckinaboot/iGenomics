@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed by the Schatz Lab at the Cold Spring Harbor Laboratory" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vl-5y-xj5">
+                                <rect key="frame" x="140" y="546" width="320" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Vfz-AX-0Aw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogoDNAIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="plU-s7-vLh">
+                                <rect key="frame" x="196" y="153" width="208" height="294"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="plU-s7-vLh" secondAttribute="height" multiplier="8:11" constant="-6.7272727272727479" id="9VX-lG-my1"/>
+                                    <constraint firstAttribute="width" constant="208" id="DL0-4g-EqF"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="plU-s7-vLh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Rdd-UO-PeD"/>
+                            <constraint firstItem="4vl-5y-xj5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XU7-Y6-VdC"/>
+                            <constraint firstItem="plU-s7-vLh" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="a3o-Mj-yi3"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4vl-5y-xj5" secondAttribute="bottom" constant="8" id="chU-ZH-ElS"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4vl-5y-xj5" secondAttribute="bottom" constant="8" id="vJv-nP-lUK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iGenomicsLogoDNAIcon.png" width="184" height="400"/>
+    </resources>
+</document>

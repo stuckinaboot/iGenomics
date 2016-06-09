@@ -19,7 +19,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher {
     acgt = kACGTStr;
     refStr = originalSeq;
-    fileStrLen = strlen(refStr);
+    fileStrLen = (int)strlen(refStr);
     
     for (int i = 0; i<kFoundGenomeArrSize; i++) {
         if (foundGenome[i] && strlen(foundGenome[i]) > 0)

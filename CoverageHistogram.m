@@ -270,7 +270,7 @@
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
 }
 

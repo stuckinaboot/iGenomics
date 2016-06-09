@@ -302,7 +302,7 @@
     
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     if (![GlobalVars isIpad])
         return UIInterfaceOrientationMaskPortrait;
     else

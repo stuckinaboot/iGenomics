@@ -16,7 +16,7 @@
     [bwtCreationTimer start];
 
     sequence = strdup([contents UTF8String]);
-    sequenceLength = strlen(sequence);
+    sequenceLength = (int)strlen(sequence);
     
     indexArray = [[NSMutableArray alloc] init];
     
@@ -24,7 +24,7 @@
         [indexArray addObject:[NSNumber numberWithInt:i]];
     }
     
-    [self sortIndexArrayUsingQuicksort:indexArray withStartPos:0 andEndPos:[indexArray count]-1];
+    [self sortIndexArrayUsingQuicksort:indexArray withStartPos:0 andEndPos:(int)[indexArray count]-1];
     
     return [self bwtFinalProduct];
 }
