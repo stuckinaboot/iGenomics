@@ -199,8 +199,8 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     parameters[kParameterArrayMatchTypeKey] = @(MatchTypeSubsAndIndels);//[NSNumber numberWithInt:(int)matchTypeCtrl.selectedSegmentIndex];
-    parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0];
-    parameters[kParameterArrayFoRevKey] = [NSNumber numberWithInt:i];
+    parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:maxERSldr.value];
+    parameters[kParameterArrayFoRevKey] = kAlignmentTypeForwardAndReverse;
     parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:(int)mutationSupportStpr.value];
     parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal];
     parameters[kParameterArrayTrimmingRefCharKey] = trimRefChar;
