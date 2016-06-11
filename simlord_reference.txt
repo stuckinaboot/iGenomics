@@ -1,0 +1,12 @@
+Simulate 10000 reads for the reference ref.fasta, use the default options for simulation and store the reads in myreads.fastq and the alignment in myreads.sam.
+
+simlord  --read-reference ref.fasta -n 10000  myreads
+
+--lognorm-readlength PARAMS -ln draw read length from log-normal distribution [0.2001, -10075.4364, 17922.611]
+
+--fixed-readlength LEN  -fl constant read length for all reads
+
+--sample-readlength-from-fastq PATH -sf draw read length from given FASTQ file
+
+______________________________________________________
+cmd: simlord --read-reference ref.fasta -sf real_reads.fastq sim_reads

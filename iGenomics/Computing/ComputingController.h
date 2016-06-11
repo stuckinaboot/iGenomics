@@ -33,12 +33,15 @@
 #define kTrimmingRefChar1 '@'
 #define kTrimmingRefChar1Index 1
 
+#define kProgressViewFractionFilledFromAligning .9
+
 @interface ComputingController : UIViewController <BWT_Delegate> {
 //    IBOutlet UIProgressView *readProgressView;
     IBOutlet CircleProgressBar *readProgressView;
     IBOutlet UILabel *timeRemainingLbl;
 
-    int readsProcessed;
+    int32_t readsProcessed;
+    int32_t readsAligned;
     int timeRemaining;
     double timesToProcessComputingReads[kComputingTimeRemainingNumOfReadsToBaseTimeOffOf];
     

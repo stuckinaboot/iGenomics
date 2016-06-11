@@ -157,4 +157,8 @@
         numOfReadsMatched++;
     [delegate readProccesed:readData];
 }
+
+- (void)readAligned {
+    [delegate readAligned];
+}
 @end

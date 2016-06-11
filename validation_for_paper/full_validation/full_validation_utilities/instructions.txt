@@ -1,0 +1,7 @@
+Index the genome:
+    bwa-0.7.12/bwa index flu.H3N2.fa
+Align the reads:
+    bwa-0.7.12/bwa mem -x ont2d flu.H3N2.fa 50x.trim1k.fa  > reads.sam
+
+Example for aligning: 
+short_read_utilities/bwa mem -x ont2d short_read_utilities/flu.H1N1.fa ~/Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/advanced_test/reads.bwa.read1.fastq > ~/Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/advanced_test/reads.sam

@@ -198,7 +198,7 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    parameters[kParameterArrayMatchTypeKey] = [NSNumber numberWithInt:(int)matchTypeCtrl.selectedSegmentIndex];
+    parameters[kParameterArrayMatchTypeKey] = @(MatchTypeSubsAndIndels);//[NSNumber numberWithInt:(int)matchTypeCtrl.selectedSegmentIndex];
     parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0];
     parameters[kParameterArrayFoRevKey] = [NSNumber numberWithInt:i];
     parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:(int)mutationSupportStpr.value];
@@ -343,7 +343,7 @@
     return f;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     if (![GlobalVars isIpad])
         return UIInterfaceOrientationMaskPortrait;
     else

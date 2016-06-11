@@ -1,0 +1,7 @@
+PLAN OF ACTION:
+
+I am 95% sure that the bug is rooted somewhere in the below function or one of the functions called by the below function:
+
+updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:(ED_Info *)info forNumOfSubs:(int)subs withCumSepGenomeLens:(NSArray*)cumulativeSeparateGenomeLens maxErrorRate:(float)errorRate originalReadLen:(int)originalReadLen
+
+The most logical and coherent way for me to debug this is by writing test cases. Test cases first for the functions called by the above function and once those all pass, test cases for the function itself.

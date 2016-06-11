@@ -32,7 +32,7 @@
                             <real key="value" value="0.10000000000000001"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="hintViewSpacing">
-                            <real key="value" value="0.0"/>
+                            <real key="value" value="45"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
                             <color key="value" red="0.047058823529411764" green="0.38039215686274508" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analyzing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analyzing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
                     <rect key="frame" x="0.0" y="58" width="414" height="66"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="66" id="14Z-pB-VYU"/>
@@ -68,11 +68,14 @@
                 <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Hmp-ky-bxQ"/>
                 <constraint firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="MVU-cl-8ne"/>
                 <constraint firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="66" id="UFf-69-2ir"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QWx-jN-JRR" secondAttribute="bottom" id="Uwi-6b-O5y"/>
                 <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="X1T-TV-ff0"/>
+                <constraint firstItem="QWx-jN-JRR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2" secondAttribute="top" id="app-uG-XWH"/>
                 <constraint firstItem="QWx-jN-JRR" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="dJa-gU-FTK"/>
                 <constraint firstItem="QWx-jN-JRR" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="hLi-0Z-G7l"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="58" id="jrl-Fl-AN3"/>
                 <constraint firstAttribute="trailing" secondItem="har-rd-UpS" secondAttribute="trailing" constant="33" id="kUO-Cw-Iwk"/>
+                <constraint firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="q0L-xH-cFo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

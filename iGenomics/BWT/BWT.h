@@ -39,6 +39,7 @@
 
 @protocol BWT_Delegate <NSObject>
 - (void)readProccesed:(NSString*)readData;
+- (void)readAligned;
 - (void)bwtLoadedWithLoadingText:(NSString*)txt;
 @end
 @interface BWT : NSObject <BWT_MatcherDelegate> {

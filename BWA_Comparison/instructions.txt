@@ -1,0 +1,49 @@
+Download bwa:
+https://sourceforge.net/projects/bio-bwa/files/
+
+Unpack the tarball
+$ tar xjvf bwa-0.7.12.tar.bz2
+
+cd into directory:
+$ cd bwa-0.7.12
+
+run:
+$ make
+
+Then index the genome:
+$ bwa-0.7.12/bwa index flu.H3N2.fa
+
+Align the reads:
+$ bwa-0.7.12/bwa mem -x ont2d flu.H3N2.fa 50x.trim1k.fa  > reads.sam
+
+Download samtools:
+http://www.htslib.org/download/
+
+Unpack and make
+$ tar xjvf samtools-1.2.tar.bz2
+$ cd samtools-1.2
+$ make
+
+Convert from SAM to BAM
+$ ./samtools-1.2/samtools view -Sb reads.sam > reads.bam
+
+Sort BAM file
+$ samtools sort -T tmp -o reads.s.bam reads.bam
+
+Index BAM file
+$ samtools index reads.s.bam
+
+Download IGV (Download Mac App)
+https://www.broadinstitute.org/software/igv/download
+
+Inside IGV:
+Load Genome: flu.H3N2.fa
+Load Reads: reads.s.bam
+Zoom into to see alignments
+
+Note you can also look in the SAM file to see exactly how BWA aligned a certain read:
+
+$ less -S reads.sam
+
+This file documents the SAM file format:
+https://samtools.github.io/hts-specs/SAMv1.pdf

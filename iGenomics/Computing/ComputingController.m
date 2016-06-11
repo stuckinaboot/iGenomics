@@ -26,15 +26,20 @@
 - (void)viewDidLoad
 {
     [readProgressView setProgress:0 animated:NO];
-    readsProcessed = 0;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)resetReadProcessedVals {
+    readsProcessed = 0;
+    readsAligned = 0;
 }
 
 - (void)setUpWithReadsFile:(APFile*)myReadsFile andRefFile:(APFile*)myRefFile andParameters:(NSMutableDictionary*)myParameters andImptMutsFile:(APFile*)imptMutsFile {
     
     [readProgressView setProgress:0 animated:NO];
-    readsProcessed = 0;//In case view loaded late
+    [self resetReadProcessedVals];
     
     analysisController = [[AnalysisController alloc] init];
     
@@ -86,7 +91,7 @@
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
             [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime];
-            [self performSelectorOnMainThread:@selector(showAnalysisController) withObject:nil waitUntilDone:YES];
+            [self performSelector:@selector(showAnalysisController) withObject:NULL afterDelay:kShowAnalysisControllerDelay];
         });
     });
 }
@@ -95,10 +100,11 @@
     
     NSMutableString *newReads = [[NSMutableString alloc] init];
     NSArray *arr = [reads componentsSeparatedByString:kLineBreak];
-    NSMutableString *qualStr;
+//    NSMutableString *qualStr;
     
     for (int i = 0; i < [arr count]; i += (kFirstQualValueIndexInReadsToTrim+1)) {
-        qualStr = [arr objectAtIndex:i+kFirstQualValueIndexInReadsToTrim];//index i is the name of the read
+//    dispatch_apply([arr count], dispatch_queue_create("foobasdf", DISPATCH_QUEUE_SERIAL), ^(size_t i) {
+        NSString *qualStr = [arr objectAtIndex:i+kFirstQualValueIndexInReadsToTrim];//index i is the name of the read
         
         int maxSum = 0;
         int maxPos = 0;
@@ -122,6 +128,7 @@
         if (newRead.length >= minReadLen)
             [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
     }
+//    });
     newReads = (NSMutableString*)[newReads stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return (NSString*)newReads;
@@ -131,7 +138,7 @@
     [self presentViewController:analysisController animated:YES completion:^{
 //        [analysisController setUpIPhoneToolbar];
         [readProgressView setProgress:0 animated:NO];
-        readsProcessed = 0;//In case view loaded late (backup protection for the ones uptop)
+        [self resetReadProcessedVals];
     }];
 }
 
@@ -159,9 +166,18 @@
         timesToProcessComputingReads[readsProcessed] = [readTimer getTotalRecordedTime];
         [readTimer start];
     }
-    readsProcessed++;
-    [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
-    [exportDataStr appendFormat:@"%@",readData];
+    OSAtomicIncrement32(&readsProcessed);
+
+//    [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
+    [self updateProgressView];
+    if (![readData isEqualToString:@""])
+        [exportDataStr appendFormat:@"%@",readData];
+}
+
+- (void)readAligned {
+    OSAtomicIncrement32(&readsAligned);
+    [self updateProgressView];
+//    [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
 }
 
 - (void)bwtLoadedWithLoadingText:(NSString*)txt {
@@ -169,21 +185,26 @@
 }
 
 - (void)updateProgressView {
-    if (readsProcessed >= kComputingTimeRemainingNumOfReadsToBaseTimeOffOf && timeRemainingUpdateTimer == nil) {
+    if (readsAligned >= kComputingTimeRemainingNumOfReadsToBaseTimeOffOf && timeRemainingUpdateTimer == nil) {
         [readTimer stop];
         [self computeInitialTimeRemaining];
         
-        timeRemainingUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:kComputingTimeRemainingUpdateInterval target:self selector:@selector(updateReadsProcessedLblTimeRemaining) userInfo:nil repeats:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            timeRemainingUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:kComputingTimeRemainingUpdateInterval target:self selector:@selector(updateReadsProcessedLblTimeRemaining) userInfo:nil repeats:YES];
+        });
     }
-    else if (readsProcessed >= (int)bwt.numOfReads*kComputingTimeRemainingFracOfReadsToBeginFreqUpdatingAt && readsProcessed % kComputingTimeRemainingNumOfReadsToBaseTimeOffOf == 0) {
+    else if (readsAligned >= (int)bwt.numOfReads*kComputingTimeRemainingFracOfReadsToBeginFreqUpdatingAt && readsAligned % kComputingTimeRemainingNumOfReadsToBaseTimeOffOf == 0) {
         [readTimer stop];
-        timeRemaining = (bwt.numOfReads-readsProcessed)*([readTimer getTotalRecordedTime]/readsProcessed);
+        timeRemaining = (bwt.numOfReads-readsAligned)*([readTimer getTotalRecordedTime] / readsAligned);
         [readTimer start];
     }
     
-    [readProgressView setProgress:(readsProcessed / (float)bwt.numOfReads) animated:NO];
-    if (kPrintReadProcessedInConsole>0)
-        printf("\n%i reads processed",readsProcessed);
+    float aligningFilled = (readsAligned / (float)bwt.numOfReads) * kProgressViewFractionFilledFromAligning;
+    float processedFilled = (readsProcessed / (float)bwt.numOfReads) * (1 - kProgressViewFractionFilledFromAligning);
+//    return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [readProgressView setProgress:aligningFilled + processedFilled animated:NO];
+    });
 }
 
 - (void)computeInitialTimeRemaining {
@@ -201,6 +222,10 @@
     timeRemaining += kComputingTimeRemainingNumOfSDsToAddToMeanTimeRemaining * timeRemainingSD;
     
     [readTimer start];
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 //Supported Orientations

@@ -1,0 +1,4 @@
+The problem occurs when intervalNum == 2400 in segment 39899.1
+Variable Values:
+indexInGenomeArr = 1
+drawingIndexInGenomeNameArr = 0

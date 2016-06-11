@@ -165,18 +165,20 @@
     
     //Loads past parameters, if they are null set a default set of parameters
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:[defaults objectForKey:kLastUsedParamsSaveKey]];
     
-    if (parameters == NULL) {
+    NSDictionary *savedParamsDict = [defaults objectForKey:kLastUsedParamsSaveKey];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:savedParamsDict];
+    
+    if (savedParamsDict == NULL) {
         parameters = [[NSMutableDictionary alloc] init];
         
-        parameters[kParameterArrayMatchTypeKey] = [NSNumber numberWithInt:2/*Subs and In/Dels*/];
-        parameters[kParameterArrayERKey] = [NSNumber numberWithInt:0.1];
+        parameters[kParameterArrayMatchTypeKey] = @(MatchTypeSubsAndIndels);
+        parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:0.2];
         parameters[kParameterArrayFoRevKey] = [NSNumber numberWithInt:1]; /*Alignment type (forward and reverse)*/
-        parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:2];
+        parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:5];
         parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:kTrimmingOffVal];
         parameters[kParameterArrayTrimmingRefCharKey] = [NSString stringWithFormat:@"%c",kTrimmingRefChar0];
-        parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:YES];
+        parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:NO];
         
         [defaults setObject:parameters forKey:kLastUsedParamsSaveKey];
         [defaults synchronize];

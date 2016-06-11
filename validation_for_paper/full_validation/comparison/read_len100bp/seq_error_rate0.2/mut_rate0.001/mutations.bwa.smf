@@ -1,0 +1,15 @@
+{"chromosome": "CY001959", "alleles": "&", "type": "SUB", "found": "G", "pos": "1516", "ref": "A"}
+{"chromosome": "CY001959", "alleles": "*", "type": "SUB", "found": "G", "pos": "1676", "ref": "A"}
+{"chromosome": "CY001958", "alleles": "&", "type": "SUB", "found": "C", "pos": "707", "ref": "G"}
+{"chromosome": "CY001958", "alleles": "&", "type": "SUB", "found": "C", "pos": "796", "ref": "G"}
+{"chromosome": "CY001958", "alleles": "*", "type": "SUB", "found": "A", "pos": "1828", "ref": "C"}
+{"chromosome": "CY001957", "alleles": "&", "type": "SUB", "found": "T", "pos": "499", "ref": "G"}
+{"chromosome": "CY001957", "alleles": "&", "type": "SUB", "found": "A", "pos": "1000", "ref": "C"}
+{"chromosome": "CY001957", "alleles": "*", "type": "SUB", "found": "T", "pos": "2086", "ref": "G"}
+{"chromosome": "CY001955", "alleles": "*", "type": "SUB", "found": "C", "pos": "121", "ref": "A"}
+{"chromosome": "CY001955", "alleles": "&", "type": "SUB", "found": "T", "pos": "390", "ref": "A"}
+{"chromosome": "CY001955", "alleles": "&", "type": "SUB", "found": "A", "pos": "580", "ref": "G"}
+{"chromosome": "CY001955", "alleles": "*", "type": "SUB", "found": "A", "pos": "1415", "ref": "C"}
+{"chromosome": "CY001954", "alleles": "&", "type": "INS", "found": "ACTT", "pos": "144", "ref": "A"}
+{"chromosome": "CY001953", "alleles": "&", "type": "SUB", "found": "T", "pos": "993", "ref": "A"}
+{"chromosome": "CY001956", "alleles": "&", "type": "SUB", "found": "C", "pos": "545", "ref": "T"}

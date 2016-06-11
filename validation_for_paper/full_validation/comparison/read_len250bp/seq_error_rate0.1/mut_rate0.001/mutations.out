@@ -1,0 +1,17 @@
+FAIL: CY001957>>1468>>DEL XX alleles comparison -> 1: {'pos': '1468', 'ref': 'C', 'chromosome': 'CY001957', 'found': '-', 'alleles': '*', 'type': 'DEL'}| 2: {'pos': '1468', 'chromosome': 'CY001957', 'ref': 'C', 'found': '-', 'alleles': '&', 'type': 'DEL'}
+PASSED: CY001957>>2115>>SUB
+PASSED: CY001959>>1605>>SUB
+FAIL: CY001958>>2281>>DEL not found
+FAIL: CY001958>>153>>SUB XX alleles comparison -> 1: {'pos': '153', 'ref': 'T', 'chromosome': 'CY001958', 'found': 'A', 'alleles': '*', 'type': 'SUB'}| 2: {'pos': '153', 'chromosome': 'CY001958', 'ref': 'T', 'found': 'A', 'alleles': '&', 'type': 'SUB'}
+FAIL: CY001959>>415>>SUB XX alleles comparison -> 1: {'pos': '415', 'ref': 'T', 'chromosome': 'CY001959', 'found': 'C', 'alleles': '*', 'type': 'SUB'}| 2: {'pos': '415', 'chromosome': 'CY001959', 'ref': 'T', 'found': 'C', 'alleles': '&', 'type': 'SUB'}
+FAIL: CY001956>>155>>SUB XX alleles comparison -> 1: {'pos': '155', 'ref': 'A', 'chromosome': 'CY001956', 'found': 'G', 'alleles': '*', 'type': 'SUB'}| 2: {'pos': '155', 'chromosome': 'CY001956', 'ref': 'A', 'found': 'G', 'alleles': '&', 'type': 'SUB'}
+FAIL: CY001953>>626>>SUB XX alleles comparison -> 1: {'pos': '626', 'ref': 'G', 'chromosome': 'CY001953', 'found': 'A', 'alleles': '*', 'type': 'SUB'}| 2: {'pos': '626', 'chromosome': 'CY001953', 'ref': 'G', 'found': 'A', 'alleles': '&', 'type': 'SUB'}
+PASSED: CY001953>>662>>SUB
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 3
+FAILED: 5
+NOT SHARED: 1
+LEN iG: 13165
+LEN BWA: 9

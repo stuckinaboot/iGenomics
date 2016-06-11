@@ -114,71 +114,93 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     if (!matchingTimer)
         matchingTimer = [[APTimer alloc] init];
     [matchingTimer start];
-    readDataStr = [[NSMutableString alloc] init];
+
     if (kDebugOn == 2)
         printf("%s\n",originalStr);
     
     NSLog(@"About to enter match reads loop");
     
     totalAlignmentRuntime = 0;
+
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    ED_Info *bestMatchesVals[[reedsArray count]];
+    ED_Info *__strong*bestMatches = bestMatchesVals;
+    int actualDGenomeLen = dgenomeLen;
+    dgenomeLen = (int)strlen(originalStrWithDividers);
     
-    dispatch_group_t taskGroup = dispatch_group_create();
-    for (Read *reed in reedsArray) {
-        if (readNum >= reedsArray.count)
-            printf("FOO");
-        dispatch_group_enter(taskGroup);
-//            Read *reed = [reedsArray objectAtIndex:readNum];
-            readLen = (int)strlen(reed.sequence);
+    int stride = kBWT_MatcherReadAlignerMultiThreadStride;
+    int reedsCount = [reedsArray count];
+    dispatch_queue_t _q = dispatch_queue_create("dsfasd", DISPATCH_QUEUE_SERIAL);
+    dispatch_apply(reedsCount / stride, queue, ^(size_t i) {
+        int j = (int)(i * stride);
+        int endj = j + stride;
+        while (j < endj) {
+            Read *reed = reedsArray[j];
+
+            int localReadLen = (int)strlen(reed.sequence);
             
-            //printf("DK: calling getBestMatchForQuery\n");
-            int maxNumOfSubs = maxErrorRate * readLen;
-            int actualDGenomeLen = dgenomeLen;
-            dgenomeLen = (int)strlen(originalStrWithDividers);
-            ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState];
-            dgenomeLen = actualDGenomeLen;
-            
+            int maxNumOfSubs = maxErrorRate * localReadLen;
+            ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState forReadLen:localReadLen];
             if (a != NULL) {
                 a.readName = reed.name;
-                //printf("DK: calling numOfCharsPastSegment\n");
-    //            int gappedALen = strlen(a.gappedA);
-    //            int charsToTrimEnd = [self numOfCharsPastSegmentEndingForEDInfo:a andReadLen:gappedALen];
-    //            int charsToTrimBeginning = (a.position < 0) ? abs(a.position) : 0;
-    //
-    //            a = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:a forNumOfSubs:maxNumOfSubs withCumSepGenomeLens:cumulativeSeparateGenomeLens maxErrorRate:maxErrorRate originalReadLen:readLen];
-                if (!a.alreadyHasPosAdjusted && a.distance > 0)//Exact matches are never unjusted
-                    a = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:a cumSepSegLens:cumulativeSeparateGenomeLens];
-                
-    //            a.distance += charsToTrimEnd + charsToTrimBeginning;
-                if (a != NULL) {
-                    int aGappedALen = (int)strlen(a.gappedA);
-                    maxNumOfSubs = maxErrorRate * aGappedALen;
-                    if (a.distance <= maxNumOfSubs)
-                        [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a];
-                }
-                else
-                    a = NULL;//So it is not counted as matchedAtLeastOnce
-                
             }
-            //printf("DK: calling readProcessed\n");
-            [delegate readProccesed:readDataStr andMatchedAtLeastOnce:a != NULL];
-            [readDataStr setString:@""];
-         dispatch_group_leave(taskGroup);
+            bestMatches[j] = a;
+            j++;
+            dispatch_async(_q, ^{
+                [delegate readAligned];
+            });
         }
+    });
+    for (int i = reedsCount - (reedsCount % stride); i < reedsCount; i++) {
+        Read *reed = reedsArray[i];
+        
+        int localReadLen = (int)strlen(reed.sequence);
+        int maxNumOfSubs = maxErrorRate * localReadLen;
+        ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState forReadLen:localReadLen];
+        if (a != NULL) {
+            a.readName = reed.name;
+        }
+        bestMatches[i] = a;
+        dispatch_async(_q, ^{
+            [delegate readAligned];
+        });
+    }
     
-//    [exactMatcher timerPrint];
-    // Now we wait until ALL our dispatch_group_async are finished.
-    dispatch_group_wait(taskGroup, DISPATCH_TIME_FOREVER);
-
+    
+//    }
+    dgenomeLen = actualDGenomeLen;
+//    dispatch_apply([reedsArray count], queue, ^(size_t i) {
+    for (int i = 0; i < [reedsArray count]; i++) {
+        ED_Info *a = bestMatches[i];
+//        readLen = (int)strlen(((Read*)reedsArray[i]).sequence);
+        int localReadLen = (int)strlen(((Read*)reedsArray[i]).sequence);
+        
+        int maxNumOfSubs = maxErrorRate * localReadLen;
+//        int maxNumOfSubs = maxErrorRate * readLen;
+        if (a != NULL) {
+            if (!a.alreadyHasPosAdjusted && a.distance > 0)//Exact matches are never unjusted
+                a = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:a cumSepSegLens:cumulativeSeparateGenomeLens];
+            if (a != NULL) {
+                int aGappedALen = (int)strlen(a.gappedA);
+                maxNumOfSubs = maxErrorRate * aGappedALen;
+                if (a.distance <= maxNumOfSubs) {
+                    [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a];
+                }
+            }
+        }
+        if (a == NULL) {
+//            dispatch_queue_t _q = dispatch_queue_create("apples", DISPATCH_QUEUE_SERIAL);
+            dispatch_async(_q, ^{
+                [delegate readProccesed:@"" andMatchedAtLeastOnce:NO];
+            });
+        }
+//    });
+    }
     [matchingTimer stopAndLog];
     totalAlignmentRuntime = [matchingTimer getTotalRecordedTime];
-    
-    // Update your UI
-//    dispatch_sync(dispatch_get_main_queue(), ^{
-        //[self updateUIFunction];
-//    });
 }
 
-- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed {
+- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed forReadLen:(int)actualReadLen {
     
     NSArray *arr;
     
@@ -200,10 +222,10 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         }
         else {
             if (matchType == MatchTypeExactAndSubs)
-                arr = [approxiMatcher approxiMatchForQuery:query andNumOfSubs:subs andIsReverse:NO andReadLen:readLen cumSepGenomeLens:cumulativeSeparateGenomeLens];
+                arr = [approxiMatcher approxiMatchForQuery:query andNumOfSubs:subs andIsReverse:NO andReadLen:actualReadLen cumSepGenomeLens:cumulativeSeparateGenomeLens];
             else if (matchType == MatchTypeSubsAndIndels) {
                 //printf("DK: calling insertionDeletionMatches (Forward)\n");
-                arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs andIsReverse:NO andShouldSeed:shouldSeed];
+                arr = [self insertionDeletionMatchesForQuery:query andLastCol:lastCol andNumOfSubs:subs andIsReverse:NO andShouldSeed:shouldSeed readLen:actualReadLen];
             }
         }
         
@@ -213,15 +235,15 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             if (subs == 0 || matchType == MatchTypeExactOnly) {
                 int temp = dgenomeLen;
                 dgenomeLen = lastColLen;
-                arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query] andIsReverse:YES andForOnlyPos:NO]];
+                arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query seqLen:actualReadLen] andIsReverse:YES andForOnlyPos:NO]];
                 dgenomeLen = temp;
             }
             else {
                 if (matchType == MatchTypeExactAndSubs)
-                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query] andNumOfSubs:subs andIsReverse:YES andReadLen:readLen cumSepGenomeLens:cumulativeSeparateGenomeLens]];
+                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query seqLen:actualReadLen] andNumOfSubs:subs andIsReverse:YES andReadLen:actualReadLen cumSepGenomeLens:cumulativeSeparateGenomeLens]];
                 else if (matchType == MatchTypeSubsAndIndels) {
                     //printf("DK: calling insertionDeletionMatches (Reverse)\n");
-                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES andShouldSeed:shouldSeed]];
+                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query seqLen:actualReadLen] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES andShouldSeed:shouldSeed readLen:actualReadLen]];
                 }
             }
         }
@@ -271,56 +293,71 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 }
 
 - (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info {
-//    if (info.isRev)
-//        query = [self getReverseComplementForSeq:query];
-    if (range.length != strlen(info.gappedA)) {
-        int startLoc = (info.position < 0) ? abs(info.position) : 0;
-        strlcpy(info.gappedA, &info.gappedA[startLoc], range.length+1);//strlcpy auto adds null terminator so no need to do it explicitly
-        
-        if (strlen(info.gappedB) > 1) {
-            strlcpy(info.gappedB, &info.gappedB[startLoc], range.length+1);
-        }
-        if (startLoc > 0)
-            info.position = 0;
-    }
-    if (!info.insertion && info.distance > 0) {
-        for (int i = range.location; i<range.length+range.location; i++) {
-            int c = [BWT_MatcherSC whichChar:info.gappedA[i-range.location] inContainer:acgt];
-            
-            if (c == -1) {//DEL --- Not positive though
-                if (info.gappedA[i-range.location] == kDelMarker)
-                    c = kACGTLen;
-            }
-            
-            posOccArray[c][i]++;
-        }
-    }
-    else if (info.distance == 0) {
-        for (int i = info.position; i<range.length+info.position; i++) {
-            int c = [BWT_MatcherSC whichChar:info.gappedA[i-info.position] inContainer:acgt];
-            
-            if (c == -1) {//DEL --- Not positive though
-                if (info.gappedA[i-info.position] == kDelMarker)
-                    c = kACGTLen;
-            }
-            
-            posOccArray[c][i]++;
-        }
-    }
-    else {
-        [self recordInDel:info];
+
+    dispatch_queue_t _q = dispatch_queue_create("fish tuna", DISPATCH_QUEUE_SERIAL);
+    if (info == NULL) {
+        dispatch_async(_q, ^{
+            [delegate readProccesed:@"" andMatchedAtLeastOnce:NO];
+            return;
+        });
     }
     
-    if (kDebugAllInfo > 0) {
-        if (info != NULL)
-            printf("\n%i,%i,%c,%i,%s,%s", readNum,info.position,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA);
-//        else
-//            printf("\n%i,%i,%c,%i,%s,%s", readNum,range.location,(isRev) ? '-' : '+', -2-1,"N/A",query);
-    }
-    [readDataStr setString:@""];
-    [readDataStr appendFormat:kReadExportDataBasicInfo, info.readName,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
+        if (range.length != strlen(info.gappedA)) {
+            int startLoc = (info.position < 0) ? abs(info.position) : 0;
+            strlcpy(info.gappedA, &info.gappedA[startLoc], range.length+1);//strlcpy auto adds null terminator so no need to do it explicitly
+            
+            if (strlen(info.gappedB) > 1) {
+                strlcpy(info.gappedB, &info.gappedB[startLoc], range.length+1);
+            }
+            if (startLoc > 0)
+                info.position = 0;
+        }
+        if (!info.insertion && info.distance > 0) {
+//            dispatch_queue_t _q = dispatch_queue_create("afffpples", DISPATCH_QUEUE_SERIAL);
+//            dispatch_async(_q, ^{
+            for (int i = range.location; i<range.length+range.location; i++) {
+                int c = [BWT_MatcherSC whichChar:info.gappedA[i-range.location] inContainer:acgt];
+                
+                if (c == -1) {//DEL --- Not positive though
+                    if (info.gappedA[i-range.location] == kDelMarker)
+                        c = kACGTLen;
+                }
+                
+                OSAtomicIncrement32(&posOccArray[c][i]);
+    //            posOccArray[c][i]++;
+            }
+//            });
+        }
+        else if (info.distance == 0) {
+//            dispatch_queue_t _q = dispatch_queue_create("appfffales", DISPATCH_QUEUE_SERIAL);
+//            dispatch_async(_q, ^{
+            for (int i = info.position; i<range.length+info.position; i++) {
+                int c = [BWT_MatcherSC whichChar:info.gappedA[i-info.position] inContainer:acgt];
+                
+                if (c == -1) {//DEL --- Not positive though
+                    if (info.gappedA[i-info.position] == kDelMarker)
+                        c = kACGTLen;
+                }
+                
+                OSAtomicIncrement32(&posOccArray[c][i]);
+    //            posOccArray[c][i]++;
+            }
+//            });
+        }
+        else {
+            [self recordInDel:info];
+        }
 
-    [readAlignmentsArr addObject:info];
+//        if (kDebugAllInfo > 0) {
+//            if (info != NULL)
+//                printf("\n%i,%i,%c,%i,%s,%s", readNum,info.position,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA);
+//        }
+    dispatch_async(_q, ^{
+        NSString *readDataStr = [NSString stringWithFormat:kReadExportDataBasicInfo, info.readName,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
+
+        [delegate readProccesed:readDataStr andMatchedAtLeastOnce:info != NULL];
+        [readAlignmentsArr addObject:info];
+    });
 }
 
 - (void)createOriginalStrWithDividers {
@@ -348,7 +385,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 }
 
 //INSERTION/DELETION
-- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed {
+- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed readLen:(int)actualReadLen {
     //    Create BWT Matcher for In/Del
     
 
@@ -356,7 +393,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     if (shouldSeed) {
         //    Split read into chunks
         int numOfChunks = numOfSubs+1;
-        int queryLength = readLen;
+        int queryLength = actualReadLen;
         int sizeOfChunks = queryLength/numOfChunks;
         
         if (fmod(queryLength, 2) != 0) {
@@ -417,7 +454,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     //        INSERTIONS
     if (info.position >= 0 && info.position+aLen-info.numOfInsertions<=dgenomeLen) {//ISN'T Negative and doesn't go over
         int bLen = strlen(info.gappedB);
-        int insCount = 0;
+        volatile int32_t insCount = 0;
 
         for (int a = 0; a<bLen; a++) {
             if (info.gappedB[a] == kDelMarker) {
@@ -440,23 +477,31 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                     tIDSeqLen++;
                 }
                 //Check if insertions array already has it
-                BOOL alreadyRec = FALSE;
-                for (int l = 0; l<self.insertionsArray.count; l++) {
-                    BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
-                    if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
-                        tt.count++;
-                        alreadyRec = TRUE;
+//                BOOL alreadyRec = FALSE;
+//                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    BOOL alreadyRec = FALSE;
+                
+                    for (int l = 0; l<self.insertionsArray.count; l++) {
+                        BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
+                        if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
+                            tt.count++;
+                            alreadyRec = TRUE;
+                        }
                     }
-                }
-                if (!alreadyRec) {
-                    [self.insertionsArray addObject:tID];
-                }
-                posOccArray[kACGTLen+1][tID.pos]++;//Insertions add one
-                insCount++;
+                    if (!alreadyRec) {
+//                        dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                            [self.insertionsArray addObject:tID];
+//                        });
+                    }
+                    OSAtomicIncrement32(&posOccArray[kACGTLen+1][tID.pos]);
+    //                &posOccArray[kACGTLen+1][tID.pos]++;//Insertions add one
+                    OSAtomicIncrement32(&insCount);
+//                });
             }
             else {
                 int w = [BWT_MatcherSC whichChar:info.gappedA[a] inContainer:acgt];
-                posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]++;
+                OSAtomicIncrement32(&posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]);
+//                posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]++;
             }
         }
     }
@@ -547,8 +592,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 }
 
 //Getters
-- (char*)getReverseComplementForSeq:(char*)seq {
-    int len = readLen; //The only thing you should be getting a reverse complement for is the read (am I right?)
+- (char*)getReverseComplementForSeq:(char*)seq seqLen:(int)actualReadLen {
+    int len = actualReadLen; //The only thing you should be getting a reverse complement for is the read (am I right?)
     char *revSeq = calloc(len+1, 1);
     
     for (int i = 0; i<len; i++)

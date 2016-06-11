@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <libkern/OSAtomic.h>
 #import "GlobalVars.h"
 
 #import "BWT_Matcher_InsertionDeletion.h"
@@ -27,6 +28,9 @@
 #define kReadLoopMaxSmallEditDist 20
 #define kReadLoopLargeEditDistStepFactor 0.15 //kReadLoopLargeEditDistStepFactor * maxEdit
 
+#define kBWT_MatcherReadAlignerMultiThreadStride 10
+
+
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
 
@@ -45,6 +49,7 @@
 extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];//+2 because of deletions +1(-) and insertions +2(+) __________________I----- GLOBAL ------I
 
 @protocol BWT_MatcherDelegate <NSObject>
+- (void)readAligned;
 - (void)readProccesed:(NSString*)readData andMatchedAtLeastOnce:(BOOL)didMatch;
 @end
 @interface BWT_Matcher : NSObject {
@@ -66,8 +71,6 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
     
     BWT_MatcherSC *exactMatcher;
     
-    NSMutableString *readDataStr;
-    
     float totalAlignmentRuntime;
     
     char *originalStrWithDividers;
@@ -79,19 +82,19 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 
 - (void)setUpReedsFileContents:(NSString*)contents refStrBWT:(char*)bwt andMaxErrorRate:(double)maxER;
 
-- (char*)getReverseComplementForSeq:(char*)seq;
+- (char*)getReverseComplementForSeq:(char*)seq seqLen:(int)actualReadLen;
 
 - (void)matchReedsWithSeedingState:(BOOL)seedingState;
 
 - (void)setUpNumberOfOccurencesArray;
 
 //APPROXI MATCH
-- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed;//readNum is only for printing to console, serves no other purpose currently
+- (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed forReadLen:(int)actualReadLen ;//readNum is only for printing to console, serves no other purpose currently
 
 - (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info;//info is NULL for a non indel match
 
 //INSERTION/DELETION MATCH
-- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed;
+- (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed readLen:(int)actualReadLen;
 - (void)recordInDel:(ED_Info*)info;
 - (float)getTotalAlignmentRuntime;
 

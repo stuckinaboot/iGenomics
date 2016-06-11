@@ -22,7 +22,7 @@
     
     NSMutableArray *insertions = [[NSMutableArray alloc] init];
     for (BWT_Matcher_InsertionDeletion_InsertionHolder *holder in insArr) {
-        if (pos == holder.pos && holder.count >= heteroAllowance) {
+        if (pos == holder.pos) {
             [insertions addObject:holder];
         }
     }

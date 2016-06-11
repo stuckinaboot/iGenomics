@@ -73,7 +73,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
 }
 

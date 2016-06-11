@@ -1,0 +1,3 @@
+Read Length	100	250	1000
+Sequencing Error Rate	0.01	0.1	0.2
+Mutation Rate	0.001	0.01	0.1

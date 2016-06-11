@@ -1,0 +1,5 @@
+2) Need to make lock/unlocking btns work again
+
+1) Need to pass APFiles around rather then name/contents individually
+---I need to have something to show Mike so this needs to be done today
+3) Need to get local files up and running

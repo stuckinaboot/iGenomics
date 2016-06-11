@@ -1,0 +1,52 @@
+Banding, Banding, Banding. That's what we gotta do. 
+
+n = EDIT DISTANCE
+
+ED TABLE EX: n = 4
+X X X X 
+X X X X X 
+X X X X X X
+X X X X X X X
+  X X X X X X X
+    X X X X X X X
+      X X X X X X X
+        X X X X X X X
+          X X X X X X X
+            X X X X X X X
+              X X X X X X X
+
+That diagram helps a lot right. Let's look for a pattern
+n = 3
+X X X
+X X X X
+X X X X X
+  X X X X X 
+    X X X X X
+      X X X X X
+        X X X X X
+n = 2
+X X
+X X X
+  X X X
+    X X X
+      X X X
+        X X X
+
+1) Compute the edit distance of the first n boxes. NR = Next Row.
+2) NR. Compute edit distance of first n + 1 boxes
+3) Repeat step 2 for the first n rows, incrementing the number of boxes each
+time
+4) Create a variable called startColumn = 1
+5) For every row after the first n rows, starting at startColumn, compute the
+edit distance of the first n boxes. After the boxes in a row are computed,
+startColumn++
+
+
+_--_-____----
+I attempted an implementation of this algorithm. There is definitely a bug
+that most likely has to do with a possible -1 or lack of -1 surrounding
+numOfBoxesToComputeFor ---- THAT IS EASILY THE MOST LIKELY SOURCE OF THE BUG
+
+At present, following what I said above, the code contained between the
+"Attempting Banding" comments does not work and the code contained between the
+"New stuff" comments does work

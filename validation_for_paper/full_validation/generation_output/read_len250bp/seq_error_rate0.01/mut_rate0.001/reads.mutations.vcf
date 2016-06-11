@@ -1,0 +1,25 @@
+##fileformat=VCFv4.1
+##contig=<ID=CY001959,length=2311>
+##contig=<ID=CY001958,length=2325>
+##contig=<ID=CY001957,length=2233>
+##contig=<ID=CY001952,length=1754>
+##contig=<ID=CY001955,length=1565>
+##contig=<ID=CY001954,length=1463>
+##contig=<ID=CY001953,length=1027>
+##contig=<ID=CY001956,length=890>
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##INFO=<ID=pl,Number=1,Type=Integer,Description="Phasing: 1 - HET contig 1, #2 - HET contig #2, 3 - HOM both contigs">
+##INFO=<ID=mt,Number=1,Type=String,Description="Variant Type: SUBSTITUTE/INSERT/DELETE">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+CY001959	1210	.	G	A	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+CY001959	2282	.	A	T	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+CY001958	1194	.	T	A	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+CY001958	1773	.	C	T	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+CY001957	51	.	C	G	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+CY001957	954	.	T	G	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+CY001957	2208	.	G	T	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+CY001955	112	.	A	T	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+CY001955	145	.	G	T	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+CY001955	149	.	GA	G	100	PASS	AF=1.0;pl=3;mt=DELETE
+CY001954	791	.	G	T	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+CY001954	824	.	GT	G	100	PASS	AF=1.0;pl=1;mt=DELETE

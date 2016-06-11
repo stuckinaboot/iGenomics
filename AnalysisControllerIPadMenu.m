@@ -167,7 +167,7 @@
     [fileExporter displayExportOptionsWithSender:cell];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
 }
 

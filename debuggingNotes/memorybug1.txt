@@ -1,0 +1,17 @@
+Tracking the Crashing Bug
+---------------------------------------
+]]Parameters
+>ED: 4
+>MC: 2
+>Trimming Ref: !
+>Trimming Val: 7
+>Device: iPhone 4in 64bit Simulator
+---------------------------------------
+Tips:
+>Crash when Arrow Table is being created/first set
+->- (ED_Info*)editDistanceForInfo:(char *)a andBFull:(char *)b 
+>NSZombiesEnabled: Enabled ...DOES NOTHING
+>The problem is may or may not be with trimming. It still occurs when it is a fasta file
+>Something with quality values of the read that usually crashes in the nearby
+>file is fishy
+

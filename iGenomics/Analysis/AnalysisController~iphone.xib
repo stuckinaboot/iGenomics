@@ -47,7 +47,7 @@
                                     <action selector="displayAnalysisIPhoneToolbar:" destination="-1" id="FrB-Ie-2qC"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Vsk-Km-5dA">
+                            <barButtonItem key="rightBarButtonItem" title="Exit" id="Vsk-Km-5dA">
                                 <connections>
                                     <action selector="donePressed:" destination="-1" id="gB5-7d-Fej"/>
                                 </connections>

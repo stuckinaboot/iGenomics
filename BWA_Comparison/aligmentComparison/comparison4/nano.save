@@ -1,0 +1,4 @@
+NOTE:
+MUST DO:  
+Some how I need to adjust the max edit distance for the read after clipping occurs because the error rate * readLen will be different
+

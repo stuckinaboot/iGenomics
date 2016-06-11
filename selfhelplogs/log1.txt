@@ -1,0 +1,18 @@
+The problem with the long real reads is that they in certain cases extend over both the
+beginning of a given segment and over the end of that segment.
+
+-My current code only accounts for one end of the segment
+-Central question: If a read extends over both ends of the segment, which
+segment is the read actually in?????????
+
+Assuming the read is in the segment that it spans the entirety of, I will need
+to trim both beginning and the end. This is about to be really fun.
+
+Result: Recursion was involved. I think it works. Now each segment has high
+amounts of coverage and steeper drop offs along the ends. Aligning is slower
+leading me to the next question, one that I must ask Mike, should I only check
+if reads over extend both sides if the reads are above a constant minimum
+  length? Or possibly only if seeding is set to off?
+
+  Imagine if there was an apocalypse and only this log remained. That would
+  suck for the world

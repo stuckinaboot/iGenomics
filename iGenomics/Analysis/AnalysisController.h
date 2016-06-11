@@ -92,7 +92,7 @@
 #define kStartOfAInRGBVals 4
 #define kStartOfRefInRGBVals 2
 
-#define kMutationSupportMax 8
+#define kMutationSupportMax 10
 #define kMutationSupportMin 1
 
 #define kSideLblFontSize 16

@@ -97,7 +97,7 @@
     insLbl.text = [NSString stringWithFormat:kPopoverACGTLblTxt,'+',posOccArray[5][position]];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
 }
 

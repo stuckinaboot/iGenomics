@@ -1,0 +1,23 @@
+FAIL: CY001959>>1910>>DEL not found
+PASSED: CY001957>>808>>SUB
+PASSED: CY001954>>1149>>SUB
+PASSED: CY001959>>1864>>SUB
+PASSED: CY001952>>54>>SUB
+PASSED: CY001957>>346>>SUB
+PASSED: CY001952>>994>>SUB
+PASSED: CY001955>>873>>SUB
+FAIL: CY001957>>1564>>SUB XX alleles comparison -> 1: {'type': 'SUB', 'pos': '1564', 'alleles': '*', 'chromosome': 'CY001957', 'ref': 'G', 'found': 'T'}| 2: {'type': 'SUB', 'pos': '1564', 'alleles': '&', 'chromosome': 'CY001957', 'ref': 'G', 'found': 'T'}
+PASSED: CY001958>>1762>>SUB
+PASSED: CY001958>>2276>>SUB
+PASSED: CY001958>>1911>>SUB
+PASSED: CY001953>>362>>SUB
+PASSED: CY001958>>2176>>SUB
+PASSED: CY001955>>1076>>SUB
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 13
+FAILED: 1
+NOT SHARED: 1
+LEN iG: 12242
+LEN BWA: 15

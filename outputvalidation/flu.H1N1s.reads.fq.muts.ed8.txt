@@ -1,0 +1,224 @@
+Total Mutations: 223
+Pos: 65, A>A/C | Cov: A = 1, C = 1, gi|229783392|gb|CY039900.1|
+Pos: 218, A>A/C | Cov: A = 11, C = 4, gi|229783392|gb|CY039900.1|
+Pos: 434, T>G/T | Cov: G = 3, T = 15, gi|229783392|gb|CY039900.1|
+Pos: 447, T>G/T | Cov: G = 10, T = 6, gi|229783392|gb|CY039900.1|
+Pos: 698, A>A/G | Cov: A = 12, G = 3, gi|229783392|gb|CY039900.1|
+Pos: 783, C>C/T | Cov: C = 19, T = 3, gi|229783392|gb|CY039900.1|
+Pos: 803, G>A/G | Cov: A = 5, G = 8, gi|229783392|gb|CY039900.1|
+Pos: 1021, G>G/T | Cov: G = 21, T = 3, gi|229783392|gb|CY039900.1|
+Pos: 1240, G>G/+ | Cov: G = 15, + = 12, gi|229783392|gb|CY039900.1|
+Pos: 1241, T>T/+ | Cov: T = 14, + = 13, gi|229783392|gb|CY039900.1|
+Pos: 1283, T>A/T | Cov: A = 8, T = 10, gi|229783392|gb|CY039900.1|
+Pos: 1297, C>A/C | Cov: A = 3, C = 13, gi|229783392|gb|CY039900.1|
+Pos: 1310, A>C | Cov: C = 16, gi|229783392|gb|CY039900.1|
+Pos: 1370, T>A/T | Cov: A = 5, T = 5, gi|229783392|gb|CY039900.1|
+Pos: 1422, G>A/G | Cov: A = 7, G = 7, gi|229783392|gb|CY039900.1|
+Pos: 1601, C>C/G | Cov: C = 6, G = 12, gi|229783392|gb|CY039900.1|
+Pos: 1735, C>C/T | Cov: C = 4, T = 5, gi|229783392|gb|CY039900.1|
+Pos: 1815, T>G/T | Cov: G = 8, T = 8, gi|229783392|gb|CY039900.1|
+Pos: 1835, C>C/T | Cov: C = 9, T = 9, gi|229783392|gb|CY039900.1|
+Pos: 1849, A>A/T | Cov: A = 9, T = 10, gi|229783392|gb|CY039900.1|
+Pos: 2243, A>A/T | Cov: A = 3, T = 1, gi|229783392|gb|CY039900.1|
+Pos: 2246, C>C/G | Cov: C = 3, G = 1, gi|229783392|gb|CY039900.1|
+Pos: 2266, A>A/T | Cov: A = 2, T = 1, gi|229783392|gb|CY039900.1|
+Pos: 38, A>A/T | Cov: A = 1, T = 1, gi|229783390|gb|CY039899.1|
+Pos: 39, A>A/T | Cov: A = 1, T = 1, gi|229783390|gb|CY039899.1|
+Pos: 42, A>G | Cov: G = 2, gi|229783390|gb|CY039899.1|
+Pos: 49, T>G/T | Cov: G = 1, T = 2, gi|229783390|gb|CY039899.1|
+Pos: 53, T>G/T | Cov: G = 1, T = 3, gi|229783390|gb|CY039899.1|
+Pos: 58, C>C/T | Cov: C = 3, T = 1, gi|229783390|gb|CY039899.1|
+Pos: 93, G>G/T | Cov: G = 5, T = 6, gi|229783390|gb|CY039899.1|
+Pos: 130, A>A/C | Cov: A = 8, C = 6, gi|229783390|gb|CY039899.1|
+Pos: 156, A>A/G | Cov: A = 7, G = 3, gi|229783390|gb|CY039899.1|
+Pos: 318, G>A/G | Cov: A = 4, G = 6, gi|229783390|gb|CY039899.1|
+Pos: 486, A>A/G | Cov: A = 8, G = 5, gi|229783390|gb|CY039899.1|
+Pos: 535, A>A/T | Cov: A = 11, T = 6, gi|229783390|gb|CY039899.1|
+Pos: 537, T>G/T | Cov: G = 6, T = 9, gi|229783390|gb|CY039899.1|
+Pos: 653, A>A/T | Cov: A = 5, T = 5, gi|229783390|gb|CY039899.1|
+Pos: 913, A>A/C | Cov: A = 8, C = 5, gi|229783390|gb|CY039899.1|
+Pos: 980, G>C | Cov: C = 13, gi|229783390|gb|CY039899.1|
+Pos: 1000, T>G/T | Cov: G = 7, T = 6, gi|229783390|gb|CY039899.1|
+Pos: 1071, A>G/- | Cov: G = 3, - = 8, gi|229783390|gb|CY039899.1|
+Pos: 1073, G>G/- | Cov: G = 3, - = 8, gi|229783390|gb|CY039899.1|
+Pos: 1100, G>C/G | Cov: C = 8, G = 6, gi|229783390|gb|CY039899.1|
+Pos: 1122, T>G/T | Cov: G = 7, T = 7, gi|229783390|gb|CY039899.1|
+Pos: 1187, A>A/T | Cov: A = 10, T = 4, gi|229783390|gb|CY039899.1|
+Pos: 1219, T>C/T | Cov: C = 3, T = 17, gi|229783390|gb|CY039899.1|
+Pos: 1285, C>A/C | Cov: A = 3, C = 16, gi|229783390|gb|CY039899.1|
+Pos: 1297, G>A/G | Cov: A = 3, G = 18, gi|229783390|gb|CY039899.1|
+Pos: 1309, A>A/G | Cov: A = 10, G = 10, gi|229783390|gb|CY039899.1|
+Pos: 1320, G>G/T | Cov: G = 11, T = 10, gi|229783390|gb|CY039899.1|
+Pos: 1431, T>C/T | Cov: C = 3, T = 9, gi|229783390|gb|CY039899.1|
+Pos: 1496, T>T/- | Cov: T = 9, - = 6, gi|229783390|gb|CY039899.1|
+Pos: 1500, A>A/- | Cov: A = 10, - = 4, gi|229783390|gb|CY039899.1|
+Pos: 1862, T>A/T | Cov: A = 3, T = 12, gi|229783390|gb|CY039899.1|
+Pos: 1870, A>A/C | Cov: A = 15, C = 3, gi|229783390|gb|CY039899.1|
+Pos: 2031, C>C/T | Cov: C = 12, T = 3, gi|229783390|gb|CY039899.1|
+Pos: 2188, T>C/T | Cov: C = 8, T = 7, gi|229783390|gb|CY039899.1|
+Pos: 2233, T>G/T | Cov: G = 1, T = 3, gi|229783390|gb|CY039899.1|
+Pos: 2234, T>G/T | Cov: G = 1, T = 3, gi|229783390|gb|CY039899.1|
+Pos: 2244, A>A/C/T | Cov: A = 1, C = 1, T = 1, gi|229783390|gb|CY039899.1|
+Pos: 2253, A>A/G | Cov: A = 2, G = 1, gi|229783390|gb|CY039899.1|
+Pos: 2256, T>A/T | Cov: A = 1, T = 2, gi|229783390|gb|CY039899.1|
+Pos: 2262, A>A/C | Cov: A = 2, C = 1, gi|229783390|gb|CY039899.1|
+Pos: 121, A>A/C | Cov: A = 6, C = 6, gi|229783388|gb|CY039898.1|
+Pos: 190, G>C/G | Cov: C = 3, G = 13, gi|229783388|gb|CY039898.1|
+Pos: 216, A>A/C | Cov: A = 11, C = 8, gi|229783388|gb|CY039898.1|
+Pos: 228, A>C | Cov: C = 17, gi|229783388|gb|CY039898.1|
+Pos: 361, G>G/T | Cov: G = 16, T = 3, gi|229783388|gb|CY039898.1|
+Pos: 362, T>T/+ | Cov: T = 18, + = 14, gi|229783388|gb|CY039898.1|
+Pos: 514, A>A/T | Cov: A = 15, T = 3, gi|229783388|gb|CY039898.1|
+Pos: 560, A>A/T | Cov: A = 9, T = 9, gi|229783388|gb|CY039898.1|
+Pos: 758, C>C/T | Cov: C = 16, T = 3, gi|229783388|gb|CY039898.1|
+Pos: 847, A>A/G | Cov: A = 11, G = 3, gi|229783388|gb|CY039898.1|
+Pos: 872, A>A/G | Cov: A = 12, G = 3, gi|229783388|gb|CY039898.1|
+Pos: 1159, T>C/T | Cov: C = 3, T = 6, gi|229783388|gb|CY039898.1|
+Pos: 1402, T>C/T | Cov: C = 3, T = 14, gi|229783388|gb|CY039898.1|
+Pos: 1429, A>T | Cov: T = 14, gi|229783388|gb|CY039898.1|
+Pos: 1625, T>A | Cov: A = 12, gi|229783388|gb|CY039898.1|
+Pos: 1805, C>C/T | Cov: C = 13, T = 8, gi|229783388|gb|CY039898.1|
+Pos: 1890, G>C | Cov: C = 18, gi|229783388|gb|CY039898.1|
+Pos: 1930, T>C/T | Cov: C = 3, T = 15, gi|229783388|gb|CY039898.1|
+Pos: 1944, A>A/G | Cov: A = 16, G = 3, gi|229783388|gb|CY039898.1|
+Pos: 1996, C>A/C | Cov: A = 3, C = 12, gi|229783388|gb|CY039898.1|
+Pos: 2062, C>C/G | Cov: C = 10, G = 3, gi|229783388|gb|CY039898.1|
+Pos: 2130, G>T | Cov: T = 6, gi|229783388|gb|CY039898.1|
+Pos: 2139, G>G/T | Cov: G = 3, T = 1, gi|229783388|gb|CY039898.1|
+Pos: 2153, T>G | Cov: G = 1, gi|229783388|gb|CY039898.1|
+Pos: 18, T>A/T | Cov: A = 4, T = 4, gi|229783376|gb|CY039893.1|
+Pos: 75, A>A/T | Cov: A = 9, T = 3, gi|229783376|gb|CY039893.1|
+Pos: 108, C>C/G | Cov: C = 7, G = 6, gi|229783376|gb|CY039893.1|
+Pos: 246, T>A/T | Cov: A = 3, T = 11, gi|229783376|gb|CY039893.1|
+Pos: 262, T>A/T | Cov: A = 3, T = 16, gi|229783376|gb|CY039893.1|
+Pos: 309, G>A/G | Cov: A = 7, G = 9, gi|229783376|gb|CY039893.1|
+Pos: 345, C>C/G | Cov: C = 12, G = 3, gi|229783376|gb|CY039893.1|
+Pos: 415, G>A/G | Cov: A = 3, G = 16, gi|229783376|gb|CY039893.1|
+Pos: 563, G>A/G | Cov: A = 3, G = 9, gi|229783376|gb|CY039893.1|
+Pos: 716, C>C/T | Cov: C = 9, T = 6, gi|229783376|gb|CY039893.1|
+Pos: 820, A>A/T | Cov: A = 4, T = 10, gi|229783376|gb|CY039893.1|
+Pos: 924, A>A/G | Cov: A = 7, G = 3, gi|229783376|gb|CY039893.1|
+Pos: 925, A>A/+ | Cov: A = 10, + = 7, gi|229783376|gb|CY039893.1|
+Pos: 1050, C>G | Cov: G = 12, gi|229783376|gb|CY039893.1|
+Pos: 1307, A>A/G | Cov: A = 10, G = 3, gi|229783376|gb|CY039893.1|
+Pos: 1432, A>A/C | Cov: A = 10, C = 9, gi|229783376|gb|CY039893.1|
+Pos: 1442, C>C/T | Cov: C = 18, T = 4, gi|229783376|gb|CY039893.1|
+Pos: 1566, G>C/G | Cov: C = 6, G = 3, gi|229783376|gb|CY039893.1|
+Pos: 1627, T>G/T | Cov: G = 1, T = 2, gi|229783376|gb|CY039893.1|
+Pos: 1741, G>C/G | Cov: C = 1, G = 3, gi|229783376|gb|CY039893.1|
+Pos: 1743, G>A/G | Cov: A = 1, G = 3, gi|229783376|gb|CY039893.1|
+Pos: 6, G>G/T | Cov: G = 1, T = 1, gi|229783383|gb|CY039896.1|
+Pos: 9, A>A/C | Cov: A = 2, C = 1, gi|229783383|gb|CY039896.1|
+Pos: 10, C>A/C | Cov: A = 1, C = 2, gi|229783383|gb|CY039896.1|
+Pos: 11, A>A/C | Cov: A = 1, C = 2, gi|229783383|gb|CY039896.1|
+Pos: 12, G>A/G | Cov: A = 1, G = 2, gi|229783383|gb|CY039896.1|
+Pos: 16, T>C/T | Cov: C = 1, T = 2, gi|229783383|gb|CY039896.1|
+Pos: 17, C>A/C | Cov: A = 1, C = 2, gi|229783383|gb|CY039896.1|
+Pos: 25, C>A/C | Cov: A = 1, C = 2, gi|229783383|gb|CY039896.1|
+Pos: 29, C>C/T | Cov: C = 2, T = 1, gi|229783383|gb|CY039896.1|
+Pos: 32, A>A/C | Cov: A = 2, C = 1, gi|229783383|gb|CY039896.1|
+Pos: 138, A>A/G | Cov: A = 11, G = 3, gi|229783383|gb|CY039896.1|
+Pos: 245, C>C/T | Cov: C = 15, T = 3, gi|229783383|gb|CY039896.1|
+Pos: 247, G>C/G | Cov: C = 7, G = 9, gi|229783383|gb|CY039896.1|
+Pos: 253, G>G/T | Cov: G = 7, T = 6, gi|229783383|gb|CY039896.1|
+Pos: 272, T>C/T | Cov: C = 8, T = 7, gi|229783383|gb|CY039896.1|
+Pos: 399, G>C/G | Cov: C = 3, G = 11, gi|229783383|gb|CY039896.1|
+Pos: 432, T>A/T | Cov: A = 7, T = 4, gi|229783383|gb|CY039896.1|
+Pos: 638, A>A/C | Cov: A = 14, C = 3, gi|229783383|gb|CY039896.1|
+Pos: 682, A>A/G | Cov: A = 10, G = 9, gi|229783383|gb|CY039896.1|
+Pos: 706, A>T | Cov: T = 13, gi|229783383|gb|CY039896.1|
+Pos: 753, G>A | Cov: A = 18, gi|229783383|gb|CY039896.1|
+Pos: 786, G>A/G | Cov: A = 3, G = 18, gi|229783383|gb|CY039896.1|
+Pos: 918, A>A/G | Cov: A = 10, G = 5, gi|229783383|gb|CY039896.1|
+Pos: 931, G>G/T | Cov: G = 13, T = 3, gi|229783383|gb|CY039896.1|
+Pos: 1038, G>A/G | Cov: A = 4, G = 9, gi|229783383|gb|CY039896.1|
+Pos: 1225, C>C/G | Cov: C = 8, G = 8, gi|229783383|gb|CY039896.1|
+Pos: 1335, G>A/G | Cov: A = 7, G = 5, gi|229783383|gb|CY039896.1|
+Pos: 1524, G>C/G/T | Cov: C = 1, G = 1, T = 1, gi|229783383|gb|CY039896.1|
+Pos: 1526, A>A/T | Cov: A = 2, T = 1, gi|229783383|gb|CY039896.1|
+Pos: 1527, A>A/C | Cov: A = 2, C = 1, gi|229783383|gb|CY039896.1|
+Pos: 1528, A>A/T | Cov: A = 2, T = 1, gi|229783383|gb|CY039896.1|
+Pos: 12, A>A/G | Cov: A = 2, G = 1, gi|229783381|gb|CY039895.1|
+Pos: 13, C>C/T | Cov: C = 2, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 18, T>G/T | Cov: G = 1, T = 2, gi|229783381|gb|CY039895.1|
+Pos: 20, C>C/G | Cov: C = 3, G = 1, gi|229783381|gb|CY039895.1|
+Pos: 69, C>C/G | Cov: C = 6, G = 7, gi|229783381|gb|CY039895.1|
+Pos: 91, A>A/T | Cov: A = 10, T = 3, gi|229783381|gb|CY039895.1|
+Pos: 133, T>A/T | Cov: A = 3, T = 10, gi|229783381|gb|CY039895.1|
+Pos: 234, C>C/T | Cov: C = 11, T = 3, gi|229783381|gb|CY039895.1|
+Pos: 264, C>C/T | Cov: C = 5, T = 6, gi|229783381|gb|CY039895.1|
+Pos: 465, G>G/+ | Cov: G = 7, + = 3, gi|229783381|gb|CY039895.1|
+Pos: 581, A>A/G | Cov: A = 18, G = 3, gi|229783381|gb|CY039895.1|
+Pos: 889, T>A/T | Cov: A = 3, T = 12, gi|229783381|gb|CY039895.1|
+Pos: 921, C>C/G | Cov: C = 9, G = 3, gi|229783381|gb|CY039895.1|
+Pos: 953, T>C/T | Cov: C = 9, T = 9, gi|229783381|gb|CY039895.1|
+Pos: 1034, C>A/C | Cov: A = 3, C = 14, gi|229783381|gb|CY039895.1|
+Pos: 1171, C>A/C | Cov: A = 9, C = 4, gi|229783381|gb|CY039895.1|
+Pos: 1269, G>G/T | Cov: G = 3, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1278, C>C/G | Cov: C = 3, G = 1, gi|229783381|gb|CY039895.1|
+Pos: 1311, A>C | Cov: C = 1, gi|229783381|gb|CY039895.1|
+Pos: 1339, A>C | Cov: C = 2, gi|229783381|gb|CY039895.1|
+Pos: 1352, C>C/G | Cov: C = 1, G = 1, gi|229783381|gb|CY039895.1|
+Pos: 1361, T>C/T | Cov: C = 1, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1383, A>A/T | Cov: A = 2, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1384, A>A/T | Cov: A = 2, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1387, C>A/C | Cov: A = 1, C = 1, gi|229783381|gb|CY039895.1|
+Pos: 1396, C>C/G | Cov: C = 1, G = 1, gi|229783381|gb|CY039895.1|
+Pos: 1403, A>A/T | Cov: A = 3, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1417, T>A/T | Cov: A = 1, T = 3, gi|229783381|gb|CY039895.1|
+Pos: 1421, A>A/T | Cov: A = 3, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1425, A>A/G/T | Cov: A = 2, G = 1, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1429, A>A/T | Cov: A = 3, T = 1, gi|229783381|gb|CY039895.1|
+Pos: 1433, A>A/C | Cov: A = 2, C = 1, gi|229783381|gb|CY039895.1|
+Pos: 1450, T>C | Cov: C = 3, gi|229783381|gb|CY039895.1|
+Pos: 1455, T>C/T | Cov: C = 1, T = 2, gi|229783381|gb|CY039895.1|
+Pos: 12, C>A | Cov: A = 1, gi|229783378|gb|CY039894.1|
+Pos: 14, T>C | Cov: C = 1, gi|229783378|gb|CY039894.1|
+Pos: 21, A>A/T | Cov: A = 1, T = 1, gi|229783378|gb|CY039894.1|
+Pos: 22, A>A/G | Cov: A = 1, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 25, G>A/G | Cov: A = 1, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 29, T>A/T | Cov: A = 1, T = 2, gi|229783378|gb|CY039894.1|
+Pos: 30, T>A/T | Cov: A = 1, T = 2, gi|229783378|gb|CY039894.1|
+Pos: 68, A>A/T | Cov: A = 8, T = 7, gi|229783378|gb|CY039894.1|
+Pos: 187, C>C/T | Cov: C = 15, T = 6, gi|229783378|gb|CY039894.1|
+Pos: 230, T>C/T | Cov: C = 3, T = 16, gi|229783378|gb|CY039894.1|
+Pos: 252, A>A/G | Cov: A = 20, G = 3, gi|229783378|gb|CY039894.1|
+Pos: 473, T>C/T | Cov: C = 5, T = 12, gi|229783378|gb|CY039894.1|
+Pos: 475, A>A/C | Cov: A = 12, C = 5, gi|229783378|gb|CY039894.1|
+Pos: 672, T>A/T | Cov: A = 3, T = 13, gi|229783378|gb|CY039894.1|
+Pos: 684, C>C/G | Cov: C = 12, G = 3, gi|229783378|gb|CY039894.1|
+Pos: 740, G>C/G | Cov: C = 1, G = 2, gi|229783378|gb|CY039894.1|
+Pos: 749, A>A/G | Cov: A = 2, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 758, G>C/G | Cov: C = 1, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 763, G>A/G | Cov: A = 2, G = 2, gi|229783378|gb|CY039894.1|
+Pos: 764, A>A/T | Cov: A = 3, T = 1, gi|229783378|gb|CY039894.1|
+Pos: 766, T>A/T | Cov: A = 1, T = 3, gi|229783378|gb|CY039894.1|
+Pos: 773, A>A/C | Cov: A = 2, C = 1, gi|229783378|gb|CY039894.1|
+Pos: 774, G>A/G | Cov: A = 2, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 775, G>A/G | Cov: A = 1, G = 2, gi|229783378|gb|CY039894.1|
+Pos: 779, A>A/T | Cov: A = 2, T = 1, gi|229783378|gb|CY039894.1|
+Pos: 781, C>C/G | Cov: C = 2, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 782, A>A/T | Cov: A = 2, T = 1, gi|229783378|gb|CY039894.1|
+Pos: 786, T>C/T | Cov: C = 1, T = 2, gi|229783378|gb|CY039894.1|
+Pos: 789, T>A/T | Cov: A = 1, T = 2, gi|229783378|gb|CY039894.1|
+Pos: 809, A>A/C | Cov: A = 2, C = 1, gi|229783378|gb|CY039894.1|
+Pos: 882, T>G/T | Cov: G = 1, T = 3, gi|229783378|gb|CY039894.1|
+Pos: 884, C>A/C | Cov: A = 1, C = 3, gi|229783378|gb|CY039894.1|
+Pos: 890, C>C/G | Cov: C = 3, G = 1, gi|229783378|gb|CY039894.1|
+Pos: 913, C>A | Cov: A = 9, gi|229783378|gb|CY039894.1|
+Pos: 957, A>A/G | Cov: A = 13, G = 3, gi|229783378|gb|CY039894.1|
+Pos: 961, A>A/G | Cov: A = 11, G = 3, gi|229783378|gb|CY039894.1|
+Pos: 1032, T>G/T | Cov: G = 1, T = 2, gi|229783378|gb|CY039894.1|
+Pos: 14, G>G/T | Cov: G = 3, T = 1, gi|229783385|gb|CY039897.1|
+Pos: 146, T>A/T | Cov: A = 3, T = 23, gi|229783385|gb|CY039897.1|
+Pos: 150, A>A/T | Cov: A = 24, T = 3, gi|229783385|gb|CY039897.1|
+Pos: 154, G>G/T | Cov: G = 14, T = 10, gi|229783385|gb|CY039897.1|
+Pos: 197, G>A | Cov: A = 25, gi|229783385|gb|CY039897.1|
+Pos: 271, T>A/T | Cov: A = 6, T = 6, gi|229783385|gb|CY039897.1|
+Pos: 473, A>A/T | Cov: A = 12, T = 3, gi|229783385|gb|CY039897.1|
+Pos: 506, A>A/+ | Cov: A = 18, + = 16, gi|229783385|gb|CY039897.1|
+Pos: 601, T>G/T | Cov: G = 1, T = 3, gi|229783385|gb|CY039897.1|
+Pos: 603, A>A/T | Cov: A = 2, T = 1, gi|229783385|gb|CY039897.1|
+Pos: 604, G>A/G | Cov: A = 1, G = 2, gi|229783385|gb|CY039897.1|
+Pos: 606, G>C/G | Cov: C = 1, G = 2, gi|229783385|gb|CY039897.1|
+Pos: 618, C>C/T | Cov: C = 2, T = 1, gi|229783385|gb|CY039897.1|

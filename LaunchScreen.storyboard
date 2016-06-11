@@ -24,10 +24,10 @@
                                     <constraint firstAttribute="width" constant="320" id="Vfz-AX-0Aw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogoDNAIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="plU-s7-vLh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DNA_Strand_Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="plU-s7-vLh">
                                 <rect key="frame" x="196" y="136" width="208" height="328"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="plU-s7-vLh" secondAttribute="height" multiplier="8:11" constant="-30.545454545454561" id="9VX-lG-my1"/>
@@ -57,6 +57,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iGenomicsLogoDNAIcon.png" width="184" height="400"/>
+        <image name="DNA_Strand_Icon.png" width="184" height="400"/>
     </resources>
 </document>

@@ -1,0 +1,52 @@
+Time Trials For Non-Seeded Aligning 
+~ Per Each Addition to the Algorithm a Set of Five Time Trials will be Recorded ~
+
+---FILES USED--------
+Reference Genome: flu.H1N1.fa
+Reads File (From my Dropbox): flu.H1N1.nanopore.clean.fq 
+---------------------
+
+---PARAMETERS USED---
+Subs/In/Dels
+Max Error Rate: .30
+Mutation Coverage: 7
+Seeding Enabled: NO
+Trimming Enabled: (YES WITH VALUE OF 0) OR NO
+---------------------
+
+---OTHER NOTES-------
+Analyze Button Was Pressed to Begin Aligning Process Every Time
+---------------------
+
+1) Exact-Match Short Sequences and at the Matched Positions Compute ED of Read to the
+Reference Genome
+    -) Test: 20-mer short seqs
+    --) 20-mers
+        1) 23.519413 
+        2) 23.618626
+        3) 23.608485
+        4) 23.640793
+        5) 23.637501
+    --) Unofficially Tested 15-mer short seqs: Slower than 20-mers
+    --) Unofficially Tested 30-mer short seqs: Not significantly faster than
+    20-mers (Only about .1 to .15 seconds faster)
+
+2) Banded Edit Distance Computation As Opposed to the Traditional Computation
+    -) Test:
+    --)
+        1)
+        2)
+        3)
+        4)
+        5)
+
+3) Compute the Edit Distance for the series of length n longer Sequences to the Left and Right of the
+Exact Matched Short Sequence, and generate the final edit distance of the alignment based off those edit
+distances 
+    -)Test: 100-mer longer sequences
+    --) 100-mers
+        1)
+        2)
+        3)
+        4)
+        5) 
