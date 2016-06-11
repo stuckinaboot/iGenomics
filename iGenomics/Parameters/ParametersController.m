@@ -14,7 +14,7 @@
 
 @implementation ParametersController
 
-@synthesize computingController, refFile, readsFile, refFileSegmentNames, imptMutsFile, refSegmentLens;
+@synthesize computingController, refFile, readsFile, refFileSegmentNames, imptMutsFile, refSegmentLens, refSegmentNames;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -204,7 +204,7 @@
     parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:(int)mutationSupportStpr.value];
     parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal];
     parameters[kParameterArrayTrimmingRefCharKey] = trimRefChar;
-    parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:seedingSwitch.on];
+    parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:FALSE];//seedingSwitch.on];
     parameters[kParameterArrayRefFileSegmentNamesKey] = refFileSegmentNames;
     parameters[kParameterArrayReadFileNameKey] = readsFile.name;
     parameters[kParameterArraySegmentNamesKey] = refSegmentNames;
@@ -287,7 +287,13 @@
         for (int i = 0; i < [lineArray count]; i++) {
             NSString *str = [lineArray objectAtIndex:i];
             if ([str characterAtIndex:0] == kFaFileTitleIndicator) {
-                [namesArray addObject:[str substringWithRange:NSMakeRange(1, [str rangeOfString:kSeparateGenomeNamesSubstringToIndexStr].location - 1)]];//Removes the > in the beginning and the white space at the end
+                NSRange rangeOfSeparateGenomeNamesSubstringToIndexStr = [str rangeOfString:kSeparateGenomeNamesSubstringToIndexStr];
+                if (rangeOfSeparateGenomeNamesSubstringToIndexStr.length > 0) {
+                    NSRange range = NSMakeRange(1, rangeOfSeparateGenomeNamesSubstringToIndexStr.location - 1);
+                    [namesArray addObject:[str substringWithRange:range]];//Removes the > in the beginning and the white space at the end
+                } else {
+                    [namesArray addObject:str];
+                }
                 [lineArray removeObjectAtIndex:i];
                 if (prevLenIndex != -1)
                     [lengthArray addObject:[NSNumber numberWithInt:len]];//lineLen*(i-prevLenIndex)]];

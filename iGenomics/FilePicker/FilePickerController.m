@@ -174,7 +174,7 @@
         
         parameters[kParameterArrayMatchTypeKey] = @(MatchTypeSubsAndIndels);
         parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:0.2];
-        parameters[kParameterArrayFoRevKey] = [NSNumber numberWithInt:1]; /*Alignment type (forward and reverse)*/
+        parameters[kParameterArrayFoRevKey] = kAlignmentTypeForwardAndReverse;/*Alignment type (forward and reverse)*/
         parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:5];
         parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:kTrimmingOffVal];
         parameters[kParameterArrayTrimmingRefCharKey] = [NSString stringWithFormat:@"%c",kTrimmingRefChar0];
@@ -187,6 +187,7 @@
     parameters[kParameterArraySegmentLensKey] = parametersController.refSegmentLens;
     parameters[kParameterArrayReadFileNameKey] = readsFile.name;
     parameters[kParameterArrayRefFileSegmentNamesKey] = parametersController.refFileSegmentNames;
+    parameters[kParameterArraySegmentNamesKey] = parametersController.refSegmentNames;
     
     NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] != NSOrderedSame && [ext caseInsensitiveCompare:kFastq] != NSOrderedSame) {

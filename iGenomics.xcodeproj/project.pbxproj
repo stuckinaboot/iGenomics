@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A30051391CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30051361CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq */; };
-		A300513A1CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30051371CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq */; };
-		A300513B1CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30051381CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq */; };
 		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
@@ -219,9 +216,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A30051361CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.advanced.fluH1N1.fastq; path = ../../../../Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/seeded/advanced_test/reads.advanced.fluH1N1.fastq; sourceTree = "<group>"; };
-		A30051371CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.basic.fluH1N1.fastq; path = ../../../../Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/seeded/basic_test/reads.basic.fluH1N1.fastq; sourceTree = "<group>"; };
-		A30051381CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.medium.fluH1N1.fastq; path = ../../../../Documents/iGenomics/organized_paper_materials/alignment_validation/short_read_validation/seeded/medium_test/reads.medium.fluH1N1.fastq; sourceTree = "<group>"; };
 		A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = incorrectsingle.fq; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
@@ -1013,7 +1007,6 @@
 			isa = PBXGroup;
 			children = (
 				A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */,
-				A3B025451CF4CFD3007C98CE /* Reads Files for Alignment Validation */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
 				A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */,
@@ -1082,17 +1075,6 @@
 				A3AF083D1D05C7D5000EC63B /* reads-rl250-se0.2-mr0.1.fq */,
 			);
 			path = simulated_reads_files;
-			sourceTree = "<group>";
-		};
-		A3B025451CF4CFD3007C98CE /* Reads Files for Alignment Validation */ = {
-			isa = PBXGroup;
-			children = (
-				A30051361CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq */,
-				A30051371CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq */,
-				A30051381CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq */,
-			);
-			name = "Reads Files for Alignment Validation";
-			path = flu.H1N1s;
 			sourceTree = "<group>";
 		};
 		A3B92FE1196F017E00EE1C06 /* Alignment Grid View */ = {
@@ -1470,7 +1452,6 @@
 				A3AF08531D05C7D5000EC63B /* reads-rl250-se0.1-mr0.001.fq in Resources */,
 				A35B05281D0A0F2400374489 /* reads-rl100-se0.01-mr0.01.fq in Resources */,
 				A3AF08481D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.01.fq in Resources */,
-				A300513B1CF5F5460049F7A2 /* reads.medium.fluH1N1.fastq in Resources */,
 				A35B05361D0A0F2400374489 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
 				A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */,
@@ -1516,7 +1497,6 @@
 				A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */,
 				A3AF08491D05C7D5000EC63B /* reads-rl1000-se0.01-mr0.1.fq in Resources */,
 				A3AF08451D05C7D5000EC63B /* reads-rl100-se0.2-mr0.01.fq in Resources */,
-				A300513A1CF5F5460049F7A2 /* reads.basic.fluH1N1.fastq in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
 				A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */,
 				A35160881AA3FD7B0004FD32 /* Icon-Small-50.png in Resources */,
@@ -1539,7 +1519,6 @@
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A35B05321D0A0F2400374489 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
-				A30051391CF5F5460049F7A2 /* reads.advanced.fluH1N1.fastq in Resources */,
 				A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */,

@@ -170,8 +170,11 @@
 
 //    [self performSelectorOnMainThread:@selector(updateProgressView) withObject:nil waitUntilDone:NO];//Updates the main thread because readProcessed is called from a background thread
     [self updateProgressView];
-    if (![readData isEqualToString:@""])
-        [exportDataStr appendFormat:@"%@",readData];
+    if (![readData isEqualToString:@""]) {
+        @synchronized (self) {
+            [exportDataStr appendFormat:@"%@",readData];
+        }
+    }
 }
 
 - (void)readAligned {

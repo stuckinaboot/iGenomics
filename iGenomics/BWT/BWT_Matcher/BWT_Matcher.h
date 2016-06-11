@@ -29,6 +29,7 @@
 #define kReadLoopLargeEditDistStepFactor 0.15 //kReadLoopLargeEditDistStepFactor * maxEdit
 
 #define kBWT_MatcherReadAlignerMultiThreadStride 10
+#define kBWT_MatcherReadAlignerMultiThreadNumOfThreads 10
 
 
 //#define kBytesForIndexer 101//101

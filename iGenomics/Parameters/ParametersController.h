@@ -76,7 +76,7 @@
 @property (nonatomic) ComputingController *computingController;
 @property (nonatomic) APFile *refFile, *readsFile, *imptMutsFile;
 @property (nonatomic) NSString *refFileSegmentNames;
-@property (nonatomic) NSArray *refSegmentLens;
+@property (nonatomic) NSArray *refSegmentLens, *refSegmentNames;
 - (IBAction)matchTypeChanged:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)mutationSupportValueChanged:(id)sender;

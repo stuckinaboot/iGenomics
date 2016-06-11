@@ -128,8 +128,9 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     int actualDGenomeLen = dgenomeLen;
     dgenomeLen = (int)strlen(originalStrWithDividers);
     
-    int stride = kBWT_MatcherReadAlignerMultiThreadStride;
     int reedsCount = [reedsArray count];
+    int stride = reedsCount / kBWT_MatcherReadAlignerMultiThreadNumOfThreads;
+    
     dispatch_queue_t _q = dispatch_queue_create("dsfasd", DISPATCH_QUEUE_SERIAL);
     dispatch_apply(reedsCount / stride, queue, ^(size_t i) {
         int j = (int)(i * stride);
@@ -352,12 +353,12 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //            if (info != NULL)
 //                printf("\n%i,%i,%c,%i,%s,%s", readNum,info.position,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA);
 //        }
-    dispatch_async(_q, ^{
+    @synchronized (self) {
         NSString *readDataStr = [NSString stringWithFormat:kReadExportDataBasicInfo, info.readName,info.position+1/* +1 because export data should start from 1, not 0*/,(info.isRev) ? '-' : '+', info.distance,info.gappedB,info.gappedA];
 
         [delegate readProccesed:readDataStr andMatchedAtLeastOnce:info != NULL];
         [readAlignmentsArr addObject:info];
-    });
+    };
 }
 
 - (void)createOriginalStrWithDividers {
