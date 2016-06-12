@@ -143,17 +143,22 @@
 #pragma SimpleFileDisplayViewDelegate
 
 - (void)fileSelected:(APFile *)file inSimpleFileDisplayView:(id)sfdv {
-    if (file.fileType == APFileTypeDefault)
-        file = [FileManager defaultFileForFileWithOnlyName:file];
-    else if (file.fileType == APFileTypeLocal) {
-        NSString *directory = [AdvancedFileInputView getLocalFileDirectoryForFileTypeSelectionOption:fileTypeSelectionOption];
-        
-        file = [FileManager localFileForFileWithOnlyName:file inDirectory:directory];
-    }
-    if (file)
+    if (file) {
+        if (file.fileType == APFileTypeDefault)
+            file = [FileManager defaultFileForFileWithOnlyName:file];
+        else if (file.fileType == APFileTypeLocal) {
+            NSString *directory = [AdvancedFileInputView getLocalFileDirectoryForFileTypeSelectionOption:fileTypeSelectionOption];
+            
+            file = [FileManager localFileForFileWithOnlyName:file inDirectory:directory];
+        }
         [self selectFile:file];
-    else
+    }
+    else {
+        //Make selectedFile be empty file
+        selectedFile = [[APFile alloc] initWithName:@"" contents:@"" fileType:APFileTypeDefault];
+        fileNameLbl.text = kAdvancedFileInputViewFileNameLblDefaultTxt;
         [delegate fileSelected:NO inFileInputView:self];
+    }
 }
 
 - (void)deletePressedForFile:(APFile *)file inSimpleFileDisplayView:(id)sfdv {

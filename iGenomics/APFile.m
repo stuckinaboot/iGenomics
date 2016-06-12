@@ -18,14 +18,23 @@
     if (self) {
         name = n;
         contents = c;
-        ext = [name substringFromIndex:[name rangeOfString:@"." options:NSBackwardsSearch].location+1];
+        
+        NSRange rangeOfDot = [name rangeOfString:@"." options:NSBackwardsSearch];
+        if (rangeOfDot.length > 0)
+            ext = [name substringFromIndex:rangeOfDot.location+1];
+        else
+            ext = @"";
         fileType = ft;
     }
     return self;
 }
 
 + (NSString*)fileNameWithoutExtForFile:(APFile*)file {
-    return [file.name substringToIndex:[file.name rangeOfString:@"." options:NSBackwardsSearch].location];
+    NSRange rangeOfDot = [file.name rangeOfString:@"." options:NSBackwardsSearch];
+    if (rangeOfDot.length > 0)
+        return [file.name substringToIndex:rangeOfDot.location];
+    else
+        return file.name;
 }
 
 @end

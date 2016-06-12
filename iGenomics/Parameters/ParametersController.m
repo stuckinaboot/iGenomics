@@ -166,7 +166,10 @@
     refFile = [[APFile alloc] initWithName:myRefFile.name contents:myRefFile.contents fileType:myRefFile.fileType];
     readsFile = [[APFile alloc] initWithName:myReadsFile.name contents:myReadsFile.contents fileType:myReadsFile.fileType];
 //    refFileSegmentNames = refN;
-    imptMutsFile = [[APFile alloc] initWithName:myImptMutsFile.name contents:myImptMutsFile.contents fileType:myImptMutsFile.fileType];
+    if (myImptMutsFile)
+        imptMutsFile = [[APFile alloc] initWithName:myImptMutsFile.name contents:myImptMutsFile.contents fileType:myImptMutsFile.fileType];
+    else
+        imptMutsFile = NULL;
     
 //    refFile.name = refFileSegmentNames;//Necessary for some later organization of the diff segments -- could possibly be simplified in the future but I have limited time now (leaving for college soon)
     [self fixGenomeFile:refFile];

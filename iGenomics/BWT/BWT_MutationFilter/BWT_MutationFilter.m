@@ -264,15 +264,17 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     for (int i = 0; i<arr.count; i++) {
         diffCharsAtPos = 0;
         int p = [[arr objectAtIndex:i] intValue];
+        if (p == 1375)
+            NSLog(@"foo");
         for (int a = 0; a<kACGTwithInDelsLen; a++) {
-            if (posOccArray[a][p]>0) {
+            if (posOccArray[a][p] >= heteroAllowance) {
                 diffCharsAtPos++;
                 foundChars[posInFoundChars] = kACGTwithInDels[a];
                 posInFoundChars++;
             }
             foundChars[posInFoundChars] = '\0';
         }
-        if (diffCharsAtPos == 1 && coverageArray[p] >= kLowestAllowedCoverage)
+        if (diffCharsAtPos == 1 && foundChars[0] != originalStr[p] && coverageArray[p] >= kLowestAllowedCoverage)
             [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];//Duplicates it so it doesn't overwrite it (same for below)
         else if (coverageArray[p] < kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
@@ -290,18 +292,19 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             diffCharsAtPos = 0;
             posInFoundChars = 0;
             BOOL alreadyAdded = FALSE;
-            int highestCoverageAmt = posOccArray[0][p];
-            char highestCoverageChar = kACGTwithInDels[0];
+            int highestCoverageAmt = 0;//posOccArray[0][p];
+            char highestCoverageChar = kMatchTypeNoAlignment;
             for (int a = 0; a<kACGTwithInDelsLen; a++) {
-                if (posOccArray[a][p]>=heteroAllowance) {
+                if (posOccArray[a][p] >= heteroAllowance) {
                     diffCharsAtPos++;
                     foundChars[posInFoundChars] = kACGTwithInDels[a];
                     posInFoundChars++;
-                }
-                int newHighestCoverageAmt = MAX(highestCoverageAmt, posOccArray[a][p]);
-                if (highestCoverageAmt != newHighestCoverageAmt) {
-                    highestCoverageChar = kACGTwithInDels[a];
-                    highestCoverageAmt = newHighestCoverageAmt;
+                    
+                    int newHighestCoverageAmt = MAX(highestCoverageAmt, posOccArray[a][p]);
+                    if (highestCoverageAmt != newHighestCoverageAmt) {
+                        highestCoverageChar = kACGTwithInDels[a];
+                        highestCoverageAmt = newHighestCoverageAmt;
+                    }
                 }
                /* else if (diffCharsAtPos > 1) {
                     [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p]];
@@ -314,7 +317,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 posInFoundChars++;
             }
             foundChars[posInFoundChars] = '\0';
-            if ((diffCharsAtPos > 1 || foundChars[0] != originalStr[p]) && !alreadyAdded) //We compare foundChars to originalStr because if foundChars has 1 character, then that means at least one other character was also at that position, but that character had an occurence value below the hetero threshold. Also, on a separate note, in case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
+            if ((diffCharsAtPos > 1 || foundChars[0] != originalStr[p]) && highestCoverageAmt > 0 && !alreadyAdded) //We compare foundChars to originalStr because if foundChars has 1 character, then that means at least one other character was also at that position, but that character had an occurence value below the hetero threshold. Also, on a separate note, in case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
                 [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];
         }
         for (int t = 0; t < kACGTLen + 2; t++) {
