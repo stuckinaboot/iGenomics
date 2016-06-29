@@ -9,7 +9,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComputingController">
             <connections>
                 <outlet property="readProgressView" destination="y8t-Wo-8H6" id="G4e-zz-PT2"/>
-                <outlet property="readsProcessedLbl" destination="GQI-UT-BUB" id="oc9-uO-oeM"/>
                 <outlet property="timeRemainingLbl" destination="NyJ-1Q-bQI" id="0ZO-mz-Hhn"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -26,12 +25,6 @@
                         <constraint firstAttribute="height" constant="144" id="12"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="78"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GQI-UT-BUB">
-                    <rect key="frame" x="249" y="406" width="525" height="82"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

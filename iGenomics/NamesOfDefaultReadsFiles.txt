@@ -25,9 +25,6 @@ reads-rl250-se0.1-mr0.1.fq
 reads-rl250-se0.2-mr0.001.fq
 reads-rl250-se0.2-mr0.01.fq
 reads-rl250-se0.2-mr0.1.fq
-reads.basic.fluH1N1.fastq
-reads.medium.fluH1N1.fastq
-reads.advanced.fluH1N1.fastq
 incorrectsingle.fq
 flu.H1N1.clean.fq
 flu.H1N1.resistant.fq

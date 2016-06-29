@@ -16,6 +16,7 @@
                         *defaultLighterBackground,
                         *defaultLbl,
                         *defaultBtn,
+                        *defaultBtnSpecial,
                         *covLbl,
                         *refLbl,
                         *foundLbl,

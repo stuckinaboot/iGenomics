@@ -23,9 +23,9 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)setStuffUp
 {
-    [super viewDidLoad];
+//    [super viewDidLoad];
     
     dnaColors = [[DNAColors alloc] init];
     [dnaColors setUp];
@@ -57,8 +57,11 @@
         hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidLayoutSubviews {
     if (!firstAppeared) {
+        [self setStuffUp];
+        
+        firstAppeared = TRUE;
         [self resetDisplay];
         
         [self resetGridViewForType:alignmentGridView];

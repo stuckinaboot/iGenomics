@@ -59,19 +59,23 @@
             
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideUtilityMenu:) name:UIMenuControllerDidHideMenuNotification object:nil];
         }
-    }
-    else
-        if (([tblView.gestureRecognizers count] > 0 && ![tblView.gestureRecognizers[0] isKindOfClass:[UILongPressGestureRecognizer class]]))
+    } else
+        if (([tblView.gestureRecognizers count] > 0 && [tblView.gestureRecognizers[0] isKindOfClass:[UILongPressGestureRecognizer class]]))
             [tblView removeGestureRecognizer:tblView.gestureRecognizers[0]];
     
+    BOOL newFileArrIsSameAsOld = [entireFileArr isEqualToArray:filesArray];
     entireFileArr = filesArray;
     searchedFileArr = [NSMutableArray arrayWithArray:entireFileArr];
+    NSIndexPath *indexPath = [tblView indexPathForSelectedRow];
     [tblView reloadData];
+    if (indexPath && newFileArrIsSameAsOld) {
+        [tblView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 - (void)presentInView:(UIView *)view {
     self.alpha = 0.0f;
-    [view addSubview:self];
+    [self setHidden:NO];
     [UIView animateWithDuration:kSimpleFileDisplayViewFadeAnimationDuration animations:^{
         self.alpha = 1.0f;
         [view bringSubviewToFront:self];
@@ -82,10 +86,12 @@
     NSIndexPath *path = [tblView indexPathForSelectedRow];
     if (!path || [entireFileArr count] == 0) {
         [self removeFromView];
+        [delegate simpleFileDisplayViewDidRemoveFromView];
         return;
     }
     int row = (int)path.row;
     [delegate fileSelected:searchedFileArr[row] inSimpleFileDisplayView:self];
+    [delegate simpleFileDisplayViewDidRemoveFromView];
     [self removeFromView];
 }
 
@@ -93,7 +99,7 @@
     [UIView animateWithDuration:kSimpleFileDisplayViewFadeAnimationDuration animations:^{
         self.alpha = 0.0f;
     } completion:^(BOOL finished){
-        [self removeFromSuperview];
+        [self setHidden:YES];
     }];
 }
 

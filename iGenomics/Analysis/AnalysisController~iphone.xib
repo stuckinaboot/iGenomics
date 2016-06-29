@@ -112,6 +112,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <pinchGestureRecognizer id="1163"/>
         <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CYU-Yi-vjy" customClass="AnalysisControllerIPhoneToolbar">
@@ -119,7 +120,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="2FE-YB-Bqd">
-                    <rect key="frame" x="273" y="291" width="23" height="37"/>
+                    <rect key="frame" x="273" y="275" width="23" height="37"/>
                     <color key="pageIndicatorTintColor" red="0.44627659174358247" green="0.56848937618123685" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <connections>
@@ -160,11 +161,11 @@
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="trailing" secondItem="wQo-yp-bE5" secondAttribute="trailing" id="3cZ-MZ-DIW"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="leading" secondItem="CYU-Yi-vjy" secondAttribute="leading" id="8zN-rG-hcP"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="top" secondItem="CYU-Yi-vjy" secondAttribute="top" id="BNe-10-iEC"/>
-                <constraint firstItem="2FE-YB-Bqd" firstAttribute="top" secondItem="CYU-Yi-vjy" secondAttribute="top" constant="291" id="DwK-rq-Ivi"/>
                 <constraint firstAttribute="trailing" secondItem="RFM-9p-3AZ" secondAttribute="trailing" id="EPn-ll-zjd"/>
                 <constraint firstItem="wQo-yp-bE5" firstAttribute="top" secondItem="RFM-9p-3AZ" secondAttribute="bottom" id="Uhp-yp-Dsm"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="leading" secondItem="wQo-yp-bE5" secondAttribute="leading" id="Y4l-3j-YQx"/>
                 <constraint firstAttribute="bottom" secondItem="wQo-yp-bE5" secondAttribute="bottom" id="kxa-Fs-Qzu"/>
+                <constraint firstAttribute="bottom" secondItem="2FE-YB-Bqd" secondAttribute="bottom" constant="8" id="sx3-Py-9G0"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -190,24 +191,11 @@
                         <constraint firstAttribute="width" priority="999" constant="246" id="4wT-7v-fJb"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="200" id="Y6Z-6y-3aJ"/>
                     </constraints>
-                    <state key="normal" title="Show All Mutations">
+                    <state key="normal" title="All Mutations">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="showMutTBView:" destination="-1" eventType="touchUpInside" id="dnX-AY-Ahl"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWC-re-dpF">
-                    <rect key="frame" x="16" y="160" width="246" height="74"/>
-                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="74" id="fI5-9S-Blz"/>
-                    </constraints>
-                    <state key="normal" title="Show Histogram">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="showCoverageHistogram:" destination="-1" eventType="touchUpInside" id="bAm-Wc-n1X"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psw-GG-DUw">
@@ -216,7 +204,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="74" id="RNS-F1-Vcg"/>
                     </constraints>
-                    <state key="normal" title="Show Alignments">
+                    <state key="normal" title="Alignments">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -229,11 +217,24 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="74" id="FO0-8J-e4d"/>
                     </constraints>
-                    <state key="normal" title="Show Coverage Profile">
+                    <state key="normal" title="Coverage Profile">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="showCovProfilePressed:" destination="CYU-Yi-vjy" eventType="touchUpInside" id="lud-dz-HCT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWC-re-dpF">
+                    <rect key="frame" x="16" y="160" width="246" height="74"/>
+                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="74" id="fI5-9S-Blz"/>
+                    </constraints>
+                    <state key="normal" title="Coverage Histogram">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showCoverageHistogram:" destination="-1" eventType="touchUpInside" id="bAm-Wc-n1X"/>
                     </connections>
                 </button>
             </subviews>
@@ -246,7 +247,7 @@
                 <constraint firstItem="tWC-re-dpF" firstAttribute="baseline" secondItem="JY3-pN-A5x" secondAttribute="baseline" id="DPo-9J-ZSC"/>
                 <constraint firstItem="psw-GG-DUw" firstAttribute="top" secondItem="kDM-8b-uf1" secondAttribute="top" constant="42" id="DQB-hf-zUc"/>
                 <constraint firstItem="tWC-re-dpF" firstAttribute="top" secondItem="psw-GG-DUw" secondAttribute="bottom" constant="44" id="E2J-Gd-X9X"/>
-                <constraint firstItem="tWC-re-dpF" firstAttribute="width" secondItem="JY3-pN-A5x" secondAttribute="width" priority="999" id="EE0-Pa-6yZ"/>
+                <constraint firstItem="tWC-re-dpF" firstAttribute="width" secondItem="JY3-pN-A5x" secondAttribute="width" id="EE0-Pa-6yZ"/>
                 <constraint firstAttribute="bottom" secondItem="tWC-re-dpF" secondAttribute="bottom" constant="42" id="I70-C2-4gO"/>
                 <constraint firstItem="tWC-re-dpF" firstAttribute="width" secondItem="psw-GG-DUw" secondAttribute="width" id="Lek-7E-OrZ"/>
                 <constraint firstItem="tWC-re-dpF" firstAttribute="height" secondItem="JY3-pN-A5x" secondAttribute="height" id="VpW-O0-CZs"/>

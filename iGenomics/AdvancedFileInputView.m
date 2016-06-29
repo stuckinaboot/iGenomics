@@ -36,15 +36,19 @@
         inputBtn.showsTouchWhenHighlighted = YES;
         [inputBtn.titleLabel setFont:[UIFont systemFontOfSize:kAdvancedFileInputViewBtnFontSize]];
         [inputBtn addTarget:self action:@selector(inputBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:inputBtn];
+//        [self addSubview:inputBtn];
         
         fileNameLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, inputBtn.frame.origin.y-size.height, size.width, size.height)];
         [fileNameLbl setTextAlignment:NSTextAlignmentCenter];
         fileNameLbl.text = kAdvancedFileInputViewFileNameLblDefaultTxt;
         [fileNameLbl setAdjustsFontSizeToFitWidth:YES];
-        [self addSubview:fileNameLbl];
+//        [self addSubview:fileNameLbl];
     }
     return self;
+}
+
+- (void)setSuperView:(UIView *)sV {
+    superView = sV;
 }
 
 - (void)loadWithFileTypeSelectionOption:(FileTypeSelectionOption)selectionOption containingController:(UIViewController *)vc validationExts:(NSArray *)exts {
@@ -54,6 +58,8 @@
     
     CGRect frame = self.frame;
     simpleFileDisplayView = [[SimpleFileDisplayView alloc] initWithFrame:CGRectMake(0, fileTypeSelectionOptionLbl.frame.size.height, frame.size.width, frame.size.height-fileTypeSelectionOptionLbl.frame.size.height)];
+    [simpleFileDisplayView setHidden:YES];
+    [self addSubview:simpleFileDisplayView];
     [simpleFileDisplayView setDelegate:self];
     
     containingController = vc;
@@ -77,13 +83,16 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:kFileInputOptionsSheetOptionTitleDropbox]) {
+        [self setHidden:NO];
         [self displayDropboxChooser];
     }
     else if ([title isEqualToString:kFileInputOptionsSheetOptionTitleLocal]) {
+        [self setHidden:NO];
         [simpleFileDisplayView presentInView:self];
         [simpleFileDisplayView displayWithFilesArray:localFiles deletingFilesEnabled:YES];
     }
     else if ([title isEqualToString:kFileInputOptionsSheetOptionTitleDefault]) {
+        [self setHidden:NO];
         [simpleFileDisplayView presentInView:self];
         [simpleFileDisplayView displayWithFilesArray:defaultFiles deletingFilesEnabled:NO];
     }
@@ -94,6 +103,7 @@
         selectedFile = file;
         fileNameLbl.text = selectedFile.name;
         [delegate fileSelected:(selectedFile) inFileInputView:self];
+        [delegate fileSelectedWithName:selectedFile.name inFileInputView:self];
     }
     else
         [GlobalVars displayiGenomicsAlertWithMsg:kAdvancedFileInputViewFileDidNotPassValidationAlertMsg];
@@ -158,6 +168,7 @@
         selectedFile = [[APFile alloc] initWithName:@"" contents:@"" fileType:APFileTypeDefault];
         fileNameLbl.text = kAdvancedFileInputViewFileNameLblDefaultTxt;
         [delegate fileSelected:NO inFileInputView:self];
+        [delegate fileSelectedWithName:kAdvancedFileInputViewFileNameLblDefaultTxt inFileInputView:self];
     }
 }
 
@@ -173,6 +184,10 @@
     [FileManager renameLocalFile:file forNewFileName:newName inDirectory:directory];
     localFiles = [FileManager getLocalFileWithoutContentsArrayFromDirectory:directory];
     [sfdv setLocalFilesArray:localFiles];
+}
+
+- (void)simpleFileDisplayViewDidRemoveFromView {
+    [self setHidden:YES];
 }
 
 @end

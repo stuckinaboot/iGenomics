@@ -3,19 +3,24 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilePickerController">
             <connections>
-                <outlet property="analyzeBtn" destination="S7T-EZ-NqY" id="gAb-By-TqW"/>
-                <outlet property="configBtn" destination="fg1-iB-V8h" id="kvN-jL-DSL"/>
+                <outlet property="analyzeBtn" destination="mEZ-Hd-Y7L" id="cQ4-Ut-Amu"/>
+                <outlet property="configBtn" destination="9fZ-1t-ECL" id="9WY-2U-33c"/>
+                <outlet property="imptMutsAbstractChooseView" destination="XgC-aq-l4d" id="paX-Tu-D5d"/>
                 <outlet property="imptMutsFileInputContainerView" destination="7QR-rb-ogL" id="qtV-q6-V2K"/>
                 <outlet property="nextBtn" destination="4hS-Gw-Sha" id="49F-5l-efl"/>
+                <outlet property="readsAbstractChooseView" destination="cWM-ua-hBq" id="RA4-Bp-KFz"/>
                 <outlet property="readsFileInputContainerView" destination="l9r-Gd-OjD" id="g2o-Lm-rsD"/>
+                <outlet property="refAbstractChooseView" destination="Bsq-SC-3kY" id="MHr-v2-3PA"/>
                 <outlet property="refFileInputContainerView" destination="rBb-up-Rcl" id="psu-Aa-Z8L"/>
                 <outlet property="scrollView" destination="Zxk-sB-fas" id="VTc-Rl-WPU"/>
                 <outlet property="secondDataSelectionBarIPhoneOnly" destination="CIj-cm-v3s" id="4TW-S2-mm0"/>
-                <outlet property="view" destination="pqc-Ag-UUM" id="4az-EA-cGP"/>
+                <outlet property="topBar" destination="WsD-9Z-HGJ" id="WI7-y3-YZh"/>
+                <outlet property="view" destination="Awt-KV-KkA" id="lph-sT-5tp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -29,22 +34,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7w-8q-vRF">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
-                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZp-TP-zAv">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="Q74-Ja-ZtD"/>
-                                        <constraint firstAttribute="width" constant="320" id="R2W-eD-52S"/>
-                                    </constraints>
-                                    <items>
-                                        <navigationItem title="Data Selection" id="eGY-qZ-0GB">
-                                            <barButtonItem key="leftBarButtonItem" title="Back" id="YVG-Ut-uiX">
-                                                <connections>
-                                                    <action selector="backPressed:" destination="-1" id="SQF-cj-4bc"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </navigationItem>
-                                    </items>
-                                </navigationBar>
                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hS-Gw-Sha">
                                     <rect key="frame" x="18" y="518" width="285" height="48"/>
                                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -66,6 +55,22 @@
                                         <constraint firstAttribute="width" constant="320" id="Z46-aI-64X"/>
                                     </constraints>
                                 </view>
+                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZp-TP-zAv">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="Q74-Ja-ZtD"/>
+                                        <constraint firstAttribute="width" constant="320" id="R2W-eD-52S"/>
+                                    </constraints>
+                                    <items>
+                                        <navigationItem title="Data Selection" id="eGY-qZ-0GB">
+                                            <barButtonItem key="leftBarButtonItem" title="Back" id="YVG-Ut-uiX">
+                                                <connections>
+                                                    <action selector="backPressed:" destination="-1" id="SQF-cj-4bc"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
@@ -232,6 +237,107 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view contentMode="scaleToFill" id="Awt-KV-KkA">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WsD-9Z-HGJ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="gmd-BD-DCR"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Data Selection" id="hvu-gS-sAR">
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="waq-gp-1xi">
+                                <connections>
+                                    <action selector="backPressed:" destination="-1" id="2Et-3c-DKc"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bsq-SC-3kY" customClass="AbstractFileChooseView">
+                    <rect key="frame" x="16" y="72" width="289" height="106"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Bsq-SC-3kY" secondAttribute="height" multiplier="289:106" id="QdX-pO-e1r"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-ua-hBq" customClass="AbstractFileChooseView">
+                    <rect key="frame" x="16" y="221" width="289" height="106"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cWM-ua-hBq" secondAttribute="height" multiplier="289:106" id="ZOM-ip-cVX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgC-aq-l4d" customClass="AbstractFileChooseView">
+                    <rect key="frame" x="16" y="370" width="289" height="106"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="XgC-aq-l4d" secondAttribute="height" multiplier="289:106" id="Trm-BP-Sdp"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEZ-Hd-Y7L">
+                    <rect key="frame" x="10" y="510" width="145" height="48"/>
+                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="mEZ-Hd-Y7L" secondAttribute="height" multiplier="145:48" id="Z57-VG-dWe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <state key="normal" title="Analyze">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="analyzePressed:" destination="-1" eventType="touchUpInside" id="FWW-DE-9dq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fZ-1t-ECL">
+                    <rect key="frame" x="167" y="510" width="145" height="48"/>
+                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="9fZ-1t-ECL" secondAttribute="height" multiplier="145:48" id="DvN-Do-OUa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <state key="normal" title="Configure">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showParametersPressed:" destination="-1" eventType="touchUpInside" id="hxW-jx-0I5"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cWM-ua-hBq" firstAttribute="height" secondItem="Bsq-SC-3kY" secondAttribute="height" id="0pb-fD-xyY"/>
+                <constraint firstItem="9fZ-1t-ECL" firstAttribute="leading" secondItem="mEZ-Hd-Y7L" secondAttribute="trailing" constant="12" id="3vG-Ci-u5P"/>
+                <constraint firstItem="WsD-9Z-HGJ" firstAttribute="top" secondItem="Awt-KV-KkA" secondAttribute="top" id="7mf-UI-RXF"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XgC-aq-l4d" secondAttribute="bottom" constant="92" id="88p-Hi-sLq"/>
+                <constraint firstItem="XgC-aq-l4d" firstAttribute="width" secondItem="Bsq-SC-3kY" secondAttribute="width" id="9Ay-RX-DVx"/>
+                <constraint firstItem="XgC-aq-l4d" firstAttribute="top" secondItem="cWM-ua-hBq" secondAttribute="bottom" constant="43" id="9J9-eD-BaK"/>
+                <constraint firstItem="9fZ-1t-ECL" firstAttribute="width" secondItem="mEZ-Hd-Y7L" secondAttribute="width" id="AhY-nu-uNm"/>
+                <constraint firstItem="9fZ-1t-ECL" firstAttribute="top" secondItem="mEZ-Hd-Y7L" secondAttribute="top" id="M2C-KP-QnW"/>
+                <constraint firstItem="mEZ-Hd-Y7L" firstAttribute="leading" secondItem="Awt-KV-KkA" secondAttribute="leading" constant="10" id="PUn-SD-Z7J"/>
+                <constraint firstAttribute="trailing" secondItem="9fZ-1t-ECL" secondAttribute="trailing" constant="8" id="SPO-ce-2ne"/>
+                <constraint firstItem="9fZ-1t-ECL" firstAttribute="height" secondItem="mEZ-Hd-Y7L" secondAttribute="height" id="USk-vq-SrZ"/>
+                <constraint firstAttribute="trailing" secondItem="Bsq-SC-3kY" secondAttribute="trailing" constant="15" id="Wc4-Yb-f9S"/>
+                <constraint firstItem="Bsq-SC-3kY" firstAttribute="leading" secondItem="Awt-KV-KkA" secondAttribute="leading" constant="16" id="XL1-6v-c4o"/>
+                <constraint firstItem="9fZ-1t-ECL" firstAttribute="bottom" secondItem="mEZ-Hd-Y7L" secondAttribute="bottom" id="aHC-wt-VKX"/>
+                <constraint firstItem="cWM-ua-hBq" firstAttribute="leading" secondItem="Bsq-SC-3kY" secondAttribute="leading" id="aUU-FE-8TL"/>
+                <constraint firstItem="cWM-ua-hBq" firstAttribute="trailing" secondItem="Bsq-SC-3kY" secondAttribute="trailing" id="ajV-so-vrt"/>
+                <constraint firstItem="XgC-aq-l4d" firstAttribute="trailing" secondItem="Bsq-SC-3kY" secondAttribute="trailing" id="cdG-fF-Nwy"/>
+                <constraint firstAttribute="trailing" secondItem="WsD-9Z-HGJ" secondAttribute="trailing" id="gng-qf-WFQ"/>
+                <constraint firstItem="XgC-aq-l4d" firstAttribute="leading" secondItem="Bsq-SC-3kY" secondAttribute="leading" id="iYA-3j-rsr"/>
+                <constraint firstItem="Bsq-SC-3kY" firstAttribute="top" secondItem="WsD-9Z-HGJ" secondAttribute="bottom" constant="28" id="kOV-3G-bCi"/>
+                <constraint firstAttribute="bottom" secondItem="mEZ-Hd-Y7L" secondAttribute="bottom" constant="10" id="kOu-jl-Gaq"/>
+                <constraint firstItem="cWM-ua-hBq" firstAttribute="width" secondItem="Bsq-SC-3kY" secondAttribute="width" id="mBv-Nb-H6m"/>
+                <constraint firstItem="XgC-aq-l4d" firstAttribute="height" secondItem="Bsq-SC-3kY" secondAttribute="height" id="o5k-CW-KXA"/>
+                <constraint firstAttribute="bottom" secondItem="9fZ-1t-ECL" secondAttribute="bottom" constant="10" id="qZW-9C-lec"/>
+                <constraint firstItem="WsD-9Z-HGJ" firstAttribute="leading" secondItem="Awt-KV-KkA" secondAttribute="leading" id="xMy-hy-4nU"/>
+                <constraint firstItem="cWM-ua-hBq" firstAttribute="top" secondItem="Bsq-SC-3kY" secondAttribute="bottom" constant="43" id="zS9-YE-n50"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-74" y="-237"/>
         </view>
     </objects>
 </document>

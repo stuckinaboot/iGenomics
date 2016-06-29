@@ -30,6 +30,7 @@
 - (void)fileSelected:(APFile*)file inSimpleFileDisplayView:(id)sfdv;
 - (void)deletePressedForFile:(APFile*)file inSimpleFileDisplayView:(id)sfdv;
 - (void)renamePressedForFile:(APFile*)file withNewName:(NSString*)newName inSimpleFileDisplayView:(id)sfdv;
+- (void)simpleFileDisplayViewDidRemoveFromView;
 @end
 @interface SimpleFileDisplayView : UIView <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIAlertViewDelegate> {
     UITableView *tblView;

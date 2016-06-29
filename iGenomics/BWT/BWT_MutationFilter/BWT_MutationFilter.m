@@ -264,8 +264,6 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     for (int i = 0; i<arr.count; i++) {
         diffCharsAtPos = 0;
         int p = [[arr objectAtIndex:i] intValue];
-        if (p == 1375)
-            NSLog(@"foo");
         for (int a = 0; a<kACGTwithInDelsLen; a++) {
             if (posOccArray[a][p] >= heteroAllowance) {
                 diffCharsAtPos++;

@@ -14,6 +14,7 @@
 #import "AnalysisPopoverController.h"
 #import "FileInputView.h"
 #import "AdvancedFileInputView.h"
+#import "AbstractFileChooseView.h"
 
 #import "ParametersController.h"
 
@@ -48,7 +49,7 @@
 #define kFilePickerControllerExternalFileSelectionOptionAlertBtnRefTxt @"Reference"
 #define kFilePickerControllerExternalFileSelectionOptionAlertBtnReadsTxt @"Reads"
 
-@interface FilePickerController : UIViewController <UIPopoverControllerDelegate, AdvancedFileInputViewDelegate, UIAlertViewDelegate> {
+@interface FilePickerController : UIViewController <UIPopoverControllerDelegate, AdvancedFileInputViewDelegate, UIAlertViewDelegate, AbstractFileChooseViewDelegate> {
     ParametersController *parametersController;
     
     IBOutlet UIView *contentView;
@@ -71,10 +72,17 @@
     
     IBOutlet UIScrollView *scrollView;
     
+    IBOutlet UINavigationBar *topBar;
+    IBOutlet AbstractFileChooseView *refAbstractChooseView;
+    IBOutlet AbstractFileChooseView *readsAbstractChooseView;
+    IBOutlet AbstractFileChooseView *imptMutsAbstractChooseView;
+    
     int filePickerCurrentlySelecting;
     
     //Only for old iphone
     BOOL updatedScrollViewSize;
+    
+    BOOL layoutOnce;
     
     UIAlertView *externalFileSelectionOptionAlert;
     APFile *externalFile;

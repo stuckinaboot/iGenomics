@@ -140,6 +140,7 @@
 		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
 		A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BB5DC17D65C1400B5FE7F /* APTimer.m */; };
 		A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */; };
+		A3ABCAE11D24299100A40121 /* AbstractFileChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */; };
 		A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49B6169791EF00DD9266 /* FilePickerController.m */; };
 		A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49B7169791EF00DD9266 /* FilePickerController.xib */; };
 		A3AC49BE1697936100DD9266 /* ParametersController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49BC1697936100DD9266 /* ParametersController.m */; };
@@ -383,6 +384,8 @@
 		A39BB5DB17D65C1400B5FE7F /* APTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APTimer.h; path = iGenomics/APTimer.h; sourceTree = SOURCE_ROOT; };
 		A39BB5DC17D65C1400B5FE7F /* APTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTimer.m; path = iGenomics/APTimer.m; sourceTree = SOURCE_ROOT; };
 		A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuccessBox.png; sourceTree = SOURCE_ROOT; };
+		A3ABCADF1D24299100A40121 /* AbstractFileChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFileChooseView.h; sourceTree = "<group>"; };
+		A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFileChooseView.m; sourceTree = "<group>"; };
 		A3AC49B5169791EF00DD9266 /* FilePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilePickerController.h; path = FilePicker/FilePickerController.h; sourceTree = "<group>"; };
 		A3AC49B6169791EF00DD9266 /* FilePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilePickerController.m; path = FilePicker/FilePickerController.m; sourceTree = "<group>"; };
 		A3AC49B7169791EF00DD9266 /* FilePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilePickerController.xib; path = FilePicker/FilePickerController.xib; sourceTree = "<group>"; };
@@ -987,6 +990,8 @@
 				A3AC49B6169791EF00DD9266 /* FilePickerController.m */,
 				A3AC49B7169791EF00DD9266 /* FilePickerController.xib */,
 				A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */,
+				A3ABCADF1D24299100A40121 /* AbstractFileChooseView.h */,
+				A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */,
 				A3E282D7197D687500E64DD7 /* File Input View */,
 			);
 			name = "File Picker";
@@ -1566,6 +1571,7 @@
 				A3DD60601D08FBD100BC95B9 /* CircleProgressBar.m in Sources */,
 				A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */,
 				A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */,
+				A3ABCAE11D24299100A40121 /* AbstractFileChooseView.m in Sources */,
 				A3C17028197079B2008C7A4C /* OBSlider.m in Sources */,
 				A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */,
 				A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */,

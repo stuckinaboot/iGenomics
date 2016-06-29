@@ -33,6 +33,7 @@
 
 @protocol AdvancedFileInputViewDelegate <NSObject>
 - (void)fileSelected:(BOOL)isSelected inFileInputView:(id)inputView;
+- (void)fileSelectedWithName:(NSString*)fileName inFileInputView:(id)inputView;
 @end
 @interface AdvancedFileInputView : UIView <UIActionSheetDelegate, SimpleFileDisplayViewDelegate> {
     UILabel *fileTypeSelectionOptionLbl;
@@ -54,10 +55,13 @@
     NSArray *defaultFiles;
     
     NSArray *validationExts;
+    
+    UIView *superView;
 }
 @property (nonatomic) id <AdvancedFileInputViewDelegate> delegate;
 - (IBAction)inputBtnPressed:(id)sender;
 - (void)loadWithFileTypeSelectionOption:(FileTypeSelectionOption)selectionOption containingController:(UIViewController*)vc validationExts:(NSArray*)exts;
+- (void)setSuperView:(UIView*)sV;
 
 - (void)displayDropboxChooser;
 - (void)dropboxChooserFinishedWithResult:(DBChooserResult*)result;
