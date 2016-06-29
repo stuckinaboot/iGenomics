@@ -38,8 +38,8 @@
     alignedRead = [[RGB alloc] initWithVals:216/255.0f :230/255.0f :223/255.0f];
     insertionIcon = [[RGB alloc] initWithVals:0/255.0f :0/255.0f :0/255.0f];
     
-    matchTypeHeterozygousMutationImportant = [[RGB alloc] initWithVals:220/255.0f :20/255.0f :60/255.0f];
-    matchTypeHomozygousMutationImportant = [[RGB alloc] initWithVals:238/255.0f :130/255.0f :238/255.0f];
+    matchTypeHeterozygousMutationImportant = [[RGB alloc] initWithVals:238/255.0f :130/255.0f :150/255.0f];
+    matchTypeHomozygousMutationImportant = [[RGB alloc] initWithVals:220/255.0f :20/255.0f :60/255.0f];
     matchTypeHeterozygousMutationNormal = [[RGB alloc] initWithVals:100/255.0f :149/255.0f :237/255.0f];
     matchTypeHomozygousMutationNormal = [[RGB alloc] initWithVals:0/255.0f :191/255.0f :255/255.0f];
     matchTypeNoMutation = [[RGB alloc] initWithVals:0/255.0f :238/255.0f :0/255.0f];
