@@ -120,7 +120,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="2FE-YB-Bqd">
-                    <rect key="frame" x="273" y="275" width="23" height="37"/>
+                    <rect key="frame" x="273" y="289" width="23" height="37"/>
                     <color key="pageIndicatorTintColor" red="0.44627659174358247" green="0.56848937618123685" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <connections>
@@ -165,7 +165,7 @@
                 <constraint firstItem="wQo-yp-bE5" firstAttribute="top" secondItem="RFM-9p-3AZ" secondAttribute="bottom" id="Uhp-yp-Dsm"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="leading" secondItem="wQo-yp-bE5" secondAttribute="leading" id="Y4l-3j-YQx"/>
                 <constraint firstAttribute="bottom" secondItem="wQo-yp-bE5" secondAttribute="bottom" id="kxa-Fs-Qzu"/>
-                <constraint firstAttribute="bottom" secondItem="2FE-YB-Bqd" secondAttribute="bottom" constant="8" id="sx3-Py-9G0"/>
+                <constraint firstAttribute="bottom" secondItem="2FE-YB-Bqd" secondAttribute="bottom" constant="-6" id="sx3-Py-9G0"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
