@@ -129,7 +129,6 @@
 		A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */; };
 		A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */; };
 		A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */; };
-		A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A38C320918EB6E040070F49E /* ThreeLines.png */; };
 		A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */ = {isa = PBXBuildFile; fileRef = A39182D31C912D8E00937695 /* minion.raw.fasta */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
@@ -192,6 +191,7 @@
 		A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */; };
 		A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C8189E01480001EF64 /* phix174.fa */; };
 		A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C9189E01480001EF64 /* phix174.reads.fa */; };
+		A3CBDC4A1D25748600EF2DF5 /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CBDC491D25748600EF2DF5 /* ThreeLines.png */; };
 		A3D350B51A7C989000F39C64 /* IconIdea2-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D350B41A7C989000F39C64 /* IconIdea2-Small.png */; };
 		A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */; };
 		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
@@ -369,7 +369,6 @@
 		A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.realData.trim_1k.fa; path = BWA_Comparison/aligmentComparison/comparison6/flu.H3N2.realData.trim_1k.fa; sourceTree = SOURCE_ROOT; };
 		A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.longReads.fa; sourceTree = SOURCE_ROOT; };
 		A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A38C320918EB6E040070F49E /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
 		A39182D31C912D8E00937695 /* minion.raw.fasta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minion.raw.fasta; path = ../../../Desktop/minion.raw.fasta; sourceTree = "<group>"; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
@@ -448,6 +447,7 @@
 		A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lambdaphage.reads.fa; sourceTree = "<group>"; };
 		A3C9C9C8189E01480001EF64 /* phix174.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.fa; sourceTree = "<group>"; };
 		A3C9C9C9189E01480001EF64 /* phix174.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.reads.fa; sourceTree = "<group>"; };
+		A3CBDC491D25748600EF2DF5 /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ThreeLines.png; path = ../../../Desktop/ThreeLines.png; sourceTree = "<group>"; };
 		A3D350B41A7C989000F39C64 /* IconIdea2-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconIdea2-Small.png"; path = "iGenomics/IconIdea2-Small.png"; sourceTree = "<group>"; };
 		A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_Approxi.h; path = "Approxi Matcher/BWT_Matcher_Approxi.h"; sourceTree = "<group>"; };
 		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
@@ -583,8 +583,8 @@
 				A3AF08221D05C7D5000EC63B /* simulated_reads_files */,
 				A35160641AA3FD680004FD32 /* App Icons */,
 				A3C1702919707D8D008C7A4C /* OBSlider */,
-				A38C320918EB6E040070F49E /* ThreeLines.png */,
 				A316743419994BB9009C8EC8 /* BackBtn.png */,
+				A3CBDC491D25748600EF2DF5 /* ThreeLines.png */,
 				A337B1A218E7D2A200919612 /* settingsIcon.png */,
 				A35E39B51885FB7B00651C41 /* Reachability */,
 				A398B3D11889EFA700EC43B8 /* About.txt */,
@@ -1420,7 +1420,6 @@
 				A35B05311D0A0F2400374489 /* reads-rl250-se0.01-mr0.01.fq in Resources */,
 				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
 				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
-				A38C320A18EB6E040070F49E /* ThreeLines.png in Resources */,
 				A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */,
 				A35B052D1D0A0F2400374489 /* reads-rl250-se0.1-mr0.1.fq in Resources */,
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
@@ -1525,6 +1524,7 @@
 				A35B05321D0A0F2400374489 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
 				A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */,
+				A3CBDC4A1D25748600EF2DF5 /* ThreeLines.png in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,

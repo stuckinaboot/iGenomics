@@ -139,26 +139,6 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         posInFoundGenomeCounter = 1;
         coverageCounter = 0;
     }
-    
-    if (kOnlyPrintFoundGenome == 0) {
-        for (int i = 0; i<fileStrLen-1; i++) {
-            printf("\nP: %i |R: %c F: %c|  ",i,unravStr[i],foundGenome[0][i]);
-            for (int t = 0; t<kACGTwithInDelsLen; t++) {
-                if (t<kACGTLen)
-                    printf("|%c: %i|  ",acgt[t],posOccArray[t][i]);
-                else if (t == kACGTLen)//Deletion (-) THIS IS WHERE IN/DELS ARE DISPLAYED
-                    printf("|%c: %i|  ",kDelMarker,posOccArray[t][i]);
-                else if (t == kACGTLen+1)//Insertion (+)
-                    printf("|%c: %i|",kInsMarker,posOccArray[t][i]);
-            }
-        }
-    }
-    if (kOnlyPrintFoundGenome == -3) {
-        printf("\n");
-        for (int i = 0; i<fileStrLen-1; i++) {
-            printf("%c",foundGenome[0][i]);
-        }
-    }
 }
 
 
@@ -189,8 +169,6 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
 
 - (NSArray*)filterMutationsForDetails {
     NSArray *mutations = [self findMutationsWithOriginalSeq:refStr];
-    
-    int mutPos;
     
     int mutCounter = 0;
     
@@ -241,15 +219,8 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         mutCounter = 0;
     }
     
-    if (kOnlyPrintFoundGenome == 0) {
-        for (int a = 0; a<mutations.count; a++) {
-            mutPos = [[mutations objectAtIndex:a] intValue];
-            printf("\n%i-%c-%s",mutPos,refStr[mutPos],mutStr[a]);//MutPos-Original-New//NEED TO DO HETERO (mutPos,originalStr[mutPos],mutStr[a],heteroStr[a])
-        }
-    }
-    
     return NULL;
-    //RETURN AN ARRAY OF MUTATION DETAILS (THE ABOVE PRINTF)
+    //RETURN AN ARRAY OF MUTATION DETAILS
 }
 
 + (NSMutableArray*)filteredMutations:(NSArray*)arr

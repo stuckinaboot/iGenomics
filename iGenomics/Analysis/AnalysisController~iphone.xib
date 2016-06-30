@@ -42,7 +42,6 @@
                     <items>
                         <navigationItem id="Jq7-CV-bCa">
                             <barButtonItem key="leftBarButtonItem" image="ThreeLines.png" id="w7U-rA-6l7">
-                                <color key="tintColor" white="0.66666666666666663" alpha="0.62" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="displayAnalysisIPhoneToolbar:" destination="-1" id="FrB-Ie-2qC"/>
                                 </connections>
