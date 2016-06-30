@@ -16,31 +16,33 @@
     if (self = [super initWithFrame:frame]) {
         dismissKeyboardRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
         
-        float utilBtnWidth = frame.size.width * kSimpleFileDisplayViewUtilityBtnWidthScaleFactor;
-        
         CGRect frame = self.frame;
-        searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - utilBtnWidth, 0)];//Height will auto be set to the correct height
+        
+        DNAColors *dnaColors = [[DNAColors alloc] init];
+        [dnaColors setUp];
+        
+        float doneBtnHeight = kSimpleFileDisplayViewUtilityBtnHeightScaleFactor * frame.size.height;
+        UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        doneBtn.frame = CGRectMake(0, frame.size.height - doneBtnHeight, frame.size.width, doneBtnHeight);
+        [doneBtn setBackgroundColor:[[dnaColors defaultBtn] UIColorObj]];
+        [doneBtn setTitle:kSimpleFileDisplayViewBtnDoneTxt forState:UIControlStateNormal];
+        [doneBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [doneBtn addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
+        [doneBtn.titleLabel setFont:[UIFont systemFontOfSize:kSimpleFileDisplayViewBtnFontSize]];
+        [doneBtn setShowsTouchWhenHighlighted:YES];
+        [self addSubview:doneBtn];
+        
+        searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 0)];//Height will auto be set to the correct height
         [searchBar sizeToFit];
+        [searchBar setPlaceholder:kSimpleFileDisplayViewSearchPlaceholderTxt];
         [searchBar setDelegate:self];
         
         utilityContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, searchBar.frame.size.height)];
         [utilityContainerView addSubview:searchBar];
         
-        DNAColors *dnaColors = [[DNAColors alloc] init];
-        [dnaColors setUp];
-        
-        float x = searchBar.frame.size.width;
-        
-        UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        doneBtn.frame = CGRectMake(x, 0, utilBtnWidth, searchBar.frame.size.height);
-        [doneBtn setBackgroundColor:[[dnaColors defaultBtn] UIColorObj]];
-        [doneBtn setTitle:kSimpleFileDisplayViewBtnDoneTxt forState:UIControlStateNormal];
-        [doneBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [doneBtn addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
-        [utilityContainerView addSubview:doneBtn];
         [self addSubview:utilityContainerView];
         
-        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, utilityContainerView.frame.size.height, frame.size.width, frame.size.height-utilityContainerView.frame.size.height)];
+        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, utilityContainerView.frame.size.height, frame.size.width, frame.size.height-utilityContainerView.frame.size.height - doneBtn.frame.size.height)];
         [tblView setDelegate:self];
         [tblView setDataSource:self];
         [self addSubview:tblView];

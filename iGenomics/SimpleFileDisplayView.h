@@ -14,12 +14,16 @@
 
 #define kSimpleFileDisplayViewBtnDoneTxt @"Done"
 
+#define kSimpleFileDisplayViewBtnFontSize 25.0f
+
 #define kSimpleFileDisplayTblItemDeleteLongPressDuration 0.5f
 #define kSimpleFileDisplayTblItemDeleteBtnTitle @"Delete"
 #define kSimpleFileDisplayTblItemRenameBtnTitle @"Rename"
 
+#define kSimpleFileDisplayViewSearchPlaceholderTxt @"Search"
+
 #define kSimpleFileDisplayViewFadeAnimationDuration 0.25f
-#define kSimpleFileDisplayViewUtilityBtnWidthScaleFactor 0.25f;
+#define kSimpleFileDisplayViewUtilityBtnHeightScaleFactor 0.16f
 
 #define kSimpleFileDisplayViewAlertRenameFileTitle @"Rename File:"
 #define kSimpleFileDisplayViewAlertRenameFileMsg @"Enter a new file name (extension will be automatically appended):"

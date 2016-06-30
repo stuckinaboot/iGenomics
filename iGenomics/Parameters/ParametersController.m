@@ -85,6 +85,10 @@
     maxERSldr.value = [parameters[kParameterArrayERKey] doubleValue];
     [self maxERValueChangedViaSldr:nil];
     
+    
+    [mutationSupportStpr setMaximumValue:kMutationSupportMax];
+    [mutationSupportStpr setMinimumValue:kMutationSupportMin];
+    
     mutationSupportStpr.value = [parameters[kParameterArrayMutationCoverageKey] intValue];
     [self mutationSupportValueChanged:nil];
     
