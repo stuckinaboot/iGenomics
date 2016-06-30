@@ -19,7 +19,7 @@
     defaultLighterBackground = [[RGB alloc] initWithVals:230/255.0f :230/255.0f :230/255.0f];
     defaultLbl = [[RGB alloc] initWithVals:191/255.0f :191/255.0f :191/255.0f];
     defaultBtn = [[RGB alloc] initWithVals:207/255.0f :228/255.0f :255/255.0f];
-    defaultBtnSpecial = [[RGB alloc] initWithVals:244/255.0f :204/255.0f :204/255.0f];
+    defaultBtnSpecial = [[RGB alloc] initWithVals:119/255.0f :189/255.0f :255/255.0f];
     covLbl = [[RGB alloc] initWithVals:0 :0 :0];
     refLbl = [[RGB alloc] initWithVals:95/255.0f :150/255.0f :197/255.0f];
     foundLbl = [[RGB alloc] initWithVals:197/255.0f :215/255.0f :233/255.0f];

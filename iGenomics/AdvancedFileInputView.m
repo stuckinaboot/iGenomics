@@ -117,6 +117,7 @@
              [self dropboxChooserFinishedWithResult:results[0]];
          } else {
              // User canceled the action
+             [self setHidden:YES];
          }
      }];
 }
@@ -125,6 +126,7 @@
     NSString *contents = [[NSString alloc] initWithData:[FileManager dataDownloadedFromURL:result.link] encoding:NSUTF8StringEncoding];
     APFile *file = [[APFile alloc] initWithName:result.name contents:contents fileType:APFileTypeDropbox];
     [self selectFile:file];
+    [self setHidden:YES];
 }
 
 - (APFile*)getSelectedFile {

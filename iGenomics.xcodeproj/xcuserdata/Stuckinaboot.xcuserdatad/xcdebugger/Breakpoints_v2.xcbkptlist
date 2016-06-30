@@ -6,128 +6,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488924416.793108"
+            filePath = "iGenomics/AdvancedFileInputView.m"
+            timestampString = "488990742.765115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-tableView:willSelectRowAtIndexPath:"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-displayDropboxChooser"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[AdvancedFileInputView displayDropboxChooser]_block_invoke"
+                  moduleName = "iGenomics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/AdvancedFileInputView.m"
+                  timestampString = "488990637.161843"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "iGenomics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/AdvancedFileInputView.m"
+                  timestampString = "488990637.161973"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "iGenomics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/AdvancedFileInputView.m"
+                  timestampString = "488990637.162058"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488923265.045411"
+            filePath = "iGenomics/AdvancedFileInputView.m"
+            timestampString = "488990631.955499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "-initWithFrame:"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-displayDropboxChooser"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AdvancedFileInputView displayDropboxChooser]"
+                  moduleName = "iGenomics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/AdvancedFileInputView.m"
+                  timestampString = "488990637.199106"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[AdvancedFileInputView displayDropboxChooser]_block_invoke"
+                  moduleName = "iGenomics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/AdvancedFileInputView.m"
+                  timestampString = "488990637.199241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488924416.793108"
+            filePath = "iGenomics/AdvancedFileInputView.m"
+            timestampString = "488990635.023228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-displayWithFilesArray:deletingFilesEnabled:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488923538.086258"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-displayWithFilesArray:deletingFilesEnabled:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488923402.178565"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-displayWithFilesArray:deletingFilesEnabled:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488923402.882342"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-displayWithFilesArray:deletingFilesEnabled:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/SimpleFileDisplayView.m"
-            timestampString = "488923538.086258"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-displayWithFilesArray:deletingFilesEnabled:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "488925367.88465"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-viewDidLayoutSubviews"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-displayDropboxChooser"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,61 +136,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "488925367.88465"
+            filePath = "iGenomics/AdvancedFileInputView.m"
+            timestampString = "488990636.100151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-viewDidLayoutSubviews"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/FilePicker/FilePickerController.m"
-            timestampString = "488928032.445031"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-setStuffUp"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/AbstractFileChooseView.m"
-            timestampString = "488927750.17817"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-choosePressed:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/FilePicker/FilePickerController.m"
-            timestampString = "488928032.445031"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
-            landmarkName = "-choosePressedForChooseView:"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-displayDropboxChooser"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

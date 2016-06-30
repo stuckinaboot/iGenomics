@@ -52,11 +52,8 @@
                         <action selector="pxlOffsetSliderValChanged:" destination="4" eventType="valueChanged" id="1182"/>
                     </connections>
                 </slider>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
-                    <rect key="frame" x="30" y="44" width="238" height="114"/>
-                </imageView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loo-67-dgA" customClass="AnalysisControllerIPadToolbar">
-                    <rect key="frame" x="283" y="44" width="704" height="114"/>
+                    <rect key="frame" x="291" y="44" width="696" height="114"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="infoView" destination="5bW-Rd-K5k" id="5RY-tv-m3U"/>
@@ -79,6 +76,9 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
+                    <rect key="frame" x="41" y="53" width="247" height="105"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <nil key="simulatedStatusBarMetrics"/>

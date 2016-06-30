@@ -6,6 +6,12 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>dbapi-1</string>
+        <string>dbapi-2</string>
+        <string>dbapi-3</string>
+    </array>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
