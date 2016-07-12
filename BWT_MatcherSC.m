@@ -36,14 +36,16 @@
         for (int l = 0; l<endPos-startPos; l++) {
             [posArray addObject:[[ED_Info alloc] initWithPos:benchmarkPositions[l+startPos] editDistance:0 gappedAStr:query gappedBStr:kNoGappedBChar isIns:NO isReverse:isRev]];
         }
-        return posArray;
     }
     else
     {
-        for (int l = 0; l<endPos-startPos; l++)
-            [posArray addObject:[NSNumber numberWithInteger:((ED_Info*)[self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query]).position]];
-        return posArray;
+        for (int l = 0; l<endPos-startPos; l++) {
+            ED_Info *info = [self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query];
+            [posArray addObject:[NSNumber numberWithInteger:info.position]];
+            [info freeUsedMemory];
+        }
     }
+    return posArray;
 }
 
 - (NSArray*)exactMatchForChunk:(Chunks*)chunk andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {

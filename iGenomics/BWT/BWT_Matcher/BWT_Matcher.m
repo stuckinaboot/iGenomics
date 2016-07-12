@@ -132,27 +132,29 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     int stride = reedsCount / kBWT_MatcherReadAlignerMultiThreadNumOfThreads;
     
     dispatch_queue_t _q = dispatch_queue_create("dsfasd", DISPATCH_QUEUE_SERIAL);
-    dispatch_apply(reedsCount / stride, queue, ^(size_t i) {
-        int j = (int)(i * stride);
-        int endj = j + stride;
-        while (j < endj) {
-            Read *reed = reedsArray[j];
+    if (stride > 0) {
+        dispatch_apply(reedsCount / stride, queue, ^(size_t i) {
+            int j = (int)(i * stride);
+            int endj = j + stride;
+            while (j < endj) {
+                Read *reed = reedsArray[j];
 
-            int localReadLen = (int)strlen(reed.sequence);
-            
-            int maxNumOfSubs = maxErrorRate * localReadLen;
-            ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState forReadLen:localReadLen];
-            if (a != NULL) {
-                a.readName = reed.name;
+                int localReadLen = (int)strlen(reed.sequence);
+                
+                int maxNumOfSubs = maxErrorRate * localReadLen;
+                ED_Info* a = [self getBestMatchForQuery:reed.sequence withLastCol:refStrBWT andFirstCol:firstCol andNumOfSubs:maxNumOfSubs andReadNum:readNum andShouldSeed:seedingState forReadLen:localReadLen];
+                if (a != NULL) {
+                    a.readName = reed.name;
+                }
+                bestMatches[j] = a;
+                j++;
+                dispatch_async(_q, ^{
+                    [delegate readAligned];
+                });
             }
-            bestMatches[j] = a;
-            j++;
-            dispatch_async(_q, ^{
-                [delegate readAligned];
-            });
-        }
-    });
-    for (int i = reedsCount - (reedsCount % stride); i < reedsCount; i++) {
+        });
+    }
+    for (int i = (stride > 0) ? reedsCount - (reedsCount % stride) : 0; i < reedsCount; i++) {
         Read *reed = reedsArray[i];
         
         int localReadLen = (int)strlen(reed.sequence);
@@ -233,20 +235,22 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         forwardMatches = [arr count];
         
         if (alignmentType == kAlignmentTypeForwardAndReverse) {//Reverse also
+            char *revSeq = [self getReverseComplementForSeq:query seqLen:actualReadLen];
             if (subs == 0 || matchType == MatchTypeExactOnly) {
                 int temp = dgenomeLen;
                 dgenomeLen = lastColLen;
-                arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:[self getReverseComplementForSeq:query seqLen:actualReadLen] andIsReverse:YES andForOnlyPos:NO]];
+                arr = [arr arrayByAddingObjectsFromArray:[exactMatcher exactMatchForQuery:revSeq andIsReverse:YES andForOnlyPos:NO]];
                 dgenomeLen = temp;
             }
             else {
                 if (matchType == MatchTypeExactAndSubs)
-                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:[self getReverseComplementForSeq:query seqLen:actualReadLen] andNumOfSubs:subs andIsReverse:YES andReadLen:actualReadLen cumSepGenomeLens:cumulativeSeparateGenomeLens]];
+                    arr = [arr arrayByAddingObjectsFromArray:[approxiMatcher approxiMatchForQuery:revSeq andNumOfSubs:subs andIsReverse:YES andReadLen:actualReadLen cumSepGenomeLens:cumulativeSeparateGenomeLens]];
                 else if (matchType == MatchTypeSubsAndIndels) {
                     //printf("DK: calling insertionDeletionMatches (Reverse)\n");
-                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:[self getReverseComplementForSeq:query seqLen:actualReadLen] andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES andShouldSeed:shouldSeed readLen:actualReadLen]];
+                    arr = [arr arrayByAddingObjectsFromArray:[self insertionDeletionMatchesForQuery:revSeq andLastCol:lastCol andNumOfSubs:subs andIsReverse:YES andShouldSeed:shouldSeed readLen:actualReadLen]];
                 }
             }
+            free(revSeq);
         }
         
         if (kDebugAllInfo>0) {

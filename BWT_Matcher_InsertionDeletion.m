@@ -56,7 +56,9 @@
         int k = kNonSeedShortSeqSizeIntervals[indexInIntervals];
         char *shortA = malloc(k+1);
         interval = kNonSeedShortSeqInterval;
-        for (int i = 0; i <= lenA - k; i += interval) {
+        
+        //Starts at i = 1 so that the space is skipped for exact matching
+        for (int i = 1; i <= lenA - k; i += interval) {
             strncpy(shortA, a+i, k);
             shortA[k] = '\0';
             

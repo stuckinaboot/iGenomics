@@ -103,7 +103,6 @@
 //    NSMutableString *qualStr;
     
     for (int i = 0; i < [arr count]; i += (kFirstQualValueIndexInReadsToTrim+1)) {
-//    dispatch_apply([arr count], dispatch_queue_create("foobasdf", DISPATCH_QUEUE_SERIAL), ^(size_t i) {
         NSString *qualStr = [arr objectAtIndex:i+kFirstQualValueIndexInReadsToTrim];//index i is the name of the read
         
         int maxSum = 0;
@@ -128,7 +127,7 @@
         if (newRead.length >= minReadLen)
             [newReads appendFormat:@"%@\n%@\n",[arr objectAtIndex:i], newRead];//Adds the read and its name
     }
-//    });
+
     newReads = (NSMutableString*)[newReads stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return (NSString*)newReads;
@@ -204,7 +203,7 @@
     
     float aligningFilled = (readsAligned / (float)bwt.numOfReads) * kProgressViewFractionFilledFromAligning;
     float processedFilled = (readsProcessed / (float)bwt.numOfReads) * (1 - kProgressViewFractionFilledFromAligning);
-//    return;
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [readProgressView setProgress:aligningFilled + processedFilled animated:NO];
     });

@@ -102,7 +102,7 @@
     if ([FileManager filePassesValidation:file againstExts:validationExts]) {
         selectedFile = file;
         fileNameLbl.text = selectedFile.name;
-        [delegate fileSelected:(selectedFile) inFileInputView:self];
+        [delegate fileSelected:(selectedFile != NULL) inFileInputView:self];
         [delegate fileSelectedWithName:selectedFile.name inFileInputView:self];
     }
     else

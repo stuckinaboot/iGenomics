@@ -10,7 +10,7 @@
 		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
 		A30847851D2C066600050FE8 /* hand_sim_reads.noindels.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30847841D2C066600050FE8 /* hand_sim_reads.noindels.fastq */; };
-		A30847871D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fastq */; };
+		A30847871D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa */; };
 		A30847A31D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */; };
 		A30847A41D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */; };
 		A30847A51D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */; };
@@ -223,7 +223,7 @@
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
 		A30847841D2C066600050FE8 /* hand_sim_reads.noindels.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hand_sim_reads.noindels.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/no_sequencing_error/no_indels/hand_sim_reads.noindels.fastq; sourceTree = SOURCE_ROOT; };
-		A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hand_sim_reads.withindels.test2.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/no_sequencing_error/with_indels/test2/hand_sim_reads.withindels.test2.fastq; sourceTree = SOURCE_ROOT; };
+		A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hand_sim_reads.withindels.test2.fa; path = validation_for_paper/full_validation/hand_simulated_reads_files/no_sequencing_error/with_indels/test2/hand_sim_reads.withindels.test2.fa; sourceTree = SOURCE_ROOT; };
 		A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
 		A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
 		A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
@@ -911,7 +911,7 @@
 				A30847A01D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq */,
 				A30847A11D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq */,
 				A30847A21D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq */,
-				A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fastq */,
+				A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa */,
 				A30847841D2C066600050FE8 /* hand_sim_reads.noindels.fastq */,
 			);
 			name = "Reads Files for Full Validation";
@@ -1418,7 +1418,7 @@
 				A30847A51D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq in Resources */,
 				A317010A1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
-				A30847871D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fastq in Resources */,
+				A30847871D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
