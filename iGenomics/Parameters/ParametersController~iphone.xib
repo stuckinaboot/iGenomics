@@ -12,7 +12,7 @@
                 <outlet property="maxERSldr" destination="LdT-19-6ih" id="ljk-Mn-ZEX"/>
                 <outlet property="maxERTxtFld" destination="jC5-Yq-vHl" id="GKX-Qd-zHb"/>
                 <outlet property="mutationSupportLbl" destination="CU6-0i-z0g" id="nws-Vw-0W4"/>
-                <outlet property="mutationSupportStpr" destination="HjU-px-ppB" id="Gge-UU-EeZ"/>
+                <outlet property="mutationSupportSlider" destination="HjU-px-ppB" id="Gge-UU-EeZ"/>
                 <outlet property="seedingSwitch" destination="IS7-Mr-n22" id="nEW-Sv-cdU"/>
                 <outlet property="trimmingEnabledLbl" destination="AFa-UU-cbE" id="jBx-wI-NdK"/>
                 <outlet property="trimmingLbl" destination="Sol-wz-Vxo" id="0Vy-Vz-Ea8"/>
@@ -72,7 +72,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mutation Coverage:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CU6-0i-z0g">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mutation Coverage:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CU6-0i-z0g">
                     <rect key="frame" x="22" y="219" width="193" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -106,7 +106,7 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="HjU-px-ppB">
+                <stepper hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="HjU-px-ppB">
                     <rect key="frame" x="221" y="215" width="94" height="29"/>
                     <connections>
                         <action selector="mutationSupportValueChanged:" destination="-1" eventType="valueChanged" id="9fd-sg-bgd"/>
@@ -154,7 +154,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LdT-19-6ih">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LdT-19-6ih">
                     <rect key="frame" x="24" y="172" width="293" height="31"/>
                     <connections>
                         <action selector="maxERValueChangedViaSldr:" destination="-1" eventType="valueChanged" id="eUp-TS-4SR"/>

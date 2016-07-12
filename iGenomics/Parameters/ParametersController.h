@@ -55,7 +55,7 @@
     IBOutlet UISegmentedControl *alignmentTypeCtrl;
     
     IBOutlet UITextField *mutationSupportTxtFld;//call it "Minimum Mutation Coverage"
-    IBOutlet UIStepper *mutationSupportStpr;
+    IBOutlet UIStepper *mutationSupportSlider;
     IBOutlet UILabel *mutationSupportLbl;
     
     IBOutlet UIStepper *trimmingStpr;

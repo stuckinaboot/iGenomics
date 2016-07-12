@@ -1,3 +1,5 @@
+hand_sim_reads.withindels.test2.fastq
+hand_sim_reads.noindels.fastq
 reads-rl100-se0.01-mr0.001.fq
 reads-rl100-se0.01-mr0.01.fq
 reads-rl100-se0.01-mr0.1.fq

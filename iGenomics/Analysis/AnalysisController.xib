@@ -16,7 +16,7 @@
                 <outlet property="gridViewSwitcherCtrl" destination="URI-uu-nlP" id="0mV-zj-FjR"/>
                 <outlet property="gridViewTitleLblHolder" destination="1017" id="1052"/>
                 <outlet property="mutationSupportNumLbl" destination="JVP-eK-fwd" id="uyQ-Sm-LEX"/>
-                <outlet property="mutationSupportStpr" destination="lVr-87-f0I" id="5Xv-nZ-F26"/>
+                <outlet property="mutationSupportSlider" destination="bx9-M9-QQW" id="1dP-It-53F"/>
                 <outlet property="posSearchTxtFld" destination="yq5-LY-jPs" id="UbI-Ua-udF"/>
                 <outlet property="pxlOffsetSlider" destination="1172" id="1183"/>
                 <outlet property="readPercentMatchedLbl" destination="83U-22-oQj" id="tbh-eM-SKY"/>
@@ -376,12 +376,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="lVr-87-f0I">
-                    <rect key="frame" x="21" y="42" width="94" height="29"/>
-                    <connections>
-                        <action selector="mutationSupportStepperChanged:" destination="-1" eventType="valueChanged" id="mmH-oT-DpK"/>
-                    </connections>
-                </stepper>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mutation Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGc-yE-z2i">
                     <rect key="frame" x="48" y="14" width="135" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -401,6 +395,12 @@
                         <action selector="gridViewSwitcherCtrlValChanged:" destination="-1" eventType="valueChanged" id="Mer-pQ-8LZ"/>
                     </connections>
                 </segmentedControl>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bx9-M9-QQW">
+                    <rect key="frame" x="30" y="46" width="87" height="31"/>
+                    <connections>
+                        <action selector="mutationSupportSliderChanged:" destination="-1" eventType="valueChanged" id="aBT-lF-WB2"/>
+                    </connections>
+                </slider>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -408,10 +408,8 @@
                 <constraint firstItem="URI-uu-nlP" firstAttribute="centerY" secondItem="PY5-Tb-v94" secondAttribute="centerY" id="P72-hn-aQ7"/>
                 <constraint firstItem="URI-uu-nlP" firstAttribute="leading" secondItem="JVP-eK-fwd" secondAttribute="trailing" constant="58" id="UGh-YC-fij"/>
                 <constraint firstItem="JVP-eK-fwd" firstAttribute="top" secondItem="rGc-yE-z2i" secondAttribute="bottom" constant="14" id="fhx-iE-fqk"/>
-                <constraint firstItem="lVr-87-f0I" firstAttribute="top" secondItem="rGc-yE-z2i" secondAttribute="bottom" constant="7" id="p4K-Go-8XB"/>
                 <constraint firstAttribute="bottom" secondItem="JVP-eK-fwd" secondAttribute="bottom" constant="14" id="qaz-ms-jrO"/>
                 <constraint firstAttribute="trailing" secondItem="URI-uu-nlP" secondAttribute="trailing" constant="20" symbolic="YES" id="smL-cp-J8o"/>
-                <constraint firstItem="JVP-eK-fwd" firstAttribute="leading" secondItem="lVr-87-f0I" secondAttribute="trailing" constant="8" symbolic="YES" id="vdS-4r-etI"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

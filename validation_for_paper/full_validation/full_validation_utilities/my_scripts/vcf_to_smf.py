@@ -33,7 +33,7 @@ for line in vcfFile.readlines():
 		homoHeteroStr = '&'
 	mutationDict['alleles'] = homoHeteroStr
 
-	output += json.dumps(mutationDict) + '\n'
+	output += json.dumps(mutationDict).replace('\\r','') + '\n'
 outputFile = open(argv[2] + outputExt , 'w')
 outputFile.write(output)
 outputFile.close()

@@ -96,7 +96,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         }
         for (int a = 0; a < kACGTwithInDelsLen; a++) {
             if (charWMostOccs != a) {
-                if (posOccArray[a][i]>=kHeteroAllowance) {
+                if ([BWT_MutationFilter isHeterozygousPosition:i forCharIndex:a heteroAllowance:kHeteroAllowance]) {
                     if (a<kACGTLen)
                         foundGenome[posInFoundGenomeCounter][i] = acgt[a];
                     else if (a == kACGTLen)
@@ -146,9 +146,9 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     NSMutableArray *mutationsArray = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < strlen(seq); i++) {
-        if (coverageArray[i]>=kLowestAllowedCoverage) {
-            for (int x = 0; x<kACGTLen+1; x++) {
-                if (posOccArray[x][i] >= kHeteroAllowance && acgt[x] != seq[i]) {
+        if (coverageArray[i] >= kLowestAllowedCoverage) {
+            for (int x = 0; x < kACGTwithInDelsLen; x++) {
+                if ([BWT_MutationFilter isHeterozygousPosition:i forCharIndex:x heteroAllowance:kHeteroAllowance] && acgt[x] != seq[i]) {
                     [mutationsArray addObject:[NSNumber numberWithInt:i]];
                     break;
                 }
@@ -199,7 +199,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         }
         else {
             for (int a = 0; a<kACGTwithInDelsLen; a++) {
-                if (posOccArray[a][p]>=kHeteroAllowance) {
+                if ([BWT_MutationFilter isHeterozygousPosition:p forCharIndex:a heteroAllowance:kHeteroAllowance]) {
                     mutStr[i][mutCounter] = acgt[a];
                     
                     if (a == kACGTLen)
@@ -223,8 +223,17 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     //RETURN AN ARRAY OF MUTATION DETAILS
 }
 
++ (BOOL)isHeterozygousPosition:(int)position forCharIndex:(int)nthMostCommonCharIndexInACGTwithInDels
+               heteroAllowance:(float)heteroAllowance {
+    if (kACGTwithInDels[nthMostCommonCharIndexInACGTwithInDels] != kFoundGenomeDefaultChar) {
+        float ratioOfCoverageComingFromSecondMostCommonChar = ((float) posOccArray[nthMostCommonCharIndexInACGTwithInDels][position]) /coverageArray[position];
+        return ratioOfCoverageComingFromSecondMostCommonChar >= heteroAllowance;
+    }
+    return NO;
+}
+
 + (NSMutableArray*)filteredMutations:(NSArray*)arr
-                  forHeteroAllowance:(int)heteroAllowance insertionsArr:(NSArray *)insArr {
+                  forHeteroAllowance:(float)heteroAllowance insertionsArr:(NSArray *)insArr {
     NSMutableArray *finalArr = [[NSMutableArray alloc] init];
     
     int diffCharsAtPos = 0;
@@ -236,7 +245,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         diffCharsAtPos = 0;
         int p = [[arr objectAtIndex:i] intValue];
         for (int a = 0; a<kACGTwithInDelsLen; a++) {
-            if (posOccArray[a][p] >= heteroAllowance) {
+            if ([BWT_MutationFilter isHeterozygousPosition:p forCharIndex:a heteroAllowance:heteroAllowance]) {
                 diffCharsAtPos++;
                 foundChars[posInFoundChars] = kACGTwithInDels[a];
                 posInFoundChars++;
@@ -264,7 +273,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             int highestCoverageAmt = 0;//posOccArray[0][p];
             char highestCoverageChar = kMatchTypeNoAlignment;
             for (int a = 0; a<kACGTwithInDelsLen; a++) {
-                if (posOccArray[a][p] >= heteroAllowance) {
+                if ([BWT_MutationFilter isHeterozygousPosition:p forCharIndex:a heteroAllowance:heteroAllowance]) {
                     diffCharsAtPos++;
                     foundChars[posInFoundChars] = kACGTwithInDels[a];
                     posInFoundChars++;

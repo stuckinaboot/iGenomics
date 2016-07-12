@@ -1,23 +1,19 @@
-FAIL: CY001959>>1910>>DEL not found
-PASSED: CY001957>>808>>SUB
-PASSED: CY001954>>1149>>SUB
-PASSED: CY001959>>1864>>SUB
-PASSED: CY001952>>54>>SUB
-PASSED: CY001957>>346>>SUB
-PASSED: CY001952>>994>>SUB
-PASSED: CY001955>>873>>SUB
-FAIL: CY001957>>1564>>SUB XX alleles comparison -> 1: {'type': 'SUB', 'pos': '1564', 'alleles': '*', 'chromosome': 'CY001957', 'ref': 'G', 'found': 'T'}| 2: {'type': 'SUB', 'pos': '1564', 'alleles': '&', 'chromosome': 'CY001957', 'ref': 'G', 'found': 'T'}
-PASSED: CY001958>>1762>>SUB
-PASSED: CY001958>>2276>>SUB
-PASSED: CY001958>>1911>>SUB
-PASSED: CY001953>>362>>SUB
-PASSED: CY001958>>2176>>SUB
-PASSED: CY001955>>1076>>SUB
+FAIL: CY001958>>1330>>INS XX alleles comparison -> 1: {'found': 'TT', 'chromosome': 'CY001958', 'pos': '1330', 'ref': 'T', 'type': 'INS', 'alleles': '*'}| 2: {'found': 'TT', 'chromosome': 'CY001958', 'pos': '1330', 'ref': 'T', 'type': 'INS', 'alleles': '&'}
+PASSED: CY001954>>41>>SUB
+PASSED: CY001954>>347>>SUB
+FAIL: CY001958>>1139>>DEL not found
+PASSED: CY001959>>207>>SUB
+FAIL: CY001953>>656>>SUB XX alleles comparison -> 1: {'found': 'A', 'chromosome': 'CY001953', 'pos': '656', 'ref': 'C', 'type': 'SUB', 'alleles': '*'}| 2: {'found': 'A', 'chromosome': 'CY001953', 'pos': '656', 'ref': 'C', 'type': 'SUB', 'alleles': '&'}
+FAIL: CY001959>>1533>>DEL XX alleles comparison -> 1: {'found': '-', 'chromosome': 'CY001959', 'pos': '1533', 'ref': 'G', 'type': 'DEL', 'alleles': '*'}| 2: {'found': '-', 'chromosome': 'CY001959', 'pos': '1533', 'ref': 'G', 'type': 'DEL', 'alleles': '&'}
+PASSED: CY001958>>1617>>SUB
+FAIL: CY001953>>256>>DEL XX alleles comparison -> 1: {'found': '-', 'chromosome': 'CY001953', 'pos': '256', 'ref': 'A', 'type': 'DEL', 'alleles': '*'}| 2: {'found': '-', 'chromosome': 'CY001953', 'pos': '256', 'ref': 'A', 'type': 'DEL', 'alleles': '&'}
+PASSED: CY001954>>204>>SUB
+PASSED: CY001954>>870>>SUB
 _______________________________________
 ~~CONCISE REPORT~~
 TYPE: Mutations
-PASSED: 13
-FAILED: 1
+PASSED: 6
+FAILED: 4
 NOT SHARED: 1
-LEN iG: 12242
-LEN BWA: 15
+LEN iG: 5456
+LEN BWA: 11

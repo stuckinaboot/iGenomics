@@ -47,15 +47,12 @@ def createFolderTreeFromiGenomicsSimFiles(fileNames, path):
 		simInfo = ''
 
 		runtime = ''
-		stdPrint('adsfajsfjklaslkfd')
 		with open(currPath + 'reads.acp', 'r') as dataFile:
 			i = 0
-			stdPrint('adsfajsfjklaslkfd')
 			for line in dataFile.readlines():
 				if i == 1:
 					components = line.split('\t')
 					runtime = components[2]
-					stdPrint('adsfajsfjklaslkfd')
 					break
 				i += 1
 

@@ -47,7 +47,7 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
     
     int fileStrLen;
 }
-@property (nonatomic) int kHeteroAllowance;
+@property (nonatomic) float kHeteroAllowance;
 - (void)setUpMutationFilterWithOriginalStr:(char*)originalSeq andMatcher:(BWT_Matcher*)myMatcher;
 - (void)resetFoundGenome;
 
@@ -56,6 +56,6 @@ extern int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];//I--------G
 - (NSArray*)findMutationsWithOriginalSeq:(char*)seq;
 
 + (NSMutableArray*)filteredMutations:(NSArray*)arr
-                  forHeteroAllowance:(int)heteroAllowance insertionsArr:(NSArray*)insArr;
+                  forHeteroAllowance:(float)heteroAllowance insertionsArr:(NSArray*)insArr;
 + (NSMutableArray*)compareFoundMutationsArr:(NSArray *)arr toImptMutationsString:(NSString *)imptMutsStr andCumulativeLenArr:(NSMutableArray*)lenArr andSegmentNameArr:(NSMutableArray*)nameArr;
 @end

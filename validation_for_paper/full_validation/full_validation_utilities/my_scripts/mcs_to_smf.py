@@ -83,7 +83,7 @@ while i < len(mutationsList):
 			else:
 				break
 		mutation['ref'] = compressedChars
-	output += json.dumps(mutation) + '\n'
+	output += json.dumps(mutation).replace('\\r','') + '\n'
 	i += 1
 outputFile.write(output)
 outputFile.close()

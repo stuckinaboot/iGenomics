@@ -50,8 +50,8 @@
     
     pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchOccurred:)];
     
-    mutationSupportStpr.maximumValue = kMutationSupportMax;
-    mutationSupportStpr.minimumValue = kMutationSupportMin;
+    mutationSupportSlider.maximumValue = kMutationSupportMax;
+    mutationSupportSlider.minimumValue = kMutationSupportMin;
 
     if ([GlobalVars isIpad])
         hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
@@ -122,7 +122,8 @@
     numOfReads = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsIndex] intValue];
     errorRate = [[basicInfArr objectAtIndex:kBasicInfoArrERIndex] floatValue];
     numOfReadsMatched = [[basicInfArr objectAtIndex:kBasicInfoArrNumOfReadsMatchedIndex] intValue];
-    bwt.bwtMutationFilter.kHeteroAllowance = [[basicInfArr objectAtIndex:kBasicInfoArrMutationSupportIndex] intValue];
+    
+    bwt.bwtMutationFilter.kHeteroAllowance = [[basicInfArr objectAtIndex:kBasicInfoArrERIndex] floatValue];
     
     //NOTE: This is a band-aid. It does not solve the root problem of passing in a weirdly coded string (fix this during the refactoring process)
     NSRange refFileDividerRange = [refFile.name rangeOfString:kRefFileInternalDivider];
@@ -251,7 +252,7 @@
     
     [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
     
-    mutationSupportStpr.value = bwt.bwtMutationFilter.kHeteroAllowance;
+    mutationSupportSlider.value = bwt.bwtMutationFilter.kHeteroAllowance;
     
     currSegmentLbl.text = [separateGenomeNames objectAtIndex:0];
     currSegmentLenLbl.text = [NSString stringWithFormat:kCurrSegmentLenLblStart,[[separateGenomeLens objectAtIndex:0] intValue]];
@@ -270,7 +271,7 @@
 //    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
     [self setUpGridLbls];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
-    [self mutationSupportStepperChanged:mutationSupportStpr];
+    [self mutationSupportSliderChanged:mutationSupportSlider];
 }
 
 - (void)setUpGridLbls {
@@ -436,14 +437,14 @@
 }
 
 //Mutation Support Stepper
-- (IBAction)mutationSupportStepperChanged:(id)sender {
-    UIStepper *stepper = (UIStepper*)sender;
-    int val = (int)stepper.value;
+- (IBAction)mutationSupportSliderChanged:(id)sender {
+    UISlider *slider = (UISlider*)sender;
+    float val = (float)slider.value;
     
     [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];
     showAllMutsBtn.enabled = FALSE;
     
-    mutationSupportNumLbl.text = [NSString stringWithFormat:@"%i",val];
+    mutationSupportNumLbl.text = [NSString stringWithFormat:@"%0.02f",val];
 
     [mutPosArray removeAllObjects];
     bwt.bwtMutationFilter.kHeteroAllowance = val;
@@ -662,7 +663,7 @@
         [mutsPopover setDelegate:self];
         if ([mutPosArray count] == 0)
             mutPosArray = [[NSMutableArray alloc] initWithArray:allMutPosArray];
-        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportStpr.value insertionsArr:insertionsArr] andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
+        [mutsPopover setUpWithMutationsArr:[BWT_MutationFilter filteredMutations:mutPosArray forHeteroAllowance:mutationSupportSlider.value insertionsArr:insertionsArr] andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
         mutsPopoverAlreadyUpdated = !mutsPopoverAlreadyUpdated;
     }
     if (!sizeChanged)
@@ -705,7 +706,7 @@
 //Exports data
 
 - (IBAction)exportDataPressed:(id)sender {
-    [fileExporter setMutSupportVal:(int)mutationSupportStpr.value andMutPosArray:mutPosArray];
+    [fileExporter setMutSupportVal:(int)mutationSupportSlider.value andMutPosArray:mutPosArray];
     [fileExporter displayExportOptionsWithSender:sender];
 }
 

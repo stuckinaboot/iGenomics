@@ -61,13 +61,13 @@
 //    [self runSpinAnimationOnDNA];
     
     //Set up parameters
+    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
     dispatch_async(queue, ^{//Opens up a background thread
         readTimer = [[APTimer alloc] init];
         [readTimer start];
-        
+
         float totalAlignmentRuntime = [bwt matchReadsFile:myReadsFile withParameters:myParameters];
-        
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             [timeRemainingUpdateTimer invalidate];
             timeRemainingUpdateTimer = nil;

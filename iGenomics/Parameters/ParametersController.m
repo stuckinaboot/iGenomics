@@ -86,10 +86,10 @@
     [self maxERValueChangedViaSldr:nil];
     
     
-    [mutationSupportStpr setMaximumValue:kMutationSupportMax];
-    [mutationSupportStpr setMinimumValue:kMutationSupportMin];
+    [mutationSupportSlider setMaximumValue:kMutationSupportMax];
+    [mutationSupportSlider setMinimumValue:kMutationSupportMin];
     
-    mutationSupportStpr.value = [parameters[kParameterArrayMutationCoverageKey] intValue];
+    mutationSupportSlider.value = [parameters[kParameterArrayMutationCoverageKey] intValue];
     [self mutationSupportValueChanged:nil];
     
     seedingSwitch.on = [parameters[kParameterArraySeedingOnKey] boolValue];
@@ -152,7 +152,7 @@
 }
 
 - (IBAction)mutationSupportValueChanged:(id)sender {
-    mutationSupportLbl.text = [NSString stringWithFormat:kMutSupportLblTxt,(int)mutationSupportStpr.value];
+    mutationSupportLbl.text = [NSString stringWithFormat:kMutSupportLblTxt,(int)mutationSupportSlider.value];
 }
 - (IBAction)maxERValueChangedViaSldr:(id)sender {
     maxERTxtFld.text = [NSString stringWithFormat:@"%.02f", maxERSldr.value];
@@ -201,14 +201,14 @@
         readsFile = [self readsFileByRemovingQualityValFromReadsFile:readsFile];
     }
     
-//    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportStpr.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar, [NSNumber numberWithBool:seedingSwitch.on],nil];//contains everything except refFilename and readsFileName
+//    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:matchTypeCtrl.selectedSegmentIndex], [NSNumber numberWithDouble:(matchTypeCtrl.selectedSegmentIndex > 0) ? maxERSldr.value : 0], [NSNumber numberWithInt:i], [NSNumber numberWithInt:(int)mutationSupportSlider.value], [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal], trimRefChar, [NSNumber numberWithBool:seedingSwitch.on],nil];//contains everything except refFilename and readsFileName
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     parameters[kParameterArrayMatchTypeKey] = @(MatchTypeSubsAndIndels);//[NSNumber numberWithInt:(int)matchTypeCtrl.selectedSegmentIndex];
     parameters[kParameterArrayERKey] = [NSNumber numberWithDouble:maxERSldr.value];
     parameters[kParameterArrayFoRevKey] = kAlignmentTypeForwardAndReverse;
-    parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:(int)mutationSupportStpr.value];
+    parameters[kParameterArrayMutationCoverageKey] = [NSNumber numberWithInt:(int)mutationSupportSlider.value];
     parameters[kParameterArrayTrimmingValKey] = [NSNumber numberWithInt:(trimmingSwitch.on) ? trimmingStpr.value : kTrimmingOffVal];
     parameters[kParameterArrayTrimmingRefCharKey] = trimRefChar;
     parameters[kParameterArraySeedingOnKey] = [NSNumber numberWithBool:FALSE];//seedingSwitch.on];

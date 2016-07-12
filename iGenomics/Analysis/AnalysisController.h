@@ -92,8 +92,8 @@
 #define kStartOfAInRGBVals 4
 #define kStartOfRefInRGBVals 2
 
-#define kMutationSupportMax 20
-#define kMutationSupportMin 1
+#define kMutationSupportMax 0.5
+#define kMutationSupportMin 0.05
 
 #define kSideLblFontSize 16
 #define kSideLblStartingX 26
@@ -121,7 +121,7 @@
     IBOutlet UIButton *showMutTBViewBtn;
     IBOutlet UIButton *showQueryResultsBtn;
     IBOutlet UILabel *mutationSupportNumLbl;
-    IBOutlet UIStepper *mutationSupportStpr;//Mutation Support Stepper
+    IBOutlet UISlider *mutationSupportSlider;//Mutation Support Stepper
     
     //Non-interactive Interface Elements
     UILabel *nLbl[kNumOfRowsInGridView];//cov, ref, found, a, c, g, t, del, ins
@@ -235,7 +235,7 @@
 
 - (IBAction)showSeqSearchResults:(id)sender;
 
-- (IBAction)mutationSupportStepperChanged:(id)sender;
+- (IBAction)mutationSupportSliderChanged:(id)sender;
 
 - (IBAction)showMutTBView:(id)sender;
 - (IBAction)exportDataPressed:(id)sender;

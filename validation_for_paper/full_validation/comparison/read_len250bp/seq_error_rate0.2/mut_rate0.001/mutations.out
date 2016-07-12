@@ -1,17 +1,24 @@
-FAIL: CY001959>>1128>>SUB XX alleles comparison -> 1: {'alleles': '*', 'found': 'T', 'chromosome': 'CY001959', 'ref': 'G', 'type': 'SUB', 'pos': '1128'}| 2: {'alleles': '&', 'found': 'T', 'chromosome': 'CY001959', 'ref': 'G', 'type': 'SUB', 'pos': '1128'}
-PASSED: CY001953>>105>>SUB
-FAIL: CY001958>>2175>>SUB XX alleles comparison -> 1: {'alleles': '*', 'found': 'G', 'chromosome': 'CY001958', 'ref': 'C', 'type': 'SUB', 'pos': '2175'}| 2: {'alleles': '&', 'found': 'G', 'chromosome': 'CY001958', 'ref': 'C', 'type': 'SUB', 'pos': '2175'}
-PASSED: CY001955>>298>>SUB
-FAIL: CY001955>>162>>SUB XX alleles comparison -> 1: {'alleles': '*', 'found': 'T', 'chromosome': 'CY001955', 'ref': 'C', 'type': 'SUB', 'pos': '162'}| 2: {'alleles': '&', 'found': 'T', 'chromosome': 'CY001955', 'ref': 'C', 'type': 'SUB', 'pos': '162'}
-PASSED: CY001955>>456>>SUB
-PASSED: CY001958>>1283>>SUB
-PASSED: CY001954>>35>>SUB
-PASSED: CY001953>>551>>SUB
+PASSED: CY001958>>1919>>SUB
+PASSED: CY001952>>980>>SUB
+FAIL: CY001955>>631>>DEL XX alleles comparison -> 1: {'type': 'DEL', 'chromosome': 'CY001955', 'pos': '631', 'ref': 'A', 'alleles': '*', 'found': '-'}| 2: {'type': 'DEL', 'found': '-', 'pos': '631', 'ref': 'A', 'alleles': '&', 'chromosome': 'CY001955'}
+FAIL: CY001954>>426>>SUB XX alleles comparison -> 1: {'type': 'SUB', 'chromosome': 'CY001954', 'pos': '426', 'ref': 'C', 'alleles': '*', 'found': 'G'}| 2: {'type': 'SUB', 'found': 'G', 'pos': '426', 'ref': 'C', 'alleles': '&', 'chromosome': 'CY001954'}
+PASSED: CY001958>>583>>SUB
+PASSED: CY001955>>67>>SUB
+PASSED: CY001956>>366>>SUB
+PASSED: CY001952>>1470>>SUB
+PASSED: CY001958>>2047>>SUB
+PASSED: CY001955>>1404>>SUB
+PASSED: CY001959>>1356>>SUB
+PASSED: CY001954>>1364>>SUB
+PASSED: CY001955>>268>>SUB
+PASSED: CY001958>>2232>>SUB
+PASSED: CY001955>>209>>SUB
+PASSED: CY001957>>2163>>SUB
 _______________________________________
 ~~CONCISE REPORT~~
 TYPE: Mutations
-PASSED: 6
-FAILED: 3
+PASSED: 14
+FAILED: 2
 NOT SHARED: 0
-LEN iG: 13283
-LEN BWA: 9
+LEN iG: 4225
+LEN BWA: 16
