@@ -1,18 +1,16 @@
-PASSED: CY001955>>715>>SUB
 PASSED: CY001952>>1570>>SUB
-PASSED: CY001958>>1835>>SUB
-FAIL: CY001959>>2114>>DEL XX alleles comparison -> 1: {'chromosome': 'CY001959', 'type': 'DEL', 'found': '-', 'pos': '2114', 'alleles': '*', 'ref': 'T'}| 2: {'chromosome': 'CY001959', 'type': 'DEL', 'found': '-', 'pos': '2114', 'alleles': '&', 'ref': 'T'}
-PASSED: CY001955>>638>>INS
 PASSED: CY001953>>597>>SUB
-FAIL: CY001958>>189>>INS not found
 PASSED: CY001952>>1619>>SUB
-PASSED: CY001958>>383>>SUB
 PASSED: CY001957>>170>>SUB
+PASSED: CY001958>>1835>>SUB
+PASSED: CY001958>>383>>SUB
+FAIL: CY001959>>2114>>DEL XX alleles comparison -> 1: {u'alleles': u'*', u'pos': u'2114', u'type': u'DEL', u'found': u'-', u'ref': u'T', u'chromosome': u'CY001959'}| 2: {u'alleles': u'&', u'pos': u'2114', u'type': u'DEL', u'found': u'-', u'ref': u'T', u'chromosome': u'CY001959'}
+PASSED: CY001955>>715>>SUB
 _______________________________________
 ~~CONCISE REPORT~~
 TYPE: Mutations
-PASSED: 8
+PASSED: 7
 FAILED: 1
-NOT SHARED: 1
-LEN iG: 567
-LEN BWA: 10
+NOT SHARED: 0
+LEN iG: 566
+LEN BWA: 8

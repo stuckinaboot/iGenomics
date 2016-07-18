@@ -10,44 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-            timestampString = "490038930.96999"
+            timestampString = "490073580.78067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-matchReedsWithSeedingState:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-            timestampString = "490038930.96999"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-matchReedsWithSeedingState:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BWT_MatcherSC.m"
-            timestampString = "490039018.222912"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-exactMatchForQuery:andIsReverse:andForOnlyPos:"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
+            landmarkName = "-recordInDel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

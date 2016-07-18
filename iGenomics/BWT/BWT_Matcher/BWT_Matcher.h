@@ -31,7 +31,6 @@
 #define kBWT_MatcherReadAlignerMultiThreadStride 10
 #define kBWT_MatcherReadAlignerMultiThreadNumOfThreads 10
 
-
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
 

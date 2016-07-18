@@ -68,10 +68,9 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     
     for (int i = 0; i<fileStrLen-1; i++) {
         for (int a = 0; a < kACGTwithInDelsLen; a++) {
-            
-            if (posOccArray[a][i]>0 /*&& a < kACGTLen+1*/) { //Character did match, at least 1x coverage was found, and not an insertion
+//            if (posOccArray[a][i]>0 /*&& a < kACGTLen+1*/) { //Character did match, at least 1x coverage was found, and not an insertion
                 coverageCounter += posOccArray[a][i];
-            }
+//            }
             
             if (a == 0)
                 charWMostOccs = 0;
@@ -154,7 +153,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 }
             }
         }
-        else {//Smaller than lowest allowed coverage(5) -> SHOULD NOT BE CONSIDERED MUTATIONS
+        else {//Smaller than lowest allowed coverage -> SHOULD NOT BE CONSIDERED MUTATIONS
 //            for (int x = 0; x<kACGTLen+1; x++) {
 //                if (posOccArray[x][i] > 0 && acgt[x] != seq[i]) {
 //                    [mutationsArray addObject:[NSNumber numberWithInt:i]];

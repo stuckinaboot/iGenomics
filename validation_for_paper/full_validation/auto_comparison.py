@@ -20,6 +20,8 @@ ________________________________________________________________________________
 ____________________________________________________________________________________________________
 '''
 
+HELP_STR = 'Generates comparison tree. \nNeeds three arguments (in the exact order): \nbwa tree root, iG tree root, bwa sim file\n'
+
 READ_LEN_PARAM = 'Read Length'
 SEQ_ERR_RATE_PARAM = 'Sequencing Error Rate'
 MUT_RATE_PARAM = 'Mutation Rate'
@@ -29,9 +31,10 @@ UTILITIES_PATH = './full_validation_utilities/my_scripts/'
 ACP_TO_ACPB_PATH = UTILITIES_PATH + 'acp_to_acpb.py'
 VCF_TO_SMF_PATH = UTILITIES_PATH + 'vcf_to_smf.py'
 MCS_TO_SMF_PATH = UTILITIES_PATH + 'mcs_to_smf.py'
-COMPARE_MUTS_PATH = UTILITIES_PATH + 'compare_mutations.py'
+COMPARE_MUTS_PATH = UTILITIES_PATH + 'compare_mutations_no_ins.py'
 COMPARE_RESULTS_PATH = UTILITIES_PATH + 'compare_results.py'
 GEN_IG_VALIDATION_FILE_PATH = UTILITIES_PATH + 'generateIGenomicsValidationFile.py'
+CONSOLIDATE_RUNTIMES_FILE_PATH = UTILITIES_PATH + 'consolidateRuntimes.py'
 
 def parametersDictFromParametersFile(file):
 	parameters = {}
@@ -42,6 +45,10 @@ def parametersDictFromParametersFile(file):
 		for i in range(1, len(components)):
 			parameters[components[0]].append(float(components[i]))
 	return parameters
+
+def showHelp():
+	sys.stdout.write(HELP_STR)
+	printDivider()
 
 def stdPrint(txt):
 	sys.stdout.write(txt + '\n')
@@ -78,6 +85,9 @@ def performComparison(currLeafPath, bwaLeafPath, igLeafPath):
 	#Perform generateIGenomicsValidationFile
 	os.system('python ' + GEN_IG_VALIDATION_FILE_PATH + ' ' + currLeafPath + 'results.out ' + currLeafPath + 'mutations.out > ' + currLeafPath + 'validation.fin')
 
+	#Perform consolidateRuntimes
+	os.system('python ' + CONSOLIDATE_RUNTIMES_FILE_PATH + ' ' + bwaLeafPath + 'README.dig ' + igLeafPath + 'README.dig ' + currLeafPath + 'runtimes.rt')
+
 def createComparisonTree(bwaPath, igPath, comparisonPath, parameters):
 	for readLength in parameters[READ_LEN_PARAM]:
 		readLength = int(readLength)
@@ -104,6 +114,10 @@ def createComparisonTree(bwaPath, igPath, comparisonPath, parameters):
 				performComparison(mutRatePath, mutRateBWAPath, mutRateIGPath)
 
 def main():
+	if (len(argv) == 1):
+		showHelp()
+		return
+		
 	os.system('clear')
 	stdPrint('Auto Comparison: Comparison Started')
 	printDivider()

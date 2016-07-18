@@ -3,9 +3,9 @@ acpFile = open(argv[1], 'r')
 acpbFile = open(argv[2] + '.acpb', 'w')
 
 output = ""
-print(argv[1])
+
 for line in acpFile.readlines():
-	line = line.strip('\n')
+	line = line.strip('\n').strip('\r')
 	if (len(line) > 0 and line[0] == '#'):
 		continue
 	if (len(line) == 0):

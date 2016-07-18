@@ -418,7 +418,7 @@
 }
 
 - (IBAction)showMutTBView:(id)sender {
-    if ([allMutPosArray count] == 0) {
+    if ([mutPosArray count] == 0) {
         [GlobalVars displayiGenomicsAlertWithMsg:kMutationsPopoverNoMutationsAlertMsg];
         return;
     }

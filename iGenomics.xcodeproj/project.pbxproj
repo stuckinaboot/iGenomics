@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
-		A30847851D2C066600050FE8 /* hand_sim_reads.noindels.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A30847841D2C066600050FE8 /* hand_sim_reads.noindels.fastq */; };
-		A30847871D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa */; };
 		A30847A31D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */; };
 		A30847A41D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */; };
 		A30847A51D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */; };
@@ -156,6 +154,7 @@
 		A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0219391FCB00F69E07 /* libc++.dylib */; };
 		A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3806A561C940F5F00D0C117 /* incorrectsingle.fa */; };
 		A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */; };
+		A383AB221D3D212F003FF7F3 /* reads.sim.postinsupdate.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A383AB211D3D212F003FF7F3 /* reads.sim.postinsupdate.fastq */; };
 		A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */; };
 		A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */; };
 		A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */ = {isa = PBXBuildFile; fileRef = A39182D31C912D8E00937695 /* minion.raw.fasta */; };
@@ -175,6 +174,8 @@
 		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
 		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
 		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
+		A3ADF1D51D357A5700CDE8BF /* sim_reads.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */; };
+		A3ADF1D71D35A3C600CDE8BF /* sim_reads2.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */; };
 		A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */; };
 		A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
@@ -222,8 +223,6 @@
 		A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = incorrectsingle.fq; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
-		A30847841D2C066600050FE8 /* hand_sim_reads.noindels.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hand_sim_reads.noindels.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/no_sequencing_error/no_indels/hand_sim_reads.noindels.fastq; sourceTree = SOURCE_ROOT; };
-		A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hand_sim_reads.withindels.test2.fa; path = validation_for_paper/full_validation/hand_simulated_reads_files/no_sequencing_error/with_indels/test2/hand_sim_reads.withindels.test2.fa; sourceTree = SOURCE_ROOT; };
 		A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
 		A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
 		A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
@@ -398,6 +397,7 @@
 		A375FC0219391FCB00F69E07 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		A3806A561C940F5F00D0C117 /* incorrectsingle.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = incorrectsingle.fa; path = ../../../Desktop/incorrectsingle.fa; sourceTree = "<group>"; };
 		A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.realData.trim_1k.fa; path = BWA_Comparison/aligmentComparison/comparison6/flu.H3N2.realData.trim_1k.fa; sourceTree = SOURCE_ROOT; };
+		A383AB211D3D212F003FF7F3 /* reads.sim.postinsupdate.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.sim.postinsupdate.fastq; path = "validation_for_paper/full_validation/hand_simulated_reads_files/after_update_for_ins/readlen250-se0.01-mr0.1/reads.sim.postinsupdate.fastq"; sourceTree = SOURCE_ROOT; };
 		A388A7EF1AD8DE3600DFDB92 /* flu.H1N1.longReads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.longReads.fa; sourceTree = SOURCE_ROOT; };
 		A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A39182D31C912D8E00937695 /* minion.raw.fasta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = minion.raw.fasta; path = ../../../Desktop/minion.raw.fasta; sourceTree = "<group>"; };
@@ -424,6 +424,8 @@
 		A3AC49BD1697936100DD9266 /* ParametersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ParametersController.xib; path = Parameters/ParametersController.xib; sourceTree = "<group>"; };
 		A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReferenceFiles.txt; sourceTree = "<group>"; };
 		A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReadsFiles.txt; sourceTree = "<group>"; };
+		A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sim_reads.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/sim_reads.fastq; sourceTree = SOURCE_ROOT; };
+		A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sim_reads2.fq; path = "validation_for_paper/full_validation/hand_simulated_reads_files/after_update/readlen250-se0.01-mr0.1/sim_reads2.fq"; sourceTree = SOURCE_ROOT; };
 		A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridView.h; sourceTree = "<group>"; };
 		A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridView.m; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
@@ -911,8 +913,6 @@
 				A30847A01D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq */,
 				A30847A11D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq */,
 				A30847A21D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq */,
-				A30847861D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa */,
-				A30847841D2C066600050FE8 /* hand_sim_reads.noindels.fastq */,
 			);
 			name = "Reads Files for Full Validation";
 			sourceTree = "<group>";
@@ -1017,6 +1017,8 @@
 		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
 			isa = PBXGroup;
 			children = (
+				A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */,
+				A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */,
 				A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
@@ -1043,6 +1045,7 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A383AB211D3D212F003FF7F3 /* reads.sim.postinsupdate.fastq */,
 				A3806A561C940F5F00D0C117 /* incorrectsingle.fa */,
 				A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */,
 				A382DBD81C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa */,
@@ -1414,11 +1417,9 @@
 				A351607C1AA3FD7B0004FD32 /* Icon-40@2x.png in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
-				A30847851D2C066600050FE8 /* hand_sim_reads.noindels.fastq in Resources */,
 				A30847A51D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq in Resources */,
 				A317010A1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
-				A30847871D2C0A4A00050FE8 /* hand_sim_reads.withindels.test2.fa in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
@@ -1483,9 +1484,11 @@
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A35160811AA3FD7B0004FD32 /* Icon-76@2x.png in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
+				A3ADF1D71D35A3C600CDE8BF /* sim_reads2.fq in Resources */,
 				A30847B41D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.001.fq in Resources */,
 				A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
+				A3ADF1D51D357A5700CDE8BF /* sim_reads.fastq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A30847BC1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
@@ -1532,6 +1535,7 @@
 				A30847B11D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
 				A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */,
+				A383AB221D3D212F003FF7F3 /* reads.sim.postinsupdate.fastq in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,

@@ -202,7 +202,7 @@
                     rect = CGRectMake(x, y, boxWidth, self.bounds.size.height-kPosLblHeight);
                 }
 
-                int currCoverage = coverageArray[j]-posOccArray[kACGTLen+1][j];//Don't count insertions
+                int currCoverage = coverageArray[j];//-posOccArray[kACGTLen+1][j];//Don't count insertions
                 float newHeight = (currCoverage*rect.size.height)/maxCoverageVal;
                 /* That kinda formula thing comes from this:
                  Coverage                X Height

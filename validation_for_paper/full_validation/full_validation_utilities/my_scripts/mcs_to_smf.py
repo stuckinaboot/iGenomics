@@ -57,7 +57,7 @@ for line in mcsFile.readlines():
 	if foundCharWithHighestFrequency == "-":
 		mutation['type'] = "DEL"
 	elif "+" in foundCharWithHighestFrequency:
-		foundCharWithHighestFrequency = refChar + foundCharWithHighestFrequency.strip('+')
+		foundCharWithHighestFrequency = foundCharWithHighestFrequency.strip('+')#refChar + foundCharWithHighestFrequency.strip('+')
 		mutation['type'] = "INS"
 	else:
 		mutation['type'] = "SUB"

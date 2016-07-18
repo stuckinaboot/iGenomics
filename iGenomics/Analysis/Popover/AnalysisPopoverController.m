@@ -32,6 +32,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    insertionsTblView.allowsSelection = NO;
     insertionsTblView.hidden = (insertionsArray == nil || insertionsArray == NULL);
 }
 

@@ -1,12 +1,12 @@
-PASSED: CY001952>>1253>>SUB
-FAIL: CY001952>>680>>DEL XX alleles comparison -> 1: {'type': 'DEL', 'ref': 'C', 'found': '-', 'alleles': '*', 'pos': '680', 'chromosome': 'CY001952'}| 2: {'type': 'DEL', 'ref': 'C', 'found': '-', 'alleles': '&', 'pos': '680', 'chromosome': 'CY001952'}
-PASSED: CY001957>>225>>SUB
-PASSED: CY001958>>1457>>SUB
-PASSED: CY001953>>715>>SUB
 PASSED: CY001957>>407>>SUB
-PASSED: CY001952>>872>>SUB
-FAIL: CY001959>>2306>>SUB not found
+FAIL: CY001952>>680>>DEL XX alleles comparison -> 1: {u'alleles': u'*', u'pos': u'680', u'type': u'DEL', u'found': u'-', u'ref': u'C', u'chromosome': u'CY001952'}| 2: {u'alleles': u'&', u'pos': u'680', u'type': u'DEL', u'found': u'-', u'ref': u'C', u'chromosome': u'CY001952'}
 PASSED: CY001959>>1388>>SUB
+PASSED: CY001952>>872>>SUB
+PASSED: CY001952>>1253>>SUB
+PASSED: CY001957>>225>>SUB
+FAIL: CY001959>>2306>>SUB not found
+PASSED: CY001953>>715>>SUB
+PASSED: CY001958>>1457>>SUB
 _______________________________________
 ~~CONCISE REPORT~~
 TYPE: Mutations

@@ -465,9 +465,15 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             if (info.gappedB[a] == kDelMarker) {
                 BWT_Matcher_InsertionDeletion_InsertionHolder *tID = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
                 [tID setUp];
-                tID.seq[0] = info.gappedA[a];
-                tID.seq[1] = '\0';
-                tID.pos = info.position+a-insCount;
+                if (a - 1 >= 0) {
+                    tID.seq[0] = info.gappedA[a - 1];
+                    tID.seq[1] = info.gappedA[a];
+                    tID.seq[2] = '\0';
+                } else {
+                    tID.seq[0] = info.gappedA[a];
+                    tID.seq[1] = '\0';
+                }
+                tID.pos = info.position+a-insCount-1;
                 
                 int tIDSeqLen = strlen(tID.seq);
                 
@@ -482,31 +488,25 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                     tIDSeqLen++;
                 }
                 //Check if insertions array already has it
-//                BOOL alreadyRec = FALSE;
-//                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    BOOL alreadyRec = FALSE;
-                
-                    for (int l = 0; l<self.insertionsArray.count; l++) {
-                        BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
-                        if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
-                            tt.count++;
-                            alreadyRec = TRUE;
-                        }
+                BOOL alreadyRec = FALSE;
+            
+                for (int l = 0; l<self.insertionsArray.count; l++) {
+                    BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
+                    if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
+                        tt.count++;
+                        alreadyRec = TRUE;
                     }
-                    if (!alreadyRec) {
-//                        dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                            [self.insertionsArray addObject:tID];
-//                        });
-                    }
-                    OSAtomicIncrement32(&posOccArray[kACGTLen+1][tID.pos]);
-    //                &posOccArray[kACGTLen+1][tID.pos]++;//Insertions add one
-                    OSAtomicIncrement32(&insCount);
-//                });
+                }
+                if (!alreadyRec) {
+                    [self.insertionsArray addObject:tID];
+                }
+                OSAtomicIncrement32(&posOccArray[kACGTLen+1][tID.pos]);
+                OSAtomicIncrement32(&insCount);
             }
             else {
                 int w = [BWT_MatcherSC whichChar:info.gappedA[a] inContainer:acgt];
-                OSAtomicIncrement32(&posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]);
-//                posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]++;
+                if ((a + 1 < aLen && info.gappedB[a + 1] != kDelMarker) || (a + 1 == aLen))
+                    OSAtomicIncrement32(&posOccArray[(w>-1) ? w : kACGTLen][info.position+a-insCount]);
             }
         }
     }
