@@ -151,7 +151,7 @@
     
     fileExporter = [[FileExporter alloc] init];
     [fileExporter setDelegate:self];
-    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr andTotalAlignmentRuntime:totalAlignmentRuntime andTotalNumOfReads:numOfReads andTotalNumOfReadsAligned:numOfReadsMatched];
+    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr andTotalAlignmentRuntime:totalAlignmentRuntime andTotalNumOfReads:numOfReads andTotalNumOfReadsAligned:numOfReadsMatched separateGenomeLensArr:separateGenomeLens separateGenomeNamesArr:separateGenomeNames];
 }
 
 - (void)readyViewForCovProfile {

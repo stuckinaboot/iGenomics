@@ -34,7 +34,8 @@
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
 
-#define kLowestAllowedCoverage 5
+#define kLowestAllowedCoverage 0
+
 
 #define kDebugPrintInsertions 0
 #define kDebugOn 0

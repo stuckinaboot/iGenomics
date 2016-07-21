@@ -37,11 +37,11 @@ typedef enum {
 #define kExportAlertBody @"Enter file name here:"
 #define kExportAlertBtnExportTitle @"Export"
 
-#define kExportDropboxSaveFileFormatMuts @"%@%@.var.mcs"//reads(1..2..3 or no ()).var...
+#define kExportDropboxSaveFileFormatMuts @"%@%@.var.vcf"//reads(1..2..3 or no ()).var...
 #define kExportDropboxSaveFileFormatData @"%@%@.data.acp"//reads(1..2..3 or no ()).data...
 #define kExportDropboxSaveFileExt @".txt"
 #define kExportDropboxSaveDataFileExt @".acp"
-#define kExportDropboxSaveMutsFileExt @".mcs"
+#define kExportDropboxSaveMutsFileExt @".vcf"
 
 #define kErrorAlertExportTitle @"iGenomics: Error"
 #define kErrorAlertExportBody @"An error occurred exporting the file."
@@ -59,6 +59,9 @@ typedef enum {
 #define kExportMutsFileName @"Mutations"
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
 #define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum error rate of %.02f. For a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compact String) file. \n\nPowered by iGenomics"
+
+#define kExportMutsHeaderFileName @"mutation_output.sample"
+#define kExportMutsHeaderFileExt @"vcf"
 
 #define kNoMutationsFoundStr @"No Mutations Found"
 
@@ -91,9 +94,11 @@ typedef enum {
     float totalAlignmentRuntime;
     int totalNumOfReadsAligned;
     int totalNumOfReads;
+    NSArray *separateGenomeLens;
+    NSArray *separateSegmentNames;
 }
 @property (nonatomic) id <FileExporterDelegate> delegate;
-- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned;
+- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned separateGenomeLensArr:(NSArray*)sepGenLens separateGenomeNamesArr:(NSArray*)sepSegNames;
 - (void)fixExportDataStr;
 
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray*)mutPosArr;

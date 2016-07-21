@@ -12,15 +12,18 @@
 
 @synthesize delegate;
 
-- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned {
-    genomeFileName = [NSString stringWithString:gName];
-    readsFileName = [NSString stringWithString:rName];
+- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned separateGenomeLensArr:(NSArray *)sepGenLens separateGenomeNamesArr:(NSArray *)sepSegNames {
+    genomeFileName = [gName substringToIndex:[gName rangeOfString:@"." options:NSBackwardsSearch].location];
+    readsFileName = [rName substringToIndex:[rName rangeOfString:@"." options:NSBackwardsSearch].location];
     errorRate = er;
     exportDataStr = [NSString stringWithString:expDataStr];
     
     totalAlignmentRuntime = runtime;
     totalNumOfReadsAligned = numOfReadsAligned;
     totalNumOfReads = numOfReads;
+    
+    separateGenomeLens = sepGenLens;
+    separateSegmentNames = sepSegNames;
     
     [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
 }
@@ -84,7 +87,8 @@
     if (!info)
         file = [sys createFile:dbPath error:&error];
     else
-        file = [sys openFile:[[DBPath alloc] initWithString:path] error:&error];
+        return NO;
+//        file = [sys openFile:[[DBPath alloc] initWithString:path] error:&error];
     if (error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
         [alert show];
@@ -201,7 +205,7 @@
 
 - (NSMutableString*)getMutationsExportStr {
     NSMutableString *mutString = [[NSMutableString alloc] init];
-    [mutString appendFormat:kMutationTotalFormat,(int)[mutPosArray count]];
+//    [mutString appendFormat:kMutationTotalFormat,(int)[mutPosArray count]];
     MutationInfo *inf;
     if ([mutPosArray count] > 0)
         inf = [mutPosArray objectAtIndex:0];
@@ -212,9 +216,24 @@
         exportFormat = kMutationFormat;
     else
         exportFormat = kMutationExportFormat;
-    for (MutationInfo *info in mutPosArray) {
-        [mutString appendFormat:exportFormat,info.displayedPos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars pos:info.pos relevantInsArr:info.relevantInsertionsArr],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos relevantInsArr:info.relevantInsertionsArr],info.genomeName];//+1 so it doesn't start at 0
+//    for (MutationInfo *info in mutPosArray) {
+//        [mutString appendFormat:exportFormat,info.displayedPos+1,[MutationInfo createMutStrFromOriginalChar:info.refChar andFoundChars:info.foundChars pos:info.pos relevantInsArr:info.relevantInsertionsArr],[MutationInfo createMutCovStrFromFoundChars:info.foundChars andPos:info.pos relevantInsArr:info.relevantInsertionsArr], info.genomeName];//+1 so it doesn't start at 0
+//    }
+    NSString *header = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kExportMutsHeaderFileName ofType:kExportMutsHeaderFileExt] encoding:NSUTF8StringEncoding error:nil];
+    
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"ddMMyyyy"];
+    NSString *dateString = [dateFormatter stringFromDate:today];
+    
+    NSMutableString *contigsStr = [NSMutableString string];
+    for (int i = 0; i < [separateGenomeLens count]; i++) {
+        int len = [[separateGenomeLens objectAtIndex:i] intValue];
+        NSString *name = [separateSegmentNames objectAtIndex:i];
+        [contigsStr appendFormat:@"##contig=<ID=%@, length=%d>%@", name, len, (i < [separateGenomeLens count] - 1) ? @"\n" : @""];
     }
+    [mutString appendFormat:header, dateString, genomeFileName, contigsStr, readsFileName];
+    [mutString appendString:[MutationInfo mutationInfosOutputString:mutPosArray]];
     return mutString;
 }
 

@@ -28,7 +28,8 @@
 @property (nonatomic) char* foundChars;
 - (id)initWithPos:(int)p andRefChar:(char)refC
     andFoundChars:(char*)foundC andDisplayedPos:(int)dispP
-    andInsertionsArr:(NSArray*)insArr heteroAllowance:(int)heteroAllowance;
+    andInsertionsArr:(NSArray*)insArr heteroAllowance:(float)heteroAllowance;
++ (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos;
 + (char*)createMutStrFromOriginalChar:(char)originalC
                         andFoundChars:(char*)fc pos:(int)pos relevantInsArr:(NSArray*)insertions;
 + (char*)createMutCovStrFromFoundChars:(char*)fc
