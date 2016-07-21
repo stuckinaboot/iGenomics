@@ -251,9 +251,11 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
             }
             foundChars[posInFoundChars] = '\0';
         }
-        if (diffCharsAtPos == 1 && foundChars[0] != originalStr[p] && coverageArray[p] >= kLowestAllowedCoverage)
-            [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];//Duplicates it so it doesn't overwrite it (same for below)
-        else if (coverageArray[p] < kLowestAllowedCoverage) {
+        if (diffCharsAtPos == 1 && foundChars[0] != originalStr[p] && coverageArray[p] >= kLowestAllowedCoverage) {
+            MutationInfo *info = [[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance];
+            if (info)
+                [finalArr addObject:info];//Duplicates it so it doesn't overwrite it (same for below)
+        } else if (coverageArray[p] < kLowestAllowedCoverage) {
             diffCharsAtPos = 0;
             // Don't add any mutations if the amount of coverage is below kLowestAllowedCoverage
 //            for (int a = 0; a<kACGTwithInDelsLen; a++) {
@@ -294,8 +296,11 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
                 posInFoundChars++;
             }
             foundChars[posInFoundChars] = '\0';
-            if ((diffCharsAtPos > 1 || foundChars[0] != originalStr[p]) && highestCoverageAmt > 0 && !alreadyAdded) //We compare foundChars to originalStr because if foundChars has 1 character, then that means at least one other character was also at that position, but that character had an occurence value below the hetero threshold. Also, on a separate note, in case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
-                [finalArr addObject:[[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance]];
+            if ((diffCharsAtPos > 1 || foundChars[0] != originalStr[p]) && highestCoverageAmt > 0 && !alreadyAdded) {//We compare foundChars to originalStr because if foundChars has 1 character, then that means at least one other character was also at that position, but that character had an occurence value below the hetero threshold. Also, on a separate note, in case the pos was an insertion, the above for loop wouldn't add it to the finalArr obj, so it is added here
+                MutationInfo *info = [[MutationInfo alloc] initWithPos:p andRefChar:originalStr[p] andFoundChars:foundChars andDisplayedPos:p andInsertionsArr:insArr heteroAllowance:heteroAllowance];
+                if (info)
+                    [finalArr addObject:info];
+            }
         }
         for (int t = 0; t < kACGTLen + 2; t++) {
             if (foundChars[t] == 0)

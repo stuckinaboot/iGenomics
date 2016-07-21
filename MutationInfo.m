@@ -26,21 +26,43 @@
             [insertions addObject:holder];
         }
     }
+    
+    //Remove the + from foundChars if insertions size is 0 and there was a +
+    if ([insertions count] == 0) {
+        int numFoundChars = (int)strlen(foundChars);
+        if (foundChars[numFoundChars - 1] == kInsMarker) {
+            foundChars[numFoundChars - 1] = '\0';
+        }
+        numFoundChars--;
+        
+        //Check if a mutation is no longer present
+        if (numFoundChars == 1 || numFoundChars == 0)
+            if (foundChars[numFoundChars - 1] == refChar)
+                return NULL;
+    }
+    
     relevantInsertionsArr = insertions;
     return self;
 }
 
 + (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos {
+    NSLog(@"Generating mutation info output string");
     NSMutableArray *mutationInfosDicts = [NSMutableArray array];
     for (MutationInfo *info in mutationInfos) {
         [mutationInfosDicts addObject:[info describingDictionary]];
     }
     
+    NSLog(@"Mutation info dictionaries filled");
+    
     NSMutableString *output = [NSMutableString string];
     NSArray *finalDicts = [MutationInfo mutationInfoDictsByCompressingDeletions:mutationInfosDicts];
+    
+    NSLog(@"All deletions compressed");
+    
     for (NSDictionary *dict in finalDicts) {
         [output appendFormat:@"%@\n", [MutationInfo descriptionFromMutationInfoDict:dict]];
     }
+    NSLog(@"Descriptions from dictionaries finished");
     return output;
 }
 
@@ -320,9 +342,14 @@
             [refStr appendFormat:@"%@", dict[@"reference"][@"normal"]];
 //        normalRefAlreadyAdded = TRUE;
     }
-    
-    [foundStr replaceCharactersInRange:NSMakeRange([foundStr length] - 1, 1) withString:@""];//Removes last comma
-    
+
+    @try {
+        [foundStr replaceCharactersInRange:NSMakeRange([foundStr length] - 1, 1) withString:@""];//Removes last comma
+    } @catch (NSException *exception) {
+        NSLog(@"stop");
+    }
+//    [foundStr replaceCharactersInRange:NSMakeRange([foundStr length] - 1, 1) withString:@""];//Removes last comma
+
     [info replaceCharactersInRange:NSMakeRange([info length] - 1, 1) withString:@""];//Removes last comma
     
     NSString *gtVal;
@@ -337,6 +364,7 @@
         for (int i = (containsRef) ? 0 : 1, cnt = 0; cnt < [alleleFreqsDict count]; cnt++, i++) {
             [heteroStr appendFormat:@"%d/", i];
         }
+
         [heteroStr replaceCharactersInRange:NSMakeRange([heteroStr length] - 1, 1) withString:@""];
         gtVal = heteroStr;
     }
