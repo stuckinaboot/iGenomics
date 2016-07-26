@@ -20,9 +20,13 @@ OUTPUT_NAME = 'reads'
 BWA_PATH = './full_validation_utilities/bwa'
 BWA_INDEX_CMD_FORMAT = ' index %s'
 
+NORM_PATH = './full_validation_utilities/vcf_tools/vt/vt'
+NORM_CMD_FORMAT = ' normalize -o %s -r %s %s'
+
 BWA_CMD_FORMAT = ' mem -x ont2d %s %s > %s'
 OUTPUT_BWA_NAME = 'deleteme'
 
+ALIGNER_PATH = './auto_read_aligner.py'
 simFilesToRemove = [OUTPUT_NAME + '.bfast.fastq', OUTPUT_NAME + '.bwa.read2.fastq', OUTPUT_NAME + '.mutations.txt']
 
 def stdPrint(txt):
@@ -41,6 +45,18 @@ def dwgsimCommand(simParameters, referenceFilePath, currPath):
 def bwaCommand(referenceFilePath, readsFilePath, outputPath):
 	bwaCmd = BWA_PATH + BWA_CMD_FORMAT % (referenceFilePath, readsFilePath, outputPath + OUTPUT_BWA_NAME)
 	return bwaCmd
+
+def normalize(referenceFilePath, mutFilePath, mutNormalizedFilePath):
+	normalizeCmd = NORM_PATH + NORM_CMD_FORMAT % (mutNormalizedFilePath, referenceFilePath, mutFilePath)
+	os.system(normalizeCmd)
+
+def alignAndGenSAMvcf(referenceFilePath, readsFilePath, currPath, mutNormalizedFilePath):
+	#Generate vcf
+	os.system('python ' + ALIGNER_PATH + ' %s %s %s %s' % (referenceFilePath, readsFilePath, currPath, 'reads.mutations.sam.vcf'))
+
+	#Generate normalized vcf
+	normalize(referenceFilePath, currPath + 'reads.mutations.sam.vcf', mutNormalizedFilePath)
+
 
 def removeUnnecessarySimFiles(basePath):
 	for file in simFilesToRemove:
@@ -69,6 +85,12 @@ def performSIM(path, referenceFilePath, simParameters):
 	stdPrint('		Perform SIM: Simulating for' + str(simParameters))
 	os.system(DWGSIM_PATH + dwgsimCommand(simParameters, referenceFilePath, path))
 	stdPrint('		Perform SIM: Simulating Finished')
+	stdPrint('		Perform SIM: Start normalizing')
+	normalize(referenceFilePath, path + 'reads.mutations.vcf', path + 'reads.mutations.bwa.vcf')
+	stdPrint('		Perform SIM: Finish normalizing')
+	stdPrint('		Perform SIM: Start generating VCF from SAM')
+	alignAndGenSAMvcf(referenceFilePath, path + 'reads.fq', path, path + 'reads.mutations.normalized.sam.vcf')
+	stdPrint('		Perform SIM: Finished generating VCF from SAM')
 	stdPrint('		Perform SIM: Start removing unnecessary simulation files')
 	removeUnnecessarySimFiles(path)
 	stdPrint('		Perform SIM: Finished removing unnecessary simulation files')
