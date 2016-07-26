@@ -1,3 +1,4 @@
+reads.fastq
 reads.sim.postinsupdate.fastq
 sim_reads2.fq
 sim_reads.fastq

@@ -22,6 +22,8 @@ import sys
 from sys import argv
 import json
 
+APPROXI_POS_MARGIN = 5
+
 def mutDictFromFile(file):
 	mutDict = {}
 	header = []
@@ -132,7 +134,7 @@ def compareMutDicts():
 	print numNotShared
 	print numFailed
 	for key in bwaMutDictRemainder:
-		approxiMutKey = findApproximateMutationWithMargin(igenomicsMutDictRemainder, 5, bwaMutDictRemainder[key])
+		approxiMutKey = findApproximateMutationWithMargin(igenomicsMutDictRemainder, APPROXI_POS_MARGIN, bwaMutDictRemainder[key])
 		if approxiMutKey is not None:
 			numPassed += 1
 			numApproxiPassed += 1

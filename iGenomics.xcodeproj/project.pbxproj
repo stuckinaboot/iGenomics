@@ -167,6 +167,7 @@
 		A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */; };
 		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
 		A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BB5DC17D65C1400B5FE7F /* APTimer.m */; };
+		A3A3AADB1D47DACB00CCD66B /* reads.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3A3AADA1D47DACB00CCD66B /* reads.fastq */; };
 		A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */; };
 		A3ABCAE11D24299100A40121 /* AbstractFileChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */; };
 		A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49B6169791EF00DD9266 /* FilePickerController.m */; };
@@ -415,6 +416,7 @@
 		A398B3D11889EFA700EC43B8 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
 		A39BB5DB17D65C1400B5FE7F /* APTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APTimer.h; path = iGenomics/APTimer.h; sourceTree = SOURCE_ROOT; };
 		A39BB5DC17D65C1400B5FE7F /* APTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTimer.m; path = iGenomics/APTimer.m; sourceTree = SOURCE_ROOT; };
+		A3A3AADA1D47DACB00CCD66B /* reads.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/final_test/reads.fastq; sourceTree = SOURCE_ROOT; };
 		A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuccessBox.png; sourceTree = SOURCE_ROOT; };
 		A3ABCADF1D24299100A40121 /* AbstractFileChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFileChooseView.h; sourceTree = "<group>"; };
 		A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFileChooseView.m; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3A3AADA1D47DACB00CCD66B /* reads.fastq */,
 				A375D0261D3FEB48007063AB /* mutation_output.sample.vcf */,
 				A3AF08221D05C7D5000EC63B /* simulated_reads_files */,
 				A35160641AA3FD680004FD32 /* App Icons */,
@@ -1554,6 +1557,7 @@
 				A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */,
 				A35160901AA400000004FD32 /* Icon-57.png in Resources */,
 				A31700FC1D26BE4700D49285 /* reads-rl250-se0.1-mr0.1.fq in Resources */,
+				A3A3AADB1D47DACB00CCD66B /* reads.fastq in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

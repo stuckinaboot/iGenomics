@@ -32,13 +32,15 @@
         int numFoundChars = (int)strlen(foundChars);
         if (foundChars[numFoundChars - 1] == kInsMarker) {
             foundChars[numFoundChars - 1] = '\0';
+            numFoundChars--;
         }
-        numFoundChars--;
         
         //Check if a mutation is no longer present
-        if (numFoundChars == 1 || numFoundChars == 0)
+        if (numFoundChars == 1)
             if (foundChars[numFoundChars - 1] == refChar)
                 return NULL;
+        if (numFoundChars == 0)
+            return NULL;
     }
     
     relevantInsertionsArr = insertions;
@@ -120,7 +122,7 @@
                 int newInternalPos = ((MutationInfo*)info[@"mutation info"]).pos - 1;//[info[@"position"] intValue] - 2;//Because info position refers to the displayed pos, which is the internal pos + 1
                 
                 prevPosDict[@"position"] = @([info[@"position"] intValue] - 1);
-                prevPosDict[@"mutation info"] = [[MutationInfo alloc] initWithPos:newInternalPos andRefChar:'f' andFoundChars:"" andDisplayedPos:0 andInsertionsArr:NULL heteroAllowance:0];
+                prevPosDict[@"mutation info"] = [[MutationInfo alloc] initWithPos:newInternalPos andRefChar:'f' andFoundChars:"foo" andDisplayedPos:0 andInsertionsArr:NULL heteroAllowance:0];
 //                info[@"position"] = @(newInternalPos + 1);
                 NSString *refBase = [NSString stringWithFormat:@"%c", originalStr[newInternalPos]];
                 prevPosDict[@"reference"] = [NSMutableDictionary dictionary];
