@@ -9,33 +9,6 @@
 /* Begin PBXBuildFile section */
 		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
-		A30847A31D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */; };
-		A30847A41D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */; };
-		A30847A51D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */; };
-		A30847A61D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478B1D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.001.fq */; };
-		A30847A71D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478C1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.01.fq */; };
-		A30847A81D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478D1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.001.fq */; };
-		A30847A91D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478E1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.1.fq */; };
-		A30847AA1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308478F1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.01.fq */; };
-		A30847AB1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847901D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.001.fq */; };
-		A30847AC1D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847911D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.1.fq */; };
-		A30847AD1D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847921D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.01.fq */; };
-		A30847AE1D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847931D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.1.fq */; };
-		A30847AF1D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847941D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.001.fq */; };
-		A30847B01D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847951D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.01.fq */; };
-		A30847B11D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847961D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.001.fq */; };
-		A30847B21D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847971D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.1.fq */; };
-		A30847B31D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847981D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.01.fq */; };
-		A30847B41D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847991D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.001.fq */; };
-		A30847B51D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308479A1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.1.fq */; };
-		A30847B61D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308479B1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.01.fq */; };
-		A30847B71D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308479C1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.1.fq */; };
-		A30847B81D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308479D1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.001.fq */; };
-		A30847B91D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308479E1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.01.fq */; };
-		A30847BA1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A308479F1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.001.fq */; };
-		A30847BB1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847A01D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq */; };
-		A30847BC1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847A11D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq */; };
-		A30847BD1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A30847A21D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -49,33 +22,6 @@
 		A3161668196F0EF30083AD71 /* CoverageGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3161667196F0EF30083AD71 /* CoverageGridView.m */; };
 		A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */; };
 		A316743519994BB9009C8EC8 /* BackBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = A316743419994BB9009C8EC8 /* BackBtn.png */; };
-		A31700F31D26BE4700D49285 /* reads-rl100-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700D81D26BE4700D49285 /* reads-rl100-se0.1-mr0.1.fq */; };
-		A31700F41D26BE4700D49285 /* reads-rl100-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700D91D26BE4700D49285 /* reads-rl100-se0.1-mr0.01.fq */; };
-		A31700F51D26BE4700D49285 /* reads-rl100-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700DA1D26BE4700D49285 /* reads-rl100-se0.01-mr0.1.fq */; };
-		A31700F61D26BE4700D49285 /* reads-rl100-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700DB1D26BE4700D49285 /* reads-rl100-se0.1-mr0.001.fq */; };
-		A31700F71D26BE4700D49285 /* reads-rl100-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700DC1D26BE4700D49285 /* reads-rl100-se0.01-mr0.01.fq */; };
-		A31700F81D26BE4700D49285 /* reads-rl100-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700DD1D26BE4700D49285 /* reads-rl100-se0.01-mr0.001.fq */; };
-		A31700F91D26BE4700D49285 /* reads-rl100-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700DE1D26BE4700D49285 /* reads-rl100-se0.2-mr0.1.fq */; };
-		A31700FA1D26BE4700D49285 /* reads-rl100-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700DF1D26BE4700D49285 /* reads-rl100-se0.2-mr0.01.fq */; };
-		A31700FB1D26BE4700D49285 /* reads-rl100-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E01D26BE4700D49285 /* reads-rl100-se0.2-mr0.001.fq */; };
-		A31700FC1D26BE4700D49285 /* reads-rl250-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E11D26BE4700D49285 /* reads-rl250-se0.1-mr0.1.fq */; };
-		A31700FD1D26BE4700D49285 /* reads-rl250-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E21D26BE4700D49285 /* reads-rl250-se0.1-mr0.01.fq */; };
-		A31700FE1D26BE4700D49285 /* reads-rl250-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E31D26BE4700D49285 /* reads-rl250-se0.01-mr0.1.fq */; };
-		A31700FF1D26BE4700D49285 /* reads-rl250-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E41D26BE4700D49285 /* reads-rl250-se0.1-mr0.001.fq */; };
-		A31701001D26BE4700D49285 /* reads-rl250-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E51D26BE4700D49285 /* reads-rl250-se0.01-mr0.01.fq */; };
-		A31701011D26BE4700D49285 /* reads-rl250-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E61D26BE4700D49285 /* reads-rl250-se0.01-mr0.001.fq */; };
-		A31701021D26BE4700D49285 /* reads-rl250-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E71D26BE4700D49285 /* reads-rl250-se0.2-mr0.1.fq */; };
-		A31701031D26BE4700D49285 /* reads-rl250-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E81D26BE4700D49285 /* reads-rl250-se0.2-mr0.01.fq */; };
-		A31701041D26BE4700D49285 /* reads-rl250-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700E91D26BE4700D49285 /* reads-rl250-se0.2-mr0.001.fq */; };
-		A31701051D26BE4700D49285 /* reads-rl1000-se0.1-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700EA1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.1.fq */; };
-		A31701061D26BE4700D49285 /* reads-rl1000-se0.1-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700EB1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.01.fq */; };
-		A31701071D26BE4700D49285 /* reads-rl1000-se0.01-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700EC1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.1.fq */; };
-		A31701081D26BE4700D49285 /* reads-rl1000-se0.1-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700ED1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.001.fq */; };
-		A31701091D26BE4700D49285 /* reads-rl1000-se0.01-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700EE1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.01.fq */; };
-		A317010A1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700EF1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq */; };
-		A317010B1D26BE4700D49285 /* reads-rl1000-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700F01D26BE4700D49285 /* reads-rl1000-se0.2-mr0.1.fq */; };
-		A317010C1D26BE4700D49285 /* reads-rl1000-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700F11D26BE4700D49285 /* reads-rl1000-se0.2-mr0.01.fq */; };
-		A317010D1D26BE4700D49285 /* reads-rl1000-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A31700F21D26BE4700D49285 /* reads-rl1000-se0.2-mr0.001.fq */; };
 		A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */; };
 		A31FC7C51B73BBD000721921 /* APTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A31FC7C41B73BBD000721921 /* APTableViewCell.m */; };
 		A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3208B34197EED3700299A30 /* ImportantMutationsDisplayView.xib */; };
@@ -147,6 +93,7 @@
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
 		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
+		A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3704FB21D493E9000788D88 /* reads_fin.fq */; };
 		A375D0271D3FEB48007063AB /* mutation_output.sample.vcf in Resources */ = {isa = PBXBuildFile; fileRef = A375D0261D3FEB48007063AB /* mutation_output.sample.vcf */; };
 		A375FBFB19391FB600F69E07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */; };
 		A375FBFD19391FB900F69E07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFC19391FB900F69E07 /* Security.framework */; };
@@ -225,33 +172,6 @@
 		A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = incorrectsingle.fq; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
-		A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A308478B1D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A308478C1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A308478D1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A308478E1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A308478F1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A30847901D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A30847911D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A30847921D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A30847931D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A30847941D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.1-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.1-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A30847951D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.01-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.01-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A30847961D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A30847971D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A30847981D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A30847991D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A308479A1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A308479B1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A308479C1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A308479D1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.1-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.1-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A308479E1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.01-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.01-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A308479F1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A30847A01D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A30847A11D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A30847A21D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A310AF4E158A5F7200E892AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A310AF50158A5F7200E892AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -272,33 +192,6 @@
 		A3161667196F0EF30083AD71 /* CoverageGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageGridView.m; sourceTree = "<group>"; };
 		A3167432199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iGenomicsLogoDNAIcon.png; sourceTree = "<group>"; };
 		A316743419994BB9009C8EC8 /* BackBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackBtn.png; sourceTree = SOURCE_ROOT; };
-		A31700D81D26BE4700D49285 /* reads-rl100-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700D91D26BE4700D49285 /* reads-rl100-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700DA1D26BE4700D49285 /* reads-rl100-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700DB1D26BE4700D49285 /* reads-rl100-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.1-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.1-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700DC1D26BE4700D49285 /* reads-rl100-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700DD1D26BE4700D49285 /* reads-rl100-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700DE1D26BE4700D49285 /* reads-rl100-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700DF1D26BE4700D49285 /* reads-rl100-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E01D26BE4700D49285 /* reads-rl100-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl100-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl100-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E11D26BE4700D49285 /* reads-rl250-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E21D26BE4700D49285 /* reads-rl250-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E31D26BE4700D49285 /* reads-rl250-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E41D26BE4700D49285 /* reads-rl250-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.1-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.1-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E51D26BE4700D49285 /* reads-rl250-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.01-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.01-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E61D26BE4700D49285 /* reads-rl250-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E71D26BE4700D49285 /* reads-rl250-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E81D26BE4700D49285 /* reads-rl250-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700E91D26BE4700D49285 /* reads-rl250-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl250-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl250-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700EA1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.1-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.1-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700EB1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.1-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.1-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700EC1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.01-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.01-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700ED1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.1-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.1-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700EE1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.01-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.01-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700EF1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
-		A31700F01D26BE4700D49285 /* reads-rl1000-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
-		A31700F11D26BE4700D49285 /* reads-rl1000-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
-		A31700F21D26BE4700D49285 /* reads-rl1000-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files/reads-rl1000-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
 		A31C9ECD177544DB008A7E6E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A31FC7C31B73BBD000721921 /* APTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTableViewCell.h; sourceTree = "<group>"; };
 		A31FC7C41B73BBD000721921 /* APTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTableViewCell.m; sourceTree = "<group>"; };
@@ -392,6 +285,7 @@
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
 		A3700F4817E3A955007C2CC7 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = iGenomics/Analysis/Grid/QuickGridView.m; sourceTree = "<group>"; };
+		A3704FB21D493E9000788D88 /* reads_fin.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads_fin.fq; path = validation_for_paper/test_delete_eventually_nothing_important_stays_here/reads_fin.fq; sourceTree = SOURCE_ROOT; };
 		A375D0261D3FEB48007063AB /* mutation_output.sample.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mutation_output.sample.vcf; sourceTree = SOURCE_ROOT; };
 		A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A375FBFC19391FB900F69E07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -601,6 +495,7 @@
 				A35E39B51885FB7B00651C41 /* Reachability */,
 				A398B3D11889EFA700EC43B8 /* About.txt */,
 				A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */,
+				A3704FB21D493E9000788D88 /* reads_fin.fq */,
 				A34E6BB316C4753C00753D7C /* CSHLabIcon.png */,
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
 				A33A7C1C1650462300E39A6C /* InDel Test */,
@@ -889,40 +784,6 @@
 			name = "Coverage Histogram";
 			sourceTree = "<group>";
 		};
-		A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */ = {
-			isa = PBXGroup;
-			children = (
-				A30847881D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq */,
-				A30847891D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq */,
-				A308478A1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq */,
-				A308478B1D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.001.fq */,
-				A308478C1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.01.fq */,
-				A308478D1D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.001.fq */,
-				A308478E1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.1.fq */,
-				A308478F1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.01.fq */,
-				A30847901D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.001.fq */,
-				A30847911D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.1.fq */,
-				A30847921D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.01.fq */,
-				A30847931D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.1.fq */,
-				A30847941D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.001.fq */,
-				A30847951D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.01.fq */,
-				A30847961D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.001.fq */,
-				A30847971D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.1.fq */,
-				A30847981D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.01.fq */,
-				A30847991D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.001.fq */,
-				A308479A1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.1.fq */,
-				A308479B1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.01.fq */,
-				A308479C1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.1.fq */,
-				A308479D1D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.001.fq */,
-				A308479E1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.01.fq */,
-				A308479F1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.001.fq */,
-				A30847A01D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq */,
-				A30847A11D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq */,
-				A30847A21D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq */,
-			);
-			name = "Reads Files for Full Validation";
-			sourceTree = "<group>";
-		};
 		A36F23041AAF99A4005B5A91 /* flu.H1N1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,7 +886,6 @@
 			children = (
 				A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */,
 				A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */,
-				A36F22EE1CFF409F00265EF8 /* Reads Files for Full Validation */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
 				A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */,
@@ -1066,33 +926,6 @@
 		A3AF08221D05C7D5000EC63B /* simulated_reads_files */ = {
 			isa = PBXGroup;
 			children = (
-				A31700D81D26BE4700D49285 /* reads-rl100-se0.1-mr0.1.fq */,
-				A31700D91D26BE4700D49285 /* reads-rl100-se0.1-mr0.01.fq */,
-				A31700DA1D26BE4700D49285 /* reads-rl100-se0.01-mr0.1.fq */,
-				A31700DB1D26BE4700D49285 /* reads-rl100-se0.1-mr0.001.fq */,
-				A31700DC1D26BE4700D49285 /* reads-rl100-se0.01-mr0.01.fq */,
-				A31700DD1D26BE4700D49285 /* reads-rl100-se0.01-mr0.001.fq */,
-				A31700DE1D26BE4700D49285 /* reads-rl100-se0.2-mr0.1.fq */,
-				A31700DF1D26BE4700D49285 /* reads-rl100-se0.2-mr0.01.fq */,
-				A31700E01D26BE4700D49285 /* reads-rl100-se0.2-mr0.001.fq */,
-				A31700E11D26BE4700D49285 /* reads-rl250-se0.1-mr0.1.fq */,
-				A31700E21D26BE4700D49285 /* reads-rl250-se0.1-mr0.01.fq */,
-				A31700E31D26BE4700D49285 /* reads-rl250-se0.01-mr0.1.fq */,
-				A31700E41D26BE4700D49285 /* reads-rl250-se0.1-mr0.001.fq */,
-				A31700E51D26BE4700D49285 /* reads-rl250-se0.01-mr0.01.fq */,
-				A31700E61D26BE4700D49285 /* reads-rl250-se0.01-mr0.001.fq */,
-				A31700E71D26BE4700D49285 /* reads-rl250-se0.2-mr0.1.fq */,
-				A31700E81D26BE4700D49285 /* reads-rl250-se0.2-mr0.01.fq */,
-				A31700E91D26BE4700D49285 /* reads-rl250-se0.2-mr0.001.fq */,
-				A31700EA1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.1.fq */,
-				A31700EB1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.01.fq */,
-				A31700EC1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.1.fq */,
-				A31700ED1D26BE4700D49285 /* reads-rl1000-se0.1-mr0.001.fq */,
-				A31700EE1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.01.fq */,
-				A31700EF1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq */,
-				A31700F01D26BE4700D49285 /* reads-rl1000-se0.2-mr0.1.fq */,
-				A31700F11D26BE4700D49285 /* reads-rl1000-se0.2-mr0.01.fq */,
-				A31700F21D26BE4700D49285 /* reads-rl1000-se0.2-mr0.001.fq */,
 			);
 			path = simulated_reads_files;
 			sourceTree = "<group>";
@@ -1414,46 +1247,30 @@
 			files = (
 				A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */,
 				A36F230C1AAF99A4005B5A91 /* flu.H1N1.resistant.fq in Resources */,
-				A31700F71D26BE4700D49285 /* reads-rl100-se0.01-mr0.01.fq in Resources */,
-				A30847B61D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.01.fq in Resources */,
-				A30847A61D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.001.fq in Resources */,
 				A35160861AA3FD7B0004FD32 /* Icon-72.png in Resources */,
 				A3CBDC4C1D257CC800EF2DF5 /* ThreeLines.png in Resources */,
 				A3D350B51A7C989000F39C64 /* IconIdea2-Small.png in Resources */,
 				A351607C1AA3FD7B0004FD32 /* Icon-40@2x.png in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
-				A30847A51D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.1.fq in Resources */,
-				A317010A1D26BE4700D49285 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
+				A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */,
 				A375D0271D3FEB48007063AB /* mutation_output.sample.vcf in Resources */,
 				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
-				A30847B01D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.01.fq in Resources */,
 				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
 				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
-				A31701021D26BE4700D49285 /* reads-rl250-se0.2-mr0.1.fq in Resources */,
 				A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */,
-				A30847AC1D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.1.fq in Resources */,
-				A31700FB1D26BE4700D49285 /* reads-rl100-se0.2-mr0.001.fq in Resources */,
-				A31701091D26BE4700D49285 /* reads-rl1000-se0.01-mr0.01.fq in Resources */,
-				A31700FD1D26BE4700D49285 /* reads-rl250-se0.1-mr0.01.fq in Resources */,
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */,
 				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
-				A30847AB1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.001.fq in Resources */,
-				A31701031D26BE4700D49285 /* reads-rl250-se0.2-mr0.01.fq in Resources */,
 				A36F23091AAF99A4005B5A91 /* flu.H1N1.clean.fq in Resources */,
 				A35160851AA3FD7B0004FD32 /* Icon-60.png in Resources */,
 				A35160831AA3FD7B0004FD32 /* Icon-Small@2x.png in Resources */,
-				A31700F81D26BE4700D49285 /* reads-rl100-se0.01-mr0.001.fq in Resources */,
-				A31700F31D26BE4700D49285 /* reads-rl100-se0.1-mr0.1.fq in Resources */,
 				A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
-				A30847BA1D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
-				A31701051D26BE4700D49285 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
 				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
 				A351607F1AA3FD7B0004FD32 /* Icon-60@3x.png in Resources */,
@@ -1462,101 +1279,64 @@
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
 				A351608C1AA3FD7B0004FD32 /* iTunesArtwork in Resources */,
 				A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */,
-				A30847AE1D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.1.fq in Resources */,
 				A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */,
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
-				A30847A31D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.1.fq in Resources */,
 				A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */,
-				A31700F61D26BE4700D49285 /* reads-rl100-se0.1-mr0.001.fq in Resources */,
-				A317010D1D26BE4700D49285 /* reads-rl1000-se0.2-mr0.001.fq in Resources */,
-				A30847A71D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.01.fq in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
 				A351608B1AA3FD7B0004FD32 /* Icon@2x.png in Resources */,
-				A30847B51D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
-				A31700FF1D26BE4700D49285 /* reads-rl250-se0.1-mr0.001.fq in Resources */,
 				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
-				A30847A41D2C14EE00050FE8 /* reads-rl100-se0.1-mr0.01.fq in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
-				A317010B1D26BE4700D49285 /* reads-rl1000-se0.2-mr0.1.fq in Resources */,
-				A31701081D26BE4700D49285 /* reads-rl1000-se0.1-mr0.001.fq in Resources */,
 				A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */,
-				A30847B71D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.1.fq in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
 				A35160871AA3FD7B0004FD32 /* Icon-72@2x.png in Resources */,
 				A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */,
 				A35160911AA400000004FD32 /* Icon-57@2x.png in Resources */,
-				A30847B31D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.01.fq in Resources */,
 				A35160801AA3FD7B0004FD32 /* Icon-76.png in Resources */,
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A35160811AA3FD7B0004FD32 /* Icon-76@2x.png in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
 				A3ADF1D71D35A3C600CDE8BF /* sim_reads2.fq in Resources */,
-				A30847B41D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.001.fq in Resources */,
 				A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
 				A3ADF1D51D357A5700CDE8BF /* sim_reads.fastq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
-				A30847BC1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.01.fq in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
-				A31701061D26BE4700D49285 /* reads-rl1000-se0.1-mr0.01.fq in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A35B05401D0A35EE00374489 /* DNA_Strand_Icon.png in Resources */,
 				A35160821AA3FD7B0004FD32 /* Icon-Small.png in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
-				A30847BB1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.1.fq in Resources */,
-				A317010C1D26BE4700D49285 /* reads-rl1000-se0.2-mr0.01.fq in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A351607B1AA3FD7B0004FD32 /* Icon-40.png in Resources */,
 				A351607D1AA3FD7B0004FD32 /* Icon-40@3x.png in Resources */,
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
-				A31700FE1D26BE4700D49285 /* reads-rl250-se0.01-mr0.1.fq in Resources */,
 				A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */,
-				A31701071D26BE4700D49285 /* reads-rl1000-se0.01-mr0.1.fq in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
-				A31701041D26BE4700D49285 /* reads-rl250-se0.2-mr0.001.fq in Resources */,
 				A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */,
 				A35160881AA3FD7B0004FD32 /* Icon-Small-50.png in Resources */,
 				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
 				A351608D1AA3FD7B0004FD32 /* iTunesArtwork@2x in Resources */,
-				A31701001D26BE4700D49285 /* reads-rl250-se0.01-mr0.01.fq in Resources */,
-				A31700FA1D26BE4700D49285 /* reads-rl100-se0.2-mr0.01.fq in Resources */,
-				A30847A81D2C14EE00050FE8 /* reads-rl100-se0.01-mr0.001.fq in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A351607E1AA3FD7B0004FD32 /* Icon-60@2x.png in Resources */,
-				A30847AF1D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.001.fq in Resources */,
-				A30847AA1D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.01.fq in Resources */,
-				A30847AD1D2C14EE00050FE8 /* reads-rl250-se0.1-mr0.01.fq in Resources */,
-				A31700F41D26BE4700D49285 /* reads-rl100-se0.1-mr0.01.fq in Resources */,
-				A30847B81D2C14EE00050FE8 /* reads-rl1000-se0.1-mr0.001.fq in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
-				A30847B91D2C14EE00050FE8 /* reads-rl1000-se0.01-mr0.01.fq in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
-				A30847B11D2C14EE00050FE8 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
 				A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */,
 				A383AB221D3D212F003FF7F3 /* reads.sim.postinsupdate.fastq in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
 				A39182D41C912D8E00937695 /* minion.raw.fasta in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
-				A31701011D26BE4700D49285 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
 				A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */,
-				A31700F51D26BE4700D49285 /* reads-rl100-se0.01-mr0.1.fq in Resources */,
-				A30847A91D2C14EE00050FE8 /* reads-rl100-se0.2-mr0.1.fq in Resources */,
-				A30847BD1D2C14EE00050FE8 /* reads-rl1000-se0.2-mr0.001.fq in Resources */,
-				A31700F91D26BE4700D49285 /* reads-rl100-se0.2-mr0.1.fq in Resources */,
-				A30847B21D2C14EE00050FE8 /* reads-rl250-se0.2-mr0.1.fq in Resources */,
 				A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */,
 				A35160901AA400000004FD32 /* Icon-57.png in Resources */,
-				A31700FC1D26BE4700D49285 /* reads-rl250-se0.1-mr0.1.fq in Resources */,
 				A3A3AADB1D47DACB00CCD66B /* reads.fastq in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

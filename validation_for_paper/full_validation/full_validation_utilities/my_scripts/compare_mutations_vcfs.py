@@ -55,9 +55,9 @@ def mutDictFromFile(file):
 					mut['REF'] = mut['REF'].split(',')
 
 					#Generate a type for the mutation
-					if len(mut['ALT'][0]) > 1:
+					if len(mut['ALT'][0]) > len(mut['REF'][0]):
 						mut['TYPE'] = 'INS'
-					elif len(mut['REF'][0]) > 1:
+					elif len(mut['REF'][0]) > len(mut['ALT'][0]):
 						mut['TYPE'] = 'DEL'
 					else:
 						mut['TYPE'] = 'SUB'
