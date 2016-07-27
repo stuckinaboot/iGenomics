@@ -86,7 +86,7 @@ def performSIM(path, referenceFilePath, simParameters):
 	os.system(DWGSIM_PATH + dwgsimCommand(simParameters, referenceFilePath, path))
 	stdPrint('		Perform SIM: Simulating Finished')
 	stdPrint('		Perform SIM: Start normalizing')
-	normalize(referenceFilePath, path + 'reads.mutations.vcf', path + 'reads.mutations.bwa.vcf')
+	normalize(referenceFilePath, path + 'reads.mutations.vcf', path + 'reads.mutations.normalized.dwg.vcf')
 	stdPrint('		Perform SIM: Finish normalizing')
 	stdPrint('		Perform SIM: Start generating VCF from SAM')
 	alignAndGenSAMvcf(referenceFilePath, path + 'reads.fq', path, path + 'reads.mutations.normalized.sam.vcf')

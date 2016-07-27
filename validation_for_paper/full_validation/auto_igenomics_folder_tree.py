@@ -4,6 +4,11 @@ from os import listdir
 from os.path import isfile, join
 from sys import argv
 
+NORM_PATH = './full_validation_utilities/vcf_tools/vt/vt'
+NORM_CMD_FORMAT = ' normalize -o %s -r %s %s'
+
+refFilePath = ''
+
 def createDirectoryAtPath(path):
     try:
         os.makedirs(path)
@@ -16,6 +21,10 @@ def stdPrint(txt):
 
 def printDivider():
 	stdPrint('____________________________________________________________________________________________________')
+
+def normalize(referenceFilePath, mutFilePath, mutNormalizedFilePath):
+	normalizeCmd = NORM_PATH + NORM_CMD_FORMAT % (mutNormalizedFilePath, referenceFilePath, mutFilePath)
+	os.system(normalizeCmd)
 
 def createFolderTreeFromiGenomicsSimFiles(fileNames, path):
 	stdPrint('	Create Folder Tree: Entering tree build loop')
@@ -39,7 +48,8 @@ def createFolderTreeFromiGenomicsSimFiles(fileNames, path):
 		if 'data' in fileName:
 			os.system('mv ' + path + fileName + ' ' + currPath + 'reads.acp')
 		elif 'var' in fileName:
-			os.system('mv ' + path + fileName + ' ' + currPath + 'reads.mutations.mcs')
+			os.system('mv ' + path + fileName + ' ' + currPath + 'reads.mutations.ig.vcf')
+			normalize(refFilePath, currPath + 'reads.mutations.ig.vcf', currPath + 'reads.mutations.normalized.ig.vcf')
 
 		readMeFilePath = currPath + 'README.dig'
 
@@ -69,7 +79,9 @@ def main():
 	stdPrint('Auto iGenomics Folder Tree: Started')
 	printDivider()
 
-	path = argv[1]
+	refFilePath = argv[1]
+	path = argv[2]
+
 	stdPrint('Auto iGenomics Folder Tree: Obtaining files in ' + path)
 
 	#http://stackoverflow.com/questions/3207219/how-to-list-all-files-of-a-directory-in-python

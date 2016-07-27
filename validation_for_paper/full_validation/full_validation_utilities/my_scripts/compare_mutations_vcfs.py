@@ -45,7 +45,7 @@ def mutDictFromFile(file):
 					mut['TYPE'] = mut['INFO'][mut['INFO'].find('mt') + 3 :]
 					mut['TYPE'] = mut['TYPE'][:3]
 
-					if 'AF=1.0':
+					if 'AF=1' in mut['INFO']:
 						mut['ALLELES'] = 'HOM'
 					else:
 						mut['ALLELES'] = 'HET'
@@ -62,11 +62,17 @@ def mutDictFromFile(file):
 					else:
 						mut['TYPE'] = 'SUB'
 
-					#Generate a heterozygosity val for the mutation
-					if len(mut['ALT']) > 1 or len(mut['REF']) > 1:
-						mut['ALLELES'] = 'HET'
-					else:
+					if 'GT' in mut['FORMAT']:
+						gtPart = components[len(components) - 1].split(':')[0]
+					if gtPart == '1/1':
 						mut['ALLELES'] = 'HOM'
+					else:
+						mut['ALLELES'] = 'HET'
+					#Generate a heterozygosity val for the mutation
+					# if len(mut['ALT']) > 1 or len(mut['REF']) > 1:
+					# 	mut['ALLELES'] = 'HET'
+					# else:
+					# 	mut['ALLELES'] = 'HOM'
 
 					#Convert the lists into single strings (as the DWGSIM file has only one ALT even if hetero)
 					mut['ALT'] = mut['ALT'][0]

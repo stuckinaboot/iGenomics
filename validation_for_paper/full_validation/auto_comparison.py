@@ -71,19 +71,22 @@ def performComparison(currLeafPath, bwaLeafPath, igLeafPath):
 	os.system('cp ' + bwaLeafPath + 'reads.fq ' + currLeafPath + 'reads.bwa.fq')
 
 	#Convert iGenomics muts file to SMF
-	os.system('python ' + MCS_TO_SMF_PATH + ' ' + igLeafPath + 'reads.mutations.mcs ' + currLeafPath + 'mutations.ig')
+	# os.system('python ' + MCS_TO_SMF_PATH + ' ' + igLeafPath + 'reads.mutations.mcs ' + currLeafPath + 'mutations.ig')
 
 	#Convert BWA muts file to SMF
-	os.system('python ' + VCF_TO_SMF_PATH + ' ' + bwaLeafPath + 'reads.mutations.vcf ' + currLeafPath + 'mutations.bwa')
+	# os.system('python ' + VCF_TO_SMF_PATH + ' ' + bwaLeafPath + 'reads.mutations.vcf ' + currLeafPath + 'mutations.bwa')
 
 	#Perform compare_results
 	os.system('python ' + COMPARE_RESULTS_PATH + ' ' + currLeafPath + 'reads.bwa.fq ' + currLeafPath + 'reads.ig.acpb > ' + currLeafPath + 'results.out')
 	
-	#Perform compare_mutations
-	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'mutations.bwa.smf ' + currLeafPath + 'mutations.ig.smf > ' + currLeafPath + 'mutations.out')
+	#Perform compare_mutations (DWG to iGenomics)
+	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'reads.mutations.normalized.dwg.vcf ' + currLeafPath + 'reads.mutations.normalized.ig.vcf > ' + currLeafPath + 'mutations.dwg.out')
+
+	#Perform compare_mutations (SAM to iGenomics)
+	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'reads.mutations.normalized.sam.vcf ' + currLeafPath + 'reads.mutations.normalized.ig.vcf > ' + currLeafPath + 'mutations.sam.out')
 
 	#Perform generateIGenomicsValidationFile
-	os.system('python ' + GEN_IG_VALIDATION_FILE_PATH + ' ' + currLeafPath + 'results.out ' + currLeafPath + 'mutations.out > ' + currLeafPath + 'validation.fin')
+	os.system('python ' + GEN_IG_VALIDATION_FILE_PATH + ' ' + currLeafPath + 'results.out ' + currLeafPath + 'mutations.dwg.out > ' + currLeafPath + 'validation.fin')
 
 	#Perform consolidateRuntimes
 	os.system('python ' + CONSOLIDATE_RUNTIMES_FILE_PATH + ' ' + bwaLeafPath + 'README.dig ' + igLeafPath + 'README.dig ' + currLeafPath + 'runtimes.rt')
