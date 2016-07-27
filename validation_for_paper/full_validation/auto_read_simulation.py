@@ -52,7 +52,7 @@ def normalize(referenceFilePath, mutFilePath, mutNormalizedFilePath):
 
 def alignAndGenSAMvcf(referenceFilePath, readsFilePath, currPath, mutNormalizedFilePath):
 	#Generate vcf
-	os.system('python ' + ALIGNER_PATH + ' %s %s %s %s' % (referenceFilePath, readsFilePath, currPath, 'reads.mutations.sam.vcf'))
+	os.system('python ' + ALIGNER_PATH + ' %s %s %s %s' % (referenceFilePath, readsFilePath, currPath, currPath + 'reads.mutations.sam.vcf'))
 
 	#Generate normalized vcf
 	normalize(referenceFilePath, currPath + 'reads.mutations.sam.vcf', mutNormalizedFilePath)
@@ -85,20 +85,26 @@ def performSIM(path, referenceFilePath, simParameters):
 	stdPrint('		Perform SIM: Simulating for' + str(simParameters))
 	os.system(DWGSIM_PATH + dwgsimCommand(simParameters, referenceFilePath, path))
 	stdPrint('		Perform SIM: Simulating Finished')
+
+	stdPrint('		Perform SIM: Adjust reads file name')
+	os.system('mv ' + path + 'reads.bwa.read1.fastq ' + path + 'reads.fq')
+
 	stdPrint('		Perform SIM: Start normalizing')
 	normalize(referenceFilePath, path + 'reads.mutations.vcf', path + 'reads.mutations.normalized.dwg.vcf')
 	stdPrint('		Perform SIM: Finish normalizing')
+
 	stdPrint('		Perform SIM: Start generating VCF from SAM')
 	alignAndGenSAMvcf(referenceFilePath, path + 'reads.fq', path, path + 'reads.mutations.normalized.sam.vcf')
 	stdPrint('		Perform SIM: Finished generating VCF from SAM')
+
 	stdPrint('		Perform SIM: Start removing unnecessary simulation files')
 	removeUnnecessarySimFiles(path)
 	stdPrint('		Perform SIM: Finished removing unnecessary simulation files')
-	stdPrint('		Perform SIM: Adjust reads file name')
-	os.system('mv ' + path + 'reads.bwa.read1.fastq ' + path + 'reads.fq')
+
 	stdPrint('		Perform BWA: Start aligning')
 	performBWA(referenceFilePath, path, simParameters)
 	stdPrint('		Perform BWA: Finished aligning')
+	
 	stdPrint('		Perform BWA: Start removing unnecessary bwa files')
 	removeUnnecessaryBwaFiles(path)
 	stdPrint('		Perform BWA: Finished removing unnecessary bwa files')
