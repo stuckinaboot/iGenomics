@@ -20,6 +20,11 @@
 //    printf("\n\n%s\n\n%.*s",a, rangeB.length,b + rangeB.location);
     BOOL testingOn = NO;
     
+    int fullBLen = (int)strlen(b);
+    if (rangeB.location + rangeB.length > fullBLen) {
+        rangeB.length = fullBLen - rangeB.location;
+    }
+    
     int lenA = (int)rangeA.length, lenB = (int)rangeB.length+1;//First char (range.location-1) will be a "space"
     
     int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));

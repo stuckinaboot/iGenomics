@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
+		A30B2F161D4AB09A00F75BF0 /* flu.mega.fa in Resources */ = {isa = PBXBuildFile; fileRef = A30B2F151D4AB09A00F75BF0 /* flu.mega.fa */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
 		A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF52158A5F7200E892AA /* CoreGraphics.framework */; };
@@ -199,6 +200,7 @@
 		A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = incorrectsingle.fq; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
+		A30B2F151D4AB09A00F75BF0 /* flu.mega.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.mega.fa; sourceTree = SOURCE_ROOT; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A310AF4E158A5F7200E892AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A310AF50158A5F7200E892AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -855,6 +857,7 @@
 				A36F23041AAF99A4005B5A91 /* flu.H1N1 */,
 				A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */,
 				A32C2B4019C0F99B008D66EE /* flu.H3N2.fa */,
+				A30B2F151D4AB09A00F75BF0 /* flu.mega.fa */,
 			);
 			name = flu;
 			path = flu.H1N1s;
@@ -1351,6 +1354,7 @@
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */,
 				A3704FDF1D4959F400788D88 /* reads-rl250-se0.2-mr0.01.fq in Resources */,
+				A30B2F161D4AB09A00F75BF0 /* flu.mega.fa in Resources */,
 				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
 				A3704FE61D4959F400788D88 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A3704FD81D4959F400788D88 /* reads-rl250-se0.1-mr0.1.fq in Resources */,

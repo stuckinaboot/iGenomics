@@ -1,3 +1,4 @@
+flu.mega.fa
 flu.H3N2.fa
 flu.H2N2.fa
 flu.H1N1.fa
