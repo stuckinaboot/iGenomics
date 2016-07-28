@@ -31,7 +31,7 @@ UTILITIES_PATH = './full_validation_utilities/my_scripts/'
 ACP_TO_ACPB_PATH = UTILITIES_PATH + 'acp_to_acpb.py'
 VCF_TO_SMF_PATH = UTILITIES_PATH + 'vcf_to_smf.py'
 MCS_TO_SMF_PATH = UTILITIES_PATH + 'mcs_to_smf.py'
-COMPARE_MUTS_PATH = UTILITIES_PATH + 'compare_mutations_no_ins.py'
+COMPARE_MUTS_PATH = UTILITIES_PATH + 'compare_mutations_vcfs.py'
 COMPARE_RESULTS_PATH = UTILITIES_PATH + 'compare_results.py'
 GEN_IG_VALIDATION_FILE_PATH = UTILITIES_PATH + 'generateIGenomicsValidationFile.py'
 CONSOLIDATE_RUNTIMES_FILE_PATH = UTILITIES_PATH + 'consolidateRuntimes.py'
@@ -67,9 +67,14 @@ def performComparison(currLeafPath, bwaLeafPath, igLeafPath):
 	#Convert iGenomics data file to ACPB
 	os.system('python ' + ACP_TO_ACPB_PATH + ' ' + igLeafPath + 'reads.acp ' + currLeafPath + 'reads.ig')
 
-	#Copy BWA reads file to currLeafPath
+	#Copy BWA files to currLeafPath
 	os.system('cp ' + bwaLeafPath + 'reads.fq ' + currLeafPath + 'reads.bwa.fq')
-
+	os.system('cp ' + bwaLeafPath + 'reads.mutations.normalized.dwg.vcf ' + currLeafPath + 'reads.mutations.normalized.dwg.vcf')
+	os.system('cp ' + bwaLeafPath + 'reads.mutations.normalized.sam.vcf ' + currLeafPath + 'reads.mutations.normalized.sam.vcf')
+	
+	#Copy iG files to currLeafPath
+	os.system('cp ' + igLeafPath + 'reads.mutations.normalized.ig.vcf ' + currLeafPath + 'reads.mutations.normalized.ig.vcf')
+	
 	#Convert iGenomics muts file to SMF
 	# os.system('python ' + MCS_TO_SMF_PATH + ' ' + igLeafPath + 'reads.mutations.mcs ' + currLeafPath + 'mutations.ig')
 
@@ -80,13 +85,13 @@ def performComparison(currLeafPath, bwaLeafPath, igLeafPath):
 	os.system('python ' + COMPARE_RESULTS_PATH + ' ' + currLeafPath + 'reads.bwa.fq ' + currLeafPath + 'reads.ig.acpb > ' + currLeafPath + 'results.out')
 	
 	#Perform compare_mutations (DWG to iGenomics)
-	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'reads.mutations.normalized.dwg.vcf ' + currLeafPath + 'reads.mutations.normalized.ig.vcf > ' + currLeafPath + 'mutations.dwg.out')
+	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'reads.mutations.normalized.dwg.vcf ' + currLeafPath + 'reads.mutations.normalized.ig.vcf > ' + currLeafPath + 'mutations.ig.out')
 
 	#Perform compare_mutations (SAM to iGenomics)
-	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'reads.mutations.normalized.sam.vcf ' + currLeafPath + 'reads.mutations.normalized.ig.vcf > ' + currLeafPath + 'mutations.sam.out')
+	os.system('python ' + COMPARE_MUTS_PATH + ' ' + currLeafPath + 'reads.mutations.normalized.dwg.vcf ' + currLeafPath + 'reads.mutations.normalized.sam.vcf > ' + currLeafPath + 'mutations.sam.out')
 
 	#Perform generateIGenomicsValidationFile
-	os.system('python ' + GEN_IG_VALIDATION_FILE_PATH + ' ' + currLeafPath + 'results.out ' + currLeafPath + 'mutations.dwg.out > ' + currLeafPath + 'validation.fin')
+	os.system('python ' + GEN_IG_VALIDATION_FILE_PATH + ' ' + currLeafPath + 'results.out ' + currLeafPath + 'mutations.ig.out > ' + currLeafPath + 'validation.fin')
 
 	#Perform consolidateRuntimes
 	os.system('python ' + CONSOLIDATE_RUNTIMES_FILE_PATH + ' ' + bwaLeafPath + 'README.dig ' + igLeafPath + 'README.dig ' + currLeafPath + 'runtimes.rt')

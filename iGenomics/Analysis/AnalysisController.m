@@ -439,6 +439,7 @@
 //Mutation Support Stepper
 - (IBAction)mutationSupportSliderChanged:(id)sender {
     UISlider *slider = (UISlider*)sender;
+//    slider.value = 0.25f;
     float val = (float)slider.value;
     
     [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];
@@ -706,7 +707,7 @@
 //Exports data
 
 - (IBAction)exportDataPressed:(id)sender {
-    [fileExporter setMutSupportVal:(int)mutationSupportSlider.value andMutPosArray:mutPosArray];
+    [fileExporter setMutSupportVal:(float)mutationSupportSlider.value andMutPosArray:mutPosArray];
     [fileExporter displayExportOptionsWithSender:sender];
 }
 

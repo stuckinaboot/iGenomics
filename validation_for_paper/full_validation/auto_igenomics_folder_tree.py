@@ -7,8 +7,6 @@ from sys import argv
 NORM_PATH = './full_validation_utilities/vcf_tools/vt/vt'
 NORM_CMD_FORMAT = ' normalize -o %s -r %s %s'
 
-refFilePath = ''
-
 def createDirectoryAtPath(path):
     try:
         os.makedirs(path)
@@ -24,14 +22,15 @@ def printDivider():
 
 def normalize(referenceFilePath, mutFilePath, mutNormalizedFilePath):
 	normalizeCmd = NORM_PATH + NORM_CMD_FORMAT % (mutNormalizedFilePath, referenceFilePath, mutFilePath)
+	print normalizeCmd
 	os.system(normalizeCmd)
 
-def createFolderTreeFromiGenomicsSimFiles(fileNames, path):
+def createFolderTreeFromiGenomicsSimFiles(fileNames, refFilePath, path):
 	stdPrint('	Create Folder Tree: Entering tree build loop')
 	for fileName in fileNames:
 		currPath = path
 		nameComponents = fileName.split('-')
-		nameDict = {'read_len': nameComponents[1][2:], 'seq_error_rate': nameComponents[2][2:], 'mut_rate': nameComponents[3][2:nameComponents[3].find('.fq')]}
+		nameDict = {'read_len': nameComponents[1][2:], 'seq_error_rate': nameComponents[2][2:], 'mut_rate': nameComponents[3][2:max(nameComponents[3].find('.var'), nameComponents[3].find('.data'))]}
 		stdPrint('		Tree build loop: nameDict created')
 
 		currPath += 'read_len' + nameDict['read_len'] + 'bp' + '/'
@@ -42,7 +41,6 @@ def createFolderTreeFromiGenomicsSimFiles(fileNames, path):
 
 		currPath += 'mut_rate' + nameDict['mut_rate'] + '/'
 		createDirectoryAtPath(currPath)
-
 		stdPrint('		Tree build loop: folder subtree created')
 		
 		if 'data' in fileName:
@@ -54,21 +52,22 @@ def createFolderTreeFromiGenomicsSimFiles(fileNames, path):
 		readMeFilePath = currPath + 'README.dig'
 
 		#Remove the junk from the top of the file
-		simInfo = ''
+		if 'data' in fileName:
+			simInfo = ''
 
-		runtime = ''
-		with open(currPath + 'reads.acp', 'r') as dataFile:
-			i = 0
-			for line in dataFile.readlines():
-				if i == 1:
-					components = line.split('\t')
-					runtime = components[2]
-					break
-				i += 1
+			runtime = ''
+			with open(currPath + 'reads.acp', 'r') as dataFile:
+				i = 0
+				for line in dataFile.readlines():
+					if i == 1:
+						components = line.split('\t')
+						runtime = components[2]
+						break
+					i += 1
 
-		with open(readMeFilePath, 'w') as readMeFile:
-			simInfo += 'real\t' + runtime + '\n'
-			readMeFile.write(simInfo)
+			with open(readMeFilePath, 'w') as readMeFile:
+				simInfo += 'real\t' + runtime + '\n'
+				readMeFile.write(simInfo)
 
 
 		stdPrint('		Tree build loop: ' + fileName + ' successfully moved')
@@ -89,7 +88,7 @@ def main():
 
 	stdPrint('Auto iGenomics Folder Tree: Starting folder tree generation')
 	printDivider()
-	createFolderTreeFromiGenomicsSimFiles(filesInDirectory, path)
+	createFolderTreeFromiGenomicsSimFiles(filesInDirectory, refFilePath, path)
 	printDivider()
 	stdPrint('Auto iGenomics Folder Tree: Finished folder tree generation')
 
