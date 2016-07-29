@@ -142,7 +142,6 @@
 		A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */; };
 		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
 		A39BB5DD17D65C1400B5FE7F /* APTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BB5DC17D65C1400B5FE7F /* APTimer.m */; };
-		A3A3AADB1D47DACB00CCD66B /* reads.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3A3AADA1D47DACB00CCD66B /* reads.fastq */; };
 		A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */; };
 		A3ABCAE11D24299100A40121 /* AbstractFileChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */; };
 		A3AC49B8169791EF00DD9266 /* FilePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AC49B6169791EF00DD9266 /* FilePickerController.m */; };
@@ -151,8 +150,6 @@
 		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
 		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
 		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
-		A3ADF1D51D357A5700CDE8BF /* sim_reads.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */; };
-		A3ADF1D71D35A3C600CDE8BF /* sim_reads2.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */; };
 		A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */; };
 		A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3C0FD28160FA5AC00BC2168 /* BWT.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FD1E160FA5AC00BC2168 /* BWT.m */; };
@@ -366,7 +363,6 @@
 		A398B3D11889EFA700EC43B8 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
 		A39BB5DB17D65C1400B5FE7F /* APTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APTimer.h; path = iGenomics/APTimer.h; sourceTree = SOURCE_ROOT; };
 		A39BB5DC17D65C1400B5FE7F /* APTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTimer.m; path = iGenomics/APTimer.m; sourceTree = SOURCE_ROOT; };
-		A3A3AADA1D47DACB00CCD66B /* reads.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/final_test/reads.fastq; sourceTree = SOURCE_ROOT; };
 		A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SuccessBox.png; sourceTree = SOURCE_ROOT; };
 		A3ABCADF1D24299100A40121 /* AbstractFileChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFileChooseView.h; sourceTree = "<group>"; };
 		A3ABCAE01D24299100A40121 /* AbstractFileChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFileChooseView.m; sourceTree = "<group>"; };
@@ -378,8 +374,6 @@
 		A3AC49BD1697936100DD9266 /* ParametersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ParametersController.xib; path = Parameters/ParametersController.xib; sourceTree = "<group>"; };
 		A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReferenceFiles.txt; sourceTree = "<group>"; };
 		A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReadsFiles.txt; sourceTree = "<group>"; };
-		A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sim_reads.fastq; path = validation_for_paper/full_validation/hand_simulated_reads_files/sim_reads.fastq; sourceTree = SOURCE_ROOT; };
-		A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sim_reads2.fq; path = "validation_for_paper/full_validation/hand_simulated_reads_files/after_update/readlen250-se0.01-mr0.1/sim_reads2.fq"; sourceTree = SOURCE_ROOT; };
 		A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridView.h; sourceTree = "<group>"; };
 		A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridView.m; sourceTree = "<group>"; };
 		A3C0FD1D160FA5AC00BC2168 /* BWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT.h; sourceTree = "<group>"; };
@@ -540,7 +534,6 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A3A3AADA1D47DACB00CCD66B /* reads.fastq */,
 				A375D0261D3FEB48007063AB /* mutation_output.sample.vcf */,
 				A3AF08221D05C7D5000EC63B /* simulated_reads_files */,
 				A35160641AA3FD680004FD32 /* App Icons */,
@@ -941,8 +934,6 @@
 		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
 			isa = PBXGroup;
 			children = (
-				A3ADF1D61D35A3C600CDE8BF /* sim_reads2.fq */,
-				A3ADF1D41D357A5700CDE8BF /* sim_reads.fastq */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
 				A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */,
@@ -1401,11 +1392,9 @@
 				A35160811AA3FD7B0004FD32 /* Icon-76@2x.png in Resources */,
 				A3704FDB1D4959F400788D88 /* reads-rl250-se0.1-mr0.001.fq in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
-				A3ADF1D71D35A3C600CDE8BF /* sim_reads2.fq in Resources */,
 				A3704FDE1D4959F400788D88 /* reads-rl250-se0.2-mr0.1.fq in Resources */,
 				A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
-				A3ADF1D51D357A5700CDE8BF /* sim_reads.fastq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
@@ -1449,7 +1438,6 @@
 				A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */,
 				A35160901AA400000004FD32 /* Icon-57.png in Resources */,
 				A3704FD41D4959F400788D88 /* reads-rl100-se0.01-mr0.001.fq in Resources */,
-				A3A3AADB1D47DACB00CCD66B /* reads.fastq in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
