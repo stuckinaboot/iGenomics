@@ -439,7 +439,7 @@
 //Mutation Support Stepper
 - (IBAction)mutationSupportSliderChanged:(id)sender {
     UISlider *slider = (UISlider*)sender;
-//    slider.value = 0.25f;
+    slider.value = 0.25f;
     float val = (float)slider.value;
     
     [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];

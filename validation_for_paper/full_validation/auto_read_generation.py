@@ -47,19 +47,21 @@ def createDirectoryAtPath(path):
 def runSIM(path, referenceFile, simParameters):
 	auto_read_simulation.performSIM(path, referenceFile.name, simParameters)
 
-def createDirectorySubtree(parameters, referenceFile):
+def createDirectorySubtree(parameters, referenceFile, generationOutputAppension):
 	for key in NECESSARY_KEYS_IN_PARAM:
 		if key not in parameters:
 			stdPrint('Create Directory Subtree: Parameters check failed')
 			return
 	stdPrint('Create Directory Subtree: Parameters check passed')
-	root = 'generation_output/'
+	root = 'generation_output' + generationOutputAppension + '/'
+	root = root.replace('//', '/')
 	createDirectoryAtPath(root)
 
 	bwaFilesPath = 'bwa_files/'
 	createDirectoryAtPath(bwaFilesPath)
 
-	readsFilesPath = 'simulated_reads_files/'
+	readsFilesPath = 'simulated_reads_files' + generationOutputAppension + '/'
+	readsFilesPath = readsFilesPath.replace('//', '/')
 	createDirectoryAtPath(readsFilesPath)
 
 	stdPrint('Create Directory Subtree: Setting up BWA Files')
@@ -97,6 +99,7 @@ def main():
 
 	parametersFile = open(argv[1], 'r')
 	referenceFile = open(argv[2], 'r')
+	generationOutputAppension = argv[3]
 
 	stdPrint('Parameters: Reading Started')
 	parameters = parametersDictFromParametersFile(parametersFile)
@@ -105,7 +108,7 @@ def main():
 
 	printDivider()
 	stdPrint('Create Directory Subtree: Creation Started')
-	createDirectorySubtree(parameters, referenceFile)
+	createDirectorySubtree(parameters, referenceFile, generationOutputAppension)
 	stdPrint('Create Directory Subtree: Creation Finished')
 
 	printDivider()

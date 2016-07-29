@@ -13,20 +13,20 @@
 import sys
 import os
 
-DWGSIM_PATH = './full_validation_utilities/DWGSIM/dwgsim'
+DWGSIM_PATH = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/DWGSIM/dwgsim'
 DWGSIM_CMD_FORMAT = ' -r %f -e %f -1 %d -2 0 -y 0 %s %s'
 OUTPUT_NAME = 'reads'
 
-BWA_PATH = './full_validation_utilities/bwa'
+BWA_PATH = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/bwa'
 BWA_INDEX_CMD_FORMAT = ' index %s'
 
-NORM_PATH = './full_validation_utilities/vcf_tools/vt/vt'
+NORM_PATH = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/vcf_tools/vt/vt'
 NORM_CMD_FORMAT = ' normalize -o %s -r %s %s'
 
 BWA_CMD_FORMAT = ' mem -x ont2d %s %s > %s'
 OUTPUT_BWA_NAME = 'deleteme'
 
-ALIGNER_PATH = './auto_read_aligner.py'
+ALIGNER_PATH = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/auto_read_aligner.py'
 simFilesToRemove = [OUTPUT_NAME + '.bfast.fastq', OUTPUT_NAME + '.bwa.read2.fastq', OUTPUT_NAME + '.mutations.txt']
 
 def stdPrint(txt):
