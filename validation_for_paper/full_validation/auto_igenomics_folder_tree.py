@@ -4,7 +4,7 @@ from os import listdir
 from os.path import isfile, join
 from sys import argv
 
-NORM_PATH = './full_validation_utilities/vcf_tools/vt/vt'
+NORM_PATH = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/vcf_tools/vt/vt'
 NORM_CMD_FORMAT = ' normalize -o %s -r %s %s'
 
 def createDirectoryAtPath(path):
@@ -30,6 +30,16 @@ def createFolderTreeFromiGenomicsSimFiles(fileNames, refFilePath, path):
 	for fileName in fileNames:
 		currPath = path
 		nameComponents = fileName.split('-')
+
+		refFileAlternate = ''
+		if nameComponents[0] != 'reads':
+			print nameComponents
+			del nameComponents[1]
+			print nameComponents
+			currPath += nameComponents[0] + '/'
+			refFileAlternate = nameComponents[0] + '.fa'
+			createDirectoryAtPath(currPath)
+
 		nameDict = {'read_len': nameComponents[1][2:], 'seq_error_rate': nameComponents[2][2:], 'mut_rate': nameComponents[3][2:max(nameComponents[3].find('.var'), nameComponents[3].find('.data'))]}
 		stdPrint('		Tree build loop: nameDict created')
 
@@ -47,7 +57,10 @@ def createFolderTreeFromiGenomicsSimFiles(fileNames, refFilePath, path):
 			os.system('mv ' + path + fileName + ' ' + currPath + 'reads.acp')
 		elif 'var' in fileName:
 			os.system('mv ' + path + fileName + ' ' + currPath + 'reads.mutations.ig.vcf')
-			normalize(refFilePath, currPath + 'reads.mutations.ig.vcf', currPath + 'reads.mutations.normalized.ig.vcf')
+			refFilePathForNormalization = refFilePath
+			if len(refFileAlternate) > 0:
+				refFilePathForNormalization = refFileAlternate
+			normalize(refFilePathForNormalization, currPath + 'reads.mutations.ig.vcf', currPath + 'reads.mutations.normalized.ig.vcf')
 
 		readMeFilePath = currPath + 'README.dig'
 

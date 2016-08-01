@@ -27,7 +27,7 @@ SEQ_ERR_RATE_PARAM = 'Sequencing Error Rate'
 MUT_RATE_PARAM = 'Mutation Rate'
 NECESSARY_KEYS_IN_PARAM = [READ_LEN_PARAM, SEQ_ERR_RATE_PARAM, MUT_RATE_PARAM]
 
-UTILITIES_PATH = './full_validation_utilities/my_scripts/'
+UTILITIES_PATH = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/my_scripts/'
 ACP_TO_ACPB_PATH = UTILITIES_PATH + 'acp_to_acpb.py'
 VCF_TO_SMF_PATH = UTILITIES_PATH + 'vcf_to_smf.py'
 MCS_TO_SMF_PATH = UTILITIES_PATH + 'mcs_to_smf.py'

@@ -299,7 +299,7 @@
                     NSRange range = NSMakeRange(1, rangeOfSeparateGenomeNamesSubstringToIndexStr.location - 1);
                     [namesArray addObject:[str substringWithRange:range]];//Removes the > in the beginning and the white space at the end
                 } else {
-                    [namesArray addObject:str];
+                    [namesArray addObject:[str substringFromIndex:1]];
                 }
                 [lineArray removeObjectAtIndex:i];
                 if (prevLenIndex != -1)
