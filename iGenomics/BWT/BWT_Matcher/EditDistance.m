@@ -27,9 +27,9 @@
     
     int lenA = (int)rangeA.length, lenB = (int)rangeB.length+1;//First char (range.location-1) will be a "space"
     
-    int* editDistanceTable = (int*)calloc(lenA*lenB, sizeof(int));
+    int* editDistanceTable = (int*)malloc(lenA*lenB*sizeof(int));
     
-    char* arrowTable = (char*)calloc(lenA*lenB, sizeof(char));
+    char* arrowTable = (char*)malloc(lenA*lenB*sizeof(char));
     int gapsInA = 0, gapsInB = 0;
 //    
 //    for (int i = 0; i < lenA; i++) {
@@ -181,8 +181,8 @@
     
     int gappedLength = lenA+gapsInA-1;
     
-    edInfo.gappedA = calloc(gappedLength+1, 1);
-    edInfo.gappedB = calloc(gappedLength+1, 1);
+    edInfo.gappedA = malloc(gappedLength+1);
+    edInfo.gappedB = malloc(gappedLength+1);
     
     edInfo.gappedA[gappedLength] = '\0';
     edInfo.gappedB[gappedLength] = '\0';

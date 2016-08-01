@@ -16,6 +16,8 @@
 @synthesize separateGenomeLens, separateGenomeNames, cumulativeSeparateGenomeLens;
 
 - (void)setUpForRefFile:(APFile*)myRefFile {
+    [self freeUsedMemory];
+    
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
     [delegate bwtLoadedWithLoadingText:kBWTCreatingTxt];
     if (myRefFile.fileType == APFileTypeDropbox) {//filePath is from dropbox
@@ -24,7 +26,7 @@
         DBFile *file = [dbFileSys openFile:newPath error:nil];
         
         if (file == nil) {
-            refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:[myRefFile.contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]]);
+            refStrBWT = [bwt_Maker createBWTFromResFileContents:[myRefFile.contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
             originalStr = [bwt_Maker getOriginalString];
             
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -62,7 +64,7 @@
         }
     }
     else {//Local file
-        refStrBWT = strdup([bwt_Maker createBWTFromResFileContents:myRefFile.contents]);
+        refStrBWT = [bwt_Maker createBWTFromResFileContents:myRefFile.contents];
         originalStr = strdup([myRefFile.contents UTF8String]);
     }
     
@@ -70,6 +72,12 @@
     
     if (kDebugOn == 1)
         printf("\n%s",refStrBWT);
+}
+
+- (void)freeUsedMemory {
+    free(originalStr);
+    free(firstCol);
+    free(refStrBWT);
 }
 
 - (float)matchReadsFile:(APFile *)readsFile withParameters:(NSMutableDictionary *)parameters {

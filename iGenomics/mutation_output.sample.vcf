@@ -1,0 +1,9 @@
+##fileformat=VCFv4.2
+##fileDate=%@
+##source=iGenomics
+##reference=%@
+%@
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	%@

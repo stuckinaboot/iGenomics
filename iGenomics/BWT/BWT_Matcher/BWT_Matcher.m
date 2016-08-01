@@ -77,7 +77,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     [self setUpNumberOfOccurencesArrayFast];
     
-    firstCol = calloc(dgenomeLen+1, 1);
+    firstCol = malloc(dgenomeLen+1);
     
     firstCol[0] = '$';
     
@@ -495,6 +495,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                     if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
                         tt.count++;
                         alreadyRec = TRUE;
+                        free(tID.seq);
                     }
                 }
                 if (!alreadyRec) {
@@ -518,7 +519,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     int spotInACGTOccurences = 0;
     
-    acgt = calloc(kACGTLen+1, 1);
+    acgt = malloc(kACGTLen+1);
     strcpy(acgt, kACGTStr);
     acgt[kACGTLen+1] = '\0';
     
@@ -559,7 +560,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     NSLog(@"About to creat acgt string");
     
-    acgt = calloc(kACGTLen+1, 1);
+    acgt = malloc(kACGTLen+1);
     NSLog(@"About to copy kACGTStr into acgt");
     strcpy(acgt, kACGTStr);
     acgt[kACGTLen] = '\0';
@@ -599,7 +600,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //Getters
 - (char*)getReverseComplementForSeq:(char*)seq seqLen:(int)actualReadLen {
     int len = actualReadLen; //The only thing you should be getting a reverse complement for is the read (am I right?)
-    char *revSeq = calloc(len+1, 1);
+    char *revSeq = malloc(len+1);
     
     for (int i = 0; i<len; i++)
         revSeq[i] = acgt[kACGTLen-[BWT_MatcherSC whichChar:seq[len-i-1] inContainer:acgt]-1];//len-i-1 because that allows for 0th pos to be set rather than just last pos to be set is 1
@@ -609,7 +610,11 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 
 //Free memory
 - (void)freeUsedMemory {
+    for (BWT_Matcher_InsertionDeletion_InsertionHolder *insHolder in insertionsArray) {
+        [insHolder freeUsedMemory];
+    }
     reedsArray = nil;
+    free(originalStrWithDividers);
 //    if (firstCol && strlen(firstCol) > 0)
 //        free(firstCol);
 //    if (refStrBWT && strlen(refStrBWT) > 0)

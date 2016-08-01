@@ -26,7 +26,9 @@
     
     [self sortIndexArrayUsingQuicksort:indexArray withStartPos:0 andEndPos:(int)[indexArray count]-1];
     
-    return [self bwtFinalProduct];
+    char *finalProduct = [self bwtFinalProduct];
+    free(sequence);
+    return finalProduct;
 }
 
 - (char*)getOriginalString {
@@ -88,7 +90,7 @@
 }
 
 - (char*)bwtFinalProduct {
-    char *bwt = calloc(sequenceLength+1, 1);
+    char *bwt = malloc(sequenceLength+1);
     int num;
     for (int i = 0; i<[indexArray count]; i++) {
         num = [[indexArray objectAtIndex:i] intValue]-1;

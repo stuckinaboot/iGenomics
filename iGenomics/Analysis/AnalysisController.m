@@ -454,6 +454,7 @@
     [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
     [bwt.bwtMutationFilter filterMutationsForDetails];
     
+    [self freeMutPosArray];
     mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray
                                      forHeteroAllowance:val insertionsArr:insertionsArr];
 //    [gridView initialMutationFind];
@@ -835,16 +836,26 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+- (void)freeMutPosArray {
+    for (MutationInfo *info in mutPosArray) {
+        [info freeUsedMemory];
+    }
+    [mutPosArray removeAllObjects];
+    mutPosArray = nil;
+}
+
 - (void)freeUsedMemory {
     for (int i = 0; i < [readAlignmentsArr count]; i++) {
         ED_Info *read = [readAlignmentsArr objectAtIndex:i];
         [read freeUsedMemory];
         read = nil;
     }
-    [mutPosArray removeAllObjects];
-    mutPosArray = nil;
+    
+    [self freeMutPosArray];
+
     [allMutPosArray removeAllObjects];
     allMutPosArray = nil;
+    
     [readAlignmentsArr removeAllObjects];
     readAlignmentsArr = nil;
     [alignmentGridView freeUsedMemory];

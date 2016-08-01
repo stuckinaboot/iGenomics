@@ -230,7 +230,7 @@
      int i = 0;//index
      int pos = dgenomeLen-2;//-2 because dollar sign is added afterwards
      int occurence = 1;//1 = 1st, etc.
-     char *unraveledChar = calloc(dgenomeLen+1, 1);
+     char *unraveledChar = malloc(dgenomeLen+1);
      int unravCharSize = 0;
      char lastChar = lastColumn[i];
      
@@ -344,11 +344,13 @@
         
         if (info.distance < 0) {
             NSLog(@"DISTANCE COMPUTATION WENT NEGATIVE");
+            [info freeUsedMemory];
             return NULL;
         }
         
         int minReadLen = kMinReadLengthPercentOfReadThatMustRemain * originalReadLen;
         if (endPos - pos + 1 < minReadLen) {
+            [info freeUsedMemory];
             return NULL;
         }
         
@@ -497,12 +499,12 @@
                 numOfCharsToTrimFromEndFromED++;
     }
     
-    newInfo.gappedA = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+    newInfo.gappedA = malloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1);//+1 for null terminator
     strncpy(newInfo.gappedA, info.gappedA+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
     newInfo.gappedA[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
     
     if (!noGappedB) {
-        newInfo.gappedB = calloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1, 1);//+1 for null terminator
+        newInfo.gappedB = malloc(gappedALen-charsToTrimBeginning-charsToTrimEnd+1);//+1 for null terminator
         strncpy(newInfo.gappedB, info.gappedB+charsToTrimBeginning, gappedALen-charsToTrimBeginning-charsToTrimEnd);
         newInfo.gappedB[gappedALen-charsToTrimBeginning-charsToTrimEnd] = '\0';
     }

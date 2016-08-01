@@ -23,7 +23,7 @@
     
     //    Add space prior to the chars in "a" and prior to the chars in "b"
     int alen = (int)strlen(a);
-    char *newa = calloc(alen+2, 1);
+    char *newa = malloc(alen+2);
     memcpy(newa+1, a, alen);
     newa[0] = ' ';
     newa[alen+1] = '\0';
@@ -66,8 +66,13 @@
     //        APTimer *timer = [[APTimer alloc] init];
     //        [timer start];
             NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
-            if ([exactMatches count] > 1)
+            if ([exactMatches count] > 1) {
+                for (int j = 0; j < [exactMatches count]; j++) {
+                    ED_Info *ed = [exactMatches objectAtIndex:j];
+                    [ed freeUsedMemory];
+                }
                 continue;
+            }
     //        [timer stopAndLog];
 //            printf("%d\n",[exactMatches count]);
             for (int j = 0; j < [exactMatches count]; j++) {
@@ -103,6 +108,7 @@
                 
     //            if (edFinal && edFinal.distance < kMaxER * lenA && edFinal.distance > maxEditDist)
     //                edFinal = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:edFinal forNumOfSubs:maxEditDist withCumSepGenomeLens:cumulativeSegmentLens maxErrorRate:maxErrorRate originalReadLen:lenA];
+                
                 if (edFinal) {
                     edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
                     edFinal.alreadyHasPosAdjusted = TRUE;
@@ -121,6 +127,11 @@
                 }
                 else
                     [edFinal freeUsedMemory];
+                
+            }
+            for (int j = 0; j < [exactMatches count]; j++) {
+                ED_Info *ed = [exactMatches objectAtIndex:j];
+                [ed freeUsedMemory];
             }
 //            if (interval == 1 && bestMatch)
 //                interval = kNonSeedShortSeqInterval;
@@ -221,7 +232,7 @@
     
     //    Add space prior to the chars in "a" and prior to the chars in "b"
     int alen = (int)strlen(a);
-    char *newa = calloc(alen+2, 1);
+    char *newa = malloc(alen+2);
     memcpy(newa+1, a, alen);
     newa[0] = ' ';
     newa[alen+1] = '\0';
@@ -252,7 +263,7 @@
     
     //    Add space prior to the chars in "a" and prior to the chars in "b"
     int alen = strlen(a);
-    char *newa = calloc(alen+2, 1);
+    char *newa = malloc(alen+2);
     memcpy(newa+1, a, alen);
     newa[0] = ' ';
     newa[alen+1] = '\0';
@@ -281,7 +292,7 @@
     int lenAWithoutSpace = lenA-1;
     Chunks *chunk = [chunkArray objectAtIndex:0];
     int chunkSize = chunk.range.length;
-    ED_Info *edInfo = [[ED_Info alloc] init];
+    ED_Info *edInfo;// = [[ED_Info alloc] init];
 
     
     //printf("DK: finding InDels C1\n");

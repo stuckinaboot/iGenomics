@@ -47,6 +47,14 @@
     return self;
 }
 
+- (void)freeUsedMemory {
+    free(foundChars);
+    for (BWT_Matcher_InsertionDeletion_InsertionHolder *holder in relevantInsertionsArr) {
+        [holder freeUsedMemory];
+    }
+    relevantInsertionsArr = NULL;
+}
+
 + (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos {
     NSLog(@"Generating mutation info output string");
     NSMutableArray *mutationInfosDicts = [NSMutableArray array];

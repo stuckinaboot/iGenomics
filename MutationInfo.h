@@ -29,6 +29,7 @@
 - (id)initWithPos:(int)p andRefChar:(char)refC
     andFoundChars:(char*)foundC andDisplayedPos:(int)dispP
     andInsertionsArr:(NSArray*)insArr heteroAllowance:(float)heteroAllowance;
+- (void)freeUsedMemory;
 + (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos;
 + (char*)createMutStrFromOriginalChar:(char)originalC
                         andFoundChars:(char*)fc pos:(int)pos relevantInsArr:(NSArray*)insertions;

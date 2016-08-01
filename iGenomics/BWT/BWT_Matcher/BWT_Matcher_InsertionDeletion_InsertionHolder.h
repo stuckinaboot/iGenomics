@@ -20,4 +20,5 @@
 @property (nonatomic) char *seq;
 @property (nonatomic) int pos;
 - (void)setUp;
+- (void)freeUsedMemory;
 @end

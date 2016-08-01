@@ -171,14 +171,14 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     
     int mutCounter = 0;
     
-    char *mutStr[mutations.count];
-    char *heteroStr[mutations.count];
+//    char *mutStr[mutations.count];
+//    char *heteroStr[mutations.count];
     
-    for (int i = 0; i<mutations.count; i++) {
-        mutStr[i] = calloc(kACGTwithInDelsLen, 1);
-        heteroStr[i] = calloc(kACGTwithInDelsLen, 1);
-        strcpy(heteroStr[i], "    ");
-    }
+//    for (int i = 0; i<mutations.count; i++) {
+//        mutStr[i] = calloc(kACGTwithInDelsLen, 1);
+//        heteroStr[i] = calloc(kACGTwithInDelsLen, 1);
+//        strcpy(heteroStr[i], "    ");
+//    }
     
     
     for (int i = 0; i<mutations.count; i++) {
@@ -199,13 +199,13 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
         else {
             for (int a = 0; a<kACGTwithInDelsLen; a++) {
                 if ([BWT_MutationFilter isHeterozygousPosition:p forCharIndex:a heteroAllowance:kHeteroAllowance]) {
-                    mutStr[i][mutCounter] = acgt[a];
+//                    mutStr[i][mutCounter] = acgt[a];
                     
-                    if (a == kACGTLen)
-                        mutStr[i][mutCounter] = kDelMarker;
+//                    if (a == kACGTLen)
+//                        mutStr[i][mutCounter] = kDelMarker;
                     
                     mutCounter++;
-                    heteroStr[i][a] = acgt[a];
+//                    heteroStr[i][a] = acgt[a];
                 }
             }
         }
@@ -237,7 +237,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     
     int diffCharsAtPos = 0;
     
-    char *foundChars = calloc(kACGTwithInDelsLen+1, 1);
+    char *foundChars = malloc(kACGTwithInDelsLen+1);
     foundChars[kACGTwithInDelsLen] = '\0';
     int posInFoundChars = 0;
     for (int i = 0; i<arr.count; i++) {

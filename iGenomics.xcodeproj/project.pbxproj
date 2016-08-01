@@ -59,6 +59,7 @@
 		A32E07871D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.1.fq in Resources */ = {isa = PBXBuildFile; fileRef = A32E076C1D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.1.fq */; };
 		A32E07881D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.01.fq in Resources */ = {isa = PBXBuildFile; fileRef = A32E076D1D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.01.fq */; };
 		A32E07891D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A32E076E1D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.001.fq */; };
+		A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */ = {isa = PBXBuildFile; fileRef = A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
 		A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A337B18D18E76EEB00919612 /* FilePickerController~iphone.xib */; };
@@ -255,6 +256,7 @@
 		A32E076C1D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.1.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.1.fq"; path = "validation_for_paper/full_validation/simulated_reads_files-flu/reads-rl1000-se0.2-mr0.1.fq"; sourceTree = SOURCE_ROOT; };
 		A32E076D1D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.01.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.01.fq"; path = "validation_for_paper/full_validation/simulated_reads_files-flu/reads-rl1000-se0.2-mr0.01.fq"; sourceTree = SOURCE_ROOT; };
 		A32E076E1D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "reads-rl1000-se0.2-mr0.001.fq"; path = "validation_for_paper/full_validation/simulated_reads_files-flu/reads-rl1000-se0.2-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
+		A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mutation_output.sample.vcf; sourceTree = "<group>"; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
 		A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilePreviewPopoverController.xib; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */,
 				A3AF08221D05C7D5000EC63B /* simulated_reads_files */,
 				A35160641AA3FD680004FD32 /* App Icons */,
 				A3C1702919707D8D008C7A4C /* OBSlider */,
@@ -1429,6 +1432,7 @@
 				A382DBD91C8FE71F00CDE9C4 /* flu.H3N2.realData.trim_1k.fa in Resources */,
 				A32E07741D4FB8A000F2A081 /* reads-rl100-se0.01-mr0.001.fq in Resources */,
 				A32E07771D4FB8A000F2A081 /* reads-rl100-se0.2-mr0.001.fq in Resources */,
+				A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */,
 				A35160901AA400000004FD32 /* Icon-57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

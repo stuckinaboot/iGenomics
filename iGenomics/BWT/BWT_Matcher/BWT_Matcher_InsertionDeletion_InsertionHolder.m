@@ -13,7 +13,12 @@
 @synthesize seq, pos, count;
 
 - (void)setUp {
-    seq = calloc(kMaxInsertionSeqLen, 1);
+    seq = malloc(kMaxInsertionSeqLen);
     count = 1;
 }
+
+- (void)freeUsedMemory {
+    free(seq);
+}
+
 @end
