@@ -1,0 +1,50 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.3.1+htslib-1.3.1
+##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len250bp/seq_error_rate0.01/mut_rate0.001/out.sorted.bam
+##reference=file://bwa_files/flu.H1N1.fa
+##contig=<ID=CY001959,length=2311>
+##contig=<ID=CY001958,length=2325>
+##contig=<ID=CY001957,length=2233>
+##contig=<ID=CY001952,length=1754>
+##contig=<ID=CY001955,length=1565>
+##contig=<ID=CY001954,length=1463>
+##contig=<ID=CY001953,length=1027>
+##contig=<ID=CY001956,length=890>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=ICB,Number=1,Type=Float,Description="Inbreeding Coefficient Binomial test (bigger is better)">
+##INFO=<ID=HOB,Number=1,Type=Float,Description="Bias in the number of HOMs number (smaller is better)">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Average mapping quality">
+##bcftools_callVersion=1.3.1+htslib-1.3.1
+##bcftools_callCommand=call -mAv
+##bcftools_filterVersion=1.3.1+htslib-1.3.1
+##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len250bp/seq_error_rate0.01/mut_rate0.001/calls.raw.bcf
+##INFO=<ID=OLD_VARIANT,Number=.,Type=String,Description="Original chr:pos:ref:alt encoding">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len250bp/seq_error_rate0.01/mut_rate0.001/out.sorted.bam
+CY001959	709	.	T	C	101	PASS	DP=106;VDB=0.437688;SGB=-0.693147;RPB=0.990403;MQB=1;MQSB=1;BQB=0.867633;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=23,19,32,32;MQ=60	GT:PL	0/1:134,0,118
+CY001958	573	.	A	T	103	PASS	DP=110;VDB=0.141539;SGB=-0.693147;RPB=0.0961214;MQB=1;MQSB=1;BQB=0.996493;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=26,32,28,24;MQ=60	GT:PL	0/1:136,0,146
+CY001958	1579	.	G	T,C	107	PASS	DP=108;VDB=0.977982;SGB=-0.693147;RPB=0.763636;MQB=1;MQSB=1;BQB=0.765358;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=28,25,32,23;MQ=60	GT:PL	0/1:140,0,133,255,255,255
+CY001957	360	.	C	G,A,T	102	PASS	DP=114;VDB=0.363324;SGB=-0.693147;RPB=0.793321;MQB=1;MQSB=1;BQB=0.728048;MQ0F=0;ICB=1;HOB=0.5;AC=1,0,0;AN=2;DP4=30,25,33,26;MQ=60	GT:PL	0/1:135,0,136,255,255,255,255,255,255,255
+CY001957	1585	.	G	A	174	PASS	DP=90;VDB=0.577436;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=0,0,44,46;MQ=60	GT:PL	1/1:201,255,0
+CY001952	711	.	C	G,A	99	PASS	DP=99;VDB=0.633708;SGB=-0.693147;RPB=0.625828;MQB=1;MQSB=1;BQB=0.089032;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=28,18,30,23;MQ=60	GT:PL	0/1:132,0,135,240,255,255
+CY001952	886	.	A	T,C	105	PASS	DP=98;VDB=0.622128;SGB=-0.693147;RPB=0.999943;MQB=1;MQSB=1;BQB=0.95645;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=28,21,24,25;MQ=60	GT:PL	0/1:138,0,142,255,255,255
+CY001952	1052	.	A	T	103	PASS	DP=108;VDB=0.403106;SGB=-0.693147;RPB=0.990877;MQB=1;MQSB=1;BQB=0.437304;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=28,23,36,21;MQ=60	GT:PL	0/1:136,0,136
+CY001952	1333	.	T	G,C	99	PASS	DP=134;VDB=0.512596;SGB=-0.693147;RPB=0.155003;MQB=1;MQSB=1;BQB=0.993316;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=35,35,36,28;MQ=60	GT:PL	0/1:132,0,131,255,255,255
+CY001954	660	.	G	C	102	PASS	DP=115;VDB=0.993803;SGB=-0.693147;RPB=0.582007;MQB=1;MQSB=1;BQB=0.653149;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=33,25,29,28;MQ=60	GT:PL	0/1:135,0,137
+CY001956	713	.	A	C,T	107	PASS	DP=92;VDB=5.35332e-05;SGB=-0.693147;RPB=0.999807;MQB=1;MQSB=1;BQB=0.581768;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=17,24,21,30;MQ=60	GT:PL	0/1:140,0,129,234,245,255
