@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
-            timestampString = "491516770.107297"
+            timestampString = "491755515.945764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-matchReedsWithSeedingState:"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/BWT/BWT.m"
-            timestampString = "491516932.677902"
+            filePath = "iGenomics/BWT/BWT_Matcher/BWT_Matcher.m"
+            timestampString = "491757620.087107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-matchReadsFile:withParameters:"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-matchReedsWithSeedingState:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Computing/ComputingController.m"
-            timestampString = "491517018.144901"
+            filePath = "AlignmentGridView.m"
+            timestampString = "491756012.945796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-setUpWithReadsFile:andRefFile:andParameters:andImptMutsFile:"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-setUpAlignmentGridPositionsArr"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,77 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Parameters/ParametersController.m"
-            timestampString = "491517211.343477"
+            filePath = "BWT_Matcher_InsertionDeletion.m"
+            timestampString = "491758345.598525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
-            landmarkName = "-fixGenomeFile:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/Parameters/ParametersController.m"
-            timestampString = "491517262.175783"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "-fixGenomeFile:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/Parameters/ParametersController.m"
-            timestampString = "491517276.932447"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "-fixGenomeFile:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/Parameters/ParametersController.m"
-            timestampString = "491517282.385671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "-fixGenomeFile:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/Parameters/ParametersController.m"
-            timestampString = "491517293.873586"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "-fixGenomeFile:"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-findInDelsNonSeededWithA:b:usingExactMatcher:isReverse:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
