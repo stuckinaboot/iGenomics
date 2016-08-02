@@ -2,7 +2,7 @@ from sys import argv
 import os
 
 autoReadGenPath = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/auto_read_generation.py'
-makeSimulatedFileNamesMoreSpecificPath = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/bacteria_simulations/makeSimulatedFileNamesMoreSpecific.py'
+makeSimulatedFileNamesMoreSpecificPath = '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/my_scripts/makeSimulatedFileNamesMoreSpecific.py'
 
 if len(argv) > 2:
 	paramFile = argv[1]

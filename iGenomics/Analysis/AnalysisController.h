@@ -84,7 +84,7 @@
 
 #define kReadPercentMatchedLblStart @"% Matched: "
 
-#define kTotalNumOfMutsLblStart @"Total Num Of Mutations: "
+#define kTotalNumOfMutsLblStart @"Number of Mutations: "
 
 #define kCurrSegmentLenLblStart @"Segment Len: %i"
 

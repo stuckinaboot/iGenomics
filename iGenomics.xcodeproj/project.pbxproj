@@ -103,6 +103,16 @@
 		A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3531EA616BEFF3800768A31 /* MutationsInfoPopover.xib */; };
 		A3558AE3197035F300BF0821 /* AlignmentGridPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3558AE2197035F300BF0821 /* AlignmentGridPosition.m */; };
 		A35B05401D0A35EE00374489 /* DNA_Strand_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A35B053F1D0A35EE00374489 /* DNA_Strand_Icon.png */; };
+		A35CE6161D50F0E600EAC880 /* lambdaphage-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6141D50F0E600EAC880 /* lambdaphage-reads-rl100-se0.01-mr0.005.fq */; };
+		A35CE6171D50F0E600EAC880 /* lambdaphage-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6151D50F0E600EAC880 /* lambdaphage-reads-rl1000-se0.1-mr0.005.fq */; };
+		A35CE61A1D50F0F000EAC880 /* phix174-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6181D50F0F000EAC880 /* phix174-reads-rl100-se0.01-mr0.005.fq */; };
+		A35CE61B1D50F0F000EAC880 /* phix174-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6191D50F0F000EAC880 /* phix174-reads-rl1000-se0.1-mr0.005.fq */; };
+		A35CE61E1D50F0F700EAC880 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE61C1D50F0F700EAC880 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq */; };
+		A35CE61F1D50F0F700EAC880 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE61D1D50F0F700EAC880 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq */; };
+		A35CE6221D50F0FF00EAC880 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6201D50F0FF00EAC880 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq */; };
+		A35CE6231D50F0FF00EAC880 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6211D50F0FF00EAC880 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq */; };
+		A35CE6261D50F10600EAC880 /* anthrax.capsule-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6241D50F10600EAC880 /* anthrax.capsule-reads-rl100-se0.01-mr0.005.fq */; };
+		A35CE6271D50F10600EAC880 /* anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A35CE6251D50F10600EAC880 /* anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq */; };
 		A35E39B41885FB7500651C41 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E39B31885FB7500651C41 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A3645BC4162CA2FB00983291 /* EditDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = A3645BC3162CA2FB00983291 /* EditDistance.m */; };
 		A364B8961B71036D007A9E69 /* AdvancedFileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A364B8951B71036D007A9E69 /* AdvancedFileInputView.m */; };
@@ -311,6 +321,16 @@
 		A3558AE1197035F300BF0821 /* AlignmentGridPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridPosition.h; sourceTree = "<group>"; };
 		A3558AE2197035F300BF0821 /* AlignmentGridPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridPosition.m; sourceTree = "<group>"; };
 		A35B053F1D0A35EE00374489 /* DNA_Strand_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DNA_Strand_Icon.png; sourceTree = "<group>"; };
+		A35CE6141D50F0E600EAC880 /* lambdaphage-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "lambdaphage-reads-rl100-se0.01-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_lambdaphage/lambdaphage-reads-rl100-se0.01-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6151D50F0E600EAC880 /* lambdaphage-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "lambdaphage-reads-rl1000-se0.1-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_lambdaphage/lambdaphage-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6181D50F0F000EAC880 /* phix174-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "phix174-reads-rl100-se0.01-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_phix174/phix174-reads-rl100-se0.01-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6191D50F0F000EAC880 /* phix174-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "phix174-reads-rl1000-se0.1-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_phix174/phix174-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE61C1D50F0F700EAC880 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu.H3N2-reads-rl100-se0.01-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_flu.H3N2/flu.H3N2-reads-rl100-se0.01-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE61D1D50F0F700EAC880 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu.H3N2-reads-rl1000-se0.1-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_flu.H3N2/flu.H3N2-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6201D50F0FF00EAC880 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu.H1N1-reads-rl100-se0.01-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_flu.H1N1/flu.H1N1-reads-rl100-se0.01-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6211D50F0FF00EAC880 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu.H1N1-reads-rl1000-se0.1-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_flu.H1N1/flu.H1N1-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6241D50F10600EAC880 /* anthrax.capsule-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "anthrax.capsule-reads-rl100-se0.01-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_anthrax.capsule/anthrax.capsule-reads-rl100-se0.01-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
+		A35CE6251D50F10600EAC880 /* anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq"; path = "validation_for_paper/full_validation/bacteria_simulations/simulated_reads_files_anthrax.capsule/anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = SOURCE_ROOT; };
 		A35E39B21885FB7500651C41 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		A35E39B31885FB7500651C41 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A3645BC2162CA2FB00983291 /* EditDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDistance.h; sourceTree = "<group>"; };
@@ -957,6 +977,16 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A35CE6241D50F10600EAC880 /* anthrax.capsule-reads-rl100-se0.01-mr0.005.fq */,
+				A35CE6251D50F10600EAC880 /* anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq */,
+				A35CE6201D50F0FF00EAC880 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq */,
+				A35CE6211D50F0FF00EAC880 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq */,
+				A35CE61C1D50F0F700EAC880 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq */,
+				A35CE61D1D50F0F700EAC880 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq */,
+				A35CE6181D50F0F000EAC880 /* phix174-reads-rl100-se0.01-mr0.005.fq */,
+				A35CE6191D50F0F000EAC880 /* phix174-reads-rl1000-se0.1-mr0.005.fq */,
+				A35CE6141D50F0E600EAC880 /* lambdaphage-reads-rl100-se0.01-mr0.005.fq */,
+				A35CE6151D50F0E600EAC880 /* lambdaphage-reads-rl1000-se0.1-mr0.005.fq */,
 				A32E07541D4FB8A000F2A081 /* reads-rl100-se0.1-mr0.1.fq */,
 				A32E07551D4FB8A000F2A081 /* reads-rl100-se0.1-mr0.01.fq */,
 				A32E07561D4FB8A000F2A081 /* reads-rl100-se0.01-mr0.1.fq */,
@@ -1340,6 +1370,7 @@
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */,
 				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
+				A35CE6271D50F10600EAC880 /* anthrax.capsule-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A36F23091AAF99A4005B5A91 /* flu.H1N1.clean.fq in Resources */,
 				A32E07841D4FB8A000F2A081 /* reads-rl1000-se0.1-mr0.001.fq in Resources */,
 				A35160851AA3FD7B0004FD32 /* Icon-60.png in Resources */,
@@ -1349,6 +1380,7 @@
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
 				A32E07711D4FB8A000F2A081 /* reads-rl100-se0.01-mr0.1.fq in Resources */,
+				A35CE6261D50F10600EAC880 /* anthrax.capsule-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
 				A32E07891D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.001.fq in Resources */,
 				A351607F1AA3FD7B0004FD32 /* Icon-60@3x.png in Resources */,
@@ -1361,6 +1393,7 @@
 				A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */,
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
 				A32E07731D4FB8A000F2A081 /* reads-rl100-se0.01-mr0.01.fq in Resources */,
+				A35CE61E1D50F0F700EAC880 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */,
 				A32E07801D4FB8A000F2A081 /* reads-rl250-se0.2-mr0.001.fq in Resources */,
 				A32E07851D4FB8A000F2A081 /* reads-rl1000-se0.01-mr0.01.fq in Resources */,
@@ -1386,6 +1419,7 @@
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */,
+				A35CE6171D50F0E600EAC880 /* lambdaphage-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A32E07751D4FB8A000F2A081 /* reads-rl100-se0.2-mr0.1.fq in Resources */,
 				A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */,
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
@@ -1395,17 +1429,20 @@
 				A35160821AA3FD7B0004FD32 /* Icon-Small.png in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
 				A32E07531D4FA7C500F2A081 /* flu.mega.fa in Resources */,
+				A35CE61F1D50F0F700EAC880 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A351607B1AA3FD7B0004FD32 /* Icon-40.png in Resources */,
 				A32E07861D4FB8A000F2A081 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A351607D1AA3FD7B0004FD32 /* Icon-40@3x.png in Resources */,
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
+				A35CE61B1D50F0F000EAC880 /* phix174-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A32E077D1D4FB8A000F2A081 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
 				A32C2B4119C0F99B008D66EE /* flu.H3N2.fa in Resources */,
 				A32E07761D4FB8A000F2A081 /* reads-rl100-se0.2-mr0.01.fq in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
 				A32E07701D4FB8A000F2A081 /* reads-rl100-se0.1-mr0.01.fq in Resources */,
+				A35CE6161D50F0E600EAC880 /* lambdaphage-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A32E07871D4FB8A000F2A081 /* reads-rl1000-se0.2-mr0.1.fq in Resources */,
 				A388A7F01AD8DE3600DFDB92 /* flu.H1N1.longReads.fa in Resources */,
 				A35160881AA3FD7B0004FD32 /* Icon-Small-50.png in Resources */,
@@ -1413,13 +1450,16 @@
 				A32E07811D4FB8A000F2A081 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
 				A351608D1AA3FD7B0004FD32 /* iTunesArtwork@2x in Resources */,
 				A32E076F1D4FB8A000F2A081 /* reads-rl100-se0.1-mr0.1.fq in Resources */,
+				A35CE61A1D50F0F000EAC880 /* phix174-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
+				A35CE6221D50F0FF00EAC880 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A351607E1AA3FD7B0004FD32 /* Icon-60@2x.png in Resources */,
 				A32E077A1D4FB8A000F2A081 /* reads-rl250-se0.01-mr0.1.fq in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A32E07831D4FB8A000F2A081 /* reads-rl1000-se0.01-mr0.1.fq in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
+				A35CE6231D50F0FF00EAC880 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,

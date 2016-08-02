@@ -124,7 +124,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 //    ED_Info *bestMatchesVals[[reedsArray count]];
-    ED_Info *__strong*bestMatches = (ED_Info*__strong*)malloc([reedsArray count] * sizeof([ED_Info class]));
+    ED_Info *__strong*bestMatches = (ED_Info*__strong*)calloc([reedsArray count], sizeof([ED_Info class]));
     int actualDGenomeLen = dgenomeLen;
     dgenomeLen = (int)strlen(originalStrWithDividers);
     

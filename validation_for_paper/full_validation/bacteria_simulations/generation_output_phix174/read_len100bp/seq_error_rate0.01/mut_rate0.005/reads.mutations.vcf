@@ -1,0 +1,28 @@
+##fileformat=VCFv4.1
+##contig=<ID=phix174,length=5386>
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##INFO=<ID=pl,Number=1,Type=Integer,Description="Phasing: 1 - HET contig 1, #2 - HET contig #2, 3 - HOM both contigs">
+##INFO=<ID=mt,Number=1,Type=String,Description="Variant Type: SUBSTITUTE/INSERT/DELETE">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+phix174	257	.	G	A	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	725	.	G	C	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+phix174	792	.	C	A	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+phix174	1323	.	CT	C	100	PASS	AF=0.5;pl=1;mt=DELETE
+phix174	1956	.	T	TT	100	PASS	AF=0.5;pl=1;mt=INSERT
+phix174	1986	.	T	TG	100	PASS	AF=0.5;pl=1;mt=INSERT
+phix174	2383	.	A	G	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	2419	.	CA	C	100	PASS	AF=0.5;pl=2;mt=DELETE
+phix174	2531	.	G	C	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+phix174	2843	.	T	A	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	3340	.	AT	A	100	PASS	AF=1.0;pl=3;mt=DELETE
+phix174	3546	.	T	TCA	100	PASS	AF=0.5;pl=2;mt=INSERT
+phix174	3686	.	T	G	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+phix174	3803	.	T	G	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	3915	.	T	G	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+phix174	3977	.	T	G	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	4031	.	T	A	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	4213	.	A	G	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+phix174	4501	.	A	AC	100	PASS	AF=1.0;pl=3;mt=INSERT
+phix174	4641	.	C	G	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+phix174	4954	.	T	TAC	100	PASS	AF=0.5;pl=1;mt=INSERT
+phix174	5080	.	AC	A	100	PASS	AF=1.0;pl=3;mt=DELETE
