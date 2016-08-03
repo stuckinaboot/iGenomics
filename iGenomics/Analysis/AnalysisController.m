@@ -271,6 +271,8 @@
 //    [gridView setUpWithNumOfRows:kNumOfRowsInGridView andCols:len andGraphBoxHeight:graphRowHeight];
     [self setUpGridLbls];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
+    
+    [mutationSupportSlider setValue:0.25f];
     [self mutationSupportSliderChanged:mutationSupportSlider];
 }
 
@@ -439,7 +441,10 @@
 //Mutation Support Stepper
 - (IBAction)mutationSupportSliderChanged:(id)sender {
     UISlider *slider = (UISlider*)sender;
-    slider.value = 0.25f;
+//    slider.value = 0.25f;
+    
+    //http://stackoverflow.com/questions/2519460/uislider-with-increments-of-5
+    [slider setValue:((int)((slider.value + 0.025f) / 0.05f) * 0.05f) animated:YES];
     float val = (float)slider.value;
     
     [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "491776751.505192"
+            timestampString = "491951017.87075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "857"
-            endingLineNumber = "857"
+            startingLineNumber = "862"
+            endingLineNumber = "862"
             landmarkName = "-freeUsedMemory"
             landmarkType = "5">
          </BreakpointContent>

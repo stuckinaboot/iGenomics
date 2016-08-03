@@ -1,0 +1,39 @@
+FAIL: CY001959>>231>>SUB not found
+FAIL: CY001954>>1107>>SUB not found
+FAIL: CY001955>>1184>>INS not found
+FAIL: CY001958>>2202>>DEL not found
+FAIL: CY001959>>1406>>SUB not found
+FAIL: CY001952>>513>>SUB not found
+FAIL: CY001958>>715>>SUB not found
+FAIL: CY001959>>564>>SUB not found
+FAIL: CY001954>>1035>>DEL not found
+FAIL: CY001958>>2075>>SUB not found
+FAIL: CY001959>>1276>>SUB not found
+FAIL: CY001952>>1342>>SUB not found
+FAIL: CY001953>>790>>DEL not found
+FAIL: CY001954>>525>>SUB not found
+14
+0
+PASSED (Approxi): CY001958>>715>>SUB
+FAIL: CY001959>>231>>SUB still not found
+FAIL: CY001954>>1107>>SUB still not found
+FAIL: CY001959>>564>>SUB still not found
+FAIL: CY001958>>2202>>DEL still not found
+FAIL: CY001959>>1406>>SUB still not found
+FAIL: CY001952>>513>>SUB still not found
+FAIL: CY001955>>1184>>INS still not found
+FAIL: CY001954>>1035>>DEL still not found
+FAIL: CY001958>>2075>>SUB still not found
+FAIL: CY001959>>1276>>SUB still not found
+FAIL: CY001952>>1342>>SUB still not found
+FAIL: CY001953>>790>>DEL still not found
+FAIL: CY001954>>525>>SUB still not found
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 1
+PASSED (Approxi): 1
+FAILED: 0
+NOT SHARED: 13
+LEN iG: 25
+LEN BWA: 14

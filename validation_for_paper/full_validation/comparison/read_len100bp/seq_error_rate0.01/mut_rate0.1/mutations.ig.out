@@ -1,0 +1,2822 @@
+FAIL: CY001954>>1395>>SUB not found
+FAIL: CY001958>>738>>SUB not found
+FAIL: CY001952>>75>>SUB not found
+FAIL: CY001959>>194>>SUB not found
+FAIL: CY001955>>21>>SUB not found
+FAIL: CY001956>>632>>SUB not found
+FAIL: CY001958>>2134>>SUB not found
+FAIL: CY001957>>1944>>SUB not found
+FAIL: CY001957>>319>>SUB not found
+FAIL: CY001956>>856>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001956', 'POS': '856', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001956', 'reads-rl100-se0.01-mr0.1': '0/1:38', 'POS': '856', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: CY001952>>525>>SUB not found
+FAIL: CY001957>>965>>SUB not found
+FAIL: CY001958>>1216>>SUB not found
+FAIL: CY001959>>1478>>SUB not found
+FAIL: CY001958>>785>>SUB not found
+FAIL: CY001953>>181>>SUB not found
+FAIL: CY001955>>1418>>DEL not found
+FAIL: CY001958>>1384>>SUB not found
+FAIL: CY001953>>967>>SUB not found
+FAIL: CY001953>>257>>SUB not found
+FAIL: CY001955>>1324>>INS not found
+FAIL: CY001959>>2135>>SUB not found
+FAIL: CY001954>>934>>DEL not found
+FAIL: CY001954>>1026>>SUB not found
+FAIL: CY001958>>1462>>SUB not found
+FAIL: CY001959>>204>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '204', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '1/1:90', 'POS': '204', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001957>>535>>INS not found
+FAIL: CY001957>>259>>SUB not found
+FAIL: CY001959>>2139>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '2139', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '0/1:115', 'POS': '2139', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001957>>473>>SUB not found
+FAIL: CY001955>>1083>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1083', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:111', 'POS': '1083', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}
+FAIL: CY001954>>1004>>SUB not found
+FAIL: CY001959>>1471>>SUB not found
+FAIL: CY001955>>855>>SUB not found
+FAIL: CY001958>>297>>SUB not found
+FAIL: CY001954>>409>>SUB not found
+FAIL: CY001958>>15>>DEL not found
+FAIL: CY001954>>1072>>SUB not found
+FAIL: CY001959>>1432>>SUB not found
+FAIL: CY001959>>1559>>SUB not found
+FAIL: CY001954>>480>>SUB not found
+FAIL: CY001956>>723>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001956', 'POS': '723', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001956', 'reads-rl100-se0.01-mr0.1': '0/1:108', 'POS': '723', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>2131>>SUB not found
+FAIL: CY001952>>418>>SUB not found
+FAIL: CY001959>>1704>>SUB not found
+FAIL: CY001953>>71>>SUB not found
+FAIL: CY001955>>700>>SUB not found
+FAIL: CY001955>>188>>INS not found
+FAIL: CY001954>>1132>>SUB not found
+FAIL: CY001954>>643>>SUB not found
+FAIL: CY001955>>425>>SUB not found
+FAIL: CY001958>>389>>SUB not found
+FAIL: CY001955>>484>>SUB not found
+FAIL: CY001955>>605>>SUB not found
+FAIL: CY001958>>1650>>SUB not found
+FAIL: CY001959>>1689>>SUB not found
+FAIL: CY001957>>1280>>SUB not found
+FAIL: CY001958>>1391>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1391', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:115', 'POS': '1391', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001956>>79>>SUB not found
+FAIL: CY001957>>544>>SUB not found
+FAIL: CY001957>>166>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '166', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:88', 'POS': '166', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001957>>1696>>SUB not found
+FAIL: CY001956>>760>>SUB not found
+FAIL: CY001954>>160>>SUB not found
+FAIL: CY001953>>817>>SUB not found
+FAIL: CY001959>>1331>>SUB not found
+FAIL: CY001959>>1069>>SUB not found
+FAIL: CY001954>>799>>SUB not found
+FAIL: CY001958>>907>>SUB not found
+FAIL: CY001959>>1054>>SUB not found
+FAIL: CY001952>>643>>SUB not found
+FAIL: CY001959>>2057>>SUB not found
+FAIL: CY001959>>1317>>SUB not found
+FAIL: CY001958>>2006>>SUB not found
+FAIL: CY001955>>75>>SUB not found
+FAIL: CY001958>>1639>>DEL not found
+FAIL: CY001959>>67>>SUB not found
+FAIL: CY001957>>94>>INS not found
+FAIL: CY001959>>1296>>SUB not found
+FAIL: CY001952>>1599>>SUB not found
+FAIL: CY001959>>2110>>SUB not found
+FAIL: CY001954>>1260>>SUB not found
+FAIL: CY001958>>579>>SUB not found
+FAIL: CY001957>>2108>>SUB not found
+FAIL: CY001953>>476>>SUB not found
+FAIL: CY001958>>1376>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1376', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:103', 'POS': '1376', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001955>>419>>SUB not found
+FAIL: CY001955>>1564>>SUB not found
+FAIL: CY001954>>487>>SUB not found
+FAIL: CY001958>>646>>SUB not found
+FAIL: CY001956>>512>>SUB not found
+FAIL: CY001957>>588>>INS not found
+FAIL: CY001953>>305>>SUB not found
+FAIL: CY001959>>544>>SUB not found
+FAIL: CY001953>>959>>SUB not found
+FAIL: CY001957>>2060>>SUB not found
+FAIL: CY001957>>184>>SUB not found
+FAIL: CY001957>>620>>SUB not found
+FAIL: CY001956>>313>>SUB not found
+FAIL: CY001957>>238>>SUB not found
+FAIL: CY001956>>643>>SUB not found
+FAIL: CY001955>>77>>SUB not found
+FAIL: CY001954>>655>>SUB not found
+FAIL: CY001957>>1682>>INS not found
+FAIL: CY001955>>815>>SUB not found
+FAIL: CY001953>>639>>SUB not found
+FAIL: CY001959>>335>>SUB not found
+FAIL: CY001954>>906>>SUB not found
+FAIL: CY001955>>1213>>SUB not found
+FAIL: CY001952>>275>>SUB not found
+FAIL: CY001959>>462>>SUB not found
+FAIL: CY001957>>1903>>SUB not found
+FAIL: CY001959>>913>>SUB not found
+FAIL: CY001954>>1122>>SUB not found
+FAIL: CY001959>>124>>SUB not found
+PASSED: CY001958>>1830>>SUB
+FAIL: CY001953>>758>>SUB not found
+FAIL: CY001952>>1359>>SUB not found
+FAIL: CY001959>>692>>SUB not found
+FAIL: CY001954>>1289>>SUB not found
+FAIL: CY001958>>1525>>SUB not found
+FAIL: CY001954>>31>>SUB not found
+FAIL: CY001955>>1549>>SUB not found
+FAIL: CY001959>>756>>SUB not found
+FAIL: CY001957>>616>>SUB not found
+FAIL: CY001959>>1943>>SUB not found
+FAIL: CY001954>>1151>>SUB not found
+FAIL: CY001959>>763>>SUB not found
+FAIL: CY001953>>425>>SUB not found
+FAIL: CY001955>>783>>SUB not found
+FAIL: CY001954>>341>>SUB not found
+FAIL: CY001958>>1919>>SUB not found
+FAIL: CY001955>>221>>SUB not found
+FAIL: CY001955>>501>>SUB not found
+FAIL: CY001952>>938>>SUB not found
+FAIL: CY001957>>1195>>SUB not found
+FAIL: CY001955>>68>>SUB not found
+FAIL: CY001953>>432>>SUB not found
+FAIL: CY001958>>116>>SUB not found
+FAIL: CY001955>>1155>>SUB not found
+FAIL: CY001955>>527>>SUB not found
+FAIL: CY001952>>443>>SUB not found
+FAIL: CY001959>>75>>SUB not found
+FAIL: CY001953>>833>>SUB not found
+FAIL: CY001958>>893>>SUB not found
+FAIL: CY001954>>121>>DEL not found
+FAIL: CY001959>>2060>>SUB not found
+FAIL: CY001954>>312>>SUB not found
+FAIL: CY001958>>610>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '610', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:94', 'POS': '610', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: CY001953>>608>>INS not found
+FAIL: CY001958>>1527>>SUB not found
+FAIL: CY001959>>249>>SUB not found
+FAIL: CY001959>>1125>>SUB not found
+FAIL: CY001954>>158>>SUB not found
+FAIL: CY001952>>338>>INS not found
+FAIL: CY001957>>699>>INS not found
+FAIL: CY001957>>2160>>SUB not found
+FAIL: CY001957>>1705>>SUB not found
+FAIL: CY001953>>825>>SUB not found
+FAIL: CY001954>>714>>SUB not found
+FAIL: CY001954>>644>>SUB not found
+FAIL: CY001956>>135>>SUB not found
+FAIL: CY001954>>802>>SUB not found
+FAIL: CY001958>>1240>>SUB not found
+FAIL: CY001957>>2144>>INS not found
+FAIL: CY001958>>2168>>SUB not found
+FAIL: CY001959>>1097>>SUB not found
+FAIL: CY001956>>757>>SUB not found
+FAIL: CY001958>>624>>SUB not found
+FAIL: CY001957>>1264>>SUB not found
+FAIL: CY001955>>781>>SUB not found
+FAIL: CY001958>>2062>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '2062', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:102', 'POS': '2062', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>2253>>SUB not found
+FAIL: CY001959>>856>>SUB not found
+FAIL: CY001959>>1736>>SUB not found
+FAIL: CY001956>>34>>SUB not found
+FAIL: CY001958>>1100>>SUB not found
+FAIL: CY001954>>1120>>SUB not found
+FAIL: CY001959>>1167>>SUB not found
+FAIL: CY001957>>1065>>SUB not found
+FAIL: CY001958>>1759>>SUB not found
+FAIL: CY001955>>595>>SUB not found
+FAIL: CY001959>>1013>>SUB not found
+FAIL: CY001959>>1267>>SUB not found
+FAIL: CY001953>>211>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001953', 'POS': '211', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001953', 'reads-rl100-se0.01-mr0.1': '0/1:92', 'POS': '211', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}
+FAIL: CY001955>>1346>>SUB not found
+FAIL: CY001952>>1053>>SUB not found
+FAIL: CY001956>>147>>INS not found
+FAIL: CY001955>>108>>SUB not found
+FAIL: CY001958>>601>>SUB not found
+FAIL: CY001958>>500>>SUB not found
+FAIL: CY001959>>191>>SUB not found
+FAIL: CY001958>>1027>>SUB not found
+FAIL: CY001957>>1671>>SUB not found
+FAIL: CY001958>>2121>>SUB not found
+FAIL: CY001956>>219>>SUB not found
+FAIL: CY001958>>2186>>SUB not found
+FAIL: CY001959>>1823>>SUB not found
+FAIL: CY001957>>1791>>SUB not found
+FAIL: CY001958>>296>>SUB not found
+FAIL: CY001957>>2169>>SUB not found
+FAIL: CY001952>>1735>>SUB not found
+FAIL: CY001959>>1036>>SUB not found
+FAIL: CY001959>>517>>SUB not found
+FAIL: CY001957>>1028>>SUB not found
+FAIL: CY001955>>411>>SUB not found
+FAIL: CY001958>>2318>>SUB not found
+FAIL: CY001954>>711>>SUB not found
+FAIL: CY001953>>68>>INS not found
+FAIL: CY001959>>1086>>DEL not found
+FAIL: CY001957>>766>>SUB not found
+FAIL: CY001958>>1451>>SUB not found
+FAIL: CY001952>>1393>>SUB not found
+FAIL: CY001957>>627>>SUB not found
+FAIL: CY001954>>992>>SUB not found
+FAIL: CY001957>>170>>SUB not found
+FAIL: CY001956>>442>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001956', 'POS': '442', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001956', 'reads-rl100-se0.01-mr0.1': '0/1:110', 'POS': '442', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001952>>1357>>SUB not found
+FAIL: CY001958>>668>>SUB not found
+FAIL: CY001958>>1701>>DEL not found
+FAIL: CY001959>>2118>>SUB not found
+FAIL: CY001957>>1829>>SUB not found
+FAIL: CY001952>>158>>DEL not found
+FAIL: CY001959>>1865>>SUB not found
+FAIL: CY001952>>1231>>SUB not found
+FAIL: CY001958>>1399>>SUB not found
+FAIL: CY001954>>697>>INS not found
+FAIL: CY001958>>834>>SUB not found
+FAIL: CY001958>>1957>>SUB not found
+FAIL: CY001953>>491>>DEL not found
+FAIL: CY001956>>692>>SUB not found
+FAIL: CY001956>>263>>SUB not found
+FAIL: CY001957>>312>>SUB not found
+FAIL: CY001952>>1588>>SUB not found
+FAIL: CY001953>>17>>SUB not found
+FAIL: CY001957>>547>>SUB not found
+FAIL: CY001958>>908>>SUB not found
+FAIL: CY001959>>764>>SUB not found
+FAIL: CY001952>>837>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '837', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '1/1:108', 'POS': '837', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+FAIL: CY001953>>60>>SUB not found
+FAIL: CY001955>>670>>SUB not found
+FAIL: CY001959>>2092>>SUB not found
+FAIL: CY001954>>454>>SUB not found
+FAIL: CY001956>>115>>SUB not found
+FAIL: CY001957>>822>>DEL not found
+FAIL: CY001955>>607>>SUB not found
+FAIL: CY001953>>19>>SUB not found
+FAIL: CY001957>>1808>>INS not found
+FAIL: CY001957>>1707>>SUB not found
+FAIL: CY001957>>1326>>INS not found
+FAIL: CY001957>>751>>SUB not found
+FAIL: CY001959>>714>>SUB not found
+FAIL: CY001958>>1340>>SUB not found
+FAIL: CY001955>>200>>SUB not found
+FAIL: CY001953>>270>>SUB not found
+FAIL: CY001958>>307>>SUB not found
+FAIL: CY001956>>814>>SUB not found
+FAIL: CY001953>>30>>DEL not found
+FAIL: CY001954>>1158>>SUB not found
+FAIL: CY001954>>1239>>SUB not found
+FAIL: CY001953>>163>>SUB not found
+FAIL: CY001957>>291>>DEL not found
+FAIL: CY001953>>811>>SUB not found
+FAIL: CY001957>>1395>>SUB not found
+FAIL: CY001958>>1316>>SUB not found
+FAIL: CY001958>>1735>>SUB not found
+FAIL: CY001957>>1467>>SUB not found
+FAIL: CY001958>>826>>SUB not found
+FAIL: CY001959>>1310>>INS not found
+FAIL: CY001955>>1315>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1315', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:113', 'POS': '1315', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: CY001954>>693>>SUB not found
+PASSED: CY001952>>1659>>SUB
+FAIL: CY001952>>1214>>SUB not found
+FAIL: CY001954>>1220>>SUB not found
+FAIL: CY001957>>1580>>SUB not found
+FAIL: CY001952>>1544>>SUB not found
+FAIL: CY001957>>1657>>SUB not found
+PASSED: CY001958>>1060>>SUB
+FAIL: CY001952>>1591>>SUB not found
+FAIL: CY001952>>1751>>SUB not found
+FAIL: CY001953>>356>>SUB not found
+FAIL: CY001956>>557>>SUB not found
+FAIL: CY001959>>348>>SUB not found
+FAIL: CY001959>>1091>>SUB not found
+FAIL: CY001955>>1229>>SUB not found
+FAIL: CY001959>>1722>>SUB not found
+FAIL: CY001958>>1935>>SUB not found
+FAIL: CY001956>>824>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001956', 'POS': '824', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001956', 'reads-rl100-se0.01-mr0.1': '0/1:79', 'POS': '824', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001954>>169>>SUB not found
+FAIL: CY001956>>298>>SUB not found
+FAIL: CY001959>>2011>>SUB not found
+FAIL: CY001953>>712>>SUB not found
+FAIL: CY001952>>324>>SUB not found
+FAIL: CY001954>>652>>DEL not found
+FAIL: CY001954>>1172>>SUB not found
+FAIL: CY001952>>855>>SUB not found
+FAIL: CY001952>>1705>>SUB not found
+FAIL: CY001955>>280>>SUB not found
+FAIL: CY001957>>2008>>SUB not found
+FAIL: CY001953>>555>>SUB not found
+PASSED: CY001959>>357>>SUB
+FAIL: CY001959>>444>>SUB not found
+FAIL: CY001957>>642>>SUB not found
+FAIL: CY001952>>81>>SUB not found
+FAIL: CY001956>>746>>SUB not found
+FAIL: CY001955>>37>>SUB not found
+FAIL: CY001958>>1536>>SUB not found
+FAIL: CY001959>>82>>SUB not found
+FAIL: CY001959>>970>>SUB not found
+FAIL: CY001957>>1171>>SUB not found
+FAIL: CY001959>>651>>SUB not found
+FAIL: CY001957>>489>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '489', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:88', 'POS': '489', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}
+FAIL: CY001957>>1297>>SUB not found
+FAIL: CY001959>>792>>SUB not found
+FAIL: CY001959>>825>>DEL not found
+FAIL: CY001952>>944>>SUB not found
+FAIL: CY001957>>1366>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1366', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:107', 'POS': '1366', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001956>>345>>SUB not found
+FAIL: CY001959>>1661>>SUB not found
+FAIL: CY001952>>178>>SUB not found
+FAIL: CY001957>>1877>>SUB not found
+FAIL: CY001958>>938>>SUB not found
+FAIL: CY001958>>891>>SUB not found
+FAIL: CY001957>>415>>SUB not found
+FAIL: CY001958>>2032>>SUB not found
+FAIL: CY001958>>227>>SUB not found
+PASSED: CY001953>>123>>SUB
+FAIL: CY001957>>726>>SUB not found
+FAIL: CY001959>>1520>>SUB not found
+FAIL: CY001954>>70>>SUB not found
+FAIL: CY001952>>1715>>SUB not found
+FAIL: CY001959>>1094>>SUB not found
+FAIL: CY001958>>1102>>SUB not found
+FAIL: CY001958>>992>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '992', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:88', 'POS': '992', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001959>>871>>SUB not found
+FAIL: CY001953>>363>>SUB not found
+FAIL: CY001957>>1563>>SUB not found
+FAIL: CY001955>>1230>>SUB not found
+FAIL: CY001957>>1651>>SUB not found
+PASSED: CY001958>>326>>SUB
+FAIL: CY001958>>1464>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1464', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:102', 'POS': '1464', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: CY001959>>187>>SUB not found
+FAIL: CY001952>>1071>>SUB not found
+FAIL: CY001958>>1496>>SUB not found
+FAIL: CY001955>>630>>SUB not found
+FAIL: CY001952>>505>>SUB not found
+FAIL: CY001955>>164>>SUB not found
+FAIL: CY001958>>2169>>SUB not found
+FAIL: CY001957>>872>>SUB not found
+FAIL: CY001958>>597>>SUB not found
+FAIL: CY001959>>488>>SUB not found
+FAIL: CY001954>>1241>>INS not found
+FAIL: CY001958>>523>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '523', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:89', 'POS': '523', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001957>>1017>>SUB not found
+FAIL: CY001953>>920>>SUB not found
+FAIL: CY001957>>2081>>SUB not found
+FAIL: CY001959>>1361>>SUB not found
+FAIL: CY001957>>1233>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1233', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:113', 'POS': '1233', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}
+FAIL: CY001956>>496>>SUB not found
+FAIL: CY001959>>416>>SUB not found
+FAIL: CY001955>>291>>SUB not found
+FAIL: CY001958>>1926>>SUB not found
+FAIL: CY001955>>448>>DEL not found
+FAIL: CY001953>>924>>SUB not found
+FAIL: CY001958>>830>>SUB not found
+FAIL: CY001952>>841>>SUB not found
+FAIL: CY001952>>1440>>INS not found
+FAIL: CY001952>>32>>SUB not found
+FAIL: CY001955>>510>>SUB not found
+FAIL: CY001958>>379>>SUB not found
+FAIL: CY001958>>54>>SUB not found
+FAIL: CY001952>>1745>>SUB not found
+FAIL: CY001954>>98>>SUB not found
+FAIL: CY001959>>1008>>SUB not found
+FAIL: CY001958>>1816>>SUB not found
+FAIL: CY001956>>414>>SUB not found
+FAIL: CY001957>>244>>SUB not found
+FAIL: CY001956>>75>>SUB not found
+FAIL: CY001954>>622>>SUB not found
+FAIL: CY001958>>2252>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '2252', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:67', 'POS': '2252', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+FAIL: CY001953>>62>>SUB not found
+FAIL: CY001952>>1729>>SUB not found
+FAIL: CY001958>>1885>>SUB not found
+FAIL: CY001958>>1822>>SUB not found
+FAIL: CY001958>>1645>>SUB not found
+FAIL: CY001954>>1310>>SUB not found
+FAIL: CY001956>>823>>SUB not found
+FAIL: CY001956>>812>>SUB not found
+FAIL: CY001952>>1147>>SUB not found
+FAIL: CY001957>>1672>>SUB not found
+FAIL: CY001953>>246>>SUB not found
+FAIL: CY001953>>785>>INS not found
+FAIL: CY001959>>765>>SUB not found
+FAIL: CY001958>>560>>SUB not found
+FAIL: CY001957>>1406>>SUB not found
+FAIL: CY001959>>380>>SUB not found
+FAIL: CY001957>>1216>>SUB not found
+FAIL: CY001954>>1002>>SUB not found
+FAIL: CY001958>>260>>INS not found
+FAIL: CY001953>>809>>INS not found
+FAIL: CY001957>>747>>SUB not found
+FAIL: CY001955>>137>>SUB not found
+FAIL: CY001954>>418>>SUB not found
+FAIL: CY001958>>1662>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1662', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:105', 'POS': '1662', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}
+FAIL: CY001953>>684>>SUB not found
+FAIL: CY001955>>1371>>SUB not found
+FAIL: CY001952>>1318>>SUB not found
+FAIL: CY001955>>980>>SUB not found
+FAIL: CY001953>>600>>DEL not found
+FAIL: CY001959>>1149>>SUB not found
+FAIL: CY001958>>1706>>SUB not found
+FAIL: CY001957>>855>>SUB not found
+FAIL: CY001957>>1323>>SUB not found
+FAIL: CY001959>>1104>>SUB not found
+FAIL: CY001955>>238>>SUB not found
+FAIL: CY001952>>1407>>SUB not found
+FAIL: CY001957>>2210>>SUB not found
+FAIL: CY001955>>679>>SUB not found
+FAIL: CY001958>>1634>>SUB not found
+FAIL: CY001956>>485>>SUB not found
+FAIL: CY001959>>1162>>SUB not found
+FAIL: CY001958>>1322>>SUB not found
+FAIL: CY001954>>273>>SUB not found
+FAIL: CY001954>>930>>SUB not found
+FAIL: CY001957>>672>>SUB not found
+FAIL: CY001952>>1671>>INS not found
+FAIL: CY001952>>1624>>SUB not found
+FAIL: CY001953>>707>>SUB not found
+FAIL: CY001954>>265>>SUB not found
+FAIL: CY001955>>869>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '869', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:88', 'POS': '869', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+FAIL: CY001953>>192>>SUB not found
+FAIL: CY001958>>1414>>SUB not found
+FAIL: CY001957>>1402>>SUB not found
+FAIL: CY001954>>1099>>SUB not found
+FAIL: CY001954>>1366>>SUB not found
+FAIL: CY001955>>777>>SUB not found
+FAIL: CY001959>>265>>INS not found
+FAIL: CY001959>>2088>>DEL not found
+FAIL: CY001958>>734>>SUB not found
+FAIL: CY001955>>915>>DEL not found
+FAIL: CY001958>>469>>SUB not found
+FAIL: CY001953>>431>>SUB not found
+FAIL: CY001959>>1596>>SUB not found
+FAIL: CY001955>>12>>SUB not found
+FAIL: CY001957>>1481>>SUB not found
+FAIL: CY001958>>1082>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1082', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:85', 'POS': '1082', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>2021>>DEL not found
+FAIL: CY001955>>824>>SUB not found
+FAIL: CY001959>>867>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '867', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '1/1:102', 'POS': '867', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}
+FAIL: CY001955>>1013>>SUB not found
+FAIL: CY001955>>612>>SUB not found
+FAIL: CY001957>>1156>>SUB not found
+FAIL: CY001958>>753>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '753', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:114', 'POS': '753', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001957>>607>>SUB not found
+FAIL: CY001955>>1049>>SUB not found
+FAIL: CY001955>>1065>>SUB not found
+FAIL: CY001952>>149>>SUB not found
+FAIL: CY001958>>1530>>SUB not found
+FAIL: CY001959>>985>>SUB not found
+FAIL: CY001958>>2170>>SUB not found
+FAIL: CY001952>>1260>>SUB not found
+FAIL: CY001959>>845>>SUB not found
+FAIL: CY001957>>2162>>SUB not found
+FAIL: CY001955>>1375>>DEL not found
+FAIL: CY001952>>785>>SUB not found
+FAIL: CY001959>>1958>>SUB not found
+FAIL: CY001952>>1168>>DEL not found
+FAIL: CY001957>>1214>>SUB not found
+FAIL: CY001959>>1053>>SUB not found
+FAIL: CY001954>>1428>>SUB not found
+FAIL: CY001959>>1184>>SUB not found
+FAIL: CY001959>>68>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '68', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '0/1:69', 'POS': '68', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}
+FAIL: CY001958>>838>>SUB not found
+FAIL: CY001959>>1483>>SUB not found
+FAIL: CY001958>>2302>>SUB not found
+FAIL: CY001958>>1249>>SUB not found
+FAIL: CY001955>>796>>SUB not found
+FAIL: CY001954>>486>>SUB not found
+FAIL: CY001958>>1028>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1028', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:80', 'POS': '1028', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001956>>312>>SUB not found
+FAIL: CY001959>>70>>SUB not found
+FAIL: CY001952>>1655>>SUB not found
+FAIL: CY001952>>902>>SUB not found
+FAIL: CY001952>>540>>SUB not found
+FAIL: CY001959>>2014>>SUB not found
+FAIL: CY001958>>962>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '962', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:87', 'POS': '962', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001953>>980>>SUB not found
+FAIL: CY001957>>1136>>INS not found
+FAIL: CY001955>>1064>>SUB not found
+FAIL: CY001954>>303>>INS not found
+FAIL: CY001955>>1247>>SUB not found
+FAIL: CY001955>>1544>>DEL not found
+FAIL: CY001954>>1343>>SUB not found
+FAIL: CY001954>>617>>INS not found
+FAIL: CY001952>>1242>>SUB not found
+FAIL: CY001952>>427>>SUB not found
+FAIL: CY001956>>146>>SUB not found
+FAIL: CY001956>>744>>SUB not found
+FAIL: CY001955>>1484>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1484', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:76', 'POS': '1484', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}
+FAIL: CY001954>>842>>INS not found
+FAIL: CY001959>>726>>SUB not found
+FAIL: CY001952>>1611>>SUB not found
+FAIL: CY001957>>2138>>SUB not found
+FAIL: CY001954>>889>>SUB not found
+FAIL: CY001956>>274>>SUB not found
+FAIL: CY001954>>100>>INS not found
+FAIL: CY001958>>2248>>SUB not found
+FAIL: CY001957>>1331>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1331', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:101', 'POS': '1331', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001953>>190>>SUB not found
+FAIL: CY001953>>913>>SUB not found
+FAIL: CY001957>>997>>SUB not found
+FAIL: CY001958>>1204>>SUB not found
+FAIL: CY001952>>1127>>DEL not found
+FAIL: CY001955>>1340>>SUB not found
+FAIL: CY001954>>917>>DEL not found
+FAIL: CY001959>>362>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '362', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '0/1:97', 'POS': '362', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: CY001954>>491>>SUB not found
+FAIL: CY001957>>1021>>SUB not found
+FAIL: CY001953>>122>>SUB not found
+FAIL: CY001955>>1385>>SUB not found
+FAIL: CY001952>>1324>>INS not found
+FAIL: CY001959>>870>>SUB not found
+FAIL: CY001956>>539>>SUB not found
+FAIL: CY001952>>1694>>SUB not found
+FAIL: CY001957>>1963>>SUB not found
+FAIL: CY001959>>1641>>SUB not found
+FAIL: CY001958>>2104>>SUB not found
+FAIL: CY001952>>425>>DEL not found
+FAIL: CY001957>>904>>SUB not found
+FAIL: CY001958>>2139>>SUB not found
+FAIL: CY001959>>296>>DEL not found
+FAIL: CY001959>>689>>SUB not found
+FAIL: CY001959>>1664>>SUB not found
+FAIL: CY001952>>486>>SUB not found
+FAIL: CY001952>>307>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '307', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '1/1:94', 'POS': '307', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}
+FAIL: CY001952>>568>>SUB not found
+FAIL: CY001954>>126>>DEL not found
+FAIL: CY001953>>57>>SUB not found
+FAIL: CY001959>>882>>INS not found
+FAIL: CY001954>>414>>SUB not found
+FAIL: CY001957>>1519>>SUB not found
+FAIL: CY001952>>322>>DEL not found
+FAIL: CY001959>>956>>SUB not found
+FAIL: CY001953>>174>>SUB not found
+FAIL: CY001958>>78>>SUB not found
+FAIL: CY001955>>1160>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1160', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:102', 'POS': '1160', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: CY001952>>260>>SUB not found
+FAIL: CY001952>>1226>>SUB not found
+FAIL: CY001955>>620>>SUB not found
+FAIL: CY001957>>463>>SUB not found
+FAIL: CY001957>>729>>SUB not found
+FAIL: CY001957>>1620>>INS not found
+FAIL: CY001958>>1793>>SUB not found
+FAIL: CY001955>>531>>SUB not found
+FAIL: CY001958>>1984>>SUB not found
+FAIL: CY001959>>489>>SUB not found
+FAIL: CY001958>>1723>>SUB not found
+FAIL: CY001958>>155>>SUB not found
+FAIL: CY001959>>679>>SUB not found
+FAIL: CY001957>>265>>SUB not found
+FAIL: CY001959>>810>>INS not found
+FAIL: CY001955>>545>>SUB not found
+FAIL: CY001952>>759>>DEL not found
+FAIL: CY001953>>737>>SUB not found
+FAIL: CY001958>>1041>>SUB not found
+FAIL: CY001954>>985>>SUB not found
+FAIL: CY001959>>1408>>SUB not found
+FAIL: CY001952>>378>>SUB not found
+FAIL: CY001952>>1616>>SUB not found
+FAIL: CY001952>>1459>>INS not found
+FAIL: CY001959>>57>>SUB not found
+FAIL: CY001952>>57>>SUB not found
+FAIL: CY001959>>834>>SUB not found
+FAIL: CY001952>>1054>>SUB not found
+FAIL: CY001956>>753>>SUB not found
+FAIL: CY001958>>1884>>SUB not found
+FAIL: CY001957>>737>>SUB not found
+FAIL: CY001954>>377>>SUB not found
+FAIL: CY001958>>1841>>SUB not found
+FAIL: CY001954>>1024>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001954', 'POS': '1024', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001954', 'reads-rl100-se0.01-mr0.1': '1/1:79', 'POS': '1024', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}
+FAIL: CY001955>>1393>>INS not found
+FAIL: CY001958>>1861>>SUB not found
+FAIL: CY001958>>367>>SUB not found
+FAIL: CY001957>>1770>>SUB not found
+FAIL: CY001956>>800>>SUB not found
+FAIL: CY001959>>319>>SUB not found
+PASSED: CY001958>>1945>>SUB
+FAIL: CY001958>>1284>>SUB not found
+FAIL: CY001952>>1326>>SUB not found
+FAIL: CY001956>>164>>SUB not found
+FAIL: CY001955>>489>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '489', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '1/1:94', 'POS': '489', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+FAIL: CY001957>>1639>>SUB not found
+FAIL: CY001959>>33>>SUB not found
+FAIL: CY001954>>35>>SUB not found
+FAIL: CY001952>>752>>SUB not found
+FAIL: CY001953>>286>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001953', 'POS': '286', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001953', 'reads-rl100-se0.01-mr0.1': '1/1:96', 'POS': '286', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001958>>448>>SUB not found
+FAIL: CY001959>>1134>>SUB not found
+FAIL: CY001952>>464>>SUB not found
+FAIL: CY001953>>802>>INS not found
+FAIL: CY001956>>493>>SUB not found
+FAIL: CY001959>>1774>>SUB not found
+FAIL: CY001952>>552>>SUB not found
+FAIL: CY001958>>185>>INS not found
+FAIL: CY001955>>427>>SUB not found
+FAIL: CY001958>>1099>>SUB not found
+FAIL: CY001953>>810>>SUB not found
+FAIL: CY001959>>366>>SUB not found
+FAIL: CY001955>>172>>SUB not found
+FAIL: CY001959>>1555>>INS not found
+FAIL: CY001953>>942>>SUB not found
+FAIL: CY001959>>1538>>SUB not found
+FAIL: CY001953>>162>>SUB not found
+FAIL: CY001957>>1335>>SUB not found
+FAIL: CY001958>>956>>SUB not found
+FAIL: CY001958>>1694>>SUB not found
+FAIL: CY001957>>1218>>SUB not found
+FAIL: CY001954>>706>>SUB not found
+FAIL: CY001955>>570>>SUB not found
+FAIL: CY001955>>348>>SUB not found
+FAIL: CY001959>>208>>SUB not found
+FAIL: CY001952>>1095>>SUB not found
+FAIL: CY001955>>388>>SUB not found
+FAIL: CY001954>>1180>>SUB not found
+PASSED: CY001956>>338>>SUB
+FAIL: CY001953>>258>>SUB not found
+FAIL: CY001958>>778>>INS not found
+FAIL: CY001959>>1022>>SUB not found
+FAIL: CY001952>>125>>SUB not found
+FAIL: CY001957>>748>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '748', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:108', 'POS': '748', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>991>>SUB not found
+FAIL: CY001959>>257>>SUB not found
+FAIL: CY001955>>384>>SUB not found
+FAIL: CY001959>>256>>SUB not found
+FAIL: CY001952>>16>>DEL not found
+FAIL: CY001957>>831>>SUB not found
+FAIL: CY001952>>1360>>INS not found
+FAIL: CY001959>>721>>SUB not found
+FAIL: CY001952>>1533>>SUB not found
+FAIL: CY001958>>430>>SUB not found
+FAIL: CY001956>>787>>SUB not found
+FAIL: CY001958>>42>>SUB not found
+FAIL: CY001959>>443>>SUB not found
+FAIL: CY001958>>651>>SUB not found
+FAIL: CY001958>>1138>>SUB not found
+FAIL: CY001952>>757>>SUB not found
+FAIL: CY001952>>1517>>INS not found
+FAIL: CY001958>>1473>>SUB not found
+FAIL: CY001959>>316>>SUB not found
+FAIL: CY001958>>1303>>SUB not found
+FAIL: CY001954>>400>>SUB not found
+FAIL: CY001959>>449>>SUB not found
+FAIL: CY001958>>313>>SUB not found
+FAIL: CY001959>>1777>>SUB not found
+FAIL: CY001959>>1170>>SUB not found
+FAIL: CY001952>>1323>>SUB not found
+FAIL: CY001952>>1322>>SUB not found
+FAIL: CY001957>>1384>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1384', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:109', 'POS': '1384', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001957>>1993>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1993', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:83', 'POS': '1993', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}
+FAIL: CY001953>>186>>DEL not found
+FAIL: CY001954>>926>>SUB not found
+FAIL: CY001954>>550>>INS not found
+FAIL: CY001958>>2262>>SUB not found
+FAIL: CY001955>>872>>SUB not found
+FAIL: CY001956>>882>>DEL not found
+FAIL: CY001955>>1288>>SUB not found
+FAIL: CY001957>>1140>>DEL not found
+FAIL: CY001957>>2091>>SUB not found
+FAIL: CY001954>>327>>SUB not found
+FAIL: CY001959>>1047>>SUB not found
+FAIL: CY001954>>175>>SUB not found
+FAIL: CY001952>>1652>>SUB not found
+FAIL: CY001952>>680>>SUB not found
+FAIL: CY001959>>704>>SUB not found
+FAIL: CY001953>>823>>SUB not found
+FAIL: CY001953>>377>>SUB not found
+FAIL: CY001958>>1021>>SUB not found
+FAIL: CY001952>>1429>>SUB not found
+FAIL: CY001956>>411>>SUB not found
+FAIL: CY001958>>1472>>SUB not found
+FAIL: CY001957>>1182>>SUB not found
+FAIL: CY001955>>653>>SUB not found
+FAIL: CY001952>>1703>>SUB not found
+FAIL: CY001952>>904>>SUB not found
+FAIL: CY001955>>850>>SUB not found
+FAIL: CY001954>>305>>SUB not found
+PASSED: CY001958>>1320>>SUB
+FAIL: CY001958>>1490>>SUB not found
+FAIL: CY001956>>602>>SUB not found
+FAIL: CY001953>>525>>SUB not found
+FAIL: CY001957>>1534>>SUB not found
+FAIL: CY001952>>597>>SUB not found
+FAIL: CY001957>>760>>SUB not found
+FAIL: CY001957>>1924>>SUB not found
+FAIL: CY001959>>2073>>SUB not found
+FAIL: CY001953>>22>>INS not found
+FAIL: CY001958>>1047>>SUB not found
+FAIL: CY001957>>915>>DEL not found
+FAIL: CY001957>>229>>SUB not found
+FAIL: CY001958>>2287>>SUB not found
+FAIL: CY001955>>518>>SUB not found
+FAIL: CY001959>>612>>SUB not found
+FAIL: CY001953>>126>>INS not found
+FAIL: CY001952>>1076>>SUB not found
+FAIL: CY001952>>1011>>DEL not found
+FAIL: CY001952>>1066>>SUB not found
+FAIL: CY001957>>519>>INS not found
+FAIL: CY001955>>682>>INS not found
+FAIL: CY001954>>760>>SUB not found
+FAIL: CY001957>>2045>>SUB not found
+FAIL: CY001956>>440>>SUB not found
+FAIL: CY001953>>871>>INS not found
+FAIL: CY001955>>258>>SUB not found
+FAIL: CY001957>>1818>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1818', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:106', 'POS': '1818', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001953>>583>>SUB not found
+FAIL: CY001957>>1566>>SUB not found
+FAIL: CY001955>>1123>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1123', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:112', 'POS': '1123', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>1205>>SUB not found
+FAIL: CY001959>>739>>SUB not found
+FAIL: CY001956>>425>>SUB not found
+FAIL: CY001958>>1393>>SUB not found
+FAIL: CY001955>>1432>>SUB not found
+FAIL: CY001955>>133>>INS not found
+FAIL: CY001955>>20>>SUB not found
+FAIL: CY001953>>508>>SUB not found
+FAIL: CY001958>>1292>>SUB not found
+FAIL: CY001957>>1916>>SUB not found
+FAIL: CY001957>>129>>SUB not found
+FAIL: CY001957>>9>>SUB not found
+FAIL: CY001957>>1169>>SUB not found
+FAIL: CY001957>>1030>>SUB not found
+FAIL: CY001954>>884>>SUB not found
+FAIL: CY001952>>1197>>SUB not found
+FAIL: CY001954>>778>>SUB not found
+FAIL: CY001959>>1868>>SUB not found
+FAIL: CY001957>>1308>>SUB not found
+FAIL: CY001957>>954>>SUB not found
+FAIL: CY001959>>1423>>DEL not found
+FAIL: CY001958>>2132>>SUB not found
+FAIL: CY001959>>1992>>SUB not found
+FAIL: CY001952>>1716>>SUB not found
+FAIL: CY001953>>846>>DEL not found
+FAIL: CY001959>>569>>SUB not found
+FAIL: CY001956>>447>>SUB not found
+FAIL: CY001957>>1670>>SUB not found
+FAIL: CY001954>>333>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001954', 'POS': '333', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001954', 'reads-rl100-se0.01-mr0.1': '0/1:119', 'POS': '333', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>494>>SUB not found
+FAIL: CY001959>>1846>>SUB not found
+FAIL: CY001954>>289>>SUB not found
+FAIL: CY001957>>70>>SUB not found
+FAIL: CY001954>>837>>SUB not found
+FAIL: CY001958>>515>>SUB not found
+FAIL: CY001957>>1278>>INS not found
+FAIL: CY001953>>769>>SUB not found
+FAIL: CY001954>>902>>SUB not found
+FAIL: CY001959>>494>>SUB not found
+FAIL: CY001959>>1218>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '1218', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '1/1:80', 'POS': '1218', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>211>>SUB not found
+FAIL: CY001953>>623>>DEL not found
+FAIL: CY001958>>1079>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1079', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:85', 'POS': '1079', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}
+FAIL: CY001957>>1622>>DEL not found
+FAIL: CY001959>>2128>>SUB not found
+FAIL: CY001952>>1090>>SUB not found
+FAIL: CY001958>>1107>>SUB not found
+FAIL: CY001959>>24>>INS not found
+FAIL: CY001958>>723>>SUB not found
+FAIL: CY001954>>1407>>SUB not found
+FAIL: CY001956>>221>>SUB not found
+FAIL: CY001958>>1277>>SUB not found
+FAIL: CY001957>>557>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '557', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:97', 'POS': '557', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001953>>482>>SUB not found
+FAIL: CY001952>>599>>SUB not found
+FAIL: CY001959>>537>>SUB not found
+FAIL: CY001955>>1371>>INS not found
+FAIL: CY001952>>24>>SUB not found
+FAIL: CY001959>>139>>SUB not found
+FAIL: CY001959>>1211>>SUB not found
+FAIL: CY001958>>2230>>SUB not found
+FAIL: CY001952>>348>>SUB not found
+FAIL: CY001958>>209>>SUB not found
+FAIL: CY001957>>233>>SUB not found
+FAIL: CY001952>>877>>SUB not found
+FAIL: CY001955>>198>>SUB not found
+FAIL: CY001958>>2015>>SUB not found
+FAIL: CY001955>>342>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '342', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '1/1:117', 'POS': '342', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001958>>2158>>SUB not found
+FAIL: CY001953>>970>>SUB not found
+FAIL: CY001952>>641>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '641', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '0/1:86', 'POS': '641', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}
+FAIL: CY001956>>35>>SUB not found
+FAIL: CY001958>>2282>>SUB not found
+FAIL: CY001957>>828>>SUB not found
+FAIL: CY001953>>491>>SUB not found
+FAIL: CY001958>>802>>SUB not found
+FAIL: CY001957>>355>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '355', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:110', 'POS': '355', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+FAIL: CY001959>>1562>>SUB not found
+FAIL: CY001954>>627>>SUB not found
+FAIL: CY001952>>1590>>SUB not found
+FAIL: CY001956>>764>>SUB not found
+FAIL: CY001952>>631>>SUB not found
+FAIL: CY001958>>1159>>SUB not found
+FAIL: CY001954>>236>>SUB not found
+FAIL: CY001953>>985>>SUB not found
+FAIL: CY001957>>496>>SUB not found
+FAIL: CY001958>>1600>>SUB not found
+FAIL: CY001955>>204>>SUB not found
+FAIL: CY001957>>1240>>SUB not found
+FAIL: CY001957>>500>>SUB not found
+FAIL: CY001955>>135>>SUB not found
+FAIL: CY001956>>265>>SUB not found
+FAIL: CY001954>>466>>SUB not found
+FAIL: CY001957>>623>>SUB not found
+FAIL: CY001957>>1538>>SUB not found
+FAIL: CY001959>>1504>>SUB not found
+FAIL: CY001958>>83>>DEL not found
+FAIL: CY001956>>145>>SUB not found
+FAIL: CY001959>>1406>>INS not found
+FAIL: CY001955>>680>>INS not found
+FAIL: CY001954>>1383>>SUB not found
+FAIL: CY001957>>734>>INS not found
+FAIL: CY001959>>2114>>SUB not found
+FAIL: CY001959>>852>>SUB not found
+FAIL: CY001955>>235>>SUB not found
+FAIL: CY001958>>1545>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1545', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:96', 'POS': '1545', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+FAIL: CY001959>>533>>SUB not found
+FAIL: CY001956>>704>>SUB not found
+FAIL: CY001958>>1944>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1944', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:101', 'POS': '1944', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001952>>1084>>SUB not found
+FAIL: CY001959>>653>>SUB not found
+FAIL: CY001953>>780>>SUB not found
+FAIL: CY001954>>913>>SUB not found
+FAIL: CY001959>>1484>>SUB not found
+FAIL: CY001955>>1125>>SUB not found
+PASSED: CY001958>>2068>>SUB
+FAIL: CY001953>>730>>SUB not found
+FAIL: CY001955>>619>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '619', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:94', 'POS': '619', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+FAIL: CY001957>>385>>SUB not found
+FAIL: CY001954>>290>>SUB not found
+FAIL: CY001952>>151>>SUB not found
+FAIL: CY001957>>829>>SUB not found
+FAIL: CY001958>>377>>SUB not found
+FAIL: CY001955>>156>>SUB not found
+FAIL: CY001954>>1235>>SUB not found
+FAIL: CY001958>>626>>SUB not found
+FAIL: CY001958>>103>>SUB not found
+FAIL: CY001959>>587>>DEL not found
+FAIL: CY001952>>223>>SUB not found
+FAIL: CY001959>>1017>>SUB not found
+FAIL: CY001957>>708>>SUB not found
+FAIL: CY001952>>1290>>SUB not found
+FAIL: CY001954>>1210>>SUB not found
+FAIL: CY001957>>1285>>SUB not found
+FAIL: CY001959>>2174>>SUB not found
+FAIL: CY001959>>310>>SUB not found
+FAIL: CY001958>>1686>>SUB not found
+FAIL: CY001954>>839>>SUB not found
+FAIL: CY001952>>381>>SUB not found
+FAIL: CY001959>>71>>SUB not found
+FAIL: CY001958>>1795>>INS not found
+FAIL: CY001957>>1785>>INS not found
+FAIL: CY001958>>1498>>SUB not found
+FAIL: CY001956>>661>>SUB not found
+FAIL: CY001952>>1551>>DEL not found
+FAIL: CY001959>>1499>>SUB not found
+FAIL: CY001959>>602>>SUB not found
+FAIL: CY001958>>462>>SUB not found
+FAIL: CY001959>>523>>SUB not found
+FAIL: CY001957>>114>>DEL not found
+FAIL: CY001954>>417>>SUB not found
+FAIL: CY001959>>81>>SUB not found
+FAIL: CY001957>>151>>SUB not found
+FAIL: CY001959>>548>>SUB not found
+FAIL: CY001957>>608>>SUB not found
+FAIL: CY001954>>425>>SUB not found
+FAIL: CY001957>>1026>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1026', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:102', 'POS': '1026', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001952>>1075>>SUB not found
+FAIL: CY001952>>1753>>SUB not found
+FAIL: CY001952>>624>>INS not found
+FAIL: CY001954>>825>>SUB not found
+FAIL: CY001956>>448>>SUB not found
+FAIL: CY001959>>1808>>SUB not found
+FAIL: CY001955>>1141>>SUB not found
+FAIL: CY001952>>377>>SUB not found
+FAIL: CY001952>>556>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '556', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '1/1:107', 'POS': '556', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}
+FAIL: CY001959>>2029>>SUB not found
+FAIL: CY001958>>744>>DEL not found
+FAIL: CY001954>>604>>SUB not found
+FAIL: CY001957>>1669>>SUB not found
+FAIL: CY001953>>1014>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001953', 'POS': '1014', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001953', 'reads-rl100-se0.01-mr0.1': '1/1:8', 'POS': '1014', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001954>>721>>SUB not found
+FAIL: CY001957>>1675>>INS not found
+FAIL: CY001952>>888>>SUB not found
+FAIL: CY001956>>85>>SUB not found
+FAIL: CY001953>>911>>SUB not found
+FAIL: CY001956>>104>>DEL not found
+FAIL: CY001954>>107>>SUB not found
+FAIL: CY001958>>467>>SUB not found
+FAIL: CY001958>>1517>>SUB not found
+FAIL: CY001953>>1000>>SUB not found
+FAIL: CY001952>>1210>>INS not found
+FAIL: CY001958>>1252>>SUB not found
+FAIL: CY001959>>513>>SUB not found
+FAIL: CY001952>>526>>SUB not found
+FAIL: CY001958>>34>>INS not found
+FAIL: CY001952>>313>>SUB not found
+FAIL: CY001955>>155>>SUB not found
+FAIL: CY001954>>1412>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001954', 'POS': '1412', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001954', 'reads-rl100-se0.01-mr0.1': '0/1:60', 'POS': '1412', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001958>>1731>>SUB not found
+FAIL: CY001957>>1822>>SUB not found
+FAIL: CY001954>>1006>>SUB not found
+FAIL: CY001958>>375>>SUB not found
+FAIL: CY001958>>2035>>SUB not found
+FAIL: CY001955>>568>>SUB not found
+FAIL: CY001959>>385>>SUB not found
+FAIL: CY001952>>629>>SUB not found
+FAIL: CY001955>>1185>>SUB not found
+FAIL: CY001953>>328>>SUB not found
+FAIL: CY001953>>354>>SUB not found
+FAIL: CY001959>>1988>>SUB not found
+FAIL: CY001956>>767>>SUB not found
+FAIL: CY001953>>703>>DEL not found
+FAIL: CY001959>>461>>SUB not found
+FAIL: CY001957>>1224>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1224', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:116', 'POS': '1224', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}
+FAIL: CY001952>>468>>SUB not found
+FAIL: CY001955>>521>>SUB not found
+FAIL: CY001956>>58>>SUB not found
+FAIL: CY001954>>506>>SUB not found
+FAIL: CY001958>>2241>>SUB not found
+FAIL: CY001956>>233>>SUB not found
+FAIL: CY001952>>192>>INS not found
+FAIL: CY001956>>246>>SUB not found
+FAIL: CY001955>>801>>DEL not found
+FAIL: CY001955>>648>>SUB not found
+FAIL: CY001958>>1948>>SUB not found
+FAIL: CY001952>>160>>SUB not found
+FAIL: CY001955>>669>>SUB not found
+FAIL: CY001957>>800>>SUB not found
+FAIL: CY001957>>1000>>INS not found
+FAIL: CY001954>>943>>SUB not found
+FAIL: CY001955>>115>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '115', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:109', 'POS': '115', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}
+FAIL: CY001952>>1110>>SUB not found
+FAIL: CY001955>>813>>SUB not found
+FAIL: CY001952>>658>>INS not found
+FAIL: CY001955>>490>>SUB not found
+FAIL: CY001957>>23>>SUB not found
+FAIL: CY001959>>44>>SUB not found
+FAIL: CY001959>>954>>SUB not found
+FAIL: CY001953>>203>>SUB not found
+FAIL: CY001952>>412>>INS not found
+FAIL: CY001952>>1400>>SUB not found
+PASSED: CY001959>>921>>SUB
+FAIL: CY001953>>103>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001953', 'POS': '103', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001953', 'reads-rl100-se0.01-mr0.1': '0/1:122', 'POS': '103', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001959>>2117>>SUB not found
+FAIL: CY001957>>1410>>SUB not found
+FAIL: CY001955>>1360>>INS not found
+FAIL: CY001955>>767>>SUB not found
+FAIL: CY001955>>500>>SUB not found
+FAIL: CY001955>>1004>>SUB not found
+FAIL: CY001958>>1671>>SUB not found
+FAIL: CY001958>>1101>>SUB not found
+FAIL: CY001956>>82>>SUB not found
+FAIL: CY001954>>571>>SUB not found
+FAIL: CY001958>>454>>SUB not found
+FAIL: CY001954>>522>>SUB not found
+FAIL: CY001959>>48>>SUB not found
+FAIL: CY001959>>776>>SUB not found
+FAIL: CY001957>>909>>SUB not found
+FAIL: CY001952>>1004>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '1004', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '0/1:116', 'POS': '1004', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}
+FAIL: CY001958>>1997>>SUB not found
+FAIL: CY001957>>1175>>SUB not found
+FAIL: CY001954>>1386>>INS not found
+FAIL: CY001952>>1>>SUB not found
+FAIL: CY001953>>454>>SUB not found
+FAIL: CY001958>>199>>SUB not found
+FAIL: CY001954>>527>>SUB not found
+FAIL: CY001954>>702>>SUB not found
+FAIL: CY001953>>882>>SUB not found
+FAIL: CY001957>>549>>SUB not found
+FAIL: CY001953>>496>>SUB not found
+FAIL: CY001959>>1685>>SUB not found
+FAIL: CY001952>>1613>>SUB not found
+FAIL: CY001954>>1297>>SUB not found
+FAIL: CY001952>>343>>SUB not found
+FAIL: CY001957>>2082>>SUB not found
+PASSED: CY001952>>1254>>SUB
+FAIL: CY001958>>1624>>SUB not found
+FAIL: CY001957>>1260>>SUB not found
+FAIL: CY001958>>144>>SUB not found
+FAIL: CY001953>>348>>SUB not found
+FAIL: CY001952>>1547>>SUB not found
+FAIL: CY001957>>1455>>SUB not found
+FAIL: CY001957>>1103>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1103', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:101', 'POS': '1103', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001952>>116>>SUB not found
+FAIL: CY001956>>254>>SUB not found
+FAIL: CY001959>>79>>SUB not found
+FAIL: CY001959>>1179>>SUB not found
+FAIL: CY001953>>374>>SUB not found
+FAIL: CY001958>>245>>SUB not found
+FAIL: CY001958>>932>>SUB not found
+FAIL: CY001954>>866>>SUB not found
+FAIL: CY001955>>901>>SUB not found
+FAIL: CY001959>>2120>>SUB not found
+FAIL: CY001954>>469>>SUB not found
+FAIL: CY001954>>19>>SUB not found
+FAIL: CY001959>>1984>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '1984', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '0/1:110', 'POS': '1984', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001958>>1371>>DEL not found
+FAIL: CY001959>>1635>>SUB not found
+FAIL: CY001958>>1419>>SUB not found
+FAIL: CY001954>>610>>SUB not found
+FAIL: CY001957>>476>>SUB not found
+FAIL: CY001952>>1556>>SUB not found
+FAIL: CY001957>>566>>SUB not found
+FAIL: CY001955>>1399>>SUB not found
+FAIL: CY001952>>456>>SUB not found
+FAIL: CY001952>>932>>SUB not found
+FAIL: CY001958>>704>>SUB not found
+FAIL: CY001957>>19>>SUB not found
+FAIL: CY001956>>9>>SUB not found
+FAIL: CY001958>>26>>SUB not found
+FAIL: CY001953>>983>>SUB not found
+FAIL: CY001959>>1272>>SUB not found
+FAIL: CY001955>>923>>SUB not found
+FAIL: CY001957>>647>>SUB not found
+FAIL: CY001954>>510>>SUB not found
+FAIL: CY001952>>1155>>SUB not found
+FAIL: CY001959>>431>>SUB not found
+FAIL: CY001958>>2195>>SUB not found
+FAIL: CY001952>>562>>SUB not found
+FAIL: CY001957>>1892>>SUB not found
+FAIL: CY001957>>1326>>SUB not found
+FAIL: CY001955>>615>>SUB not found
+FAIL: CY001957>>721>>SUB not found
+FAIL: CY001959>>2026>>SUB not found
+FAIL: CY001954>>373>>SUB not found
+FAIL: CY001953>>21>>SUB not found
+FAIL: CY001959>>1165>>SUB not found
+FAIL: CY001959>>1290>>SUB not found
+FAIL: CY001954>>203>>SUB not found
+FAIL: CY001957>>1186>>SUB not found
+FAIL: CY001958>>1515>>INS not found
+FAIL: CY001959>>2254>>SUB not found
+FAIL: CY001955>>1354>>SUB not found
+FAIL: CY001955>>1118>>SUB not found
+FAIL: CY001958>>1748>>SUB not found
+FAIL: CY001954>>356>>SUB not found
+FAIL: CY001959>>1417>>SUB not found
+FAIL: CY001955>>379>>SUB not found
+FAIL: CY001956>>888>>SUB not found
+FAIL: CY001958>>2284>>SUB not found
+FAIL: CY001957>>1078>>SUB not found
+FAIL: CY001958>>1743>>INS not found
+FAIL: CY001959>>1096>>SUB not found
+FAIL: CY001959>>243>>SUB not found
+FAIL: CY001958>>1031>>INS not found
+PASSED: CY001955>>98>>SUB
+FAIL: CY001955>>1138>>SUB not found
+FAIL: CY001952>>1143>>SUB not found
+FAIL: CY001959>>1995>>SUB not found
+FAIL: CY001953>>230>>SUB not found
+FAIL: CY001959>>34>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '34', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '0/1:26', 'POS': '34', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001953>>152>>SUB not found
+FAIL: CY001956>>630>>INS not found
+FAIL: CY001958>>424>>SUB not found
+FAIL: CY001952>>845>>SUB not found
+FAIL: CY001952>>490>>SUB not found
+FAIL: CY001959>>1676>>SUB not found
+FAIL: CY001959>>701>>SUB not found
+FAIL: CY001954>>593>>SUB not found
+FAIL: CY001959>>1070>>SUB not found
+FAIL: CY001957>>1994>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1994', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:82', 'POS': '1994', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001955>>55>>SUB not found
+FAIL: CY001954>>995>>SUB not found
+FAIL: CY001954>>1009>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001954', 'POS': '1009', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001954', 'reads-rl100-se0.01-mr0.1': '1/1:83', 'POS': '1009', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001957>>1998>>SUB not found
+FAIL: CY001957>>346>>SUB not found
+FAIL: CY001958>>1782>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '1782', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:109', 'POS': '1782', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001952>>608>>SUB not found
+FAIL: CY001955>>776>>SUB not found
+FAIL: CY001958>>1455>>SUB not found
+FAIL: CY001958>>2255>>SUB not found
+FAIL: CY001953>>183>>SUB not found
+FAIL: CY001958>>333>>SUB not found
+FAIL: CY001958>>2050>>SUB not found
+FAIL: CY001959>>1444>>SUB not found
+FAIL: CY001955>>1176>>SUB not found
+FAIL: CY001958>>1152>>SUB not found
+FAIL: CY001952>>732>>SUB not found
+FAIL: CY001959>>65>>SUB not found
+FAIL: CY001957>>1846>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1846', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:106', 'POS': '1846', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001952>>372>>SUB not found
+FAIL: CY001958>>1477>>SUB not found
+FAIL: CY001952>>1741>>SUB not found
+FAIL: CY001957>>123>>SUB not found
+FAIL: CY001959>>493>>SUB not found
+FAIL: CY001957>>1879>>SUB not found
+FAIL: CY001958>>1146>>SUB not found
+FAIL: CY001954>>40>>SUB not found
+FAIL: CY001955>>1089>>SUB not found
+FAIL: CY001952>>477>>SUB not found
+FAIL: CY001958>>607>>SUB not found
+FAIL: CY001956>>45>>SUB not found
+FAIL: CY001959>>1633>>SUB not found
+FAIL: CY001954>>138>>SUB not found
+FAIL: CY001958>>508>>DEL not found
+FAIL: CY001958>>772>>SUB not found
+FAIL: CY001956>>38>>SUB not found
+FAIL: CY001956>>302>>SUB not found
+FAIL: CY001958>>1620>>SUB not found
+FAIL: CY001958>>1114>>SUB not found
+FAIL: CY001958>>672>>SUB not found
+FAIL: CY001958>>638>>INS not found
+FAIL: CY001957>>20>>SUB not found
+FAIL: CY001953>>362>>SUB not found
+FAIL: CY001957>>186>>DEL not found
+FAIL: CY001958>>2253>>DEL not found
+FAIL: CY001956>>459>>SUB not found
+FAIL: CY001952>>1222>>SUB not found
+FAIL: CY001958>>801>>SUB not found
+FAIL: CY001955>>191>>DEL not found
+FAIL: CY001954>>1259>>SUB not found
+FAIL: CY001958>>1381>>SUB not found
+FAIL: CY001954>>364>>SUB not found
+FAIL: CY001956>>797>>DEL not found
+FAIL: CY001954>>687>>DEL not found
+FAIL: CY001955>>1485>>SUB not found
+FAIL: CY001959>>1941>>SUB not found
+FAIL: CY001956>>544>>SUB not found
+FAIL: CY001959>>742>>SUB not found
+FAIL: CY001958>>875>>SUB not found
+FAIL: CY001958>>2267>>SUB not found
+FAIL: CY001955>>896>>SUB not found
+FAIL: CY001955>>1278>>SUB not found
+FAIL: CY001955>>11>>SUB not found
+FAIL: CY001954>>1313>>SUB not found
+FAIL: CY001954>>413>>SUB not found
+FAIL: CY001954>>1449>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001954', 'POS': '1449', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001954', 'reads-rl100-se0.01-mr0.1': '0/1:17', 'POS': '1449', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: CY001952>>239>>SUB not found
+FAIL: CY001953>>678>>SUB not found
+FAIL: CY001954>>629>>SUB not found
+FAIL: CY001956>>761>>SUB not found
+FAIL: CY001959>>105>>SUB not found
+FAIL: CY001952>>868>>SUB not found
+PASSED: CY001958>>91>>DEL
+FAIL: CY001953>>735>>SUB not found
+FAIL: CY001957>>1064>>SUB not found
+FAIL: CY001958>>1171>>INS not found
+FAIL: CY001952>>1584>>DEL not found
+FAIL: CY001957>>1790>>SUB not found
+FAIL: CY001959>>782>>DEL not found
+FAIL: CY001958>>1150>>SUB not found
+FAIL: CY001952>>1625>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '1625', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '1/1:114', 'POS': '1625', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001958>>747>>SUB not found
+FAIL: CY001957>>1411>>SUB not found
+FAIL: CY001959>>427>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '427', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '1/1:90', 'POS': '427', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}
+FAIL: CY001955>>1544>>INS not found
+FAIL: CY001959>>851>>SUB not found
+FAIL: CY001955>>757>>SUB not found
+FAIL: CY001959>>172>>INS not found
+FAIL: CY001954>>735>>DEL not found
+FAIL: CY001959>>559>>SUB not found
+FAIL: CY001959>>2111>>SUB not found
+FAIL: CY001955>>1242>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1242', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '1/1:100', 'POS': '1242', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}
+FAIL: CY001952>>1380>>SUB not found
+FAIL: CY001955>>263>>SUB not found
+FAIL: CY001952>>494>>SUB not found
+FAIL: CY001957>>2153>>SUB not found
+FAIL: CY001958>>2310>>SUB not found
+FAIL: CY001959>>837>>SUB not found
+FAIL: CY001955>>1252>>SUB XX found comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1252', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '0/1:108', 'POS': '1252', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+FAIL: CY001957>>323>>SUB not found
+FAIL: CY001958>>1711>>SUB not found
+FAIL: CY001959>>1364>>SUB not found
+FAIL: CY001957>>1795>>SUB not found
+FAIL: CY001959>>1035>>SUB not found
+FAIL: CY001953>>224>>SUB not found
+FAIL: CY001952>>1473>>SUB not found
+FAIL: CY001958>>1177>>SUB not found
+FAIL: CY001955>>687>>SUB not found
+FAIL: CY001955>>318>>SUB not found
+PASSED: CY001952>>1262>>SUB
+FAIL: CY001957>>1334>>SUB not found
+FAIL: CY001957>>210>>SUB not found
+FAIL: CY001958>>1717>>SUB not found
+FAIL: CY001958>>1607>>SUB not found
+FAIL: CY001959>>789>>SUB not found
+FAIL: CY001958>>1084>>SUB not found
+FAIL: CY001957>>802>>SUB not found
+FAIL: CY001957>>542>>SUB not found
+FAIL: CY001952>>1572>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001952', 'POS': '1572', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001952', 'reads-rl100-se0.01-mr0.1': '0/1:111', 'POS': '1572', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001952>>887>>SUB not found
+FAIL: CY001959>>1178>>SUB not found
+FAIL: CY001954>>1342>>SUB not found
+FAIL: CY001956>>387>>SUB not found
+FAIL: CY001954>>529>>SUB not found
+FAIL: CY001954>>1375>>SUB not found
+FAIL: CY001953>>493>>SUB not found
+FAIL: CY001959>>909>>SUB not found
+FAIL: CY001955>>1250>>SUB not found
+FAIL: CY001958>>872>>INS not found
+FAIL: CY001958>>1808>>SUB not found
+FAIL: CY001955>>41>>INS not found
+FAIL: CY001953>>357>>SUB not found
+FAIL: CY001954>>394>>SUB not found
+FAIL: CY001957>>1867>>SUB not found
+FAIL: CY001956>>622>>SUB not found
+FAIL: CY001958>>1898>>INS not found
+FAIL: CY001954>>1164>>SUB not found
+FAIL: CY001957>>979>>SUB not found
+FAIL: CY001956>>213>>SUB not found
+FAIL: CY001952>>1311>>SUB not found
+FAIL: CY001957>>1735>>SUB not found
+FAIL: CY001958>>1404>>SUB not found
+FAIL: CY001959>>659>>SUB not found
+FAIL: CY001952>>689>>SUB not found
+FAIL: CY001954>>1108>>SUB not found
+FAIL: CY001958>>589>>SUB not found
+FAIL: CY001953>>437>>INS not found
+FAIL: CY001952>>410>>SUB not found
+FAIL: CY001958>>918>>SUB not found
+FAIL: CY001955>>1075>>SUB not found
+FAIL: CY001959>>157>>DEL not found
+FAIL: CY001959>>2146>>SUB not found
+PASSED: CY001957>>1360>>SUB
+FAIL: CY001958>>1581>>SUB not found
+FAIL: CY001953>>570>>SUB not found
+FAIL: CY001953>>222>>SUB not found
+FAIL: CY001952>>1475>>SUB not found
+FAIL: CY001959>>1613>>SUB not found
+FAIL: CY001958>>363>>SUB not found
+FAIL: CY001955>>1511>>SUB not found
+FAIL: CY001958>>58>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '58', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '0/1:52', 'POS': '58', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'C', 'ID': '.'}
+FAIL: CY001954>>988>>SUB not found
+FAIL: CY001953>>622>>SUB not found
+FAIL: CY001957>>506>>SUB not found
+FAIL: CY001954>>415>>SUB not found
+FAIL: CY001959>>388>>SUB not found
+FAIL: CY001959>>1713>>SUB not found
+FAIL: CY001958>>1190>>SUB not found
+FAIL: CY001955>>1457>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001955', 'POS': '1457', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001955', 'reads-rl100-se0.01-mr0.1': '1/1:84', 'POS': '1457', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: CY001953>>537>>SUB not found
+FAIL: CY001952>>535>>SUB not found
+FAIL: CY001959>>1254>>SUB not found
+FAIL: CY001957>>455>>SUB not found
+FAIL: CY001959>>583>>SUB not found
+FAIL: CY001958>>937>>SUB not found
+FAIL: CY001958>>2213>>SUB not found
+FAIL: CY001959>>1371>>SUB not found
+FAIL: CY001952>>1333>>INS not found
+FAIL: CY001958>>2078>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001958', 'POS': '2078', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001958', 'reads-rl100-se0.01-mr0.1': '1/1:100', 'POS': '2078', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'G', 'ID': '.'}
+FAIL: CY001958>>762>>SUB not found
+FAIL: CY001955>>28>>SUB not found
+FAIL: CY001959>>2171>>INS not found
+FAIL: CY001958>>335>>SUB not found
+FAIL: CY001959>>41>>SUB not found
+FAIL: CY001957>>707>>SUB XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '707', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:105', 'POS': '707', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001958>>543>>SUB not found
+FAIL: CY001957>>1121>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1121', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:95', 'POS': '1121', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001954>>914>>SUB not found
+FAIL: CY001955>>1120>>SUB not found
+FAIL: CY001952>>1250>>SUB not found
+FAIL: CY001958>>1020>>INS not found
+FAIL: CY001957>>2075>>SUB not found
+FAIL: CY001953>>901>>SUB not found
+FAIL: CY001957>>882>>SUB not found
+FAIL: CY001953>>958>>SUB not found
+FAIL: CY001952>>118>>SUB not found
+FAIL: CY001959>>972>>SUB not found
+FAIL: CY001959>>83>>SUB not found
+FAIL: CY001954>>804>>SUB not found
+FAIL: CY001952>>126>>SUB not found
+FAIL: CY001957>>1043>>SUB not found
+FAIL: CY001956>>516>>SUB not found
+FAIL: CY001958>>164>>SUB not found
+FAIL: CY001955>>1095>>SUB not found
+FAIL: CY001952>>1607>>SUB not found
+FAIL: CY001954>>242>>SUB not found
+FAIL: CY001955>>430>>SUB not found
+FAIL: CY001957>>806>>SUB not found
+FAIL: CY001955>>1301>>SUB not found
+FAIL: CY001954>>1051>>SUB not found
+FAIL: CY001952>>563>>SUB not found
+FAIL: CY001955>>1204>>SUB not found
+FAIL: CY001958>>1408>>SUB not found
+FAIL: CY001952>>953>>SUB not found
+FAIL: CY001959>>1160>>SUB not found
+FAIL: CY001952>>1617>>SUB not found
+FAIL: CY001959>>111>>SUB not found
+FAIL: CY001954>>1385>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001954', 'POS': '1385', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001954', 'reads-rl100-se0.01-mr0.1': '1/1:81', 'POS': '1385', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+FAIL: CY001952>>181>>SUB not found
+FAIL: CY001958>>1366>>SUB not found
+FAIL: CY001955>>277>>SUB not found
+FAIL: CY001953>>647>>SUB not found
+FAIL: CY001958>>327>>SUB not found
+FAIL: CY001952>>1156>>SUB not found
+FAIL: CY001953>>762>>SUB not found
+FAIL: CY001953>>1017>>SUB not found
+FAIL: CY001957>>1602>>SUB not found
+FAIL: CY001954>>1320>>SUB not found
+FAIL: CY001957>>2208>>SUB not found
+FAIL: CY001956>>790>>SUB not found
+FAIL: CY001957>>1126>>SUB not found
+FAIL: CY001956>>334>>SUB not found
+FAIL: CY001959>>1093>>SUB not found
+FAIL: CY001955>>1178>>SUB not found
+PASSED: CY001958>>1037>>DEL
+FAIL: CY001956>>118>>SUB not found
+FAIL: CY001953>>301>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001953', 'POS': '301', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001953', 'reads-rl100-se0.01-mr0.1': '0/1:104', 'POS': '301', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'T', 'ID': '.'}
+FAIL: CY001959>>581>>SUB not found
+FAIL: CY001958>>2305>>SUB not found
+FAIL: CY001958>>1609>>SUB not found
+FAIL: CY001952>>1107>>SUB not found
+FAIL: CY001958>>189>>SUB not found
+FAIL: CY001957>>1181>>SUB not found
+FAIL: CY001959>>2266>>SUB not found
+FAIL: CY001954>>276>>SUB not found
+FAIL: CY001955>>1286>>SUB not found
+FAIL: CY001955>>1488>>DEL not found
+FAIL: CY001952>>1145>>SUB not found
+FAIL: CY001958>>487>>SUB not found
+FAIL: CY001953>>993>>SUB not found
+FAIL: CY001957>>1351>>SUB not found
+FAIL: CY001956>>1>>SUB not found
+FAIL: CY001955>>461>>SUB not found
+FAIL: CY001959>>729>>SUB not found
+FAIL: CY001954>>48>>SUB not found
+FAIL: CY001958>>1918>>SUB not found
+FAIL: CY001955>>1194>>SUB not found
+FAIL: CY001957>>1086>>DEL not found
+FAIL: CY001958>>1656>>SUB not found
+FAIL: CY001958>>1199>>SUB not found
+FAIL: CY001954>>855>>SUB not found
+FAIL: CY001955>>677>>SUB not found
+FAIL: CY001959>>1390>>SUB not found
+FAIL: CY001952>>1183>>SUB not found
+FAIL: CY001955>>127>>DEL not found
+FAIL: CY001956>>807>>SUB not found
+FAIL: CY001957>>1357>>SUB not found
+FAIL: CY001959>>1514>>SUB not found
+FAIL: CY001954>>61>>SUB not found
+PASSED: CY001958>>654>>SUB
+FAIL: CY001959>>606>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '606', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'reads-rl100-se0.01-mr0.1': '1/1:107', 'POS': '606', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: CY001952>>391>>DEL not found
+FAIL: CY001957>>2058>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '2058', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '1/1:93', 'POS': '2058', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001952>>1647>>INS not found
+FAIL: CY001953>>135>>SUB not found
+FAIL: CY001953>>533>>SUB not found
+FAIL: CY001958>>1505>>SUB not found
+FAIL: CY001959>>1046>>SUB not found
+FAIL: CY001953>>386>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=2;mt=SUBSTITUTE', 'CHROM': 'CY001953', 'POS': '386', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001953', 'reads-rl100-se0.01-mr0.1': '1/1:85', 'POS': '386', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001957>>1997>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001957', 'POS': '1997', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001957', 'reads-rl100-se0.01-mr0.1': '0/1:85', 'POS': '1997', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: CY001953>>597>>SUB not found
+FAIL: CY001952>>1596>>SUB not found
+FAIL: CY001955>>247>>SUB not found
+FAIL: CY001953>>670>>SUB not found
+FAIL: CY001955>>139>>INS not found
+FAIL: CY001952>>1289>>SUB not found
+FAIL: CY001956>>576>>SUB not found
+PASSED: CY001957>>53>>SUB
+FAIL: CY001954>>1141>>SUB not found
+FAIL: CY001954>>1341>>SUB not found
+FAIL: CY001955>>996>>SUB not found
+FAIL: CY001952>>36>>SUB not found
+FAIL: CY001954>>567>>SUB not found
+FAIL: CY001956>>269>>SUB not found
+FAIL: CY001956>>775>>SUB not found
+FAIL: CY001959>>1673>>SUB not found
+FAIL: CY001958>>68>>SUB not found
+FAIL: CY001953>>801>>SUB not found
+FAIL: CY001955>>1557>>DEL not found
+FAIL: CY001959>>1004>>SUB not found
+FAIL: CY001958>>1148>>SUB not found
+FAIL: CY001956>>220>>SUB not found
+FAIL: CY001958>>2136>>SUB not found
+FAIL: CY001952>>609>>SUB not found
+FAIL: CY001957>>1658>>INS not found
+FAIL: CY001958>>187>>SUB not found
+FAIL: CY001957>>1664>>SUB not found
+FAIL: CY001956>>204>>SUB not found
+FAIL: CY001957>>1369>>SUB not found
+FAIL: CY001952>>1194>>SUB not found
+FAIL: CY001957>>1876>>SUB not found
+FAIL: CY001955>>524>>SUB not found
+FAIL: CY001958>>1973>>SUB not found
+FAIL: CY001958>>687>>SUB not found
+FAIL: CY001953>>398>>SUB not found
+FAIL: CY001952>>548>>SUB not found
+FAIL: CY001959>>1796>>SUB not found
+FAIL: CY001952>>512>>SUB not found
+FAIL: CY001952>>5>>SUB not found
+FAIL: CY001957>>105>>SUB not found
+FAIL: CY001959>>2178>>SUB not found
+FAIL: CY001955>>1043>>DEL not found
+FAIL: CY001957>>881>>SUB not found
+FAIL: CY001958>>1192>>SUB not found
+FAIL: CY001952>>1386>>SUB not found
+FAIL: CY001955>>982>>SUB not found
+FAIL: CY001958>>1339>>SUB not found
+FAIL: CY001958>>1564>>DEL not found
+FAIL: CY001955>>860>>SUB not found
+FAIL: CY001954>>1025>>SUB not found
+FAIL: CY001958>>302>>SUB not found
+FAIL: CY001959>>1223>>SUB not found
+FAIL: CY001958>>337>>SUB not found
+FAIL: CY001952>>369>>SUB not found
+FAIL: CY001959>>1970>>SUB not found
+FAIL: CY001957>>686>>SUB not found
+FAIL: CY001956>>481>>SUB not found
+FAIL: CY001956>>134>>SUB not found
+FAIL: CY001954>>1240>>SUB not found
+FAIL: CY001955>>288>>SUB not found
+1305
+85
+PASSED (Approxi): CY001954>>1395>>SUB
+PASSED (Approxi): CY001953>>583>>SUB
+PASSED (Approxi): CY001952>>75>>SUB
+PASSED (Approxi): CY001957>>1818>>SUB
+PASSED (Approxi): CY001957>>1566>>SUB
+PASSED (Approxi): CY001956>>632>>SUB
+PASSED (Approxi): CY001955>>700>>SUB
+PASSED (Approxi): CY001958>>1393>>SUB
+PASSED (Approxi): CY001955>>1432>>SUB
+PASSED (Approxi): CY001955>>133>>INS
+PASSED (Approxi): CY001953>>508>>SUB
+PASSED (Approxi): CY001956>>856>>SUB
+PASSED (Approxi): CY001958>>1292>>SUB
+PASSED (Approxi): CY001957>>129>>SUB
+PASSED (Approxi): CY001958>>687>>SUB
+PASSED (Approxi): CY001952>>837>>SUB
+PASSED (Approxi): CY001957>>1030>>SUB
+PASSED (Approxi): CY001958>>1216>>SUB
+PASSED (Approxi): CY001954>>884>>SUB
+PASSED (Approxi): CY001952>>1197>>SUB
+PASSED (Approxi): CY001953>>181>>SUB
+PASSED (Approxi): CY001954>>778>>SUB
+PASSED (Approxi): CY001959>>1868>>SUB
+PASSED (Approxi): CY001957>>1308>>SUB
+PASSED (Approxi): CY001952>>505>>SUB
+PASSED (Approxi): CY001957>>954>>SUB
+PASSED (Approxi): CY001952>>223>>SUB
+PASSED (Approxi): CY001953>>257>>SUB
+PASSED (Approxi): CY001958>>1381>>SUB
+PASSED (Approxi): CY001959>>1992>>SUB
+PASSED (Approxi): CY001952>>1716>>SUB
+PASSED (Approxi): CY001959>>2135>>SUB
+PASSED (Approxi): CY001955>>1123>>SUB
+PASSED (Approxi): CY001956>>447>>SUB
+PASSED (Approxi): CY001954>>1026>>SUB
+PASSED (Approxi): CY001958>>1462>>SUB
+PASSED (Approxi): CY001958>>1152>>SUB
+PASSED (Approxi): CY001954>>333>>SUB
+PASSED (Approxi): CY001957>>1671>>SUB
+PASSED (Approxi): CY001959>>204>>SUB
+PASSED (Approxi): CY001954>>289>>SUB
+PASSED (Approxi): CY001957>>259>>SUB
+PASSED (Approxi): CY001955>>1083>>SUB
+PASSED (Approxi): CY001957>>70>>SUB
+PASSED (Approxi): CY001954>>837>>SUB
+PASSED (Approxi): CY001954>>1004>>SUB
+PASSED (Approxi): CY001955>>855>>SUB
+PASSED (Approxi): CY001954>>902>>SUB
+PASSED (Approxi): CY001953>>357>>SUB
+PASSED (Approxi): CY001953>>19>>SUB
+PASSED (Approxi): CY001953>>623>>DEL
+PASSED (Approxi): CY001958>>1079>>SUB
+PASSED (Approxi): CY001954>>480>>SUB
+PASSED (Approxi): CY001956>>723>>SUB
+PASSED (Approxi): CY001959>>1704>>SUB
+PASSED (Approxi): CY001953>>71>>SUB
+PASSED (Approxi): CY001959>>739>>SUB
+PASSED (Approxi): CY001954>>1407>>SUB
+PASSED (Approxi): CY001957>>1285>>SUB
+PASSED (Approxi): CY001958>>1277>>SUB
+PASSED (Approxi): CY001957>>557>>SUB
+PASSED (Approxi): CY001953>>482>>SUB
+PASSED (Approxi): CY001954>>643>>SUB
+PASSED (Approxi): CY001958>>389>>SUB
+PASSED (Approxi): CY001952>>24>>SUB
+PASSED (Approxi): CY001958>>1545>>SUB
+PASSED (Approxi): CY001959>>139>>SUB
+PASSED (Approxi): CY001958>>1650>>SUB
+PASSED (Approxi): CY001959>>1211>>SUB
+PASSED (Approxi): CY001953>>762>>SUB
+PASSED (Approxi): CY001955>>484>>SUB
+PASSED (Approxi): CY001956>>79>>SUB
+PASSED (Approxi): CY001957>>544>>SUB
+PASSED (Approxi): CY001958>>937>>SUB
+PASSED (Approxi): CY001952>>877>>SUB
+PASSED (Approxi): CY001957>>166>>SUB
+PASSED (Approxi): CY001955>>198>>SUB
+PASSED (Approxi): CY001957>>1696>>SUB
+PASSED (Approxi): CY001955>>342>>SUB
+PASSED (Approxi): CY001958>>2158>>SUB
+PASSED (Approxi): CY001952>>641>>SUB
+PASSED (Approxi): CY001956>>35>>SUB
+PASSED (Approxi): CY001953>>817>>SUB
+PASSED (Approxi): CY001957>>828>>SUB
+PASSED (Approxi): CY001959>>1069>>SUB
+PASSED (Approxi): CY001958>>907>>SUB
+PASSED (Approxi): CY001959>>1054>>SUB
+PASSED (Approxi): CY001958>>802>>SUB
+PASSED (Approxi): CY001952>>643>>SUB
+PASSED (Approxi): CY001957>>355>>SUB
+PASSED (Approxi): CY001954>>627>>SUB
+PASSED (Approxi): CY001959>>2057>>SUB
+PASSED (Approxi): CY001952>>1590>>SUB
+PASSED (Approxi): CY001956>>764>>SUB
+PASSED (Approxi): CY001955>>1278>>SUB
+PASSED (Approxi): CY001952>>631>>SUB
+PASSED (Approxi): CY001958>>1159>>SUB
+PASSED (Approxi): CY001954>>236>>SUB
+PASSED (Approxi): CY001955>>75>>SUB
+PASSED (Approxi): CY001953>>985>>SUB
+PASSED (Approxi): CY001955>>204>>SUB
+PASSED (Approxi): CY001952>>1625>>SUB
+PASSED (Approxi): CY001954>>529>>SUB
+PASSED (Approxi): CY001959>>67>>SUB
+PASSED (Approxi): CY001952>>1599>>SUB
+PASSED (Approxi): CY001959>>2110>>SUB
+PASSED (Approxi): CY001954>>1260>>SUB
+PASSED (Approxi): CY001957>>2108>>SUB
+PASSED (Approxi): CY001956>>265>>SUB
+PASSED (Approxi): CY001953>>476>>SUB
+PASSED (Approxi): CY001957>>2082>>SUB
+PASSED (Approxi): CY001957>>1538>>SUB
+PASSED (Approxi): CY001959>>1504>>SUB
+PASSED (Approxi): CY001954>>1383>>SUB
+PASSED (Approxi): CY001956>>312>>SUB
+PASSED (Approxi): CY001954>>487>>SUB
+PASSED (Approxi): CY001956>>622>>SUB
+PASSED (Approxi): CY001958>>646>>SUB
+PASSED (Approxi): CY001955>>235>>SUB
+PASSED (Approxi): CY001953>>305>>SUB
+PASSED (Approxi): CY001953>>959>>SUB
+PASSED (Approxi): CY001956>>704>>SUB
+PASSED (Approxi): CY001957>>2060>>SUB
+PASSED (Approxi): CY001958>>1944>>SUB
+PASSED (Approxi): CY001952>>1084>>SUB
+PASSED (Approxi): CY001959>>653>>SUB
+PASSED (Approxi): CY001958>>1138>>SUB
+PASSED (Approxi): CY001957>>184>>SUB
+PASSED (Approxi): CY001959>>1484>>SUB
+PASSED (Approxi): CY001956>>313>>SUB
+PASSED (Approxi): CY001957>>238>>SUB
+PASSED (Approxi): CY001955>>1125>>SUB
+PASSED (Approxi): CY001955>>77>>SUB
+PASSED (Approxi): CY001958>>1808>>SUB
+PASSED (Approxi): CY001954>>655>>SUB
+PASSED (Approxi): CY001955>>1138>>SUB
+PASSED (Approxi): CY001958>>1047>>SUB
+PASSED (Approxi): CY001953>>639>>SUB
+PASSED (Approxi): CY001954>>906>>SUB
+PASSED (Approxi): CY001956>>661>>SUB
+PASSED (Approxi): CY001952>>151>>SUB
+PASSED (Approxi): CY001958>>377>>SUB
+PASSED (Approxi): CY001954>>1235>>SUB
+PASSED (Approxi): CY001959>>124>>SUB
+PASSED (Approxi): CY001959>>1017>>SUB
+PASSED (Approxi): CY001957>>708>>SUB
+PASSED (Approxi): CY001952>>1359>>SUB
+PASSED (Approxi): CY001959>>692>>SUB
+PASSED (Approxi): CY001954>>1289>>SUB
+PASSED (Approxi): CY001954>>1210>>SUB
+PASSED (Approxi): CY001954>>31>>SUB
+PASSED (Approxi): CY001959>>310>>SUB
+PASSED (Approxi): CY001958>>1084>>SUB
+PASSED (Approxi): CY001955>>1549>>SUB
+PASSED (Approxi): CY001959>>756>>SUB
+PASSED (Approxi): CY001959>>1943>>SUB
+PASSED (Approxi): CY001954>>1151>>SUB
+PASSED (Approxi): CY001959>>763>>SUB
+PASSED (Approxi): CY001959>>71>>SUB
+PASSED (Approxi): CY001955>>783>>SUB
+PASSED (Approxi): CY001953>>1017>>SUB
+PASSED (Approxi): CY001955>>501>>SUB
+PASSED (Approxi): CY001959>>1499>>SUB
+PASSED (Approxi): CY001958>>462>>SUB
+PASSED (Approxi): CY001959>>602>>SUB
+PASSED (Approxi): CY001955>>1155>>SUB
+PASSED (Approxi): CY001955>>527>>SUB
+PASSED (Approxi): CY001952>>443>>SUB
+PASSED (Approxi): CY001959>>75>>SUB
+PASSED (Approxi): CY001959>>81>>SUB
+PASSED (Approxi): CY001953>>833>>SUB
+PASSED (Approxi): CY001957>>151>>SUB
+PASSED (Approxi): CY001958>>893>>SUB
+PASSED (Approxi): CY001959>>2060>>SUB
+PASSED (Approxi): CY001954>>425>>SUB
+PASSED (Approxi): CY001958>>962>>SUB
+PASSED (Approxi): CY001953>>608>>INS
+PASSED (Approxi): CY001959>>494>>SUB
+PASSED (Approxi): CY001958>>1527>>SUB
+PASSED (Approxi): CY001957>>1026>>SUB
+PASSED (Approxi): CY001959>>249>>SUB
+PASSED (Approxi): CY001959>>1125>>SUB
+PASSED (Approxi): CY001957>>1705>>SUB
+PASSED (Approxi): CY001952>>377>>SUB
+PASSED (Approxi): CY001952>>556>>SUB
+PASSED (Approxi): CY001956>>135>>SUB
+PASSED (Approxi): CY001958>>1240>>SUB
+PASSED (Approxi): CY001958>>744>>DEL
+PASSED (Approxi): CY001957>>2144>>INS
+PASSED (Approxi): CY001954>>604>>SUB
+PASSED (Approxi): CY001953>>1014>>SUB
+PASSED (Approxi): CY001954>>721>>SUB
+PASSED (Approxi): CY001959>>1097>>SUB
+PASSED (Approxi): CY001958>>624>>SUB
+PASSED (Approxi): CY001957>>1264>>SUB
+PASSED (Approxi): CY001958>>2062>>SUB
+PASSED (Approxi): CY001958>>2253>>SUB
+PASSED (Approxi): CY001954>>107>>SUB
+PASSED (Approxi): CY001956>>34>>SUB
+PASSED (Approxi): CY001953>>993>>SUB
+PASSED (Approxi): CY001957>>1065>>SUB
+PASSED (Approxi): CY001959>>513>>SUB
+PASSED (Approxi): CY001952>>526>>SUB
+PASSED (Approxi): CY001959>>1296>>SUB
+PASSED (Approxi): CY001952>>313>>SUB
+PASSED (Approxi): CY001959>>1013>>SUB
+PASSED (Approxi): CY001959>>1267>>SUB
+PASSED (Approxi): CY001953>>211>>SUB
+PASSED (Approxi): CY001955>>1346>>SUB
+PASSED (Approxi): CY001952>>1053>>SUB
+PASSED (Approxi): CY001955>>108>>SUB
+PASSED (Approxi): CY001954>>1412>>SUB
+PASSED (Approxi): CY001958>>500>>SUB
+PASSED (Approxi): CY001957>>1822>>SUB
+PASSED (Approxi): CY001958>>1027>>SUB
+PASSED (Approxi): CY001954>>1006>>SUB
+PASSED (Approxi): CY001958>>494>>SUB
+PASSED (Approxi): CY001955>>568>>SUB
+PASSED (Approxi): CY001959>>385>>SUB
+PASSED (Approxi): CY001952>>629>>SUB
+PASSED (Approxi): CY001955>>1185>>SUB
+PASSED (Approxi): CY001957>>1103>>SUB
+PASSED (Approxi): CY001953>>328>>SUB
+PASSED (Approxi): CY001958>>2186>>SUB
+PASSED (Approxi): CY001959>>1823>>SUB
+PASSED (Approxi): CY001957>>1224>>SUB
+PASSED (Approxi): CY001952>>468>>SUB
+PASSED (Approxi): CY001952>>1735>>SUB
+PASSED (Approxi): CY001952>>36>>SUB
+PASSED (Approxi): CY001958>>2318>>SUB
+PASSED (Approxi): CY001956>>246>>SUB
+PASSED (Approxi): CY001958>>1451>>SUB
+PASSED (Approxi): CY001952>>160>>SUB
+PASSED (Approxi): CY001954>>855>>SUB
+PASSED (Approxi): CY001955>>115>>SUB
+PASSED (Approxi): CY001954>>992>>SUB
+PASSED (Approxi): CY001955>>490>>SUB
+PASSED (Approxi): CY001957>>170>>SUB
+PASSED (Approxi): CY001959>>44>>SUB
+PASSED (Approxi): CY001958>>668>>SUB
+PASSED (Approxi): CY001959>>1676>>SUB
+PASSED (Approxi): CY001955>>615>>SUB
+PASSED (Approxi): CY001959>>1865>>SUB
+PASSED (Approxi): CY001955>>767>>SUB
+PASSED (Approxi): CY001952>>1231>>SUB
+PASSED (Approxi): CY001955>>500>>SUB
+PASSED (Approxi): CY001955>>1004>>SUB
+PASSED (Approxi): CY001956>>82>>SUB
+PASSED (Approxi): CY001958>>454>>SUB
+PASSED (Approxi): CY001959>>48>>SUB
+PASSED (Approxi): CY001957>>547>>SUB
+PASSED (Approxi): CY001957>>909>>SUB
+PASSED (Approxi): CY001952>>1004>>SUB
+PASSED (Approxi): CY001955>>670>>SUB
+PASSED (Approxi): CY001954>>702>>SUB
+PASSED (Approxi): CY001959>>2092>>SUB
+PASSED (Approxi): CY001952>>348>>SUB
+PASSED (Approxi): CY001959>>1218>>SUB
+PASSED (Approxi): CY001957>>549>>SUB
+PASSED (Approxi): CY001957>>1707>>SUB
+PASSED (Approxi): CY001952>>1613>>SUB
+PASSED (Approxi): CY001958>>1419>>SUB
+PASSED (Approxi): CY001957>>751>>SUB
+PASSED (Approxi): CY001959>>714>>SUB
+PASSED (Approxi): CY001956>>814>>SUB
+PASSED (Approxi): CY001958>>1376>>SUB
+PASSED (Approxi): CY001958>>1624>>SUB
+PASSED (Approxi): CY001957>>1260>>SUB
+PASSED (Approxi): CY001958>>144>>SUB
+PASSED (Approxi): CY001952>>1547>>SUB
+PASSED (Approxi): CY001957>>1455>>SUB
+PASSED (Approxi): CY001954>>1158>>SUB
+PASSED (Approxi): CY001954>>1239>>SUB
+PASSED (Approxi): CY001953>>163>>SUB
+PASSED (Approxi): CY001953>>811>>SUB
+PASSED (Approxi): CY001957>>1395>>SUB
+PASSED (Approxi): CY001952>>116>>SUB
+PASSED (Approxi): CY001957>>802>>SUB
+PASSED (Approxi): CY001958>>1316>>SUB
+PASSED (Approxi): CY001958>>1735>>SUB
+PASSED (Approxi): CY001958>>826>>SUB
+PASSED (Approxi): CY001955>>1315>>SUB
+PASSED (Approxi): CY001953>>374>>SUB
+PASSED (Approxi): CY001957>>2058>>SUB
+PASSED (Approxi): CY001958>>245>>SUB
+PASSED (Approxi): CY001954>>866>>SUB
+PASSED (Approxi): CY001954>>19>>SUB
+PASSED (Approxi): CY001959>>1984>>SUB
+PASSED (Approxi): CY001959>>1635>>SUB
+PASSED (Approxi): CY001954>>610>>SUB
+PASSED (Approxi): CY001957>>476>>SUB
+PASSED (Approxi): CY001959>>1290>>SUB
+PASSED (Approxi): CY001957>>566>>SUB
+PASSED (Approxi): CY001953>>356>>SUB
+PASSED (Approxi): CY001952>>456>>SUB
+PASSED (Approxi): CY001952>>932>>SUB
+PASSED (Approxi): CY001952>>1596>>SUB
+PASSED (Approxi): CY001959>>1722>>SUB
+PASSED (Approxi): CY001958>>1935>>SUB
+PASSED (Approxi): CY001956>>9>>SUB
+PASSED (Approxi): CY001959>>1272>>SUB
+PASSED (Approxi): CY001956>>824>>SUB
+PASSED (Approxi): CY001954>>169>>SUB
+PASSED (Approxi): CY001956>>298>>SUB
+PASSED (Approxi): CY001953>>712>>SUB
+PASSED (Approxi): CY001952>>562>>SUB
+PASSED (Approxi): CY001957>>1892>>SUB
+PASSED (Approxi): CY001957>>1326>>SUB
+PASSED (Approxi): CY001957>>721>>SUB
+PASSED (Approxi): CY001954>>1172>>SUB
+PASSED (Approxi): CY001952>>1705>>SUB
+PASSED (Approxi): CY001954>>203>>SUB
+PASSED (Approxi): CY001955>>280>>SUB
+PASSED (Approxi): CY001958>>1515>>INS
+PASSED (Approxi): CY001957>>2008>>SUB
+PASSED (Approxi): CY001953>>555>>SUB
+PASSED (Approxi): CY001957>>642>>SUB
+PASSED (Approxi): CY001955>>1354>>SUB
+PASSED (Approxi): CY001955>>37>>SUB
+PASSED (Approxi): CY001958>>1536>>SUB
+PASSED (Approxi): CY001958>>58>>SUB
+PASSED (Approxi): CY001957>>1171>>SUB
+PASSED (Approxi): CY001957>>489>>SUB
+PASSED (Approxi): CY001959>>243>>SUB
+PASSED (Approxi): CY001959>>792>>SUB
+PASSED (Approxi): CY001952>>944>>SUB
+PASSED (Approxi): CY001959>>1995>>SUB
+PASSED (Approxi): CY001953>>230>>SUB
+PASSED (Approxi): CY001957>>1366>>SUB
+PASSED (Approxi): CY001959>>34>>SUB
+PASSED (Approxi): CY001952>>568>>SUB
+PASSED (Approxi): CY001959>>1661>>SUB
+PASSED (Approxi): CY001959>>537>>SUB
+PASSED (Approxi): CY001957>>1877>>SUB
+PASSED (Approxi): CY001957>>415>>SUB
+PASSED (Approxi): CY001958>>2032>>SUB
+PASSED (Approxi): CY001958>>227>>SUB
+PASSED (Approxi): CY001952>>845>>SUB
+PASSED (Approxi): CY001957>>726>>SUB
+PASSED (Approxi): CY001957>>1994>>SUB
+PASSED (Approxi): CY001955>>55>>SUB
+PASSED (Approxi): CY001954>>70>>SUB
+PASSED (Approxi): CY001954>>995>>SUB
+PASSED (Approxi): CY001957>>1998>>SUB
+PASSED (Approxi): CY001958>>992>>SUB
+PASSED (Approxi): CY001959>>871>>SUB
+PASSED (Approxi): CY001953>>363>>SUB
+PASSED (Approxi): CY001958>>1782>>SUB
+PASSED (Approxi): CY001955>>776>>SUB
+PASSED (Approxi): CY001957>>647>>SUB
+PASSED (Approxi): CY001954>>510>>SUB
+PASSED (Approxi): CY001958>>2255>>SUB
+PASSED (Approxi): CY001953>>183>>SUB
+PASSED (Approxi): CY001955>>164>>SUB
+PASSED (Approxi): CY001958>>333>>SUB
+PASSED (Approxi): CY001959>>431>>SUB
+PASSED (Approxi): CY001955>>1176>>SUB
+PASSED (Approxi): CY001957>>872>>SUB
+PASSED (Approxi): CY001953>>1000>>SUB
+PASSED (Approxi): CY001957>>1846>>SUB
+PASSED (Approxi): CY001958>>523>>SUB
+PASSED (Approxi): CY001957>>1017>>SUB
+PASSED (Approxi): CY001958>>1477>>SUB
+PASSED (Approxi): CY001959>>1361>>SUB
+PASSED (Approxi): CY001957>>1233>>SUB
+PASSED (Approxi): CY001952>>1289>>SUB
+PASSED (Approxi): CY001956>>496>>SUB
+PASSED (Approxi): CY001959>>416>>SUB
+PASSED (Approxi): CY001957>>123>>SUB
+PASSED (Approxi): CY001958>>1146>>SUB
+PASSED (Approxi): CY001955>>291>>SUB
+PASSED (Approxi): CY001958>>1926>>SUB
+PASSED (Approxi): CY001955>>1457>>SUB
+PASSED (Approxi): CY001958>>607>>SUB
+PASSED (Approxi): CY001954>>825>>SUB
+PASSED (Approxi): CY001955>>510>>SUB
+PASSED (Approxi): CY001959>>1633>>SUB
+PASSED (Approxi): CY001953>>537>>SUB
+PASSED (Approxi): CY001959>>1008>>SUB
+PASSED (Approxi): CY001956>>302>>SUB
+PASSED (Approxi): CY001956>>75>>SUB
+PASSED (Approxi): CY001954>>622>>SUB
+PASSED (Approxi): CY001958>>672>>SUB
+PASSED (Approxi): CY001956>>459>>SUB
+PASSED (Approxi): CY001958>>1822>>SUB
+PASSED (Approxi): CY001955>>595>>SUB
+PASSED (Approxi): CY001958>>801>>SUB
+PASSED (Approxi): CY001954>>1310>>SUB
+PASSED (Approxi): CY001956>>823>>SUB
+PASSED (Approxi): CY001953>>496>>SUB
+PASSED (Approxi): CY001953>>246>>SUB
+PASSED (Approxi): CY001958>>2015>>SUB
+PASSED (Approxi): CY001958>>560>>SUB
+PASSED (Approxi): CY001957>>1406>>SUB
+PASSED (Approxi): CY001959>>1941>>SUB
+PASSED (Approxi): CY001957>>747>>SUB
+PASSED (Approxi): CY001959>>742>>SUB
+PASSED (Approxi): CY001955>>137>>SUB
+PASSED (Approxi): CY001958>>1662>>SUB
+PASSED (Approxi): CY001953>>684>>SUB
+PASSED (Approxi): CY001955>>1371>>SUB
+PASSED (Approxi): CY001954>>1313>>SUB
+PASSED (Approxi): CY001954>>1449>>SUB
+PASSED (Approxi): CY001959>>1390>>SUB
+PASSED (Approxi): CY001957>>1175>>SUB
+PASSED (Approxi): CY001954>>629>>SUB
+PASSED (Approxi): CY001959>>105>>SUB
+PASSED (Approxi): CY001958>>1706>>SUB
+PASSED (Approxi): CY001957>>855>>SUB
+PASSED (Approxi): CY001957>>1323>>SUB
+PASSED (Approxi): CY001958>>1731>>SUB
+PASSED (Approxi): CY001953>>735>>SUB
+PASSED (Approxi): CY001959>>1104>>SUB
+PASSED (Approxi): CY001957>>1064>>SUB
+PASSED (Approxi): CY001955>>238>>SUB
+PASSED (Approxi): CY001952>>1407>>SUB
+PASSED (Approxi): CY001957>>1169>>SUB
+PASSED (Approxi): CY001955>>679>>SUB
+PASSED (Approxi): CY001958>>1634>>SUB
+PASSED (Approxi): CY001954>>273>>SUB
+PASSED (Approxi): CY001959>>427>>SUB
+PASSED (Approxi): CY001955>>757>>SUB
+PASSED (Approxi): CY001958>>762>>SUB
+PASSED (Approxi): CY001959>>1713>>SUB
+PASSED (Approxi): CY001953>>801>>SUB
+PASSED (Approxi): CY001959>>2111>>SUB
+PASSED (Approxi): CY001955>>1242>>SUB
+PASSED (Approxi): CY001952>>494>>SUB
+PASSED (Approxi): CY001953>>707>>SUB
+PASSED (Approxi): CY001955>>869>>SUB
+PASSED (Approxi): CY001958>>1414>>SUB
+PASSED (Approxi): CY001954>>1099>>SUB
+PASSED (Approxi): CY001954>>1366>>SUB
+PASSED (Approxi): CY001955>>777>>SUB
+PASSED (Approxi): CY001955>>1252>>SUB
+PASSED (Approxi): CY001957>>323>>SUB
+PASSED (Approxi): CY001959>>1364>>SUB
+PASSED (Approxi): CY001959>>1596>>SUB
+PASSED (Approxi): CY001952>>1473>>SUB
+PASSED (Approxi): CY001958>>1082>>SUB
+PASSED (Approxi): CY001958>>1177>>SUB
+PASSED (Approxi): CY001955>>687>>SUB
+PASSED (Approxi): CY001955>>318>>SUB
+PASSED (Approxi): CY001955>>824>>SUB
+PASSED (Approxi): CY001955>>612>>SUB
+PASSED (Approxi): CY001957>>1156>>SUB
+PASSED (Approxi): CY001958>>753>>SUB
+PASSED (Approxi): CY001957>>1334>>SUB
+PASSED (Approxi): CY001955>>1065>>SUB
+PASSED (Approxi): CY001958>>1717>>SUB
+PASSED (Approxi): CY001958>>1607>>SUB
+PASSED (Approxi): CY001959>>789>>SUB
+PASSED (Approxi): CY001959>>985>>SUB
+PASSED (Approxi): CY001952>>1260>>SUB
+PASSED (Approxi): CY001959>>1958>>SUB
+PASSED (Approxi): CY001957>>1078>>SUB
+PASSED (Approxi): CY001952>>1194>>SUB
+PASSED (Approxi): CY001959>>1053>>SUB
+PASSED (Approxi): CY001957>>542>>SUB
+PASSED (Approxi): CY001952>>1572>>SUB
+PASSED (Approxi): CY001958>>2302>>SUB
+PASSED (Approxi): CY001956>>387>>SUB
+PASSED (Approxi): CY001955>>796>>SUB
+PASSED (Approxi): CY001954>>486>>SUB
+PASSED (Approxi): CY001954>>1375>>SUB
+PASSED (Approxi): CY001952>>902>>SUB
+PASSED (Approxi): CY001958>>1517>>SUB
+PASSED (Approxi): CY001954>>394>>SUB
+PASSED (Approxi): CY001957>>1867>>SUB
+PASSED (Approxi): CY001959>>2014>>SUB
+PASSED (Approxi): CY001958>>610>>SUB
+PASSED (Approxi): CY001955>>1247>>SUB
+PASSED (Approxi): CY001952>>1242>>SUB
+PASSED (Approxi): CY001954>>1164>>SUB
+PASSED (Approxi): CY001957>>979>>SUB
+PASSED (Approxi): CY001952>>1311>>SUB
+PASSED (Approxi): CY001957>>1735>>SUB
+PASSED (Approxi): CY001959>>659>>SUB
+PASSED (Approxi): CY001955>>1484>>SUB
+PASSED (Approxi): CY001953>>17>>SUB
+PASSED (Approxi): CY001955>>1075>>SUB
+PASSED (Approxi): CY001952>>1611>>SUB
+PASSED (Approxi): CY001957>>2138>>SUB
+PASSED (Approxi): CY001956>>274>>SUB
+PASSED (Approxi): CY001958>>1581>>SUB
+PASSED (Approxi): CY001952>>1475>>SUB
+PASSED (Approxi): CY001958>>363>>SUB
+PASSED (Approxi): CY001955>>1511>>SUB
+PASSED (Approxi): CY001957>>1331>>SUB
+PASSED (Approxi): CY001959>>2254>>SUB
+PASSED (Approxi): CY001957>>506>>SUB
+PASSED (Approxi): CY001958>>1464>>SUB
+PASSED (Approxi): CY001959>>362>>SUB
+PASSED (Approxi): CY001959>>388>>SUB
+PASSED (Approxi): CY001954>>506>>SUB
+PASSED (Approxi): CY001955>>135>>SUB
+PASSED (Approxi): CY001952>>841>>SUB
+PASSED (Approxi): CY001955>>1385>>SUB
+PASSED (Approxi): CY001956>>233>>SUB
+PASSED (Approxi): CY001957>>1963>>SUB
+PASSED (Approxi): CY001958>>2104>>SUB
+PASSED (Approxi): CY001952>>1290>>SUB
+PASSED (Approxi): CY001958>>2213>>SUB
+PASSED (Approxi): CY001958>>2078>>SUB
+PASSED (Approxi): CY001955>>28>>SUB
+PASSED (Approxi): CY001954>>804>>SUB
+PASSED (Approxi): CY001952>>307>>SUB
+PASSED (Approxi): CY001958>>2305>>SUB
+PASSED (Approxi): CY001957>>1121>>SUB
+PASSED (Approxi): CY001952>>1250>>SUB
+PASSED (Approxi): CY001953>>901>>SUB
+PASSED (Approxi): CY001955>>1160>>SUB
+PASSED (Approxi): CY001959>>972>>SUB
+PASSED (Approxi): CY001957>>463>>SUB
+PASSED (Approxi): CY001958>>1793>>SUB
+PASSED (Approxi): CY001957>>1519>>SUB
+PASSED (Approxi): CY001952>>126>>SUB
+PASSED (Approxi): CY001958>>424>>SUB
+PASSED (Approxi): CY001952>>548>>SUB
+PASSED (Approxi): CY001958>>1723>>SUB
+PASSED (Approxi): CY001957>>1043>>SUB
+PASSED (Approxi): CY001959>>679>>SUB
+PASSED (Approxi): CY001957>>265>>SUB
+PASSED (Approxi): CY001955>>545>>SUB
+PASSED (Approxi): CY001958>>772>>SUB
+PASSED (Approxi): CY001958>>626>>SUB
+PASSED (Approxi): CY001952>>1607>>SUB
+PASSED (Approxi): CY001954>>985>>SUB
+PASSED (Approxi): CY001959>>449>>SUB
+PASSED (Approxi): CY001959>>1408>>SUB
+PASSED (Approxi): CY001955>>1301>>SUB
+PASSED (Approxi): CY001954>>1051>>SUB
+PASSED (Approxi): CY001952>>57>>SUB
+PASSED (Approxi): CY001959>>834>>SUB
+PASSED (Approxi): CY001955>>1204>>SUB
+PASSED (Approxi): CY001954>>943>>SUB
+PASSED (Approxi): CY001952>>1054>>SUB
+PASSED (Approxi): CY001957>>737>>SUB
+PASSED (Approxi): CY001952>>1110>>SUB
+PASSED (Approxi): CY001958>>1841>>SUB
+PASSED (Approxi): CY001954>>1024>>SUB
+PASSED (Approxi): CY001958>>367>>SUB
+PASSED (Approxi): CY001957>>1770>>SUB
+PASSED (Approxi): CY001958>>1366>>SUB
+PASSED (Approxi): CY001956>>800>>SUB
+PASSED (Approxi): CY001955>>277>>SUB
+PASSED (Approxi): CY001953>>647>>SUB
+PASSED (Approxi): CY001959>>319>>SUB
+PASSED (Approxi): CY001958>>1284>>SUB
+PASSED (Approxi): CY001957>>23>>SUB
+PASSED (Approxi): CY001957>>1602>>SUB
+PASSED (Approxi): CY001954>>1320>>SUB
+PASSED (Approxi): CY001952>>1326>>SUB
+PASSED (Approxi): CY001955>>489>>SUB
+PASSED (Approxi): CY001957>>1639>>SUB
+PASSED (Approxi): CY001959>>33>>SUB
+PASSED (Approxi): CY001952>>752>>SUB
+PASSED (Approxi): CY001953>>286>>SUB
+PASSED (Approxi): CY001958>>448>>SUB
+PASSED (Approxi): CY001957>>1126>>SUB
+PASSED (Approxi): CY001959>>1774>>SUB
+PASSED (Approxi): CY001952>>552>>SUB
+PASSED (Approxi): CY001953>>301>>SUB
+PASSED (Approxi): CY001953>>203>>SUB
+PASSED (Approxi): CY001959>>581>>SUB
+PASSED (Approxi): CY001953>>810>>SUB
+PASSED (Approxi): CY001959>>366>>SUB
+PASSED (Approxi): CY001952>>1075>>SUB
+PASSED (Approxi): CY001959>>2266>>SUB
+PASSED (Approxi): CY001954>>276>>SUB
+PASSED (Approxi): CY001959>>1538>>SUB
+PASSED (Approxi): CY001958>>487>>SUB
+PASSED (Approxi): CY001958>>956>>SUB
+PASSED (Approxi): CY001953>>103>>SUB
+PASSED (Approxi): CY001958>>1694>>SUB
+PASSED (Approxi): CY001955>>570>>SUB
+PASSED (Approxi): CY001953>>769>>SUB
+PASSED (Approxi): CY001955>>348>>SUB
+PASSED (Approxi): CY001959>>208>>SUB
+PASSED (Approxi): CY001954>>48>>SUB
+PASSED (Approxi): CY001955>>388>>SUB
+PASSED (Approxi): CY001954>>1180>>SUB
+PASSED (Approxi): CY001958>>1656>>SUB
+PASSED (Approxi): CY001957>>748>>SUB
+PASSED (Approxi): CY001958>>991>>SUB
+PASSED (Approxi): CY001956>>807>>SUB
+PASSED (Approxi): CY001959>>1514>>SUB
+PASSED (Approxi): CY001954>>61>>SUB
+PASSED (Approxi): CY001958>>189>>SUB
+PASSED (Approxi): CY001952>>1533>>SUB
+PASSED (Approxi): CY001953>>135>>SUB
+PASSED (Approxi): CY001958>>430>>SUB
+PASSED (Approxi): CY001953>>533>>SUB
+PASSED (Approxi): CY001953>>386>>SUB
+PASSED (Approxi): CY001958>>651>>SUB
+PASSED (Approxi): CY001957>>1997>>SUB
+PASSED (Approxi): CY001953>>597>>SUB
+PASSED (Approxi): CY001952>>757>>SUB
+PASSED (Approxi): CY001955>>247>>SUB
+PASSED (Approxi): CY001958>>1473>>SUB
+PASSED (Approxi): CY001958>>1303>>SUB
+PASSED (Approxi): CY001955>>430>>SUB
+PASSED (Approxi): CY001953>>670>>SUB
+PASSED (Approxi): CY001952>>1323>>SUB
+PASSED (Approxi): CY001957>>1384>>SUB
+PASSED (Approxi): CY001957>>1993>>SUB
+PASSED (Approxi): CY001955>>996>>SUB
+PASSED (Approxi): CY001955>>1485>>SUB
+PASSED (Approxi): CY001954>>175>>SUB
+PASSED (Approxi): CY001959>>1673>>SUB
+PASSED (Approxi): CY001959>>1004>>SUB
+PASSED (Approxi): CY001952>>1652>>SUB
+PASSED (Approxi): CY001952>>609>>SUB
+PASSED (Approxi): CY001952>>1429>>SUB
+PASSED (Approxi): CY001958>>187>>SUB
+PASSED (Approxi): CY001956>>411>>SUB
+PASSED (Approxi): CY001958>>1472>>SUB
+PASSED (Approxi): CY001955>>653>>SUB
+PASSED (Approxi): CY001957>>1369>>SUB
+PASSED (Approxi): CY001958>>1973>>SUB
+PASSED (Approxi): CY001955>>850>>SUB
+PASSED (Approxi): CY001952>>953>>SUB
+PASSED (Approxi): CY001953>>398>>SUB
+PASSED (Approxi): CY001956>>602>>SUB
+PASSED (Approxi): CY001953>>525>>SUB
+PASSED (Approxi): CY001957>>210>>SUB
+PASSED (Approxi): CY001952>>512>>SUB
+PASSED (Approxi): CY001957>>760>>SUB
+PASSED (Approxi): CY001957>>1924>>SUB
+PASSED (Approxi): CY001955>>518>>SUB
+PASSED (Approxi): CY001959>>612>>SUB
+PASSED (Approxi): CY001955>>860>>SUB
+PASSED (Approxi): CY001959>>1223>>SUB
+PASSED (Approxi): CY001952>>608>>SUB
+PASSED (Approxi): CY001953>>871>>INS
+PASSED (Approxi): CY001955>>258>>SUB
+FAIL: CY001952>>149>>SUB still not found
+FAIL: CY001959>>194>>SUB still not found
+FAIL: CY001954>>934>>DEL still not found
+FAIL: CY001955>>21>>SUB still not found
+FAIL: CY001956>>425>>SUB still not found
+FAIL: CY001958>>2134>>SUB still not found
+FAIL: CY001957>>1944>>SUB still not found
+FAIL: CY001955>>20>>SUB still not found
+FAIL: CY001957>>1916>>SUB still not found
+FAIL: CY001957>>965>>SUB still not found
+FAIL: CY001959>>1478>>SUB still not found
+FAIL: CY001958>>785>>SUB still not found
+FAIL: CY001955>>1418>>DEL still not found
+FAIL: CY001958>>1384>>SUB still not found
+FAIL: CY001953>>967>>SUB still not found
+FAIL: CY001958>>2132>>SUB still not found
+FAIL: CY001952>>1168>>DEL still not found
+FAIL: CY001953>>846>>DEL still not found
+FAIL: CY001959>>569>>SUB still not found
+FAIL: CY001959>>111>>SUB still not found
+FAIL: CY001959>>1846>>SUB still not found
+FAIL: CY001957>>535>>INS still not found
+FAIL: CY001959>>2139>>SUB still not found
+FAIL: CY001957>>473>>SUB still not found
+FAIL: CY001958>>515>>SUB still not found
+FAIL: CY001959>>1471>>SUB still not found
+FAIL: CY001958>>297>>SUB still not found
+FAIL: CY001957>>1278>>INS still not found
+FAIL: CY001954>>409>>SUB still not found
+FAIL: CY001958>>15>>DEL still not found
+FAIL: CY001954>>1072>>SUB still not found
+FAIL: CY001959>>1432>>SUB still not found
+FAIL: CY001959>>1559>>SUB still not found
+FAIL: CY001959>>2128>>SUB still not found
+FAIL: CY001958>>2131>>SUB still not found
+FAIL: CY001952>>1090>>SUB still not found
+FAIL: CY001958>>1107>>SUB still not found
+FAIL: CY001952>>418>>SUB still not found
+FAIL: CY001954>>693>>SUB still not found
+FAIL: CY001955>>188>>INS still not found
+FAIL: CY001956>>221>>SUB still not found
+FAIL: CY001954>>1132>>SUB still not found
+FAIL: CY001955>>425>>SUB still not found
+FAIL: CY001955>>1371>>INS still not found
+FAIL: CY001955>>605>>SUB still not found
+FAIL: CY001959>>1689>>SUB still not found
+FAIL: CY001957>>1280>>SUB still not found
+FAIL: CY001957>>233>>SUB still not found
+FAIL: CY001956>>760>>SUB still not found
+FAIL: CY001953>>785>>INS still not found
+FAIL: CY001954>>160>>SUB still not found
+FAIL: CY001953>>970>>SUB still not found
+FAIL: CY001958>>2282>>SUB still not found
+FAIL: CY001959>>1331>>SUB still not found
+FAIL: CY001954>>799>>SUB still not found
+FAIL: CY001953>>491>>SUB still not found
+FAIL: CY001959>>1562>>SUB still not found
+FAIL: CY001952>>1647>>INS still not found
+FAIL: CY001959>>1317>>SUB still not found
+FAIL: CY001958>>2006>>SUB still not found
+FAIL: CY001954>>839>>SUB still not found
+FAIL: CY001958>>1639>>DEL still not found
+FAIL: CY001952>>1655>>SUB still not found
+FAIL: CY001957>>1240>>SUB still not found
+FAIL: CY001957>>500>>SUB still not found
+FAIL: CY001957>>94>>INS still not found
+FAIL: CY001958>>579>>SUB still not found
+FAIL: CY001954>>466>>SUB still not found
+FAIL: CY001957>>623>>SUB still not found
+FAIL: CY001958>>83>>DEL still not found
+FAIL: CY001956>>145>>SUB still not found
+FAIL: CY001959>>1406>>INS still not found
+FAIL: CY001955>>680>>INS still not found
+FAIL: CY001957>>1664>>SUB still not found
+FAIL: CY001955>>419>>SUB still not found
+FAIL: CY001957>>9>>SUB still not found
+FAIL: CY001957>>734>>INS still not found
+FAIL: CY001959>>2114>>SUB still not found
+FAIL: CY001959>>852>>SUB still not found
+FAIL: CY001956>>512>>SUB still not found
+FAIL: CY001957>>588>>INS still not found
+FAIL: CY001959>>544>>SUB still not found
+FAIL: CY001957>>1672>>SUB still not found
+FAIL: CY001954>>913>>SUB still not found
+FAIL: CY001957>>620>>SUB still not found
+FAIL: CY001956>>643>>SUB still not found
+FAIL: CY001957>>1682>>INS still not found
+FAIL: CY001955>>815>>SUB still not found
+FAIL: CY001959>>335>>SUB still not found
+FAIL: CY001957>>385>>SUB still not found
+FAIL: CY001955>>1213>>SUB still not found
+FAIL: CY001952>>275>>SUB still not found
+FAIL: CY001955>>448>>DEL still not found
+FAIL: CY001959>>462>>SUB still not found
+FAIL: CY001956>>1>>SUB still not found
+FAIL: CY001957>>1903>>SUB still not found
+FAIL: CY001957>>829>>SUB still not found
+FAIL: CY001955>>1089>>SUB still not found
+FAIL: CY001955>>156>>SUB still not found
+FAIL: CY001959>>913>>SUB still not found
+FAIL: CY001954>>1122>>SUB still not found
+FAIL: CY001958>>103>>SUB still not found
+FAIL: CY001959>>587>>DEL still not found
+FAIL: CY001953>>882>>SUB still not found
+FAIL: CY001959>>1423>>DEL still not found
+FAIL: CY001953>>758>>SUB still not found
+FAIL: CY001958>>185>>INS still not found
+FAIL: CY001959>>2174>>SUB still not found
+FAIL: CY001958>>1686>>SUB still not found
+FAIL: CY001953>>30>>DEL still not found
+FAIL: CY001957>>496>>SUB still not found
+FAIL: CY001952>>381>>SUB still not found
+FAIL: CY001958>>1795>>INS still not found
+FAIL: CY001954>>341>>SUB still not found
+FAIL: CY001958>>1919>>SUB still not found
+FAIL: CY001957>>1785>>INS still not found
+FAIL: CY001958>>1498>>SUB still not found
+FAIL: CY001955>>221>>SUB still not found
+FAIL: CY001952>>1551>>DEL still not found
+FAIL: CY001952>>938>>SUB still not found
+FAIL: CY001957>>1195>>SUB still not found
+FAIL: CY001955>>68>>SUB still not found
+FAIL: CY001953>>432>>SUB still not found
+FAIL: CY001959>>523>>SUB still not found
+FAIL: CY001958>>116>>SUB still not found
+FAIL: CY001952>>1107>>SUB still not found
+FAIL: CY001954>>417>>SUB still not found
+FAIL: CY001959>>548>>SUB still not found
+FAIL: CY001954>>121>>DEL still not found
+FAIL: CY001957>>114>>DEL still not found
+FAIL: CY001957>>608>>SUB still not found
+FAIL: CY001954>>312>>SUB still not found
+FAIL: CY001954>>158>>SUB still not found
+FAIL: CY001952>>338>>INS still not found
+FAIL: CY001957>>699>>INS still not found
+FAIL: CY001952>>1753>>SUB still not found
+FAIL: CY001952>>624>>INS still not found
+FAIL: CY001957>>2160>>SUB still not found
+FAIL: CY001953>>825>>SUB still not found
+FAIL: CY001956>>448>>SUB still not found
+FAIL: CY001959>>1808>>SUB still not found
+FAIL: CY001954>>714>>SUB still not found
+FAIL: CY001955>>1141>>SUB still not found
+FAIL: CY001954>>644>>SUB still not found
+FAIL: CY001955>>1286>>SUB still not found
+FAIL: CY001959>>2029>>SUB still not found
+FAIL: CY001954>>802>>SUB still not found
+FAIL: CY001955>>1488>>DEL still not found
+FAIL: CY001954>>138>>SUB still not found
+FAIL: CY001958>>2168>>SUB still not found
+FAIL: CY001957>>1669>>SUB still not found
+FAIL: CY001956>>757>>SUB still not found
+FAIL: CY001952>>888>>SUB still not found
+FAIL: CY001958>>508>>DEL still not found
+FAIL: CY001955>>781>>SUB still not found
+FAIL: CY001956>>104>>DEL still not found
+FAIL: CY001959>>856>>SUB still not found
+FAIL: CY001959>>1736>>SUB still not found
+FAIL: CY001958>>467>>SUB still not found
+FAIL: CY001958>>1100>>SUB still not found
+FAIL: CY001954>>1120>>SUB still not found
+FAIL: CY001959>>1167>>SUB still not found
+FAIL: CY001952>>1210>>INS still not found
+FAIL: CY001958>>1252>>SUB still not found
+FAIL: CY001957>>1351>>SUB still not found
+FAIL: CY001958>>1759>>SUB still not found
+FAIL: CY001956>>147>>INS still not found
+FAIL: CY001958>>601>>SUB still not found
+FAIL: CY001959>>191>>SUB still not found
+FAIL: CY001955>>461>>SUB still not found
+FAIL: CY001958>>2121>>SUB still not found
+FAIL: CY001958>>375>>SUB still not found
+FAIL: CY001959>>1179>>SUB still not found
+FAIL: CY001958>>2035>>SUB still not found
+FAIL: CY001956>>219>>SUB still not found
+FAIL: CY001958>>1205>>SUB still not found
+FAIL: CY001953>>354>>SUB still not found
+FAIL: CY001956>>767>>SUB still not found
+FAIL: CY001953>>703>>DEL still not found
+FAIL: CY001959>>461>>SUB still not found
+FAIL: CY001957>>1791>>SUB still not found
+FAIL: CY001958>>296>>SUB still not found
+FAIL: CY001957>>2169>>SUB still not found
+FAIL: CY001955>>521>>SUB still not found
+FAIL: CY001957>>1086>>DEL still not found
+FAIL: CY001959>>1036>>SUB still not found
+FAIL: CY001959>>517>>SUB still not found
+FAIL: CY001956>>58>>SUB still not found
+FAIL: CY001957>>1028>>SUB still not found
+FAIL: CY001958>>2241>>SUB still not found
+FAIL: CY001955>>411>>SUB still not found
+FAIL: CY001953>>258>>SUB still not found
+FAIL: CY001952>>192>>INS still not found
+FAIL: CY001954>>711>>SUB still not found
+FAIL: CY001953>>68>>INS still not found
+FAIL: CY001955>>801>>DEL still not found
+FAIL: CY001959>>1086>>DEL still not found
+FAIL: CY001955>>648>>SUB still not found
+FAIL: CY001958>>1948>>SUB still not found
+FAIL: CY001958>>1404>>SUB still not found
+FAIL: CY001957>>800>>SUB still not found
+FAIL: CY001952>>1393>>SUB still not found
+FAIL: CY001957>>1000>>INS still not found
+FAIL: CY001957>>627>>SUB still not found
+FAIL: CY001955>>813>>SUB still not found
+FAIL: CY001952>>658>>INS still not found
+FAIL: CY001959>>954>>SUB still not found
+FAIL: CY001956>>442>>SUB still not found
+FAIL: CY001952>>1357>>SUB still not found
+FAIL: CY001952>>412>>INS still not found
+FAIL: CY001952>>1400>>SUB still not found
+FAIL: CY001958>>1701>>DEL still not found
+FAIL: CY001959>>2117>>SUB still not found
+FAIL: CY001959>>2118>>SUB still not found
+FAIL: CY001957>>1829>>SUB still not found
+FAIL: CY001952>>158>>DEL still not found
+FAIL: CY001958>>1399>>SUB still not found
+FAIL: CY001954>>697>>INS still not found
+FAIL: CY001958>>834>>SUB still not found
+FAIL: CY001958>>1957>>SUB still not found
+FAIL: CY001953>>491>>DEL still not found
+FAIL: CY001956>>692>>SUB still not found
+FAIL: CY001958>>1671>>SUB still not found
+FAIL: CY001958>>1101>>SUB still not found
+FAIL: CY001954>>571>>SUB still not found
+FAIL: CY001952>>1222>>SUB still not found
+FAIL: CY001954>>522>>SUB still not found
+FAIL: CY001955>>127>>DEL still not found
+FAIL: CY001956>>263>>SUB still not found
+FAIL: CY001957>>312>>SUB still not found
+FAIL: CY001952>>1588>>SUB still not found
+FAIL: CY001958>>589>>SUB still not found
+FAIL: CY001958>>908>>SUB still not found
+FAIL: CY001959>>776>>SUB still not found
+FAIL: CY001959>>764>>SUB still not found
+FAIL: CY001957>>319>>SUB still not found
+FAIL: CY001955>>41>>INS still not found
+FAIL: CY001952>>525>>SUB still not found
+FAIL: CY001954>>1386>>INS still not found
+FAIL: CY001953>>60>>SUB still not found
+FAIL: CY001952>>1>>SUB still not found
+FAIL: CY001953>>454>>SUB still not found
+FAIL: CY001958>>199>>SUB still not found
+FAIL: CY001954>>527>>SUB still not found
+FAIL: CY001954>>454>>SUB still not found
+FAIL: CY001956>>115>>SUB still not found
+FAIL: CY001957>>822>>DEL still not found
+FAIL: CY001955>>607>>SUB still not found
+FAIL: CY001957>>1808>>INS still not found
+FAIL: CY001958>>211>>SUB still not found
+FAIL: CY001959>>1685>>SUB still not found
+FAIL: CY001957>>1326>>INS still not found
+FAIL: CY001954>>1297>>SUB still not found
+FAIL: CY001958>>1340>>SUB still not found
+FAIL: CY001955>>200>>SUB still not found
+FAIL: CY001953>>270>>SUB still not found
+FAIL: CY001958>>307>>SUB still not found
+FAIL: CY001953>>348>>SUB still not found
+FAIL: CY001957>>1675>>INS still not found
+FAIL: CY001957>>616>>SUB still not found
+FAIL: CY001957>>1622>>DEL still not found
+FAIL: CY001957>>291>>DEL still not found
+FAIL: CY001956>>254>>SUB still not found
+FAIL: CY001959>>79>>SUB still not found
+FAIL: CY001959>>1310>>INS still not found
+FAIL: CY001959>>24>>INS still not found
+FAIL: CY001952>>1214>>SUB still not found
+FAIL: CY001958>>932>>SUB still not found
+FAIL: CY001955>>901>>SUB still not found
+FAIL: CY001959>>2120>>SUB still not found
+FAIL: CY001954>>1220>>SUB still not found
+FAIL: CY001954>>469>>SUB still not found
+FAIL: CY001957>>1580>>SUB still not found
+FAIL: CY001952>>1544>>SUB still not found
+FAIL: CY001958>>1371>>DEL still not found
+FAIL: CY001957>>1657>>SUB still not found
+FAIL: CY001952>>1591>>SUB still not found
+FAIL: CY001952>>1751>>SUB still not found
+FAIL: CY001959>>2146>>SUB still not found
+FAIL: CY001958>>723>>SUB still not found
+FAIL: CY001952>>1556>>SUB still not found
+FAIL: CY001955>>1399>>SUB still not found
+FAIL: CY001956>>557>>SUB still not found
+FAIL: CY001959>>348>>SUB still not found
+FAIL: CY001959>>1091>>SUB still not found
+FAIL: CY001955>>1229>>SUB still not found
+FAIL: CY001958>>704>>SUB still not found
+FAIL: CY001959>>1613>>SUB still not found
+FAIL: CY001957>>19>>SUB still not found
+FAIL: CY001958>>26>>SUB still not found
+FAIL: CY001953>>983>>SUB still not found
+FAIL: CY001955>>923>>SUB still not found
+FAIL: CY001959>>2011>>SUB still not found
+FAIL: CY001958>>2195>>SUB still not found
+FAIL: CY001957>>2153>>SUB still not found
+FAIL: CY001952>>324>>SUB still not found
+FAIL: CY001954>>652>>DEL still not found
+FAIL: CY001959>>2026>>SUB still not found
+FAIL: CY001954>>373>>SUB still not found
+FAIL: CY001953>>21>>SUB still not found
+FAIL: CY001952>>855>>SUB still not found
+FAIL: CY001959>>1165>>SUB still not found
+FAIL: CY001957>>1186>>SUB still not found
+FAIL: CY001959>>444>>SUB still not found
+FAIL: CY001952>>81>>SUB still not found
+FAIL: CY001955>>1118>>SUB still not found
+FAIL: CY001958>>2230>>SUB still not found
+FAIL: CY001956>>746>>SUB still not found
+FAIL: CY001958>>1748>>SUB still not found
+FAIL: CY001954>>356>>SUB still not found
+FAIL: CY001959>>1417>>SUB still not found
+FAIL: CY001955>>379>>SUB still not found
+FAIL: CY001956>>888>>SUB still not found
+FAIL: CY001959>>82>>SUB still not found
+FAIL: CY001959>>970>>SUB still not found
+FAIL: CY001958>>2284>>SUB still not found
+FAIL: CY001955>>1360>>INS still not found
+FAIL: CY001959>>651>>SUB still not found
+FAIL: CY001959>>1096>>SUB still not found
+FAIL: CY001957>>1297>>SUB still not found
+FAIL: CY001952>>599>>SUB still not found
+FAIL: CY001958>>1031>>INS still not found
+FAIL: CY001959>>825>>DEL still not found
+FAIL: CY001952>>1143>>SUB still not found
+FAIL: CY001956>>345>>SUB still not found
+FAIL: CY001956>>630>>INS still not found
+FAIL: CY001952>>178>>SUB still not found
+FAIL: CY001958>>938>>SUB still not found
+FAIL: CY001956>>85>>SUB still not found
+FAIL: CY001958>>891>>SUB still not found
+FAIL: CY001959>>701>>SUB still not found
+FAIL: CY001959>>1520>>SUB still not found
+FAIL: CY001954>>593>>SUB still not found
+FAIL: CY001959>>1070>>SUB still not found
+FAIL: CY001952>>1715>>SUB still not found
+FAIL: CY001954>>1009>>SUB still not found
+FAIL: CY001959>>1094>>SUB still not found
+FAIL: CY001958>>1102>>SUB still not found
+FAIL: CY001957>>346>>SUB still not found
+FAIL: CY001957>>1563>>SUB still not found
+FAIL: CY001955>>1230>>SUB still not found
+FAIL: CY001957>>1651>>SUB still not found
+FAIL: CY001956>>334>>SUB still not found
+FAIL: CY001955>>1340>>SUB still not found
+FAIL: CY001958>>1455>>SUB still not found
+FAIL: CY001959>>187>>SUB still not found
+FAIL: CY001952>>1155>>SUB still not found
+FAIL: CY001952>>1071>>SUB still not found
+FAIL: CY001958>>1496>>SUB still not found
+FAIL: CY001955>>630>>SUB still not found
+FAIL: CY001957>>1467>>SUB still not found
+FAIL: CY001958>>2050>>SUB still not found
+FAIL: CY001958>>2169>>SUB still not found
+FAIL: CY001959>>1444>>SUB still not found
+FAIL: CY001958>>597>>SUB still not found
+FAIL: CY001952>>732>>SUB still not found
+FAIL: CY001959>>488>>SUB still not found
+FAIL: CY001959>>65>>SUB still not found
+FAIL: CY001954>>1241>>INS still not found
+FAIL: CY001952>>372>>SUB still not found
+FAIL: CY001953>>920>>SUB still not found
+FAIL: CY001957>>2081>>SUB still not found
+FAIL: CY001952>>1741>>SUB still not found
+FAIL: CY001959>>493>>SUB still not found
+FAIL: CY001956>>118>>SUB still not found
+FAIL: CY001957>>1879>>SUB still not found
+FAIL: CY001958>>1391>>SUB still not found
+FAIL: CY001953>>924>>SUB still not found
+FAIL: CY001952>>477>>SUB still not found
+FAIL: CY001958>>830>>SUB still not found
+FAIL: CY001952>>1440>>INS still not found
+FAIL: CY001952>>32>>SUB still not found
+FAIL: CY001957>>1670>>SUB still not found
+FAIL: CY001956>>45>>SUB still not found
+FAIL: CY001958>>379>>SUB still not found
+FAIL: CY001958>>54>>SUB still not found
+FAIL: CY001952>>1745>>SUB still not found
+FAIL: CY001954>>98>>SUB still not found
+FAIL: CY001953>>911>>SUB still not found
+FAIL: CY001952>>1324>>INS still not found
+FAIL: CY001956>>38>>SUB still not found
+FAIL: CY001956>>414>>SUB still not found
+FAIL: CY001957>>244>>SUB still not found
+FAIL: CY001958>>1114>>SUB still not found
+FAIL: CY001958>>2252>>SUB still not found
+FAIL: CY001953>>62>>SUB still not found
+FAIL: CY001958>>638>>INS still not found
+FAIL: CY001957>>20>>SUB still not found
+FAIL: CY001953>>362>>SUB still not found
+FAIL: CY001952>>1729>>SUB still not found
+FAIL: CY001958>>2253>>DEL still not found
+FAIL: CY001958>>1885>>SUB still not found
+FAIL: CY001958>>1645>>SUB still not found
+FAIL: CY001955>>191>>DEL still not found
+FAIL: CY001952>>239>>SUB still not found
+FAIL: CY001956>>812>>SUB still not found
+FAIL: CY001952>>1147>>SUB still not found
+FAIL: CY001959>>765>>SUB still not found
+FAIL: CY001956>>797>>DEL still not found
+FAIL: CY001954>>687>>DEL still not found
+FAIL: CY001957>>1216>>SUB still not found
+FAIL: CY001954>>1002>>SUB still not found
+FAIL: CY001959>>583>>SUB still not found
+FAIL: CY001958>>260>>INS still not found
+FAIL: CY001953>>809>>INS still not found
+FAIL: CY001956>>544>>SUB still not found
+FAIL: CY001958>>875>>SUB still not found
+FAIL: CY001955>>155>>SUB still not found
+FAIL: CY001954>>418>>SUB still not found
+FAIL: CY001958>>2267>>SUB still not found
+FAIL: CY001955>>896>>SUB still not found
+FAIL: CY001955>>11>>SUB still not found
+FAIL: CY001954>>413>>SUB still not found
+FAIL: CY001952>>1318>>SUB still not found
+FAIL: CY001955>>980>>SUB still not found
+FAIL: CY001953>>600>>DEL still not found
+FAIL: CY001953>>678>>SUB still not found
+FAIL: CY001959>>1149>>SUB still not found
+FAIL: CY001956>>761>>SUB still not found
+FAIL: CY001952>>868>>SUB still not found
+FAIL: CY001958>>1171>>INS still not found
+FAIL: CY001952>>1584>>DEL still not found
+FAIL: CY001957>>1790>>SUB still not found
+FAIL: CY001957>>2210>>SUB still not found
+FAIL: CY001959>>782>>DEL still not found
+FAIL: CY001958>>1150>>SUB still not found
+FAIL: CY001956>>485>>SUB still not found
+FAIL: CY001958>>747>>SUB still not found
+FAIL: CY001959>>1162>>SUB still not found
+FAIL: CY001958>>1322>>SUB still not found
+FAIL: CY001959>>533>>SUB still not found
+FAIL: CY001955>>982>>SUB still not found
+FAIL: CY001957>>1411>>SUB still not found
+FAIL: CY001955>>1544>>INS still not found
+FAIL: CY001959>>851>>SUB still not found
+FAIL: CY001958>>34>>INS still not found
+FAIL: CY001954>>930>>SUB still not found
+FAIL: CY001959>>172>>INS still not found
+FAIL: CY001957>>672>>SUB still not found
+FAIL: CY001952>>1671>>INS still not found
+FAIL: CY001952>>1624>>SUB still not found
+FAIL: CY001952>>1380>>SUB still not found
+FAIL: CY001955>>263>>SUB still not found
+FAIL: CY001954>>265>>SUB still not found
+FAIL: CY001953>>192>>SUB still not found
+FAIL: CY001957>>1402>>SUB still not found
+FAIL: CY001959>>265>>INS still not found
+FAIL: CY001959>>2088>>DEL still not found
+FAIL: CY001959>>837>>SUB still not found
+FAIL: CY001958>>734>>SUB still not found
+FAIL: CY001955>>915>>DEL still not found
+FAIL: CY001958>>469>>SUB still not found
+FAIL: CY001958>>1711>>SUB still not found
+FAIL: CY001953>>431>>SUB still not found
+FAIL: CY001957>>1795>>SUB still not found
+FAIL: CY001955>>12>>SUB still not found
+FAIL: CY001959>>1035>>SUB still not found
+FAIL: CY001957>>1481>>SUB still not found
+FAIL: CY001953>>224>>SUB still not found
+FAIL: CY001958>>2021>>DEL still not found
+FAIL: CY001959>>867>>SUB still not found
+FAIL: CY001955>>1013>>SUB still not found
+FAIL: CY001957>>607>>SUB still not found
+FAIL: CY001955>>1049>>SUB still not found
+FAIL: CY001958>>738>>SUB still not found
+FAIL: CY001958>>1530>>SUB still not found
+FAIL: CY001958>>2170>>SUB still not found
+FAIL: CY001959>>845>>SUB still not found
+FAIL: CY001952>>343>>SUB still not found
+FAIL: CY001957>>2162>>SUB still not found
+FAIL: CY001955>>1375>>DEL still not found
+FAIL: CY001952>>785>>SUB still not found
+FAIL: CY001955>>1324>>INS still not found
+FAIL: CY001957>>1214>>SUB still not found
+FAIL: CY001959>>1988>>SUB still not found
+FAIL: CY001952>>887>>SUB still not found
+FAIL: CY001954>>1428>>SUB still not found
+FAIL: CY001959>>1184>>SUB still not found
+FAIL: CY001959>>1178>>SUB still not found
+FAIL: CY001958>>1620>>SUB still not found
+FAIL: CY001954>>1342>>SUB still not found
+FAIL: CY001959>>68>>SUB still not found
+FAIL: CY001958>>838>>SUB still not found
+FAIL: CY001959>>1483>>SUB still not found
+FAIL: CY001958>>1249>>SUB still not found
+FAIL: CY001958>>1028>>SUB still not found
+FAIL: CY001953>>493>>SUB still not found
+FAIL: CY001959>>909>>SUB still not found
+FAIL: CY001955>>1564>>SUB still not found
+FAIL: CY001955>>1250>>SUB still not found
+FAIL: CY001959>>70>>SUB still not found
+FAIL: CY001958>>872>>INS still not found
+FAIL: CY001958>>1600>>SUB still not found
+FAIL: CY001958>>1743>>INS still not found
+FAIL: CY001953>>425>>SUB still not found
+FAIL: CY001952>>540>>SUB still not found
+FAIL: CY001953>>980>>SUB still not found
+FAIL: CY001957>>1136>>INS still not found
+FAIL: CY001955>>1064>>SUB still not found
+FAIL: CY001954>>303>>INS still not found
+FAIL: CY001958>>1898>>INS still not found
+FAIL: CY001955>>1544>>DEL still not found
+FAIL: CY001954>>1343>>SUB still not found
+FAIL: CY001954>>617>>INS still not found
+FAIL: CY001952>>427>>SUB still not found
+FAIL: CY001956>>213>>SUB still not found
+FAIL: CY001956>>146>>SUB still not found
+FAIL: CY001957>>766>>SUB still not found
+FAIL: CY001956>>744>>SUB still not found
+FAIL: CY001952>>689>>SUB still not found
+FAIL: CY001954>>842>>INS still not found
+FAIL: CY001954>>1108>>SUB still not found
+FAIL: CY001953>>437>>INS still not found
+FAIL: CY001952>>410>>SUB still not found
+FAIL: CY001958>>918>>SUB still not found
+FAIL: CY001959>>726>>SUB still not found
+FAIL: CY001959>>157>>DEL still not found
+FAIL: CY001954>>889>>SUB still not found
+FAIL: CY001954>>100>>INS still not found
+FAIL: CY001953>>570>>SUB still not found
+FAIL: CY001953>>222>>SUB still not found
+FAIL: CY001958>>2248>>SUB still not found
+FAIL: CY001953>>190>>SUB still not found
+FAIL: CY001953>>913>>SUB still not found
+FAIL: CY001954>>988>>SUB still not found
+FAIL: CY001954>>567>>SUB still not found
+FAIL: CY001957>>997>>SUB still not found
+FAIL: CY001953>>622>>SUB still not found
+FAIL: CY001958>>1204>>SUB still not found
+FAIL: CY001952>>1127>>DEL still not found
+FAIL: CY001954>>917>>DEL still not found
+FAIL: CY001954>>415>>SUB still not found
+FAIL: CY001954>>491>>SUB still not found
+FAIL: CY001958>>1190>>SUB still not found
+FAIL: CY001957>>1021>>SUB still not found
+FAIL: CY001953>>122>>SUB still not found
+FAIL: CY001958>>1816>>SUB still not found
+FAIL: CY001959>>870>>SUB still not found
+FAIL: CY001952>>535>>SUB still not found
+FAIL: CY001955>>620>>SUB still not found
+FAIL: CY001959>>1254>>SUB still not found
+FAIL: CY001952>>1694>>SUB still not found
+FAIL: CY001957>>455>>SUB still not found
+FAIL: CY001959>>1641>>SUB still not found
+FAIL: CY001952>>425>>DEL still not found
+FAIL: CY001957>>904>>SUB still not found
+FAIL: CY001952>>1333>>INS still not found
+FAIL: CY001958>>2139>>SUB still not found
+FAIL: CY001959>>296>>DEL still not found
+FAIL: CY001959>>1664>>SUB still not found
+FAIL: CY001952>>486>>SUB still not found
+FAIL: CY001959>>2171>>INS still not found
+FAIL: CY001958>>335>>SUB still not found
+FAIL: CY001953>>152>>SUB still not found
+FAIL: CY001954>>126>>DEL still not found
+FAIL: CY001953>>57>>SUB still not found
+FAIL: CY001959>>41>>SUB still not found
+FAIL: CY001957>>707>>SUB still not found
+FAIL: CY001958>>543>>SUB still not found
+FAIL: CY001954>>914>>SUB still not found
+FAIL: CY001955>>1120>>SUB still not found
+FAIL: CY001959>>882>>INS still not found
+FAIL: CY001958>>1020>>INS still not found
+FAIL: CY001954>>414>>SUB still not found
+FAIL: CY001957>>2075>>SUB still not found
+FAIL: CY001955>>531>>SUB still not found
+FAIL: CY001957>>882>>SUB still not found
+FAIL: CY001952>>322>>DEL still not found
+FAIL: CY001959>>956>>SUB still not found
+FAIL: CY001953>>958>>SUB still not found
+FAIL: CY001953>>174>>SUB still not found
+FAIL: CY001958>>78>>SUB still not found
+FAIL: CY001952>>260>>SUB still not found
+FAIL: CY001952>>1226>>SUB still not found
+FAIL: CY001959>>83>>SUB still not found
+FAIL: CY001956>>539>>SUB still not found
+FAIL: CY001957>>729>>SUB still not found
+FAIL: CY001959>>689>>SUB still not found
+FAIL: CY001957>>1620>>INS still not found
+FAIL: CY001958>>1984>>SUB still not found
+FAIL: CY001959>>489>>SUB still not found
+FAIL: CY001959>>1796>>SUB still not found
+FAIL: CY001958>>155>>SUB still not found
+FAIL: CY001954>>290>>SUB still not found
+FAIL: CY001959>>810>>INS still not found
+FAIL: CY001956>>516>>SUB still not found
+FAIL: CY001955>>1095>>SUB still not found
+FAIL: CY001952>>759>>DEL still not found
+FAIL: CY001953>>737>>SUB still not found
+FAIL: CY001958>>1041>>SUB still not found
+FAIL: CY001952>>378>>SUB still not found
+FAIL: CY001952>>1616>>SUB still not found
+FAIL: CY001957>>806>>SUB still not found
+FAIL: CY001952>>1459>>INS still not found
+FAIL: CY001959>>57>>SUB still not found
+FAIL: CY001952>>563>>SUB still not found
+FAIL: CY001959>>1160>>SUB still not found
+FAIL: CY001952>>1617>>SUB still not found
+FAIL: CY001958>>2310>>SUB still not found
+FAIL: CY001956>>753>>SUB still not found
+FAIL: CY001958>>1884>>SUB still not found
+FAIL: CY001958>>1192>>SUB still not found
+FAIL: CY001954>>377>>SUB still not found
+FAIL: CY001954>>735>>DEL still not found
+FAIL: CY001952>>490>>SUB still not found
+FAIL: CY001955>>1393>>INS still not found
+FAIL: CY001958>>1861>>SUB still not found
+FAIL: CY001954>>1385>>SUB still not found
+FAIL: CY001952>>181>>SUB still not found
+FAIL: CY001952>>1156>>SUB still not found
+FAIL: CY001957>>2208>>SUB still not found
+FAIL: CY001956>>164>>SUB still not found
+FAIL: CY001956>>790>>SUB still not found
+FAIL: CY001954>>35>>SUB still not found
+FAIL: CY001959>>1134>>SUB still not found
+FAIL: CY001952>>464>>SUB still not found
+FAIL: CY001953>>802>>INS still not found
+FAIL: CY001956>>493>>SUB still not found
+FAIL: CY001959>>1093>>SUB still not found
+FAIL: CY001955>>1178>>SUB still not found
+FAIL: CY001959>>380>>SUB still not found
+FAIL: CY001955>>427>>SUB still not found
+FAIL: CY001954>>364>>SUB still not found
+FAIL: CY001958>>1609>>SUB still not found
+FAIL: CY001954>>1259>>SUB still not found
+FAIL: CY001958>>1099>>SUB still not found
+FAIL: CY001955>>172>>SUB still not found
+FAIL: CY001959>>1555>>INS still not found
+FAIL: CY001957>>1181>>SUB still not found
+FAIL: CY001953>>942>>SUB still not found
+FAIL: CY001953>>162>>SUB still not found
+FAIL: CY001952>>1145>>SUB still not found
+FAIL: CY001957>>1335>>SUB still not found
+FAIL: CY001957>>1218>>SUB still not found
+FAIL: CY001954>>706>>SUB still not found
+FAIL: CY001952>>1095>>SUB still not found
+FAIL: CY001959>>729>>SUB still not found
+FAIL: CY001958>>1918>>SUB still not found
+FAIL: CY001955>>1194>>SUB still not found
+FAIL: CY001958>>1525>>SUB still not found
+FAIL: CY001958>>778>>INS still not found
+FAIL: CY001958>>1199>>SUB still not found
+FAIL: CY001955>>669>>SUB still not found
+FAIL: CY001959>>1022>>SUB still not found
+FAIL: CY001955>>677>>SUB still not found
+FAIL: CY001952>>125>>SUB still not found
+FAIL: CY001959>>257>>SUB still not found
+FAIL: CY001952>>1183>>SUB still not found
+FAIL: CY001955>>384>>SUB still not found
+FAIL: CY001959>>256>>SUB still not found
+FAIL: CY001957>>1357>>SUB still not found
+FAIL: CY001952>>16>>DEL still not found
+FAIL: CY001957>>831>>SUB still not found
+FAIL: CY001958>>164>>SUB still not found
+FAIL: CY001959>>606>>SUB still not found
+FAIL: CY001958>>209>>SUB still not found
+FAIL: CY001952>>1360>>INS still not found
+FAIL: CY001952>>391>>DEL still not found
+FAIL: CY001959>>721>>SUB still not found
+FAIL: CY001957>>1410>>SUB still not found
+FAIL: CY001956>>787>>SUB still not found
+FAIL: CY001958>>42>>SUB still not found
+FAIL: CY001958>>1505>>SUB still not found
+FAIL: CY001954>>40>>SUB still not found
+FAIL: CY001959>>1046>>SUB still not found
+FAIL: CY001959>>443>>SUB still not found
+FAIL: CY001953>>780>>SUB still not found
+FAIL: CY001952>>1517>>INS still not found
+FAIL: CY001954>>242>>SUB still not found
+FAIL: CY001959>>316>>SUB still not found
+FAIL: CY001954>>400>>SUB still not found
+FAIL: CY001958>>313>>SUB still not found
+FAIL: CY001955>>139>>INS still not found
+FAIL: CY001959>>1777>>SUB still not found
+FAIL: CY001959>>1170>>SUB still not found
+FAIL: CY001952>>1322>>SUB still not found
+FAIL: CY001956>>576>>SUB still not found
+FAIL: CY001954>>1141>>SUB still not found
+FAIL: CY001953>>186>>DEL still not found
+FAIL: CY001954>>1341>>SUB still not found
+FAIL: CY001954>>926>>SUB still not found
+FAIL: CY001954>>550>>INS still not found
+FAIL: CY001958>>2262>>SUB still not found
+FAIL: CY001955>>872>>SUB still not found
+FAIL: CY001956>>269>>SUB still not found
+FAIL: CY001958>>1339>>SUB still not found
+FAIL: CY001956>>882>>DEL still not found
+FAIL: CY001955>>1288>>SUB still not found
+FAIL: CY001957>>1140>>DEL still not found
+FAIL: CY001956>>775>>SUB still not found
+FAIL: CY001957>>2091>>SUB still not found
+FAIL: CY001954>>327>>SUB still not found
+FAIL: CY001959>>1047>>SUB still not found
+FAIL: CY001958>>68>>SUB still not found
+FAIL: CY001959>>559>>SUB still not found
+FAIL: CY001955>>1557>>DEL still not found
+FAIL: CY001957>>186>>DEL still not found
+FAIL: CY001957>>686>>SUB still not found
+FAIL: CY001952>>680>>SUB still not found
+FAIL: CY001958>>1148>>SUB still not found
+FAIL: CY001956>>220>>SUB still not found
+FAIL: CY001958>>2136>>SUB still not found
+FAIL: CY001959>>704>>SUB still not found
+FAIL: CY001953>>823>>SUB still not found
+FAIL: CY001953>>377>>SUB still not found
+FAIL: CY001958>>1021>>SUB still not found
+FAIL: CY001957>>1658>>INS still not found
+FAIL: CY001952>>118>>SUB still not found
+FAIL: CY001956>>204>>SUB still not found
+FAIL: CY001957>>1182>>SUB still not found
+FAIL: CY001952>>1703>>SUB still not found
+FAIL: CY001957>>1876>>SUB still not found
+FAIL: CY001955>>524>>SUB still not found
+FAIL: CY001958>>1408>>SUB still not found
+FAIL: CY001952>>904>>SUB still not found
+FAIL: CY001954>>305>>SUB still not found
+FAIL: CY001958>>1490>>SUB still not found
+FAIL: CY001957>>1534>>SUB still not found
+FAIL: CY001952>>597>>SUB still not found
+FAIL: CY001958>>1997>>SUB still not found
+FAIL: CY001959>>1371>>SUB still not found
+FAIL: CY001952>>5>>SUB still not found
+FAIL: CY001957>>105>>SUB still not found
+FAIL: CY001959>>2178>>SUB still not found
+FAIL: CY001955>>1043>>DEL still not found
+FAIL: CY001957>>881>>SUB still not found
+FAIL: CY001958>>327>>SUB still not found
+FAIL: CY001959>>2073>>SUB still not found
+FAIL: CY001952>>1386>>SUB still not found
+FAIL: CY001953>>22>>INS still not found
+FAIL: CY001957>>915>>DEL still not found
+FAIL: CY001957>>229>>SUB still not found
+FAIL: CY001958>>2287>>SUB still not found
+FAIL: CY001953>>730>>SUB still not found
+FAIL: CY001958>>1564>>DEL still not found
+FAIL: CY001954>>1025>>SUB still not found
+FAIL: CY001955>>619>>SUB still not found
+FAIL: CY001958>>302>>SUB still not found
+FAIL: CY001953>>126>>INS still not found
+FAIL: CY001952>>1076>>SUB still not found
+FAIL: CY001952>>1011>>DEL still not found
+FAIL: CY001952>>1066>>SUB still not found
+FAIL: CY001958>>337>>SUB still not found
+FAIL: CY001952>>369>>SUB still not found
+FAIL: CY001957>>519>>INS still not found
+FAIL: CY001959>>1970>>SUB still not found
+FAIL: CY001955>>682>>INS still not found
+FAIL: CY001956>>481>>SUB still not found
+FAIL: CY001954>>760>>SUB still not found
+FAIL: CY001956>>134>>SUB still not found
+FAIL: CY001957>>2045>>SUB still not found
+FAIL: CY001956>>440>>SUB still not found
+FAIL: CY001954>>1240>>SUB still not found
+FAIL: CY001955>>288>>SUB still not found
+FAIL: CY001959>>2139>>SUB still failed
+FAIL: CY001958>>1391>>SUB still failed
+FAIL: CY001956>>442>>SUB still failed
+FAIL: CY001958>>2252>>SUB still failed
+FAIL: CY001959>>867>>SUB still failed
+FAIL: CY001959>>68>>SUB still failed
+FAIL: CY001958>>1028>>SUB still failed
+FAIL: CY001955>>619>>SUB still failed
+FAIL: CY001954>>1009>>SUB still failed
+FAIL: CY001957>>707>>SUB still failed
+FAIL: CY001954>>1385>>SUB still failed
+FAIL: CY001959>>606>>SUB still failed
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 655
+PASSED (Approxi): 636
+FAILED: 12
+NOT SHARED: 742
+LEN iG: 1373
+LEN BWA: 1409

@@ -1,7 +1,7 @@
 ##fileformat=VCFv4.2
 ##FILTER=<ID=PASS,Description="All filters passed">
 ##samtoolsVersion=1.3.1+htslib-1.3.1
-##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len100bp/seq_error_rate0.2/mut_rate0.001/out.sorted.bam
+##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_outputflu/read_len100bp/seq_error_rate0.2/mut_rate0.001/out.sorted.bam
 ##reference=file://bwa_files/flu.H1N1.fa
 ##contig=<ID=CY001959,length=2311>
 ##contig=<ID=CY001958,length=2325>
@@ -34,6 +34,7 @@
 ##bcftools_callVersion=1.3.1+htslib-1.3.1
 ##bcftools_callCommand=call -mAv
 ##bcftools_filterVersion=1.3.1+htslib-1.3.1
-##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len100bp/seq_error_rate0.2/mut_rate0.001/calls.raw.bcf
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len100bp/seq_error_rate0.2/mut_rate0.001/out.sorted.bam
-CY001959	1111	.	G	C,A,T	18.3016	PASS	DP=26;VDB=0.271069;SGB=-0.692914;RPB=1;MQB=1;MQSB=0.973724;BQB=1;MQ0F=0;AC=2,0,0;AN=2;DP4=0,1,13,12;MQ=56	GT:PL	1/1:45,56,0,49,47,45,48,56,49,45
+##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_outputflu/read_len100bp/seq_error_rate0.2/mut_rate0.001/calls.raw.bcf
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_outputflu/read_len100bp/seq_error_rate0.2/mut_rate0.001/out.sorted.bam
+CY001959	477	.	T	C,G	13.9675	PASS	DP=23;VDB=0.240982;SGB=-0.692067;RPB=0.441902;MQB=0.860708;MQSB=0.962374;BQB=0.604009;MQ0F=0;AC=2,0;AN=2;DP4=2,1,9,11;MQ=56	GT:PL	1/1:41,33,0,47,47,42
+CY001955	303	.	G	C,A	7.43114	PASS	DP=27;VDB=0.475062;SGB=-0.692562;RPB=0.588395;MQB=0.588395;MQSB=0.697274;BQB=0.98262;MQ0F=0;AC=2,0;AN=2;DP4=4,1,10,12;MQ=56	GT:PL	1/1:34,27,0,42,42,35

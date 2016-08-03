@@ -1,0 +1,49 @@
+FAIL: CY001956>>104>>SUB not found
+FAIL: CY001959>>477>>SUB not found
+FAIL: CY001955>>351>>SUB not found
+FAIL: CY001954>>540>>SUB not found
+FAIL: CY001954>>33>>SUB not found
+FAIL: CY001953>>911>>SUB not found
+FAIL: CY001955>>303>>SUB not found
+FAIL: CY001955>>685>>SUB not found
+FAIL: CY001952>>1668>>SUB not found
+FAIL: CY001959>>240>>SUB not found
+FAIL: CY001959>>371>>SUB not found
+FAIL: CY001958>>1496>>SUB not found
+FAIL: CY001959>>1103>>SUB not found
+FAIL: CY001956>>744>>DEL not found
+FAIL: CY001958>>2123>>SUB not found
+FAIL: CY001952>>597>>INS not found
+FAIL: CY001953>>126>>SUB not found
+FAIL: CY001959>>1107>>SUB not found
+FAIL: CY001956>>352>>SUB not found
+19
+0
+PASSED (Approxi): CY001959>>1107>>SUB
+FAIL: CY001956>>104>>SUB still not found
+FAIL: CY001959>>477>>SUB still not found
+FAIL: CY001955>>351>>SUB still not found
+FAIL: CY001954>>540>>SUB still not found
+FAIL: CY001955>>303>>SUB still not found
+FAIL: CY001952>>1668>>SUB still not found
+FAIL: CY001958>>1496>>SUB still not found
+FAIL: CY001956>>744>>DEL still not found
+FAIL: CY001958>>2123>>SUB still not found
+FAIL: CY001952>>597>>INS still not found
+FAIL: CY001956>>352>>SUB still not found
+FAIL: CY001954>>33>>SUB still not found
+FAIL: CY001953>>911>>SUB still not found
+FAIL: CY001955>>685>>SUB still not found
+FAIL: CY001959>>371>>SUB still not found
+FAIL: CY001959>>240>>SUB still not found
+FAIL: CY001959>>1103>>SUB still not found
+FAIL: CY001953>>126>>SUB still not found
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 1
+PASSED (Approxi): 1
+FAILED: 0
+NOT SHARED: 18
+LEN iG: 35
+LEN BWA: 19

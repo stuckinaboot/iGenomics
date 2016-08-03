@@ -10,6 +10,7 @@ import json
 LINE_WIDTH = 3
 
 comparisonRoot = argv[1]
+outputDir = os.path.abspath(argv[2])
 
 def stdPrint(txt):
 	sys.stdout.write(txt)
@@ -147,7 +148,7 @@ for plotDataPoint in plotDataPoints:
 	stdPrint('label: ' + label + '\n\n')
 	plt.plot(readLens, recalls, label=label, linewidth=LINE_WIDTH)
 plt.legend(loc=0,prop={'size':6})
-plt.savefig('auto_plot_output.recall.pdf')
+plt.savefig(os.path.join(outputDir, 'auto_plot_output.recall.pdf'))
 plt.gcf().clear()
 
 #b) Precision Plot
@@ -169,7 +170,7 @@ for plotDataPoint in plotDataPoints:
 	stdPrint('label: ' + label + '\n\n')
 	plt.plot(readLens, precisions, label=label, linewidth=LINE_WIDTH)
 plt.legend(loc=0,prop={'size':6})
-plt.savefig('auto_plot_output.precision.pdf')
+plt.savefig(os.path.join(outputDir, 'auto_plot_output.precision.pdf'))
 plt.gcf().clear()
 
 #c) F-Score vs. Read Len
@@ -191,7 +192,7 @@ for plotDataPoint in plotDataPoints:
 	stdPrint('label: ' + label + '\n\n')
 	plt.plot(readLens, fScores, label=label, linewidth=LINE_WIDTH)
 plt.legend(loc=0,prop={'size':6})
-plt.savefig('auto_plot_output.fscore.vreadlen.pdf')
+plt.savefig(os.path.join(outputDir, 'auto_plot_output.fscore.vreadlen.pdf'))
 plt.gcf().clear()
 
 #d) F-Score vs. Seq Error Rate
@@ -213,7 +214,7 @@ for plotDataPoint in plotDataPointsVSeqErrorRate:
 	stdPrint('label: ' + label + '\n\n')
 	plt.plot(seqErrorRates, fScores, label=label, linewidth=LINE_WIDTH)
 plt.legend(loc=0,prop={'size':6})
-plt.savefig('auto_plot_output.fscore.vseqerrorrate.pdf')
+plt.savefig(os.path.join(outputDir, 'auto_plot_output.fscore.vseqerrorrate.pdf'))
 plt.gcf().clear()
 
 #e) Runtimes
@@ -238,5 +239,5 @@ for plotDataPoint in plotDataPoints:
 	stdPrint('label: ' + label + '\n\n')
 	plt.plot(runtimesBWA, runtimesIGenomics, label=label, linewidth=LINE_WIDTH)
 plt.legend(loc=0,prop={'size':6})
-plt.savefig('auto_plot_output.runtimes.pdf')
+plt.savefig(os.path.join(outputDir, 'auto_plot_output.runtimes.pdf'))
 plt.gcf().clear()

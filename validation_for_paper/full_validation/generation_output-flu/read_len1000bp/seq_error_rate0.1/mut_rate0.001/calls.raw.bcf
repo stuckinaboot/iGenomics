@@ -1,7 +1,7 @@
 ##fileformat=VCFv4.2
 ##FILTER=<ID=PASS,Description="All filters passed">
 ##samtoolsVersion=1.3.1+htslib-1.3.1
-##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len1000bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
+##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_outputflu/read_len1000bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
 ##reference=file://bwa_files/flu.H1N1.fa
 ##contig=<ID=CY001959,length=2311>
 ##contig=<ID=CY001958,length=2325>
@@ -33,11 +33,8 @@
 ##INFO=<ID=MQ,Number=1,Type=Integer,Description="Average mapping quality">
 ##bcftools_callVersion=1.3.1+htslib-1.3.1
 ##bcftools_callCommand=call -mAv
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output-flu/read_len1000bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
-CY001958	2017	.	G	GA	5.70413	.	INDEL;IDV=3;IMF=0.0555556;DP=54;VDB=1.09561e-21;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,24,29;MQ=60	GT:PL	1/1:31,145,0
-CY001958	2018	.	G	GT	7.25025	.	INDEL;IDV=40;IMF=0.754717;DP=53;VDB=4.2815e-22;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=0,0,24,29;MQ=60	GT:PL	1/1:33,160,0
-CY001958	2021	.	T	TA	7.25025	.	INDEL;IDV=1;IMF=0.0188679;DP=53;VDB=7.03464e-22;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=0,0,24,29;MQ=60	GT:PL	1/1:33,160,0
-CY001957	369	.	T	G,A	44.3518	.	DP=58;VDB=2.0495e-19;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,36,22;MQ=60	GT:PL	1/1:71,166,0,80,129,71
-CY001957	1991	.	A	G,T,C	5.05933	.	DP=44;VDB=7.58267e-09;SGB=-0.692831;RPB=0.485537;MQB=1;MQSB=1;BQB=0.969839;MQ0F=0;ICB=1;HOB=0.5;AC=1,0,0;AN=2;DP4=13,7,13,11;MQ=60	GT:PL	0/1:36,0,25,86,81,70,86,81,73,70
-CY001955	450	.	C	A,T,G	29.2748	.	DP=128;VDB=2.5447e-23;SGB=-0.693147;RPB=0.905699;MQB=1;MQSB=1;BQB=0.768427;MQ0F=0;AC=2,0,0;AN=2;DP4=1,3,66,58;MQ=60	GT:PL	1/1:56,255,0,68,223,56,62,255,70,56
-CY001953	297	.	A	C,T,G	33.2289	.	DP=103;VDB=5.04467e-44;SGB=-0.693147;RPB=0.909615;MQB=1;MQSB=1;BQB=0.40748;MQ0F=0;AC=2,0,0;AN=2;DP4=2,2,37,62;MQ=60	GT:PL	1/1:60,210,0,71,161,59,66,232,77,60
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_outputflu/read_len1000bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
+CY001958	1875	.	C	T,A	44.3263	.	DP=70;VDB=3.29698e-16;SGB=-0.693147;RPB=0.75;MQB=1;MQSB=1;BQB=0.375;MQ0F=0;AC=2,0;AN=2;DP4=2,0,33,35;MQ=60	GT:PL	1/1:71,171,0,75,171,71
+CY001955	665	.	G	C,A,T	32.2414	.	DP=157;VDB=1.06903e-17;SGB=-0.693147;RPB=0.123456;MQB=1;MQSB=1;BQB=0.52489;MQ0F=0;AC=2,0,0;AN=2;DP4=1,6,73,77;MQ=60	GT:PL	1/1:59,255,0,66,255,59,66,255,66,59
+CY001954	266	.	A	G,T,C	27.2615	.	DP=82;VDB=3.39154e-24;SGB=-0.693147;RPB=0.989079;MQB=1;MQSB=1;BQB=0.807188;MQ0F=0;AC=2,0,0;AN=2;DP4=1,2,40,39;MQ=60	GT:PL	1/1:54,177,0,59,168,54,58,177,59,53
+CY001954	496	.	T	A,C,G	28.1714	.	DP=146;VDB=1.93109e-22;SGB=-0.693147;RPB=0.708726;MQB=1;MQSB=1;BQB=0.997637;MQ0F=0;AC=2,0,0;AN=2;DP4=1,7,75,63;MQ=60	GT:PL	1/1:55,255,0,63,239,54,62,255,64,55
