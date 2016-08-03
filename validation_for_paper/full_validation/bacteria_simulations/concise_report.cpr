@@ -1,10 +1,10 @@
-{'reference': 'anthrax.capsule', 'read len': '1000', 'iGenomics runtime': '530.068726', 'bwa runtime': 23.322, 'number of reads': '9483', 'mutation accuracy': 0.977924944812362}
-{'reference': 'anthrax.capsule', 'read len': '100', 'iGenomics runtime': '32.481941', 'bwa runtime': 3.509, 'number of reads': '94830', 'mutation accuracy': 0.9875776397515528}
-{'reference': 'flu.H1N1', 'read len': '1000', 'iGenomics runtime': '25.590673', 'bwa runtime': 2.89, 'number of reads': '1268', 'mutation accuracy': 0.9037037037037037}
-{'reference': 'flu.H1N1', 'read len': '100', 'iGenomics runtime': '3.305264', 'bwa runtime': 0.493, 'number of reads': '13568', 'mutation accuracy': 0.9743589743589742}
-{'reference': 'flu.H3N2', 'read len': '1000', 'iGenomics runtime': '23.785633', 'bwa runtime': 2.807, 'number of reads': '1252', 'mutation accuracy': 0.8645161290322582}
-{'reference': 'flu.H3N2', 'read len': '100', 'iGenomics runtime': '3.088658', 'bwa runtime': 0.487, 'number of reads': '13382', 'mutation accuracy': 0.9841269841269841}
-{'reference': 'lambdaphage', 'read len': '1000', 'iGenomics runtime': '104.168327', 'bwa runtime': 11.145, 'number of reads': '4850', 'mutation accuracy': 0.9545454545454545}
-{'reference': 'lambdaphage', 'read len': '100', 'iGenomics runtime': '11.714944', 'bwa runtime': 1.76, 'number of reads': '48502', 'mutation accuracy': 0.9977827050997783}
-{'reference': 'phix174', 'read len': '1000', 'iGenomics runtime': '5.804269', 'bwa runtime': 1.227, 'number of reads': '539', 'mutation accuracy': 0.6823529411764707}
-{'reference': 'phix174', 'read len': '100', 'iGenomics runtime': '1.048898', 'bwa runtime': 0.194, 'number of reads': '5386', 'mutation accuracy': 1.0}
+{"reference": "anthrax.capsule", "read len": "1000", "reference length": 94830, "number of reads": "9483", "runtimes": {"bwa": 23.322, "iG": "530.068726"}, "mutation accuracy": 0.977924944812362}
+{"reference": "anthrax.capsule", "read len": "100", "reference length": 94830, "number of reads": "94830", "runtimes": {"bwa": 3.509, "iG": "32.481941"}, "mutation accuracy": 0.9875776397515528}
+{"reference": "flu.H1N1", "read len": "1000", "reference length": 13568, "number of reads": "1268", "runtimes": {"bwa": 2.89, "iG": "25.590673"}, "mutation accuracy": 0.9037037037037037}
+{"reference": "flu.H1N1", "read len": "100", "reference length": 13568, "number of reads": "13568", "runtimes": {"bwa": 0.493, "iG": "3.305264"}, "mutation accuracy": 0.9743589743589742}
+{"reference": "flu.H3N2", "read len": "1000", "reference length": 13382, "number of reads": "1252", "runtimes": {"bwa": 2.807, "iG": "23.785633"}, "mutation accuracy": 0.8645161290322582}
+{"reference": "flu.H3N2", "read len": "100", "reference length": 13382, "number of reads": "13382", "runtimes": {"bwa": 0.487, "iG": "3.088658"}, "mutation accuracy": 0.9841269841269841}
+{"reference": "lambdaphage", "read len": "1000", "reference length": 48502, "number of reads": "4850", "runtimes": {"bwa": 11.145, "iG": "104.168327"}, "mutation accuracy": 0.9545454545454545}
+{"reference": "lambdaphage", "read len": "100", "reference length": 48502, "number of reads": "48502", "runtimes": {"bwa": 1.76, "iG": "11.714944"}, "mutation accuracy": 0.9977827050997783}
+{"reference": "phix174", "read len": "1000", "reference length": 5386, "number of reads": "539", "runtimes": {"bwa": 1.227, "iG": "5.804269"}, "mutation accuracy": 0.6823529411764707}
+{"reference": "phix174", "read len": "100", "reference length": 5386, "number of reads": "5386", "runtimes": {"bwa": 0.194, "iG": "1.048898"}, "mutation accuracy": 1.0}

@@ -11,8 +11,7 @@ Contains a JSON object on each line that looks like the following:
 		'reference length': reference file length,
 		'number of reads' : number of reads,
 		'mutation accuracy': mutation comparison accuracy,
-		'iGenomics runtime': iG runtime,
-		'bwa runtime': BWA runtime
+		'runtimes': {'iG runtime': iGenomics runtime, 'bwa': BWA runtime}
 	}
 	where each JSON object represents one genome
 '''
@@ -28,7 +27,7 @@ def createDirectoryAtPath(path):
 currPath = os.path.abspath(argv[1])
 dwgPath = os.path.abspath(argv[2]) #Should be the path to the directory containing all the gen output folders
 igPath = os.path.abspath(argv[3]) #Should be the path to the directory containing the tree of iGenomics output folders
-currPath = os.path.join(currPath, 'concise_reports')
+# currPath = os.path.join(currPath, 'concise_reports')
 
 createDirectoryAtPath(currPath)
 
@@ -65,15 +64,28 @@ def accuracyFromMutsOutFile(mutFilePath):
 		accuracy = (2 * precision * recall) / float(precision + recall)
 		return accuracy
 
+def lengthFromReferenceFile(refFilePath):
+	with open(refFilePath) as file:
+		length = 0
+		for line in file.readlines():
+			line = line.strip('\n').strip('\r')
+			if line[0] != '>':
+				length += len(line)
+		return length
+
 for igFolder in os.listdir(igPath):
 	currIGPath = os.path.join(igPath, igFolder)
 
 	dwgFolder = 'generation_output_' + igFolder.replace('.fa', '')
 	currDWGPath = os.path.join(dwgPath, dwgFolder)
 	for readLenPath in os.listdir(currIGPath):
+
+		referenceFilePath = os.path.join(currPath, igFolder + '.fa')
+		referenceLen = lengthFromReferenceFile(referenceFilePath)
 		infoDict = {
 					'read len': readLenPath.strip('read_len').strip('bp'),
-					'reference': igFolder
+					'reference': igFolder,
+					'reference length': referenceLen
 					}
 		
 		currIGPath = os.path.join(os.path.join(igPath, igFolder), readLenPath)
@@ -86,11 +98,13 @@ for igFolder in os.listdir(igPath):
 		for (dirpath, dirnames, filenames) in os.walk(currDWGPath):
 			dwgFolderFiles.extend([os.path.join(dirpath, name) for name in filenames])
 
+
+		infoDict['runtimes'] = {}
 		igMutationsFilePath = ''
 		for filePath in igFolderFiles:
 			if '.acp' in filePath:
 				acpDict = acpFileToDict(filePath)
-				infoDict['iGenomics runtime'] = acpDict['RT']
+				infoDict['runtimes']['iG'] = acpDict['RT']
 				infoDict['number of reads'] = acpDict['RC']
 			elif '.normalized.ig.vcf' in filePath:
 				igMutationsFilePath = filePath
@@ -100,13 +114,13 @@ for igFolder in os.listdir(igPath):
 			if '.normalized.dwg.vcf' in filePath:
 				dwgMutationsFilePath = filePath
 			elif 'README.dig' in filePath:
-				infoDict['bwa runtime'] = runtimeFromREADMEdig(filePath)
+				infoDict['runtimes']['bwa'] = runtimeFromREADMEdig(filePath)
 
 		mutsOutPath = os.path.join(currPath, 'muts.out')
 		os.system('python ' + COMPARE_MUTS_PATH + ' ' + dwgMutationsFilePath + ' ' + igMutationsFilePath + ' > ' + mutsOutPath)
 		infoDict['mutation accuracy'] = accuracyFromMutsOutFile(mutsOutPath)
 		os.system('rm ' + mutsOutPath)
-		print infoDict
+		print json.dumps(infoDict)
 
 
 
