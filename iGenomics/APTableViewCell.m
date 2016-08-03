@@ -10,6 +10,14 @@
 
 @implementation APTableViewCell
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        self.textLabel.numberOfLines = 0;
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }
