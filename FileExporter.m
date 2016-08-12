@@ -12,13 +12,14 @@
 
 @synthesize delegate;
 
-- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned separateGenomeLensArr:(NSArray *)sepGenLens separateGenomeNamesArr:(NSArray *)sepSegNames {
+- (void)setGenomeFileName:(NSString *)gName andReadsFileName:(NSString *)rName andErrorRate:(float)er andExportDataStr:(NSString *)expDataStr andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned separateGenomeLensArr:(NSArray *)sepGenLens separateGenomeNamesArr:(NSArray *)sepSegNames {
     genomeFileName = [gName substringToIndex:[gName rangeOfString:@"." options:NSBackwardsSearch].location];
     readsFileName = [rName substringToIndex:[rName rangeOfString:@"." options:NSBackwardsSearch].location];
     errorRate = er;
     exportDataStr = [NSString stringWithString:expDataStr];
     
-    totalAlignmentRuntime = runtime;
+    totalAlignmentRuntime = 0;
+//    totalAlignmentRuntime = runtime;
     totalNumOfReadsAligned = numOfReadsAligned;
     totalNumOfReads = numOfReads;
     
@@ -59,6 +60,12 @@
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray *)mutPosArr {
     mutationSupportVal = mutSupVal;
     mutPosArray = mutPosArr;
+}
+
+- (void)setTotalAlignmentRuntime:(float)runtime {
+    totalAlignmentRuntime = runtime;
+    
+    [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
 }
 
 - (void)displayExportOptionsWithSender:(id)sender {

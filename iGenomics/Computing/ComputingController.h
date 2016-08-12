@@ -24,7 +24,7 @@
 #define kComputingTimeRemainingFracOfReadsToBeginFreqUpdatingAt .5
 #define kComputingTimeRemainingNumOfSDsToAddToMeanTimeRemaining 1
 
-#define kShowAnalysisControllerDelay 0 // Wait for viewDidAppear/viewDidDisappear to know the current transition has completed' (error from console), this should fix it
+#define kShowAnalysisControllerDelay 0.3 // Wait for viewDidAppear/viewDidDisappear to know the current transition has completed' (error from console), this should fix it
 
 #define kFirstQualValueIndexInReadsToTrim 2
 #define kTrimmingOffVal -1

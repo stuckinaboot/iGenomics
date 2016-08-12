@@ -22,7 +22,7 @@ with open(conciseReportFilePath) as conciseFile:
 
 plotDataPoints = {}
 for data in dataPoints:
-	for runtimeKey in data['runtimes']:
+    	for runtimeKey in data['runtimes']:
 		if runtimeKey not in plotDataPoints:
 			plotDataPoints[runtimeKey] = {}
 		readLen = data['read len']

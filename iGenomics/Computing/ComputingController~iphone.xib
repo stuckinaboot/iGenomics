@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -63,10 +63,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="QWx-jN-JRR" firstAttribute="leading" secondItem="2" secondAttribute="leading" priority="250" constant="40" id="29g-z3-ahN"/>
                 <constraint firstItem="har-rd-UpS" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="34" id="6Xu-rE-lNp"/>
-                <constraint firstItem="QWx-jN-JRR" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="40" id="GlM-aG-GEX"/>
+                <constraint firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" priority="250" constant="40" id="6oY-yr-bdB"/>
+                <constraint firstItem="QWx-jN-JRR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2" secondAttribute="leading" constant="40" id="GlM-aG-GEX"/>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Hmp-ky-bxQ"/>
-                <constraint firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="MVU-cl-8ne"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="MVU-cl-8ne"/>
                 <constraint firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="66" id="UFf-69-2ir"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QWx-jN-JRR" secondAttribute="bottom" id="Uwi-6b-O5y"/>
                 <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="X1T-TV-ff0"/>
@@ -75,7 +77,6 @@
                 <constraint firstItem="QWx-jN-JRR" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="hLi-0Z-G7l"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="58" id="jrl-Fl-AN3"/>
                 <constraint firstAttribute="trailing" secondItem="har-rd-UpS" secondAttribute="trailing" constant="33" id="kUO-Cw-Iwk"/>
-                <constraint firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="q0L-xH-cFo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

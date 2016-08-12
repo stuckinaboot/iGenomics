@@ -76,8 +76,8 @@
             [self updateReadsProcessedLblTimeRemaining];
             
             timeRemaining = 0;
-            [readTimer stop];
-            readTimer = nil;
+//            [readTimer stop];
+//            readTimer = nil;
             
             bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
             [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
@@ -90,7 +90,7 @@
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
-            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime];
+            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime alignmentTimer:readTimer];
             [self performSelector:@selector(showAnalysisController) withObject:NULL afterDelay:kShowAnalysisControllerDelay];
         });
     });

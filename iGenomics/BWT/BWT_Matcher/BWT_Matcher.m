@@ -72,6 +72,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     NSLog(@"About to call setUpNumberOfOccurencesArrayFast");
     
     self.insertionsArray = [[NSMutableArray alloc] init];
+    insertionsDict = [[NSMutableDictionary alloc] init];
     
     NSLog(@"About to create firstCol");
     
@@ -122,7 +123,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     totalAlignmentRuntime = 0;
 
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
 //    ED_Info *bestMatchesVals[[reedsArray count]];
     ED_Info *__strong*bestMatches = (ED_Info*__strong*)calloc([reedsArray count], sizeof([ED_Info class]));
     int actualDGenomeLen = dgenomeLen;
@@ -172,14 +173,13 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
 //    }
     dgenomeLen = actualDGenomeLen;
-//    dispatch_apply([reedsArray count], queue, ^(size_t i) {
+
     for (int i = 0; i < [reedsArray count]; i++) {
         ED_Info *a = bestMatches[i];
-//        readLen = (int)strlen(((Read*)reedsArray[i]).sequence);
         int localReadLen = (int)strlen(((Read*)reedsArray[i]).sequence);
         
         int maxNumOfSubs = maxErrorRate * localReadLen;
-//        int maxNumOfSubs = maxErrorRate * readLen;
+        //        int maxNumOfSubs = maxErrorRate * readLen;
         if (a != NULL) {
             if (!a.alreadyHasPosAdjusted && a.distance > 0)//Exact matches are never unjusted
                 a = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:a cumSepSegLens:cumulativeSeparateGenomeLens];
@@ -187,18 +187,35 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                 int aGappedALen = (int)strlen(a.gappedA);
                 maxNumOfSubs = maxErrorRate * aGappedALen;
                 if (a.distance <= maxNumOfSubs) {
-                    [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a];
+                    [self updatePosOccsArrayWithRange:NSMakeRange(a.position, aGappedALen) andED_Info:a relativeReadNum:i];
                 }
             }
         }
         if (a == NULL) {
-//            dispatch_queue_t _q = dispatch_queue_create("apples", DISPATCH_QUEUE_SERIAL);
+            //            dispatch_queue_t _q = dispatch_queue_create("apples", DISPATCH_QUEUE_SERIAL);
             dispatch_async(_q, ^{
                 [delegate readProccesed:@"" andMatchedAtLeastOnce:NO];
             });
         }
-//    });
     }
+    
+//    //Shift insertions array elements so that they are all in front
+//    NSMutableArray *newInsertionsArray = [[NSMutableArray alloc] init];
+//    for (int i = 0; i < [insertionsArray count]; i++) {
+//        BWT_Matcher_InsertionDeletion_InsertionHolder *holder = [insertionsArray objectAtIndex:i];
+//        if (![holder isKindOfClass:[NSNull class]]) {
+//            [newInsertionsArray addObject:holder];
+//            [insertionsArray removeObjectAtIndex:i];
+//            i--;
+//        }
+//    }
+//    insertionsArray = newInsertionsArray;
+    for (int i = 0; i < reedsCount; i++) {
+        bestMatches[i] = NULL;
+    }
+    free(bestMatches);
+    
+    self.insertionsArray = [NSMutableArray arrayWithArray:[insertionsDict allValues]];
     [matchingTimer stopAndLog];
     totalAlignmentRuntime = [matchingTimer getTotalRecordedTime];
 }
@@ -297,7 +314,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     return NULL;//No match
 }
 
-- (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info {
+- (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info relativeReadNum:(int)relativeReadNum {
 
     dispatch_queue_t _q = dispatch_queue_create("fish tuna", DISPATCH_QUEUE_SERIAL);
     if (info == NULL) {
@@ -350,7 +367,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
 //            });
         }
         else {
-            [self recordInDel:info];
+            [self recordInDel:info relativeReadNum:relativeReadNum];
         }
 
 //        if (kDebugAllInfo > 0) {
@@ -450,7 +467,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     }
 }
 
-- (void)recordInDel:(ED_Info*)info {
+- (void)recordInDel:(ED_Info*)info relativeReadNum:(int)relativeReadNum {
     int aLen = strlen(info.gappedA);
     
 //    if (info.position+aLen<=fileStrLen && !info.insertion) //If it does not go over
@@ -465,6 +482,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
             if (info.gappedB[a] == kDelMarker) {
                 BWT_Matcher_InsertionDeletion_InsertionHolder *tID = [[BWT_Matcher_InsertionDeletion_InsertionHolder alloc] init];
                 [tID setUp];
+                
                 if (a - 1 >= 0) {
                     tID.seq[0] = info.gappedA[a - 1];
                     tID.seq[1] = info.gappedA[a];
@@ -490,16 +508,24 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                 //Check if insertions array already has it
                 BOOL alreadyRec = FALSE;
             
-                for (int l = 0; l<self.insertionsArray.count; l++) {
-                    BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
-                    if (tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
-                        tt.count++;
-                        alreadyRec = TRUE;
-                        free(tID.seq);
-                    }
+//                for (int l = 0; l<self.insertionsArray.count; l++) {
+//                    BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [self.insertionsArray objectAtIndex:l];
+                NSString *insertionsDictKeyFormat = [NSString stringWithFormat:@"%d>%s", tID.pos, tID.seq];
+                BWT_Matcher_InsertionDeletion_InsertionHolder *tt = [insertionsDict objectForKey:insertionsDictKeyFormat];
+//                    if (![tt isKindOfClass:[NSNull class]] && tt.pos == tID.pos && strcmp(tt.seq, tID.seq) == 0) {
+//                        tt.count++;
+//                        alreadyRec = TRUE;
+////                        free(tID.seq);
+//                    }
+                if (tt) {
+                    tt.count++;
+                    alreadyRec = TRUE;
+                    free(tID.seq);
                 }
+//                }
                 if (!alreadyRec) {
-                    [self.insertionsArray addObject:tID];
+                    [insertionsDict setObject:tID forKey:insertionsDictKeyFormat];
+//                    [self.insertionsArray addObject:tID];
                 }
                 OSAtomicIncrement32(&posOccArray[kACGTLen+1][tID.pos]);
                 OSAtomicIncrement32(&insCount);

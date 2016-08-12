@@ -69,7 +69,7 @@ def lengthFromReferenceFile(refFilePath):
 		length = 0
 		for line in file.readlines():
 			line = line.strip('\n').strip('\r')
-			if line[0] != '>':
+			if len(line) > 0 and line[0] != '>':
 				length += len(line)
 		return length
 

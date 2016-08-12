@@ -21,6 +21,7 @@
     BOOL testingOn = NO;
     
     int fullBLen = (int)strlen(b);
+    
     if (rangeB.location + rangeB.length > fullBLen) {
         rangeB.length = fullBLen - rangeB.location;
     }
@@ -50,9 +51,7 @@
     
     maxED = (maxED >= lenA) ? lenA-2 : maxED;
     
-    
-    int numOfBoxesToComputeFor = lenB-lenA+1;//maxED+1;
-    
+    int numOfBoxesToComputeFor = lenB-lenA+1;//2 * maxED + 1;//;<- This got rid of the NEG error, but increases runtime and did not seem to improve alignments //lenB-lenA+1;
     
     for (int i = 1; i <= maxED + 1; i++, numOfBoxesToComputeFor++) {
         for (int j = 1; j < numOfBoxesToComputeFor && j < lenB; j++) {
@@ -89,8 +88,22 @@
 //    }
     
     int temp = numOfBoxesToComputeFor;
-    numOfBoxesToComputeFor = 2*maxED+1;
-    int startColumn = temp-numOfBoxesToComputeFor;//numOfBoxesToComputeFor;
+//    numOfBoxesToComputeFor = 2*maxED+1;
+//    int startColumn = temp-numOfBoxesToComputeFor;//numOfBoxesToComputeFor;
+    
+    
+    numOfBoxesToComputeFor = kBandWidth;
+    int startColumn = temp - (maxED + 1) - numOfBoxesToComputeFor/2;
+
+    if (maxED != kBandWidth) {
+        numOfBoxesToComputeFor = 2*maxED+1;
+        startColumn = temp-numOfBoxesToComputeFor;
+    }
+    
+//    if (startColumn <= 0) {
+//        startColumn = 1;
+////        numOfBoxesToComputeFor = rangeB.length + 1;
+//    }
     
     for (int i = maxED+2; i < lenA; i++, startColumn++) {
         for (int j = startColumn; j < startColumn+numOfBoxesToComputeFor && j < lenB; j++) {

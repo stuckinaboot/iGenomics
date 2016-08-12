@@ -98,12 +98,14 @@ typedef enum {
     NSArray *separateSegmentNames;
 }
 @property (nonatomic) id <FileExporterDelegate> delegate;
-- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr andTotalAlignmentRuntime:(float)runtime andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned separateGenomeLensArr:(NSArray*)sepGenLens separateGenomeNamesArr:(NSArray*)sepSegNames;
+- (void)setGenomeFileName:(NSString*)gName andReadsFileName:(NSString*)rName andErrorRate:(float)er andExportDataStr:(NSString*)expDataStr andTotalNumOfReads:(int)numOfReads andTotalNumOfReadsAligned:(int)numOfReadsAligned separateGenomeLensArr:(NSArray*)sepGenLens separateGenomeNamesArr:(NSArray*)sepSegNames;
 - (void)fixExportDataStr;
 
 - (void)setMutSupportVal:(int)mutSupVal andMutPosArray:(NSArray*)mutPosArr;
 
 - (void)displayExportOptionsWithSender:(id)sender;
+
+- (void)setTotalAlignmentRuntime:(float)runtime;
 
 - (void)emailInfoForOption:(EmailInfoOption)option;
 - (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;

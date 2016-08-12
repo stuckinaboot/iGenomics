@@ -22,6 +22,8 @@
 #define kUp 2
 #define kInitialize 3
 
+#define kBandWidth 128
+
 @interface EditDistance : NSObject {
     NSMutableArray *deletionPositions;
     NSMutableArray *insertionPositions;

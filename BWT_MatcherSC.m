@@ -11,6 +11,9 @@
 @implementation BWT_MatcherSC
 
 - (NSArray*)exactMatchForQuery:(char*)query andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
+    APTimer *exactTimer = [[APTimer alloc] init];
+    [exactTimer start];
+    
     int queryLen = strlen(query);
     int i = queryLen-1;
     char c = query[i];
@@ -20,7 +23,7 @@
     int endPos = [self charsBeforeChar:acgt[whichChar]];
     
     if (whichChar == kACGTLen)
-        endPos = dgenomeLen;
+        endPos = (int)strlen(originalStr);
     i--;
     while (startPos<endPos && i >= 0) {
         c = query[i];
@@ -40,11 +43,21 @@
     else
     {
         for (int l = 0; l<endPos-startPos; l++) {
-            ED_Info *info = [self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query];
-            [posArray addObject:[NSNumber numberWithInteger:info.position]];
-            [info freeUsedMemory];
+//            ED_Info *info = [self positionInBWTwithPosInBWM:startPos+l andIsReverse:isRev andForOnlyPos:forOnlyPos andForED:0 andForQuery:query];
+            [posArray addObject:[NSNumber numberWithInteger:benchmarkPositions[l + startPos]]];
+//            [info freeUsedMemory];
         }
     }
+    
+    if ([posArray count] == 0) {
+        [exactTimer stop];
+        double time = [exactTimer getTotalRecordedTime];
+//        if (time < 0.00009)
+//            printf("E-A: %f\n", time);
+//        else
+//            printf("fuck");
+    }
+    
     return posArray;
 }
 

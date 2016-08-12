@@ -1,0 +1,43 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.3.1+htslib-1.3.1
+##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output_fluH1N1/read_len100bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
+##reference=file://bwa_files/flu.H1N1.fa
+##contig=<ID=CY001959,length=2311>
+##contig=<ID=CY001958,length=2325>
+##contig=<ID=CY001957,length=2233>
+##contig=<ID=CY001952,length=1754>
+##contig=<ID=CY001955,length=1565>
+##contig=<ID=CY001954,length=1463>
+##contig=<ID=CY001953,length=1027>
+##contig=<ID=CY001956,length=890>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=ICB,Number=1,Type=Float,Description="Inbreeding Coefficient Binomial test (bigger is better)">
+##INFO=<ID=HOB,Number=1,Type=Float,Description="Bias in the number of HOMs number (smaller is better)">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Average mapping quality">
+##bcftools_callVersion=1.3.1+htslib-1.3.1
+##bcftools_callCommand=call -mAv
+##bcftools_filterVersion=1.3.1+htslib-1.3.1
+##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output_fluH1N1/read_len100bp/seq_error_rate0.1/mut_rate0.001/calls.raw.bcf
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output_fluH1N1/read_len100bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
+CY001959	855	.	A	C,T,G	45.1367	PASS	DP=80;VDB=0.397162;SGB=-0.693147;RPB=0.694034;MQB=1;MQSB=1;BQB=0.682209;MQ0F=0;AC=2,0,0;AN=2;DP4=3,2,32,43;MQ=60	GT:PL	1/1:72,155,0,80,186,73,80,186,77,73
+CY001959	2060	.	A	T,G	35.2338	PASS	DP=97;VDB=0.0374201;SGB=-0.693147;RPB=0.953549;MQB=1;MQSB=1;BQB=0.662685;MQ0F=0;AC=2,0;AN=2;DP4=3,1,43,50;MQ=60	GT:PL	1/1:62,215,0,67,215,62
+CY001958	103	.	A	C,T,G	27.2252	PASS	DP=90;VDB=0.817427;SGB=-0.693147;RPB=0.999234;MQB=0.999234;MQSB=0.986302;BQB=0.942991;MQ0F=0;AC=2,0,0;AN=2;DP4=3,1,46,40;MQ=59	GT:PL	1/1:54,190,0,60,181,54,63,225,65,55
+CY001958	258	.	C	T,A,G	31.2054	PASS	DP=84;VDB=0.85909;SGB=-0.693147;RPB=0.927283;MQB=1;MQSB=1;BQB=0.646088;MQ0F=0;AC=2,0,0;AN=2;DP4=1,3,49,31;MQ=60	GT:PL	1/1:58,176,0,63,186,58,64,197,63,58
+CY001957	1560	.	G	C,A,T	36.2255	PASS	DP=90;VDB=0.91304;SGB=-0.693147;RPB=0.946114;MQB=0.999234;MQSB=0.9869;BQB=0.666596;MQ0F=0;AC=2,0,0;AN=2;DP4=2,2,48,38;MQ=59	GT:PL	1/1:63,198,0,69,220,63,71,234,67,63

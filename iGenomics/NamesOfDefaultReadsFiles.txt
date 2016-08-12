@@ -1,3 +1,8 @@
+ebola.nanopore.short.fastq
+flu.H3N2.nanopore.long.fq
+lambda.test.bwa.read1.fastq
+flu.H3N2.nanopore.fa
+ebola.nanopore.fastq
 reads-rl100-se0.01-mr0.001.fq
 reads-rl100-se0.01-mr0.01.fq
 reads-rl100-se0.01-mr0.1.fq
@@ -35,6 +40,10 @@ lambdaphage-reads-rl100-se0.01-mr0.005.fq
 lambdaphage-reads-rl1000-se0.1-mr0.005.fq
 phix174-reads-rl100-se0.01-mr0.005.fq
 phix174-reads-rl1000-se0.1-mr0.005.fq
+zika-reads-rl100-se0.01-mr0.005.fq
+zika-reads-rl1000-se0.1-mr0.005.fq
+ebola-reads-rl100-se0.01-mr0.005.fq
+ebola-reads-rl1000-se0.1-mr0.005.fq
 incorrectsingle.fq
 flu.H1N1.clean.fq
 flu.H1N1.resistant.fq

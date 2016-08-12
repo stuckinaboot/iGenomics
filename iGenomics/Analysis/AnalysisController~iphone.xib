@@ -398,7 +398,8 @@
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QbG-yo-djv">
                     <rect key="frame" x="395" y="142" width="90" height="31"/>
                     <connections>
-                        <action selector="mutationSupportSliderChanged:" destination="-1" eventType="valueChanged" id="2QC-av-pBi"/>
+                        <action selector="mutationSupportSliderChanged:" destination="-1" eventType="touchUpInside" id="mxC-p7-uE0"/>
+                        <action selector="mutationSupportSliderValueIsChanging:" destination="-1" eventType="valueChanged" id="1br-Bm-NqT"/>
                     </connections>
                 </slider>
             </subviews>

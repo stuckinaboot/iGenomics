@@ -103,7 +103,7 @@
 //    analysisControllerIPadMenu = [[AnalysisControllerIPadMenu alloc] init];
 }
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents andRefFile:(APFile*)refFile andTotalAlignmentRuntime:(float)totalAlRt {
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray *)iArr andBWT:(BWT *)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray *)sepGNA andSeparateGenomeLensArr:(NSMutableArray *)sepGLA andCumulativeGenomeLensArr:(NSMutableArray *)cGLA andImptMutsFileContents:(NSString *)mutsFileContents andRefFile:(APFile*)refFile andTotalAlignmentRuntime:(float)totalAlRt alignmentTimer:(APTimer*)timer {
     NSLog(@"About to ready view for display");
     
     originalStr = unraveledStr;
@@ -138,6 +138,8 @@
     
     totalAlignmentRuntime = totalAlRt;
     
+    alignmentTimer = timer;
+    
 //    NSLog(@"About to create separateGenomeNames and separateGenomeLens arrays");
     
 //    for (int i = 0, x = 0; i < [arr count]; i += 2, x++) {
@@ -151,7 +153,7 @@
     
     fileExporter = [[FileExporter alloc] init];
     [fileExporter setDelegate:self];
-    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr andTotalAlignmentRuntime:totalAlignmentRuntime andTotalNumOfReads:numOfReads andTotalNumOfReadsAligned:numOfReadsMatched separateGenomeLensArr:separateGenomeLens separateGenomeNamesArr:separateGenomeNames];
+    [fileExporter setGenomeFileName:genomeFileName andReadsFileName:readsFileName andErrorRate:errorRate andExportDataStr:exportDataStr  andTotalNumOfReads:numOfReads andTotalNumOfReadsAligned:numOfReadsMatched separateGenomeLensArr:separateGenomeLens separateGenomeNamesArr:separateGenomeNames];
 }
 
 - (void)readyViewForCovProfile {
@@ -273,6 +275,7 @@
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     
     [mutationSupportSlider setValue:0.25f];
+    [self mutationSupportSliderValueIsChanging:mutationSupportSlider];
     [self mutationSupportSliderChanged:mutationSupportSlider];
 }
 
@@ -439,40 +442,76 @@
 }
 
 //Mutation Support Stepper
-- (IBAction)mutationSupportSliderChanged:(id)sender {
+- (IBAction)mutationSupportSliderValueIsChanging:(id)sender {
     UISlider *slider = (UISlider*)sender;
-//    slider.value = 0.25f;
+    //    slider.value = 0.25f;
     
     //http://stackoverflow.com/questions/2519460/uislider-with-increments-of-5
     [slider setValue:((int)((slider.value + 0.025f) / 0.05f) * 0.05f) animated:YES];
     float val = (float)slider.value;
     
+    mutationSupportNumLbl.text = [NSString stringWithFormat:@"%0.02f",val];
+}
+
+- (IBAction)mutationSupportSliderChanged:(id)sender {
+    UISlider *slider = (UISlider*)sender;
+    
     [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];
     showAllMutsBtn.enabled = FALSE;
     
-    mutationSupportNumLbl.text = [NSString stringWithFormat:@"%0.02f",val];
+    [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@Loading...",kTotalNumOfMutsLblStart]];
 
-    [mutPosArray removeAllObjects];
-    bwt.bwtMutationFilter.kHeteroAllowance = val;
-    
-    [bwt.bwtMutationFilter resetFoundGenome];
-    [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
-    [bwt.bwtMutationFilter filterMutationsForDetails];
-    
-    [self freeMutPosArray];
-    mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray
-                                     forHeteroAllowance:val insertionsArr:insertionsArr];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [mutPosArray removeAllObjects];
+        bwt.bwtMutationFilter.kHeteroAllowance = slider.value;
+        
+        [bwt.bwtMutationFilter resetFoundGenome];
+        [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
+        [bwt.bwtMutationFilter filterMutationsForDetails];
+        
+        [self freeMutPosArray];
+        mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray
+                                         forHeteroAllowance:slider.value insertionsArr:insertionsArr];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
+            
+            //    [gridView clearAllPoints];
+            [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+            
+            [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
+            imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens andSegmentNameArr:separateGenomeNames];
+            [analysisControllerIPhoneToolbar.imptMutsDispView setUpWithMutationsArray:imptMutationsArr];
+            if (alignmentTimer) {
+                [alignmentTimer stop];
+                totalAlignmentRuntime = [alignmentTimer getTotalRecordedTime];
+                alignmentTimer = NULL;
+                
+                [fileExporter setTotalAlignmentRuntime:totalAlignmentRuntime];
+            }
+        });
+    });
+//    [mutPosArray removeAllObjects];
+//    bwt.bwtMutationFilter.kHeteroAllowance = slider.value;
+//    
+//    [bwt.bwtMutationFilter resetFoundGenome];
+//    [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
+//    [bwt.bwtMutationFilter filterMutationsForDetails];
+//    
+//    [self freeMutPosArray];
+//    mutPosArray = [BWT_MutationFilter filteredMutations:allMutPosArray
+//                                     forHeteroAllowance:slider.value insertionsArr:insertionsArr];
 //    [gridView initialMutationFind];
     
-    [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
+//    [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
     
 //    [gridView clearAllPoints];
-    [gridView setUpGridViewForPixelOffset:gridView.currOffset];
-    
-    [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
-    
-    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens andSegmentNameArr:separateGenomeNames];
-    [analysisControllerIPhoneToolbar.imptMutsDispView setUpWithMutationsArray:imptMutationsArr];
+//    [gridView setUpGridViewForPixelOffset:gridView.currOffset];
+//    
+//    [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
+//    
+//    imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens andSegmentNameArr:separateGenomeNames];
+//    [analysisControllerIPhoneToolbar.imptMutsDispView setUpWithMutationsArray:imptMutationsArr];
 }
 
 //Mutation Info Popover Delegate
@@ -725,10 +764,10 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([alertView isEqual:confirmDoneAlert]) {
-        if (buttonIndex == kConfirmDoneAlertGoBtnIndex)
-            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:^{
-                [self freeUsedMemory];
-            }];
+        if (buttonIndex == kConfirmDoneAlertGoBtnIndex) {
+            [self freeUsedMemory];
+            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 

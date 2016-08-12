@@ -214,6 +214,8 @@
     
     HamburgerMenuController *hamburgerMenuController;
     IBOutlet AnalysisControllerIPadMenu *analysisControllerIPadMenu;
+    
+    APTimer *alignmentTimer;
 }
 - (IBAction)displayAnalysisIPhoneToolbar:(id)sender;
 - (IBAction)showImportantMutationsPopover:(id)sender;
@@ -235,6 +237,7 @@
 
 - (IBAction)showSeqSearchResults:(id)sender;
 
+- (IBAction)mutationSupportSliderValueIsChanging:(id)sender;
 - (IBAction)mutationSupportSliderChanged:(id)sender;
 
 - (IBAction)showMutTBView:(id)sender;
@@ -246,7 +249,7 @@
 
 //- (void)displaySuccessBox;
 
-- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA andImptMutsFileContents:(NSString*)mutsFileContents andRefFile:(APFile*)refFile andTotalAlignmentRuntime:(float)totalAlRt;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
+- (void)readyViewForDisplay:(char*)unraveledStr andInsertions:(NSMutableArray*)iArr andBWT:(BWT*)myBwt andExportData:(NSString*)exportDataString andBasicInfo:(NSArray*)basicInfArr andSeparateGenomeNamesArr:(NSMutableArray*)sepGNA andSeparateGenomeLensArr:(NSMutableArray*)sepGLA andCumulativeGenomeLensArr:(NSMutableArray*)cGLA andImptMutsFileContents:(NSString*)mutsFileContents andRefFile:(APFile*)refFile andTotalAlignmentRuntime:(float)totalAlRt alignmentTimer:(APTimer*)timer;//genome file name, reads file name, read length, genome length, number of reads, edit distance chosen by user
 - (void)resetDisplay;
 
 - (void)resetGridViewForType:(QuickGridView*)gViewType;

@@ -1,0 +1,40 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.3.1+htslib-1.3.1
+##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/flu.H1N1.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output_fluH1N1/read_len1000bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
+##reference=file://bwa_files/flu.H1N1.fa
+##contig=<ID=CY001959,length=2311>
+##contig=<ID=CY001958,length=2325>
+##contig=<ID=CY001957,length=2233>
+##contig=<ID=CY001952,length=1754>
+##contig=<ID=CY001955,length=1565>
+##contig=<ID=CY001954,length=1463>
+##contig=<ID=CY001953,length=1027>
+##contig=<ID=CY001956,length=890>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=ICB,Number=1,Type=Float,Description="Inbreeding Coefficient Binomial test (bigger is better)">
+##INFO=<ID=HOB,Number=1,Type=Float,Description="Bias in the number of HOMs number (smaller is better)">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Average mapping quality">
+##bcftools_callVersion=1.3.1+htslib-1.3.1
+##bcftools_callCommand=call -mAv
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/generation_output_fluH1N1/read_len1000bp/seq_error_rate0.1/mut_rate0.001/out.sorted.bam
+CY001958	1905	.	A	G,T,C	31.2993	.	DP=75;VDB=3.50739e-18;SGB=-0.693147;RPB=0.458904;MQB=1;MQSB=1;BQB=0.732877;MQ0F=0;AC=2,0,0;AN=2;DP4=0,2,43,30;MQ=60	GT:PL	1/1:58,168,0,65,139,57,63,158,64,58
+CY001952	138	.	G	T,C,A	8.23145	.	DP=31;VDB=4.20526e-10;SGB=-0.692067;RPB=0.321281;MQB=1;MQSB=1;BQB=0.637085;MQ0F=0;ICB=1;HOB=0.5;AC=1,0,0;AN=2;DP4=4,7,11,9;MQ=60	GT:PL	0/1:38,0,6,63,50,56,63,50,59,56
+CY001954	285	.	T	A,G,C	27.1191	.	DP=82;VDB=5.78721e-23;SGB=-0.693147;RPB=0.993263;MQB=1;MQSB=1;BQB=0.270053;MQ0F=0;AC=2,0,0;AN=2;DP4=3,2,50,27;MQ=60	GT:PL	1/1:54,158,0,60,177,54,61,188,59,54
+CY001953	67	.	C	G,A	38.3489	.	DP=103;VDB=0;SGB=-0.693147;RPB=0.891089;MQB=1;MQSB=1;BQB=0.712871;MQ0F=0;AC=2,0;AN=2;DP4=1,1,54,47;MQ=60	GT:PL	1/1:65,255,0,69,255,65

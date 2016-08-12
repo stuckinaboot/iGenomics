@@ -35,8 +35,13 @@
     
     maxEditDist = maxED;
     
+//    APTimer *findInDelsTimer = [[APTimer alloc] init];
+//    [findInDelsTimer start];
+    
     [self findInDelsNonSeededWithA:newa b:b usingExactMatcher:exactMatcher isReverse:isR];
     
+//    printf("Find in dels timer:\n");
+//    [findInDelsTimer stopAndLog];
     //    Free memory---NEEDS TO BE DONE
     free(newa);
     
@@ -65,18 +70,23 @@
             //ASK MIKE: <<<What about forward/reverse???>>>
     //        APTimer *timer = [[APTimer alloc] init];
     //        [timer start];
-            NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:NO];
+            NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:YES];
             if ([exactMatches count] > 1) {
-                for (int j = 0; j < [exactMatches count]; j++) {
-                    ED_Info *ed = [exactMatches objectAtIndex:j];
-                    [ed freeUsedMemory];
-                }
+//                for (int j = 0; j < [exactMatches count]; j++) {
+//                    ED_Info *ed = [exactMatches objectAtIndex:j];
+//                    [ed freeUsedMemory];
+//                }
+//                printf("tacos\n");
+//                 printf("Multi-count\n");
                 continue;
             }
     //        [timer stopAndLog];
 //            printf("%d\n",[exactMatches count]);
             for (int j = 0; j < [exactMatches count]; j++) {
-                ED_Info *ed = [exactMatches objectAtIndex:j];
+//                printf("Finding\n");
+//                ED_Info *ed = [exactMatches objectAtIndex:j];
+                ED_Info *ed = [[ED_Info alloc] init];
+                ed.position = [[exactMatches objectAtIndex:j] intValue];
                 ed = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:ed cumSepSegLens:cumulativeSegmentLens];
                 
     //            if (bestMatch) {
@@ -88,10 +98,14 @@
     //                    continue;
     //            }
     //
+                int ttt = maxEditDist;
+                if (kBandWidth < lenA)
+                    maxEditDist = kBandWidth;
+                
                 int bLoc = ed.position - i - maxEditDist;
                 int bRangeLen = lenA+2*maxEditDist;
                 if (bLoc < 0) {
-                    bRangeLen += bLoc;
+//                    bRangeLen += bLoc;
                     bLoc = 0;
                 }
                 if (bLoc + bRangeLen - 1 >= lenB) {
@@ -99,9 +113,13 @@
                     bRangeLen = lenB-bLoc+maxEditDist;
                 }
                 
+//                APTimer *edTimer = [[APTimer alloc] init];
+//                [edTimer start];
                 ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
+//                printf("ED Timer:\n");
+//                [edTimer stopAndLog];
                 
-                
+                maxEditDist = ttt;
                 edFinal.position += bLoc;
     //            edFinal.position = ed.position - (int)strlen(edL.gappedA) + edL.numOfInsertions;
                 
@@ -129,19 +147,19 @@
                     [edFinal freeUsedMemory];
                 
             }
-            for (int j = 0; j < [exactMatches count]; j++) {
-                ED_Info *ed = [exactMatches objectAtIndex:j];
-                [ed freeUsedMemory];
-            }
+//            for (int j = 0; j < [exactMatches count]; j++) {
+//                ED_Info *ed = [exactMatches objectAtIndex:j];
+//                [ed freeUsedMemory];
+//            }
 //            if (interval == 1 && bestMatch)
 //                interval = kNonSeedShortSeqInterval;
             if (match)
                 break;
-            if (interval != kNonSeedShortSeqMinInterval && i + interval >= lenA - k) {
-                i = 0;
-                interval = kNonSeedShortSeqMinInterval;
-                k = kNonSeedShortSeqMinSize;
-            }
+//            if (interval != kNonSeedShortSeqMinInterval && i + interval >= lenA - k) {
+//                i = 0;
+//                interval = kNonSeedShortSeqMinInterval;
+//                k = kNonSeedShortSeqMinSize;
+//            }
         }
         
         free(shortA);

@@ -28,13 +28,13 @@
 #define kReadLoopMaxSmallEditDist 20
 #define kReadLoopLargeEditDistStepFactor 0.15 //kReadLoopLargeEditDistStepFactor * maxEdit
 
-#define kBWT_MatcherReadAlignerMultiThreadStride 10
+//#define kBWT_MatcherReadAlignerMultiThreadStride 10
 #define kBWT_MatcherReadAlignerMultiThreadNumOfThreads 10
 
 //#define kBytesForIndexer 101//101
 //#define kMultipleToCountAt 50//50
 
-#define kLowestAllowedCoverage 0
+#define kLowestAllowedCoverage 2
 
 
 #define kDebugPrintInsertions 0
@@ -67,6 +67,7 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
     APTimer *matchingTimer;
     
     NSMutableArray *insertionsArray;
+    NSMutableDictionary *insertionsDict;
     
     NSMutableArray *cumulativeSeparateGenomeLens;
     
@@ -92,11 +93,11 @@ extern int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCou
 //APPROXI MATCH
 - (ED_Info*)getBestMatchForQuery:(char*)query withLastCol:(char*)lastCol andFirstCol:(char*)firstCol andNumOfSubs:(int)amtOfSubs andReadNum:(int)readNum andShouldSeed:(BOOL)shouldSeed forReadLen:(int)actualReadLen ;//readNum is only for printing to console, serves no other purpose currently
 
-- (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info;//info is NULL for a non indel match
+- (void)updatePosOccsArrayWithRange:(NSRange)range andED_Info:(ED_Info *)info relativeReadNum:(int)relativeReadNum;//info is NULL for a non indel match
 
 //INSERTION/DELETION MATCH
 - (NSMutableArray*)insertionDeletionMatchesForQuery:(char*)query andLastCol:(char*)lastCol andNumOfSubs:(int)numOfSubs andIsReverse:(BOOL)isRev andShouldSeed:(BOOL)shouldSeed readLen:(int)actualReadLen;
-- (void)recordInDel:(ED_Info*)info;
+- (void)recordInDel:(ED_Info*)info relativeReadNum:(int)relativeReadNum;
 - (float)getTotalAlignmentRuntime;
 
 - (void)freeUsedMemory;

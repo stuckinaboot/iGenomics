@@ -1,7 +1,12 @@
+zika.fa
+ebola.fa
 flu.mega.fa
 flu.H3N2.fa
 flu.H2N2.fa
 flu.H1N1.fa
+anthrax.50k.fa
+anthrax.60k.fa
+anthrax.70k.fa
 anthrax.capsule.fa
 lambdaphage.fa
 phix174.fa

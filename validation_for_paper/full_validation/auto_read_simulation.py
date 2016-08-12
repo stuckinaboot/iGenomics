@@ -50,10 +50,24 @@ def normalize(referenceFilePath, mutFilePath, mutNormalizedFilePath):
 	normalizeCmd = NORM_PATH + NORM_CMD_FORMAT % (mutNormalizedFilePath, referenceFilePath, mutFilePath)
 	os.system(normalizeCmd)
 
-def alignAndGenSAMvcf(referenceFilePath, readsFilePath, currPath, mutNormalizedFilePath):
+def alignAndGenSAMvcf(referenceFilePath, readsFilePath, currPath, mutNormalizedFilePath, simParameters):
+	readMeFilePath = currPath + 'README.dig'
 	#Generate vcf
-	os.system('python ' + ALIGNER_PATH + ' %s %s %s %s' % (referenceFilePath, readsFilePath, currPath, currPath + 'reads.mutations.sam.vcf'))
+	os.system('{ time python ' + ALIGNER_PATH + ' %s %s %s %s' % (referenceFilePath, readsFilePath, currPath, currPath + 'reads.mutations.sam.vcf ; } 2>' + readMeFilePath))
 
+	stdPrint('FOO')
+	#Remove the junk from the top of the file
+	simInfo = ''
+	with open(readMeFilePath, 'r') as readMeFile:
+		for line in readMeFile.readlines():
+			line = line.strip('\n')
+			if 'real\t' in line:
+				simInfo += line + '\n'
+
+	with open(readMeFilePath, 'w') as readMeFile:
+		for key in sorted(simParameters.keys()):
+			simInfo += key + '\t' + str(simParameters[key]) + '\n'
+		readMeFile.write(simInfo)
 	#Generate normalized vcf
 	normalize(referenceFilePath, currPath + 'reads.mutations.sam.vcf', mutNormalizedFilePath)
 
@@ -94,16 +108,16 @@ def performSIM(path, referenceFilePath, simParameters):
 	stdPrint('		Perform SIM: Finish normalizing')
 
 	stdPrint('		Perform SIM: Start generating VCF from SAM')
-	alignAndGenSAMvcf(referenceFilePath, path + 'reads.fq', path, path + 'reads.mutations.normalized.sam.vcf')
+	alignAndGenSAMvcf(referenceFilePath, path + 'reads.fq', path, path + 'reads.mutations.normalized.sam.vcf', simParameters)
 	stdPrint('		Perform SIM: Finished generating VCF from SAM')
 
 	stdPrint('		Perform SIM: Start removing unnecessary simulation files')
 	removeUnnecessarySimFiles(path)
 	stdPrint('		Perform SIM: Finished removing unnecessary simulation files')
 
-	stdPrint('		Perform BWA: Start aligning')
-	performBWA(referenceFilePath, path, simParameters)
-	stdPrint('		Perform BWA: Finished aligning')
+	# stdPrint('		Perform BWA: Start aligning')
+	# performBWA(referenceFilePath, path, simParameters)
+	# stdPrint('		Perform BWA: Finished aligning')
 	
 	stdPrint('		Perform BWA: Start removing unnecessary bwa files')
 	removeUnnecessaryBwaFiles(path)
