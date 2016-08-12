@@ -11,8 +11,6 @@
 @implementation BWT_MatcherSC
 
 - (NSArray*)exactMatchForQuery:(char*)query andIsReverse:(BOOL)isRev andForOnlyPos:(BOOL)forOnlyPos {
-    APTimer *exactTimer = [[APTimer alloc] init];
-    [exactTimer start];
     
     int queryLen = strlen(query);
     int i = queryLen-1;
@@ -47,15 +45,6 @@
             [posArray addObject:[NSNumber numberWithInteger:benchmarkPositions[l + startPos]]];
 //            [info freeUsedMemory];
         }
-    }
-    
-    if ([posArray count] == 0) {
-        [exactTimer stop];
-        double time = [exactTimer getTotalRecordedTime];
-//        if (time < 0.00009)
-//            printf("E-A: %f\n", time);
-//        else
-//            printf("fuck");
     }
     
     return posArray;
