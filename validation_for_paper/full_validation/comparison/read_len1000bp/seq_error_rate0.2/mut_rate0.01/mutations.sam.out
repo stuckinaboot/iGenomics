@@ -1,0 +1,274 @@
+FAIL: CY001954>>342>>SUB not found
+FAIL: CY001959>>697>>SUB not found
+FAIL: CY001954>>884>>SUB not found
+FAIL: CY001957>>1418>>SUB not found
+FAIL: CY001958>>1907>>SUB not found
+FAIL: CY001954>>934>>DEL not found
+FAIL: CY001959>>1937>>SUB not found
+FAIL: CY001958>>1620>>SUB not found
+FAIL: CY001957>>767>>SUB not found
+FAIL: CY001958>>1033>>SUB not found
+FAIL: CY001955>>728>>SUB not found
+FAIL: CY001957>>1074>>SUB not found
+FAIL: CY001954>>697>>SUB not found
+FAIL: CY001958>>901>>SUB not found
+FAIL: CY001959>>1526>>SUB not found
+FAIL: CY001959>>1664>>SUB not found
+FAIL: CY001955>>1396>>SUB not found
+FAIL: CY001952>>873>>SUB not found
+FAIL: CY001952>>667>>SUB not found
+FAIL: CY001958>>857>>SUB not found
+FAIL: CY001959>>1990>>SUB not found
+FAIL: CY001958>>300>>SUB not found
+FAIL: CY001955>>480>>DEL not found
+FAIL: CY001952>>1378>>SUB not found
+FAIL: CY001957>>122>>SUB not found
+FAIL: CY001955>>441>>SUB not found
+FAIL: CY001954>>620>>SUB not found
+FAIL: CY001957>>1202>>SUB not found
+FAIL: CY001958>>1223>>SUB not found
+FAIL: CY001953>>41>>INS not found
+FAIL: CY001952>>1200>>SUB not found
+FAIL: CY001957>>1259>>SUB not found
+FAIL: CY001955>>1508>>SUB not found
+FAIL: CY001958>>738>>INS not found
+FAIL: CY001957>>1445>>SUB not found
+FAIL: CY001958>>1214>>SUB not found
+FAIL: CY001955>>86>>DEL not found
+FAIL: CY001958>>1630>>SUB not found
+FAIL: CY001959>>640>>SUB not found
+FAIL: CY001955>>1403>>SUB not found
+FAIL: CY001954>>894>>SUB not found
+PASSED: CY001959>>106>>SUB
+FAIL: CY001958>>2058>>SUB not found
+FAIL: CY001957>>1829>>DEL not found
+FAIL: CY001954>>462>>SUB not found
+FAIL: CY001958>>1363>>SUB not found
+FAIL: CY001959>>2026>>SUB not found
+FAIL: CY001952>>1754>>SUB not found
+FAIL: CY001952>>160>>SUB not found
+FAIL: CY001955>>1037>>SUB not found
+FAIL: CY001959>>2144>>SUB not found
+FAIL: CY001955>>1321>>SUB not found
+FAIL: CY001952>>1387>>SUB not found
+FAIL: CY001955>>585>>SUB not found
+FAIL: CY001954>>409>>SUB not found
+FAIL: CY001955>>1490>>SUB not found
+FAIL: CY001953>>902>>SUB not found
+FAIL: CY001959>>771>>SUB not found
+FAIL: CY001957>>1956>>SUB not found
+FAIL: CY001957>>288>>SUB not found
+FAIL: CY001957>>1520>>DEL not found
+FAIL: CY001958>>1079>>SUB not found
+FAIL: CY001959>>751>>SUB not found
+FAIL: CY001958>>68>>SUB not found
+FAIL: CY001958>>2119>>SUB not found
+FAIL: CY001955>>703>>SUB not found
+FAIL: CY001954>>511>>INS not found
+FAIL: CY001954>>85>>SUB not found
+FAIL: CY001958>>394>>SUB not found
+FAIL: CY001959>>553>>SUB not found
+FAIL: CY001958>>2209>>SUB not found
+FAIL: CY001959>>983>>SUB not found
+FAIL: CY001959>>396>>SUB not found
+FAIL: CY001952>>1304>>SUB not found
+FAIL: CY001954>>982>>SUB not found
+FAIL: CY001952>>446>>SUB not found
+FAIL: CY001957>>1209>>SUB not found
+PASSED: CY001954>>118>>SUB
+FAIL: CY001958>>116>>SUB not found
+PASSED: CY001959>>250>>SUB
+FAIL: CY001958>>754>>INS not found
+FAIL: CY001955>>25>>SUB not found
+PASSED: CY001958>>187>>SUB
+FAIL: CY001952>>430>>SUB not found
+FAIL: CY001954>>1101>>DEL not found
+FAIL: CY001959>>112>>SUB not found
+FAIL: CY001952>>1392>>SUB not found
+FAIL: CY001959>>930>>SUB not found
+FAIL: CY001958>>307>>INS not found
+FAIL: CY001958>>1213>>SUB not found
+FAIL: CY001952>>779>>DEL not found
+FAIL: CY001959>>1719>>SUB not found
+FAIL: CY001954>>6>>SUB not found
+FAIL: CY001958>>91>>SUB not found
+FAIL: CY001955>>99>>SUB not found
+FAIL: CY001959>>574>>INS not found
+FAIL: CY001958>>2271>>SUB not found
+FAIL: CY001953>>525>>SUB not found
+FAIL: CY001952>>823>>INS not found
+FAIL: CY001957>>937>>SUB not found
+FAIL: CY001958>>232>>SUB not found
+PASSED: CY001955>>241>>SUB
+FAIL: CY001957>>142>>SUB not found
+FAIL: CY001959>>998>>SUB not found
+PASSED: CY001955>>1489>>SUB
+FAIL: CY001959>>1764>>SUB not found
+FAIL: CY001958>>1535>>SUB not found
+FAIL: CY001954>>892>>SUB not found
+FAIL: CY001957>>911>>SUB not found
+FAIL: CY001952>>1564>>SUB not found
+FAIL: CY001959>>1024>>SUB not found
+FAIL: CY001952>>1119>>SUB not found
+FAIL: CY001959>>1054>>SUB not found
+PASSED: CY001957>>107>>SUB
+FAIL: CY001955>>47>>SUB not found
+FAIL: CY001957>>1857>>SUB not found
+FAIL: CY001952>>1674>>SUB not found
+FAIL: CY001959>>609>>SUB not found
+FAIL: CY001952>>1590>>SUB not found
+FAIL: CY001953>>510>>SUB not found
+FAIL: CY001959>>2191>>SUB not found
+FAIL: CY001958>>337>>SUB not found
+FAIL: CY001957>>744>>SUB not found
+FAIL: CY001958>>1435>>INS not found
+FAIL: CY001959>>1162>>SUB not found
+FAIL: CY001955>>970>>SUB not found
+FAIL: CY001958>>1524>>SUB not found
+FAIL: CY001957>>1662>>SUB not found
+FAIL: CY001958>>392>>SUB not found
+FAIL: CY001953>>811>>SUB not found
+FAIL: CY001959>>591>>SUB not found
+FAIL: CY001959>>1675>>SUB not found
+FAIL: CY001958>>1670>>SUB not found
+FAIL: CY001959>>1679>>SUB not found
+FAIL: CY001952>>761>>SUB not found
+128
+0
+PASSED (Approxi): CY001955>>86>>DEL
+FAIL: CY001959>>697>>SUB still not found
+FAIL: CY001954>>884>>SUB still not found
+FAIL: CY001957>>1418>>SUB still not found
+FAIL: CY001958>>1907>>SUB still not found
+FAIL: CY001954>>934>>DEL still not found
+FAIL: CY001959>>998>>SUB still not found
+FAIL: CY001959>>1937>>SUB still not found
+FAIL: CY001958>>1620>>SUB still not found
+FAIL: CY001957>>767>>SUB still not found
+FAIL: CY001958>>1033>>SUB still not found
+FAIL: CY001955>>728>>SUB still not found
+FAIL: CY001957>>1074>>SUB still not found
+FAIL: CY001954>>697>>SUB still not found
+FAIL: CY001958>>901>>SUB still not found
+FAIL: CY001959>>1526>>SUB still not found
+FAIL: CY001959>>1664>>SUB still not found
+FAIL: CY001952>>823>>INS still not found
+FAIL: CY001955>>1396>>SUB still not found
+FAIL: CY001952>>873>>SUB still not found
+FAIL: CY001952>>667>>SUB still not found
+FAIL: CY001958>>857>>SUB still not found
+FAIL: CY001959>>1990>>SUB still not found
+FAIL: CY001958>>300>>SUB still not found
+FAIL: CY001955>>480>>DEL still not found
+FAIL: CY001952>>1378>>SUB still not found
+FAIL: CY001957>>122>>SUB still not found
+FAIL: CY001955>>441>>SUB still not found
+FAIL: CY001954>>620>>SUB still not found
+FAIL: CY001959>>574>>INS still not found
+FAIL: CY001958>>1223>>SUB still not found
+FAIL: CY001952>>1674>>SUB still not found
+FAIL: CY001952>>1200>>SUB still not found
+FAIL: CY001957>>1259>>SUB still not found
+FAIL: CY001955>>1508>>SUB still not found
+FAIL: CY001957>>1445>>SUB still not found
+FAIL: CY001958>>1214>>SUB still not found
+FAIL: CY001958>>1630>>SUB still not found
+FAIL: CY001959>>640>>SUB still not found
+FAIL: CY001955>>1403>>SUB still not found
+FAIL: CY001954>>894>>SUB still not found
+FAIL: CY001958>>2058>>SUB still not found
+FAIL: CY001957>>1829>>DEL still not found
+FAIL: CY001954>>462>>SUB still not found
+FAIL: CY001958>>1363>>SUB still not found
+FAIL: CY001959>>2026>>SUB still not found
+FAIL: CY001952>>1754>>SUB still not found
+FAIL: CY001952>>160>>SUB still not found
+FAIL: CY001955>>1037>>SUB still not found
+FAIL: CY001959>>2144>>SUB still not found
+FAIL: CY001952>>1304>>SUB still not found
+FAIL: CY001952>>1387>>SUB still not found
+FAIL: CY001955>>585>>SUB still not found
+FAIL: CY001954>>409>>SUB still not found
+FAIL: CY001955>>1490>>SUB still not found
+FAIL: CY001953>>902>>SUB still not found
+FAIL: CY001959>>771>>SUB still not found
+FAIL: CY001957>>1956>>SUB still not found
+FAIL: CY001957>>288>>SUB still not found
+FAIL: CY001957>>1520>>DEL still not found
+FAIL: CY001958>>1079>>SUB still not found
+FAIL: CY001959>>751>>SUB still not found
+FAIL: CY001958>>68>>SUB still not found
+FAIL: CY001958>>2119>>SUB still not found
+FAIL: CY001955>>703>>SUB still not found
+FAIL: CY001954>>511>>INS still not found
+FAIL: CY001954>>85>>SUB still not found
+FAIL: CY001958>>394>>SUB still not found
+FAIL: CY001959>>553>>SUB still not found
+FAIL: CY001958>>2209>>SUB still not found
+FAIL: CY001959>>983>>SUB still not found
+FAIL: CY001959>>396>>SUB still not found
+FAIL: CY001955>>1321>>SUB still not found
+FAIL: CY001957>>1662>>SUB still not found
+FAIL: CY001952>>446>>SUB still not found
+FAIL: CY001957>>1209>>SUB still not found
+FAIL: CY001958>>116>>SUB still not found
+FAIL: CY001958>>754>>INS still not found
+FAIL: CY001955>>25>>SUB still not found
+FAIL: CY001952>>430>>SUB still not found
+FAIL: CY001954>>1101>>DEL still not found
+FAIL: CY001959>>112>>SUB still not found
+FAIL: CY001952>>1392>>SUB still not found
+FAIL: CY001959>>930>>SUB still not found
+FAIL: CY001958>>307>>INS still not found
+FAIL: CY001958>>1213>>SUB still not found
+FAIL: CY001952>>779>>DEL still not found
+FAIL: CY001959>>1719>>SUB still not found
+FAIL: CY001954>>6>>SUB still not found
+FAIL: CY001958>>91>>SUB still not found
+FAIL: CY001955>>99>>SUB still not found
+FAIL: CY001957>>1202>>SUB still not found
+FAIL: CY001958>>738>>INS still not found
+FAIL: CY001953>>525>>SUB still not found
+FAIL: CY001954>>342>>SUB still not found
+FAIL: CY001957>>937>>SUB still not found
+FAIL: CY001958>>232>>SUB still not found
+FAIL: CY001957>>142>>SUB still not found
+FAIL: CY001958>>2271>>SUB still not found
+FAIL: CY001959>>1764>>SUB still not found
+FAIL: CY001958>>1535>>SUB still not found
+FAIL: CY001954>>892>>SUB still not found
+FAIL: CY001957>>911>>SUB still not found
+FAIL: CY001952>>1564>>SUB still not found
+FAIL: CY001959>>1024>>SUB still not found
+FAIL: CY001952>>1119>>SUB still not found
+FAIL: CY001959>>1054>>SUB still not found
+FAIL: CY001955>>47>>SUB still not found
+FAIL: CY001957>>1857>>SUB still not found
+FAIL: CY001953>>41>>INS still not found
+FAIL: CY001959>>609>>SUB still not found
+FAIL: CY001952>>1590>>SUB still not found
+FAIL: CY001953>>510>>SUB still not found
+FAIL: CY001959>>2191>>SUB still not found
+FAIL: CY001958>>337>>SUB still not found
+FAIL: CY001957>>744>>SUB still not found
+FAIL: CY001958>>1435>>INS still not found
+FAIL: CY001959>>1162>>SUB still not found
+FAIL: CY001955>>970>>SUB still not found
+FAIL: CY001958>>1524>>SUB still not found
+FAIL: CY001954>>982>>SUB still not found
+FAIL: CY001958>>392>>SUB still not found
+FAIL: CY001953>>811>>SUB still not found
+FAIL: CY001959>>591>>SUB still not found
+FAIL: CY001959>>1675>>SUB still not found
+FAIL: CY001958>>1670>>SUB still not found
+FAIL: CY001959>>1679>>SUB still not found
+FAIL: CY001952>>761>>SUB still not found
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 8
+PASSED (Approxi): 1
+FAILED: 0
+NOT SHARED: 127
+LEN iG: 10
+LEN BWA: 135

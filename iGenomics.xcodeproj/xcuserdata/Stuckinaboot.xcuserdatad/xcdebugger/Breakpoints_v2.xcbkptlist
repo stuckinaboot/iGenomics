@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "492703765.551993"
+            filePath = "BWT_Matcher_InsertionDeletion.m"
+            timestampString = "492765125.770204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "890"
-            endingLineNumber = "890"
-            landmarkName = "-freeUsedMemory"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-findInDelsNonSeededWithA:b:usingExactMatcher:isReverse:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,29 +25,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "492703765.551993"
+            filePath = "BWT_Matcher_InsertionDeletion.m"
+            timestampString = "492765125.770204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "896"
-            endingLineNumber = "896"
-            landmarkName = "-freeUsedMemory"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-findInDelsNonSeededWithA:b:usingExactMatcher:isReverse:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "492703765.551993"
+            filePath = "BWT_Matcher_InsertionDeletion.m"
+            timestampString = "492763969.781283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
-            landmarkName = "-mutationSupportSliderChanged:"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-findInDelsNonSeededWithA:b:usingExactMatcher:isReverse:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

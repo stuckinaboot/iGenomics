@@ -155,11 +155,11 @@
 //                interval = kNonSeedShortSeqInterval;
             if (match)
                 break;
-//            if (interval != kNonSeedShortSeqMinInterval && i + interval >= lenA - k) {
-//                i = 0;
-//                interval = kNonSeedShortSeqMinInterval;
-//                k = kNonSeedShortSeqMinSize;
-//            }
+            if (interval != kNonSeedShortSeqMinInterval && i + interval >= lenA - k) {
+                i = 0;
+                interval = kNonSeedShortSeqMinInterval;
+                k = kNonSeedShortSeqMinSize;
+            }
         }
         
         free(shortA);

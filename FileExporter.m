@@ -26,7 +26,7 @@
     separateGenomeLens = sepGenLens;
     separateSegmentNames = sepSegNames;
     
-    [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
+//    [self performSelectorInBackground:@selector(fixExportDataStr) withObject:nil];
 }
 
 - (void)fixExportDataStr {

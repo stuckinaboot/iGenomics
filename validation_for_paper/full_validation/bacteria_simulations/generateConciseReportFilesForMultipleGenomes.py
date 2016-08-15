@@ -75,13 +75,12 @@ def lengthFromReferenceFile(refFilePath):
 
 for igFolder in os.listdir(igPath):
 	currIGPath = os.path.join(igPath, igFolder)
-
 	dwgFolder = 'generation_output_' + igFolder.replace('.fa', '')
 	currDWGPath = os.path.join(dwgPath, dwgFolder)
-	for readLenPath in os.listdir(currIGPath):
+        for readLenPath in os.listdir(currIGPath):
 
 		referenceFilePath = os.path.join(currPath, igFolder + '.fa')
-		referenceLen = lengthFromReferenceFile(referenceFilePath)
+                referenceLen = lengthFromReferenceFile(referenceFilePath)
 		infoDict = {
 					'read len': readLenPath.strip('read_len').strip('bp'),
 					'reference': igFolder,
@@ -117,7 +116,7 @@ for igFolder in os.listdir(igPath):
 				infoDict['runtimes']['bwa'] = runtimeFromREADMEdig(filePath)
 
 		mutsOutPath = os.path.join(currPath, 'muts.out')
-		os.system('python ' + COMPARE_MUTS_PATH + ' ' + dwgMutationsFilePath + ' ' + igMutationsFilePath + ' > ' + mutsOutPath)
+                os.system('python ' + COMPARE_MUTS_PATH + ' ' + dwgMutationsFilePath + ' ' + igMutationsFilePath + ' > ' + mutsOutPath)
 		infoDict['mutation accuracy'] = accuracyFromMutsOutFile(mutsOutPath)
 		os.system('rm ' + mutsOutPath)
 		print json.dumps(infoDict)
