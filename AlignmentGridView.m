@@ -41,16 +41,18 @@
     alignmentGridPositionsArr = (AlignmentGridPosition*__strong*)calloc(dgenomeLen,sizeof(AlignmentGridPosition*));
     
     for (int i = 0; i < dgenomeLen; i++) {
-        AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
-        gridPos.str = strdup([noCharLongStr UTF8String]);
-        gridPos.readInfoStr = calloc(noCharLongStr.length + 1, sizeof(int));
-        gridPos.readInfoStr[noCharLongStr.length] = '\0';
-        gridPos.readIndexStr = calloc(noCharLongStr.length + 1, sizeof(int));
-        gridPos.readIndexStr[noCharLongStr.length] = '\0';
-        for (int j = 0; j < maxCoverageVal; j++) {
-            gridPos.readIndexStr[j] = -1;
+        if (coverageArray[i] > 0) {
+            AlignmentGridPosition *gridPos = [[AlignmentGridPosition alloc] init];
+            gridPos.str = strdup([noCharLongStr UTF8String]);
+            gridPos.readInfoStr = calloc(noCharLongStr.length + 1, sizeof(int));
+            gridPos.readInfoStr[noCharLongStr.length] = '\0';
+            gridPos.readIndexStr = calloc(noCharLongStr.length + 1, sizeof(int));
+            gridPos.readIndexStr[noCharLongStr.length] = '\0';
+            for (int j = 0; j < maxCoverageVal; j++) {
+                gridPos.readIndexStr[j] = -1;
+            }
+            alignmentGridPositionsArr[i] = gridPos;
         }
-        alignmentGridPositionsArr[i] = gridPos;
     }
     
     int counter = 0;
@@ -366,18 +368,18 @@
         
         BOOL isHiddenReadStart = NO;
         if (numOfBoxesPerPixel > kPixelWidth)
-            if (j-numOfBoxesPerPixel >= 0 && gridPos.readIndexStr[i] != alignmentGridPositionsArr[j-numOfBoxesPerPixel].readIndexStr[i] && alignmentGridPositionsArr[j-numOfBoxesPerPixel].readInfoStr[i] != kReadInfoReadStart)
+            if (j-numOfBoxesPerPixel >= 0 && alignmentGridPositionsArr[j-numOfBoxesPerPixel] && gridPos.readIndexStr[i] != alignmentGridPositionsArr[j-numOfBoxesPerPixel].readIndexStr[i] && alignmentGridPositionsArr[j-numOfBoxesPerPixel].readInfoStr[i] != kReadInfoReadStart)
                 isHiddenReadStart = YES;
         
         BOOL isHiddenReadEnd = NO;
         if (!isHiddenReadStart) {
             if (numOfBoxesPerPixel > kPixelWidth)
-                if (j+numOfBoxesPerPixel<dgenomeLen && gridPos.readIndexStr[i] != alignmentGridPositionsArr[j+numOfBoxesPerPixel].readIndexStr[i])
+                if (j+numOfBoxesPerPixel<dgenomeLen && alignmentGridPositionsArr[j+numOfBoxesPerPixel] && gridPos.readIndexStr[i] != alignmentGridPositionsArr[j+numOfBoxesPerPixel].readIndexStr[i])
                     isHiddenReadEnd = YES;
         }
         
         point = CGPointMake(x, y);
-        if (gridPos.str[i] != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
+        if (gridPos && gridPos.str[i] != kAlignmentGridViewCharColumnNoChar && y + kGridLineWidthRow+boxHeight > yToNotCross) {
             int readInfoNum = gridPos.readInfoStr[i];
             
             CGColorRef ref = [dnaColors.alignedRead rgbColorRef];
