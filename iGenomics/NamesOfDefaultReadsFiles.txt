@@ -1,3 +1,5 @@
+flu.H1N1.illumina.clean.fq
+flu.H1N1.illumina.resistant.fq
 ebola.nanopore.short.fastq
 flu.H3N2.nanopore.long.fq
 lambda.test.bwa.read1.fastq
@@ -45,6 +47,7 @@ zika-reads-rl1000-se0.1-mr0.005.fq
 ebola-reads-rl100-se0.01-mr0.005.fq
 ebola-reads-rl1000-se0.1-mr0.005.fq
 incorrectsingle.fq
+incorrectsingle.fa
 flu.H1N1.clean.fq
 flu.H1N1.resistant.fq
 anthrax.capsule.reads.fa

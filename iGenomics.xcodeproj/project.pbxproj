@@ -187,6 +187,11 @@
 		A3D350B51A7C989000F39C64 /* IconIdea2-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D350B41A7C989000F39C64 /* IconIdea2-Small.png */; };
 		A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */; };
 		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
+		A3D8199F1D62BD7C00C1CC7B /* flu.H1N1.illumina.clean.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3D8199D1D62BD7C00C1CC7B /* flu.H1N1.illumina.clean.fq */; };
+		A3D819A01D62BD7C00C1CC7B /* flu.H1N1.illumina.resistant.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3D8199E1D62BD7C00C1CC7B /* flu.H1N1.illumina.resistant.fq */; };
+		A3D8EF1D1D626A3200BE2499 /* FluB.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D8EF1C1D626A3200BE2499 /* FluB.fa */; };
+		A3D8EF1F1D626B5B00BE2499 /* flu_H1N1+H3N2+B.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D8EF1E1D626B5B00BE2499 /* flu_H1N1+H3N2+B.fa */; };
+		A3D8EF211D626B9400BE2499 /* H3N2_all.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D8EF201D626B9400BE2499 /* H3N2_all.fa */; };
 		A3D9B74F19AD2EA500D9AA35 /* IPhonePopoverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9B74D19AD2EA500D9AA35 /* IPhonePopoverHandler.m */; };
 		A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D9B74E19AD2EA500D9AA35 /* IPhonePopoverHandler.xib */; };
 		A3DA1CBB1859609300C10C22 /* Read.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA1CBA1859609300C10C22 /* Read.m */; };
@@ -437,6 +442,11 @@
 		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
 		A3D3F3B3172333650045A586 /* BWT_MatcherSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_MatcherSC.h; path = ../../../BWT_MatcherSC.h; sourceTree = "<group>"; };
 		A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_MatcherSC.m; path = ../../../BWT_MatcherSC.m; sourceTree = "<group>"; };
+		A3D8199D1D62BD7C00C1CC7B /* flu.H1N1.illumina.clean.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H1N1.illumina.clean.fq; path = validation_for_paper/full_validation/actual_data/flu.H1N1/flu.H1N1.illumina.clean.fq; sourceTree = SOURCE_ROOT; };
+		A3D8199E1D62BD7C00C1CC7B /* flu.H1N1.illumina.resistant.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H1N1.illumina.resistant.fq; path = validation_for_paper/full_validation/actual_data/flu.H1N1/flu.H1N1.illumina.resistant.fq; sourceTree = SOURCE_ROOT; };
+		A3D8EF1C1D626A3200BE2499 /* FluB.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FluB.fa; path = validation_for_paper/full_validation/mega_flu_genome/FluB.fa; sourceTree = SOURCE_ROOT; };
+		A3D8EF1E1D626B5B00BE2499 /* flu_H1N1+H3N2+B.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu_H1N1+H3N2+B.fa"; path = "validation_for_paper/full_validation/mega_flu_genome/flu_H1N1+H3N2+B.fa"; sourceTree = SOURCE_ROOT; };
+		A3D8EF201D626B9400BE2499 /* H3N2_all.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = H3N2_all.fa; path = validation_for_paper/full_validation/mega_flu_genome/H3N2_all.fa; sourceTree = SOURCE_ROOT; };
 		A3D9B74C19AD2EA500D9AA35 /* IPhonePopoverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPhonePopoverHandler.h; sourceTree = "<group>"; };
 		A3D9B74D19AD2EA500D9AA35 /* IPhonePopoverHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPhonePopoverHandler.m; sourceTree = "<group>"; };
 		A3D9B74E19AD2EA500D9AA35 /* IPhonePopoverHandler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IPhonePopoverHandler.xib; sourceTree = "<group>"; };
@@ -881,6 +891,9 @@
 				A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */,
 				A32E07521D4FA7C500F2A081 /* flu.mega.fa */,
 				A32C2B4019C0F99B008D66EE /* flu.H3N2.fa */,
+				A3D8EF201D626B9400BE2499 /* H3N2_all.fa */,
+				A3D8EF1E1D626B5B00BE2499 /* flu_H1N1+H3N2+B.fa */,
+				A3D8EF1C1D626A3200BE2499 /* FluB.fa */,
 			);
 			name = flu;
 			path = flu.H1N1s;
@@ -993,6 +1006,8 @@
 		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3D8199D1D62BD7C00C1CC7B /* flu.H1N1.illumina.clean.fq */,
+				A3D8199E1D62BD7C00C1CC7B /* flu.H1N1.illumina.resistant.fq */,
 				A3A36A191D5E5A77009B3547 /* reads-rl100-se0.1-mr0.1.fq */,
 				A3A36A1A1D5E5A77009B3547 /* reads-rl100-se0.1-mr0.01.fq */,
 				A3A36A1B1D5E5A77009B3547 /* reads-rl100-se0.01-mr0.1.fq */,
@@ -1401,6 +1416,7 @@
 				A3D1AF141D5B8D0700A63808 /* ebola.nanopore.fastq in Resources */,
 				A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */,
 				A3A36A341D5E5A77009B3547 /* reads-rl100-se0.1-mr0.1.fq in Resources */,
+				A3D819A01D62BD7C00C1CC7B /* flu.H1N1.illumina.resistant.fq in Resources */,
 				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
 				A3A36A491D5E5A77009B3547 /* reads-rl1000-se0.1-mr0.001.fq in Resources */,
 				A3A36A621D5E66EA009B3547 /* ebola-reads-rl100-se0.01-mr0.005.fq in Resources */,
@@ -1408,6 +1424,7 @@
 				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
 				A351607F1AA3FD7B0004FD32 /* Icon-60@3x.png in Resources */,
 				A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */,
+				A3D8EF1D1D626A3200BE2499 /* FluB.fa in Resources */,
 				A3D1AF161D5B8D4500A63808 /* flu.H3N2.nanopore.fa in Resources */,
 				A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */,
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
@@ -1428,6 +1445,7 @@
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3A36A471D5E5A77009B3547 /* reads-rl1000-se0.1-mr0.01.fq in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
+				A3D8199F1D62BD7C00C1CC7B /* flu.H1N1.illumina.clean.fq in Resources */,
 				A35160871AA3FD7B0004FD32 /* Icon-72@2x.png in Resources */,
 				A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */,
 				A3A36A461D5E5A77009B3547 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
@@ -1439,6 +1457,7 @@
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
 				A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */,
 				A3A36A421D5E5A77009B3547 /* reads-rl250-se0.01-mr0.001.fq in Resources */,
+				A3D8EF211D626B9400BE2499 /* H3N2_all.fa in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
@@ -1491,6 +1510,7 @@
 				A3A36A4B1D5E5A77009B3547 /* reads-rl1000-se0.01-mr0.001.fq in Resources */,
 				A3A36A511D5E66C7009B3547 /* zika-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
+				A3D8EF1F1D626B5B00BE2499 /* flu_H1N1+H3N2+B.fa in Resources */,
 				A3A36A4E1D5E5A77009B3547 /* reads-rl1000-se0.2-mr0.001.fq in Resources */,
 				A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */,
 				A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */,

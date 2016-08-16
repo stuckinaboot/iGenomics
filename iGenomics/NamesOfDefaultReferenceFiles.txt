@@ -1,3 +1,6 @@
+H3N2_all.fa
+flu_H1N1+H3N2+B.fa
+FluB.fa
 zika.fa
 ebola.fa
 flu.mega.fa
