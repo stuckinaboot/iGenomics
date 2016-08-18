@@ -1,7 +1,8 @@
-flu.H1N1.illumina.clean.fq
-flu.H1N1.illumina.resistant.fq
+zika.nanopore.50x.fq
+zika.nanopore.fq
+flu.H3N2.iontorrent.clean.fq
+flu.H3N2.iontorrent.resistant.fq
 ebola.nanopore.short.fastq
-flu.H3N2.nanopore.long.fq
 lambda.test.bwa.read1.fastq
 flu.H3N2.nanopore.fa
 ebola.nanopore.fastq

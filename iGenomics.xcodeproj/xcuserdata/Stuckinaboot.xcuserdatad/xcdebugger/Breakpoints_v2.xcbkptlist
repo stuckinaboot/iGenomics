@@ -6,32 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Computing/ComputingController.m"
-            timestampString = "493011187.262392"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185879.837638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-setUpWithReadsFile:andRefFile:andParameters:andImptMutsFile:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iGenomics/Computing/ComputingController.m"
-            timestampString = "493011241.234798"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-setUpWithReadsFile:andRefFile:andParameters:andImptMutsFile:"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "-drawPlotInRect:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,46 +25,126 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Computing/ComputingController.m"
-            timestampString = "493011260.235063"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185879.837638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-showAnalysisController"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "-drawPlotInRect:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ComputingController showAnalysisController]"
-                  moduleName = "iGenomics"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/Computing/ComputingController.m"
-                  timestampString = "493011260.23888"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[ComputingController showAnalysisController]_block_invoke"
-                  moduleName = "iGenomics"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/Computing/ComputingController.m"
-                  timestampString = "493011260.239019"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185181.9286"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185213.523968"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185214.530447"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185229.604047"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185242.597173"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185341.437441"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185353.631418"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -89,29 +153,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "493011281.362904"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185527.207901"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-setStuffUp"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iGenomics/Analysis/AnalysisController.m"
-            timestampString = "493011285.138471"
+            filePath = "CoverageHistogram.m"
+            timestampString = "493185879.837638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-setStuffUp"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-drawAxisLblsInRect:withCovFreqArr:andCovFreqArrMax:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

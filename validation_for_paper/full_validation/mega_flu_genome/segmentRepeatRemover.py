@@ -6,9 +6,10 @@ with open(argv[1]) as file:
 	isSkipping = False
 	for line in file.readlines():
 		line = line.strip('\n').strip('\r')
-		if '>' in line:
+		if '>' in line and '(NA)' not in line and '(HA)' not in line:
 			isSkipping = False
-			segName = line[1:line.find(' ')]
+			components = line.split(' ')
+			segName = components[len(components) - 1]
 			if segName not in seenSegments:
 				seenSegments.append(segName)
 			else:
@@ -16,6 +17,5 @@ with open(argv[1]) as file:
 		if isSkipping == False:
 			out += line + '\n'
 
-print seenSegments
 with open(argv[2], 'w') as file:
 	file.write(out)

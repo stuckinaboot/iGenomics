@@ -198,11 +198,17 @@
             
             BOOL shouldAddY = YES;
             if (i > 0) {
+                int intersectingLblIndex = -1;
                 for (int j = 0; j < i; j++)
                     if (CGRectIntersectsRect(yLbls[j].frame, yLbls[i].frame)) {
                         shouldAddY = NO;
+                        intersectingLblIndex = j;
                         break;
                     }
+                if (!shouldAddY && currNumOfSD == 0 && CGRectIntersectsRect(yLbls[intersectingLblIndex].frame, yLbls[i].frame)) {
+                    [yLbls[intersectingLblIndex] removeFromSuperview];
+                    shouldAddY = YES;
+                }
             }
             
             if (shouldAddY) {
@@ -226,12 +232,20 @@
         covFrequencyArr[k]++;
     }
     
+    int totalFreq = 0;
+    for (int i = 0; i < dgenomeLen; i++) {
+        totalFreq += coverageArray[i];
+    }
+    
     highestFrequency = 0;
-    for (int i = 0; i <= maxCoverageVal; i++)
+    for (int i = 0; i <= maxCoverageVal; i++) {
         if (highestFrequency < covFrequencyArr[i]) {
             highestFrequency = covFrequencyArr[i];
             posOfHighestFrequency = i;
         }
+    }
+
+    posOfHighestFrequency = round(((float)totalFreq) / dgenomeLen);
     
     float bw = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
     boxWidth = bw;
@@ -244,9 +258,10 @@
     
     for (int i = 0, x = kCoverageHistogramYAxisDistFromScreenLeft; i <= maxCoverageVal; i += addFactor, x += boxWidth) {
         float ratio = ((float)covFrequencyArr[i]/highestFrequency);
+//        float ratio = ((float)covFrequencyArr[i]/covFrequencyArr[posOfHighestFrequency]);
         int height = ratio*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
         [self drawRectangle:CGRectMake(x, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-height, boxWidth, height) withRGB:(double[3]){dnaColors.mutHighlight.r,dnaColors.mutHighlight.g,dnaColors.mutHighlight.b}];
-        if (ratio == 1)
+        if (i + addFactor > posOfHighestFrequency && i - addFactor < posOfHighestFrequency)
             xValOfPosOfHighestFrequency = x+boxWidth/2;
     }
     
