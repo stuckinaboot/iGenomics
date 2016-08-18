@@ -62,6 +62,7 @@
         char *shortA = malloc(k+1);
         interval = kNonSeedShortSeqInterval;
         
+        NSMutableArray *lastMultipleExactMatches;
         //Starts at i = 1 so that the space is skipped for exact matching
         for (int i = 1; i <= lenA - k; i += interval) {
             strncpy(shortA, a+i, k);
@@ -71,33 +72,18 @@
     //        APTimer *timer = [[APTimer alloc] init];
     //        [timer start];
             NSMutableArray *exactMatches = (NSMutableArray*)[exactMatcher exactMatchForQuery:shortA andIsReverse:NO andForOnlyPos:YES];
-            if ([exactMatches count] > 1) {
-//                for (int j = 0; j < [exactMatches count]; j++) {
-//                    ED_Info *ed = [exactMatches objectAtIndex:j];
-//                    [ed freeUsedMemory];
-//                }
-//                printf("tacos\n");
-//                 printf("Multi-count\n");
+            if (i + interval > lenA - k && ([exactMatches count] == 0 || [exactMatches count] > 1) && lastMultipleExactMatches) {
+                exactMatches = lastMultipleExactMatches;
+            } else if ([exactMatches count] > 1) {
+                lastMultipleExactMatches = exactMatches;
                 continue;
             }
-    //        [timer stopAndLog];
-//            printf("%d\n",[exactMatches count]);
+
             for (int j = 0; j < [exactMatches count]; j++) {
-//                printf("Finding\n");
-//                ED_Info *ed = [exactMatches objectAtIndex:j];
                 ED_Info *ed = [[ED_Info alloc] init];
                 ed.position = [[exactMatches objectAtIndex:j] intValue];
                 ed = [BWT_MatcherSC infoByUnjustingForSegmentDividerLettersForInfo:ed cumSepSegLens:cumulativeSegmentLens];
-                
-    //            if (bestMatch) {
-    //                int approxStartOfRead = ed.position - i;
-    //                
-    //                //If the alignment is likely to already have been recorded in bestMatch, then continue
-    //                if (NSLocationInRange(approxStartOfRead,
-    //                                      NSMakeRange(bestMatch.position - maxEditDist, lenA + maxEditDist)))
-    //                    continue;
-    //            }
-    //
+
                 int ttt = maxEditDist;
                 if (kBandWidth < lenA)
                     maxEditDist = kBandWidth;
@@ -113,19 +99,12 @@
                     bRangeLen = lenB-bLoc+maxEditDist;
                 }
                 
-//                APTimer *edTimer = [[APTimer alloc] init];
-//                [edTimer start];
                 ED_Info *edFinal = [editDist editDistanceForInfoWithFullA:a rangeInA:NSMakeRange(0, lenA) andFullB:b rangeInB:NSMakeRange(bLoc, bRangeLen) andMaxED:maxEditDist];//[ED_Info mergedED_Infos:edL andED2:ed];
-//                printf("ED Timer:\n");
-//                [edTimer stopAndLog];
+
                 
                 maxEditDist = ttt;
                 edFinal.position += bLoc;
-    //            edFinal.position = ed.position - (int)strlen(edL.gappedA) + edL.numOfInsertions;
-                
-                
-    //            if (edFinal && edFinal.distance < kMaxER * lenA && edFinal.distance > maxEditDist)
-    //                edFinal = [BWT_MatcherSC updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:edFinal forNumOfSubs:maxEditDist withCumSepGenomeLens:cumulativeSegmentLens maxErrorRate:maxErrorRate originalReadLen:lenA];
+
                 
                 if (edFinal) {
                     edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
@@ -133,12 +112,10 @@
                 }
 
                 if (edFinal != NULL && edFinal.distance <= maxErrorRate * (int)strlen(edFinal.gappedA)) {
-    //                edFinal = [BWT_MatcherSC infoByAdjustingForSegmentDividerLettersForInfo:edFinal cumSepSegLens:cumulativeSegmentLens];
                     match = edFinal;
                     if (bestMatch == NULL) {
                         bestMatch = match;
                     } else if (match.distance / (float)strlen(match.gappedA) < bestMatch.distance / (float)strlen(bestMatch.gappedA)) {
-    //                } else if (match.distance < bestMatch.distance) {
                         bestMatch = match;
                     }
                     break;
@@ -147,12 +124,7 @@
                     [edFinal freeUsedMemory];
                 
             }
-//            for (int j = 0; j < [exactMatches count]; j++) {
-//                ED_Info *ed = [exactMatches objectAtIndex:j];
-//                [ed freeUsedMemory];
-//            }
-//            if (interval == 1 && bestMatch)
-//                interval = kNonSeedShortSeqInterval;
+
             if (match)
                 break;
             if (interval != kNonSeedShortSeqMinInterval && i + interval >= lenA - k) {

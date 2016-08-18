@@ -70,7 +70,7 @@
 //    while (i*addFactor < rect.size.width) {
     while (i < maxCoverageVal) {
         float normalVal = [self normalCurveFormulaValueForPos:i];
-        float actualYVal = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom);
+        float actualYVal = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-(normalVal/maxNormVal)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom) * (float)freqAtPosOfHighestFrequency/highestFrequency;
        
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), kCoverageHistogramThinLineWidth);
         CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
@@ -246,6 +246,7 @@
     }
 
     posOfHighestFrequency = round(((float)totalFreq) / dgenomeLen);
+    freqAtPosOfHighestFrequency = covFrequencyArr[posOfHighestFrequency];
     
     float bw = (rect.size.width-kCoverageHistogramYAxisDistFromScreenLeft)/(maxCoverageVal+1);
     boxWidth = bw;

@@ -58,6 +58,7 @@
     int maxCoverageVal;
     int highestFrequency;
     int posOfHighestFrequency;
+    int freqAtPosOfHighestFrequency;
     float xValOfPosOfHighestFrequency;
     int boxWidth;
 }

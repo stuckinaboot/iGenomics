@@ -170,8 +170,6 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
         });
     }
     
-    
-//    }
     dgenomeLen = actualDGenomeLen;
 
     for (int i = 0; i < [reedsArray count]; i++) {
