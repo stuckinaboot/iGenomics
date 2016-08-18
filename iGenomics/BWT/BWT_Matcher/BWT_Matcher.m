@@ -494,8 +494,8 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
                 int tIDSeqLen = strlen(tID.seq);
                 
                 while (info.gappedB[a+1] == kDelMarker) {
-                    if (tIDSeqLen > strlen(tID.seq) + 1) {
-                        tID.seq = realloc(tID.seq, tIDSeqLen + 1);
+                    if (tIDSeqLen + 1 >= kMaxInsertionSeqLen) {
+                        tID.seq = realloc(tID.seq, tIDSeqLen + 2);
                     }
                     tID.seq[tIDSeqLen] = info.gappedA[a+1];
                     tID.seq[tIDSeqLen+1] = '\0';

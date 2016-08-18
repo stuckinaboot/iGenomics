@@ -312,7 +312,7 @@
         int edToSub = 0;
         while (!nInARowExactMatch) {
             nInARowExactMatch = TRUE;
-            for (int i = pos; i < pos + kSoftClippingCharsInARowThresholdToFinish; i++) {
+            for (int i = pos; i < pos + kSoftClippingCharsInARowThresholdToFinish && i < bLen; i++) {
                 if (info.gappedB[i] != info.gappedA[i]) {
                     nInARowExactMatch = FALSE;
                     numOfCharsToClip++;
@@ -330,8 +330,12 @@
         int endPos = bLen - 1;
         nInARowExactMatch = FALSE;
         while (!nInARowExactMatch) {
+            if (endPos <= 0) {
+                [info freeUsedMemory];
+                return NULL;
+            }
             nInARowExactMatch = TRUE;
-            for (int i = endPos; i > endPos - kSoftClippingCharsInARowThresholdToFinish; i--) {
+            for (int i = endPos; i > endPos - kSoftClippingCharsInARowThresholdToFinish && i >= 0; i--) {
                 if (info.gappedB[i] != info.gappedA[i]) {
                     nInARowExactMatch = FALSE;
                     numOfCharsToClip++;

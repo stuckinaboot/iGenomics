@@ -193,7 +193,6 @@
             if (newInfo)
                 finalInfo = [ED_Info mergedED_Infos:newInfo andED2:finalInfo];
             
-            NSLog(@"%i, %i",(int)strlen(finalInfo.gappedA), (int)strlen(finalInfo.gappedB));
             //Checks for extension past beginning of a
             if (i > 0 && i - kNonSeedLongSeqSize < 0) {
                 aPos = 0;

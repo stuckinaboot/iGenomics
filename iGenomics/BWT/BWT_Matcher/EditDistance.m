@@ -53,7 +53,7 @@
     
     int numOfBoxesToComputeFor = lenB-lenA+1;//2 * maxED + 1;//;<- This got rid of the NEG error, but increases runtime and did not seem to improve alignments //lenB-lenA+1;
     
-    for (int i = 1; i <= maxED + 1; i++, numOfBoxesToComputeFor++) {
+    for (int i = 1; i <= maxED + 1 && i < lenA; i++, numOfBoxesToComputeFor++) {
         for (int j = 1; j < numOfBoxesToComputeFor && j < lenB; j++) {
             int min = editDistanceTable[(i-1)*lenB+(j-1)] + ((a[rangeA.location+i] == b[rangeB.location+j-1]) ? 0 : 1);
             arrowTable[i*lenB+j] = kDiag;

@@ -147,7 +147,7 @@ int coverageArray[kMaxBytesForIndexer*kMaxMultipleToCountAt];
     for (int i = 0; i < strlen(seq); i++) {
         if (coverageArray[i] >= kLowestAllowedCoverage) {
             for (int x = 0; x < kACGTwithInDelsLen; x++) {
-                if ([BWT_MutationFilter isHeterozygousPosition:i forCharIndex:x heteroAllowance:kHeteroAllowance] && acgt[x] != seq[i]) {
+                if ([BWT_MutationFilter isHeterozygousPosition:i forCharIndex:x heteroAllowance:kHeteroAllowance] && kACGTwithInDels[x] != seq[i]) {
                     [mutationsArray addObject:[NSNumber numberWithInt:i]];
                     break;
                 }
