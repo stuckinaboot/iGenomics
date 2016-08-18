@@ -1,0 +1,13 @@
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 16280 sequences (2925215 bp)...
+[M::mem_process_seqs] Processed 16280 reads in 1.621 CPU sec, 1.627 real sec
+[main] Version: 0.7.12-r1039
+[main] CMD: /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/bwa mem -x ont2d /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.iontorrent.clean.fq
+[main] Real time: 1.685 sec; CPU: 1.665 sec
+Note: Neither --ploidy nor --ploidy-file given, assuming all sites are diploid
+[mpileup] 1 samples in 1 input files
+<mpileup> Set max per-file depth to 8000
+
+real	0m52.184s
+user	0m51.813s
+sys	0m0.211s

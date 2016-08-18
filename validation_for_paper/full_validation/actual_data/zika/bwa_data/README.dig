@@ -1,0 +1,13 @@
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 1250 sequences (571494 bp)...
+[M::mem_process_seqs] Processed 1250 reads in 1.115 CPU sec, 1.118 real sec
+[main] Version: 0.7.12-r1039
+[main] CMD: /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/full_validation_utilities/bwa mem -x ont2d /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/zika/base_data/zika.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/zika/base_data/zika.nanopore.50x.fq
+[main] Real time: 1.130 sec; CPU: 1.128 sec
+Note: Neither --ploidy nor --ploidy-file given, assuming all sites are diploid
+[mpileup] 1 samples in 1 input files
+<mpileup> Set max per-file depth to 8000
+
+real	1m23.561s
+user	1m23.290s
+sys	0m0.172s
