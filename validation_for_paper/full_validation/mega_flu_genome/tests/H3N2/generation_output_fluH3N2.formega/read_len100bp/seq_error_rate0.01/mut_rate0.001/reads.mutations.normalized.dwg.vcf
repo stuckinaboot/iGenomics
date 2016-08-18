@@ -1,0 +1,28 @@
+##fileformat=VCFv4.1
+##FILTER=<ID=PASS,Description="All filters passed">
+##contig=<ID=KT835975,length=1701>
+##contig=<ID=KT836109,length=1410>
+##contig=<ID=KT836227,length=2280>
+##contig=<ID=KT835895,length=2274>
+##contig=<ID=KT836188,length=2151>
+##contig=<ID=KT836189,length=1497>
+##contig=<ID=KT836177,length=982>
+##contig=<ID=KT835950,length=838>
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##INFO=<ID=pl,Number=1,Type=Integer,Description="Phasing: 1 - HET contig 1, #2 - HET contig #2, 3 - HOM both contigs">
+##INFO=<ID=mt,Number=1,Type=String,Description="Variant Type: SUBSTITUTE/INSERT/DELETE">
+##INFO=<ID=OLD_VARIANT,Number=.,Type=String,Description="Original chr:pos:ref:alt encoding">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+KT835975	254	.	C	T	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+KT835975	903	.	TG	T	100	PASS	AF=0.5;pl=1;mt=DELETE
+KT836227	399	.	CCA	C	100	PASS	AF=0.5;pl=1;mt=DELETE
+KT836227	1310	.	AT	A	100	PASS	AF=0.5;pl=1;mt=DELETE
+KT836188	1270	.	G	C	100	PASS	AF=1;pl=3;mt=SUBSTITUTE
+KT836188	1719	.	C	T	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+KT836189	44	.	CTGA	C	100	PASS	AF=0.5;pl=1;mt=DELETE
+KT836189	1097	.	C	G	100	PASS	AF=1;pl=3;mt=SUBSTITUTE
+KT836189	1257	.	A	C	100	PASS	AF=1;pl=3;mt=SUBSTITUTE
+KT836189	1317	.	C	CA	100	PASS	AF=1;pl=3;mt=INSERT;OLD_VARIANT=KT836189:1318:A/AA
+KT835950	22	.	A	C	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+KT835950	486	.	A	T	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+KT835950	755	.	G	GA	100	PASS	AF=0.5;pl=1;mt=INSERT;OLD_VARIANT=KT835950:756:A/AA

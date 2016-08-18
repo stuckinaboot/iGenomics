@@ -1,0 +1,25 @@
+##fileformat=VCFv4.1
+##contig=<ID=GQ117044,length=1701>
+##contig=<ID=FJ969517,length=1410>
+##contig=<ID=FJ969516,length=2280>
+##contig=<ID=GQ377049,length=2274>
+##contig=<ID=FJ969515,length=2151>
+##contig=<ID=FJ969512,length=1497>
+##contig=<ID=FJ969513,length=982>
+##contig=<ID=FJ969514,length=863>
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##INFO=<ID=pl,Number=1,Type=Integer,Description="Phasing: 1 - HET contig 1, #2 - HET contig #2, 3 - HOM both contigs">
+##INFO=<ID=mt,Number=1,Type=String,Description="Variant Type: SUBSTITUTE/INSERT/DELETE">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+FJ969517	504	.	T	G	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+FJ969517	1301	.	A	T	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+FJ969516	1280	.	G	GA	100	PASS	AF=0.5;pl=2;mt=INSERT
+FJ969516	1787	.	T	A	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+GQ377049	162	.	G	T	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+GQ377049	1458	.	G	C	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+GQ377049	2092	.	A	C	100	PASS	AF=1.0;pl=3;mt=SUBSTITUTE
+FJ969515	1566	.	T	G	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+FJ969515	1914	.	G	C	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+FJ969513	279	.	G	C	100	PASS	AF=0.5;pl=2;mt=SUBSTITUTE
+FJ969513	773	.	G	C	100	PASS	AF=0.5;pl=1;mt=SUBSTITUTE
+FJ969513	847	.	TCG	T	100	PASS	AF=0.5;pl=1;mt=DELETE

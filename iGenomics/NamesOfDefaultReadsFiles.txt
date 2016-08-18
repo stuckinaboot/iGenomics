@@ -1,3 +1,15 @@
+fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq
+fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq
+fluH3N2.formega-reads-rl100-se0.01-mr0.005.fq
+fluH3N2.formega-reads-rl1000-se0.1-mr0.0.fq
+fluH3N2.formega-reads-rl1000-se0.1-mr0.001.fq
+fluH3N2.formega-reads-rl1000-se0.1-mr0.005.fq
+fluH1N1.formega-reads-rl100-se0.01-mr0.0.fq
+fluH1N1.formega-reads-rl100-se0.01-mr0.001.fq
+fluH1N1.formega-reads-rl100-se0.01-mr0.005.fq
+fluH1N1.formega-reads-rl1000-se0.1-mr0.0.fq
+fluH1N1.formega-reads-rl1000-se0.1-mr0.001.fq
+fluH1N1.formega-reads-rl1000-se0.1-mr0.005.fq
 zika.nanopore.50x.fq
 zika.nanopore.fq
 flu.H3N2.iontorrent.clean.fq

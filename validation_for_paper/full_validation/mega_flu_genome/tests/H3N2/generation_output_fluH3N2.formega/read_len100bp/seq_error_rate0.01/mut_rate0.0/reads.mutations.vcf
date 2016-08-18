@@ -1,0 +1,13 @@
+##fileformat=VCFv4.1
+##contig=<ID=KT835975,length=1701>
+##contig=<ID=KT836109,length=1410>
+##contig=<ID=KT836227,length=2280>
+##contig=<ID=KT835895,length=2274>
+##contig=<ID=KT836188,length=2151>
+##contig=<ID=KT836189,length=1497>
+##contig=<ID=KT836177,length=982>
+##contig=<ID=KT835950,length=838>
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##INFO=<ID=pl,Number=1,Type=Integer,Description="Phasing: 1 - HET contig 1, #2 - HET contig #2, 3 - HOM both contigs">
+##INFO=<ID=mt,Number=1,Type=String,Description="Variant Type: SUBSTITUTE/INSERT/DELETE">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
