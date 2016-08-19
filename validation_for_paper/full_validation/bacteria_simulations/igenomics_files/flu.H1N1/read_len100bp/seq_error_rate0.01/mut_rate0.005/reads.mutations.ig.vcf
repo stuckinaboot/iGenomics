@@ -1,5 +1,5 @@
 ##fileformat=VCFv4.2
-##fileDate=15082016
+##fileDate=18082016
 ##source=iGenomics
 ##reference=flu.H1N1
 ##contig=<ID=CY001959, length=2311>
@@ -13,7 +13,7 @@
 ##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
 ##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	fluH1N1-reads-rl100-se0.01-mr0.005
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	flu.H1N1-reads-rl100-se0.01-mr0.005
 CY001959	70	.	C	CG	30	PASS	AF=0.50	GT:DP	0/1:80
 CY001959	227	.	T	G	30	PASS	AF=0.50	GT:DP	0/1:109
 CY001959	600	.	A	G	30	PASS	AF=0.50	GT:DP	0/1:110

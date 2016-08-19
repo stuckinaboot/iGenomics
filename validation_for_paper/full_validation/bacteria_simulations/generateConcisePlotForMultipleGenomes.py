@@ -41,20 +41,27 @@ NUM_COLORS = 4
 
 plt.axes().set_color_cycle([cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 plt.title('Runtime vs. Reference Length')
-plt.xlabel('Reference Length')
-plt.ylabel('Runtime')
+plt.xlabel('Reference Length (bp)')
+plt.ylabel('Runtime (s)')
 
 # #a) Plot iGenomics runtime
-
+colorsForVerticalLines = ['red', 'orange', 'green', 'blue', 'indigo']
+labelsForVerticalLines = ['PhiX174 (5386bp)', 'Zika (10807bp)', 'H1N1 (13382bp)', 'H3N2 (13568bp)', 'Ebola (18957bp)']
+refLinesAlreadyShowing = False
 for runtimeKey in plotDataPoints:
 	for readLen in plotDataPoints[runtimeKey]:
 		plotDataPt = plotDataPoints[runtimeKey][readLen]
 		sortedPlotDataPt = sorted(plotDataPt, key=lambda x: x['reference length'])
 		refLens = [singlePt['reference length'] for singlePt in sortedPlotDataPt]
+		if refLinesAlreadyShowing == False:
+			for i, refLen in enumerate(refLens):
+				plt.axvline(refLen, color=colorsForVerticalLines[i], linestyle='dashed', label=labelsForVerticalLines[i])
+			refLinesAlreadyShowing = True
 		runtimes = [singlePt['runtime'] for singlePt in sortedPlotDataPt] 
 		print sortedPlotDataPt
 		label = runtimeKey + ' | ' + str(readLen) + 'bp'
 		plt.plot(refLens, runtimes, label=label, linewidth=LINE_WIDTH)
+
 plt.legend(loc=0,prop={'size':6})
 plt.savefig(plotPath)
 plt.gcf().clear()

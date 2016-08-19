@@ -132,7 +132,7 @@ NUM_COLORS = len(plotDataPoints)
 
 plt.axes().set_color_cycle([cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 plt.title('Mutation Recall vs. Read Length')
-plt.xlabel('Read Length')
+plt.xlabel('Read Length (bp)')
 plt.ylabel('Recall')
 
 for plotDataPoint in plotDataPoints:
@@ -154,7 +154,7 @@ plt.gcf().clear()
 #b) Precision Plot
 plt.axes().set_color_cycle([cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 plt.title('Mutation Precision vs. Read Length')
-plt.xlabel('Read Length')
+plt.xlabel('Read Length (bp)')
 plt.ylabel('Precision')
 
 for plotDataPoint in plotDataPoints:
@@ -176,7 +176,7 @@ plt.gcf().clear()
 #c) F-Score vs. Read Len
 plt.axes().set_color_cycle([cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 plt.title('Mutation F-Score vs. Read Length')
-plt.xlabel('Read Length')
+plt.xlabel('Read Length (bp)')
 plt.ylabel('F-Score')
 
 for plotDataPoint in plotDataPoints:
@@ -220,8 +220,8 @@ plt.gcf().clear()
 #e) Runtimes
 plt.axes().set_color_cycle([cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 plt.title('iGenomics Runtime vs. BWA Runtime')
-plt.xlabel('BWA Runtime (seconds)')
-plt.ylabel('iGenomics Runtime (seconds)')
+plt.xlabel('BWA Runtime (s)')
+plt.ylabel('iGenomics Runtime (s)')
 
 for plotDataPoint in plotDataPoints:
 	runtimesDict = plotDataPoint['runtimes']

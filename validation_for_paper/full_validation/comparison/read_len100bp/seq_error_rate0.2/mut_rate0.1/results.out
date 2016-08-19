@@ -72,6 +72,7 @@ ERROR: POSITION: CY001957_1060_1_0_1_0_0_22:4:0_0:0:0_e4/1 margin of error was 1
 ERROR: POSITION: CY001954_79_1_1_0_0_0_22:4:0_0:0:0_84/1 margin of error was 71
 ERROR: POSITION: CY001959_484_1_1_0_0_0_29:4:1_0:0:0_37b/1 margin of error was 417
 ERROR: POSITION: CY001954_547_1_1_0_0_0_28:4:0_0:0:0_2db/1 margin of error was 536
+ERROR: POSITION: CY001959_974_1_0_1_0_0_17:7:0_0:0:0_571/1 margin of error was 665
 ERROR: POSITION: CY001954_1259_1_1_0_0_0_23:4:2_0:0:0_53d/1 margin of error was 979
 ERROR: POSITION: CY001957_1745_1_1_0_0_0_27:5:0_0:0:0_67c/1 margin of error was 1446
 ERROR: POSITION: CY001956_159_1_0_1_0_0_22:12:0_0:0:0_0/1 margin of error was 419
@@ -127,6 +128,7 @@ ERROR: POSITION: CY001953_627_1_1_0_0_0_20:4:0_0:0:0_118/1 margin of error was 3
 ERROR: POSITION: CY001955_149_1_1_0_0_0_19:8:1_0:0:0_229/1 margin of error was 720
 ERROR: POSITION: CY001957_797_1_0_1_0_0_24:10:0_0:0:0_372/1 margin of error was 669
 ERROR: POSITION: CY001956_117_1_1_0_0_0_21:8:0_0:0:0_f8/1 margin of error was 818
+ERROR: POSITION: CY001952_1611_1_0_1_0_0_19:7:0_0:0:0_25b/1 margin of error was 890
 ERROR: POSITION: CY001954_34_1_1_0_0_0_20:5:0_0:0:0_141/1 margin of error was 1491
 ERROR: POSITION: CY001959_303_1_0_1_0_0_26:4:0_0:0:0_54f/1 margin of error was 906
 ERROR: POSITION: CY001952_1200_1_0_1_0_0_24:6:1_0:0:0_45a/1 margin of error was 169
@@ -440,6 +442,7 @@ ERROR: POSITION: CY001955_323_1_0_1_0_0_17:5:2_0:0:0_39d/1 margin of error was 3
 ERROR: POSITION: CY001955_739_1_1_0_0_0_21:5:0_0:0:0_162/1 margin of error was 198
 ERROR: POSITION: CY001959_946_1_0_1_0_0_21:6:1_0:0:0_691/1 margin of error was 590
 ERROR: POSITION: CY001952_1108_1_1_0_0_0_17:5:3_0:0:0_25d/1 margin of error was 873
+ERROR: POSITION: CY001952_978_1_1_0_0_0_19:7:0_0:0:0_4e6/1 margin of error was 195
 ERROR: POSITION: CY001956_30_1_0_1_0_0_19:4:0_0:0:0_11d/1 margin of error was 698
 ERROR: POSITION: CY001957_647_1_1_0_0_0_24:7:1_0:0:0_57c/1 margin of error was 143
 ERROR: POSITION: CY001953_846_1_1_0_0_0_18:8:0_0:0:0_3e5/1 margin of error was 348
@@ -476,6 +479,7 @@ ERROR: POSITION: CY001953_403_1_0_1_0_0_19:7:2_0:0:0_de/1 margin of error was 45
 ERROR: POSITION: CY001956_276_1_1_0_0_0_23:4:1_0:0:0_ad/1 margin of error was 262
 ERROR: POSITION: CY001952_976_1_1_0_0_0_18:7:0_0:0:0_ed/1 margin of error was 271
 ERROR: POSITION: CY001958_1975_1_0_1_0_0_23:11:1_0:0:0_77e/1 margin of error was 1328
+ERROR: POSITION: CY001956_159_1_1_0_0_0_21:12:0_0:0:0_2f2/1 margin of error was 87
 ERROR: POSITION: CY001957_1528_1_0_1_0_0_16:10:2_0:0:0_3e/1 margin of error was 795
 ERROR: POSITION: CY001958_952_1_1_0_0_0_21:6:5_0:0:0_41/1 margin of error was 157
 ERROR: POSITION: CY001955_1355_1_1_0_0_0_17:8:1_0:0:0_148/1 margin of error was 1056
@@ -675,7 +679,7 @@ ERROR: POSITION: CY001958_2219_1_1_0_0_0_16:7:1_0:0:0_8e6/1 margin of error was 
 FINISHED COMPARING
 -----------------------------------------------------
 RESULTS:
-PASSING READS: 6635
+PASSING READS: 6640
 PASSED: CY001952_332_1_1_0_0_0_16:7:0_0:0:0_596/1
 PASSED: CY001954_722_1_0_1_0_0_23:6:0_0:0:0_25b/1
 PASSED: CY001954_226_1_0_1_0_0_17:3:0_0:0:0_0/1
@@ -1038,7 +1042,7 @@ PASSED: CY001953_334_1_0_1_0_0_19:6:1_0:0:0_e0/1
 PASSED: CY001952_1136_1_0_1_0_0_22:5:2_0:0:0_de/1
 PASSED: CY001958_2177_1_1_0_0_0_23:9:0_0:0:0_4b0/1
 PASSED: CY001959_1605_1_0_1_0_0_21:7:0_0:0:0_28a/1
-PASSED: CY001953_122_1_1_0_0_0_19:5:1_0:0:0_52/1
+PASSED: CY001959_966_1_0_1_0_0_23:4:0_0:0:0_64c/1
 PASSED: CY001959_1839_1_0_1_0_0_16:10:1_0:0:0_281/1
 PASSED: CY001955_409_1_0_1_0_0_23:3:1_0:0:0_78/1
 PASSED: CY001958_1765_1_0_1_0_0_21:1:0_0:0:0_5db/1
@@ -2076,6 +2080,7 @@ PASSED: CY001952_1317_1_1_0_0_0_16:7:0_0:0:0_1a6/1
 PASSED: CY001959_569_1_1_0_0_0_18:8:1_0:0:0_c6/1
 PASSED: CY001957_429_1_0_1_0_0_19:5:0_0:0:0_115/1
 PASSED: CY001959_1266_1_1_0_0_0_24:2:1_0:0:0_609/1
+PASSED: CY001953_122_1_1_0_0_0_19:5:1_0:0:0_52/1
 PASSED: CY001959_1278_1_1_0_0_0_18:4:1_0:0:0_6a4/1
 PASSED: CY001954_756_1_0_1_0_0_21:6:0_0:0:0_57c/1
 PASSED: CY001959_1259_1_1_0_0_0_21:3:1_0:0:0_5ee/1
@@ -4406,6 +4411,7 @@ PASSED: CY001957_151_1_0_1_0_0_18:7:0_0:0:0_890/1
 PASSED: CY001952_416_1_1_0_0_0_16:7:0_0:0:0_69f/1
 PASSED: CY001954_875_1_1_0_0_0_25:9:1_0:0:0_31c/1
 PASSED: CY001954_1065_1_1_0_0_0_18:7:0_0:0:0_58a/1
+PASSED: CY001956_796_1_0_1_0_0_16:7:1_0:0:0_11a/1
 PASSED: CY001952_529_1_1_0_0_0_13:7:2_0:0:0_331/1
 PASSED: CY001958_1140_1_0_1_0_0_10:5:0_0:0:0_5d7/1
 PASSED: CY001959_1783_1_1_0_0_0_24:6:1_0:0:0_19f/1
@@ -5650,6 +5656,7 @@ PASSED: CY001958_601_1_1_0_0_0_22:11:0_0:0:0_1c7/1
 PASSED: CY001957_899_1_1_0_0_0_21:11:0_0:0:0_26c/1
 PASSED: CY001955_68_1_1_0_0_0_16:6:0_0:0:0_1aa/1
 PASSED: CY001959_1001_1_0_1_0_0_16:8:0_0:0:0_42b/1
+PASSED: CY001959_92_1_0_1_0_0_14:6:0_0:0:0_2ed/1
 PASSED: CY001956_635_1_1_0_0_0_26:5:1_0:0:0_249/1
 PASSED: CY001955_752_1_1_0_0_0_19:4:0_0:0:0_210/1
 PASSED: CY001958_1516_1_0_1_0_0_21:5:0_0:0:0_540/1
@@ -6090,6 +6097,7 @@ PASSED: CY001957_2028_1_0_1_0_0_22:11:0_0:0:0_6d6/1
 PASSED: CY001959_1428_1_1_0_0_0_20:5:0_0:0:0_6b3/1
 PASSED: CY001955_887_1_0_1_0_0_21:3:0_0:0:0_146/1
 PASSED: CY001959_1337_1_0_1_0_0_16:8:0_0:0:0_888/1
+PASSED: CY001956_796_1_1_0_0_0_17:7:1_0:0:0_23f/1
 PASSED: CY001954_716_1_1_0_0_0_21:3:0_0:0:0_2ad/1
 PASSED: CY001957_868_1_0_1_0_0_13:7:0_0:0:0_2bf/1
 PASSED: CY001954_138_1_1_0_0_0_22:4:1_0:0:0_ec/1
@@ -6349,6 +6357,7 @@ PASSED: CY001958_1563_1_0_1_0_0_23:2:0_0:0:0_794/1
 PASSED: CY001952_1427_1_1_0_0_0_15:5:3_0:0:0_508/1
 PASSED: CY001959_953_1_0_1_0_0_15:3:0_0:0:0_3e4/1
 PASSED: CY001952_1472_1_0_1_0_0_23:2:2_0:0:0_6a0/1
+PASSED: CY001956_796_1_1_0_0_0_17:7:1_0:0:0_2d/1
 PASSED: CY001958_214_1_1_0_0_0_20:5:1_0:0:0_82d/1
 PASSED: CY001956_773_1_1_0_0_0_14:6:1_0:0:0_356/1
 PASSED: CY001955_1412_1_0_1_0_0_25:6:1_0:0:0_3ba/1
@@ -7311,7 +7320,7 @@ PASSED: CY001957_610_1_1_0_0_0_11:6:1_0:0:0_4bc/1
 PASSED: CY001954_1105_1_1_0_0_0_22:5:1_0:0:0_128/1
 PASSED: CY001956_486_1_0_1_0_0_16:6:0_0:0:0_193/1
 PASSED: CY001956_395_1_0_1_0_0_20:6:1_0:0:0_285/1
-FAILING READS: 667
+FAILING READS: 671
 FAILED: CY001955_821_1_1_0_0_0_20:4:1_0:0:0_7e/1 --> {'position': True, 'distance': False}
 FAILED: CY001958_2174_1_0_1_0_0_27:9:0_0:0:0_4c6/1 --> {'position': True, 'distance': False}
 FAILED: CY001953_644_1_0_1_0_0_28:5:0_0:0:0_1c3/1 --> {'position': True, 'distance': False}
@@ -7378,6 +7387,7 @@ FAILED: CY001957_1060_1_0_1_0_0_22:4:0_0:0:0_e4/1 --> {'position': True, 'distan
 FAILED: CY001954_79_1_1_0_0_0_22:4:0_0:0:0_84/1 --> {'position': True, 'distance': False}
 FAILED: CY001959_484_1_1_0_0_0_29:4:1_0:0:0_37b/1 --> {'position': True, 'distance': False}
 FAILED: CY001954_547_1_1_0_0_0_28:4:0_0:0:0_2db/1 --> {'position': True, 'distance': False}
+FAILED: CY001959_974_1_0_1_0_0_17:7:0_0:0:0_571/1 --> {'position': True, 'distance': False}
 FAILED: CY001954_1259_1_1_0_0_0_23:4:2_0:0:0_53d/1 --> {'position': True, 'distance': False}
 FAILED: CY001957_1745_1_1_0_0_0_27:5:0_0:0:0_67c/1 --> {'position': True, 'distance': False}
 FAILED: CY001956_159_1_0_1_0_0_22:12:0_0:0:0_0/1 --> {'position': True, 'distance': False}
@@ -7433,6 +7443,7 @@ FAILED: CY001953_627_1_1_0_0_0_20:4:0_0:0:0_118/1 --> {'position': True, 'distan
 FAILED: CY001955_149_1_1_0_0_0_19:8:1_0:0:0_229/1 --> {'position': True, 'distance': False}
 FAILED: CY001957_797_1_0_1_0_0_24:10:0_0:0:0_372/1 --> {'position': True, 'distance': False}
 FAILED: CY001956_117_1_1_0_0_0_21:8:0_0:0:0_f8/1 --> {'position': True, 'distance': False}
+FAILED: CY001952_1611_1_0_1_0_0_19:7:0_0:0:0_25b/1 --> {'position': True, 'distance': False}
 FAILED: CY001954_34_1_1_0_0_0_20:5:0_0:0:0_141/1 --> {'position': True, 'distance': False}
 FAILED: CY001959_303_1_0_1_0_0_26:4:0_0:0:0_54f/1 --> {'position': True, 'distance': False}
 FAILED: CY001952_1200_1_0_1_0_0_24:6:1_0:0:0_45a/1 --> {'position': True, 'distance': False}
@@ -7746,6 +7757,7 @@ FAILED: CY001955_323_1_0_1_0_0_17:5:2_0:0:0_39d/1 --> {'position': True, 'distan
 FAILED: CY001955_739_1_1_0_0_0_21:5:0_0:0:0_162/1 --> {'position': True, 'distance': False}
 FAILED: CY001959_946_1_0_1_0_0_21:6:1_0:0:0_691/1 --> {'position': True, 'distance': False}
 FAILED: CY001952_1108_1_1_0_0_0_17:5:3_0:0:0_25d/1 --> {'position': True, 'distance': False}
+FAILED: CY001952_978_1_1_0_0_0_19:7:0_0:0:0_4e6/1 --> {'position': True, 'distance': False}
 FAILED: CY001956_30_1_0_1_0_0_19:4:0_0:0:0_11d/1 --> {'position': True, 'distance': False}
 FAILED: CY001957_647_1_1_0_0_0_24:7:1_0:0:0_57c/1 --> {'position': True, 'distance': False}
 FAILED: CY001953_846_1_1_0_0_0_18:8:0_0:0:0_3e5/1 --> {'position': True, 'distance': False}
@@ -7783,6 +7795,7 @@ FAILED: CY001953_403_1_0_1_0_0_19:7:2_0:0:0_de/1 --> {'position': True, 'distanc
 FAILED: CY001956_276_1_1_0_0_0_23:4:1_0:0:0_ad/1 --> {'position': True, 'distance': False}
 FAILED: CY001952_976_1_1_0_0_0_18:7:0_0:0:0_ed/1 --> {'position': True, 'distance': False}
 FAILED: CY001958_1975_1_0_1_0_0_23:11:1_0:0:0_77e/1 --> {'position': True, 'distance': False}
+FAILED: CY001956_159_1_1_0_0_0_21:12:0_0:0:0_2f2/1 --> {'position': True, 'distance': False}
 FAILED: CY001957_1528_1_0_1_0_0_16:10:2_0:0:0_3e/1 --> {'position': True, 'distance': False}
 FAILED: CY001958_952_1_1_0_0_0_21:6:5_0:0:0_41/1 --> {'position': True, 'distance': False}
 FAILED: CY001955_1355_1_1_0_0_0_17:8:1_0:0:0_148/1 --> {'position': True, 'distance': False}
@@ -7983,9 +7996,9 @@ NOT SHARED READS:
 _______________________________________
 ~~CONCISE REPORT~~
 TYPE: Alignments
-PASSED: 6635
-FAILED: 667
+PASSED: 6640
+FAILED: 671
 NOT SHARED: 0
-LEN iG: 7302
+LEN iG: 7311
 LEN BWA: 13568
 RESULTS FINISHED

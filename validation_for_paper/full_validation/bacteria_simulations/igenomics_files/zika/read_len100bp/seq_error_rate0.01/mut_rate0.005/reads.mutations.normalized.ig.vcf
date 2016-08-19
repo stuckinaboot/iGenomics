@@ -1,6 +1,6 @@
 ##fileformat=VCFv4.2
 ##FILTER=<ID=PASS,Description="All filters passed">
-##fileDate=15082016
+##fileDate=18082016
 ##source=iGenomics
 ##reference=zika
 ##contig=<ID=gi|1008913395|gb|KU955593.1|,length=10807>

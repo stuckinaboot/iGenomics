@@ -1,5 +1,5 @@
 ##fileformat=VCFv4.2
-##fileDate=15082016
+##fileDate=18082016
 ##source=iGenomics
 ##reference=flu.H3N2
 ##contig=<ID=gi|383279739|gb|CY114380.1|, length=2312>
@@ -13,7 +13,7 @@
 ##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
 ##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	fluH3N2-reads-rl100-se0.01-mr0.005
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	flu.H3N2-reads-rl100-se0.01-mr0.005
 gi|383279739|gb|CY114380.1|	105	.	A	AT	30	PASS	AF=0.50	GT:DP	0/1:116
 gi|383279739|gb|CY114380.1|	123	.	G	T	30	PASS	AF=0.50	GT:DP	0/1:106
 gi|383279739|gb|CY114380.1|	396	.	G	C	30	PASS	AF=0.50	GT:DP	0/1:93

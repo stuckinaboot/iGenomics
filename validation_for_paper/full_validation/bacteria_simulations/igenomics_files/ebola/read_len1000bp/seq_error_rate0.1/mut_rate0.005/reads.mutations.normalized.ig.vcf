@@ -1,6 +1,6 @@
 ##fileformat=VCFv4.2
 ##FILTER=<ID=PASS,Description="All filters passed">
-##fileDate=15082016
+##fileDate=18082016
 ##source=iGenomics
 ##reference=ebola
 ##contig=<ID=gi|661348725|gb|KM034562.1|,length=18957>

@@ -220,7 +220,7 @@ PASSED: CY001955>>873>>SUB
 PASSED: CY001953>>669>>SUB
 PASSED: CY001953>>771>>SUB
 PASSED: CY001959>>411>>SUB
-FAIL: CY001959>>139>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '139', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'POS': '139', 'FILTER': 'PASS', 'QUAL': '30', 'reads-rl100-se0.2-mr0.1': '0/1:54', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001959>>139>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '139', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'POS': '139', 'FILTER': 'PASS', 'QUAL': '30', 'reads-rl100-se0.2-mr0.1': '0/1:55', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
 PASSED: CY001958>>1719>>SUB
 PASSED: CY001958>>479>>SUB
 PASSED: CY001958>>398>>SUB
@@ -827,7 +827,7 @@ FAIL: CY001955>>411>>INS XX found comparison -> 1: {'INFO': 'AF=1;pl=3;mt=INSERT
 PASSED: CY001952>>1241>>SUB
 PASSED: CY001955>>315>>SUB
 PASSED: CY001953>>322>>SUB
-FAIL: CY001959>>90>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '90', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'POS': '90', 'FILTER': 'PASS', 'QUAL': '30', 'reads-rl100-se0.2-mr0.1': '1/1:48', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: CY001959>>90>>SUB XX alleles comparison -> 1: {'INFO': 'AF=0.5;pl=1;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '90', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=1', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'POS': '90', 'FILTER': 'PASS', 'QUAL': '30', 'reads-rl100-se0.2-mr0.1': '1/1:49', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
 FAIL: CY001954>>1143>>SUB not found
 PASSED: CY001955>>1080>>SUB
 FAIL: CY001958>>2286>>DEL not found
@@ -1099,7 +1099,7 @@ PASSED: CY001952>>1426>>SUB
 PASSED: CY001956>>611>>SUB
 PASSED: CY001959>>1005>>SUB
 PASSED: CY001957>>1725>>SUB
-FAIL: CY001959>>140>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '140', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'POS': '140', 'FILTER': 'PASS', 'QUAL': '30', 'reads-rl100-se0.2-mr0.1': '0/1:54', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: CY001959>>140>>SUB XX alleles comparison -> 1: {'INFO': 'AF=1;pl=3;mt=SUBSTITUTE', 'CHROM': 'CY001959', 'POS': '140', 'FILTER': 'PASS', 'QUAL': '100', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'CY001959', 'POS': '140', 'FILTER': 'PASS', 'QUAL': '30', 'reads-rl100-se0.2-mr0.1': '0/1:55', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
 PASSED: CY001952>>1061>>SUB
 PASSED: CY001957>>1184>>SUB
 PASSED: CY001953>>713>>SUB

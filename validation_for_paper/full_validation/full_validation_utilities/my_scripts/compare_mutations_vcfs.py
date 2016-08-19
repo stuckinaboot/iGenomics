@@ -62,6 +62,7 @@ def mutDictFromFile(file):
 					else:
 						mut['TYPE'] = 'SUB'
 
+					gtPart = ''
 					if 'GT' in mut['FORMAT']:
 						gtPart = components[len(components) - 1].split(':')[0]
 					if gtPart == '1/1':

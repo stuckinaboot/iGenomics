@@ -1,7 +1,7 @@
 ##fileformat=VCFv4.2
 ##FILTER=<ID=PASS,Description="All filters passed">
 ##samtoolsVersion=1.3.1+htslib-1.3.1
-##samtoolsCommand=samtools mpileup -uBQ0 -f /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/nanopore/out.sorted.bam
+##samtoolsCommand=samtools mpileup -uBQ0 -f /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam
 ##reference=file:///Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.fa
 ##contig=<ID=gi|383279739|gb|CY114380.1|,length=2312>
 ##contig=<ID=gi|383279736|gb|CY114379.1|,length=2312>
@@ -34,9 +34,9 @@
 ##bcftools_callVersion=1.3.1+htslib-1.3.1
 ##bcftools_callCommand=call -mAv
 ##bcftools_filterVersion=1.3.1+htslib-1.3.1
-##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/nanopore/calls.raw.bcf
+##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/calls.raw.bcf
 ##INFO=<ID=OLD_VARIANT,Number=.,Type=String,Description="Original chr:pos:ref:alt encoding">
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/nanopore/out.sorted.bam
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam
 gi|383279739|gb|CY114380.1|	4	.	T	A	170	PASS	DP=6;VDB=0.0058656;SGB=-0.556411;RPB=1;MQB=1;MQSB=0.861511;BQB=1;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=1,1,2,2;MQ=60	GT:PL	0/1:203,0,102
 gi|383279739|gb|CY114380.1|	5	.	T	C	7.66682	PASS	DP=6;SGB=-0.379885;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=2,3,0,1;MQ=60	GT:PL	0/1:42,0,244
 gi|383279739|gb|CY114380.1|	6	.	A	G	4.97023	PASS	DP=7;SGB=-0.379885;RPB=1;MQB=1;MQSB=1.01283;BQB=1;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=3,3,0,1;MQ=60	GT:PL	0/1:39,0,255

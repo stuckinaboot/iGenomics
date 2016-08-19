@@ -269,6 +269,7 @@
                     <rect key="frame" x="360" y="8" width="123" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="6ml-KN-BTu"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="TuN-Ga-KS7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
@@ -296,6 +297,7 @@
                     <rect key="frame" x="75" y="9" width="165" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="C5h-VA-3jM"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="RPn-8S-ux2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
@@ -310,7 +312,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yt4-R7-U5O">
-                    <rect key="frame" x="251" y="9" width="56" height="30"/>
+                    <rect key="frame" x="251" y="8" width="56" height="30"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="56" id="St8-Gg-GlQ"/>
@@ -407,7 +409,7 @@
             <constraints>
                 <constraint firstItem="hCr-lp-Hrb" firstAttribute="centerX" secondItem="LW0-q0-VVi" secondAttribute="centerX" id="0rV-Z7-w6w"/>
                 <constraint firstItem="aw8-Kg-sxM" firstAttribute="baseline" secondItem="TUx-zU-Khu" secondAttribute="baseline" id="2rn-SB-5Zf"/>
-                <constraint firstItem="fKA-WS-eZr" firstAttribute="top" secondItem="yt4-R7-U5O" secondAttribute="bottom" constant="8" symbolic="YES" id="6v4-uT-hOI"/>
+                <constraint firstItem="fKA-WS-eZr" firstAttribute="top" secondItem="yt4-R7-U5O" secondAttribute="bottom" constant="9" id="6v4-uT-hOI"/>
                 <constraint firstItem="Jvi-51-ZKt" firstAttribute="leading" secondItem="LW0-q0-VVi" secondAttribute="leading" constant="66" id="8pC-b9-GXw"/>
                 <constraint firstItem="yt4-R7-U5O" firstAttribute="leading" secondItem="aw8-Kg-sxM" secondAttribute="trailing" constant="11" id="B87-JE-0sm"/>
                 <constraint firstItem="aw8-Kg-sxM" firstAttribute="leading" secondItem="HGO-Mu-8j2" secondAttribute="trailing" constant="6" id="DKJ-FW-lhm"/>
