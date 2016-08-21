@@ -1,20 +1,20 @@
 PASSED: gi|661348725|gb|KM034562.1|>>1602>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>15963>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>2894>>SUB
-FAIL: gi|661348725|gb|KM034562.1|>>9061>>SUB XX alleles comparison -> 1: {'INFO': 'DP=99;VDB=0;SGB=-0.693147;RPB=0.97753;MQB=0.996672;BQB=0.000119451;MQ0F=0;AC=2;AN=2;DP4=0,18,0,81;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/ebola/bwa_data/out.sorted.bam': '1/1:33,103,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'POS': '9061', 'FILTER': 'PASS', 'QUAL': '6.78899', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'ebola.nanopore': '0/1:136', 'POS': '9061', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+PASSED: gi|661348725|gb|KM034562.1|>>9061>>SUB
 FAIL: gi|661348725|gb|KM034562.1|>>1090>>SUB not found
-FAIL: gi|661348725|gb|KM034562.1|>>11181>>DEL XX alleles comparison -> 1: {'INFO': 'INDEL;IDV=100;IMF=0.46729;DP=200;VDB=0;SGB=-0.693147;MQSB=0.994487;MQ0F=0;AC=2,0,0;AN=2;DP4=20,32,76,72;MQ=59;OLD_VARIANT=gi|661348725|gb|KM034562.1|:11181:GATATATA/GATATA/GATATATATA/GTATATA', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/ebola/bwa_data/out.sorted.bam': '1/1:55,23,0,94,86,55,122,127,69,55', 'FORMAT': 'GT:PL', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'POS': '11181', 'FILTER': 'PASS', 'QUAL': '27.1425', 'ALLELES': 'HOM', 'TYPE': 'DEL', 'ALT': 'G', 'REF': 'GAT', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'ebola.nanopore': '0/1:217', 'POS': '11181', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'DEL', 'ALT': 'G', 'REF': 'GAT', 'ID': '.'}
+FAIL: gi|661348725|gb|KM034562.1|>>11181>>DEL not found
 PASSED: gi|661348725|gb|KM034562.1|>>1778>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>96>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>7939>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>17782>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>9065>>SUB
-FAIL: gi|661348725|gb|KM034562.1|>>12255>>DEL XX alleles comparison -> 1: {'INFO': 'INDEL;IDV=68;IMF=0.325359;DP=187;VDB=0;SGB=-0.693147;MQSB=0.975384;MQ0F=0;AC=2,0,0;AN=2;DP4=14,18,68,87;MQ=59;OLD_VARIANT=gi|661348725|gb|KM034562.1|:12255:TACACACA/TACACA/TCACACACA/TACACACACA', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/ebola/bwa_data/out.sorted.bam': '1/1:47,17,0,81,65,47,81,65,54,47', 'FORMAT': 'GT:PL', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'POS': '12255', 'FILTER': 'PASS', 'QUAL': '19.0933', 'ALLELES': 'HOM', 'TYPE': 'DEL', 'ALT': 'T', 'REF': 'TAC', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'ebola.nanopore': '0/1:201', 'POS': '12255', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'DEL', 'ALT': 'T', 'REF': 'TAC', 'ID': '.'}
+FAIL: gi|661348725|gb|KM034562.1|>>12255>>DEL not found
 PASSED: gi|661348725|gb|KM034562.1|>>800>>SUB
 FAIL: gi|661348725|gb|KM034562.1|>>5756>>DEL not found
 FAIL: gi|661348725|gb|KM034562.1|>>1889>>SUB not found
 FAIL: gi|661348725|gb|KM034562.1|>>11933>>DEL not found
-FAIL: gi|661348725|gb|KM034562.1|>>14019>>SUB XX alleles comparison -> 1: {'INFO': 'DP=147;VDB=0;SGB=-0.693147;RPB=0.997219;MQB=0.920368;MQSB=0.991998;BQB=0.553029;MQ0F=0;AC=2,0,0;AN=2;DP4=5,11,77,54;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/ebola/bwa_data/out.sorted.bam': '1/1:49,208,0,65,255,49,77,255,59,49', 'FORMAT': 'GT:PL', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'POS': '14019', 'FILTER': 'PASS', 'QUAL': '21.9903', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|661348725|gb|KM034562.1|', 'ebola.nanopore': '0/1:211', 'POS': '14019', 'FILTER': 'PASS', 'QUAL': '30', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: gi|661348725|gb|KM034562.1|>>14019>>SUB not found
 PASSED: gi|661348725|gb|KM034562.1|>>13776>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>2373>>SUB
 FAIL: gi|661348725|gb|KM034562.1|>>5505>>INS not found
@@ -22,23 +22,22 @@ PASSED: gi|661348725|gb|KM034562.1|>>2331>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>15599>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>347>>SUB
 PASSED: gi|661348725|gb|KM034562.1|>>10218>>SUB
-5
-4
-PASSED (Approxi): gi|661348725|gb|KM034562.1|>>9061>>SUB
-PASSED (Approxi): gi|661348725|gb|KM034562.1|>>11181>>DEL
-PASSED (Approxi): gi|661348725|gb|KM034562.1|>>14019>>SUB
-PASSED (Approxi): gi|661348725|gb|KM034562.1|>>12255>>DEL
-PASSED (Approxi): gi|661348725|gb|KM034562.1|>>11933>>DEL
+8
+0
 FAIL: gi|661348725|gb|KM034562.1|>>5756>>DEL still not found
+FAIL: gi|661348725|gb|KM034562.1|>>11181>>DEL still not found
+FAIL: gi|661348725|gb|KM034562.1|>>14019>>SUB still not found
 FAIL: gi|661348725|gb|KM034562.1|>>5505>>INS still not found
 FAIL: gi|661348725|gb|KM034562.1|>>1090>>SUB still not found
+FAIL: gi|661348725|gb|KM034562.1|>>12255>>DEL still not found
 FAIL: gi|661348725|gb|KM034562.1|>>1889>>SUB still not found
+FAIL: gi|661348725|gb|KM034562.1|>>11933>>DEL still not found
 _______________________________________
 ~~CONCISE REPORT~~
 TYPE: Mutations
-PASSED: 20
-PASSED (Approxi): 5
+PASSED: 16
+PASSED (Approxi): 0
 FAILED: 0
-NOT SHARED: 4
-LEN iG: 563
+NOT SHARED: 8
+LEN iG: 26
 LEN BWA: 24
