@@ -1,0 +1,47 @@
+H1N1/igenomics_files/mega_no_repeats/illumina
+{'RT': '5.130304', '#': '#', 'RC': '13158', 'ARC': '13158', 'ER': '0.150000'}
+Aligning Runtime:   5.130304
+Aligning Rate:      1.0
+Alignments Passing: 13150
+Alignments Total:   13158
+Alignments Passing Rate:   0.999392004864
+
+H1N1/igenomics_files/mega_no_repeats/illumina
+{'RT': '5.158503', '#': '#', 'RC': '13158', 'ARC': '13158', 'ER': '0.150000'}
+Aligning Runtime:   5.158503
+Aligning Rate:      1.0
+Alignments Passing: 13138
+Alignments Total:   13158
+Alignments Passing Rate:   0.99848001216
+
+H1N1/igenomics_files/mega_no_repeats/illumina
+{'RT': '5.239896', '#': '#', 'RC': '13158', 'ARC': '13158', 'ER': '0.150000'}
+Aligning Runtime:   5.239896
+Aligning Rate:      1.0
+Alignments Passing: 13141
+Alignments Total:   13158
+Alignments Passing Rate:   0.998708010336
+
+H1N1/igenomics_files/mega_no_repeats/nanopore
+{'RT': '21.484388', '#': '#', 'RC': '1131', 'ARC': '1131', 'ER': '0.250000'}
+Aligning Runtime:   21.484388
+Aligning Rate:      1.0
+Alignments Passing: 1121
+Alignments Total:   1131
+Alignments Passing Rate:   0.99115826702
+
+H1N1/igenomics_files/mega_no_repeats/nanopore
+{'RT': '20.762915', '#': '#', 'RC': '1131', 'ARC': '1131', 'ER': '0.250000'}
+Aligning Runtime:   20.762915
+Aligning Rate:      1.0
+Alignments Passing: 1121
+Alignments Total:   1131
+Alignments Passing Rate:   0.99115826702
+
+H1N1/igenomics_files/mega_no_repeats/nanopore
+{'RT': '20.485729', '#': '#', 'RC': '1131', 'ARC': '1131', 'ER': '0.250000'}
+Aligning Runtime:   20.485729
+Aligning Rate:      1.0
+Alignments Passing: 1127
+Alignments Total:   1131
+Alignments Passing Rate:   0.996463306808

@@ -485,6 +485,7 @@
             if (alignmentTimer) {
                 [alignmentTimer stop];
                 totalAlignmentRuntime = [alignmentTimer getTotalRecordedTime];
+                NSLog(@"TOTAL RUNTIME: %f", totalAlignmentRuntime);
                 alignmentTimer = NULL;
                 
                 [fileExporter setTotalAlignmentRuntime:totalAlignmentRuntime];

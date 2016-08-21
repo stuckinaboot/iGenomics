@@ -12,6 +12,7 @@
 
 - (void)start {
     recordedTime = CFAbsoluteTimeGetCurrent();
+    NSLog(@"TIMER START: CURRENT CF TIME = %f", recordedTime);
 }
 
 - (double)stop {

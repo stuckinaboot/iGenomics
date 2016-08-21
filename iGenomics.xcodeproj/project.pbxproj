@@ -181,6 +181,7 @@
 		A3DA1CBB1859609300C10C22 /* Read.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA1CBA1859609300C10C22 /* Read.m */; };
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
 		A3DD60601D08FBD100BC95B9 /* CircleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */; };
+		A3DF1C6D1D695829003EE2F0 /* zika.nanopore.450x.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */; };
 		A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D5197D687100E64DD7 /* FileInputView.m */; };
 		A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D9197D6B0000E64DD7 /* FileManager.m */; };
 		A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E282DC197D96FA00E64DD7 /* FileInputView.xib */; };
@@ -444,6 +445,7 @@
 		A3DB3770170214B9007F0B9E /* RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RGB.m; path = iGenomics/RGB.m; sourceTree = "<group>"; };
 		A3DD605E1D08FBD100BC95B9 /* CircleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressBar.h; sourceTree = "<group>"; };
 		A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressBar.m; sourceTree = "<group>"; };
+		A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zika.nanopore.450x.fq; sourceTree = "<group>"; };
 		A3E282D4197D687100E64DD7 /* FileInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInputView.h; sourceTree = "<group>"; };
 		A3E282D5197D687100E64DD7 /* FileInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInputView.m; sourceTree = "<group>"; };
 		A3E282D8197D6B0000E64DD7 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
@@ -990,6 +992,7 @@
 		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
 			isa = PBXGroup;
 			children = (
+				A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */,
 				A3CC05BC1D6574B7008B0D63 /* zika.nanopore.50x.fq */,
 				A348EAFC1D63C788003F07BF /* zika.nanopore.fq */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
@@ -1518,6 +1521,7 @@
 				A3B41D0C1D66B90E00BD29F9 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
 				A3CC05C71D657507008B0D63 /* ebola.nanopore.fastq in Resources */,
 				A3CC05BD1D6574B7008B0D63 /* zika.nanopore.50x.fq in Resources */,
+				A3DF1C6D1D695829003EE2F0 /* zika.nanopore.450x.fq in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
 				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,

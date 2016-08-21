@@ -66,7 +66,10 @@
     dispatch_async(queue, ^{//Opens up a background thread
         readTimer = [[APTimer alloc] init];
         [readTimer start];
-
+        
+        APTimer *aligningTimer = [[APTimer alloc] init];
+        [aligningTimer start];
+        
         float totalAlignmentRuntime = [bwt matchReadsFile:myReadsFile withParameters:myParameters];
         dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
             [timeRemainingUpdateTimer invalidate];
@@ -90,7 +93,7 @@
             
             //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
             NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
-            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime alignmentTimer:readTimer];
+            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime alignmentTimer:aligningTimer];
             [self performSelector:@selector(showAnalysisController) withObject:NULL afterDelay:kShowAnalysisControllerDelay];
         });
     });

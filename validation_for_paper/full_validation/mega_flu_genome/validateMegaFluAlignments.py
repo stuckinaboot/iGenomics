@@ -4,6 +4,8 @@ import sys
 print 'alignments file, ref file alignments were simulated from'
 
 alignmentsFilePath = argv[1]
+print alignmentsFilePath
+
 refFilePath = argv[2]
 
 passingSegments = []
@@ -42,4 +44,5 @@ sys.stdout.write('Aligning Runtime:   ' + alignmentsFileInfo['RT'] + '\n')
 sys.stdout.write('Aligning Rate:      ' + str(float(alignmentsFileInfo['ARC']) / float(alignmentsFileInfo['RC'])) + '\n')
 sys.stdout.write('Alignments Passing: ' + str(passing) + '\n')
 sys.stdout.write('Alignments Total:   ' + str(total) + '\n')
+sys.stdout.write('Alignments Passing Rate:   ' + str(float(passing)/float(total)) + '\n\n')
 

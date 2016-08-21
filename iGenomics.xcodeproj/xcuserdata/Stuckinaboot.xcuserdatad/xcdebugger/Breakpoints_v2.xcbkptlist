@@ -6,64 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BWT_MatcherSC.m"
-            timestampString = "493251117.965544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "528"
-            endingLineNumber = "528"
-            landmarkName = "+updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:forNumOfSubs:withCumSepGenomeLens:maxErrorRate:originalReadLen:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BWT_MatcherSC.m"
-            timestampString = "493251117.965544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
-            landmarkName = "+updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:forNumOfSubs:withCumSepGenomeLens:maxErrorRate:originalReadLen:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BWT_MatcherSC.m"
-            timestampString = "493251117.965544"
+            filePath = "MutationInfo.m"
+            timestampString = "493437720.287976"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "476"
-            endingLineNumber = "476"
-            landmarkName = "+updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:forNumOfSubs:withCumSepGenomeLens:maxErrorRate:originalReadLen:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BWT_MatcherSC.m"
-            timestampString = "493251117.965544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
-            landmarkName = "+updatedInfoCorrectedForExtendingOverSegmentStartsAndEnds:forNumOfSubs:withCumSepGenomeLens:maxErrorRate:originalReadLen:"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "+descriptionFromMutationInfoDict:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

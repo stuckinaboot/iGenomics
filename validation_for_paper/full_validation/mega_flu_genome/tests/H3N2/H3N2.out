@@ -1,0 +1,48 @@
+H3N2/igenomics_files/mega_no_repeats/illumina
+{'RT': '5.314126', '#': '#', 'RC': '13133', 'ARC': '13130', 'ER': '0.150000'}
+Aligning Runtime:   5.314126
+Aligning Rate:      0.999771567806
+Alignments Passing: 12312
+Alignments Total:   13130
+Alignments Passing Rate:   0.937699923839
+
+H3N2/igenomics_files/mega_no_repeats/illumina
+{'RT': '5.451066', '#': '#', 'RC': '13133', 'ARC': '13127', 'ER': '0.150000'}
+Aligning Runtime:   5.451066
+Aligning Rate:      0.999543135613
+Alignments Passing: 12296
+Alignments Total:   13127
+Alignments Passing Rate:   0.936695360707
+
+H3N2/igenomics_files/mega_no_repeats/illumina
+{'RT': '5.436023', '#': '#', 'RC': '13133', 'ARC': '13113', 'ER': '0.150000'}
+Aligning Runtime:   5.436023
+Aligning Rate:      0.998477118709
+Alignments Passing: 12198
+Alignments Total:   13113
+Alignments Passing Rate:   0.930221917181
+
+H3N2/igenomics_files/mega_no_repeats/nanopore
+{'RT': '20.505144', '#': '#', 'RC': '1131', 'ARC': '1131', 'ER': '0.250000'}
+Aligning Runtime:   20.505144
+Aligning Rate:      1.0
+Alignments Passing: 1081
+Alignments Total:   1131
+Alignments Passing Rate:   0.955791335102
+
+H3N2/igenomics_files/mega_no_repeats/nanopore
+{'RT': '20.846163', '#': '#', 'RC': '1131', 'ARC': '1131', 'ER': '0.250000'}
+Aligning Runtime:   20.846163
+Aligning Rate:      1.0
+Alignments Passing: 1075
+Alignments Total:   1131
+Alignments Passing Rate:   0.950486295314
+
+H3N2/igenomics_files/mega_no_repeats/nanopore
+{'RT': '20.426010', '#': '#', 'RC': '1131', 'ARC': '1131', 'ER': '0.250000'}
+Aligning Runtime:   20.426010
+Aligning Rate:      1.0
+Alignments Passing: 1082
+Alignments Total:   1131
+Alignments Passing Rate:   0.9566755084
+

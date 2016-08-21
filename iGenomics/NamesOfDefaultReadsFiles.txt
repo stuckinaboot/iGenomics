@@ -1,3 +1,4 @@
+zika.nanopore.450x.fq
 fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq
 fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq
 fluH3N2.formega-reads-rl100-se0.01-mr0.005.fq

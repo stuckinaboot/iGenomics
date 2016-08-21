@@ -346,16 +346,13 @@
     
     ED_Info *bestMatchedInfo;
     
-    APTimer *timer = [[APTimer alloc] init];
     NSLog(@"New Read Being Aligned");
     for (int i = 0; i < cumLens.count; i++) {
         int cumLen = [[cumLens objectAtIndex:i] intValue];
         int segLen = cumLen - startPos;
-        [timer start];
         ED_Info *edInfo = [editDist editDistanceForInfo:a andBFull:b andRangeOfActualB:NSMakeRange(startPos, segLen) andChunkNum:0 andChunkSize:lenA andMaxED:maxEditDist andKillIfLargerThanDistance:(!bestMatchedInfo) ? kEditDistanceDoNotKill : bestMatchedInfo.distance];
         if (edInfo)
             edInfo.position = startPos + edInfo.position;
-        [timer stopAndLog];
         if (!bestMatchedInfo && edInfo.distance <= maxEditDist)
             bestMatchedInfo = edInfo;
         else if (edInfo != NULL && edInfo.distance < bestMatchedInfo.distance) {

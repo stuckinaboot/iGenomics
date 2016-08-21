@@ -31,10 +31,6 @@
     return finalProduct;
 }
 
-- (char*)getOriginalString {
-    return sequence;
-}
-
 - (void)sortIndexArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos {
     int pivotPos = (arc4random() % (endpos-startPos))+startPos;//rand%amtofthings in array
     int pivot = [[array objectAtIndex:pivotPos] intValue];

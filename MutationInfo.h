@@ -18,6 +18,8 @@
 
 #define kMutationStrMaxLen 80
 
+#define kMutationExportShouldIncludeMostCommonBase 1
+
 @interface MutationInfo : NSObject {
 
 }

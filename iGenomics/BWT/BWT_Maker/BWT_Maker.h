@@ -17,7 +17,6 @@
     APTimer *bwtCreationTimer;
 }
 - (char*)createBWTFromResFileContents:(NSString*)contents;
-- (char*)getOriginalString;
 
 - (void)sortIndexArrayUsingQuicksort:(NSMutableArray*)array withStartPos:(int)startPos andEndPos:(int)endpos;
 

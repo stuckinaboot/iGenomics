@@ -137,12 +137,14 @@
                 prevPosDict[@"chromosome"] = info[@"chromosome"];
                 prevPosDict[@"reference"][@"normal"] = refBase;
                 prevPosDict[@"reference"][@"deletion"] = [NSString stringWithFormat:@"%@%@", refBase, compressedDel];
-
-                NSNumber* delFreq = info[@"allele frequencies"][[NSString stringWithFormat:@"%c", kDelMarker]];
+                
+                NSNumber* delFreq = @(posOccArray[4][newInternalPos + 1] / ((float)(posOccArray[4][newInternalPos + 1] + coverageArray[newInternalPos])));//info[@"allele frequencies"][[NSString stringWithFormat:@"%c", kDelMarker]];
+                
                 prevPosDict[@"allele frequencies"] = [NSMutableDictionary dictionary];
                 prevPosDict[@"allele frequencies"][delMarkerStr] = delFreq;
                 float delFreqFloat = [delFreq floatValue];
                 if (delFreqFloat > 0) {
+                    //NOTE: This is not the exact ref base frequency, but since we know there was originally no mutation there, this is fine for our purposes as we only are dealing with relative frequencies for heterozygosity purposes
                     prevPosDict[@"allele frequencies"][refBase] = [NSNumber numberWithFloat:1 - [delFreq floatValue]];
                 }
                 [mutationInfoDictsOutputArr addObject:prevPosDict];
@@ -296,12 +298,21 @@
     NSString *insMarkerStr = [NSString stringWithFormat:@"%c", kInsMarker];
     NSString *delMarkerStr = [NSString stringWithFormat:@"%c", kDelMarker];
     
+    
+    NSString *mostCommonAllele;
+    float mostCommonAlleleFreq = 0;
     int keyNum = 0;
     BOOL normalRefAlreadyAdded = NO;
     BOOL delOccurred = [sortedAlleleKeys containsObject:delMarkerStr];
     for (NSString *allele in sortedAlleleKeys) {
-        if ([allele isEqualToString:dict[@"reference"][@"normal"]])
+        if ([allele isEqualToString:dict[@"reference"][@"normal"]]) {
+            float currAlleleFreq = [alleleFreqsDict[allele] floatValue];
+            if (currAlleleFreq > mostCommonAlleleFreq) {
+                mostCommonAlleleFreq = currAlleleFreq;
+                mostCommonAllele = allele;
+            }
             continue;
+        }
         if ([allele isEqualToString:delMarkerStr]) {
             BOOL shouldAddRef = (!([alleleFreqsDict count] == 2 && [alleleFreqsDict objectForKey:dict[@"reference"][@"normal"]] != nil));
             if (keyNum == 0 && [sortedAlleleKeys count] == 1) {
@@ -326,11 +337,22 @@
                 return [obj1 floatValue] < [obj2 floatValue];
             }];
             for (NSString *insKey in sortedInsKeys) {
+                float currAlleleFreq = [insDict[insKey] floatValue];
+                if (currAlleleFreq > mostCommonAlleleFreq) {
+                    mostCommonAlleleFreq = currAlleleFreq;
+                    mostCommonAllele = allele;
+                }
+                
                 NSString *seq = insKey;
 //                [info appendFormat:@"%@,", [insDict[insKey] stringValue]];
                 [foundStr appendFormat:@"%@,", seq];
             }
         } else {
+            float currAlleleFreq = [alleleFreqsDict[allele] floatValue];
+            if (currAlleleFreq > mostCommonAlleleFreq) {
+                mostCommonAlleleFreq = currAlleleFreq;
+                mostCommonAllele = allele;
+            }
 //            [info appendFormat:@"%@,", [alleleFreqsDict[allele] stringValue]];
             if ([allele isEqualToString:delMarkerStr]) {
                 [foundStr appendFormat:@"%@,", dict[@"reference"][@"normal"]];
@@ -340,7 +362,7 @@
                     [foundAllele appendFormat:@"%@", [((NSString*)dict[@"reference"][@"deletion"]) substringFromIndex:1]];
                 [foundStr appendFormat:@"%@,", foundAllele];
             }
-    }
+        }
         keyNum += 1;
     }
     
@@ -361,6 +383,10 @@
 //    [foundStr replaceCharactersInRange:NSMakeRange([foundStr length] - 1, 1) withString:@""];//Removes last comma
 
     [info replaceCharactersInRange:NSMakeRange([info length] - 1, 1) withString:@""];//Removes last comma
+    
+    if (kMutationExportShouldIncludeMostCommonBase == 1) {
+        [info appendFormat:@",%@", mostCommonAllele];
+    }
     
     NSString *gtVal;
     

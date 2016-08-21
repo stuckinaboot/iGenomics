@@ -160,6 +160,8 @@
 
 - (IBAction)maxERValueChangedViaTxtFld:(id)sender {
     maxERSldr.value = [maxERTxtFld.text doubleValue];
+    if (maxERSldr.value > kMaxER)
+        maxERSldr.value = kMaxER;
 }
 
 - (IBAction)trimmingValueChanged:(id)sender {
@@ -275,7 +277,8 @@
 - (void)fixGenomeFile:(APFile *)file {
     NSString *ext = file.ext;
     NSString *seq = file.contents;
-    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame) {
+    if ([ext caseInsensitiveCompare:kFa] == NSOrderedSame
+        || [ext caseInsensitiveCompare:kFasta] == NSOrderedSame) {
         //Remove every line break, and remove the first line because it just has random stuff
         //Finds first line break and removes characters up to and including that point
         
