@@ -357,6 +357,11 @@
                 NSString *seq = insKey;
 //                [info appendFormat:@"%@,", [insDict[insKey] stringValue]];
                 [foundStr appendFormat:@"%@,", seq];
+                if (!isDiploid)
+                    break;
+            }
+            if (!isDiploid) {
+                break;
             }
         } else {
             float currAlleleFreq = [alleleFreqsDict[allele] floatValue];
@@ -373,6 +378,8 @@
                     [foundAllele appendFormat:@"%@", [((NSString*)dict[@"reference"][@"deletion"]) substringFromIndex:1]];
                 [foundStr appendFormat:@"%@,", foundAllele];
             }
+            if (!isDiploid)
+                break;
         }
         keyNum += 1;
     }
@@ -403,7 +410,7 @@
     
     NSString *gtVal;
     
-    if ([alleleFreqsDict count] == 1) {
+    if ([alleleFreqsDict count] == 1 || !isDiploid) {
         //Sample is homozygous alternate
         gtVal = @"1/1";
     } else if ([alleleFreqsDict count] > 1) {

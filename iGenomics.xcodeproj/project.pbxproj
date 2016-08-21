@@ -165,11 +165,7 @@
 		A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C8189E01480001EF64 /* phix174.fa */; };
 		A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C9189E01480001EF64 /* phix174.reads.fa */; };
 		A3CBDC4C1D257CC800EF2DF5 /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CBDC4B1D257CC800EF2DF5 /* ThreeLines.png */; };
-		A3CC05BD1D6574B7008B0D63 /* zika.nanopore.50x.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05BC1D6574B7008B0D63 /* zika.nanopore.50x.fq */; };
 		A3CC05BF1D6574E6008B0D63 /* flu.H3N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05BE1D6574E6008B0D63 /* flu.H3N2.fa */; };
-		A3CC05C21D6574F1008B0D63 /* flu.H3N2.iontorrent.clean.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05C01D6574F1008B0D63 /* flu.H3N2.iontorrent.clean.fq */; };
-		A3CC05C31D6574F1008B0D63 /* flu.H3N2.iontorrent.resistant.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05C11D6574F1008B0D63 /* flu.H3N2.iontorrent.resistant.fq */; };
-		A3CC05C51D6574FA008B0D63 /* flu.H3N2.nanopore.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05C41D6574FA008B0D63 /* flu.H3N2.nanopore.fa */; };
 		A3CC05C71D657507008B0D63 /* ebola.nanopore.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05C61D657507008B0D63 /* ebola.nanopore.fastq */; };
 		A3D1AF091D5B79FD00A63808 /* ebola.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D1AF071D5B79FD00A63808 /* ebola.fa */; };
 		A3D1AF0A1D5B79FD00A63808 /* zika.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D1AF081D5B79FD00A63808 /* zika.fa */; };
@@ -423,11 +419,7 @@
 		A3C9C9C8189E01480001EF64 /* phix174.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.fa; sourceTree = "<group>"; };
 		A3C9C9C9189E01480001EF64 /* phix174.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.reads.fa; sourceTree = "<group>"; };
 		A3CBDC4B1D257CC800EF2DF5 /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
-		A3CC05BC1D6574B7008B0D63 /* zika.nanopore.50x.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zika.nanopore.50x.fq; path = validation_for_paper/full_validation/actual_data/zika/base_data/zika.nanopore.50x.fq; sourceTree = SOURCE_ROOT; };
 		A3CC05BE1D6574E6008B0D63 /* flu.H3N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.fa; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.fa; sourceTree = SOURCE_ROOT; };
-		A3CC05C01D6574F1008B0D63 /* flu.H3N2.iontorrent.clean.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.iontorrent.clean.fq; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.iontorrent.clean.fq; sourceTree = SOURCE_ROOT; };
-		A3CC05C11D6574F1008B0D63 /* flu.H3N2.iontorrent.resistant.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.iontorrent.resistant.fq; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.iontorrent.resistant.fq; sourceTree = SOURCE_ROOT; };
-		A3CC05C41D6574FA008B0D63 /* flu.H3N2.nanopore.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.nanopore.fa; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.nanopore.fa; sourceTree = SOURCE_ROOT; };
 		A3CC05C61D657507008B0D63 /* ebola.nanopore.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ebola.nanopore.fastq; path = validation_for_paper/full_validation/actual_data/ebola/base_data/ebola.nanopore.fastq; sourceTree = SOURCE_ROOT; };
 		A3D1AF071D5B79FD00A63808 /* ebola.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ebola.fa; path = validation_for_paper/full_validation/bacteria_simulations/ebola.fa; sourceTree = SOURCE_ROOT; };
 		A3D1AF081D5B79FD00A63808 /* zika.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zika.fa; path = validation_for_paper/full_validation/bacteria_simulations/zika.fa; sourceTree = SOURCE_ROOT; };
@@ -993,7 +985,6 @@
 			isa = PBXGroup;
 			children = (
 				A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */,
-				A3CC05BC1D6574B7008B0D63 /* zika.nanopore.50x.fq */,
 				A348EAFC1D63C788003F07BF /* zika.nanopore.fq */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
@@ -1061,9 +1052,6 @@
 				A3FB37A71D65FA1200C369C8 /* fluH1N1.formega-reads-rl1000-se0.1-mr0.0.fq */,
 				A3FB37A81D65FA1200C369C8 /* fluH1N1.formega-reads-rl1000-se0.1-mr0.001.fq */,
 				A3FB37A91D65FA1200C369C8 /* fluH1N1.formega-reads-rl1000-se0.1-mr0.005.fq */,
-				A3CC05C01D6574F1008B0D63 /* flu.H3N2.iontorrent.clean.fq */,
-				A3CC05C11D6574F1008B0D63 /* flu.H3N2.iontorrent.resistant.fq */,
-				A3CC05C41D6574FA008B0D63 /* flu.H3N2.nanopore.fa */,
 				A3CC05C61D657507008B0D63 /* ebola.nanopore.fastq */,
 				A3806A561C940F5F00D0C117 /* incorrectsingle.fa */,
 				A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */,
@@ -1416,7 +1404,6 @@
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
 				A3B41D121D66B90E00BD29F9 /* reads-rl1000-se0.2-mr0.1.fq in Resources */,
-				A3CC05C51D6574FA008B0D63 /* flu.H3N2.nanopore.fa in Resources */,
 				A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */,
 				A3FB37B61D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq in Resources */,
 				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
@@ -1502,7 +1489,6 @@
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
 				A3B41D001D66B90E00BD29F9 /* reads-rl100-se0.2-mr0.1.fq in Resources */,
 				A3D1AF0A1D5B79FD00A63808 /* zika.fa in Resources */,
-				A3CC05C31D6574F1008B0D63 /* flu.H3N2.iontorrent.resistant.fq in Resources */,
 				A3B41CFA1D66B90E00BD29F9 /* reads-rl100-se0.1-mr0.1.fq in Resources */,
 				A3FB379B1D65F9E800C369C8 /* H3N2_all_no_repeats.fa in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
@@ -1520,7 +1506,6 @@
 				A3B41D0E1D66B90E00BD29F9 /* reads-rl1000-se0.01-mr0.1.fq in Resources */,
 				A3B41D0C1D66B90E00BD29F9 /* reads-rl1000-se0.1-mr0.1.fq in Resources */,
 				A3CC05C71D657507008B0D63 /* ebola.nanopore.fastq in Resources */,
-				A3CC05BD1D6574B7008B0D63 /* zika.nanopore.50x.fq in Resources */,
 				A3DF1C6D1D695829003EE2F0 /* zika.nanopore.450x.fq in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
@@ -1533,7 +1518,6 @@
 				A3FB37AA1D65FA1200C369C8 /* fluH1N1.formega-reads-rl100-se0.01-mr0.0.fq in Resources */,
 				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
 				A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */,
-				A3CC05C21D6574F1008B0D63 /* flu.H3N2.iontorrent.clean.fq in Resources */,
 				A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */,
 				A3FB379F1D65F9F300C369C8 /* FluB.fa in Resources */,
 				A348EAFD1D63C788003F07BF /* zika.nanopore.fq in Resources */,

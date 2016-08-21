@@ -62,11 +62,11 @@ typedef enum {
 
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
-#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum error rate of %.02f. The format of the export data is as follows: Read Number, Position Matched, Segment, Forward(+)/Reverse complement(-) Matched, Edit Distance, Gapped Reference, Gapped Read.The export information is attached to this email as an ACP (Alignment Compressed Protocol) file. \n\nPowered by iGenomics"
+#define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum error rate of %.02f. The format of the export data is as follows: Read Number  Position Matched    Segment Forward(+)/Reverse complement(-) Matched    Edit Distance   Gapped Reference    Gapped Read.\n\nPowered by iGenomics"
 
 #define kExportMutsFileName @"Mutations"
 #define kExportMutsEmailSubject @"iGenomics- Mutations for Aligning %@ to %@"
-#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum error rate of %.02f. For a position to be considered heterozygous, the heterozygous character must have been recorded at least %i times. The export information is attached to this email as an MCS (Mutation Compact String) file. \n\nPowered by iGenomics"
+#define kExportMutsEmailMsg @"Mutation export information for aligning %@ to %@ for a maximum error rate of %.02f.\n\nPowered by iGenomics"
 
 #define kExportMutsHeaderFileName @"mutation_output.sample"
 #define kExportMutsHeaderFileExt @"vcf"

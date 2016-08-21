@@ -204,7 +204,7 @@
     
     if (option == EmailInfoOptionMutations) {
         [exportMailController setSubject:[NSString stringWithFormat:kExportMutsEmailSubject,readsFileName, genomeFileName]];
-        [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, errorRate, mutationSupportVal] isHTML:NO];
+        [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, errorRate] isHTML:NO];
         
         NSMutableString *mutString = [self getMutationsExportStrForIsDiploid:isDiploid];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,@""]];

@@ -46,8 +46,11 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     else
         for (int i = 0; i < [preReadsArray count]; i++) {
             NSString *n = [NSString stringWithFormat:@"%i",i];//More efficient way to do this?
-            Read *read = [[Read alloc] initWithSeq:(char*)[[preReadsArray objectAtIndex:i] UTF8String] andName:(char*)[n UTF8String]];
-            [reedsArray addObject:read];
+            NSString *readSeq = [preReadsArray objectAtIndex:i];
+            if ([readSeq length] == 0)
+                continue;
+            Read *read = [[Read alloc] initWithSeq:(char*)[readSeq UTF8String] andName:(char*)[n UTF8String]];
+                [reedsArray addObject:read];
         }
     
     [preReadsArray removeAllObjects];
@@ -57,7 +60,7 @@ int posOccArray[kACGTwithInDelsLen][kMaxBytesForIndexer*kMaxMultipleToCountAt];/
     
     numOfReads = [reedsArray count];
     
-    Read *firstRead = [reedsArray objectAtIndex:0];
+    Read *firstRead = ([reedsArray count] > 0) ? [reedsArray objectAtIndex:0] : [[Read alloc] initWithSeq:"\0" andName:"Empty"];
     readLen = strlen(firstRead.sequence);
     
     refStrBWT = bwt;

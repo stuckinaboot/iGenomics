@@ -1,0 +1,495 @@
+PASSED: gi|383279729|gb|CY114376.1|>>417>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>276>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1539>>SUB XX alleles comparison -> 1: {'INFO': 'DP=186;VDB=0.461633;SGB=-0.693147;RPB=0.304348;MQB=1;MQSB=1;BQB=0.706522;MQ0F=0;AC=2,0;AN=2;DP4=0,2,93,91;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1539', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1539', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:113', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279729|gb|CY114376.1|>>192>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>803>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>995>>SUB XX alleles comparison -> 1: {'INFO': 'DP=163;VDB=0.97347;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,71,92;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '995', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '995', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:162', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279727|gb|CY114375.1|>>245>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>69>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>332>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>896>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1505>>SUB XX alleles comparison -> 1: {'INFO': 'DP=444;VDB=0.0613319;SGB=-0.693147;RPB=2.01181e-05;MQB=0.999658;MQSB=0.999957;BQB=0.437362;MQ0F=0;AC=2,0;AN=2;DP4=1,10,208,225;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1505', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1505', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:498', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>2209>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>2079>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>660>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>456>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>243>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>756>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>943>>SUB not found
+FAIL: gi|383279736|gb|CY114379.1|>>1227>>SUB XX alleles comparison -> 1: {'INFO': 'DP=202;VDB=0.546039;SGB=-0.693147;RPB=1;MQB=1;MQSB=0.991377;BQB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,92,109;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1227', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1227', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:90', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279739|gb|CY114380.1|>>2240>>SUB XX alleles comparison -> 1: {'INFO': 'DP=219;VDB=0;SGB=-0.693147;RPB=0.830615;MQB=1;MQSB=1;BQB=0.508656;MQ0F=0;AC=2,0;AN=2;DP4=4,0,86,129;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2240', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2240', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:86', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+FAIL: gi|383279734|gb|CY114378.1|>>194>>SUB XX alleles comparison -> 1: {'INFO': 'DP=208;VDB=0.000353297;SGB=-0.693147;RPB=0.99511;MQB=0.99975;MQSB=0.992129;BQB=0.702698;MQ0F=0;AC=2;AN=2;DP4=4,3,95,106;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '194', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '194', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:305', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>1488>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>37>>SUB XX alleles comparison -> 1: {'INFO': 'DP=269;VDB=0;SGB=-0.693147;MQSB=0.995984;MQ0F=0;AC=2;AN=2;DP4=0,0,156,113;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '37', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '37', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:75', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>648>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>622>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1642>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>481>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>674>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>728>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>2059>>SUB not found
+PASSED: gi|383279734|gb|CY114378.1|>>1606>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>42>>SUB not found
+PASSED: gi|383279739|gb|CY114380.1|>>1046>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1318>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>2111>>SUB not found
+FAIL: gi|383279739|gb|CY114380.1|>>1851>>SUB XX alleles comparison -> 1: {'INFO': 'DP=154;VDB=0.329147;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0,0;AN=2;DP4=0,0,79,75;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1851', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1851', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:163', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279739|gb|CY114380.1|>>1043>>SUB XX alleles comparison -> 1: {'INFO': 'DP=159;VDB=0.887033;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,67,91;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1043', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1043', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:165', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1558>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1974>>SUB not found
+FAIL: gi|383279729|gb|CY114376.1|>>1078>>SUB not found
+PASSED: gi|383279729|gb|CY114376.1|>>1116>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>2297>>SUB not found
+PASSED: gi|383279724|gb|CY114374.1|>>682>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>640>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>461>>SUB
+FAIL: gi|383279729|gb|CY114376.1|>>312>>SUB not found
+PASSED: gi|383279739|gb|CY114380.1|>>650>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>561>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>780>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1290>>SUB XX alleles comparison -> 1: {'INFO': 'DP=208;VDB=0.965281;SGB=-0.693147;RPB=0.211165;MQB=0.995146;MQSB=0.991499;BQB=0.206311;MQ0F=0;AC=2,0;AN=2;DP4=2,0,93,113;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1290', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1290', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:90', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279722|gb|CY114373.1|>>1067>>SUB XX alleles comparison -> 1: {'INFO': 'DP=348;VDB=0.362125;SGB=-0.693147;RPB=0.554913;MQB=1;MQSB=1;BQB=0.0187861;MQ0F=0;AC=2,0;AN=2;DP4=2,0,177,169;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1067', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1067', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:516', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1597>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>990>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>356>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1255>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1410>>SUB XX alleles comparison -> 1: {'INFO': 'DP=206;VDB=0.961544;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0,0;AN=2;DP4=0,0,99,107;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1410', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1410', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:112', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>1617>>SUB XX alleles comparison -> 1: {'INFO': 'DP=184;VDB=0.699176;SGB=-0.693147;MQSB=0.994437;MQ0F=0;AC=2,0,0;AN=2;DP4=0,0,109,75;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1617', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1617', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:113', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>639>>SUB
+FAIL: gi|383279727|gb|CY114375.1|>>504>>INS not found
+PASSED: gi|383279734|gb|CY114378.1|>>1072>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>179>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1148>>SUB XX alleles comparison -> 1: {'INFO': 'DP=185;VDB=0.774098;SGB=-0.693147;RPB=0.696271;MQB=1;MQSB=1;BQB=0.0691629;MQ0F=0;AC=2;AN=2;DP4=2,3,82,98;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1148', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1148', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:165', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+FAIL: gi|383279739|gb|CY114380.1|>>1850>>SUB XX alleles comparison -> 1: {'INFO': 'DP=154;VDB=0.316654;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,78,75;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1850', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1850', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:163', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279739|gb|CY114380.1|>>1199>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>497>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>72>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1144>>SUB XX alleles comparison -> 1: {'INFO': 'DP=181;VDB=0.726965;SGB=-0.693147;RPB=0.0167051;MQB=1;MQSB=1;BQB=0.677219;MQ0F=0;AC=2;AN=2;DP4=5,0,92,84;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1144', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1144', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:322', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>1713>>SUB XX alleles comparison -> 1: {'INFO': 'DP=209;VDB=0.681764;SGB=-0.693147;RPB=0.249817;MQB=0.999753;MQSB=0.994612;BQB=0.663444;MQ0F=0;AC=2,0,0;AN=2;DP4=3,4,116,86;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1713', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1713', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:113', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: gi|383279722|gb|CY114373.1|>>69>>SUB not found
+PASSED: gi|383279727|gb|CY114375.1|>>831>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1928>>SUB XX alleles comparison -> 1: {'INFO': 'DP=160;VDB=0.76384;SGB=-0.693147;RPB=0.504712;MQB=1;MQSB=1;BQB=0.999761;MQ0F=0;AC=2,0;AN=2;DP4=2,2,88,68;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1928', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1928', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:163', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>1574>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>8>>SUB not found
+PASSED: gi|383279727|gb|CY114375.1|>>931>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>417>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1527>>SUB not found
+PASSED: gi|383279729|gb|CY114376.1|>>195>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>466>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1073>>SUB XX alleles comparison -> 1: {'INFO': 'DP=158;VDB=0.4177;SGB=-0.693147;RPB=0.961538;MQB=1;MQSB=1;BQB=0.403846;MQ0F=0;AC=2,0;AN=2;DP4=1,1,70,86;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1073', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1073', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:165', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279731|gb|CY114377.1|>>798>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>1284>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>86>>SUB
+FAIL: gi|383279727|gb|CY114375.1|>>1393>>SUB XX alleles comparison -> 1: {'INFO': 'DP=163;VDB=0;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=0,0,61,102;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1393', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1393', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:336', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279724|gb|CY114374.1|>>610>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>2192>>SUB XX alleles comparison -> 1: {'INFO': 'DP=243;VDB=9.05451e-38;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=0,1,107,135;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2192', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2192', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:103', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>421>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>1207>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>2122>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>2016>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>74>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1034>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1349>>SUB XX alleles comparison -> 1: {'INFO': 'DP=172;VDB=0.240561;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=0,1,76,95;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1349', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1349', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:165', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+PASSED: gi|383279727|gb|CY114375.1|>>442>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1818>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1104>>SUB not found
+FAIL: gi|383279736|gb|CY114379.1|>>1887>>SUB not found
+FAIL: gi|383279739|gb|CY114380.1|>>2078>>SUB not found
+PASSED: gi|383279729|gb|CY114376.1|>>894>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>415>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1990>>SUB not found
+PASSED: gi|383279724|gb|CY114374.1|>>790>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>106>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1375>>SUB XX alleles comparison -> 1: {'INFO': 'DP=193;VDB=0.717763;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,86,107;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1375', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1375', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:313', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1381>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>538>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>451>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>114>>SUB not found
+PASSED: gi|383279734|gb|CY114378.1|>>847>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>2006>>SUB XX alleles comparison -> 1: {'INFO': 'DP=155;VDB=0.658716;SGB=-0.693147;RPB=0.0304115;MQB=1;MQSB=1;BQB=0.235169;MQ0F=0;AC=2,0,0;AN=2;DP4=3,0,95,57;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2006', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2006', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:163', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1690>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>741>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>163>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>585>>SUB not found
+FAIL: gi|383279739|gb|CY114380.1|>>1365>>SUB XX alleles comparison -> 1: {'INFO': 'DP=169;VDB=0.221145;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=0,0,79,90;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1365', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1365', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:166', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279739|gb|CY114380.1|>>1235>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>85>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1836>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>1289>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>1368>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>231>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>760>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>246>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>414>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1685>>SUB not found
+PASSED: gi|383279729|gb|CY114376.1|>>330>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>2296>>SUB not found
+PASSED: gi|383279731|gb|CY114377.1|>>742>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>515>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>696>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>152>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1346>>SUB XX alleles comparison -> 1: {'INFO': 'DP=172;VDB=0.0928223;SGB=-0.693147;RPB=0.391976;MQB=1;MQSB=1;BQB=0.0540207;MQ0F=0;AC=2;AN=2;DP4=2,4,75,91;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1346', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1346', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:165', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279729|gb|CY114376.1|>>444>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>813>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>654>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>652>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>672>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1575>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>897>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1019>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1211>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>791>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1078>>SUB XX alleles comparison -> 1: {'INFO': 'DP=173;VDB=0.434972;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,95,77;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1078', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1078', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:327', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279739|gb|CY114380.1|>>623>>SUB XX alleles comparison -> 1: {'INFO': 'DP=160;VDB=0.949889;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,81,78;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '623', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '623', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:162', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: gi|383279731|gb|CY114377.1|>>720>>SUB XX alleles comparison -> 1: {'INFO': 'DP=74;VDB=2.37031e-11;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,31,42;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,185,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279731|gb|CY114377.1|', 'POS': '720', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279731|gb|CY114377.1|', 'POS': '720', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:91', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>1680>>SUB not found
+PASSED: gi|383279736|gb|CY114379.1|>>711>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1883>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1582>>SUB not found
+PASSED: gi|383279739|gb|CY114380.1|>>1997>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>557>>SUB XX alleles comparison -> 1: {'INFO': 'DP=179;VDB=0.234691;SGB=-0.693147;RPB=0.0190344;MQB=1;MQSB=1;BQB=0.275003;MQ0F=0;AC=2,0;AN=2;DP4=3,0,92,84;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '557', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '557', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:162', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279734|gb|CY114378.1|>>1928>>SUB not found
+PASSED: gi|383279731|gb|CY114377.1|>>233>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1528>>SUB not found
+PASSED: gi|383279727|gb|CY114375.1|>>666>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>2035>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>743>>SUB
+FAIL: gi|383279727|gb|CY114375.1|>>1122>>SUB XX alleles comparison -> 1: {'INFO': 'DP=134;VDB=0.982253;SGB=-0.693147;RPB=0.0265152;MQB=1;MQSB=1;BQB=0.174242;MQ0F=0;AC=2;AN=2;DP4=2,0,78,54;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1122', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1122', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:441', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279734|gb|CY114378.1|>>68>>SUB not found
+FAIL: gi|383279734|gb|CY114378.1|>>1945>>SUB not found
+PASSED: gi|383279727|gb|CY114375.1|>>501>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>669>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>130>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>819>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>204>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>560>>SUB XX alleles comparison -> 1: {'INFO': 'DP=175;VDB=0.103377;SGB=-0.693147;RPB=5.62609e-05;MQB=1;MQSB=1;BQB=0.255366;MQ0F=0;AC=2,0;AN=2;DP4=7,0,84,84;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '560', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '560', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:162', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279739|gb|CY114380.1|>>875>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>516>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1319>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>735>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1923>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>277>>SUB
+FAIL: gi|383279727|gb|CY114375.1|>>387>>SUB XX alleles comparison -> 1: {'INFO': 'DP=110;VDB=0.193651;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=0,0,47,63;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '387', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '387', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:434', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279724|gb|CY114374.1|>>502>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1198>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1571>>SUB XX alleles comparison -> 1: {'INFO': 'DP=462;VDB=1.38983e-18;SGB=-0.693147;RPB=0.98908;MQB=0.999858;MQSB=0.999876;BQB=0.371237;MQ0F=0;AC=2,0,0;AN=2;DP4=2,3,206,251;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1571', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1571', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:475', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>493>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>260>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>110>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>834>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>973>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>957>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>452>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>1479>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>196>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1516>>SUB XX alleles comparison -> 1: {'INFO': 'DP=180;VDB=0.572301;SGB=-0.693147;RPB=0.633584;MQB=1;MQSB=1;BQB=0.281485;MQ0F=0;AC=2;AN=2;DP4=1,2,81,96;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1516', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1516', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:313', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279722|gb|CY114373.1|>>1526>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>205>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>824>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>1141>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>142>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1838>>SUB XX alleles comparison -> 1: {'INFO': 'DP=164;VDB=0.79387;SGB=-0.693147;RPB=0.966049;MQB=1;MQSB=1;BQB=0.688272;MQ0F=0;AC=2;AN=2;DP4=1,1,81,81;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1838', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1838', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:164', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279722|gb|CY114373.1|>>729>>SUB XX alleles comparison -> 1: {'INFO': 'DP=316;VDB=0.803969;SGB=-0.693147;RPB=1;MQB=1;MQSB=0.994575;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,146,169;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '729', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '729', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:517', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>1260>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>347>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1888>>SUB not found
+FAIL: gi|383279739|gb|CY114380.1|>>1679>>SUB XX alleles comparison -> 1: {'INFO': 'DP=152;VDB=0.701855;SGB=-0.693147;RPB=0.0170051;MQB=1;MQSB=1;BQB=0.35941;MQ0F=0;AC=2;AN=2;DP4=3,0,79,70;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1679', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1679', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:166', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>1962>>SUB XX alleles comparison -> 1: {'INFO': 'DP=196;VDB=0.890139;SGB=-0.693147;RPB=1;MQB=1;MQSB=0.993941;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,1,109,86;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1962', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1962', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:115', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279724|gb|CY114374.1|>>199>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>468>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>371>>SUB XX alleles comparison -> 1: {'INFO': 'DP=170;VDB=0.441807;SGB=-0.693147;RPB=0.63876;MQB=1;MQSB=1;BQB=0.0660065;MQ0F=0;AC=2;AN=2;DP4=2,1,81,86;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '371', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '371', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:162', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>1536>>SUB XX alleles comparison -> 1: {'INFO': 'DP=185;VDB=0.409581;SGB=-0.693147;RPB=0.0643304;MQB=1;MQSB=1;BQB=0.622974;MQ0F=0;AC=2;AN=2;DP4=0,3,91,91;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1536', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1536', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:113', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'T', 'ID': '.'}
+FAIL: gi|383279727|gb|CY114375.1|>>1109>>SUB XX alleles comparison -> 1: {'INFO': 'DP=130;VDB=0.777915;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,73,56;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1109', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1109', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:441', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>1538>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>901>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>644>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>536>>SUB XX alleles comparison -> 1: {'INFO': 'DP=344;VDB=0.798099;SGB=-0.693147;RPB=0.0602551;MQB=0.999962;MQSB=0.995712;BQB=0.026553;MQ0F=0;AC=2;AN=2;DP4=3,0,170,171;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '536', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '536', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:523', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>828>>SUB not found
+PASSED: gi|383279724|gb|CY114374.1|>>190>>SUB
+FAIL: gi|383279729|gb|CY114376.1|>>648>>SUB not found
+PASSED: gi|383279734|gb|CY114378.1|>>349>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>81>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>632>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>654>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>646>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1274>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>841>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1144>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1062>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>1079>>SUB
+FAIL: gi|383279727|gb|CY114375.1|>>1118>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>968>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>624>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1116>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>523>>SUB XX alleles comparison -> 1: {'INFO': 'DP=210;VDB=0.998774;SGB=-0.693147;RPB=0.0974449;MQB=1;MQSB=1;BQB=0.877161;MQ0F=0;AC=2,0;AN=2;DP4=0,3,109,98;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '523', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '523', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:324', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>954>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1671>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>270>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1408>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>382>>SUB
+FAIL: gi|383279731|gb|CY114377.1|>>729>>SUB XX alleles comparison -> 1: {'INFO': 'DP=74;VDB=1.70351e-11;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,31,42;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,189,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279731|gb|CY114377.1|', 'POS': '729', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279731|gb|CY114377.1|', 'POS': '729', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:91', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1156>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>541>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>629>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>413>>SUB XX alleles comparison -> 1: {'INFO': 'DP=189;VDB=0.546862;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,102,87;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '413', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '413', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:162', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>474>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>535>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>312>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>478>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>454>>SUB not found
+FAIL: gi|383279722|gb|CY114373.1|>>944>>SUB XX alleles comparison -> 1: {'INFO': 'DP=313;VDB=0.942225;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,1,144,168;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '944', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '944', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:519', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>470>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>474>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>825>>SUB XX alleles comparison -> 1: {'INFO': 'DP=296;VDB=0.365589;SGB=-0.693147;RPB=0.852041;MQB=1;MQSB=1;BQB=0.146259;MQ0F=0;AC=2;AN=2;DP4=1,1,138,156;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '825', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '825', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:519', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>981>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>336>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1532>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1361>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>303>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1594>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1002>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>990>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>765>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1341>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>208>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1336>>SUB XX alleles comparison -> 1: {'INFO': 'DP=169;VDB=0.0096628;SGB=-0.693147;RPB=0.0154878;MQB=1;MQSB=1;BQB=0.681904;MQ0F=0;AC=2,0;AN=2;DP4=3,0,75,91;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1336', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1336', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:313', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279739|gb|CY114380.1|>>362>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>492>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1499>>SUB XX alleles comparison -> 1: {'INFO': 'DP=434;VDB=0.34431;SGB=-0.693147;RPB=0.021903;MQB=0.999904;MQSB=0.999974;BQB=0.6429;MQ0F=0;AC=2;AN=2;DP4=0,3,207,224;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1499', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1499', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:499', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1271>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>44>>SUB XX alleles comparison -> 1: {'INFO': 'DP=177;VDB=0;SGB=-0.693147;RPB=0.137143;MQB=0.994286;MQSB=0.992244;BQB=0.257143;MQ0F=0;AC=2;AN=2;DP4=0,2,92,83;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '44', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '44', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:132', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>686>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>1813>>SUB not found
+FAIL: gi|383279727|gb|CY114375.1|>>840>>SUB XX alleles comparison -> 1: {'INFO': 'DP=136;VDB=0.447499;SGB=-0.693147;RPB=0.998245;MQB=1;MQSB=1;BQB=0.996685;MQ0F=0;AC=2;AN=2;DP4=2,1,61,72;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '840', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '840', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:441', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>487>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>205>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>530>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1072>>SUB XX alleles comparison -> 1: {'INFO': 'DP=158;VDB=0.43021;SGB=-0.693147;RPB=0.894851;MQB=1;MQSB=1;BQB=0.72463;MQ0F=0;AC=2,0;AN=2;DP4=2,1,69,86;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1072', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1072', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:165', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1543>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1589>>SUB not found
+FAIL: gi|383279731|gb|CY114377.1|>>642>>SUB XX alleles comparison -> 1: {'INFO': 'DP=81;VDB=0.786122;SGB=-0.693147;RPB=0.0104927;MQB=1;MQSB=1;BQB=0.93737;MQ0F=0;AC=2;AN=2;DP4=0,4,38,39;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,119,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279731|gb|CY114377.1|', 'POS': '642', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279731|gb|CY114377.1|', 'POS': '642', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:91', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279724|gb|CY114374.1|>>340>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>427>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>646>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>1092>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>496>>SUB
+FAIL: gi|383279731|gb|CY114377.1|>>87>>SUB not found
+PASSED: gi|383279727|gb|CY114375.1|>>1014>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1022>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>643>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>675>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>196>>SUB
+FAIL: gi|383279739|gb|CY114380.1|>>1892>>SUB XX alleles comparison -> 1: {'INFO': 'DP=150;VDB=0.0803098;SGB=-0.693147;RPB=0.675376;MQB=1;MQSB=1;BQB=0.883954;MQ0F=0;AC=2,0;AN=2;DP4=2,1,80,67;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1892', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '1892', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:163', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279727|gb|CY114375.1|>>1103>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1451>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>591>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>1083>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1644>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>357>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1275>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>583>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1777>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1716>>SUB
+FAIL: gi|383279731|gb|CY114377.1|>>401>>SUB not found
+PASSED: gi|383279727|gb|CY114375.1|>>281>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>2008>>SUB not found
+PASSED: gi|383279736|gb|CY114379.1|>>472>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>504>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>916>>SUB XX alleles comparison -> 1: {'INFO': 'DP=161;VDB=0.302594;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,83,78;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '916', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '916', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:327', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: gi|383279734|gb|CY114378.1|>>776>>SUB not found
+FAIL: gi|383279734|gb|CY114378.1|>>1609>>SUB XX alleles comparison -> 1: {'INFO': 'DP=193;VDB=0.186207;SGB=-0.693147;RPB=0.660061;MQB=1;MQSB=1;BQB=0.309595;MQ0F=0;AC=2;AN=2;DP4=1,2,97,93;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1609', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1609', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:313', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>1683>>SUB XX alleles comparison -> 1: {'INFO': 'DP=201;VDB=0.954596;SGB=-0.693147;RPB=0.561092;MQB=0.999887;MQSB=0.994573;BQB=0.943833;MQ0F=0;AC=2;AN=2;DP4=2,1,114,84;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1683', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1683', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:113', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279734|gb|CY114378.1|>>1236>>SUB XX alleles comparison -> 1: {'INFO': 'DP=196;VDB=0.905949;SGB=-0.693147;RPB=0.00328004;MQB=1;MQSB=1;BQB=0.530442;MQ0F=0;AC=2,0;AN=2;DP4=5,0,98,93;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1236', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '1236', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:315', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+FAIL: gi|383279727|gb|CY114375.1|>>1112>>SUB XX alleles comparison -> 1: {'INFO': 'DP=130;VDB=0.7374;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2;AN=2;DP4=1,0,73,56;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1112', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279727|gb|CY114375.1|', 'POS': '1112', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:441', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+PASSED: gi|383279729|gb|CY114376.1|>>987>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1187>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1551>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>530>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1768>>SUB XX alleles comparison -> 1: {'INFO': 'DP=214;VDB=0.105289;SGB=-0.693147;MQSB=0.994446;MQ0F=0;AC=2,0,0;AN=2;DP4=0,0,119,95;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1768', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '1768', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:116', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>198>>SUB XX alleles comparison -> 1: {'INFO': 'DP=314;VDB=0.0693785;SGB=-0.693147;MQSB=0.981834;MQ0F=0;AC=2,0,0;AN=2;DP4=0,0,160,154;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '198', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '198', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:82', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279729|gb|CY114376.1|>>1444>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>887>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>164>>SUB XX alleles comparison -> 1: {'INFO': 'DP=315;VDB=1.47604e-12;SGB=-0.693147;RPB=1;MQB=1;MQSB=0.983102;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,165,149;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '164', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '164', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:82', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279734|gb|CY114378.1|>>1537>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1209>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>54>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>995>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>653>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1136>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>2034>>SUB not found
+FAIL: gi|383279734|gb|CY114378.1|>>1814>>SUB not found
+PASSED: gi|383279724|gb|CY114374.1|>>412>>SUB
+FAIL: gi|383279729|gb|CY114376.1|>>357>>SUB XX alleles comparison -> 1: {'INFO': 'DP=237;VDB=0.968257;SGB=-0.693147;RPB=0.0382979;MQB=0.995745;MQSB=0.991549;BQB=0.993617;MQ0F=0;AC=2,0;AN=2;DP4=0,2,101,134;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279729|gb|CY114376.1|', 'POS': '357', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279729|gb|CY114376.1|', 'POS': '357', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:426', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+FAIL: gi|383279736|gb|CY114379.1|>>126>>SUB XX alleles comparison -> 1: {'INFO': 'DP=300;VDB=1.2778e-33;SGB=-0.693147;RPB=0.863481;MQB=0.99995;MQSB=0.995531;BQB=0.263963;MQ0F=0;AC=2;AN=2;DP4=2,1,156,141;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '126', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279736|gb|CY114379.1|', 'POS': '126', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:82', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+PASSED: gi|383279722|gb|CY114373.1|>>160>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>825>>SUB XX alleles comparison -> 1: {'INFO': 'DP=168;VDB=0.916453;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,84,84;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '825', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279734|gb|CY114378.1|', 'POS': '825', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:327', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'G', 'REF': 'A', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>1735>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>903>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>807>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>665>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>421>>SUB
+PASSED: gi|383279727|gb|CY114375.1|>>1098>>SUB
+PASSED: gi|383279724|gb|CY114374.1|>>173>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>1854>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1411>>SUB not found
+PASSED: gi|383279734|gb|CY114378.1|>>1108>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1592>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>331>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1163>>SUB
+PASSED: gi|383279729|gb|CY114376.1|>>820>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>892>>SUB
+FAIL: gi|383279734|gb|CY114378.1|>>2012>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>299>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>997>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1459>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1944>>SUB not found
+PASSED: gi|383279722|gb|CY114373.1|>>696>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>830>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>479>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>579>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>1185>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>317>>SUB
+PASSED: gi|383279736|gb|CY114379.1|>>156>>SUB
+PASSED: gi|383279731|gb|CY114377.1|>>746>>SUB
+PASSED: gi|383279722|gb|CY114373.1|>>707>>SUB
+PASSED: gi|383279734|gb|CY114378.1|>>1541>>SUB
+FAIL: gi|383279736|gb|CY114379.1|>>1191>>SUB not found
+FAIL: gi|383279734|gb|CY114378.1|>>2166>>SUB not found
+FAIL: gi|383279739|gb|CY114380.1|>>83>>SUB XX alleles comparison -> 1: {'INFO': 'DP=188;VDB=7.9874e-44;SGB=-0.693147;RPB=1;MQB=1;MQSB=0.992095;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,93,94;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '83', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '83', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:143', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'T', 'REF': 'C', 'ID': '.'}
+FAIL: gi|383279739|gb|CY114380.1|>>2096>>SUB XX alleles comparison -> 1: {'INFO': 'DP=257;VDB=0.38472;SGB=-0.693147;RPB=0;MQB=1;MQSB=1;BQB=0.966667;MQ0F=0;AC=2,0,0;AN=2;DP4=0,2,114,141;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255,255,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2096', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279739|gb|CY114380.1|', 'POS': '2096', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:149', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'C', 'REF': 'T', 'ID': '.'}
+PASSED: gi|383279739|gb|CY114380.1|>>539>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1274>>SUB XX alleles comparison -> 1: {'INFO': 'DP=337;VDB=0.675646;SGB=-0.693147;RPB=1;MQB=1;MQSB=0.99407;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,192,144;MQ=59', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1274', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '1274', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:512', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279736|gb|CY114379.1|>>1687>>SUB
+PASSED: gi|383279739|gb|CY114380.1|>>1037>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>211>>SUB XX alleles comparison -> 1: {'INFO': 'DP=448;VDB=0.0433298;SGB=-0.693147;RPB=0.546022;MQB=1;MQSB=1;BQB=0.917703;MQ0F=0;AC=2,0;AN=2;DP4=10,7,223,208;MQ=60', '/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/actual_data/flu.H3N2/bwa_data/out.sorted.bam': '1/1:255,255,0,255,255,255', 'FORMAT': 'GT:PL', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '211', 'FILTER': 'PASS', 'QUAL': '228', 'ALLELES': 'HOM', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}| 2: {'INFO': 'AF=0.5', 'FORMAT': 'GT:DP', 'CHROM': 'gi|383279722|gb|CY114373.1|', 'POS': '211', 'FILTER': 'PASS', 'QUAL': '30', 'H3N2.nanopore.300x': '0/1:518', 'ALLELES': 'HET', 'TYPE': 'SUB', 'ALT': 'A', 'REF': 'G', 'ID': '.'}
+PASSED: gi|383279727|gb|CY114375.1|>>1164>>SUB
+48
+70
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1539>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>995>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>1505>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1144>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1838>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>729>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1227>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>2240>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>194>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>37>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1679>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1962>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>371>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>536>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>828>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1851>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1043>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1768>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1516>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1290>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>1067>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>523>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1410>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1617>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1148>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>413>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>944>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1713>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>825>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1928>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1336>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>1499>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1073>>SUB
+PASSED (Approxi): gi|383279727|gb|CY114375.1|>>1393>>SUB
+PASSED (Approxi): gi|383279727|gb|CY114375.1|>>840>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>2192>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1072>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1349>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1375>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>2006>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1365>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>916>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1609>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1683>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1236>>SUB
+PASSED (Approxi): gi|383279727|gb|CY114375.1|>>1112>>SUB
+PASSED (Approxi): gi|383279731|gb|CY114377.1|>>642>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>198>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>164>>SUB
+PASSED (Approxi): gi|383279729|gb|CY114376.1|>>357>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1346>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>825>>SUB
+PASSED (Approxi): gi|383279731|gb|CY114377.1|>>729>>SUB
+PASSED (Approxi): gi|383279727|gb|CY114375.1|>>1118>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>623>>SUB
+PASSED (Approxi): gi|383279734|gb|CY114378.1|>>1078>>SUB
+PASSED (Approxi): gi|383279731|gb|CY114377.1|>>720>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>1274>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>557>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>1536>>SUB
+PASSED (Approxi): gi|383279727|gb|CY114375.1|>>1109>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>44>>SUB
+PASSED (Approxi): gi|383279736|gb|CY114379.1|>>126>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1892>>SUB
+PASSED (Approxi): gi|383279727|gb|CY114375.1|>>387>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>560>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>83>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>2096>>SUB
+PASSED (Approxi): gi|383279739|gb|CY114380.1|>>1850>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>211>>SUB
+PASSED (Approxi): gi|383279722|gb|CY114373.1|>>1571>>SUB
+FAIL: gi|383279722|gb|CY114373.1|>>1526>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>943>>SUB still not found
+FAIL: gi|383279729|gb|CY114376.1|>>648>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1888>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>2059>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>42>>SUB still not found
+FAIL: gi|383279739|gb|CY114380.1|>>2111>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1974>>SUB still not found
+FAIL: gi|383279729|gb|CY114376.1|>>1078>>SUB still not found
+FAIL: gi|383279739|gb|CY114380.1|>>2297>>SUB still not found
+FAIL: gi|383279729|gb|CY114376.1|>>312>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>454>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1814>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>8>>SUB still not found
+FAIL: gi|383279739|gb|CY114380.1|>>1589>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>2016>>SUB still not found
+FAIL: gi|383279731|gb|CY114377.1|>>87>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1104>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1887>>SUB still not found
+FAIL: gi|383279739|gb|CY114380.1|>>2078>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1990>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>114>>SUB still not found
+FAIL: gi|383279731|gb|CY114377.1|>>401>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>2008>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>585>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1836>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>776>>SUB still not found
+FAIL: gi|383279722|gb|CY114373.1|>>1685>>SUB still not found
+FAIL: gi|383279739|gb|CY114380.1|>>2296>>SUB still not found
+FAIL: gi|383279727|gb|CY114375.1|>>504>>INS still not found
+FAIL: gi|383279736|gb|CY114379.1|>>2034>>SUB still not found
+FAIL: gi|383279722|gb|CY114373.1|>>69>>SUB still not found
+FAIL: gi|383279722|gb|CY114373.1|>>1527>>SUB still not found
+FAIL: gi|383279722|gb|CY114373.1|>>1411>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1680>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>2035>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1582>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>2012>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1944>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1928>>SUB still not found
+FAIL: gi|383279722|gb|CY114373.1|>>1528>>SUB still not found
+FAIL: gi|383279727|gb|CY114375.1|>>1122>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>68>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1945>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>1813>>SUB still not found
+FAIL: gi|383279736|gb|CY114379.1|>>1191>>SUB still not found
+FAIL: gi|383279734|gb|CY114378.1|>>2166>>SUB still not found
+FAIL: gi|383279727|gb|CY114375.1|>>1122>>SUB still failed
+_______________________________________
+~~CONCISE REPORT~~
+TYPE: Mutations
+PASSED: 318
+PASSED (Approxi): 71
+FAILED: 1
+NOT SHARED: 46
+LEN iG: 425
+LEN BWA: 365
