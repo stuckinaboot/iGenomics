@@ -24,12 +24,20 @@ typedef enum {
 #import "MutationInfo.h"
 
 #define kExportASTitle @"Export Data"
-#define kExportASEmailMutations @"Email Mutations"
-#define kExportASEmailMutsIndex 1 //Index 0 is the cancel button
+
+#define kExportASExportMutationsHaploid @"Export Mutations (Haploid)"
+#define kExportASExportMutationsHaploidIndex 1
+
+#define kExportASExportMutationsDiploid @"Export Mutations (Diploid)"
+#define kExportASExportMutationsDiploidIndex 2
+
+#define kExportMutExportEmailMuts @"Email Mutations"
+#define kExportMutExportEmailMutsIndex 0 
+#define kExportMutExportDropboxMuts @"Save Mutations to Dropbox"
+#define kExportMutExportDropboxMutsIndex 1
+
 #define kExportASEmailData @"Email Data"
-#define kExportASEmailDataIndex 2
-#define kExportASDropboxMuts @"Save Mutations to Dropbox"
-#define kExportASDropboxMutsIndex 3
+#define kExportASEmailDataIndex 3
 #define kExportASDropboxData @"Save Data to Dropbox"
 #define kExportASDropboxDataIndex 4
 
@@ -74,6 +82,8 @@ typedef enum {
 @interface FileExporter : NSObject <UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
     //Used to display data export options
     UIActionSheet *exportActionSheet;
+    UIActionSheet *exportOptionsMutsActionSheet;
+    
     MFMailComposeViewController *exportMailController;
     NSString *exportDataStr;
     
@@ -107,7 +117,7 @@ typedef enum {
 
 - (void)setTotalAlignmentRuntime:(float)runtime;
 
-- (void)emailInfoForOption:(EmailInfoOption)option;
+- (void)emailInfoForOption:(EmailInfoOption)option isDiploid:(BOOL)isDiploid;
 - (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
 - (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;

@@ -55,7 +55,7 @@
     relevantInsertionsArr = NULL;
 }
 
-+ (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos {
++ (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos isDiploid:(BOOL)isDiploid {
     NSLog(@"Generating mutation info output string");
     NSMutableArray *mutationInfosDicts = [NSMutableArray array];
     for (MutationInfo *info in mutationInfos) {
@@ -70,10 +70,21 @@
     NSLog(@"All deletions compressed");
     
     for (NSDictionary *dict in finalDicts) {
-        [output appendFormat:@"%@\n", [MutationInfo descriptionFromMutationInfoDict:dict]];
+        //If is not diploid, then is haploid and need to account for that
+        NSString *description = [MutationInfo descriptionFromMutationInfoDict:dict isDiploid:isDiploid];
+        if (description.length > 0)
+            [output appendFormat:@"%@\n", description];
     }
     NSLog(@"Descriptions from dictionaries finished");
     return output;
+}
+
++ (NSArray*)mutationInfoDictsByProcessingForHaploid:(NSArray*)mutationInfoDicts {
+    NSMutableArray *output = [NSMutableArray arrayWithArray:mutationInfoDicts];
+    for (NSDictionary *dict in mutationInfoDicts) {
+        
+    }
+    return NULL;
 }
 
 + (NSArray*)mutationInfoDictsByCompressingDeletions:(NSMutableArray*)mutationInfoDicts {
@@ -283,7 +294,7 @@
     return dict;
 }
 
-+ (NSString*)descriptionFromMutationInfoDict:(NSDictionary*)dict {
++ (NSString*)descriptionFromMutationInfoDict:(NSDictionary*)dict isDiploid:(BOOL)isDiploid {
     NSMutableString *info = [NSMutableString stringWithString:@"AF="];
     
     NSDictionary *alleleFreqsDict = dict[@"allele frequencies"];
@@ -384,8 +395,10 @@
 
     [info replaceCharactersInRange:NSMakeRange([info length] - 1, 1) withString:@""];//Removes last comma
     
-    if (kMutationExportShouldIncludeMostCommonBase == 1) {
-        [info appendFormat:@",%@", mostCommonAllele];
+    if (!isDiploid) {
+        if ([mostCommonAllele isEqualToString:dict[@"reference"][@"normal"]])
+            return @"";
+//        [info appendFormat:@",%@", mostCommonAllele];
     }
     
     NSString *gtVal;

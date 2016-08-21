@@ -69,7 +69,7 @@
 }
 
 - (void)displayExportOptionsWithSender:(id)sender {
-    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportASEmailMutations, kExportASEmailData, kExportASDropboxMuts, kExportASDropboxData, nil];
+    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportASExportMutationsHaploid, kExportASExportMutationsDiploid, kExportASEmailData, kExportASDropboxData, nil];
     if ([sender isKindOfClass:[UIBarButtonItem class]])
         [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
     else
@@ -152,23 +152,20 @@
     if (![GlobalVars internetAvailable])
         return;
     if ([actionSheet isEqual:exportActionSheet]) {
-        if (buttonIndex == kExportASEmailMutsIndex) {
-            [self emailInfoForOption:EmailInfoOptionMutations];
+        if (buttonIndex == kExportASExportMutationsHaploidIndex) {
+            exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
+            exportOptionsMutsActionSheet.tag = kExportASExportMutationsHaploidIndex;
+            [exportOptionsMutsActionSheet showInView:[actionSheet superview]];
+//            [self emailInfoForOption:EmailInfoOptionMutations];
+        }
+        else if (buttonIndex == kExportASExportMutationsDiploidIndex) {
+            exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
+            exportOptionsMutsActionSheet.tag = kExportASExportMutationsDiploidIndex;
+            [exportOptionsMutsActionSheet showInView:[actionSheet superview]];
+//            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASEmailDataIndex) {
-            [self emailInfoForOption:EmailInfoOptionData];
-        }
-        else if (buttonIndex == kExportASDropboxMutsIndex) {
-            if ([DBAccountManager sharedManager].linkedAccount == NULL)
-                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
-            else {
-                exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
-                [exportMutsDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-                UITextField *txtField = [exportMutsDropboxAlert textFieldAtIndex:0];
-                int i = [self firstAvailableDefaultFileNameForMutsOrData:0];
-                [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
-                [exportMutsDropboxAlert show];
-            }
+            [self emailInfoForOption:EmailInfoOptionData isDiploid:NO];
         }
         else if (buttonIndex == kExportASDropboxDataIndex) {
             if ([DBAccountManager sharedManager].linkedAccount == NULL)
@@ -182,10 +179,26 @@
                 [exportDataDropboxAlert show];
             }
         }
+    } else if ([actionSheet isEqual:exportOptionsMutsActionSheet]) {
+        if ([[exportOptionsMutsActionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportEmailMuts]) {
+            [self emailInfoForOption:EmailInfoOptionMutations isDiploid:exportOptionsMutsActionSheet.tag == kExportASExportMutationsDiploidIndex];
+        } else if ([[exportOptionsMutsActionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportDropboxMuts]) {
+            if ([DBAccountManager sharedManager].linkedAccount == NULL)
+                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+            else {
+                exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
+                [exportMutsDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+                UITextField *txtField = [exportMutsDropboxAlert textFieldAtIndex:0];
+                int i = [self firstAvailableDefaultFileNameForMutsOrData:0];
+                [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
+                exportMutsDropboxAlert.tag = actionSheet.tag;
+                [exportMutsDropboxAlert show];
+            }
+        }
     }
 }
 
-- (void)emailInfoForOption:(EmailInfoOption)option {
+- (void)emailInfoForOption:(EmailInfoOption)option isDiploid:(BOOL)isDiploid {
     exportMailController = [[MFMailComposeViewController alloc] init];
     exportMailController.mailComposeDelegate = self;
     
@@ -193,7 +206,7 @@
         [exportMailController setSubject:[NSString stringWithFormat:kExportMutsEmailSubject,readsFileName, genomeFileName]];
         [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, errorRate, mutationSupportVal] isHTML:NO];
         
-        NSMutableString *mutString = [self getMutationsExportStr];
+        NSMutableString *mutString = [self getMutationsExportStrForIsDiploid:isDiploid];
         [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,@""]];
         [[delegate getVC] presentViewController:exportMailController animated:YES completion:nil];
     }
@@ -210,7 +223,7 @@
     [exportMailController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (NSMutableString*)getMutationsExportStr {
+- (NSMutableString*)getMutationsExportStrForIsDiploid:(BOOL)isDiploid {
     NSMutableString *mutString = [[NSMutableString alloc] init];
 //    [mutString appendFormat:kMutationTotalFormat,(int)[mutPosArray count]];
     MutationInfo *inf;
@@ -240,7 +253,7 @@
         [contigsStr appendFormat:@"##contig=<ID=%@, length=%d>%@", name, len, (i < [separateGenomeLens count] - 1) ? @"\n" : @""];
     }
     [mutString appendFormat:header, dateString, genomeFileName, contigsStr, readsFileName];
-    [mutString appendString:[MutationInfo mutationInfosOutputString:mutPosArray]];
+    [mutString appendString:[MutationInfo mutationInfosOutputString:mutPosArray isDiploid:isDiploid]];
     return mutString;
 }
 
@@ -249,18 +262,19 @@
         if (buttonIndex == 1) {
             NSString *txt = [alertView textFieldAtIndex:0].text;
             if ([txt isEqualToString:@""]) {
-                [self actionSheet:exportActionSheet didDismissWithButtonIndex:kExportASDropboxMutsIndex];
+                [self actionSheet:exportOptionsMutsActionSheet didDismissWithButtonIndex:kExportMutExportDropboxMutsIndex];
             }
-            else if (![self saveFileAtPath:txt andContents:[self getMutationsExportStr] andFileType:FileTypeMutations]) {
+            else if (![self saveFileAtPath:txt andContents:[self getMutationsExportStrForIsDiploid:alertView.tag == kExportASExportMutationsDiploidIndex] andFileType:FileTypeMutations]) {
                 chosenMutsExportPath = txt;
                 exportMutsDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
+                exportMutsDropboxErrorAlert.tag = exportMutsDropboxAlert.tag;
                 [exportMutsDropboxErrorAlert show];
             }
         }
     }
     else if ([alertView isEqual:exportMutsDropboxErrorAlert]) {
         if (buttonIndex == 1) {
-            [self overwriteFileAtPath:chosenMutsExportPath andContents:[self getMutationsExportStr] andFileType:FileTypeMutations];
+            [self overwriteFileAtPath:chosenMutsExportPath andContents:[self getMutationsExportStrForIsDiploid:alertView.tag == kExportASExportMutationsDiploidIndex] andFileType:FileTypeMutations];
         }
     }
     else if ([alertView isEqual:exportDataDropboxAlert]) {

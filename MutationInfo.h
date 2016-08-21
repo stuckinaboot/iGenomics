@@ -32,7 +32,8 @@
     andFoundChars:(char*)foundC andDisplayedPos:(int)dispP
     andInsertionsArr:(NSArray*)insArr heteroAllowance:(float)heteroAllowance;
 - (void)freeUsedMemory;
-+ (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos;
++ (NSString*)mutationInfosOutputString:(NSArray*)mutationInfos isDiploid:(BOOL)isDiploid;
++ (NSArray*)mutationInfoDictsByProcessingForHaploid:(NSArray*)mutationInfoDicts;
 + (char*)createMutStrFromOriginalChar:(char)originalC
                         andFoundChars:(char*)fc pos:(int)pos relevantInsArr:(NSArray*)insertions;
 + (char*)createMutCovStrFromFoundChars:(char*)fc
