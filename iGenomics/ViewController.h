@@ -22,6 +22,8 @@
     AboutSectionViewController *abtSectController;
     
     BWT *bwt;
+    
+    BOOL isPresented;
 }
 - (IBAction)showFilePickerPressed:(id)sender;
 - (IBAction)showAboutPressed:(id)sender;

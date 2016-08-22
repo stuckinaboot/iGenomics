@@ -336,6 +336,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="PERCENT MATCHED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-WE-j9G">
                     <rect key="frame" x="66" y="170" width="165" height="21"/>
                     <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IEf-sr-2T3"/>
                         <constraint firstAttribute="width" constant="165" id="a8p-bJ-E3u"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>

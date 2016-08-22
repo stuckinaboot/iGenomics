@@ -47,6 +47,8 @@
     
     UIAlertView *renameFileAlert;
     
+    BOOL deletingFilesEnabled;
+    
     UITapGestureRecognizer *dismissKeyboardRecog;
 }
 @property (nonatomic) id <SimpleFileDisplayViewDelegate> delegate;

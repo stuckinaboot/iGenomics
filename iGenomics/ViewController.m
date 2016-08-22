@@ -21,14 +21,29 @@
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileIntoFilePicker:) name:kFilePickerControllerNotificationExternalFileLoadedKey object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFileIntoFilePicker:) name:kFilePickerControllerNotificationExternalFileLoadedKey object:nil];
     
     filePickerController = [[FilePickerController alloc] init];
     abtSectController = [[AboutSectionViewController alloc] init];
 }
 
+//- (void)viewDidAppear:(BOOL)animated {
+//    [self viewDidAppear:animated];
+//    isPresented = TRUE;
+//}
+//
+//- (void)viewDidDisappear:(BOOL)animated {
+//    [self viewDidDisappear:animated];
+//    isPresented = FALSE;
+//}
+
 - (void)loadFileIntoFilePicker:(NSNotification*)notification {
-    NSLog(@"occurred");
+//    [self showFilePickerPressed:nil];
+    if (self.isViewLoaded && self.view.window) {
+        [self presentViewController:filePickerController animated:YES completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kFilePickerControllerNotificationExternalFileLoadedKey object:nil userInfo:notification.userInfo];
+        }];
+    }
 }
 
 - (IBAction)showFilePickerPressed:(id)sender {
@@ -50,21 +65,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {

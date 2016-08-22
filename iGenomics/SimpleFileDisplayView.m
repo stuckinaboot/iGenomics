@@ -53,7 +53,8 @@
 }
 
 - (void)displayWithFilesArray:(NSArray *)filesArray deletingFilesEnabled:(BOOL)deletingEnabled {
-    if (deletingEnabled) {
+    deletingFilesEnabled = deletingEnabled;
+    if (deletingFilesEnabled) {
         if ([tblView.gestureRecognizers count] == 0 || ([tblView.gestureRecognizers count] > 0 && ![tblView.gestureRecognizers[0] isKindOfClass:[UILongPressGestureRecognizer class]])) {
             UILongPressGestureRecognizer *recog = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressDeleteGesture:)];
             recog.minimumPressDuration = kSimpleFileDisplayTblItemDeleteLongPressDuration;
@@ -175,21 +176,40 @@
     return YES;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return deletingFilesEnabled;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return deletingFilesEnabled;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        APFile *file = [searchedFileArr objectAtIndex:indexPath.row];
+        [delegate deletePressedForFile:file inSimpleFileDisplayView:self];
+        
+    }
+}
+
 #pragma Long Press Delete
 
 - (void)handleLongPressDeleteGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
-    [self displayDeleteBtnForGestureRecognizer:gestureRecognizer];
+    if (deletingFilesEnabled)
+        [self displayDeleteBtnForGestureRecognizer:gestureRecognizer];
 }
 
 - (void)displayDeleteBtnForGestureRecognizer:(UIGestureRecognizer*)recognizer {
     UIMenuController *menuController = [UIMenuController sharedMenuController];
-    if (![menuController isMenuVisible])
+    if ([menuController isMenuVisible])
         return;
     
-    UIMenuItem *itemDel = [[UIMenuItem alloc] initWithTitle:kSimpleFileDisplayTblItemDeleteBtnTitle action:@selector(deletePressed:)];
+//    UIMenuItem *itemDel = [[UIMenuItem alloc] initWithTitle:kSimpleFileDisplayTblItemDeleteBtnTitle action:@selector(deletePressed:)];
     UIMenuItem *itemRename = [[UIMenuItem alloc] initWithTitle:kSimpleFileDisplayTblItemRenameBtnTitle action:@selector(renamePressed:)];
 
-    [menuController setMenuItems:@[itemRename, itemDel]];
+    [menuController setMenuItems:@[itemRename]];
     
     APTableViewCell *cell = (APTableViewCell*)[tblView cellForRowAtIndexPath:[tblView indexPathForRowAtPoint:[recognizer locationInView:tblView]]];
     CGRect rect = cell.frame;
