@@ -30,7 +30,6 @@
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */; };
-		A32E07531D4FA7C500F2A081 /* flu.mega.fa in Resources */ = {isa = PBXBuildFile; fileRef = A32E07521D4FA7C500F2A081 /* flu.mega.fa */; };
 		A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */ = {isa = PBXBuildFile; fileRef = A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
@@ -101,8 +100,8 @@
 		A375FBFF19391FBD00F69E07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFE19391FBD00F69E07 /* QuartzCore.framework */; };
 		A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0019391FC600F69E07 /* CFNetwork.framework */; };
 		A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0219391FCB00F69E07 /* libc++.dylib */; };
-		A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3806A561C940F5F00D0C117 /* incorrectsingle.fa */; };
 		A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */; };
+		A391AA691F4A766000A316C0 /* flu.mega.fa in Resources */ = {isa = PBXBuildFile; fileRef = A391AA681F4A766000A316C0 /* flu.mega.fa */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
@@ -262,7 +261,6 @@
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H2N2.fa; sourceTree = SOURCE_ROOT; };
-		A32E07521D4FA7C500F2A081 /* flu.mega.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.mega.fa; path = ../../../../Desktop/flu.mega.fa; sourceTree = "<group>"; };
 		A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mutation_output.sample.vcf; sourceTree = "<group>"; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
@@ -352,8 +350,8 @@
 		A375FBFE19391FBD00F69E07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A375FC0019391FC600F69E07 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A375FC0219391FCB00F69E07 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		A3806A561C940F5F00D0C117 /* incorrectsingle.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = incorrectsingle.fa; path = ../../../Desktop/incorrectsingle.fa; sourceTree = "<group>"; };
 		A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A391AA681F4A766000A316C0 /* flu.mega.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.mega.fa; sourceTree = "<group>"; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
 		A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQueryResultsPopover.xib; sourceTree = "<group>"; };
@@ -918,7 +916,7 @@
 				A36F23041AAF99A4005B5A91 /* flu.H1N1 */,
 				A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */,
 				A3CC05BE1D6574E6008B0D63 /* flu.H3N2.fa */,
-				A32E07521D4FA7C500F2A081 /* flu.mega.fa */,
+				A391AA681F4A766000A316C0 /* flu.mega.fa */,
 				A3FB37941D65F9D200C369C8 /* flu_H1N1+H3N2+B_no_repeats.fa */,
 				A3FB37951D65F9D200C369C8 /* flu_H1N1+H3N2+B.fa */,
 				A3FB37981D65F9DB00C369C8 /* H3N2_all.fa */,
@@ -1080,7 +1078,6 @@
 				A3FB37A81D65FA1200C369C8 /* fluH1N1.formega-reads-rl1000-se0.1-mr0.001.fq */,
 				A3FB37A91D65FA1200C369C8 /* fluH1N1.formega-reads-rl1000-se0.1-mr0.005.fq */,
 				A3CC05C61D657507008B0D63 /* ebola.nanopore.fastq */,
-				A3806A561C940F5F00D0C117 /* incorrectsingle.fa */,
 				A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */,
 				A36CCDF9184A8632004B9327 /* reads.fa */,
 				A36CCDFA184A8632004B9327 /* reads.fq */,
@@ -1425,10 +1422,11 @@
 		A310AF41158A5F7200E892AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					A310AF49158A5F7200E892AA = {
-						DevelopmentTeam = TJ5N8Q8272;
+						DevelopmentTeam = F9WSQT797Y;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1535,7 +1533,6 @@
 				A3BE51221D837EDB0054941B /* ebola.fa in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
 				A35160871AA3FD7B0004FD32 /* Icon-72@2x.png in Resources */,
-				A3806A571C940F5F00D0C117 /* incorrectsingle.fa in Resources */,
 				A3B41D011D66B90E00BD29F9 /* reads-rl100-se0.2-mr0.01.fq in Resources */,
 				A3BE51271D837EDB0054941B /* zika.fa in Resources */,
 				A35160911AA400000004FD32 /* Icon-57@2x.png in Resources */,
@@ -1562,7 +1559,6 @@
 				A35160821AA3FD7B0004FD32 /* Icon-Small.png in Resources */,
 				A3BE511E1D837EDB0054941B /* flu.H1N1.simulated.resistant.fq in Resources */,
 				A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */,
-				A32E07531D4FA7C500F2A081 /* flu.mega.fa in Resources */,
 				A337B1A518E7DC5400919612 /* AboutSectionViewController~iphone.xib in Resources */,
 				A351607B1AA3FD7B0004FD32 /* Icon-40.png in Resources */,
 				A3BE51231D837EDB0054941B /* flu.H1N1.fa in Resources */,
@@ -1573,6 +1569,7 @@
 				A3B41D001D66B90E00BD29F9 /* reads-rl100-se0.2-mr0.1.fq in Resources */,
 				A3D1AF0A1D5B79FD00A63808 /* zika.fa in Resources */,
 				A3B41CFA1D66B90E00BD29F9 /* reads-rl100-se0.1-mr0.1.fq in Resources */,
+				A391AA691F4A766000A316C0 /* flu.mega.fa in Resources */,
 				A3FB379B1D65F9E800C369C8 /* H3N2_all_no_repeats.fa in Resources */,
 				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
@@ -1713,11 +1710,14 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = F9WSQT797Y;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1738,7 +1738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "9905e88a-bb4a-4643-b285-4c154760e5e6";
 				SDKROOT = iphoneos;
@@ -1755,11 +1755,14 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = F9WSQT797Y;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1772,7 +1775,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "9905e88a-bb4a-4643-b285-4c154760e5e6";
 				SDKROOT = iphoneos;
@@ -1788,6 +1791,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F9WSQT797Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1816,6 +1820,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F9WSQT797Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
