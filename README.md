@@ -8,11 +8,14 @@ The first mobile application for DNA sequence alignment and analysis.
 ```
 git clone https://github.com/stuckinaboot/iGenomics.git
 ```
-
-2) Install cocoapods
+2) `cd iGenomics`
+3) Install cocoapods dependency manager
 ```
-gem install cocoapods
+$ gem install cocoapods
 ```
-
-3) Open iGenomics.xcworkspace
-4) Run iGenomics in Xcode
+4) Install pods (dependencies)
+```
+$ pod install
+```
+5) Open iGenomics.xcworkspace
+6) Run iGenomics in Xcode
