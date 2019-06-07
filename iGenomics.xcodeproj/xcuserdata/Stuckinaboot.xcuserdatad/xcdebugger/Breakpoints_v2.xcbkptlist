@@ -16,7 +16,7 @@
             startingLineNumber = "43"
             endingLineNumber = "43"
             landmarkName = "-loadFileIntoFilePicker:"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -26,12 +26,12 @@
                   moduleName = "iGenomics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/ViewController.m"
-                  timestampString = "493594440.493598"
+                  timestampString = "581407702.823959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
                   endingLineNumber = "43"
-                  offsetFromSymbolStart = "328">
+                  offsetFromSymbolStart = "292">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,27 @@
                   moduleName = "iGenomics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/ViewController.m"
-                  timestampString = "493594440.493765"
+                  timestampString = "581407702.8259391"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
                   endingLineNumber = "43"
                   offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_e8_32s"
+                  moduleName = "iGenomics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/ViewController.m"
+                  timestampString = "581407702.827364"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -64,7 +79,7 @@
             startingLineNumber = "23"
             endingLineNumber = "23"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -80,7 +95,7 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,7 +143,7 @@
             startingLineNumber = "23"
             endingLineNumber = "23"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
