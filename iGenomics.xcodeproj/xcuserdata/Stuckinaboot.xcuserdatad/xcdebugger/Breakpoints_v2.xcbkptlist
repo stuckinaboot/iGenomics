@@ -105,13 +105,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/AppDelegate.m"
-            timestampString = "493592550.271922"
+            timestampString = "581574354.431365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -121,13 +121,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/AppDelegate.m"
-            timestampString = "493592563.357602"
+            timestampString = "581574354.431761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -169,13 +169,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/AppDelegate.m"
-            timestampString = "493592636.146815"
+            timestampString = "581574354.4320329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
