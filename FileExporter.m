@@ -77,104 +77,228 @@
 }
 
 - (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType {
-    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-    if (!sys) {
-        if ([DBAccountManager sharedManager].linkedAccount == NULL)
-            [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
-        else {
-            sys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
-            [DBFilesystem setSharedFilesystem:sys];
-        }
+    DBUserClient *client = [DBClientsManager authorizedClient];
+//    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+    if (!client) {
+        [DBClientsManager authorizeFromController:[UIApplication sharedApplication] controller:[delegate getVC] openURL:^(NSURL *url) {
+            [[UIApplication sharedApplication] openURL:url];
+        }];
     }
+    
+//    if (!sys) {
+//        if ([DBAccountManager sharedManager].linkedAccount == NULL)
+//            [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+//        else {
+//            sys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
+//            [DBFilesystem setSharedFilesystem:sys];
+//        }
+//    }
     path = [self fixChosenExportPathExt:path forFileType:fileType];
-    DBPath *dbPath = [[DBPath alloc] initWithString:path];
-    DBFileInfo *info = [sys fileInfoForPath:dbPath error:nil];
-    DBFile *file;
-    DBError *error;
-    if (!info)
-        file = [sys createFile:dbPath error:&error];
-    else
-        return NO;
-//        file = [sys openFile:[[DBPath alloc] initWithString:path] error:&error];
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
-        [alert show];
-        return NO;
-    } else if ([file writeString:contents error:nil]) {
-        [delegate displaySuccessBox];
-        return YES;
-    } else {
-        //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
-        [alert show];
-        return NO;
-    }
+//    DBPath *dbPath = [[DBPath alloc] initWithString:path];
+//    DBFileInfo *info = [sys fileInfoForPath:dbPath error:nil];
+//    DBFile *file;
+//    DBError *error;
+    
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    __block BOOL uploadedSuccessfully = FALSE;
+    NSLog(@"Saving");
+    [[client.filesRoutes getMetadata:path] setResponseBlock: ^(DBFILESMetadata * _Nullable result, DBFILESGetMetadataError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+        // Requests metadata to see if the file exists
+        NSLog(@"Requesting metadata");
+        if (!result) {
+            NSLog(@"file DNE");
+            // File does not exist, so upload the file
+            [[client.filesRoutes uploadData:path inputData:[contents dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+                if (result) {
+                    // File uploaded successfully
+                    uploadedSuccessfully = YES;
+                    [delegate displaySuccessBox];
+                } else {
+                    // Unknown Error occurred
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+                    [alert show];
+                    uploadedSuccessfully = NO;
+                }
+                NSLog(@"Signaling");
+                dispatch_semaphore_signal(sema);
+            }];
+        } else {
+            NSLog(@"File exists");
+            // File exists
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+            [alert show];
+            uploadedSuccessfully = NO;
+            NSLog(@"Signaling");
+            dispatch_semaphore_signal(sema);
+        }
+    }];
+    NSLog(@"Waiting");
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    NSLog(@"Done waiting");
+    return uploadedSuccessfully;
+    
+//    if (!info)
+//        file = [sys createFile:dbPath error:&error];
+//    else
+//        return NO;
+
+//    if (error) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+//        [alert show];
+//        return NO;
+//    } else if ([file writeString:contents error:nil]) {
+//        [delegate displaySuccessBox];
+//        return YES;
+//    } else {
+//        //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+//        [alert show];
+//        return NO;
+//    }
 }
 
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice {
-    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-    if (choice == 0) {//muts
-        DBFile *file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName, @""]] error:nil];
-        int i = 0;
-        while (file) {
-            i++;
-            file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName, [NSString stringWithFormat:@"(%i)",i]]] error:nil];
-        }
-        return i;
+    DBUserClient *client = [DBClientsManager authorizedClient];
+    if (!client) {
+        [DBClientsManager authorizeFromController:[UIApplication sharedApplication] controller:[delegate getVC] openURL:^(NSURL *url) {
+            [[UIApplication sharedApplication] openURL:url];
+        }];
     }
-    else if (choice == 1) {//data
-        DBFile *file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName, @""]] error:nil];
-        int i = 0;
-        while (file) {
-            i++;
-            file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName, [NSString stringWithFormat:@"(%i)",i]]] error:nil];
-        }
-        return i;
+    
+    NSString *formatStr;
+    if (choice == 0) { // muts
+        formatStr = kExportDropboxSaveFileFormatMuts;
+    } else if (choice == 1) {
+        formatStr = kExportDropboxSaveFileFormatData;
+    } else {
+        return -1;
     }
-    return -1;
+
+    NSString *path = [NSString stringWithFormat:formatStr,readsFileName, @""];
+    
+    __block BOOL validNameFound = FALSE;
+    __block int i = 0;
+    while (!validNameFound) {
+        NSLog(@"del entered while");
+//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        runOnMainQueueWithoutDeadlocking(^{
+            NSLog(@"ran this");
+            [[client.filesRoutes getMetadata:path] setResponseBlock:^(DBFILESMetadata * _Nullable result, DBFILESGetMetadataError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+                if (!result) {
+                    NSLog(@"del found valid name");
+                    validNameFound = TRUE;
+                } else {
+                    NSLog(@"del no invalid name %@", [result description]);
+                    i++;
+                }
+    //                dispatch_semaphore_signal(sema);
+            }];
+//        });
+            });
+            if (validNameFound) {
+                break;
+            } else {
+                NSLog(@"del started waiting");
+    //            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            }
+    }
+    return i;
+//    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+//    if (choice == 0) {//muts
+//        DBFile *file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName, @""]] error:nil];
+//        int i = 0;
+//        while (file) {
+//            i++;
+//            file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName, [NSString stringWithFormat:@"(%i)",i]]] error:nil];
+//        }
+//        return i;
+//    }
+//    else if (choice == 1) {//data
+//        DBFile *file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName, @""]] error:nil];
+//        int i = 0;
+//        while (file) {
+//            i++;
+//            file = [sys openFile:[[DBPath alloc] initWithString:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName, [NSString stringWithFormat:@"(%i)",i]]] error:nil];
+//        }
+//        return i;
+//    }
 }
 
 - (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType {
-    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+    DBUserClient *client = [DBClientsManager authorizedClient];
+//    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
     path = [self fixChosenExportPathExt:path forFileType:fileType];
-    DBFile *file = [sys openFile:[[DBPath alloc] initWithString:path] error:nil];
-    if ([file writeString:contents error:nil]) {
+    
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    __block BOOL uploaded = FALSE;
+    [[client.filesRoutes uploadData:path inputData:[contents dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+        uploaded = (result);
+        dispatch_semaphore_signal(sema);
+    }];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    
+    if (uploaded) {
         [delegate displaySuccessBox];
         return YES;
-    }
-    else {
-        //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
+    } else {
         return NO;
     }
+//    DBFile *file = [sys openFile:[[DBPath alloc] initWithString:path] error:nil];
+//    if ([file writeString:contents error:nil]) {
+//        [delegate displaySuccessBox];
+//        return YES;
+//    }
+//    else {
+//        //Error occurred, file exists is the usual error (if this ever changes, I will need to adapt to it)
+//        return NO;
+//    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"del A");
     if (![GlobalVars internetAvailable])
         return;
     if ([actionSheet isEqual:exportActionSheet]) {
+        NSLog(@"del B");
         if (buttonIndex == kExportASExportMutationsHaploidIndex) {
+            NSLog(@"del C");
             exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsHaploidIndex;
             [exportOptionsMutsActionSheet showInView:[actionSheet superview]];
 //            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASExportMutationsDiploidIndex) {
+            NSLog(@"del D");
             exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsDiploidIndex;
             [exportOptionsMutsActionSheet showInView:[actionSheet superview]];
 //            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASEmailDataIndex) {
+            NSLog(@"del E");
             [self emailInfoForOption:EmailInfoOptionData isDiploid:NO];
         }
         else if (buttonIndex == kExportASDropboxDataIndex) {
-            if ([DBAccountManager sharedManager].linkedAccount == NULL)
-                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+            NSLog(@"del F");
+//            if ([DBAccountManager sharedManager].linkedAccount == NULL)
+//                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+            DBUserClient *client = [DBClientsManager authorizedClient];
+            NSLog(@"checking client");
+            if (!client) {
+                NSLog(@"authorizing");
+                [DBClientsManager authorizeFromController:[UIApplication sharedApplication] controller:[delegate getVC] openURL:^(NSURL *url) {
+                    [[UIApplication sharedApplication] openURL:url];
+                }];
+            }
             else {
+                NSLog(@"del G");
                 exportDataDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
                 [exportDataDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
                 UITextField *txtField = [exportDataDropboxAlert textFieldAtIndex:0];
+                NSLog(@"del H");
                 int i = [self firstAvailableDefaultFileNameForMutsOrData:1];
+                NSLog(@"del I");
                 [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatData, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
                 [exportDataDropboxAlert show];
             }
@@ -183,8 +307,14 @@
         if ([[exportOptionsMutsActionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportEmailMuts]) {
             [self emailInfoForOption:EmailInfoOptionMutations isDiploid:exportOptionsMutsActionSheet.tag == kExportASExportMutationsDiploidIndex];
         } else if ([[exportOptionsMutsActionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportDropboxMuts]) {
-            if ([DBAccountManager sharedManager].linkedAccount == NULL)
-                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+//            if ([DBAccountManager sharedManager].linkedAccount == NULL)
+//                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
+            DBUserClient *client = [DBClientsManager authorizedClient];
+            if (!client) {
+                [DBClientsManager authorizeFromController:[UIApplication sharedApplication] controller:[delegate getVC] openURL:^(NSURL *url) {
+                    [[UIApplication sharedApplication] openURL:url];
+                }];
+            }
             else {
                 exportMutsDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
                 [exportMutsDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
@@ -311,9 +441,26 @@
             break;
     }
     int s = ext.length;
+    
+    // Add forward slash to path if it does not exist (for dropbox)
+    if ([path characterAtIndex:0] != '/') {
+        path = [NSString stringWithFormat:@"/%@", path];
+    }
     if ([[path substringFromIndex:path.length-s] caseInsensitiveCompare:ext] != NSOrderedSame)
         return [NSString stringWithFormat:@"%@%@",path,ext];
     return path;
+}
+    
+void runOnMainQueueWithoutDeadlocking(void (^block)(void))
+{
+    if ([NSThread isMainThread])
+    {
+        block();
+    }
+    else
+    {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
 }
 
 @end

@@ -19,9 +19,11 @@ typedef enum {
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
-#import <dropbox/dropbox.h>
+//#import <dropbox/dropbox.h>
 #import "GlobalVars.h"
 #import "MutationInfo.h"
+
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 #define kExportASTitle @"Export Data"
 
@@ -45,8 +47,8 @@ typedef enum {
 #define kExportAlertBody @"Enter file name here:"
 #define kExportAlertBtnExportTitle @"Export"
 
-#define kExportDropboxSaveFileFormatMuts @"%@%@.var.vcf"//reads(1..2..3 or no ()).var...
-#define kExportDropboxSaveFileFormatData @"%@%@.data.acp"//reads(1..2..3 or no ()).data...
+#define kExportDropboxSaveFileFormatMuts @"/%@%@.var.vcf"//reads(1..2..3 or no ()).var...
+#define kExportDropboxSaveFileFormatData @"/%@%@.data.acp"//reads(1..2..3 or no ()).data...
 #define kExportDropboxSaveFileExt @".txt"
 #define kExportDropboxSaveDataFileExt @".acp"
 #define kExportDropboxSaveMutsFileExt @".vcf"

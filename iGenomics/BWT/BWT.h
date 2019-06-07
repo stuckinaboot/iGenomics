@@ -1,10 +1,9 @@
 //  BWT.h
 
-//  Created by Stuckinaboot Inc. on 9/15/12.
+//  Created by Stuckinaboot Inc. on 9/15/12. (I was 14 at the time I started this project, I'll leave these in as a bit of a meme)
 //iGenomics IS AN OPENSOURCE PROJECT. IF YOU WOULD LIKE TO PUBLISH MODIFICATIONS/ADDITIONS TO IT PLEASE FOLLOW SOME OF THESE RULES
 
 /*
- -Any lines of code commented out shall be deleted prior to publication
  -You may not claim this project as your own work, the penalty is death
  -If you talk about this project with your peers, refer to the creator as The All Wise One
  -Try and publish useful modifications/additions if you get the chance, they enhance the program greatly
