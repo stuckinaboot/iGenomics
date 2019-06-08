@@ -76,7 +76,7 @@
         [exportActionSheet showFromRect:((UIView*)sender).frame inView:((UIView*)sender).superview animated:YES];
 }
 
-- (BOOL)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType {
+- (void)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType completion:(void(^)(BOOL, BOOL))completionBlock {
     DBUserClient *client = [DBClientsManager authorizedClient];
 //    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
     if (!client) {
@@ -99,7 +99,7 @@
 //    DBFile *file;
 //    DBError *error;
     
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     __block BOOL uploadedSuccessfully = FALSE;
     NSLog(@"Saving");
     [[client.filesRoutes getMetadata:path] setResponseBlock: ^(DBFILESMetadata * _Nullable result, DBFILESGetMetadataError * _Nullable routeError, DBRequestError * _Nullable networkError) {
@@ -119,23 +119,27 @@
                     [alert show];
                     uploadedSuccessfully = NO;
                 }
+        
+                completionBlock(uploadedSuccessfully, FALSE);
+                
                 NSLog(@"Signaling");
-                dispatch_semaphore_signal(sema);
+//                dispatch_semaphore_signal(sema);
             }];
         } else {
             NSLog(@"File exists");
             // File exists
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+//            [alert show];
             uploadedSuccessfully = NO;
             NSLog(@"Signaling");
-            dispatch_semaphore_signal(sema);
+            completionBlock(uploadedSuccessfully, TRUE);
+//            dispatch_semaphore_signal(sema);
         }
     }];
     NSLog(@"Waiting");
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     NSLog(@"Done waiting");
-    return uploadedSuccessfully;
+//    return uploadedSuccessfully;
     
 //    if (!info)
 //        file = [sys createFile:dbPath error:&error];
@@ -175,7 +179,9 @@
     }
 
     NSString *path = [NSString stringWithFormat:formatStr,readsFileName, @""];
+    return path;
     
+    /*
     __block BOOL validNameFound = FALSE;
     __block int i = 0;
     while (!validNameFound) {
@@ -223,27 +229,33 @@
 //        }
 //        return i;
 //    }
+     */
 }
 
-- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType {
+- (void)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType {
     DBUserClient *client = [DBClientsManager authorizedClient];
 //    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
     path = [self fixChosenExportPathExt:path forFileType:fileType];
     
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    __block BOOL uploaded = FALSE;
-    [[client.filesRoutes uploadData:path inputData:[contents dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
-        uploaded = (result);
-        dispatch_semaphore_signal(sema);
+//    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    [[client.filesRoutes uploadData:path mode:[[DBFILESWriteMode alloc] initWithOverwrite] autorename:NULL clientModified:NULL mute:NULL inputData:[contents dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+        if (result != NULL) {
+            [delegate displaySuccessBox];
+        } else {
+            // Display error
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyGeneralFailError delegate:nil cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+            [alert show];
+        }
+//        dispatch_semaphore_signal(sema);
     }];
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     
-    if (uploaded) {
-        [delegate displaySuccessBox];
-        return YES;
-    } else {
-        return NO;
-    }
+//    if (uploaded) {
+//        [delegate displaySuccessBox];
+//        return YES;
+//    } else {
+//        return NO;
+//    }
 //    DBFile *file = [sys openFile:[[DBPath alloc] initWithString:path] error:nil];
 //    if ([file writeString:contents error:nil]) {
 //        [delegate displaySuccessBox];
@@ -257,9 +269,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"del A");
-    if (![GlobalVars internetAvailable])
+    if (![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kAlertBtnTitleCancel] && ![GlobalVars internetAvailable]) {
+        // Only return if no internet available and button other than canacel hit
         return;
-    if ([actionSheet isEqual:exportActionSheet]) {
+    } else if ([actionSheet isEqual:exportActionSheet]) {
         NSLog(@"del B");
         if (buttonIndex == kExportASExportMutationsHaploidIndex) {
             NSLog(@"del C");
@@ -337,14 +350,14 @@
         [exportMailController setMessageBody:[NSString stringWithFormat:kExportMutsEmailMsg, readsFileName, genomeFileName, errorRate] isHTML:NO];
         
         NSMutableString *mutString = [self getMutationsExportStrForIsDiploid:isDiploid];
-        [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatMuts,readsFileName,@""]];
+        [exportMailController addAttachmentData:[mutString dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportMailSaveFileFormatMuts,readsFileName,@""]];
         [[delegate getVC] presentViewController:exportMailController animated:YES completion:nil];
     }
     else if (option == EmailInfoOptionData) {
         [exportMailController setSubject:[NSString stringWithFormat:kExportDataEmailSubject,readsFileName, genomeFileName]];
         [exportMailController setMessageBody:[NSString stringWithFormat:kExportDataEmailMsg, readsFileName, genomeFileName, errorRate] isHTML:NO];
         
-        [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportDropboxSaveFileFormatData,readsFileName,@""]];
+        [exportMailController addAttachmentData:[exportDataStr dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/plain" fileName:[NSString stringWithFormat:kExportMailSaveFileFormatData,readsFileName,@""]];
         [[delegate getVC] presentViewController:exportMailController animated:YES completion:nil];
     }
 }
@@ -394,11 +407,15 @@
             if ([txt isEqualToString:@""]) {
                 [self actionSheet:exportOptionsMutsActionSheet didDismissWithButtonIndex:kExportMutExportDropboxMutsIndex];
             }
-            else if (![self saveFileAtPath:txt andContents:[self getMutationsExportStrForIsDiploid:alertView.tag == kExportASExportMutationsDiploidIndex] andFileType:FileTypeMutations]) {
-                chosenMutsExportPath = txt;
-                exportMutsDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
-                exportMutsDropboxErrorAlert.tag = exportMutsDropboxAlert.tag;
-                [exportMutsDropboxErrorAlert show];
+            else {
+                [self saveFileAtPath:txt andContents:[self getMutationsExportStrForIsDiploid:alertView.tag == kExportASExportMutationsDiploidIndex] andFileType:FileTypeMutations completion:^(BOOL uploaded, BOOL fileAlreadyExists) {
+                    if (!uploaded && fileAlreadyExists) {
+                        chosenMutsExportPath = txt;
+                        exportMutsDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
+                        exportMutsDropboxErrorAlert.tag = exportMutsDropboxAlert.tag;
+                        [exportMutsDropboxErrorAlert show];
+                    }
+                }];
             }
         }
     }
@@ -413,10 +430,14 @@
             if ([txt isEqualToString:@""]) {
                 [self actionSheet:exportActionSheet didDismissWithButtonIndex:kExportASDropboxDataIndex];
             }
-            else if (![self saveFileAtPath:txt andContents:exportDataStr andFileType:FileTypeData]) {
-                chosenDataExportPath = txt;
-                exportDataDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
-                [exportDataDropboxErrorAlert show];
+            else {
+                [self saveFileAtPath:txt andContents:exportDataStr andFileType:FileTypeData completion:^(BOOL uploaded, BOOL fileAlreadyExists) {
+                    if (!uploaded && fileAlreadyExists) {
+                        chosenDataExportPath = txt;
+                        exportDataDropboxErrorAlert = [[UIAlertView alloc] initWithTitle:kErrorAlertExportTitle message:kErrorAlertExportBodyFileNameAlreadyInUse delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kErrorAlertExportBtnTitleOverwrite, nil];
+                        [exportDataDropboxErrorAlert show];
+                    }
+                }];
             }
         }
     }
@@ -449,18 +470,6 @@
     if ([[path substringFromIndex:path.length-s] caseInsensitiveCompare:ext] != NSOrderedSame)
         return [NSString stringWithFormat:@"%@%@",path,ext];
     return path;
-}
-    
-void runOnMainQueueWithoutDeadlocking(void (^block)(void))
-{
-    if ([NSThread isMainThread])
-    {
-        block();
-    }
-    else
-    {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
 }
 
 @end

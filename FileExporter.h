@@ -53,6 +53,9 @@ typedef enum {
 #define kExportDropboxSaveDataFileExt @".acp"
 #define kExportDropboxSaveMutsFileExt @".vcf"
 
+#define kExportMailSaveFileFormatMuts @"%@%@.var.vcf"
+#define kExportMailSaveFileFormatData @"%@%@.data.acp"
+
 #define kErrorAlertExportTitle @"iGenomics: Error"
 #define kErrorAlertExportBody @"An error occurred exporting the file."
 #define kErrorAlertExportBodyFileNameAlreadyInUse @"File name already used. Would you like to overwrite or cancel?"
@@ -120,8 +123,8 @@ typedef enum {
 - (void)setTotalAlignmentRuntime:(float)runtime;
 
 - (void)emailInfoForOption:(EmailInfoOption)option isDiploid:(BOOL)isDiploid;
-- (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
-- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
+- (void)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType completion:(void(^)(BOOL, BOOL))completionBlock;// uploaded succesfully, file already exists error
+- (void)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
 - (NSString*)fixChosenExportPathExt:(NSString*)path forFileType:(FileType)fileType;
 
