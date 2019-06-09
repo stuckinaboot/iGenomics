@@ -22,6 +22,7 @@
 #import "APTimer.h"
 #import "APFile.h"
 #import <Dropbox/Dropbox.h>
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 //BWT_ Imports End
 
 #define kSeparateGenomeNamesSubstringToIndexStr @" "
@@ -55,7 +56,7 @@
 
 @property (nonatomic) int readLen, refSeqLen, numOfReads, numOfReadsMatched;
 
-- (void)setUpForRefFile:(APFile*)myRefFile;
+- (void)setUpForRefFile:(APFile*)myRefFile completion:(void(^)())completion;
 - (float)matchReadsFile:(APFile*)readsFile withParameters:(NSMutableDictionary*)parameters;
 
 - (NSArray*)simpleSearchForQuery:(char*)query;//searches for the query using exact match, returns all matches

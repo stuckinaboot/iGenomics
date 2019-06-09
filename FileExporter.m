@@ -238,7 +238,7 @@
     path = [self fixChosenExportPathExt:path forFileType:fileType];
     
 //    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    [[client.filesRoutes uploadData:path mode:[[DBFILESWriteMode alloc] initWithOverwrite] autorename:NULL clientModified:NULL mute:NULL inputData:[contents dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+    [[client.filesRoutes uploadData:path mode:[[DBFILESWriteMode alloc] initWithOverwrite] autorename:NULL clientModified:NULL mute:NULL propertyGroups:NULL strictConflict:NULL inputData:[contents dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
         if (result != NULL) {
             [delegate displaySuccessBox];
         } else {
@@ -270,7 +270,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSLog(@"del A");
     if (![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kAlertBtnTitleCancel] && ![GlobalVars internetAvailable]) {
-        // Only return if no internet available and button other than canacel hit
+        // Only return if no internet available and button other than cancel hit
         return;
     } else if ([actionSheet isEqual:exportActionSheet]) {
         NSLog(@"del B");

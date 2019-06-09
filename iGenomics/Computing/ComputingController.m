@@ -48,55 +48,104 @@
     //Creates new bwt setup for each new sequencing time
     bwt = [[BWT alloc] init];
     [bwt setDelegate:self];
-    [bwt setUpForRefFile:myRefFile];
-    exportDataStr = [[NSMutableString alloc] init];
-    
-    int trimmingValue = [myParameters[kParameterArrayTrimmingValKey] intValue];
-    
-    if (trimmingValue != kTrimmingOffVal)
+    [bwt setUpForRefFile:myRefFile completion:^{
+        exportDataStr = [[NSMutableString alloc] init];
+        
+        int trimmingValue = [myParameters[kParameterArrayTrimmingValKey] intValue];
+        
+        if (trimmingValue != kTrimmingOffVal)
         myReadsFile.contents = [self readsAfterTrimmingForReads:myReadsFile.contents andTrimValue:trimmingValue andReferenceQualityChar:[myParameters[kParameterArrayTrimmingRefCharKey] characterAtIndex:0]];
-    
-    timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
-    
-//    [self runSpinAnimationOnDNA];
-    
-    //Set up parameters
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
-    dispatch_async(queue, ^{//Opens up a background thread
-        readTimer = [[APTimer alloc] init];
-        [readTimer start];
         
-        APTimer *aligningTimer = [[APTimer alloc] init];
-        [aligningTimer start];
+        timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
         
-        float totalAlignmentRuntime = [bwt matchReadsFile:myReadsFile withParameters:myParameters];
-        dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
-            [timeRemainingUpdateTimer invalidate];
-            timeRemainingUpdateTimer = nil;
+        //    [self runSpinAnimationOnDNA];
+        
+        //Set up parameters
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
+        dispatch_async(queue, ^{//Opens up a background thread
+            readTimer = [[APTimer alloc] init];
+            [readTimer start];
             
-            timeRemaining = 0;
-            [self updateReadsProcessedLblTimeRemaining];
+            APTimer *aligningTimer = [[APTimer alloc] init];
+            [aligningTimer start];
             
-            timeRemaining = 0;
-//            [readTimer stop];
-//            readTimer = nil;
-            
-            bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
-            [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
-            [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
-//            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
-            [bwt.bwtMutationFilter filterMutationsForDetails];
-            
-            NSString *refFileSegmentNames = myParameters[kParameterArrayRefFileSegmentNamesKey];
-            NSString *readFileName = myParameters[kParameterArrayReadFileNameKey];
-            
-            //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
-            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
-            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime alignmentTimer:aligningTimer];
-            [self performSelector:@selector(showAnalysisController) withObject:NULL afterDelay:kShowAnalysisControllerDelay];
+            float totalAlignmentRuntime = [bwt matchReadsFile:myReadsFile withParameters:myParameters];
+            dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
+                [timeRemainingUpdateTimer invalidate];
+                timeRemainingUpdateTimer = nil;
+                
+                timeRemaining = 0;
+                [self updateReadsProcessedLblTimeRemaining];
+                
+                timeRemaining = 0;
+                //            [readTimer stop];
+                //            readTimer = nil;
+                
+                bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+                [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
+                [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
+                //            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
+                [bwt.bwtMutationFilter filterMutationsForDetails];
+                
+                NSString *refFileSegmentNames = myParameters[kParameterArrayRefFileSegmentNamesKey];
+                NSString *readFileName = myParameters[kParameterArrayReadFileNameKey];
+                
+                //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
+                NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
+                [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime alignmentTimer:aligningTimer];
+                [self performSelector:@selector(showAnalysisController) withObject:NULL afterDelay:kShowAnalysisControllerDelay];
+            });
         });
-    });
+    }];
+//    exportDataStr = [[NSMutableString alloc] init];
+//
+//    int trimmingValue = [myParameters[kParameterArrayTrimmingValKey] intValue];
+//
+//    if (trimmingValue != kTrimmingOffVal)
+//        myReadsFile.contents = [self readsAfterTrimmingForReads:myReadsFile.contents andTrimValue:trimmingValue andReferenceQualityChar:[myParameters[kParameterArrayTrimmingRefCharKey] characterAtIndex:0]];
+//
+//    timeRemainingLbl.text = kComputingTimeRemainingPreCalculatedTxt;
+//
+////    [self runSpinAnimationOnDNA];
+//
+//    //Set up parameters
+//
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);//Creates background queue
+//    dispatch_async(queue, ^{//Opens up a background thread
+//        readTimer = [[APTimer alloc] init];
+//        [readTimer start];
+//
+//        APTimer *aligningTimer = [[APTimer alloc] init];
+//        [aligningTimer start];
+//
+//        float totalAlignmentRuntime = [bwt matchReadsFile:myReadsFile withParameters:myParameters];
+//        dispatch_async(dispatch_get_main_queue(), ^{//Uses the main thread to update once the background thread finishes running
+//            [timeRemainingUpdateTimer invalidate];
+//            timeRemainingUpdateTimer = nil;
+//
+//            timeRemaining = 0;
+//            [self updateReadsProcessedLblTimeRemaining];
+//
+//            timeRemaining = 0;
+////            [readTimer stop];
+////            readTimer = nil;
+//
+//            bwt.bwtMutationFilter.kHeteroAllowance = kMutationSupportMin;//[[myParameterArray objectAtIndex:kParameterArrayMutationCoverageIndex] intValue];
+//            [bwt.bwtMutationFilter resetFoundGenome];//NECESSARY BECAUSE THE FOUND GENOME COULD HAVE OTHER CONTENTS AND THEY MUST BE REMOVED AT ALL COSTS...WHAHAHAHAH
+//            [bwt.bwtMutationFilter buildOccTableWithUnravStr:originalStr];
+////            [bwt.bwtMutationFilter findMutationsWithOriginalSeq:originalStr];
+//            [bwt.bwtMutationFilter filterMutationsForDetails];
+//
+//            NSString *refFileSegmentNames = myParameters[kParameterArrayRefFileSegmentNamesKey];
+//            NSString *readFileName = myParameters[kParameterArrayReadFileNameKey];
+//
+//            //genome file name, reads file name, read length, genome length, number of reads, number of reads matched
+//            NSArray *basicInf = [NSArray arrayWithObjects:refFileSegmentNames, readFileName, [NSNumber numberWithInt:bwt.readLen], [NSNumber numberWithInt:bwt.refSeqLen-1]/*-1 to account for the dollar sign*/, [NSNumber numberWithInt:bwt.numOfReads], [NSNumber numberWithDouble:[myParameters[kParameterArrayERKey] doubleValue]], [NSNumber numberWithInt:bwt.numOfReadsMatched], [NSNumber numberWithInt:[myParameters[kParameterArrayMutationCoverageKey] intValue]], nil];
+//            [analysisController readyViewForDisplay:originalStr andInsertions:[bwt getInsertionsArray] andBWT:bwt andExportData:exportDataStr andBasicInfo:basicInf andSeparateGenomeNamesArr:bwt.separateGenomeNames andSeparateGenomeLensArr:bwt.separateGenomeLens andCumulativeGenomeLensArr:bwt.cumulativeSeparateGenomeLens andImptMutsFileContents:imptMutsFile.contents andRefFile:myRefFile andTotalAlignmentRuntime:totalAlignmentRuntime alignmentTimer:aligningTimer];
+//            [self performSelector:@selector(showAnalysisController) withObject:NULL afterDelay:kShowAnalysisControllerDelay];
+//        });
+//    });
 }
 
 - (NSString*)readsAfterTrimmingForReads:(NSString*)reads andTrimValue:(int)trimValue andReferenceQualityChar:(char)refChar {
