@@ -19,9 +19,11 @@ typedef enum {
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
-#import <dropbox/dropbox.h>
+//#import <dropbox/dropbox.h>
 #import "GlobalVars.h"
 #import "MutationInfo.h"
+
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 #define kExportASTitle @"Export Data"
 
@@ -45,11 +47,14 @@ typedef enum {
 #define kExportAlertBody @"Enter file name here:"
 #define kExportAlertBtnExportTitle @"Export"
 
-#define kExportDropboxSaveFileFormatMuts @"%@%@.var.vcf"//reads(1..2..3 or no ()).var...
-#define kExportDropboxSaveFileFormatData @"%@%@.data.acp"//reads(1..2..3 or no ()).data...
+#define kExportDropboxSaveFileFormatMuts @"/%@%@.var.vcf"//reads(1..2..3 or no ()).var...
+#define kExportDropboxSaveFileFormatData @"/%@%@.data.acp"//reads(1..2..3 or no ()).data...
 #define kExportDropboxSaveFileExt @".txt"
 #define kExportDropboxSaveDataFileExt @".acp"
 #define kExportDropboxSaveMutsFileExt @".vcf"
+
+#define kExportMailSaveFileFormatMuts @"%@%@.var.vcf"
+#define kExportMailSaveFileFormatData @"%@%@.data.acp"
 
 #define kErrorAlertExportTitle @"iGenomics: Error"
 #define kErrorAlertExportBody @"An error occurred exporting the file."
@@ -59,7 +64,8 @@ typedef enum {
 #define kErrorAlertExportBodyGeneralFailError @"Export failed. Please check your connection and try again later."
 #define kErrorAlertExportBodyGeneralFailErrorBtnTitleClose @"Dismiss"
 
-
+#define kErrorAlertEmailTitle @"iGenomics: Error"
+#define kErrorAlertEmailBody @"No email accounts configured."
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
 #define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum error rate of %.02f. The format of the export data is as follows: Read Number  Position Matched    Segment Forward(+)/Reverse complement(-) Matched    Edit Distance   Gapped Reference    Gapped Read.\n\nPowered by iGenomics"
@@ -118,8 +124,8 @@ typedef enum {
 - (void)setTotalAlignmentRuntime:(float)runtime;
 
 - (void)emailInfoForOption:(EmailInfoOption)option isDiploid:(BOOL)isDiploid;
-- (BOOL)saveFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
-- (BOOL)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
+- (void)saveFileAtPath:(NSString *)path andContents:(NSString *)contents andFileType:(FileType)fileType completion:(void(^)(BOOL, BOOL))completionBlock;// uploaded succesfully, file already exists error
+- (void)overwriteFileAtPath:(NSString*)path andContents:(NSString*)contents andFileType:(FileType)fileType;
 - (int)firstAvailableDefaultFileNameForMutsOrData:(int)choice;
 - (NSString*)fixChosenExportPathExt:(NSString*)path forFileType:(FileType)fileType;
 

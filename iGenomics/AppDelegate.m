@@ -22,8 +22,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:kDropboxKey secret:kDropboxSecret];
-    [DBAccountManager setSharedManager:accountMgr];
+    [DBClientsManager setupWithAppKey:kDropboxKey];
+//    DBAccountManager* accountMgr = [[DBAccountManager alloc] initWithAppKey:kDropboxKey secret:kDropboxSecret];
+//    [DBAccountManager setSharedManager:accountMgr];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
@@ -75,14 +76,26 @@
         return YES;
     }
     else {
-        DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
-        if (account) {
-            DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
-            [DBFilesystem setSharedFilesystem:filesystem];
-            [GlobalVars displayiGenomicsAlertWithMsg:kDropboxLinkedSuccessfullyAlertMsg];
-            return YES;
+        DBOAuthResult *authResult = [DBClientsManager handleRedirectURL:url];
+        if (authResult != nil) {
+            if ([authResult isSuccess]) {
+                NSLog(@"Success! User is logged into Dropbox.");
+                [GlobalVars displayiGenomicsAlertWithMsg:kDropboxLinkedSuccessfullyAlertMsg];
+            } else if ([authResult isCancel]) {
+                NSLog(@"Authorization flow was manually canceled by user!");
+            } else if ([authResult isError]) {
+                NSLog(@"Error: %@", authResult);
+            }
         }
-        return NO;
+        return YES;
+//        DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+//        if (account) {
+//            DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+//            [DBFilesystem setSharedFilesystem:filesystem];
+//            [GlobalVars displayiGenomicsAlertWithMsg:kDropboxLinkedSuccessfullyAlertMsg];
+//            return YES;
+//        }
+//        return NO;
     }
 }
 

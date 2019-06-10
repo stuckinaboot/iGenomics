@@ -15,60 +15,108 @@
 @synthesize delegate;
 @synthesize separateGenomeLens, separateGenomeNames, cumulativeSeparateGenomeLens;
 
-- (void)setUpForRefFile:(APFile*)myRefFile {
+- (void)setUpForRefFile:(APFile*)myRefFile completion:(void (^)())completion {
     [self freeUsedMemory];
     
+    bwtMutationFilter = [[BWT_MutationFilter alloc] init];
+
     BWT_Maker *bwt_Maker = [[BWT_Maker alloc] init];
     [delegate bwtLoadedWithLoadingText:kBWTCreatingTxt];
     if (myRefFile.fileType == APFileTypeDropbox) {//filePath is from dropbox
-        DBFilesystem *dbFileSys = [DBFilesystem sharedFilesystem];
-        DBPath *newPath = [[DBPath alloc] initWithString:[myRefFile.name stringByAppendingFormat:@".%@",kBWTFileExt]];
-        DBFile *file = [dbFileSys openFile:newPath error:nil];
+        DBUserClient *client = [DBClientsManager authorizedClient];
         
-        if (file == nil) {
-            refStrBWT = [bwt_Maker createBWTFromResFileContents:[myRefFile.contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
-            originalStr = strdup([myRefFile.contents UTF8String]);
-            
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            
-            dispatch_async(queue, ^{
-                [delegate bwtLoadedWithLoadingText:kBWTSavingToDropboxTxt];
+        NSString *bwtPath = [NSString stringWithFormat:@"/%@.%@", myRefFile.name, kBWTFileExt];
+        [[client.filesRoutes downloadData:bwtPath] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESDownloadError * _Nullable routeError, DBRequestError * _Nullable networkError, NSData * _Nullable fileData) {
+            if (fileData == nil) {
+                refStrBWT = [bwt_Maker createBWTFromResFileContents:[myRefFile.contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
+                originalStr = strdup([myRefFile.contents UTF8String]);
                 
-                NSMutableString *benchmarkPosStr = [[NSMutableString alloc] init];
-                dgenomeLen = strlen(refStrBWT);
-                for (int i = 0; i < dgenomeLen; i++) {
-                    [benchmarkPosStr appendFormat:@"%i\n",benchmarkPositions[i]];
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                
+                dispatch_async(queue, ^{
+                    [delegate bwtLoadedWithLoadingText:kBWTSavingToDropboxTxt];
+                    
+                    NSMutableString *benchmarkPosStr = [[NSMutableString alloc] init];
+                    dgenomeLen = strlen(refStrBWT);
+                    for (int i = 0; i < dgenomeLen; i++) {
+                        [benchmarkPosStr appendFormat:@"%i\n",benchmarkPositions[i]];
+                    }
+                    
+//                    DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+//                    DBPath *newFilePath = [[DBPath alloc] initWithString:[NSString stringWithFormat:@"%@.%@",myRefFile.name,kBWTFileExt]];
+                    NSString *newBwtFilePath = [NSString stringWithFormat:@"/%@.%@",myRefFile.name,kBWTFileExt];
+//                    DBFile *file = [sys createFile:newFilePath error:nil];
+                    [[client.filesRoutes uploadData:newBwtFilePath inputData:[[NSString stringWithFormat:@"%s%@%@",refStrBWT,kBWTFileDividerBtwBWTandBenchmarkPosList,benchmarkPosStr] dataUsingEncoding:NSUTF8StringEncoding]] setResponseBlock:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable networkError) {
+                        completion();
+                    }];
+//                    [file writeString:[NSString stringWithFormat:@"%s%@%@",refStrBWT,kBWTFileDividerBtwBWTandBenchmarkPosList,benchmarkPosStr] error:nil];
+                });
+            } else {
+                [delegate bwtLoadedWithLoadingText:kBWTLoadingFromDropboxTxt];
+                
+                bwt_MatcherSC = [[BWT_MatcherSC alloc] init];
+                
+                NSString *bwtFileStr = [[NSString alloc] initWithData:fileData encoding:NSUTF8StringEncoding];
+                NSArray *bwtFileStrComponents = [bwtFileStr componentsSeparatedByString:kBWTFileDividerBtwBWTandBenchmarkPosList];
+                refStrBWT = strdup((char*)[[bwtFileStrComponents objectAtIndex:0] UTF8String]);
+                originalStr = strdup([myRefFile.contents UTF8String]);
+                
+                NSArray *benchmarkPosComponents = [[bwtFileStrComponents objectAtIndex:1] componentsSeparatedByString:kLineBreak];
+                for (int i = 0; i < [benchmarkPosComponents count]; i++) {
+                    benchmarkPositions[i] = [[benchmarkPosComponents objectAtIndex:i] intValue];
                 }
-                
-                DBFilesystem *sys = [DBFilesystem sharedFilesystem];
-                DBPath *newFilePath = [[DBPath alloc] initWithString:[NSString stringWithFormat:@"%@.%@",myRefFile.name,kBWTFileExt]];
-                DBFile *file = [sys createFile:newFilePath error:nil];
-                [file writeString:[NSString stringWithFormat:@"%s%@%@",refStrBWT,kBWTFileDividerBtwBWTandBenchmarkPosList,benchmarkPosStr] error:nil];
-            });
-            
-        }
-        else {
-            [delegate bwtLoadedWithLoadingText:kBWTLoadingFromDropboxTxt];
-            
-            bwt_MatcherSC = [[BWT_MatcherSC alloc] init];
-            
-            NSString *bwtFileStr = [file readString:nil];
-            NSArray *bwtFileStrComponents = [bwtFileStr componentsSeparatedByString:kBWTFileDividerBtwBWTandBenchmarkPosList];
-            refStrBWT = strdup((char*)[[bwtFileStrComponents objectAtIndex:0] UTF8String]);
-            originalStr = strdup([myRefFile.contents UTF8String]);
-            
-            NSArray *benchmarkPosComponents = [[bwtFileStrComponents objectAtIndex:1] componentsSeparatedByString:kLineBreak];
-            for (int i = 0; i < [benchmarkPosComponents count]; i++) {
-                benchmarkPositions[i] = [[benchmarkPosComponents objectAtIndex:i] intValue];
+                completion();
             }
-        }
+        }];
+//        DBFilesystem *dbFileSys = [DBFilesystem sharedFilesystem];
+//        DBPath *newPath = [[DBPath alloc] initWithString:[myRefFile.name stringByAppendingFormat:@".%@",kBWTFileExt]];
+//        DBFile *file = [dbFileSys openFile:newPath error:nil];
+        
+//        if (file == nil) {
+//            refStrBWT = [bwt_Maker createBWTFromResFileContents:[myRefFile.contents stringByReplacingOccurrencesOfString:kLineBreak withString:@""]];
+//            originalStr = strdup([myRefFile.contents UTF8String]);
+//
+//            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//
+//            dispatch_async(queue, ^{
+//                [delegate bwtLoadedWithLoadingText:kBWTSavingToDropboxTxt];
+//
+//                NSMutableString *benchmarkPosStr = [[NSMutableString alloc] init];
+//                dgenomeLen = strlen(refStrBWT);
+//                for (int i = 0; i < dgenomeLen; i++) {
+//                    [benchmarkPosStr appendFormat:@"%i\n",benchmarkPositions[i]];
+//                }
+//                
+//                DBFilesystem *sys = [DBFilesystem sharedFilesystem];
+//                DBPath *newFilePath = [[DBPath alloc] initWithString:[NSString stringWithFormat:@"%@.%@",myRefFile.name,kBWTFileExt]];
+//                DBFile *file = [sys createFile:newFilePath error:nil];
+//                [file writeString:[NSString stringWithFormat:@"%s%@%@",refStrBWT,kBWTFileDividerBtwBWTandBenchmarkPosList,benchmarkPosStr] error:nil];
+//            });
+//
+//        }
+//        else {
+//            [delegate bwtLoadedWithLoadingText:kBWTLoadingFromDropboxTxt];
+//
+//            bwt_MatcherSC = [[BWT_MatcherSC alloc] init];
+//
+//            NSString *bwtFileStr = [file readString:nil];
+//            NSArray *bwtFileStrComponents = [bwtFileStr componentsSeparatedByString:kBWTFileDividerBtwBWTandBenchmarkPosList];
+//            refStrBWT = strdup((char*)[[bwtFileStrComponents objectAtIndex:0] UTF8String]);
+//            originalStr = strdup([myRefFile.contents UTF8String]);
+//
+//            NSArray *benchmarkPosComponents = [[bwtFileStrComponents objectAtIndex:1] componentsSeparatedByString:kLineBreak];
+//            for (int i = 0; i < [benchmarkPosComponents count]; i++) {
+//                benchmarkPositions[i] = [[benchmarkPosComponents objectAtIndex:i] intValue];
+//            }
+//        }
     }
     else {//Local file
         refStrBWT = [bwt_Maker createBWTFromResFileContents:myRefFile.contents];
         originalStr = strdup([myRefFile.contents UTF8String]);
+        completion();
     }
     
-    bwtMutationFilter = [[BWT_MutationFilter alloc] init];
+//    bwtMutationFilter = [[BWT_MutationFilter alloc] init];
     
     if (kDebugOn == 1)
         printf("\n%s",refStrBWT);

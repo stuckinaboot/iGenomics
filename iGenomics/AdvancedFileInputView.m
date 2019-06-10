@@ -112,12 +112,13 @@
 - (void)displayDropboxChooser {
     if (![GlobalVars internetAvailable])
         return;
+    // Hide the advanced file input view because dropbox will display its own view
+    // and in case user uses iOS application switch, the advanced file input view will be hidden
+    // (which is good because we want to allow the user any file picker option again)
+    [self setHidden:YES];
     [[DBChooser defaultChooser] openChooserForLinkType:DBChooserLinkTypeDirect fromViewController:containingController completion:^(NSArray *results) {
          if ([results count]) {
              [self dropboxChooserFinishedWithResult:results[0]];
-         } else {
-             // User canceled the action
-             [self setHidden:YES];
          }
      }];
 }

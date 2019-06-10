@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/ViewController.m"
-            timestampString = "493593337.1943"
+            timestampString = "581584166.686815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -26,7 +26,7 @@
                   moduleName = "iGenomics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/ViewController.m"
-                  timestampString = "581407702.823959"
+                  timestampString = "581582067.477174"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -41,7 +41,7 @@
                   moduleName = "iGenomics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/ViewController.m"
-                  timestampString = "581407702.8259391"
+                  timestampString = "581582067.479027"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -56,7 +56,7 @@
                   moduleName = "iGenomics"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Stuckinaboot/Downloads/iGenomics/iGenomics/ViewController.m"
-                  timestampString = "581407702.827364"
+                  timestampString = "581582067.481681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -73,7 +73,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/ViewController.m"
-            timestampString = "493593013.566707"
+            timestampString = "581584166.686883"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -89,7 +89,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/ViewController.m"
-            timestampString = "493593013.566707"
+            timestampString = "581584166.686928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -105,11 +105,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/AppDelegate.m"
-            timestampString = "581574354.431365"
+            timestampString = "581584166.686969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/AppDelegate.m"
-            timestampString = "581574354.431761"
+            timestampString = "581584166.687013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -137,7 +137,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/ViewController.m"
-            timestampString = "493593013.566707"
+            timestampString = "581584166.687053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -169,11 +169,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iGenomics/AppDelegate.m"
-            timestampString = "581574354.4320329"
+            timestampString = "581584166.687193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -207,7 +207,7 @@
             startingLineNumber = "199"
             endingLineNumber = "199"
             landmarkName = "-handleLongPressDeleteGesture:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -223,7 +223,7 @@
             startingLineNumber = "200"
             endingLineNumber = "200"
             landmarkName = "-handleLongPressDeleteGesture:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -239,7 +239,7 @@
             startingLineNumber = "206"
             endingLineNumber = "206"
             landmarkName = "-displayDeleteBtnForGestureRecognizer:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -255,7 +255,7 @@
             startingLineNumber = "191"
             endingLineNumber = "191"
             landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -271,7 +271,7 @@
             startingLineNumber = "189"
             endingLineNumber = "189"
             landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -287,7 +287,7 @@
             startingLineNumber = "191"
             endingLineNumber = "191"
             landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -303,7 +303,7 @@
             startingLineNumber = "192"
             endingLineNumber = "192"
             landmarkName = "-tableView:commitEditingStyle:forRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

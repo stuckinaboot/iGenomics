@@ -875,6 +875,9 @@
     [analysisControllerIPhoneToolbar addDoneBtnForTxtFields:[NSArray arrayWithObjects:seqSearchTxtFld, posSearchTxtFld,nil]];
     [self.view bringSubviewToFront:analysisControllerIPhoneToolbar];
     analysisControllerIPhoneToolbar.hidden = NO;
+    
+    // Display alignments view initially
+    [analysisControllerIPhoneToolbar showAlignmentsPressed:nil];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
