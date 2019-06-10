@@ -278,14 +278,22 @@
             NSLog(@"del C");
             exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsHaploidIndex;
-            [exportOptionsMutsActionSheet showInView:[actionSheet superview]];
+            UIView *viewToDisplayIn = [actionSheet superview];
+            if (!viewToDisplayIn) {
+                viewToDisplayIn = [[delegate getVC] view];
+            }
+            [exportOptionsMutsActionSheet showInView:viewToDisplayIn];
 //            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASExportMutationsDiploidIndex) {
             NSLog(@"del D");
             exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsDiploidIndex;
-            [exportOptionsMutsActionSheet showInView:[actionSheet superview]];
+            UIView *viewToDisplayIn = [actionSheet superview];
+            if (!viewToDisplayIn) {
+                viewToDisplayIn = [[delegate getVC] view];
+            }
+            [exportOptionsMutsActionSheet showInView:viewToDisplayIn];
 //            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASEmailDataIndex) {
@@ -342,6 +350,12 @@
 }
 
 - (void)emailInfoForOption:(EmailInfoOption)option isDiploid:(BOOL)isDiploid {
+    if (![MFMailComposeViewController canSendMail]) {
+        // Display alert and return if you can can't send mail
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kErrorAlertEmailTitle message:kErrorAlertEmailBody delegate:self cancelButtonTitle:kErrorAlertExportBodyGeneralFailErrorBtnTitleClose otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     exportMailController = [[MFMailComposeViewController alloc] init];
     exportMailController.mailComposeDelegate = self;
     

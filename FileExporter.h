@@ -64,7 +64,8 @@ typedef enum {
 #define kErrorAlertExportBodyGeneralFailError @"Export failed. Please check your connection and try again later."
 #define kErrorAlertExportBodyGeneralFailErrorBtnTitleClose @"Dismiss"
 
-
+#define kErrorAlertEmailTitle @"iGenomics: Error"
+#define kErrorAlertEmailBody @"No email accounts configured."
 #define kExportDataFileName @"ExportData"
 #define kExportDataEmailSubject @"iGenomics- Export Data for Aligning %@ to %@"
 #define kExportDataEmailMsg @"Read alignment information for aligning %@ to %@ for a maximum error rate of %.02f. The format of the export data is as follows: Read Number  Position Matched    Segment Forward(+)/Reverse complement(-) Matched    Edit Distance   Gapped Reference    Gapped Read.\n\nPowered by iGenomics"
