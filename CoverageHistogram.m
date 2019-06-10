@@ -12,6 +12,14 @@
 
 - (void)createHistogramWithMaxCovVal:(int)maxCovVal andNumOfReads:(int)numOfReads andReadLen:(int)readLen andGenomeLen:(int)genomeLen {
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Remove imgView if it previously existed
+    if (imgView != NULL) {
+        imgView.image = NULL;
+        [imgView removeFromSuperview];
+    }
+    
+    // Create new image view
     imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:imgView];
     
