@@ -1,0 +1,54 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.3.1+htslib-1.3.1
+##samtoolsCommand=samtools mpileup -uBQ0 -f bwa_files/phix174.fa /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/bacteria_simulations/generation_output_phix174/read_len100bp/seq_error_rate0.01/mut_rate0.005/out.sorted.bam
+##reference=file://bwa_files/phix174.fa
+##contig=<ID=phix174,length=5386>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=ICB,Number=1,Type=Float,Description="Inbreeding Coefficient Binomial test (bigger is better)">
+##INFO=<ID=HOB,Number=1,Type=Float,Description="Bias in the number of HOMs number (smaller is better)">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Average mapping quality">
+##bcftools_callVersion=1.3.1+htslib-1.3.1
+##bcftools_callCommand=call -mAv
+##bcftools_filterVersion=1.3.1+htslib-1.3.1
+##bcftools_filterCommand=filter -s LowQual /Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/bacteria_simulations/generation_output_phix174/read_len100bp/seq_error_rate0.01/mut_rate0.005/calls.raw.bcf
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	/Users/Stuckinaboot/Downloads/iGenomics/validation_for_paper/full_validation/bacteria_simulations/generation_output_phix174/read_len100bp/seq_error_rate0.01/mut_rate0.005/out.sorted.bam
+phix174	462	.	GCC	GC	222	PASS	INDEL;IDV=66;IMF=0.5;DP=132;VDB=0.94056;SGB=-0.693147;MQSB=1;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=32,29,38,33;MQ=60	GT:PL	0/1:255,0,255
+phix174	588	.	G	C	100	PASS	DP=115;VDB=0.909865;SGB=-0.693147;RPB=0.654667;MQB=1;MQSB=1;BQB=0.926159;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=31,28,25,31;MQ=60	GT:PL	0/1:133,0,133
+phix174	678	.	A	G,T	172	PASS	DP=102;VDB=0.684844;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,56,46;MQ=60	GT:PL	1/1:199,255,0,199,255,196
+phix174	742	.	C	A	85	PASS	DP=84;VDB=0.93927;SGB=-0.693139;RPB=0.832457;MQB=1;MQSB=1;BQB=0.278099;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=24,24,22,14;MQ=60	GT:PL	0/1:118,0,146
+phix174	933	.	G	C,T	103	PASS	DP=100;VDB=0.174965;SGB=-0.693147;RPB=0.134186;MQB=1;MQSB=1;BQB=0.76535;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=20,28,28,24;MQ=60	GT:PL	0/1:136,0,135,255,255,255
+phix174	1180	.	T	C	96	PASS	DP=96;VDB=0.87643;SGB=-0.693147;RPB=0.665137;MQB=1;MQSB=1;BQB=0.965673;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=23,28,22,23;MQ=60	GT:PL	0/1:129,0,139
+phix174	1445	.	C	A,T	102	PASS	DP=104;VDB=0.0140007;SGB=-0.693147;RPB=0.737631;MQB=1;MQSB=1;BQB=0.666728;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=27,25,28,24;MQ=60	GT:PL	0/1:135,0,140,255,255,255
+phix174	1472	.	C	A	108	PASS	DP=103;VDB=0.353829;SGB=-0.693147;RPB=0.255962;MQB=1;MQSB=1;BQB=0.292334;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=32,22,23,26;MQ=60	GT:PL	0/1:141,0,133
+phix174	1482	.	T	G	161	PASS	DP=97;VDB=0.350221;SGB=-0.693147;RPB=0.615789;MQB=1;MQSB=1;BQB=0.426316;MQ0F=0;AC=2;AN=2;DP4=2,0,52,43;MQ=60	GT:PL	1/1:188,247,0
+phix174	1916	.	A	T	94	PASS	DP=106;VDB=0.902876;SGB=-0.693147;RPB=0.683438;MQB=1;MQSB=1;BQB=0.973152;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=34,27,24,21;MQ=60	GT:PL	0/1:127,0,146
+phix174	1920	.	GT	GGTT	228	PASS	INDEL;IDV=95;IMF=0.913462;DP=104;VDB=0.998923;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2;AN=2;DP4=4,3,53,44;MQ=60	GT:PL	1/1:255,210,0
+phix174	2395	.	A	T	87	PASS	DP=115;VDB=0.0763396;SGB=-0.693147;RPB=0.333577;MQB=1;MQSB=1;BQB=0.275271;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=34,32,21,28;MQ=60	GT:PL	0/1:120,0,139
+phix174	2786	.	T	A,G,C	104	PASS	DP=108;VDB=0.883292;SGB=-0.693147;RPB=0.999881;MQB=1;MQSB=1;BQB=0.97427;MQ0F=0;ICB=1;HOB=0.5;AC=1,0,0;AN=2;DP4=18,31,33,26;MQ=60	GT:PL	0/1:137,0,143,255,255,255,255,255,255,255
+phix174	3029	.	T	A,G	100	PASS	DP=88;VDB=0.640662;SGB=-0.693146;RPB=0.0974809;MQB=1;MQSB=1;BQB=0.423681;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=20,25,23,20;MQ=60	GT:PL	0/1:133,0,147,253,255,255
+phix174	3180	.	C	T	102	PASS	DP=95;VDB=0.330204;SGB=-0.693147;RPB=0.965689;MQB=1;MQSB=1;BQB=0.713002;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=17,30,30,18;MQ=60	GT:PL	0/1:135,0,144
+phix174	3430	.	A	G,T	172	PASS	DP=92;VDB=0.76556;SGB=-0.693147;RPB=1;MQB=1;MQSB=1;BQB=1;MQ0F=0;AC=2,0;AN=2;DP4=1,0,44,47;MQ=60	GT:PL	1/1:199,252,0,200,252,199
+phix174	3776	.	T	G,A	101	PASS	DP=93;VDB=0.833653;SGB=-0.693147;RPB=0.765906;MQB=1;MQSB=1;BQB=0.89098;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=22,26,17,28;MQ=60	GT:PL	0/1:134,0,140,255,255,255
+phix174	4148	.	G	A,C	114	PASS	DP=84;VDB=0.887093;SGB=-0.693147;RPB=0.564478;MQB=1;MQSB=1;BQB=0.556348;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=18,20,19,27;MQ=60	GT:PL	0/1:147,0,132,246,251,255
+phix174	4691	.	C	G	98	PASS	DP=106;VDB=0.0979702;SGB=-0.693147;RPB=0.994146;MQB=1;MQSB=1;BQB=0.99797;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=24,36,20,26;MQ=60	GT:PL	0/1:131,0,146
+phix174	5015	.	T	A,G	183	PASS	DP=90;VDB=0.678659;SGB=-0.693147;MQSB=1;MQ0F=0;AC=2,0;AN=2;DP4=0,0,47,43;MQ=60	GT:PL	1/1:210,255,0,211,249,208
+phix174	5075	.	A	C,G	98	PASS	DP=109;VDB=0.575373;SGB=-0.693147;RPB=0.515444;MQB=1;MQSB=1;BQB=0.986067;MQ0F=0;ICB=1;HOB=0.5;AC=1,0;AN=2;DP4=26,34,23,26;MQ=60	GT:PL	0/1:131,0,138,255,255,255
+phix174	5171	.	G	C	101	PASS	DP=97;VDB=0.666612;SGB=-0.693147;RPB=0.8483;MQB=1;MQSB=1;BQB=0.841219;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=21,27,23,26;MQ=60	GT:PL	0/1:134,0,139
+phix174	5245	.	T	A	104	PASS	DP=98;VDB=0.0549365;SGB=-0.693147;RPB=0.827831;MQB=1;MQSB=1;BQB=0.764981;MQ0F=0;ICB=1;HOB=0.5;AC=1;AN=2;DP4=21,27,20,30;MQ=60	GT:PL	0/1:137,0,144
