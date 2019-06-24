@@ -640,7 +640,7 @@
         [handler setMainViewController:coverageHistogram andTitle:kCoverageHistogramTitleInIPhoneHandlerPopover];
         [coverageHistogram didMoveToParentViewController:handler];
         [self presentViewController:handler animated:YES completion:^{
-            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
+//            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
         }];
     }
 }
