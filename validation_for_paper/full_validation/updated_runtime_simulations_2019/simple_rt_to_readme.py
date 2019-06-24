@@ -5,14 +5,14 @@ CURR_PATH = os.path.abspath(argv[1])
 
 def create_readme_if_needed(path):
     if os.path.isfile(path):
-        if path.endswith('.data.acp'):
+        if path.endswith('.rt'):
             # Create readme
             runtime = ''
             with open(path) as acp:
                 for (i, line) in enumerate(acp.readlines()):
                     if i == 1:
                         comps = line.split('\t')
-                        runtime = comps[2]
+                        runtime = comps[1]
                         break
             with open(os.path.dirname(path) + '/README.dig', 'w+') as readme:
                 readme.write('real\t0m' + str(runtime) + 's')
@@ -22,4 +22,4 @@ def create_readme_if_needed(path):
         create_readme_if_needed(os.path.join(path, child))
 
 for path in os.listdir(CURR_PATH):
-    create_readme_if_needed(path)
+    create_readme_if_needed(os.path.join(CURR_PATH, path))

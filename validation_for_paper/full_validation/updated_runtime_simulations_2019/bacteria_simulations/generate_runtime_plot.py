@@ -35,8 +35,8 @@ def runtimeFromREADMEdig(readmeDigPath):
 genome_lengths = {
     'phix174': 5386,
     'zika': 10807,
-    'H1N1': 13382,
-    'H3N2': 13568,
+    'H1N1': 13568,
+    'H3N2': 13382,
     'ebola': 18957
 }
 
@@ -78,7 +78,7 @@ plot_data_points['iG'] = get_runtimes(IG_FILES_PATH, 'iG')
 
 # a) Plot bwa runtime
 COLORS_FOR_VERTICAL_LINES = ['red', 'orange', 'green', 'blue', 'indigo']
-LABELS_FOR_VERTICAL_LINES = ['PhiX174 (5386bp)', 'Zika (10807bp)', 'H1N1 (13382bp)', 'H3N2 (13568bp)', 'Ebola (18957bp)']
+LABELS_FOR_VERTICAL_LINES = ['PhiX174 (5386bp)', 'Zika (10807bp)', 'H3N2 (13382bp)', 'H1N1 (13568bp)', 'Ebola (18957bp)']
 ref_lines_already_showing = False
 sorted_genome_lengths = sorted(list(genome_lengths.values()))
 for analysis_tool in plot_data_points:
