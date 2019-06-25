@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComputingController">
@@ -15,14 +19,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWx-jN-JRR" customClass="CircleProgressBar">
-                    <rect key="frame" x="40" y="201" width="334" height="334"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="40" y="281" width="334" height="334"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="QWx-jN-JRR" secondAttribute="height" multiplier="1:1" id="b6D-YF-d9O"/>
+                        <constraint firstAttribute="width" secondItem="QWx-jN-JRR" secondAttribute="height" multiplier="1:1" id="CSS-SW-7M0"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
@@ -35,57 +39,47 @@
                             <real key="value" value="45"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
-                            <color key="value" red="0.047058823529411764" green="0.38039215686274508" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.047058823529411764" green="0.38039215686274508" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
                             <real key="value" value="270"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analyzing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="0.0" y="58" width="414" height="66"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="66" id="14Z-pB-VYU"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="55"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00 remaining" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="har-rd-UpS">
-                    <rect key="frame" x="34" y="612" width="347" height="58"/>
+                    <rect key="frame" x="0.0" y="772" width="414" height="58"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="58" id="dI7-id-rr1"/>
+                        <constraint firstAttribute="height" constant="58" id="N7U-RC-iNq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analyzing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="QWx-jN-JRR" firstAttribute="leading" secondItem="2" secondAttribute="leading" priority="250" constant="40" id="29g-z3-ahN"/>
-                <constraint firstItem="har-rd-UpS" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="34" id="6Xu-rE-lNp"/>
-                <constraint firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" priority="250" constant="40" id="6oY-yr-bdB"/>
-                <constraint firstItem="QWx-jN-JRR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2" secondAttribute="leading" constant="40" id="GlM-aG-GEX"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Hmp-ky-bxQ"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="MVU-cl-8ne"/>
-                <constraint firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="66" id="UFf-69-2ir"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QWx-jN-JRR" secondAttribute="bottom" id="Uwi-6b-O5y"/>
-                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="X1T-TV-ff0"/>
-                <constraint firstItem="QWx-jN-JRR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2" secondAttribute="top" id="app-uG-XWH"/>
-                <constraint firstItem="QWx-jN-JRR" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="dJa-gU-FTK"/>
-                <constraint firstItem="QWx-jN-JRR" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="hLi-0Z-G7l"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="2" secondAttribute="top" constant="58" id="jrl-Fl-AN3"/>
-                <constraint firstAttribute="trailing" secondItem="har-rd-UpS" secondAttribute="trailing" constant="33" id="kUO-Cw-Iwk"/>
+                <constraint firstItem="QWx-jN-JRR" firstAttribute="leading" secondItem="uEo-el-1Ky" secondAttribute="leading" constant="40" id="6dy-vi-KiB"/>
+                <constraint firstItem="4" firstAttribute="trailing" secondItem="uEo-el-1Ky" secondAttribute="trailing" id="AQu-JO-NBE"/>
+                <constraint firstItem="QWx-jN-JRR" firstAttribute="top" secondItem="uEo-el-1Ky" secondAttribute="top" constant="237" id="HX7-Ik-DEV"/>
+                <constraint firstItem="QWx-jN-JRR" firstAttribute="centerX" secondItem="har-rd-UpS" secondAttribute="centerX" id="JWm-nF-6aT"/>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="QWx-jN-JRR" secondAttribute="centerX" id="RH8-dX-3P5"/>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="uEo-el-1Ky" secondAttribute="leading" id="WE6-oS-4ra"/>
+                <constraint firstItem="4" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="Z68-Gz-X5P"/>
+                <constraint firstItem="har-rd-UpS" firstAttribute="trailing" secondItem="uEo-el-1Ky" secondAttribute="trailing" id="esh-Rb-J8L"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="uEo-el-1Ky" secondAttribute="top" id="fFQ-Do-c8F"/>
+                <constraint firstItem="uEo-el-1Ky" firstAttribute="bottom" secondItem="har-rd-UpS" secondAttribute="bottom" constant="32" id="m6W-kF-bPB"/>
+                <constraint firstItem="uEo-el-1Ky" firstAttribute="trailing" secondItem="QWx-jN-JRR" secondAttribute="trailing" constant="40" id="v2V-dI-sIl"/>
+                <constraint firstItem="har-rd-UpS" firstAttribute="leading" secondItem="uEo-el-1Ky" secondAttribute="leading" id="x5d-TX-3Dn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <point key="canvasLocation" x="307" y="398"/>
+            <viewLayoutGuide key="safeArea" id="uEo-el-1Ky"/>
+            <point key="canvasLocation" x="444.92753623188412" y="265.84821428571428"/>
         </view>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina47"/>
-    </simulatedMetricsContainer>
 </document>
