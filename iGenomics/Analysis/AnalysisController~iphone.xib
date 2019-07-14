@@ -125,7 +125,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="2FE-YB-Bqd">
-                    <rect key="frame" x="272.5" y="243" width="23" height="37"/>
+                    <rect key="frame" x="272.5" y="260" width="23" height="37"/>
                     <color key="pageIndicatorTintColor" red="0.44627659174358247" green="0.56848937618123685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
@@ -133,7 +133,7 @@
                     </connections>
                 </pageControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQo-yp-bE5">
-                    <rect key="frame" x="0.0" y="88" width="568" height="198"/>
+                    <rect key="frame" x="0.0" y="88" width="568" height="182"/>
                     <connections>
                         <outlet property="delegate" destination="CYU-Yi-vjy" id="D9X-qd-K5P"/>
                     </connections>
@@ -162,10 +162,10 @@
                 <constraint firstItem="2FE-YB-Bqd" firstAttribute="centerX" secondItem="wQo-yp-bE5" secondAttribute="centerX" id="3A8-YT-dfS"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="trailing" secondItem="wQo-yp-bE5" secondAttribute="trailing" id="3cZ-MZ-DIW"/>
                 <constraint firstItem="wQo-yp-bE5" firstAttribute="top" secondItem="RFM-9p-3AZ" secondAttribute="bottom" id="Uhp-yp-Dsm"/>
-                <constraint firstItem="uuf-SG-vRr" firstAttribute="bottom" secondItem="2FE-YB-Bqd" secondAttribute="bottom" constant="6" id="Xnh-b8-92J"/>
+                <constraint firstItem="uuf-SG-vRr" firstAttribute="bottom" secondItem="2FE-YB-Bqd" secondAttribute="bottom" constant="-11" id="Xnh-b8-92J"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="leading" secondItem="wQo-yp-bE5" secondAttribute="leading" id="Y4l-3j-YQx"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="top" secondItem="uuf-SG-vRr" secondAttribute="top" id="eHp-Py-X4o"/>
-                <constraint firstItem="wQo-yp-bE5" firstAttribute="bottom" secondItem="uuf-SG-vRr" secondAttribute="bottom" id="ih3-WA-Z7L"/>
+                <constraint firstItem="wQo-yp-bE5" firstAttribute="bottom" secondItem="uuf-SG-vRr" secondAttribute="bottom" constant="-16" id="ih3-WA-Z7L"/>
                 <constraint firstItem="RFM-9p-3AZ" firstAttribute="leading" secondItem="uuf-SG-vRr" secondAttribute="leading" id="reK-3G-xKt"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -179,7 +179,7 @@
                 <outlet property="segSelectView" destination="hO4-ms-vbL" id="T0j-0z-wVK"/>
                 <outlet property="summaryNavBar" destination="RFM-9p-3AZ" id="BDC-bE-RiQ"/>
             </connections>
-            <point key="canvasLocation" x="122" y="-242"/>
+            <point key="canvasLocation" x="121.73913043478262" y="-242.41071428571428"/>
         </view>
         <view contentMode="scaleToFill" id="kDM-8b-uf1">
             <rect key="frame" x="0.0" y="0.0" width="568" height="276"/>
@@ -202,7 +202,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psw-GG-DUw">
                     <rect key="frame" x="16" y="42" width="246" height="74"/>
-                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.47843137254901957" green="0.73725490196078436" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="74" id="RNS-F1-Vcg"/>
                     </constraints>
@@ -461,7 +461,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfI-Vn-Mjm">
-                    <rect key="frame" x="0.0" y="61" width="568" height="162"/>
+                    <rect key="frame" x="0.0" y="33" width="568" height="162"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="v5P-h7-S6D"/>
                         <outlet property="delegate" destination="-1" id="qaa-lu-Juz"/>
@@ -477,10 +477,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhE-V4-KUX">
-                    <rect key="frame" x="20" y="226" width="246" height="44"/>
+                    <rect key="frame" x="20" y="198" width="246" height="44"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="pHN-Ea-vRC"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="pHN-Ea-vRC"/>
                     </constraints>
                     <state key="normal" title="View in Alignments">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -490,10 +490,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCb-tB-o9u">
-                    <rect key="frame" x="303" y="226" width="246" height="44"/>
+                    <rect key="frame" x="303" y="198" width="246" height="44"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="p32-W2-n32"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="p32-W2-n32"/>
                     </constraints>
                     <state key="normal" title="View in Coverage Profile">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -505,7 +505,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="lfI-Vn-Mjm" secondAttribute="bottom" constant="53" id="3gt-5b-TyG"/>
+                <constraint firstAttribute="bottom" secondItem="lfI-Vn-Mjm" secondAttribute="bottom" constant="81" id="3gt-5b-TyG"/>
                 <constraint firstItem="IqM-UM-YOt" firstAttribute="top" secondItem="hO4-ms-vbL" secondAttribute="top" constant="7" id="4Hs-M5-jCU"/>
                 <constraint firstItem="kCb-tB-o9u" firstAttribute="leading" secondItem="yhE-V4-KUX" secondAttribute="trailing" constant="37" id="Bae-i7-COq"/>
                 <constraint firstItem="IqM-UM-YOt" firstAttribute="centerX" secondItem="lfI-Vn-Mjm" secondAttribute="centerX" id="PMs-8W-8Lp"/>
@@ -520,6 +520,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="v1U-ND-GpG"/>
+            <point key="canvasLocation" x="-422" y="-4"/>
         </view>
     </objects>
     <resources>
