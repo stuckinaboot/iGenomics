@@ -11,7 +11,7 @@ if (len(argv) == 1):
 CURR_PATH = os.path.abspath(argv[1])
 BWA_FILES_PATH = os.path.abspath(argv[2])
 IG_FILES_PATH = os.path.abspath(argv[3])
-PLOT_PATH = os.path.join(CURR_PATH, 'concise_h1n1_plot.pdf')
+PLOT_PATH = os.path.join(CURR_PATH, 'concise_H1N1_runtime_plot.pdf')
 
 cm = plt.get_cmap('rainbow')
 NUM_COLORS = 9
@@ -60,9 +60,16 @@ def get_runtimes(root_path, section):
     return runtimes
 
 plot_data_points['bwa'] = get_runtimes(BWA_FILES_PATH, 'bwa')
+
 plot_data_points['iG'] = get_runtimes(IG_FILES_PATH, 'iG')
+print('iGenomics Data Points')
 print(plot_data_points['iG'])
+print('\n')
+print('BWA Data Points')
+print(plot_data_points['bwa'])
+
 # Draw a single vertical line for each reference length
+
 
 READ_LEN_STR = 'read_len'
 BP_STR = 'bp'
