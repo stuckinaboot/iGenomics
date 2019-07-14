@@ -13,8 +13,10 @@ for file_name in os.listdir(CURR_PATH):
             if comp != 'reads':
                 if comp.startswith('rl'):
                     dest_dir += 'read_len' + comp[2:] + 'bp'
-                else:
-                    dest_dir += comp
+                elif comp.startswith('se'):
+                    dest_dir += 'seq_error_rate' + comp[2:]
+                elif comp.startswith('mr'):
+                    dest_dir += 'mut_rate' + comp[2:]
                 dest_dir += '/'
         if not os.path.exists(dest_dir):
             os.makedirs(dest_dir)

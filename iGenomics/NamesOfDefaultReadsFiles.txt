@@ -14,3 +14,11 @@ zika-reads-rl1000-se0.1-mr0.005.fq
 zika-reads-rl100-se0.01-mr0.005.fq
 ebola-reads-rl1000-se0.1-mr0.005.fq
 ebola-reads-rl100-se0.01-mr0.005.fq
+reads-rl250-se0.1-mr0.1.fq
+reads-rl250-se0.1-mr0.01.fq
+reads-rl250-se0.2-mr0.1.fq
+reads-rl250-se0.2-mr0.01.fq
+reads-rl1000-se0.1-mr0.1.fq
+reads-rl1000-se0.1-mr0.01.fq
+reads-rl1000-se0.2-mr0.1.fq
+reads-rl1000-se0.2-mr0.01.fq

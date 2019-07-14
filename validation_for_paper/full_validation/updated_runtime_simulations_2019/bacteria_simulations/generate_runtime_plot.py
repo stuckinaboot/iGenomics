@@ -11,7 +11,7 @@ if (len(argv) == 1):
 CURR_PATH = os.path.abspath(argv[1])
 BWA_FILES_PATH = os.path.abspath(argv[2])
 IG_FILES_PATH = os.path.abspath(argv[3])
-PLOT_PATH = os.path.join(CURR_PATH, 'concise_bacteria_plot.pdf')
+PLOT_PATH = os.path.join(CURR_PATH, 'concise_bacteria_runtime_plot.pdf')
 
 cm = plt.get_cmap('rainbow')
 NUM_COLORS = 4

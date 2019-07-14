@@ -17,13 +17,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    modifiableView.frame = CGRectMake(0, navBar.frame.size.height, modifiableView.frame.size.width, modifiableView.frame.size.height);
     
-    mainController.view.frame = CGRectMake(0, 0, modifiableView.frame.size.width, modifiableView.frame.size.height);
+//    modifiableView.frame = CGRectMake(0, navBar.frame.size.height, modifiableView.frame.size.width, modifiableView.frame.size.height);
+    
+//    mainController.view.frame = CGRectMake(0, 0, modifiableView.frame.size.width, modifiableView.frame.size.height);
     
     navBar.topItem.title = navBarTitle;
 
-    [modifiableView addSubview:mainController.view];
+    [modifiableView addSubview:mainController.view];;
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapOccurred:)];
     recognizer.numberOfTapsRequired = kIPhonePopoverMinTapsRequired;
@@ -33,10 +34,10 @@
 - (void)viewDidLayoutSubviews {
     if (([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft) ||
         ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight)) {
-        modifiableView.frame = CGRectMake(0, navBar.frame.size.height, modifiableView.frame.size.width, modifiableView.frame.size.height);
+        modifiableView.frame = CGRectMake(self.view.safeAreaLayoutGuide.layoutFrame.origin.x, navBar.frame.size.height, modifiableView.frame.size.width, self.view.safeAreaLayoutGuide.layoutFrame.size.height - navBar.frame.size.height);
         mainController.view.frame = CGRectMake(0, 0, modifiableView.frame.size.width, modifiableView.frame.size.height);
     }
-    [modifiableView layoutSubviews];
+//    [modifiableView layoutSubviews];
 }
 
 - (void)setMainViewController:(UIViewController *)controller andTitle:(NSString *)title {
