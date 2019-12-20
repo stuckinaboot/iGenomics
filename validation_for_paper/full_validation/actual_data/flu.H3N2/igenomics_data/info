@@ -1,0 +1,2 @@
+error rate: 0.45
+Note: data1, data2, data3 are the new alignment checks and have much faster runtime as they represent trials on the iPhone 8 rather than the original iPhone I was using when first writing iGenomics
