@@ -69,7 +69,7 @@
 }
 
 - (void)displayExportOptionsWithSender:(id)sender {
-    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportASExportMutationsHaploid, kExportASExportMutationsDiploid, kExportASEmailData, kExportASDropboxData, nil];
+    exportActionSheet = [[UIActionSheet alloc] initWithTitle:kExportASTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportASExportMutationsHaploid, kExportASExportMutationsDiploid, kExportASEmailData, kExportASDropboxData, kExportASShareData, nil];
     if ([sender isKindOfClass:[UIBarButtonItem class]])
         [exportActionSheet showFromBarButtonItem:(UIBarButtonItem*)sender animated:YES];
     else
@@ -276,7 +276,7 @@
         NSLog(@"del B");
         if (buttonIndex == kExportASExportMutationsHaploidIndex) {
             NSLog(@"del C");
-            exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
+            exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, kExportMutExportShareMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsHaploidIndex;
             UIView *viewToDisplayIn = [actionSheet superview];
             if (!viewToDisplayIn) {
@@ -287,7 +287,7 @@
         }
         else if (buttonIndex == kExportASExportMutationsDiploidIndex) {
             NSLog(@"del D");
-            exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, nil];
+            exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, kExportMutExportShareMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsDiploidIndex;
             UIView *viewToDisplayIn = [actionSheet superview];
             if (!viewToDisplayIn) {
@@ -323,6 +323,10 @@
                 [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatData, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
                 [exportDataDropboxAlert show];
             }
+        } else if (buttonIndex == kExportASShareDataIndex) {
+            NSString *safeFilename = [NSString stringWithFormat:kExportMailSaveFileFormatData, readsFileName, @""];
+
+            [self presentSharingForFileName:safeFilename fileContents:exportDataStr];
         }
     } else if ([actionSheet isEqual:exportOptionsMutsActionSheet]) {
         if ([[exportOptionsMutsActionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportEmailMuts]) {
@@ -345,6 +349,12 @@
                 exportMutsDropboxAlert.tag = actionSheet.tag;
                 [exportMutsDropboxAlert show];
             }
+        } else if ([[exportOptionsMutsActionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportShareMuts]) {
+            NSString *safeFilename = [NSString stringWithFormat:kExportMailSaveFileFormatMuts, readsFileName, @""];
+
+            NSString *mutStr = [self getMutationsExportStrForIsDiploid:exportOptionsMutsActionSheet.tag == kExportASExportMutationsDiploidIndex];
+            
+            [self presentSharingForFileName:safeFilename fileContents:mutStr];
         }
     }
 }
@@ -484,6 +494,51 @@
     if ([[path substringFromIndex:path.length-s] caseInsensitiveCompare:ext] != NSOrderedSame)
         return [NSString stringWithFormat:@"%@%@",path,ext];
     return path;
+}
+
+- (void)presentSharingForFileName:(NSString*)fileName fileContents:(NSString*)fileContents {
+    // For AirDrop, we'll write the URL as a string to a file on disk, name
+    // the file after the title we want to share as, then return the path
+    // to that file on disk. The receiving device will see the filename
+    // in the Airdrop accept dialog, rather than the raw URL.
+
+    // Use a dedicated folder so cleanup is easy.
+    NSURL *cache = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask
+                                                appropriateForURL:nil
+                                                           create:YES
+                                                            error:nil];
+    NSURL *scratchFolder = [cache URLByAppendingPathComponent:@"airdrop_scratch"];
+    [[NSFileManager defaultManager] removeItemAtURL:scratchFolder
+                                             error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtURL:scratchFolder
+                            withIntermediateDirectories:YES
+                                             attributes:@{}
+                                                  error:nil];
+
+    // The file on disk has to end with a custom file extension that we have defined.
+    // Check "Document Types" and "Exported UTIs" in the project settings to see
+    // where this file extension is defined.
+    NSURL *tempPath = [scratchFolder URLByAppendingPathComponent:fileName];
+
+    // Write the URL into the file, and return the file to be shared.
+    NSData *data = [fileContents dataUsingEncoding:NSUTF8StringEncoding];
+    [data writeToURL:tempPath atomically:YES];
+    
+    NSArray *objsToShare = @[tempPath];
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objsToShare applicationActivities:nil];
+    
+    // Exclude all activities except AirDrop.
+    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+                                    UIActivityTypePostToWeibo,
+                                    UIActivityTypeMessage, UIActivityTypeMail,
+                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+    controller.excludedActivityTypes = excludedActivities;
+    
+    // Present the controller
+    [[delegate getVC] presentViewController:controller animated:YES completion:nil];
 }
 
 @end

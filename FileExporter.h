@@ -37,11 +37,15 @@ typedef enum {
 #define kExportMutExportEmailMutsIndex 0 
 #define kExportMutExportDropboxMuts @"Save Mutations to Dropbox"
 #define kExportMutExportDropboxMutsIndex 1
+#define kExportMutExportShareMuts @"Share Mutations"
+#define kExportMutExportShareMutsIndex 2
 
 #define kExportASEmailData @"Email Data"
 #define kExportASEmailDataIndex 3
 #define kExportASDropboxData @"Save Data to Dropbox"
 #define kExportASDropboxDataIndex 4
+#define kExportASShareData @"Share Data"
+#define kExportASShareDataIndex 5
 
 #define kExportAlertTitle @"File Export"
 #define kExportAlertBody @"Enter file name here:"
