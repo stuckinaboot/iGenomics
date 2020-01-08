@@ -42,7 +42,7 @@ typedef enum {
 
 #define kExportASEmailData @"Email Data"
 #define kExportASEmailDataIndex 3
-#define kExportASDropboxData @"Save Data to Dropbox"
+#define kExportASDropboxData @"Save Alignments to Dropbox"
 #define kExportASDropboxDataIndex 4
 #define kExportASShareData @"Share Data"
 #define kExportASShareDataIndex 5

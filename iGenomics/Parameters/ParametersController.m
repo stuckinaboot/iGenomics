@@ -20,7 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setModalPresentationStyle:UIModalPresentationFullScreen];
         
     }
     return self;
@@ -80,7 +80,7 @@
         return;
     
     matchTypeCtrl.selectedSegmentIndex = [parameters[kParameterArrayMatchTypeKey] intValue];
-    [self matchTypeChanged:nil];
+//    [self matchTypeChanged:nil];
     
     maxERSldr.value = [parameters[kParameterArrayERKey] doubleValue];
     [self maxERValueChangedViaSldr:nil];
@@ -117,19 +117,23 @@
     alignmentTypeCtrl.selectedSegmentIndex = [parameters[kParameterArrayFoRevKey] intValue];
 }
 
-- (IBAction)matchTypeChanged:(id)sender {
-    if (matchTypeCtrl.selectedSegmentIndex > 0) {
-        //Show ED picker
-        maxERLbl.hidden = FALSE;
-        maxERSldr.hidden = FALSE;
-        maxERTxtFld.hidden = FALSE;
-    }
-    else {
-        maxERLbl.hidden = TRUE;
-        maxERSldr.hidden = TRUE;
-        maxERTxtFld.hidden = TRUE;
-    }
-}
+// OUTDATED: this was used back when user
+// would have to select manually to use exact match via
+// a toggle that would hide edit rate fields
+//- (IBAction)matchTypeChanged:(id)sender {
+//    if (matchTypeCtrl.selectedSegmentIndex > 0) {
+//        //Show ED picker
+//        maxERLbl.hidden = FALSE;
+//        maxERSldr.hidden = FALSE;
+//        maxERTxtFld.hidden = FALSE;
+//    }
+//    else {
+//        NSLog(@"WTF");
+//        maxERLbl.hidden = TRUE;
+//        maxERSldr.hidden = TRUE;
+//        maxERTxtFld.hidden = TRUE;
+//    }
+//}
 
 - (IBAction)trimmingSwitchValueChanged:(id)sender {
     if (trimmingSwitch.on) {

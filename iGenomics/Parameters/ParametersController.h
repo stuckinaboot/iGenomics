@@ -42,7 +42,7 @@
 #define kStartSeqDelay 0.2
 
 #define kTrimmingStprMaxVal 20
-#define kTrimmingStprLblTxt @"Trimming Value: %i"
+#define kTrimmingStprLblTxt @"Value: %i"
 
 @interface ParametersController : UIViewController {
     

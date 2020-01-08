@@ -8,3 +8,4 @@ zika.nanopore.450x.fq
 H3N2.nanopore.300x.fq
 H3N2.miseq.300x.fq
 ebola.nanopore.fastq
+flu.H1N1.sim.fq
