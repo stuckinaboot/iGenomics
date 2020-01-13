@@ -21,7 +21,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self setModalPresentationStyle:UIModalPresentationFullScreen];
-        
     }
     return self;
 }
@@ -47,7 +46,6 @@
         maxERTxtFld.inputAccessoryView = keyboardToolbar;
         mutationSupportTxtFld.inputAccessoryView = keyboardToolbar;
     }
-    
     
     NSString *ext = readsFile.ext;
     if ([ext caseInsensitiveCompare:kFq] == NSOrderedSame || [ext caseInsensitiveCompare:kFastq] == NSOrderedSame) {
@@ -188,6 +186,7 @@
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
+    NSLog(@"DELETE: %f", ((UIButton*)sender).frame.size.height);
     [self presentViewController:computingController animated:YES completion:nil];
     
     [self performSelector:@selector(beginActualSequencing) withObject:nil afterDelay:kStartSeqDelay];

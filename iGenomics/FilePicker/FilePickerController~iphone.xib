@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -242,6 +240,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="cAs-F9-0FB"/>
+            <point key="canvasLocation" x="139" y="-424"/>
         </view>
         <view contentMode="scaleToFill" id="Awt-KV-KkA">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -263,23 +262,20 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bsq-SC-3kY" customClass="AbstractFileChooseView">
-                    <rect key="frame" x="16" y="116" width="289" height="84"/>
+                    <rect key="frame" x="16" y="116" width="289" height="95.5"/>
                     <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-ua-hBq" customClass="AbstractFileChooseView">
-                    <rect key="frame" x="16" y="243" width="289" height="84"/>
+                    <rect key="frame" x="16" y="254.5" width="289" height="95"/>
                     <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgC-aq-l4d" customClass="AbstractFileChooseView">
-                    <rect key="frame" x="16" y="370" width="289" height="84"/>
+                    <rect key="frame" x="16" y="392.5" width="289" height="95.5"/>
                     <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fZ-1t-ECL">
-                    <rect key="frame" x="166" y="481" width="139" height="48"/>
+                    <rect key="frame" x="166" y="515" width="139" height="48"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="9fZ-1t-ECL" secondAttribute="height" multiplier="145:48" constant="-6" id="DvN-Do-OUa"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                     <state key="normal" title="Configure">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -289,10 +285,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEZ-Hd-Y7L">
-                    <rect key="frame" x="16" y="481" width="139" height="48"/>
+                    <rect key="frame" x="16" y="515" width="139" height="48"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="mEZ-Hd-Y7L" secondAttribute="height" multiplier="145:48" constant="-6" id="Z57-VG-dWe"/>
+                        <constraint firstAttribute="height" constant="48" id="iG5-mg-rQm"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                     <state key="normal" title="Analyze">
@@ -308,7 +304,6 @@
                 <constraint firstItem="cWM-ua-hBq" firstAttribute="height" secondItem="Bsq-SC-3kY" secondAttribute="height" id="0pb-fD-xyY"/>
                 <constraint firstItem="9fZ-1t-ECL" firstAttribute="leading" secondItem="mEZ-Hd-Y7L" secondAttribute="trailing" constant="11" id="3vG-Ci-u5P"/>
                 <constraint firstItem="9fZ-1t-ECL" firstAttribute="bottom" secondItem="n8o-iz-iOb" secondAttribute="bottom" constant="-5" id="4g8-9o-3Bp"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XgC-aq-l4d" secondAttribute="bottom" constant="92" id="88p-Hi-sLq"/>
                 <constraint firstItem="WsD-9Z-HGJ" firstAttribute="top" secondItem="n8o-iz-iOb" secondAttribute="top" id="8Sr-5u-72w"/>
                 <constraint firstItem="XgC-aq-l4d" firstAttribute="width" secondItem="Bsq-SC-3kY" secondAttribute="width" id="9Ay-RX-DVx"/>
                 <constraint firstItem="XgC-aq-l4d" firstAttribute="top" secondItem="cWM-ua-hBq" secondAttribute="bottom" constant="43" id="9J9-eD-BaK"/>
@@ -335,7 +330,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="n8o-iz-iOb"/>
-            <point key="canvasLocation" x="-62.318840579710148" y="-367.63392857142856"/>
+            <point key="canvasLocation" x="-259" y="4"/>
         </view>
     </objects>
 </document>

@@ -108,6 +108,7 @@
 #pragma Button Actions
 
 - (IBAction)showParametersPressed:(id)sender {
+    NSLog(@"DELETE: %f", analyzeBtn.frame.size.height);
     [parametersController passInRefFile:[refInputView getSelectedFile] readsFile:[readsInputView getSelectedFile] andImptMutsFileContents:[imptMutsInputView getSelectedFile]];
     [self presentViewController:parametersController animated:YES completion:nil];
 }
