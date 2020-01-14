@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
@@ -12,43 +15,64 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BMr-I0-Ne8">
-                    <rect key="frame" x="13" y="235" width="294" height="115"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMr-I0-Ne8">
+                    <rect key="frame" x="15" y="456" width="384" height="135"/>
+                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="135" id="O5i-Rk-zkb"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                     <state key="normal" title="Start">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="showFilePickerPressed:" destination="-1" eventType="touchUpInside" id="h6U-nR-S1z"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wOa-Uy-XmV">
-                    <rect key="frame" x="13" y="405" width="294" height="115"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOa-Uy-XmV">
+                    <rect key="frame" x="15" y="655" width="384" height="135"/>
+                    <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                     <state key="normal" title="About">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="showAboutPressed:" destination="-1" eventType="touchUpInside" id="xiR-GP-fQm"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogo.png" id="nsr-j2-FOd">
-                    <rect key="frame" x="13" y="38" width="294" height="122"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="nsr-j2-FOd">
+                    <rect key="frame" x="15" y="94" width="384" height="144"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="144" id="ZnP-99-p7u"/>
+                    </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nsr-j2-FOd" secondAttribute="trailing" constant="15" id="0d8-wT-q2U"/>
+                <constraint firstItem="nsr-j2-FOd" firstAttribute="top" secondItem="4IN-Oa-q6w" secondAttribute="top" constant="50" id="2sy-GJ-B1w"/>
+                <constraint firstItem="wOa-Uy-XmV" firstAttribute="leading" secondItem="BMr-I0-Ne8" secondAttribute="leading" id="E7j-eK-egM"/>
+                <constraint firstAttribute="trailing" secondItem="wOa-Uy-XmV" secondAttribute="trailing" constant="15" id="Gob-lA-ya4"/>
+                <constraint firstItem="nsr-j2-FOd" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="15" id="XE4-V7-QdP"/>
+                <constraint firstItem="wOa-Uy-XmV" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="15" id="bH5-15-ZjH"/>
+                <constraint firstItem="4IN-Oa-q6w" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wOa-Uy-XmV" secondAttribute="bottom" constant="57" id="ebQ-dK-iFq"/>
+                <constraint firstItem="BMr-I0-Ne8" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="15" id="hbk-ny-V0J"/>
+                <constraint firstItem="wOa-Uy-XmV" firstAttribute="width" secondItem="BMr-I0-Ne8" secondAttribute="width" id="j64-y0-ySc"/>
+                <constraint firstItem="wOa-Uy-XmV" firstAttribute="top" secondItem="BMr-I0-Ne8" secondAttribute="bottom" constant="64" id="jZx-IF-zoE"/>
+                <constraint firstAttribute="trailing" secondItem="BMr-I0-Ne8" secondAttribute="trailing" constant="15" id="jgh-eS-2yh"/>
+                <constraint firstItem="wOa-Uy-XmV" firstAttribute="trailing" secondItem="BMr-I0-Ne8" secondAttribute="trailing" id="n55-iy-s5d"/>
+                <constraint firstItem="4IN-Oa-q6w" firstAttribute="bottom" secondItem="wOa-Uy-XmV" secondAttribute="bottom" constant="72" id="oah-vT-Iau"/>
+                <constraint firstItem="wOa-Uy-XmV" firstAttribute="height" secondItem="BMr-I0-Ne8" secondAttribute="height" id="pAt-hw-SO5"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="4IN-Oa-q6w"/>
+            <point key="canvasLocation" x="139" y="129"/>
         </view>
     </objects>
     <resources>
-        <image name="iGenomicsLogo.png" width="1024" height="400"/>
+        <image name="iGenomicsLogo.png" width="245.75999450683594" height="96"/>
     </resources>
 </document>

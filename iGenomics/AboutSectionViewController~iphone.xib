@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,14 +16,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZH-0O-qB6">
-                    <rect key="frame" x="8" y="792" width="398" height="65"/>
+                    <rect key="frame" x="15" y="527" width="345" height="135"/>
                     <color key="backgroundColor" red="0.47753894180000001" green="0.73597507689999997" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="LuG-bg-plY"/>
+                        <constraint firstAttribute="height" constant="135" id="LuG-bg-plY"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                     <state key="normal" title="Done">
@@ -36,34 +34,35 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vk-zG-g94">
-                    <rect key="frame" x="0.0" y="153" width="414" height="638"/>
+                    <rect key="frame" x="0.0" y="157" width="375" height="344"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="31"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="oRY-42-nKK">
-                    <rect key="frame" x="53" y="49" width="309" height="96"/>
+                    <rect key="frame" x="16" y="5" width="343" height="144"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="96" id="Xfh-Ny-Nig"/>
+                        <constraint firstAttribute="height" constant="144" id="Xfh-Ny-Nig"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="oRY-42-nKK" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="53" id="0js-Ij-f3Q"/>
-                <constraint firstItem="VZH-0O-qB6" firstAttribute="top" secondItem="7vk-zG-g94" secondAttribute="bottom" constant="1" id="8Rn-jW-9si"/>
+                <constraint firstItem="oRY-42-nKK" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="16" id="0js-Ij-f3Q"/>
+                <constraint firstItem="VZH-0O-qB6" firstAttribute="leading" secondItem="UWd-YR-3Cd" secondAttribute="leading" constant="15" id="7Xa-F5-kfU"/>
+                <constraint firstItem="VZH-0O-qB6" firstAttribute="top" secondItem="7vk-zG-g94" secondAttribute="bottom" constant="26" id="8Rn-jW-9si"/>
                 <constraint firstItem="oRY-42-nKK" firstAttribute="top" secondItem="UWd-YR-3Cd" secondAttribute="top" constant="5" id="Ea1-mN-LJJ"/>
-                <constraint firstAttribute="trailing" secondItem="oRY-42-nKK" secondAttribute="trailing" constant="52" id="KvK-Gu-bNQ"/>
+                <constraint firstAttribute="trailing" secondItem="oRY-42-nKK" secondAttribute="trailing" constant="16" id="KvK-Gu-bNQ"/>
                 <constraint firstItem="VZH-0O-qB6" firstAttribute="bottom" secondItem="UWd-YR-3Cd" secondAttribute="bottom" constant="-5" id="NRl-kc-Mg3"/>
                 <constraint firstItem="7vk-zG-g94" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="NtG-i1-3BL"/>
+                <constraint firstItem="UWd-YR-3Cd" firstAttribute="trailing" secondItem="VZH-0O-qB6" secondAttribute="trailing" constant="15" id="Ujm-gh-Cnl"/>
                 <constraint firstAttribute="trailing" secondItem="7vk-zG-g94" secondAttribute="trailing" id="bQ2-uO-6gm"/>
                 <constraint firstItem="7vk-zG-g94" firstAttribute="top" secondItem="oRY-42-nKK" secondAttribute="bottom" constant="8" id="gcX-Mq-q8m"/>
-                <constraint firstItem="VZH-0O-qB6" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="8" id="i4g-oe-kyA"/>
                 <constraint firstItem="7vk-zG-g94" firstAttribute="centerX" secondItem="VZH-0O-qB6" secondAttribute="centerX" id="qL1-mZ-oUI"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <viewLayoutGuide key="safeArea" id="UWd-YR-3Cd"/>
-            <point key="canvasLocation" x="137.68115942028987" y="120.53571428571428"/>
+            <point key="canvasLocation" x="136.80000000000001" y="120.08995502248877"/>
         </view>
     </objects>
     <resources>
