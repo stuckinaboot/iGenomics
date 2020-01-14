@@ -82,7 +82,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if (!mutationsArray) {
+    if (!mutationsArray || [mutationsArray count] == 0) {
         cell.textLabel.text = kImportationMutationDisplayViewNoMutationsListed;
         return cell;
     }

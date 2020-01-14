@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setModalPresentationStyle:UIModalPresentationFullScreen];
     }
     return self;
 }
@@ -73,8 +73,17 @@
             [gridView setMaxCovValWithNumOfCols:dgenomeLen-1];
         if ([GlobalVars isIpad])
             coverageHistogram.view.frame = CGRectMake(0, 0, kCoverageHistogramPopoverWidth, kCoverageHistogramPopoverHeight);
-        else
-            coverageHistogram.view.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-kIPhonePopoverNavBarLandscapeHeight);
+        else {
+            if (@available(iOS 11.0, *)) {
+                coverageHistogram.view.frame = CGRectMake(0, 0, self.view.safeAreaLayoutGuide.layoutFrame.size.width, self.view.safeAreaLayoutGuide.layoutFrame.size.height);
+            } else {
+                coverageHistogram.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-kIPhonePopoverNavBarLandscapeHeight);
+        
+            }
+        }
+        // TODO: Don't draw coverage histogram until we are done laying out subviews.
+        // Right now, it is drawn before this method or viewDidLayoutSubviews gets hit
+        
         [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
         [analysisControllerIPadMenu setCoverageHistogram:(gridView.maxCoverageVal > 0) ? coverageHistogram : NULL];
         
@@ -293,7 +302,7 @@
         [nLbl[i] setBackgroundColor:[UIColor clearColor]];
         [nLbl[i] setText:[txtArr objectAtIndex:i]];
         [nLbl[i] setTextAlignment:NSTextAlignmentCenter];
-        nLbl[i].center = CGPointMake(kSideLblStartingX, yPos);
+        nLbl[i].center = CGPointMake(gridViewTitleLblHolder.frame.origin.x + kSideLblStartingX, yPos);
         
         RGB *rgb;
         
@@ -640,7 +649,7 @@
         [handler setMainViewController:coverageHistogram andTitle:kCoverageHistogramTitleInIPhoneHandlerPopover];
         [coverageHistogram didMoveToParentViewController:handler];
         [self presentViewController:handler animated:YES completion:^{
-            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
+//            [coverageHistogram createHistogramWithMaxCovVal:gridView.maxCoverageVal andNumOfReads:numOfReads andReadLen:readLen andGenomeLen:genomeLen];
         }];
     }
 }

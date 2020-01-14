@@ -12,7 +12,18 @@
 
 - (void)createHistogramWithMaxCovVal:(int)maxCovVal andNumOfReads:(int)numOfReads andReadLen:(int)readLen andGenomeLen:(int)genomeLen {
     self.view.backgroundColor = [UIColor whiteColor];
-    imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    
+    // Remove imgView if it previously existed
+    if (imgView != NULL) {
+        imgView.image = NULL;
+        [imgView removeFromSuperview];
+    }
+    
+    // Create new image view
+    // Using kIPhonePopoverNavBarLandscapeHeight is a hacky way to ensure
+    // that the coverage histogram will be sized accounting for the nav bar
+    // in the view which it will be displayed in
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - kIPhonePopoverNavBarLandscapeHeight)];
     [self.view addSubview:imgView];
     
     dnaColors = [[DNAColors alloc] init];
@@ -54,7 +65,7 @@
 
 - (void)drawNormalCurveInRect:(CGRect)rect {
     float maxNormVal = [self normalCurveFormulaValueForPos:posOfHighestFrequency];
-    float x = kCoverageHistogramYAxisDistFromScreenLeft+kCoverageHistogramAxisWidth+boxWidth/2;
+    float x =  kCoverageHistogramYAxisDistFromScreenLeft+kCoverageHistogramAxisWidth+boxWidth/2;
     float y = rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-kCoverageHistogramAxisWidth;
     float i = 0;
     
@@ -187,7 +198,7 @@
         UIFont *font = xLbls[i].font;
         
         if (i <= ceilf(kCoverageHistogramNumOfIntervalLblsPerAxis/2.0f) && pos <= maxCoverageVal && pos >= 0) {//This if is here because at the same SD, there will probably/usually be different frequencies. Also, can't make labels for out of bounds positions
-            yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(0, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom)), kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
+            yLbls[i] = [[UILabel alloc] initWithFrame:CGRectMake(0, rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom-((covFreqArr[pos]/(float)highestFrequency)*(rect.size.height-kCoverageHistogramXAxisDistFromScreenBottom)) + kCoverageHistogramIntervalLblHeight / 2, kCoverageHistogramIntervalLblWidth, kCoverageHistogramIntervalLblHeight)];
             
             if (yLbls[i].frame.origin.y > 0)
                 yLbls[i].frame = CGRectMake(yLbls[i].frame.origin.x, yLbls[i].frame.origin.y-kCoverageHistogramIntervalLblHeight/2, yLbls[i].frame.size.width, yLbls[i].frame.size.height);
