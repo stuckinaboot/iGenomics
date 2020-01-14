@@ -86,7 +86,7 @@
                     </connections>
                 </slider>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Value:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sol-wz-Vxo">
-                    <rect key="frame" x="72" y="316" width="75.5" height="32"/>
+                    <rect key="frame" x="72" y="316" width="158" height="32"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -98,7 +98,7 @@
                     </connections>
                 </stepper>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ref Char:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIb-vw-Zkh">
-                    <rect key="frame" x="72" y="366" width="75.5" height="31"/>
+                    <rect key="frame" x="72" y="366" width="158" height="31"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -135,7 +135,7 @@
                 <constraint firstItem="fFN-tw-cMk" firstAttribute="trailing" secondItem="YqZ-yF-d7s" secondAttribute="trailing" id="B7u-yu-im3"/>
                 <constraint firstItem="YqZ-yF-d7s" firstAttribute="bottom" secondItem="2BC-0J-mKJ" secondAttribute="bottom" constant="5" id="Bjl-wp-mQN"/>
                 <constraint firstItem="bEC-s2-D1t" firstAttribute="leading" secondItem="O5T-Jd-O8q" secondAttribute="leading" id="CDE-un-gC4"/>
-                <constraint firstItem="AFa-UU-cbE" firstAttribute="trailing" secondItem="Sol-wz-Vxo" secondAttribute="trailing" constant="106.5" id="FpP-Od-5SO"/>
+                <constraint firstItem="AFa-UU-cbE" firstAttribute="trailing" secondItem="Sol-wz-Vxo" secondAttribute="trailing" constant="24" id="FpP-Od-5SO"/>
                 <constraint firstItem="YqZ-yF-d7s" firstAttribute="trailing" secondItem="LdT-19-6ih" secondAttribute="trailing" constant="43" id="GMS-wa-rzK"/>
                 <constraint firstItem="LdT-19-6ih" firstAttribute="trailing" secondItem="9du-ar-Qtp" secondAttribute="trailing" id="Gve-aO-5bu"/>
                 <constraint firstItem="bEC-s2-D1t" firstAttribute="top" secondItem="9du-ar-Qtp" secondAttribute="bottom" constant="13" id="HMB-ih-UDI"/>

@@ -186,7 +186,6 @@
 }
 
 - (IBAction)startSequencingPressed:(id)sender {
-    NSLog(@"DELETE: %f", ((UIButton*)sender).frame.size.height);
     [self presentViewController:computingController animated:YES completion:nil];
     
     [self performSelector:@selector(beginActualSequencing) withObject:nil afterDelay:kStartSeqDelay];
