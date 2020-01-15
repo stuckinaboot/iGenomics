@@ -268,14 +268,11 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    NSLog(@"del A");
-    if (![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kAlertBtnTitleCancel] && ![GlobalVars internetAvailable]) {
-        // Only return if no internet available and button other than cancel hit
+    if (![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kAlertBtnTitleCancel] && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportShareMuts] && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportASShareData]  && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportASExportMutationsHaploid] && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportASExportMutationsDiploid] && ![GlobalVars internetAvailable]) {
+        // Only return if no internet available and button other than cancel, share mutations, share alignments, export haploid, export diploid is hit
         return;
     } else if ([actionSheet isEqual:exportActionSheet]) {
-        NSLog(@"del B");
         if (buttonIndex == kExportASExportMutationsHaploidIndex) {
-            NSLog(@"del C");
             exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, kExportMutExportShareMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsHaploidIndex;
             UIView *viewToDisplayIn = [actionSheet superview];
@@ -286,7 +283,6 @@
 //            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASExportMutationsDiploidIndex) {
-            NSLog(@"del D");
             exportOptionsMutsActionSheet = [[UIActionSheet alloc] initWithTitle:kExportAlertTitle delegate:self cancelButtonTitle:kAlertBtnTitleCancel destructiveButtonTitle:nil otherButtonTitles:kExportMutExportEmailMuts, kExportMutExportDropboxMuts, kExportMutExportShareMuts, nil];
             exportOptionsMutsActionSheet.tag = kExportASExportMutationsDiploidIndex;
             UIView *viewToDisplayIn = [actionSheet superview];
@@ -297,11 +293,9 @@
 //            [self emailInfoForOption:EmailInfoOptionMutations];
         }
         else if (buttonIndex == kExportASEmailDataIndex) {
-            NSLog(@"del E");
             [self emailInfoForOption:EmailInfoOptionData isDiploid:NO];
         }
         else if (buttonIndex == kExportASDropboxDataIndex) {
-            NSLog(@"del F");
 //            if ([DBAccountManager sharedManager].linkedAccount == NULL)
 //                [[DBAccountManager sharedManager] linkFromController:[delegate getVC]];
             DBUserClient *client = [DBClientsManager authorizedClient];
@@ -313,13 +307,10 @@
                 }];
             }
             else {
-                NSLog(@"del G");
                 exportDataDropboxAlert = [[UIAlertView alloc] initWithTitle:kExportAlertTitle message:kExportAlertBody delegate:self cancelButtonTitle:kAlertBtnTitleCancel otherButtonTitles:kExportAlertBtnExportTitle, nil];
                 [exportDataDropboxAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
                 UITextField *txtField = [exportDataDropboxAlert textFieldAtIndex:0];
-                NSLog(@"del H");
                 int i = [self firstAvailableDefaultFileNameForMutsOrData:1];
-                NSLog(@"del I");
                 [txtField setText:[NSString stringWithFormat:kExportDropboxSaveFileFormatData, readsFileName, (i>0) ? [NSString stringWithFormat:@"(%i)",i] : @""]];
                 [exportDataDropboxAlert show];
             }
@@ -503,10 +494,7 @@
     // in the Airdrop accept dialog, rather than the raw URL.
 
     // Use a dedicated folder so cleanup is easy.
-    NSURL *cache = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask
-                                                appropriateForURL:nil
-                                                           create:YES
-                                                            error:nil];
+    NSURL *cache = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
     NSURL *scratchFolder = [cache URLByAppendingPathComponent:@"airdrop_scratch"];
     [[NSFileManager defaultManager] removeItemAtURL:scratchFolder
                                              error:nil];
