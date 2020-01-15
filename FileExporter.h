@@ -40,11 +40,11 @@ typedef enum {
 #define kExportMutExportShareMuts @"Share Mutations"
 #define kExportMutExportShareMutsIndex 2
 
-#define kExportASEmailData @"Email Data"
+#define kExportASEmailData @"Email Alignments"
 #define kExportASEmailDataIndex 3
 #define kExportASDropboxData @"Save Alignments to Dropbox"
 #define kExportASDropboxDataIndex 4
-#define kExportASShareData @"Share Data"
+#define kExportASShareData @"Share Alignments"
 #define kExportASShareDataIndex 5
 
 #define kExportAlertTitle @"File Export"
