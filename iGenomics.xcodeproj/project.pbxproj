@@ -31,6 +31,7 @@
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
 		A32A91FA23C580D20073C60E /* flu.H1N1.sim.fq in Resources */ = {isa = PBXBuildFile; fileRef = A32A91F923C580D20073C60E /* flu.H1N1.sim.fq */; };
+		A32A91FC23CD5BF90073C60E /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32A91FB23CD5BF90073C60E /* Icon.xcassets */; };
 		A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */; };
 		A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */ = {isa = PBXBuildFile; fileRef = A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
@@ -185,7 +186,6 @@
 		A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */; };
 		A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE881F18FC79CE00F9D682 /* CopyLabel.m */; };
 		A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882218FC7DC000F9D682 /* IconIdea2.png */; };
-		A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882418FC7EA800F9D682 /* Images.xcassets */; };
 		A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */; };
 		A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */; };
 		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
@@ -240,7 +240,8 @@
 		A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportantMutationInfo.m; sourceTree = "<group>"; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		A32A91F923C580D20073C60E /* flu.H1N1.sim.fq */ = {isa = PBXFileReference; lastKnownFileType = file; name = flu.H1N1.sim.fq; path = validation_for_paper/full_validation/simulated_reads_files_fluH1N1/flu.H1N1.sim.fq; sourceTree = SOURCE_ROOT; };
+		A32A91F923C580D20073C60E /* flu.H1N1.sim.fq */ = {isa = PBXFileReference; lastKnownFileType = text; name = flu.H1N1.sim.fq; path = validation_for_paper/full_validation/simulated_reads_files_fluH1N1/flu.H1N1.sim.fq; sourceTree = SOURCE_ROOT; };
+		A32A91FB23CD5BF90073C60E /* Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icon.xcassets; path = updated_icons2019/Icon.xcassets; sourceTree = SOURCE_ROOT; };
 		A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H2N2.fa; sourceTree = SOURCE_ROOT; };
 		A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mutation_output.sample.vcf; sourceTree = "<group>"; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
@@ -440,7 +441,6 @@
 		A3EE881E18FC79CE00F9D682 /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
 		A3EE881F18FC79CE00F9D682 /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		A3EE882218FC7DC000F9D682 /* IconIdea2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconIdea2.png; path = iGenomics/IconIdea2.png; sourceTree = "<group>"; };
-		A3EE882418FC7EA800F9D682 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iGenomicsLogo.png; path = iGenomics/iGenomicsLogo.png; sourceTree = "<group>"; };
 		A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconIdea2-ExtraLarge.png"; path = "iGenomics/IconIdea2-ExtraLarge.png"; sourceTree = "<group>"; };
 		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
@@ -563,7 +563,7 @@
 				A3FF3AD316AB17FC0095EACF /* Globals */,
 				A310AF55158A5F7200E892AA /* Supporting Files */,
 				A34734D4166AC1AB00C4271E /* XIBs */,
-				A3EE882418FC7EA800F9D682 /* Images.xcassets */,
+				A32A91FB23CD5BF90073C60E /* Icon.xcassets */,
 			);
 			path = iGenomics;
 			sourceTree = "<group>";
@@ -1444,7 +1444,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3EE882518FC7EA800F9D682 /* Images.xcassets in Resources */,
 				A3B9040623AC3BC300F832C2 /* H3N2.nanopore.300x.fq in Resources */,
 				A3DF232922BB4FAD007DD2F3 /* zika-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A36F230C1AAF99A4005B5A91 /* flu.H1N1.resistant.fq in Resources */,
@@ -1460,6 +1459,7 @@
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
 				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
+				A32A91FC23CD5BF90073C60E /* Icon.xcassets in Resources */,
 				A3B9040223AC3BAA00F832C2 /* ebola.nanopore.fastq in Resources */,
 				A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */,
 				A3FB37B61D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq in Resources */,
@@ -1819,7 +1819,6 @@
 			baseConfigurationReference = EA6C978E2F3E655F6FA642F0 /* Pods-iGenomics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = F9WSQT797Y;
@@ -1850,7 +1849,6 @@
 			baseConfigurationReference = 3CC22D3987ACCA0523BA4003 /* Pods-iGenomics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = F9WSQT797Y;
