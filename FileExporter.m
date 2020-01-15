@@ -494,10 +494,7 @@
     // in the Airdrop accept dialog, rather than the raw URL.
 
     // Use a dedicated folder so cleanup is easy.
-    NSURL *cache = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask
-                                                appropriateForURL:nil
-                                                           create:YES
-                                                            error:nil];
+    NSURL *cache = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
     NSURL *scratchFolder = [cache URLByAppendingPathComponent:@"airdrop_scratch"];
     [[NSFileManager defaultManager] removeItemAtURL:scratchFolder
                                              error:nil];
