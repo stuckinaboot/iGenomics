@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,41 +33,36 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1017">
-                    <rect key="frame" x="0.0" y="181" width="64" height="567"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1017">
+                    <rect key="frame" x="0.0" y="181" width="64" height="823"/>
                     <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="OLq-sL-oxa"/>
+                    </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="QuickGridView">
-                    <rect key="frame" x="41" y="159" width="983" height="574"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4" customClass="QuickGridView">
+                    <rect key="frame" x="41" y="159" width="1325" height="807"/>
                     <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" updatesFrequently="YES"/>
                     </accessibility>
                     <gestureRecognizers/>
                 </view>
-                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1172" customClass="OBSlider">
-                    <rect key="frame" x="74" y="724" width="927" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <connections>
-                        <action selector="pxlOffsetSliderValChanged:" destination="4" eventType="valueChanged" id="1182"/>
-                    </connections>
-                </slider>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="loo-67-dgA" customClass="AnalysisControllerIPadToolbar">
-                    <rect key="frame" x="291" y="44" width="696" height="114"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loo-67-dgA" customClass="AnalysisControllerIPadToolbar">
+                    <rect key="frame" x="291" y="44" width="1055" height="114"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="infoView" destination="5bW-Rd-K5k" id="5RY-tv-m3U"/>
                     </connections>
                 </view>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waU-Qp-blm">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waU-Qp-blm">
+                    <rect key="frame" x="0.0" y="0.0" width="1366" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="0a3-0J-OWa"/>
+                    </constraints>
                     <items>
                         <navigationItem title="Analysis View" id="X4h-BJ-TMQ">
                             <barButtonItem key="leftBarButtonItem" image="ThreeLines.png" id="n34-WT-j9q">
@@ -83,14 +78,44 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iGenomicsLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bEh-cB-p80">
                     <rect key="frame" x="41" y="63" width="201" height="85"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="85" id="ebV-mN-mi9"/>
+                        <constraint firstAttribute="width" constant="201" id="gbh-BY-Rks"/>
+                    </constraints>
                 </imageView>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1172" customClass="OBSlider">
+                    <rect key="frame" x="74" y="974" width="1274" height="31"/>
+                    <connections>
+                        <action selector="pxlOffsetSliderValChanged:" destination="4" eventType="valueChanged" id="1182"/>
+                    </connections>
+                </slider>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4" firstAttribute="top" secondItem="bEh-cB-p80" secondAttribute="bottom" constant="11" id="0O0-V0-8Pj"/>
+                <constraint firstItem="loo-67-dgA" firstAttribute="trailing" secondItem="2" secondAttribute="trailingMargin" id="22q-3H-MuG"/>
+                <constraint firstItem="waU-Qp-blm" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="7yF-bv-UGP"/>
+                <constraint firstItem="loo-67-dgA" firstAttribute="trailing" secondItem="1172" secondAttribute="trailing" id="Gty-ZQ-LXj"/>
+                <constraint firstItem="bEh-cB-p80" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="OnW-LD-vZx"/>
+                <constraint firstItem="1017" firstAttribute="bottom" secondItem="2" secondAttribute="bottomMargin" id="PNw-y3-SlB"/>
+                <constraint firstItem="1017" firstAttribute="top" secondItem="bEh-cB-p80" secondAttribute="bottom" constant="33" id="VbX-iI-IXs"/>
+                <constraint firstItem="waU-Qp-blm" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Yrz-bF-c4i"/>
+                <constraint firstItem="waU-Qp-blm" firstAttribute="top" secondItem="2" secondAttribute="topMargin" id="ZuL-n9-N1M"/>
+                <constraint firstItem="waU-Qp-blm" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="cMK-zC-gwb"/>
+                <constraint firstItem="1017" firstAttribute="bottom" secondItem="1172" secondAttribute="bottom" id="eZ4-Q6-4vk"/>
+                <constraint firstItem="bEh-cB-p80" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="41" id="ffP-IU-PMk"/>
+                <constraint firstItem="loo-67-dgA" firstAttribute="leading" secondItem="bEh-cB-p80" secondAttribute="trailing" constant="49" id="jvb-CR-ZIp"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="loo-67-dgA" secondAttribute="bottom" constant="1" id="t4W-QL-5HP"/>
+                <constraint firstItem="1172" firstAttribute="leading" secondItem="1017" secondAttribute="trailing" constant="12" id="v23-ml-Aha"/>
+                <constraint firstItem="1172" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8" id="wjz-F4-E8z"/>
+                <constraint firstItem="waU-Qp-blm" firstAttribute="leading" secondItem="1017" secondAttribute="leading" id="yBk-K0-36f"/>
+                <constraint firstItem="bEh-cB-p80" firstAttribute="top" secondItem="waU-Qp-blm" secondAttribute="bottom" constant="19" id="zb4-eH-de6"/>
+                <constraint firstItem="loo-67-dgA" firstAttribute="top" secondItem="waU-Qp-blm" secondAttribute="bottom" id="zdj-M2-7oP"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="138.28125" y="75.5859375"/>
+            <point key="canvasLocation" x="137.48169838945827" y="75.5859375"/>
         </view>
         <pinchGestureRecognizer id="1163"/>
         <view contentMode="scaleToFill" id="RLy-gj-aPl">
@@ -259,6 +284,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="147" y="448"/>
         </view>
         <viewController autoresizesArchivedViewToFullSize="NO" id="e7D-2c-j7C" customClass="AnalysisControllerIPadMenu">
             <layoutGuides>
@@ -266,17 +292,15 @@
                 <viewControllerLayoutGuide type="bottom" id="hAb-wI-kzd"/>
             </layoutGuides>
             <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7k2-Lh-wB6">
-                <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="1366"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZE-gR-pVJ">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZE-gR-pVJ">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="1346"/>
                         <color key="backgroundColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-WL-uac">
-                        <rect key="frame" x="0.0" y="44" width="300" height="724"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PzK-WL-uac">
+                        <rect key="frame" x="0.0" y="50" width="300" height="1316"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -285,25 +309,39 @@
                             <outlet property="delegate" destination="e7D-2c-j7C" id="5yk-LL-Igy"/>
                         </connections>
                     </tableView>
-                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQw-UW-DA7">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQw-UW-DA7">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                         <items>
                             <navigationItem title="Analysis Utilities" id="XDu-0M-tes"/>
                         </items>
                     </navigationBar>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="yQw-UW-DA7" firstAttribute="top" secondItem="kVj-aI-ecE" secondAttribute="bottom" id="4UL-JF-vXQ"/>
+                    <constraint firstItem="yQw-UW-DA7" firstAttribute="leading" secondItem="7k2-Lh-wB6" secondAttribute="leading" id="7GV-EU-Zbr"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="top" secondItem="yQw-UW-DA7" secondAttribute="bottom" id="A67-79-mtE"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="bottom" secondItem="8ZE-gR-pVJ" secondAttribute="bottom" constant="20" id="DrR-Yi-Jj2"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="trailing" secondItem="yQw-UW-DA7" secondAttribute="trailing" id="GgR-bM-kcP"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="leading" secondItem="yQw-UW-DA7" secondAttribute="leading" id="Uho-nj-www"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="leading" secondItem="8ZE-gR-pVJ" secondAttribute="leading" id="XPL-1T-Ygj"/>
+                    <constraint firstItem="8ZE-gR-pVJ" firstAttribute="top" secondItem="yQw-UW-DA7" secondAttribute="top" id="ZaU-Cj-7fN"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="top" secondItem="yQw-UW-DA7" secondAttribute="bottom" id="dvY-FB-5e6"/>
+                    <constraint firstItem="hAb-wI-kzd" firstAttribute="top" secondItem="PzK-WL-uac" secondAttribute="bottom" constant="-20" id="eVW-Rq-5os"/>
+                    <constraint firstItem="PzK-WL-uac" firstAttribute="trailing" secondItem="8ZE-gR-pVJ" secondAttribute="trailing" id="h29-1L-qGG"/>
+                    <constraint firstAttribute="trailing" secondItem="yQw-UW-DA7" secondAttribute="trailing" id="ol9-PT-sdR"/>
+                </constraints>
             </view>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <size key="freeformSize" width="300" height="768"/>
+            <size key="freeformSize" width="300" height="1366"/>
             <connections>
                 <outlet property="elementSearchView" destination="K6b-YU-kW3" id="BKb-nv-2la"/>
                 <outlet property="elementSegmentPckrView" destination="6bm-Nj-dlT" id="QR0-xk-ys9"/>
                 <outlet property="elementSettingsView" destination="PY5-Tb-v94" id="WMl-2p-e95"/>
                 <outlet property="tblView" destination="PzK-WL-uac" id="eFM-Cv-va8"/>
             </connections>
+            <point key="canvasLocation" x="-103.22108345534406" y="641.6015625"/>
         </viewController>
         <view contentMode="scaleToFill" id="K6b-YU-kW3">
             <rect key="frame" x="0.0" y="0.0" width="379" height="116"/>
@@ -361,6 +399,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="146" y="553"/>
         </view>
         <view contentMode="scaleToFill" id="6bm-Nj-dlT">
             <rect key="frame" x="0.0" y="0.0" width="385" height="286"/>
@@ -400,6 +439,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-277" y="244"/>
         </view>
         <view contentMode="scaleToFill" id="PY5-Tb-v94">
             <rect key="frame" x="0.0" y="0.0" width="502" height="84"/>
@@ -453,6 +493,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="578" y="244"/>
         </view>
     </objects>
     <resources>
