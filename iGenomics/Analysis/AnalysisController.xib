@@ -52,7 +52,7 @@
                     <gestureRecognizers/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loo-67-dgA" customClass="AnalysisControllerIPadToolbar">
-                    <rect key="frame" x="291" y="44" width="1055" height="114"/>
+                    <rect key="frame" x="418" y="44" width="928" height="114"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="infoView" destination="5bW-Rd-K5k" id="5RY-tv-m3U"/>
@@ -106,7 +106,7 @@
                 <constraint firstItem="waU-Qp-blm" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="cMK-zC-gwb"/>
                 <constraint firstItem="1017" firstAttribute="bottom" secondItem="1172" secondAttribute="bottom" id="eZ4-Q6-4vk"/>
                 <constraint firstItem="bEh-cB-p80" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="41" id="ffP-IU-PMk"/>
-                <constraint firstItem="loo-67-dgA" firstAttribute="leading" secondItem="bEh-cB-p80" secondAttribute="trailing" constant="49" id="jvb-CR-ZIp"/>
+                <constraint firstItem="loo-67-dgA" firstAttribute="leading" secondItem="bEh-cB-p80" secondAttribute="trailing" constant="176" id="jvb-CR-ZIp"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="loo-67-dgA" secondAttribute="bottom" constant="1" id="t4W-QL-5HP"/>
                 <constraint firstItem="1172" firstAttribute="leading" secondItem="1017" secondAttribute="trailing" constant="12" id="v23-ml-Aha"/>
                 <constraint firstItem="1172" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8" id="wjz-F4-E8z"/>
@@ -227,46 +227,46 @@
             <point key="canvasLocation" x="302" y="-294"/>
         </view>
         <view contentMode="scaleToFill" id="5bW-Rd-K5k">
-            <rect key="frame" x="0.0" y="0.0" width="704" height="106"/>
+            <rect key="frame" x="0.0" y="0.0" width="834" height="106"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="TOTAL NUM OF MUTATIONS" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="ghO-dZ-7NO">
-                    <rect key="frame" x="520" y="58" width="172" height="41"/>
+                    <rect key="frame" x="642" y="58" width="172" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="% MATCHED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83U-22-oQj">
-                    <rect key="frame" x="520" y="17" width="172" height="31"/>
+                    <rect key="frame" x="642" y="17" width="172" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="GENOME FILE NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="791">
-                    <rect key="frame" x="249" y="27" width="240" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="GENOME FILE NAME" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="791">
+                    <rect key="frame" x="328" y="27" width="240" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIJ-CZ-63k">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIJ-CZ-63k">
                     <rect key="frame" x="15" y="18" width="223" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT LEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-1l-3VX">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT SEGMENT LEN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-1l-3VX">
                     <rect key="frame" x="15" y="69" width="223" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="READS FILE NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="799">
-                    <rect key="frame" x="249" y="74" width="240" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="READS FILE NAME" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="799">
+                    <rect key="frame" x="328" y="74" width="240" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -276,7 +276,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="301.5625" y="-394.3359375"/>
+            <point key="canvasLocation" x="329.86822840409951" y="-394.3359375"/>
         </view>
         <view contentMode="scaleToFill" id="fij-Zj-hT1">
             <rect key="frame" x="0.0" y="0.0" width="704" height="106"/>
