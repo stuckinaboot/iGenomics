@@ -1,0 +1,3 @@
+Privacy Policy
+
+The iGenomics app does not collect any user information. External files loaded into iGenomics running on an iOS device are stored solely on that iOS device. We have no servers or databases and so we are physically not capable of collecting user information.

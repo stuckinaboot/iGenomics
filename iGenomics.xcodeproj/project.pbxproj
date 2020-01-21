@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A133E306394417FFB4BD9260 /* Pods_iGenomics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F923AC50C28654D6F38231 /* Pods_iGenomics.framework */; };
-		A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */ = {isa = PBXBuildFile; fileRef = A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
@@ -30,9 +29,7 @@
 		A3208B3C197EFDC000299A30 /* ImportantMutationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */; };
 		A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */ = {isa = PBXBuildFile; fileRef = A321162C177B3EBE002A1678 /* IconIdea1.png */; };
 		A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321162E177BA493002A1678 /* MessageUI.framework */; };
-		A32A91FA23C580D20073C60E /* flu.H1N1.sim.fq in Resources */ = {isa = PBXBuildFile; fileRef = A32A91F923C580D20073C60E /* flu.H1N1.sim.fq */; };
 		A32A91FC23CD5BF90073C60E /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32A91FB23CD5BF90073C60E /* Icon.xcassets */; };
-		A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */; };
 		A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */ = {isa = PBXBuildFile; fileRef = A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */; };
 		A3304A0618BC70B200D8B0AC /* FilePreviewPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */; };
 		A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3304A0518BC70B200D8B0AC /* FilePreviewPopoverController.xib */; };
@@ -47,10 +44,7 @@
 		A3382FCC16A118A20042F59B /* AnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FCA16A118A20042F59B /* AnalysisController.m */; };
 		A3382FCD16A118A20042F59B /* AnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3382FCB16A118A20042F59B /* AnalysisController.xib */; };
 		A33A7C161650397B00E39A6C /* ED_Info.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C151650397B00E39A6C /* ED_Info.m */; };
-		A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */; };
-		A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */ = {isa = PBXBuildFile; fileRef = A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */; };
 		A33A7C211650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */; };
-		A348EAFD1D63C788003F07BF /* zika.nanopore.fq in Resources */ = {isa = PBXBuildFile; fileRef = A348EAFC1D63C788003F07BF /* zika.nanopore.fq */; };
 		A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A34E6BB316C4753C00753D7C /* CSHLabIcon.png */; };
 		A34E8B9816B5EF0C002F3AB7 /* InsertionsPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */; };
 		A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34E8B9716B5EF0C002F3AB7 /* InsertionsPopoverController.xib */; };
@@ -87,13 +81,6 @@
 		A364B8A01B714618007A9E69 /* APFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A364B89F1B714618007A9E69 /* APFile.m */; };
 		A3669B3516F689750034A1CC /* DNAColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A3669B3416F689750034A1CC /* DNAColors.m */; };
 		A36C7C0E1964AFAD004CA5EF /* CoverageHistogram.m in Sources */ = {isa = PBXBuildFile; fileRef = A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */; };
-		A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */; };
-		A36CCDFC184A8632004B9327 /* reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDF9184A8632004B9327 /* reads.fa */; };
-		A36CCDFD184A8632004B9327 /* reads.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36CCDFA184A8632004B9327 /* reads.fq */; };
-		A36F23091AAF99A4005B5A91 /* flu.H1N1.clean.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */; };
-		A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */ = {isa = PBXBuildFile; fileRef = A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */; };
-		A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */ = {isa = PBXBuildFile; fileRef = A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */; };
-		A36F230C1AAF99A4005B5A91 /* flu.H1N1.resistant.fq in Resources */ = {isa = PBXBuildFile; fileRef = A36F23081AAF99A4005B5A91 /* flu.H1N1.resistant.fq */; };
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
 		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
@@ -104,11 +91,9 @@
 		A375FC0119391FC600F69E07 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0019391FC600F69E07 /* CFNetwork.framework */; };
 		A375FC0319391FCB00F69E07 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FC0219391FCB00F69E07 /* libc++.dylib */; };
 		A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */; };
-		A391AA691F4A766000A316C0 /* flu.mega.fa in Resources */ = {isa = PBXBuildFile; fileRef = A391AA681F4A766000A316C0 /* flu.mega.fa */; };
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
-		A3984DA11935209E001C049F /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3984DA01935209E001C049F /* Dropbox.framework */; };
 		A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */; };
 		A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */; };
 		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
@@ -121,10 +106,6 @@
 		A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49BD1697936100DD9266 /* ParametersController.xib */; };
 		A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */; };
 		A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */; };
-		A3B9040223AC3BAA00F832C2 /* ebola.nanopore.fastq in Resources */ = {isa = PBXBuildFile; fileRef = A3B9040123AC3BA900F832C2 /* ebola.nanopore.fastq */; };
-		A3B9040423AC3BBD00F832C2 /* H3N2.miseq.300x.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3B9040323AC3BBD00F832C2 /* H3N2.miseq.300x.fq */; };
-		A3B9040623AC3BC300F832C2 /* H3N2.nanopore.300x.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3B9040523AC3BC300F832C2 /* H3N2.nanopore.300x.fq */; };
-		A3B9040823AC3BEB00F832C2 /* zika.nanopore.450x.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3B9040723AC3BEB00F832C2 /* zika.nanopore.450x.fq */; };
 		A3B92FE0196F017800EE1C06 /* AlignmentGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */; };
 		A3BE20D3182851ED004AF369 /* ComputingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3382FC316A111DB0042F59B /* ComputingController.m */; };
 		A3BE511B1D837EDB0054941B /* flu.H1N1.important.mpl in Resources */ = {isa = PBXBuildFile; fileRef = A3BE510C1D837EDB0054941B /* flu.H1N1.important.mpl */; };
@@ -150,16 +131,7 @@
 		A3C61C0E19956F2000AED305 /* AnalysisControllerIPadMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C61C0C19956F2000AED305 /* AnalysisControllerIPadMenu.m */; };
 		A3C94C5B19799930008202E6 /* ReadPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C94C5919799930008202E6 /* ReadPopoverController.m */; };
 		A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C94C5A19799930008202E6 /* ReadPopoverController.xib */; };
-		A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */; };
-		A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */; };
-		A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C5189E01480001EF64 /* lambdaphage.fa */; };
-		A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */; };
-		A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C8189E01480001EF64 /* phix174.fa */; };
-		A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3C9C9C9189E01480001EF64 /* phix174.reads.fa */; };
 		A3CBDC4C1D257CC800EF2DF5 /* ThreeLines.png in Resources */ = {isa = PBXBuildFile; fileRef = A3CBDC4B1D257CC800EF2DF5 /* ThreeLines.png */; };
-		A3CC05BF1D6574E6008B0D63 /* flu.H3N2.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3CC05BE1D6574E6008B0D63 /* flu.H3N2.fa */; };
-		A3D1AF091D5B79FD00A63808 /* ebola.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D1AF071D5B79FD00A63808 /* ebola.fa */; };
-		A3D1AF0A1D5B79FD00A63808 /* zika.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3D1AF081D5B79FD00A63808 /* zika.fa */; };
 		A3D350B51A7C989000F39C64 /* IconIdea2-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D350B41A7C989000F39C64 /* IconIdea2-Small.png */; };
 		A3D3F3AC17232FE70045A586 /* BWT_Matcher_Approxi.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */; };
 		A3D3F3B5172333660045A586 /* BWT_MatcherSC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3F3B4172333660045A586 /* BWT_MatcherSC.m */; };
@@ -168,37 +140,14 @@
 		A3DA1CBB1859609300C10C22 /* Read.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA1CBA1859609300C10C22 /* Read.m */; };
 		A3DB3771170214B9007F0B9E /* RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DB3770170214B9007F0B9E /* RGB.m */; };
 		A3DD60601D08FBD100BC95B9 /* CircleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */; };
-		A3DF1C6D1D695829003EE2F0 /* zika.nanopore.450x.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */; };
-		A3DF232222BB4FAD007DD2F3 /* phix174-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231422BB4FAD007DD2F3 /* phix174-reads-rl100-se0.01-mr0.005.fq */; };
-		A3DF232322BB4FAD007DD2F3 /* phix174-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231522BB4FAD007DD2F3 /* phix174-reads-rl1000-se0.1-mr0.005.fq */; };
-		A3DF232422BB4FAD007DD2F3 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231722BB4FAD007DD2F3 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq */; };
-		A3DF232522BB4FAD007DD2F3 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231822BB4FAD007DD2F3 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq */; };
-		A3DF232622BB4FAD007DD2F3 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231A22BB4FAD007DD2F3 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq */; };
-		A3DF232722BB4FAD007DD2F3 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231B22BB4FAD007DD2F3 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq */; };
-		A3DF232822BB4FAD007DD2F3 /* zika-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231D22BB4FAD007DD2F3 /* zika-reads-rl1000-se0.1-mr0.005.fq */; };
-		A3DF232922BB4FAD007DD2F3 /* zika-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF231E22BB4FAD007DD2F3 /* zika-reads-rl100-se0.01-mr0.005.fq */; };
-		A3DF232A22BB4FAD007DD2F3 /* ebola-reads-rl1000-se0.1-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF232022BB4FAD007DD2F3 /* ebola-reads-rl1000-se0.1-mr0.005.fq */; };
-		A3DF232B22BB4FAD007DD2F3 /* ebola-reads-rl100-se0.01-mr0.005.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3DF232122BB4FAD007DD2F3 /* ebola-reads-rl100-se0.01-mr0.005.fq */; };
 		A3E282D6197D687100E64DD7 /* FileInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D5197D687100E64DD7 /* FileInputView.m */; };
 		A3E282DA197D6B0000E64DD7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E282D9197D6B0000E64DD7 /* FileManager.m */; };
 		A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E282DC197D96FA00E64DD7 /* FileInputView.xib */; };
 		A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */; };
-		A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */; };
 		A3EE882018FC79CE00F9D682 /* CopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE881F18FC79CE00F9D682 /* CopyLabel.m */; };
 		A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882218FC7DC000F9D682 /* IconIdea2.png */; };
 		A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */; };
 		A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */; };
-		A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */ = {isa = PBXBuildFile; fileRef = A3F41AF01599E74D00DE95C9 /* reads.txt */; };
-		A3FB37961D65F9D200C369C8 /* flu_H1N1+H3N2+B_no_repeats.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37941D65F9D200C369C8 /* flu_H1N1+H3N2+B_no_repeats.fa */; };
-		A3FB37971D65F9D200C369C8 /* flu_H1N1+H3N2+B.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37951D65F9D200C369C8 /* flu_H1N1+H3N2+B.fa */; };
-		A3FB37991D65F9DB00C369C8 /* H3N2_all.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37981D65F9DB00C369C8 /* H3N2_all.fa */; };
-		A3FB379B1D65F9E800C369C8 /* H3N2_all_no_repeats.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB379A1D65F9E800C369C8 /* H3N2_all_no_repeats.fa */; };
-		A3FB379E1D65F9F300C369C8 /* FluB_no_repeats.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB379C1D65F9F300C369C8 /* FluB_no_repeats.fa */; };
-		A3FB379F1D65F9F300C369C8 /* FluB.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB379D1D65F9F300C369C8 /* FluB.fa */; };
-		A3FB37A21D65F9F900C369C8 /* H1N1_CA_04_2009_no_repeats.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37A01D65F9F900C369C8 /* H1N1_CA_04_2009_no_repeats.fa */; };
-		A3FB37A31D65F9F900C369C8 /* H1N1_CA_04_2009.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37A11D65F9F900C369C8 /* H1N1_CA_04_2009.fa */; };
-		A3FB37B61D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37B01D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq */; };
-		A3FB37B71D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3FB37B11D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq */; };
 		A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FF3AD016AB17F80095EACF /* GlobalVars.m */; };
 		A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FF3AD516AB26730095EACF /* AnalysisPopoverController.m */; };
 		A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FF3AD616AB26730095EACF /* AnalysisPopoverController.xib */; };
@@ -207,7 +156,6 @@
 /* Begin PBXFileReference section */
 		04F923AC50C28654D6F38231 /* Pods_iGenomics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iGenomics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC22D3987ACCA0523BA4003 /* Pods-iGenomics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGenomics.release.xcconfig"; path = "Target Support Files/Pods-iGenomics/Pods-iGenomics.release.xcconfig"; sourceTree = "<group>"; };
-		A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = incorrectsingle.fq; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
 		A310AF4A158A5F7200E892AA /* iGenomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGenomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,9 +188,7 @@
 		A3208B3B197EFDC000299A30 /* ImportantMutationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportantMutationInfo.m; sourceTree = "<group>"; };
 		A321162C177B3EBE002A1678 /* IconIdea1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconIdea1.png; sourceTree = "<group>"; };
 		A321162E177BA493002A1678 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		A32A91F923C580D20073C60E /* flu.H1N1.sim.fq */ = {isa = PBXFileReference; lastKnownFileType = text; name = flu.H1N1.sim.fq; path = validation_for_paper/full_validation/simulated_reads_files_fluH1N1/flu.H1N1.sim.fq; sourceTree = SOURCE_ROOT; };
 		A32A91FB23CD5BF90073C60E /* Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icon.xcassets; path = updated_icons2019/Icon.xcassets; sourceTree = SOURCE_ROOT; };
-		A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H2N2.fa; sourceTree = SOURCE_ROOT; };
 		A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mutation_output.sample.vcf; sourceTree = "<group>"; };
 		A3304A0318BC70B200D8B0AC /* FilePreviewPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePreviewPopoverController.h; sourceTree = "<group>"; };
 		A3304A0418BC70B200D8B0AC /* FilePreviewPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePreviewPopoverController.m; sourceTree = "<group>"; };
@@ -263,11 +209,8 @@
 		A3382FCB16A118A20042F59B /* AnalysisController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnalysisController.xib; path = iGenomics/Analysis/AnalysisController.xib; sourceTree = "<group>"; };
 		A33A7C141650397B00E39A6C /* ED_Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ED_Info.h; sourceTree = "<group>"; };
 		A33A7C151650397B00E39A6C /* ED_Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ED_Info.m; sourceTree = "<group>"; };
-		A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = InDelTestReads.txt; path = BWT/InDelTestReads.txt; sourceTree = "<group>"; };
-		A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InDelTestSequence.txt; sourceTree = "<group>"; };
 		A33A7C1F1650B59B00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWT_Matcher_InsertionDeletion_InsertionHolder.h; sourceTree = "<group>"; };
 		A33A7C201650B59C00E39A6C /* BWT_Matcher_InsertionDeletion_InsertionHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWT_Matcher_InsertionDeletion_InsertionHolder.m; sourceTree = "<group>"; };
-		A348EAFC1D63C788003F07BF /* zika.nanopore.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zika.nanopore.fq; path = "../../zika fast 5 data/zika.nanopore.fq"; sourceTree = "<group>"; };
 		A34E6BB316C4753C00753D7C /* CSHLabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CSHLabIcon.png; sourceTree = "<group>"; };
 		A34E8B9516B5EF0C002F3AB7 /* InsertionsPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertionsPopoverController.h; sourceTree = "<group>"; };
 		A34E8B9616B5EF0C002F3AB7 /* InsertionsPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertionsPopoverController.m; sourceTree = "<group>"; };
@@ -315,13 +258,6 @@
 		A3669B3416F689750034A1CC /* DNAColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNAColors.m; path = iGenomics/Analysis/Grid/DNAColors.m; sourceTree = "<group>"; };
 		A36C7C0C1964AFAC004CA5EF /* CoverageHistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CoverageHistogram.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A36C7C0D1964AFAC004CA5EF /* CoverageHistogram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CoverageHistogram.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ecoli.50k.fa; path = "ecoli-2.50k/Ecoli.50k.fa"; sourceTree = "<group>"; };
-		A36CCDF9184A8632004B9327 /* reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fa; path = "ecoli-2.50k/reads.fa"; sourceTree = "<group>"; };
-		A36CCDFA184A8632004B9327 /* reads.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads.fq; path = "ecoli-2.50k/reads.fq"; sourceTree = "<group>"; };
-		A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.clean.fq; sourceTree = "<group>"; };
-		A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.fa; sourceTree = "<group>"; };
-		A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.important.mpl; sourceTree = "<group>"; };
-		A36F23081AAF99A4005B5A91 /* flu.H1N1.resistant.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.resistant.fq; sourceTree = "<group>"; };
 		A36FD01C163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_InsertionDeletion.h; path = ../../../BWT_Matcher_InsertionDeletion.h; sourceTree = "<group>"; };
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
@@ -333,13 +269,11 @@
 		A375FC0019391FC600F69E07 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A375FC0219391FCB00F69E07 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		A38A30EB1D09C8B300AF9AA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A391AA681F4A766000A316C0 /* flu.mega.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.mega.fa; sourceTree = "<group>"; };
 		A39316DD16C08C5C0041BF4B /* SearchQueryResultsPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQueryResultsPopover.h; sourceTree = "<group>"; };
 		A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQueryResultsPopover.m; sourceTree = "<group>"; };
 		A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQueryResultsPopover.xib; sourceTree = "<group>"; };
 		A3971B0A158A635D001626F7 /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunks.m; sourceTree = "<group>"; };
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
-		A3984DA01935209E001C049F /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
 		A398B3CB1889ED2200EC43B8 /* AboutSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSectionViewController.h; sourceTree = "<group>"; };
 		A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSectionViewController.m; sourceTree = "<group>"; };
 		A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSectionViewController.xib; sourceTree = "<group>"; };
@@ -357,10 +291,6 @@
 		A3AC49BD1697936100DD9266 /* ParametersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ParametersController.xib; path = Parameters/ParametersController.xib; sourceTree = "<group>"; };
 		A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReferenceFiles.txt; sourceTree = "<group>"; };
 		A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultReadsFiles.txt; sourceTree = "<group>"; };
-		A3B9040123AC3BA900F832C2 /* ebola.nanopore.fastq */ = {isa = PBXFileReference; lastKnownFileType = text; name = ebola.nanopore.fastq; path = validation_for_paper/full_validation/actual_data/ebola/base_data/ebola.nanopore.fastq; sourceTree = SOURCE_ROOT; };
-		A3B9040323AC3BBD00F832C2 /* H3N2.miseq.300x.fq */ = {isa = PBXFileReference; lastKnownFileType = text; name = H3N2.miseq.300x.fq; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/H3N2.miseq.300x.fq; sourceTree = SOURCE_ROOT; };
-		A3B9040523AC3BC300F832C2 /* H3N2.nanopore.300x.fq */ = {isa = PBXFileReference; lastKnownFileType = text; name = H3N2.nanopore.300x.fq; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/H3N2.nanopore.300x.fq; sourceTree = SOURCE_ROOT; };
-		A3B9040723AC3BEB00F832C2 /* zika.nanopore.450x.fq */ = {isa = PBXFileReference; lastKnownFileType = text; name = zika.nanopore.450x.fq; path = validation_for_paper/full_validation/actual_data/zika/base_data/zika.nanopore.450x.fq; sourceTree = SOURCE_ROOT; };
 		A3B92FDE196F017800EE1C06 /* AlignmentGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentGridView.h; sourceTree = "<group>"; };
 		A3B92FDF196F017800EE1C06 /* AlignmentGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentGridView.m; sourceTree = "<group>"; };
 		A3BE510C1D837EDB0054941B /* flu.H1N1.important.mpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flu.H1N1.important.mpl; sourceTree = "<group>"; };
@@ -395,17 +325,7 @@
 		A3C94C5819799930008202E6 /* ReadPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadPopoverController.h; sourceTree = "<group>"; };
 		A3C94C5919799930008202E6 /* ReadPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadPopoverController.m; sourceTree = "<group>"; };
 		A3C94C5A19799930008202E6 /* ReadPopoverController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadPopoverController.xib; sourceTree = "<group>"; };
-		A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.fa; sourceTree = "<group>"; };
-		A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = anthrax.capsule.reads.fa; sourceTree = "<group>"; };
-		A3C9C9C5189E01480001EF64 /* lambdaphage.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lambdaphage.fa; sourceTree = "<group>"; };
-		A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lambdaphage.reads.fa; sourceTree = "<group>"; };
-		A3C9C9C8189E01480001EF64 /* phix174.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.fa; sourceTree = "<group>"; };
-		A3C9C9C9189E01480001EF64 /* phix174.reads.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phix174.reads.fa; sourceTree = "<group>"; };
 		A3CBDC4B1D257CC800EF2DF5 /* ThreeLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeLines.png; sourceTree = SOURCE_ROOT; };
-		A3CC05BE1D6574E6008B0D63 /* flu.H3N2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flu.H3N2.fa; path = validation_for_paper/full_validation/actual_data/flu.H3N2/base_data/flu.H3N2.fa; sourceTree = SOURCE_ROOT; };
-		A3CC05C61D657507008B0D63 /* ebola.nanopore.fastq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ebola.nanopore.fastq; path = validation_for_paper/full_validation/actual_data/ebola/base_data/ebola.nanopore.fastq; sourceTree = SOURCE_ROOT; };
-		A3D1AF071D5B79FD00A63808 /* ebola.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ebola.fa; path = validation_for_paper/full_validation/bacteria_simulations/ebola.fa; sourceTree = SOURCE_ROOT; };
-		A3D1AF081D5B79FD00A63808 /* zika.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zika.fa; path = validation_for_paper/full_validation/bacteria_simulations/zika.fa; sourceTree = SOURCE_ROOT; };
 		A3D350B41A7C989000F39C64 /* IconIdea2-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconIdea2-Small.png"; path = "iGenomics/IconIdea2-Small.png"; sourceTree = "<group>"; };
 		A3D3F3AA17232FE60045A586 /* BWT_Matcher_Approxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWT_Matcher_Approxi.h; path = "Approxi Matcher/BWT_Matcher_Approxi.h"; sourceTree = "<group>"; };
 		A3D3F3AB17232FE60045A586 /* BWT_Matcher_Approxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_Approxi.m; path = "Approxi Matcher/BWT_Matcher_Approxi.m"; sourceTree = "<group>"; };
@@ -420,40 +340,17 @@
 		A3DB3770170214B9007F0B9E /* RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RGB.m; path = iGenomics/RGB.m; sourceTree = "<group>"; };
 		A3DD605E1D08FBD100BC95B9 /* CircleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressBar.h; sourceTree = "<group>"; };
 		A3DD605F1D08FBD100BC95B9 /* CircleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressBar.m; sourceTree = "<group>"; };
-		A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zika.nanopore.450x.fq; sourceTree = "<group>"; };
-		A3DF231422BB4FAD007DD2F3 /* phix174-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phix174-reads-rl100-se0.01-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231522BB4FAD007DD2F3 /* phix174-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phix174-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231722BB4FAD007DD2F3 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "flu.H1N1-reads-rl100-se0.01-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231822BB4FAD007DD2F3 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "flu.H1N1-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231A22BB4FAD007DD2F3 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "flu.H3N2-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231B22BB4FAD007DD2F3 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "flu.H3N2-reads-rl100-se0.01-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231D22BB4FAD007DD2F3 /* zika-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "zika-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF231E22BB4FAD007DD2F3 /* zika-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "zika-reads-rl100-se0.01-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF232022BB4FAD007DD2F3 /* ebola-reads-rl1000-se0.1-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebola-reads-rl1000-se0.1-mr0.005.fq"; sourceTree = "<group>"; };
-		A3DF232122BB4FAD007DD2F3 /* ebola-reads-rl100-se0.01-mr0.005.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebola-reads-rl100-se0.01-mr0.005.fq"; sourceTree = "<group>"; };
 		A3E282D4197D687100E64DD7 /* FileInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInputView.h; sourceTree = "<group>"; };
 		A3E282D5197D687100E64DD7 /* FileInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInputView.m; sourceTree = "<group>"; };
 		A3E282D8197D6B0000E64DD7 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		A3E282D9197D6B0000E64DD7 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		A3E282DC197D96FA00E64DD7 /* FileInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileInputView.xib; sourceTree = "<group>"; };
 		A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NamesOfDefaultImptMutsFiles.txt; sourceTree = "<group>"; };
-		A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FluImptMuts.txt; sourceTree = "<group>"; };
 		A3EE881E18FC79CE00F9D682 /* CopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyLabel.h; sourceTree = "<group>"; };
 		A3EE881F18FC79CE00F9D682 /* CopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyLabel.m; sourceTree = "<group>"; };
 		A3EE882218FC7DC000F9D682 /* IconIdea2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconIdea2.png; path = iGenomics/IconIdea2.png; sourceTree = "<group>"; };
 		A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iGenomicsLogo.png; path = iGenomics/iGenomicsLogo.png; sourceTree = "<group>"; };
 		A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconIdea2-ExtraLarge.png"; path = "iGenomics/IconIdea2-ExtraLarge.png"; sourceTree = "<group>"; };
-		A3F41AF01599E74D00DE95C9 /* reads.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reads.txt; sourceTree = "<group>"; };
-		A3FB37941D65F9D200C369C8 /* flu_H1N1+H3N2+B_no_repeats.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu_H1N1+H3N2+B_no_repeats.fa"; path = "validation_for_paper/full_validation/mega_flu_genome/references/mega/flu_H1N1+H3N2+B_no_repeats.fa"; sourceTree = SOURCE_ROOT; };
-		A3FB37951D65F9D200C369C8 /* flu_H1N1+H3N2+B.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "flu_H1N1+H3N2+B.fa"; path = "validation_for_paper/full_validation/mega_flu_genome/references/mega/flu_H1N1+H3N2+B.fa"; sourceTree = SOURCE_ROOT; };
-		A3FB37981D65F9DB00C369C8 /* H3N2_all.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = H3N2_all.fa; path = validation_for_paper/full_validation/mega_flu_genome/references/H3N2/H3N2_all.fa; sourceTree = SOURCE_ROOT; };
-		A3FB379A1D65F9E800C369C8 /* H3N2_all_no_repeats.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = H3N2_all_no_repeats.fa; path = validation_for_paper/full_validation/mega_flu_genome/references/H3N2/H3N2_all_no_repeats.fa; sourceTree = SOURCE_ROOT; };
-		A3FB379C1D65F9F300C369C8 /* FluB_no_repeats.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FluB_no_repeats.fa; path = validation_for_paper/full_validation/mega_flu_genome/references/FluB/FluB_no_repeats.fa; sourceTree = SOURCE_ROOT; };
-		A3FB379D1D65F9F300C369C8 /* FluB.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FluB.fa; path = validation_for_paper/full_validation/mega_flu_genome/references/FluB/FluB.fa; sourceTree = SOURCE_ROOT; };
-		A3FB37A01D65F9F900C369C8 /* H1N1_CA_04_2009_no_repeats.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = H1N1_CA_04_2009_no_repeats.fa; path = validation_for_paper/full_validation/mega_flu_genome/references/H1N1/H1N1_CA_04_2009_no_repeats.fa; sourceTree = SOURCE_ROOT; };
-		A3FB37A11D65F9F900C369C8 /* H1N1_CA_04_2009.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = H1N1_CA_04_2009.fa; path = validation_for_paper/full_validation/mega_flu_genome/references/H1N1/H1N1_CA_04_2009.fa; sourceTree = SOURCE_ROOT; };
-		A3FB37B01D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq"; path = "validation_for_paper/full_validation/mega_flu_genome/tests/H3N2/simulated_reads_files_fluH3N2.formega/fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq"; sourceTree = SOURCE_ROOT; };
-		A3FB37B11D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq"; path = "validation_for_paper/full_validation/mega_flu_genome/tests/H3N2/simulated_reads_files_fluH3N2.formega/fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq"; sourceTree = SOURCE_ROOT; };
 		A3FF3ACF16AB17F80095EACF /* GlobalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVars.h; sourceTree = "<group>"; };
 		A3FF3AD016AB17F80095EACF /* GlobalVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalVars.m; sourceTree = "<group>"; };
 		A3FF3AD416AB26730095EACF /* AnalysisPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisPopoverController.h; path = iGenomics/Analysis/Popover/AnalysisPopoverController.h; sourceTree = SOURCE_ROOT; };
@@ -476,7 +373,6 @@
 				A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */,
 				A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */,
 				A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */,
-				A3984DA11935209E001C049F /* Dropbox.framework in Frameworks */,
 				A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */,
 				A133E306394417FFB4BD9260 /* Pods_iGenomics.framework in Frameworks */,
 			);
@@ -540,7 +436,6 @@
 				A375FBFE19391FBD00F69E07 /* QuartzCore.framework */,
 				A375FBFC19391FB900F69E07 /* Security.framework */,
 				A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */,
-				A3984DA01935209E001C049F /* Dropbox.framework */,
 				A321162E177BA493002A1678 /* MessageUI.framework */,
 				A310AF4E158A5F7200E892AA /* UIKit.framework */,
 				A310AF50158A5F7200E892AA /* Foundation.framework */,
@@ -571,7 +466,6 @@
 		A310AF55158A5F7200E892AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A3DF231222BB4FAD007DD2F3 /* simulated_bacteria_reads */,
 				A32E078C1D4FB9EA00F2A081 /* mutation_output.sample.vcf */,
 				A35160641AA3FD680004FD32 /* App Icons */,
 				A3C1702919707D8D008C7A4C /* OBSlider */,
@@ -584,7 +478,6 @@
 				A3704FB21D493E9000788D88 /* reads_fin.fq */,
 				A34E6BB316C4753C00753D7C /* CSHLabIcon.png */,
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
-				A33A7C1C1650462300E39A6C /* InDel Test */,
 				A3A3D9BE167E6EFD00CE98DC /* Chunk Class */,
 				A3A3D9C0167E6F0E00CE98DC /* Other files */,
 				A3EE882118FC79D200F9D682 /* Copy Label */,
@@ -728,16 +621,6 @@
 			name = EditDistance;
 			sourceTree = "<group>";
 		};
-		A33A7C1C1650462300E39A6C /* InDel Test */ = {
-			isa = PBXGroup;
-			children = (
-				A3F41AF01599E74D00DE95C9 /* reads.txt */,
-				A33A7C1D1650463800E39A6C /* InDelTestSequence.txt */,
-				A33A7C1A1650461C00E39A6C /* InDelTestReads.txt */,
-			);
-			name = "InDel Test";
-			sourceTree = "<group>";
-		};
 		A33A7C221650B5A000E39A6C /* Insertion Holder */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,37 +753,6 @@
 			name = "Coverage Histogram";
 			sourceTree = "<group>";
 		};
-		A36F23041AAF99A4005B5A91 /* flu.H1N1 */ = {
-			isa = PBXGroup;
-			children = (
-				A36F23051AAF99A4005B5A91 /* flu.H1N1.clean.fq */,
-				A36F23061AAF99A4005B5A91 /* flu.H1N1.fa */,
-				A36F23071AAF99A4005B5A91 /* flu.H1N1.important.mpl */,
-				A36F23081AAF99A4005B5A91 /* flu.H1N1.resistant.fq */,
-			);
-			path = flu.H1N1;
-			sourceTree = SOURCE_ROOT;
-		};
-		A3890A6F196B3F02002B6048 /* flu */ = {
-			isa = PBXGroup;
-			children = (
-				A36F23041AAF99A4005B5A91 /* flu.H1N1 */,
-				A32C2B3E19C0F4CE008D66EE /* flu.H2N2.fa */,
-				A3CC05BE1D6574E6008B0D63 /* flu.H3N2.fa */,
-				A391AA681F4A766000A316C0 /* flu.mega.fa */,
-				A3FB37941D65F9D200C369C8 /* flu_H1N1+H3N2+B_no_repeats.fa */,
-				A3FB37951D65F9D200C369C8 /* flu_H1N1+H3N2+B.fa */,
-				A3FB37981D65F9DB00C369C8 /* H3N2_all.fa */,
-				A3FB379A1D65F9E800C369C8 /* H3N2_all_no_repeats.fa */,
-				A3FB379C1D65F9F300C369C8 /* FluB_no_repeats.fa */,
-				A3FB379D1D65F9F300C369C8 /* FluB.fa */,
-				A3FB37A01D65F9F900C369C8 /* H1N1_CA_04_2009_no_repeats.fa */,
-				A3FB37A11D65F9F900C369C8 /* H1N1_CA_04_2009.fa */,
-			);
-			name = flu;
-			path = flu.H1N1s;
-			sourceTree = "<group>";
-		};
 		A39316E216C08C5F0041BF4B /* Search Query Popover */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,49 +831,12 @@
 		A3AC49C316979B1B00DD9266 /* REAL FILES */ = {
 			isa = PBXGroup;
 			children = (
-				A3B9040723AC3BEB00F832C2 /* zika.nanopore.450x.fq */,
-				A3B9040523AC3BC300F832C2 /* H3N2.nanopore.300x.fq */,
-				A3B9040323AC3BBD00F832C2 /* H3N2.miseq.300x.fq */,
-				A3B9040123AC3BA900F832C2 /* ebola.nanopore.fastq */,
 				A3BE510A1D837EDB0054941B /* default_data */,
-				A3DF1C6C1D695829003EE2F0 /* zika.nanopore.450x.fq */,
-				A348EAFC1D63C788003F07BF /* zika.nanopore.fq */,
 				A3AC49C116979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt */,
 				A3AC49C416979B3200DD9266 /* NamesOfDefaultReadsFiles.txt */,
 				A3E282DE197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt */,
-				A3AC49C616979B4600DD9266 /* Default Ref Files */,
-				A3AC49C716979B5500DD9266 /* Default Read Files */,
-				A3E282E0197DBD5D00E64DD7 /* Default Impt Muts Files */,
-				A3C9C9BE189E01480001EF64 /* anthrax.capsule */,
-				A3890A6F196B3F02002B6048 /* flu */,
-				A3C9C9C4189E01480001EF64 /* lambdaphage */,
-				A3C9C9C7189E01480001EF64 /* phix174 */,
 			);
 			name = "REAL FILES";
-			sourceTree = "<group>";
-		};
-		A3AC49C616979B4600DD9266 /* Default Ref Files */ = {
-			isa = PBXGroup;
-			children = (
-				A3D1AF071D5B79FD00A63808 /* ebola.fa */,
-				A3D1AF081D5B79FD00A63808 /* zika.fa */,
-				A36CCDF8184A8632004B9327 /* Ecoli.50k.fa */,
-			);
-			name = "Default Ref Files";
-			sourceTree = "<group>";
-		};
-		A3AC49C716979B5500DD9266 /* Default Read Files */ = {
-			isa = PBXGroup;
-			children = (
-				A32A91F923C580D20073C60E /* flu.H1N1.sim.fq */,
-				A3FB37B01D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq */,
-				A3FB37B11D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq */,
-				A3CC05C61D657507008B0D63 /* ebola.nanopore.fastq */,
-				A300513C1CF5F8190049F7A2 /* incorrectsingle.fq */,
-				A36CCDF9184A8632004B9327 /* reads.fa */,
-				A36CCDFA184A8632004B9327 /* reads.fq */,
-			);
-			name = "Default Read Files";
 			sourceTree = "<group>";
 		};
 		A3B92FE1196F017E00EE1C06 /* Alignment Grid View */ = {
@@ -1186,33 +1001,6 @@
 			name = "Read Popover";
 			sourceTree = "<group>";
 		};
-		A3C9C9BE189E01480001EF64 /* anthrax.capsule */ = {
-			isa = PBXGroup;
-			children = (
-				A3C9C9BF189E01480001EF64 /* anthrax.capsule.fa */,
-				A3C9C9C0189E01480001EF64 /* anthrax.capsule.reads.fa */,
-			);
-			path = anthrax.capsule;
-			sourceTree = SOURCE_ROOT;
-		};
-		A3C9C9C4189E01480001EF64 /* lambdaphage */ = {
-			isa = PBXGroup;
-			children = (
-				A3C9C9C5189E01480001EF64 /* lambdaphage.fa */,
-				A3C9C9C6189E01480001EF64 /* lambdaphage.reads.fa */,
-			);
-			path = lambdaphage;
-			sourceTree = SOURCE_ROOT;
-		};
-		A3C9C9C7189E01480001EF64 /* phix174 */ = {
-			isa = PBXGroup;
-			children = (
-				A3C9C9C8189E01480001EF64 /* phix174.fa */,
-				A3C9C9C9189E01480001EF64 /* phix174.reads.fa */,
-			);
-			path = phix174;
-			sourceTree = SOURCE_ROOT;
-		};
 		A3D3F3AD17232FEB0045A586 /* Approxi Matcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -1260,64 +1048,6 @@
 			path = CircleProgressBar;
 			sourceTree = "<group>";
 		};
-		A3DF231222BB4FAD007DD2F3 /* simulated_bacteria_reads */ = {
-			isa = PBXGroup;
-			children = (
-				A3DF231322BB4FAD007DD2F3 /* simulated_reads_files_phix174 */,
-				A3DF231622BB4FAD007DD2F3 /* simulated_reads_files_fluH1N1 */,
-				A3DF231922BB4FAD007DD2F3 /* simulated_reads_files_fluH3N2 */,
-				A3DF231C22BB4FAD007DD2F3 /* simulated_reads_files_zika */,
-				A3DF231F22BB4FAD007DD2F3 /* simulated_reads_files_ebola */,
-			);
-			name = simulated_bacteria_reads;
-			path = validation_for_paper/full_validation/updated_runtime_simulations_2019/bacteria_simulations/simulated_bacteria_reads;
-			sourceTree = SOURCE_ROOT;
-		};
-		A3DF231322BB4FAD007DD2F3 /* simulated_reads_files_phix174 */ = {
-			isa = PBXGroup;
-			children = (
-				A3DF231422BB4FAD007DD2F3 /* phix174-reads-rl100-se0.01-mr0.005.fq */,
-				A3DF231522BB4FAD007DD2F3 /* phix174-reads-rl1000-se0.1-mr0.005.fq */,
-			);
-			path = simulated_reads_files_phix174;
-			sourceTree = "<group>";
-		};
-		A3DF231622BB4FAD007DD2F3 /* simulated_reads_files_fluH1N1 */ = {
-			isa = PBXGroup;
-			children = (
-				A3DF231722BB4FAD007DD2F3 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq */,
-				A3DF231822BB4FAD007DD2F3 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq */,
-			);
-			path = simulated_reads_files_fluH1N1;
-			sourceTree = "<group>";
-		};
-		A3DF231922BB4FAD007DD2F3 /* simulated_reads_files_fluH3N2 */ = {
-			isa = PBXGroup;
-			children = (
-				A3DF231A22BB4FAD007DD2F3 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq */,
-				A3DF231B22BB4FAD007DD2F3 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq */,
-			);
-			path = simulated_reads_files_fluH3N2;
-			sourceTree = "<group>";
-		};
-		A3DF231C22BB4FAD007DD2F3 /* simulated_reads_files_zika */ = {
-			isa = PBXGroup;
-			children = (
-				A3DF231D22BB4FAD007DD2F3 /* zika-reads-rl1000-se0.1-mr0.005.fq */,
-				A3DF231E22BB4FAD007DD2F3 /* zika-reads-rl100-se0.01-mr0.005.fq */,
-			);
-			path = simulated_reads_files_zika;
-			sourceTree = "<group>";
-		};
-		A3DF231F22BB4FAD007DD2F3 /* simulated_reads_files_ebola */ = {
-			isa = PBXGroup;
-			children = (
-				A3DF232022BB4FAD007DD2F3 /* ebola-reads-rl1000-se0.1-mr0.005.fq */,
-				A3DF232122BB4FAD007DD2F3 /* ebola-reads-rl100-se0.01-mr0.005.fq */,
-			);
-			path = simulated_reads_files_ebola;
-			sourceTree = "<group>";
-		};
 		A3E282D7197D687500E64DD7 /* File Input View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1344,14 +1074,6 @@
 				A364B89F1B714618007A9E69 /* APFile.m */,
 			);
 			name = "File Manager";
-			sourceTree = "<group>";
-		};
-		A3E282E0197DBD5D00E64DD7 /* Default Impt Muts Files */ = {
-			isa = PBXGroup;
-			children = (
-				A3E282E1197DBD7600E64DD7 /* FluImptMuts.txt */,
-			);
-			name = "Default Impt Muts Files";
 			sourceTree = "<group>";
 		};
 		A3EE882118FC79D200F9D682 /* Copy Label */ = {
@@ -1444,68 +1166,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B9040623AC3BC300F832C2 /* H3N2.nanopore.300x.fq in Resources */,
-				A3DF232922BB4FAD007DD2F3 /* zika-reads-rl100-se0.01-mr0.005.fq in Resources */,
-				A36F230C1AAF99A4005B5A91 /* flu.H1N1.resistant.fq in Resources */,
-				A3FB37A21D65F9F900C369C8 /* H1N1_CA_04_2009_no_repeats.fa in Resources */,
 				A35160861AA3FD7B0004FD32 /* Icon-72.png in Resources */,
 				A3CBDC4C1D257CC800EF2DF5 /* ThreeLines.png in Resources */,
 				A3D350B51A7C989000F39C64 /* IconIdea2-Small.png in Resources */,
 				A351607C1AA3FD7B0004FD32 /* Icon-40@2x.png in Resources */,
-				A3DF232B22BB4FAD007DD2F3 /* ebola-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A310AF59158A5F7200E892AA /* InfoPlist.strings in Resources */,
 				A398B3D21889EFA700EC43B8 /* About.txt in Resources */,
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
-				A36CCDFD184A8632004B9327 /* reads.fq in Resources */,
-				A3C9C9CE189E01480001EF64 /* lambdaphage.fa in Resources */,
 				A32A91FC23CD5BF90073C60E /* Icon.xcassets in Resources */,
-				A3B9040223AC3BAA00F832C2 /* ebola.nanopore.fastq in Resources */,
 				A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */,
-				A3FB37B61D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.0.fq in Resources */,
-				A3F41AF11599E74D00DE95C9 /* reads.txt in Resources */,
 				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
-				A3C9C9CF189E01480001EF64 /* lambdaphage.reads.fa in Resources */,
 				A3BE511B1D837EDB0054941B /* flu.H1N1.important.mpl in Resources */,
 				A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */,
-				A3B9040423AC3BBD00F832C2 /* H3N2.miseq.300x.fq in Resources */,
 				A3BE511C1D837EDB0054941B /* ebola.simulated.fq in Resources */,
 				A337B19B18E78A3500919612 /* ComputingController~iphone.xib in Resources */,
 				A337B1A318E7D2A200919612 /* settingsIcon.png in Resources */,
-				A3C9C9D0189E01480001EF64 /* phix174.fa in Resources */,
-				A36F23091AAF99A4005B5A91 /* flu.H1N1.clean.fq in Resources */,
 				A35160851AA3FD7B0004FD32 /* Icon-60.png in Resources */,
 				A35160831AA3FD7B0004FD32 /* Icon-Small@2x.png in Resources */,
 				A3A815DC1C3ED1CA0076E583 /* SuccessBox.png in Resources */,
-				A33A7C1B1650461C00E39A6C /* InDelTestReads.txt in Resources */,
-				A3FB37961D65F9D200C369C8 /* flu_H1N1+H3N2+B_no_repeats.fa in Resources */,
-				A33A7C1E1650463800E39A6C /* InDelTestSequence.txt in Resources */,
-				A3FB37971D65F9D200C369C8 /* flu_H1N1+H3N2+B.fa in Resources */,
 				A3BE511D1D837EDB0054941B /* flu.H1N1.simulated.clean.fq in Resources */,
-				A3C9C9D1189E01480001EF64 /* phix174.reads.fa in Resources */,
 				A351607F1AA3FD7B0004FD32 /* Icon-60@3x.png in Resources */,
-				A3DF232822BB4FAD007DD2F3 /* zika-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A337B19D18E78BB100919612 /* AnalysisController~iphone.xib in Resources */,
 				A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */,
 				A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */,
-				A3DF232422BB4FAD007DD2F3 /* flu.H1N1-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A351608C1AA3FD7B0004FD32 /* iTunesArtwork in Resources */,
-				A32C2B3F19C0F4CE008D66EE /* flu.H2N2.fa in Resources */,
-				A3DF232722BB4FAD007DD2F3 /* flu.H3N2-reads-rl100-se0.01-mr0.005.fq in Resources */,
-				A3B9040823AC3BEB00F832C2 /* zika.nanopore.450x.fq in Resources */,
 				A364B89C1B713F97007A9E69 /* DBChooser.bundle in Resources */,
 				A3BE511F1D837EDB0054941B /* flu.H3N2.simulated.fq in Resources */,
 				A35160841AA3FD7B0004FD32 /* Icon-Small@3x.png in Resources */,
-				A300513D1CF5F8190049F7A2 /* incorrectsingle.fq in Resources */,
 				A337B19918E7866700919612 /* ParametersController~iphone.xib in Resources */,
 				A351608B1AA3FD7B0004FD32 /* Icon@2x.png in Resources */,
 				A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */,
 				A3AC49B9169791EF00DD9266 /* FilePickerController.xib in Resources */,
-				A36F230B1AAF99A4005B5A91 /* flu.H1N1.important.mpl in Resources */,
-				A3DF232622BB4FAD007DD2F3 /* flu.H3N2-reads-rl1000-se0.1-mr0.005.fq in Resources */,
-				A3DF232322BB4FAD007DD2F3 /* phix174-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A3BE51211D837EDB0054941B /* zika.simulated.fq in Resources */,
-				A3CC05BF1D6574E6008B0D63 /* flu.H3N2.fa in Resources */,
 				A3AC49BF1697936100DD9266 /* ParametersController.xib in Resources */,
 				A3BE51221D837EDB0054941B /* ebola.fa in Resources */,
 				A3AC49C216979B0E00DD9266 /* NamesOfDefaultReferenceFiles.txt in Resources */,
@@ -1516,10 +1209,7 @@
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A35160811AA3FD7B0004FD32 /* Icon-76@2x.png in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
-				A36F230A1AAF99A4005B5A91 /* flu.H1N1.fa in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
-				A3FB37991D65F9DB00C369C8 /* H3N2_all.fa in Resources */,
-				A3FB37B71D65FA1900C369C8 /* fluH3N2.formega-reads-rl100-se0.01-mr0.001.fq in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3BE51201D837EDB0054941B /* phix174.simulated.fq in Resources */,
@@ -1528,7 +1218,6 @@
 				A34E8B9916B5EF0C002F3AB7 /* InsertionsPopoverController.xib in Resources */,
 				A3531EA816BEFF3800768A31 /* MutationsInfoPopover.xib in Resources */,
 				A3BE51241D837EDB0054941B /* flu.H3N2.fa in Resources */,
-				A3DF232522BB4FAD007DD2F3 /* flu.H1N1-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A35B05401D0A35EE00374489 /* DNA_Strand_Icon.png in Resources */,
 				A35160821AA3FD7B0004FD32 /* Icon-Small.png in Resources */,
 				A3BE511E1D837EDB0054941B /* flu.H1N1.simulated.resistant.fq in Resources */,
@@ -1539,38 +1228,21 @@
 				A351607D1AA3FD7B0004FD32 /* Icon-40@3x.png in Resources */,
 				A3BE51251D837EDB0054941B /* flu_H1N1+H3N2+B.fa in Resources */,
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
-				A3D1AF0A1D5B79FD00A63808 /* zika.fa in Resources */,
-				A391AA691F4A766000A316C0 /* flu.mega.fa in Resources */,
-				A3FB379B1D65F9E800C369C8 /* H3N2_all_no_repeats.fa in Resources */,
-				A3E282E2197DBD7600E64DD7 /* FluImptMuts.txt in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
-				A3FB379E1D65F9F300C369C8 /* FluB_no_repeats.fa in Resources */,
 				A35160881AA3FD7B0004FD32 /* Icon-Small-50.png in Resources */,
-				A36CCDFC184A8632004B9327 /* reads.fa in Resources */,
-				A3D1AF091D5B79FD00A63808 /* ebola.fa in Resources */,
-				A3FB37A31D65F9F900C369C8 /* H1N1_CA_04_2009.fa in Resources */,
 				A351608D1AA3FD7B0004FD32 /* iTunesArtwork@2x in Resources */,
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A351607E1AA3FD7B0004FD32 /* Icon-60@2x.png in Resources */,
-				A3DF232222BB4FAD007DD2F3 /* phix174-reads-rl100-se0.01-mr0.005.fq in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
-				A3DF1C6D1D695829003EE2F0 /* zika.nanopore.450x.fq in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
-				A3C9C9CB189E01480001EF64 /* anthrax.capsule.reads.fa in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
 				A3BE51261D837EDB0054941B /* phix174.fa in Resources */,
 				A316743519994BB9009C8EC8 /* BackBtn.png in Resources */,
 				A38A30EC1D09C8B300AF9AA6 /* LaunchScreen.storyboard in Resources */,
-				A3DF232A22BB4FAD007DD2F3 /* ebola-reads-rl1000-se0.1-mr0.005.fq in Resources */,
 				A3D9B75019AD2EA500D9AA35 /* IPhonePopoverHandler.xib in Resources */,
-				A32A91FA23C580D20073C60E /* flu.H1N1.sim.fq in Resources */,
 				A321162D177B3EBE002A1678 /* IconIdea1.png in Resources */,
-				A36CCDFB184A8632004B9327 /* Ecoli.50k.fa in Resources */,
-				A3C9C9CA189E01480001EF64 /* anthrax.capsule.fa in Resources */,
 				A32E078D1D4FB9EA00F2A081 /* mutation_output.sample.vcf in Resources */,
-				A3FB379F1D65F9F300C369C8 /* FluB.fa in Resources */,
-				A348EAFD1D63C788003F07BF /* zika.nanopore.fq in Resources */,
 				A35160901AA400000004FD32 /* Icon-57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

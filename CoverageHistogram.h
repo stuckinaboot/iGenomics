@@ -45,7 +45,7 @@
 #define kCoverageHistogramXAxisDistFromScreenBottom 50
 #define kCoverageHistogramYAxisDistFromScreenLeft 60
 #define kCoverageHistogramXAxisTitleDistFromScreenEdge 20
-#define kCoverageHistogramYAxisTitleDistFromScreenEdge 15
+#define kCoverageHistogramYAxisTitleDistFromScreenEdge 19
 
 #define kCoverageHistogramNormalCurveLinesPerBox 4
 

@@ -1,11 +1,6 @@
 ebola.simulated.fq
 flu.H1N1.simulated.clean.fq
 flu.H1N1.simulated.resistant.fq
-phix174.simulated.fq
 flu.H3N2.simulated.fq
+phix174.simulated.fq
 zika.simulated.fq
-zika.nanopore.450x.fq
-H3N2.nanopore.300x.fq
-H3N2.miseq.300x.fq
-ebola.nanopore.fastq
-flu.H1N1.sim.fq

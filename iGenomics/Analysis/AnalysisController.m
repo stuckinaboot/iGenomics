@@ -53,8 +53,9 @@
     mutationSupportSlider.maximumValue = kMutationSupportMax;
     mutationSupportSlider.minimumValue = kMutationSupportMin;
 
-    if ([GlobalVars isIpad])
+    if ([GlobalVars isIpad]) {
         hamburgerMenuController = [[HamburgerMenuController alloc] initWithCentralController:self andSlideOutController:analysisControllerIPadMenu];
+    }
 }
 
 - (void)viewDidLayoutSubviews {

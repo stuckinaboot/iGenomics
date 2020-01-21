@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Dropbox/Dropbox.h>
+//#import <Dropbox/Dropbox.h>
+//#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 #import "APFile.h"
 #import "GlobalVars.h"
 
@@ -36,7 +37,7 @@ typedef enum {
 }
 @property (nonatomic) NSMutableArray *defaultFileNames;
 @property (nonatomic) NSMutableArray *dropboxFileNames;
-@property (nonatomic, readonly) DBFilesystem *dbFileSys;
+//@property (nonatomic, readonly) DBFilesystem *dbFileSys;
 
 + (void)initializeFileSystems;
 + (void)intilializeDefaultFilesDict;//Only needs to be called once total (static Dict) --Initializes the dict with the file names, no contents are loaded so that memory can be saved and contents will only be loaded individually and when they need to be
@@ -53,10 +54,10 @@ typedef enum {
 + (APFile*)localFileForFileWithOnlyName:(APFile*)file inDirectory:(NSString*)directory;
 
 - (void)setUpWithDefaultFileNamesPath:(NSString*)path ofType:(NSString*)type;
-- (void)setUpForDropbox;
+//- (void)setUpForDropbox;
 - (void)setMaxFileSize:(int)maxFS;
 
-- (NSString*)fileContentsForPath:(DBPath*)path;
+//- (NSString*)fileContentsForPath:(DBPath*)path;
 - (NSString*)fileContentsForNameWithExt:(NSString*)name;
 
 + (NSArray*)getFileNameAndExtForFullName:(NSString*)fileName;//returns array with two NSStrings, fileName and fileExt

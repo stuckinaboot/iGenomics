@@ -268,6 +268,10 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    // Return if no button was selected
+    if (buttonIndex == -1) {
+        return;
+    }
     if (![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kAlertBtnTitleCancel] && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportMutExportShareMuts] && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportASShareData]  && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportASExportMutationsHaploid] && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:kExportASExportMutationsDiploid] && ![GlobalVars internetAvailable]) {
         // Only return if no internet available and button other than cancel, share mutations, share alignments, export haploid, export diploid is hit
         return;

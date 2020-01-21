@@ -10,7 +10,7 @@
 
 @implementation FileManager
 
-@synthesize defaultFileNames, dropboxFileNames, dbFileSys;
+@synthesize defaultFileNames, dropboxFileNames;//, dbFileSys;
 
 + (void)initializeFileSystems {
     [FileManager initializeLocalFilesDirectories];
@@ -108,35 +108,35 @@
     defaultFileNames = [[NSMutableArray alloc] initWithArray:[[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:path ofType:kTxt] encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:kLineBreak]];
 }
 
-- (void)setUpForDropbox {
-    if ([DBAccountManager sharedManager].linkedAccount && ![DBFilesystem sharedFilesystem]) {
-        dbFileSys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
-        [DBFilesystem setSharedFilesystem:dbFileSys];
-    }
-    else if ([DBAccountManager sharedManager].linkedAccount && [DBFilesystem sharedFilesystem]) {
-        dbFileSys = [DBFilesystem sharedFilesystem];
-    }
-    
-    dropboxFileNames = [[NSMutableArray alloc] initWithArray:[dbFileSys listFolder:[DBPath root] error:nil]];
-}
+//- (void)setUpForDropbox {
+//    if ([DBAccountManager sharedManager].linkedAccount && ![DBFilesystem sharedFilesystem]) {
+//        dbFileSys = [[DBFilesystem alloc] initWithAccount:[DBAccountManager sharedManager].linkedAccount];
+//        [DBFilesystem setSharedFilesystem:dbFileSys];
+//    }
+//    else if ([DBAccountManager sharedManager].linkedAccount && [DBFilesystem sharedFilesystem]) {
+//        dbFileSys = [DBFilesystem sharedFilesystem];
+//    }
+//
+//    dropboxFileNames = [[NSMutableArray alloc] initWithArray:[dbFileSys listFolder:[DBPath root] error:nil]];
+//}
 
 - (void)setMaxFileSize:(int)maxFS {
     maxFileSize = maxFS;
 }
 
-- (NSString*)fileContentsForPath:(DBPath*)path {
-    if ([path.name isEqualToString:lastOpenedFileName])
-        return lastOpenedFileContents;
-    DBFile *file = [dbFileSys openFile:path error:nil];
-    if (file.info.size > maxFileSize) {
-        [GlobalVars displayiGenomicsAlertWithMsg:[NSString stringWithFormat:kDropboxFileTooLargeAlertMsg]];
-        return @"";
-    }
-    lastOpenedFileName = path.name;
-    lastOpenedFileContents = [file readString:nil];
-    [file close];
-    return lastOpenedFileContents;
-}
+//- (NSString*)fileContentsForPath:(DBPath*)path {
+//    if ([path.name isEqualToString:lastOpenedFileName])
+//        return lastOpenedFileContents;
+//    DBFile *file = [dbFileSys openFile:path error:nil];
+//    if (file.info.size > maxFileSize) {
+//        [GlobalVars displayiGenomicsAlertWithMsg:[NSString stringWithFormat:kDropboxFileTooLargeAlertMsg]];
+//        return @"";
+//    }
+//    lastOpenedFileName = path.name;
+//    lastOpenedFileContents = [file readString:nil];
+//    [file close];
+//    return lastOpenedFileContents;
+//}
 
 - (NSString*)fileContentsForNameWithExt:(NSString*)name {
     NSArray *arr = [FileManager getFileNameAndExtForFullName:name];
@@ -154,29 +154,29 @@
     }
     return [NSArray arrayWithObjects:[fileName substringToIndex:index], [fileName substringFromIndex:index+1],nil];
 }
-
-+ (NSArray*)fileArrayByKeepingOnlyFilesOfTypes:(NSMutableArray *)fileTypes fromDropboxFileArray:(NSMutableArray *)array {
-    array = [NSMutableArray arrayWithArray:array];//Duplicates it so that changes are not saved in the original array
-    if ([array count] >= 1) {
-        for (int i = 0; i < [array count]; i++) {
-            DBFileInfo *info = [array objectAtIndex:i];
-            if (!info.isFolder) {
-                BOOL passesTest = NO;
-                for (int j = 0; j < [fileTypes count]; j++) {
-                    if ([[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:[fileTypes objectAtIndex:j]] == NSOrderedSame) {
-                        passesTest = YES;
-                        break;
-                    }
-                }
-                if (!passesTest) {
-                    [array removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-    }
-    return array;
-}
+//
+//+ (NSArray*)fileArrayByKeepingOnlyFilesOfTypes:(NSMutableArray *)fileTypes fromDropboxFileArray:(NSMutableArray *)array {
+//    array = [NSMutableArray arrayWithArray:array];//Duplicates it so that changes are not saved in the original array
+//    if ([array count] >= 1) {
+//        for (int i = 0; i < [array count]; i++) {
+//            DBFileInfo *info = [array objectAtIndex:i];
+//            if (!info.isFolder) {
+//                BOOL passesTest = NO;
+//                for (int j = 0; j < [fileTypes count]; j++) {
+//                    if ([[GlobalVars extFromFileName:[info.path name]] caseInsensitiveCompare:[fileTypes objectAtIndex:j]] == NSOrderedSame) {
+//                        passesTest = YES;
+//                        break;
+//                    }
+//                }
+//                if (!passesTest) {
+//                    [array removeObjectAtIndex:i];
+//                    i--;
+//                }
+//            }
+//        }
+//    }
+//    return array;
+//}
 
 + (NSData*)dataDownloadedFromURL:(NSURL*)url {
     return [NSData dataWithContentsOfURL:url];
