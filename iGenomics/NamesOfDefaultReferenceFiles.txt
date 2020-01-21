@@ -1,6 +1,6 @@
 ebola.fa
-flu.H3N2.fa
-phix174.fa
 flu.H1N1.fa
+flu.H3N2.fa
 flu_H1N1+H3N2+B.fa
+phix174.fa
 zika.fa
