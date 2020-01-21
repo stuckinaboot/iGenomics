@@ -94,7 +94,6 @@
 		A39316E016C08C5C0041BF4B /* SearchQueryResultsPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A39316DE16C08C5C0041BF4B /* SearchQueryResultsPopover.m */; };
 		A39316E116C08C5C0041BF4B /* SearchQueryResultsPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */; };
 		A3971B0C158A635D001626F7 /* Chunks.m in Sources */ = {isa = PBXBuildFile; fileRef = A3971B0A158A635D001626F7 /* Chunks.m */; };
-		A3984DA11935209E001C049F /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3984DA01935209E001C049F /* Dropbox.framework */; };
 		A398B3CE1889ED2200EC43B8 /* AboutSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */; };
 		A398B3CF1889ED2200EC43B8 /* AboutSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */; };
 		A398B3D21889EFA700EC43B8 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = A398B3D11889EFA700EC43B8 /* About.txt */; };
@@ -275,7 +274,6 @@
 		A39316DF16C08C5C0041BF4B /* SearchQueryResultsPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQueryResultsPopover.xib; sourceTree = "<group>"; };
 		A3971B0A158A635D001626F7 /* Chunks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunks.m; sourceTree = "<group>"; };
 		A3971B0B158A635D001626F7 /* Chunks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunks.h; sourceTree = "<group>"; };
-		A3984DA01935209E001C049F /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
 		A398B3CB1889ED2200EC43B8 /* AboutSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSectionViewController.h; sourceTree = "<group>"; };
 		A398B3CC1889ED2200EC43B8 /* AboutSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSectionViewController.m; sourceTree = "<group>"; };
 		A398B3CD1889ED2200EC43B8 /* AboutSectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSectionViewController.xib; sourceTree = "<group>"; };
@@ -375,7 +373,6 @@
 				A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */,
 				A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */,
 				A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */,
-				A3984DA11935209E001C049F /* Dropbox.framework in Frameworks */,
 				A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */,
 				A133E306394417FFB4BD9260 /* Pods_iGenomics.framework in Frameworks */,
 			);
@@ -439,7 +436,6 @@
 				A375FBFE19391FBD00F69E07 /* QuartzCore.framework */,
 				A375FBFC19391FB900F69E07 /* Security.framework */,
 				A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */,
-				A3984DA01935209E001C049F /* Dropbox.framework */,
 				A321162E177BA493002A1678 /* MessageUI.framework */,
 				A310AF4E158A5F7200E892AA /* UIKit.framework */,
 				A310AF50158A5F7200E892AA /* Foundation.framework */,
