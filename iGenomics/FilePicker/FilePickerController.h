@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <dropbox/dropbox.h>
+//#import <dropbox/dropbox.h>
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 #import "APTimer.h"
 #import "GlobalVars.h"
 #import "FilePreviewPopoverController.h"
