@@ -14,6 +14,8 @@
 
 @implementation AnalysisController
 
+int32_t isExiting;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -101,7 +103,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
+    isExiting = 0;
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
     
@@ -484,6 +486,18 @@
                                          forHeteroAllowance:slider.value insertionsArr:insertionsArr];
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            // TODO for some reason this async function
+            // gets called when the user clicks "Yes" in
+            // the alert to exit the analysis view, and
+            // so the isExiting == 1 check is a hacky
+            // way to fix the issue that memory has been
+            // freed but is still trying to be used
+            // (such as in setUpGridViewForPixelOffset).
+            // Figure out the root cause of this issue
+            if (isExiting == 1) {
+                return;
+            }
+
             [mutsPopover setUpWithMutationsArr:mutPosArray andCumulativeGenomeLenArr:cumulativeSeparateGenomeLens andGenomeFileNameArr:separateGenomeNames];
             
             //    [gridView clearAllPoints];
@@ -776,6 +790,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([alertView isEqual:confirmDoneAlert]) {
         if (buttonIndex == kConfirmDoneAlertGoBtnIndex) {
+            OSAtomicIncrement32(&isExiting);
             [self freeUsedMemory];
             [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         }
