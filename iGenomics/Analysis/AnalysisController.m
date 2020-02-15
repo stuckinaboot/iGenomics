@@ -15,6 +15,7 @@
 @implementation AnalysisController
 
 int32_t isExiting;
+BOOL mutsArrIsUpdating;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,6 +66,7 @@ int32_t isExiting;
         [self setStuffUp];
         
         firstAppeared = TRUE;
+        mutsArrIsUpdating = FALSE;
         [self resetDisplay];
         
         [self resetGridViewForType:alignmentGridView];
@@ -103,7 +105,6 @@ int32_t isExiting;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    isExiting = 0;
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     [gridView setUpGridViewForPixelOffset:gridView.currOffset];
     
@@ -286,6 +287,7 @@ int32_t isExiting;
     [self setUpGridLbls];
     [pxlOffsetSlider setMaximumValue:((gridView.totalCols*(gridView.kGridLineWidthCol+gridView.boxWidth))/gridView.numOfBoxesPerPixel)-gridView.frame.size.width];
     
+    isExiting = 0;
     [mutationSupportSlider setValue:0.25f];
     [self mutationSupportSliderValueIsChanging:mutationSupportSlider];
     [self mutationSupportSliderChanged:mutationSupportSlider];
@@ -435,8 +437,12 @@ int32_t isExiting;
 }
 
 - (IBAction)showMutTBView:(id)sender {
+    if (mutsArrIsUpdating) {
+        [GlobalVars displayiGenomicsAlertWithMsg:kMutationsPopoverMutationLoadingAlertMsg];
+        return;
+    }
     if ([mutPosArray count] == 0) {
-        [GlobalVars displayiGenomicsAlertWithMsg:kMutationsPopoverNoMutationsAlertMsg];
+        [GlobalVars displayiGenomicsAlertWithMsg:kMutationsPopoverMutationLoadingAlertMsg];
         return;
     }
     if ([GlobalVars isIpad]) {
@@ -466,6 +472,7 @@ int32_t isExiting;
 }
 
 - (IBAction)mutationSupportSliderChanged:(id)sender {
+    mutsArrIsUpdating = TRUE;
     UISlider *slider = (UISlider*)sender;
     
     [showAllMutsBtn setTitle:kShowAllMutsBtnTxtUpdating forState:UIControlStateNormal];
@@ -506,6 +513,8 @@ int32_t isExiting;
             [totalNumOfMutsLbl setText:[NSString stringWithFormat:@"%@%i",kTotalNumOfMutsLblStart,[mutPosArray count]]];
             imptMutationsArr = [BWT_MutationFilter compareFoundMutationsArr:mutPosArray toImptMutationsString:imptMutsFileContents andCumulativeLenArr:cumulativeSeparateGenomeLens andSegmentNameArr:separateGenomeNames];
             [analysisControllerIPhoneToolbar.imptMutsDispView setUpWithMutationsArray:imptMutationsArr];
+            
+            mutsArrIsUpdating = FALSE;
             if (alignmentTimer) {
                 [alignmentTimer stop];
                 totalAlignmentRuntime = [alignmentTimer getTotalRecordedTime];
