@@ -1,6 +1,9 @@
+coronavirus.bat-SL-CoVZXC21.fa
+coronavirus.RaTG13.fa
 ebola.fa
 flu.H1N1.fa
 flu.H3N2.fa
 flu_H1N1+H3N2+B.fa
 phix174.fa
+wuhan.fa
 zika.fa

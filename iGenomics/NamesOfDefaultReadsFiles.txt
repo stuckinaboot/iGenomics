@@ -3,4 +3,5 @@ flu.H1N1.simulated.clean.fq
 flu.H1N1.simulated.resistant.fq
 flu.H3N2.simulated.fq
 phix174.simulated.fq
+wuhan.HKU-SZ-002a.fq
 zika.simulated.fq
