@@ -148,6 +148,10 @@
 		A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882218FC7DC000F9D682 /* IconIdea2.png */; };
 		A3EE882718FC80F400F9D682 /* iGenomicsLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */; };
 		A3EE882918FC825700F9D682 /* IconIdea2-ExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */; };
+		A3F50BB023FD197C00505CE6 /* wuhan.HKU-SZ-002a.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3F50BAF23FD197C00505CE6 /* wuhan.HKU-SZ-002a.fq */; };
+		A3F50BB423FD198D00505CE6 /* coronavirus.bat-SL-CoVZXC21.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3F50BB123FD198C00505CE6 /* coronavirus.bat-SL-CoVZXC21.fa */; };
+		A3F50BB523FD198D00505CE6 /* wuhan.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3F50BB223FD198D00505CE6 /* wuhan.fa */; };
+		A3F50BB623FD198D00505CE6 /* coronavirus.RaTG13.fa in Resources */ = {isa = PBXBuildFile; fileRef = A3F50BB323FD198D00505CE6 /* coronavirus.RaTG13.fa */; };
 		A3FF3AD116AB17F80095EACF /* GlobalVars.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FF3AD016AB17F80095EACF /* GlobalVars.m */; };
 		A3FF3AD716AB26730095EACF /* AnalysisPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FF3AD516AB26730095EACF /* AnalysisPopoverController.m */; };
 		A3FF3AD816AB26730095EACF /* AnalysisPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3FF3AD616AB26730095EACF /* AnalysisPopoverController.xib */; };
@@ -351,6 +355,10 @@
 		A3EE882218FC7DC000F9D682 /* IconIdea2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconIdea2.png; path = iGenomics/IconIdea2.png; sourceTree = "<group>"; };
 		A3EE882618FC80F400F9D682 /* iGenomicsLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iGenomicsLogo.png; path = iGenomics/iGenomicsLogo.png; sourceTree = "<group>"; };
 		A3EE882818FC825700F9D682 /* IconIdea2-ExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconIdea2-ExtraLarge.png"; path = "iGenomics/IconIdea2-ExtraLarge.png"; sourceTree = "<group>"; };
+		A3F50BAF23FD197C00505CE6 /* wuhan.HKU-SZ-002a.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wuhan.HKU-SZ-002a.fq"; sourceTree = "<group>"; };
+		A3F50BB123FD198C00505CE6 /* coronavirus.bat-SL-CoVZXC21.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "coronavirus.bat-SL-CoVZXC21.fa"; sourceTree = "<group>"; };
+		A3F50BB223FD198D00505CE6 /* wuhan.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wuhan.fa; sourceTree = "<group>"; };
+		A3F50BB323FD198D00505CE6 /* coronavirus.RaTG13.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coronavirus.RaTG13.fa; sourceTree = "<group>"; };
 		A3FF3ACF16AB17F80095EACF /* GlobalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVars.h; sourceTree = "<group>"; };
 		A3FF3AD016AB17F80095EACF /* GlobalVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalVars.m; sourceTree = "<group>"; };
 		A3FF3AD416AB26730095EACF /* AnalysisPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisPopoverController.h; path = iGenomics/Analysis/Popover/AnalysisPopoverController.h; sourceTree = SOURCE_ROOT; };
@@ -879,6 +887,7 @@
 		A3BE510D1D837EDB0054941B /* reads */ = {
 			isa = PBXGroup;
 			children = (
+				A3F50BAF23FD197C00505CE6 /* wuhan.HKU-SZ-002a.fq */,
 				A3BE510E1D837EDB0054941B /* ebola.simulated.fq */,
 				A3BE510F1D837EDB0054941B /* flu.H1N1.simulated.clean.fq */,
 				A3BE51101D837EDB0054941B /* flu.H1N1.simulated.resistant.fq */,
@@ -892,6 +901,9 @@
 		A3BE51141D837EDB0054941B /* refs */ = {
 			isa = PBXGroup;
 			children = (
+				A3F50BB123FD198C00505CE6 /* coronavirus.bat-SL-CoVZXC21.fa */,
+				A3F50BB323FD198D00505CE6 /* coronavirus.RaTG13.fa */,
+				A3F50BB223FD198D00505CE6 /* wuhan.fa */,
 				A3BE51151D837EDB0054941B /* ebola.fa */,
 				A3BE51161D837EDB0054941B /* flu.H1N1.fa */,
 				A3BE51171D837EDB0054941B /* flu.H3N2.fa */,
@@ -1206,10 +1218,12 @@
 				A3BE51271D837EDB0054941B /* zika.fa in Resources */,
 				A35160911AA400000004FD32 /* Icon-57@2x.png in Resources */,
 				A35160801AA3FD7B0004FD32 /* Icon-76.png in Resources */,
+				A3F50BB523FD198D00505CE6 /* wuhan.fa in Resources */,
 				A3E282DD197D96FA00E64DD7 /* FileInputView.xib in Resources */,
 				A35160811AA3FD7B0004FD32 /* Icon-76@2x.png in Resources */,
 				A3E282DF197DBD3B00E64DD7 /* NamesOfDefaultImptMutsFiles.txt in Resources */,
 				A3C94C5C19799930008202E6 /* ReadPopoverController.xib in Resources */,
+				A3F50BB423FD198D00505CE6 /* coronavirus.bat-SL-CoVZXC21.fa in Resources */,
 				A3AC49C516979B3200DD9266 /* NamesOfDefaultReadsFiles.txt in Resources */,
 				A3382FC616A111DB0042F59B /* ComputingController.xib in Resources */,
 				A3BE51201D837EDB0054941B /* phix174.simulated.fq in Resources */,
@@ -1226,6 +1240,7 @@
 				A351607B1AA3FD7B0004FD32 /* Icon-40.png in Resources */,
 				A3BE51231D837EDB0054941B /* flu.H1N1.fa in Resources */,
 				A351607D1AA3FD7B0004FD32 /* Icon-40@3x.png in Resources */,
+				A3F50BB023FD197C00505CE6 /* wuhan.HKU-SZ-002a.fq in Resources */,
 				A3BE51251D837EDB0054941B /* flu_H1N1+H3N2+B.fa in Resources */,
 				A351608A1AA3FD7B0004FD32 /* Icon.png in Resources */,
 				A35160891AA3FD7B0004FD32 /* Icon-Small-50@2x.png in Resources */,
@@ -1234,6 +1249,7 @@
 				A34E6BB416C4753C00753D7C /* CSHLabIcon.png in Resources */,
 				A351607E1AA3FD7B0004FD32 /* Icon-60@2x.png in Resources */,
 				A31C9ECE177544DB008A7E6E /* Default-568h@2x.png in Resources */,
+				A3F50BB623FD198D00505CE6 /* coronavirus.RaTG13.fa in Resources */,
 				A3208B35197EED3700299A30 /* ImportantMutationsDisplayView.xib in Resources */,
 				A3304A0718BC70B200D8B0AC /* FilePreviewPopoverController.xib in Resources */,
 				A337B18E18E76EEB00919612 /* FilePickerController~iphone.xib in Resources */,
