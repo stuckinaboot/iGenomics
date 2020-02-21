@@ -27,7 +27,7 @@
 
 #define kFileInputOptionsSheetOptionSheetTitle @"Select File Source:"
 #define kFileInputOptionsSheetOptionTitleDropbox @"Dropbox"
-#define kFileInputOptionsSheetOptionTitleLocal @"Local Files"
+#define kFileInputOptionsSheetOptionTitleLocal @"Imported Files"
 #define kFileInputOptionsSheetOptionTitleDefault @"Default Files"
 #define kFileInputOptionsSheetOptionTitleCancel @"Cancel"
 

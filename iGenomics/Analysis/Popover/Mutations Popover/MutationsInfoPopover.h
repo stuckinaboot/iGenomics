@@ -17,6 +17,8 @@
 
 #define kMutationsPopoverNoMutationsAlertMsg @"No mutations found"
 
+#define kMutationsPopoverMutationLoadingAlertMsg @"Please wait for mutation identification to finish"
+
 #define kMutationsInfoPopoverTitleInIPhonePopoverHandler @"Mutations List"
 
 @protocol MutationsInfoPopoverDelegate <NSObject>
