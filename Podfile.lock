@@ -1,0 +1,16 @@
+PODS:
+  - ObjectiveDropboxOfficial (4.0.0)
+
+DEPENDENCIES:
+  - ObjectiveDropboxOfficial
+
+SPEC REPOS:
+  trunk:
+    - ObjectiveDropboxOfficial
+
+SPEC CHECKSUMS:
+  ObjectiveDropboxOfficial: 4482e13f7494132a9b6c700755189b1b70d9629e
+
+PODFILE CHECKSUM: e25b76283e1cca4ade76503d1e4157b3febd16e8
+
+COCOAPODS: 1.9.3
