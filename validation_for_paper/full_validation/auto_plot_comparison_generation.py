@@ -174,6 +174,8 @@ for dataPoint in dataPoints:
     data["runtimes"][dataPoint["seq_error_rate"]] = dataPoint["runtime"]
 # 4) Generate plot
 
+SHOW_LEGEND = False
+
 # a) Recall Plot
 cm = plt.get_cmap("rainbow")
 NUM_COLORS = len(plotDataPoints)
@@ -200,7 +202,8 @@ for plotDataPoint in plotDataPoints:
     stdPrint("Recalls: " + json.dumps(recalls) + "\n")
     stdPrint("label: " + label + "\n\n")
     plt.plot(readLens, recalls, label=label, linewidth=LINE_WIDTH)
-plt.legend(loc=0, prop={"size": 6})
+if SHOW_LEGEND:
+    plt.legend(loc=0, prop={"size": 6})
 plt.savefig(os.path.join(outputDir, "auto_plot_output.recall.pdf"))
 plt.gcf().clear()
 
@@ -227,7 +230,8 @@ for plotDataPoint in plotDataPoints:
     stdPrint("Precisions: " + json.dumps(precisions) + "\n")
     stdPrint("label: " + label + "\n\n")
     plt.plot(readLens, precisions, label=label, linewidth=LINE_WIDTH)
-plt.legend(loc=0, prop={"size": 6})
+if SHOW_LEGEND:
+    plt.legend(loc=0, prop={"size": 6})
 plt.savefig(os.path.join(outputDir, "auto_plot_output.precision.pdf"))
 plt.gcf().clear()
 
@@ -254,7 +258,8 @@ for plotDataPoint in plotDataPoints:
     stdPrint("F-Scores: " + json.dumps(fScores) + "\n")
     stdPrint("label: " + label + "\n\n")
     plt.plot(readLens, fScores, label=label, linewidth=LINE_WIDTH)
-plt.legend(loc=0, prop={"size": 6})
+if SHOW_LEGEND:
+    plt.legend(loc=0, prop={"size": 6})
 plt.savefig(os.path.join(outputDir, "auto_plot_output.fscore.vreadlen.pdf"))
 plt.gcf().clear()
 
@@ -278,7 +283,8 @@ for plotDataPoint in plotDataPointsVSeqErrorRate:
     stdPrint("F-Scores: " + json.dumps(fScores) + "\n")
     stdPrint("label: " + label + "\n\n")
     plt.plot(seqErrorRates, fScores, label=label, linewidth=LINE_WIDTH)
-plt.legend(loc=0, prop={"size": 6})
+if SHOW_LEGEND:
+    plt.legend(loc=0, prop={"size": 6})
 plt.savefig(os.path.join(outputDir, "auto_plot_output.fscore.vseqerrorrate.pdf"))
 plt.gcf().clear()
 
@@ -308,7 +314,8 @@ for plotDataPoint in plotDataPoints:
     stdPrint("runtimes bwa: " + json.dumps(runtimesBWA) + "\n")
     stdPrint("label: " + label + "\n\n")
     plt.plot(runtimesBWA, runtimesIGenomics, label=label, linewidth=LINE_WIDTH)
-plt.legend(loc=0, prop={"size": 6})
+if SHOW_LEGEND:
+    plt.legend(loc=0, prop={"size": 6})
 plt.savefig(os.path.join(outputDir, "auto_plot_output.runtimes.pdf"))
 plt.gcf().clear()
 
