@@ -174,7 +174,7 @@ for dataPoint in dataPoints:
     data["runtimes"][dataPoint["seq_error_rate"]] = dataPoint["runtime"]
 # 4) Generate plot
 
-SHOW_LEGEND = False
+SHOW_LEGEND = True
 
 # a) Recall Plot
 cm = plt.get_cmap("rainbow")
