@@ -1,5 +1,6 @@
 from sys import argv
 import matplotlib.pyplot as plt
+import matplotlib
 import os
 import json
 
@@ -81,23 +82,42 @@ print(plot_data_points["bwa"])
 READ_LEN_STR = "read_len"
 BP_STR = "bp"
 
-# a) Plot bwa runtime, note: the same keys are present in both iG and BWA
-for key in sorted(plot_data_points["iG"]):
-    plotDataPtIG = plot_data_points["iG"][key]
-    sortedPlotPtIG = sorted(
-        plotDataPtIG, key=lambda x: int(x["bplen"][len(READ_LEN_STR) : -len(BP_STR)])
-    )
-    runtimesIG = [singlePt["runtime"] for singlePt in sortedPlotPtIG]
-    (seq_err_rate, mut_rate) = key.split(",")
-    label = seq_err_rate + " | " + mut_rate
+# a) Plot iG runtime, note: the same keys are present in both iG and BWA
+def plot_for_index(idx, label_prepend, marker):
+    for key in sorted(plot_data_points["iG"]):
+        plotDataPtIG = plot_data_points["iG"][key]
+        sortedPlotPtIG = sorted(
+            plotDataPtIG,
+            key=lambda x: int(x["bplen"][len(READ_LEN_STR) : -len(BP_STR)]),
+        )
+        runtimesIG = [singlePt["runtime"] for singlePt in sortedPlotPtIG]
+        (seq_err_rate, mut_rate) = key.split(",")
+        label = seq_err_rate + " | " + mut_rate
 
-    plotDataPtBWA = plot_data_points["bwa"][key]
-    sortedPlotPtBWA = sorted(
-        plotDataPtBWA, key=lambda x: int(x["bplen"][len(READ_LEN_STR) : -len(BP_STR)])
-    )
-    runtimesBWA = [singlePt["runtime"] for singlePt in sortedPlotPtBWA]
-    plt.scatter(runtimesBWA, runtimesIG)
-    plt.plot(runtimesBWA, runtimesIG, label=label, linewidth=LINE_WIDTH)
+        plotDataPtBWA = plot_data_points["bwa"][key]
+        sortedPlotPtBWA = sorted(
+            plotDataPtBWA,
+            key=lambda x: int(x["bplen"][len(READ_LEN_STR) : -len(BP_STR)]),
+        )
+        runtimesBWA = [singlePt["runtime"] for singlePt in sortedPlotPtBWA]
+
+        plt.scatter(
+            [runtimesBWA[idx]],
+            [runtimesIG[idx]],
+            marker=marker,
+            label=label_prepend + label,
+        )
+
+
+# Plot all 250bp runtimes with diamonds
+plot_for_index(0, "250bp | ", "D")
+
+# Plot all 1000bp runtimes with circles
+plot_for_index(1, "1000bp | ", "o")
+
+# Outdated line plot here for reference
+# plt.plot(runtimesBWA, runtimesIG, label=label, linewidth=LINE_WIDTH)
+
 
 plt.legend(loc=0, prop={"size": 8})
 plt.savefig(PLOT_PATH)
