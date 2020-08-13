@@ -1,0 +1,7 @@
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 13568 sequences (1356800 bp)...
+[M::mem_process_seqs] Processed 13568 reads in 0.857 CPU sec, 0.861 real sec
+[main] Version: 0.7.12-r1039
+[main] CMD: ../full_validation_utilities/bwa mem -x ont2d flu.H1N1.fa reads/reads-rl100-se0.01-mr0.1.fq
+[main] Real time: 0.889 sec; CPU: 0.888 sec
+../full_validation_utilities/bwa mem -x ont2d flu.H1N1.fa  > out.sam  0.87s user 0.02s system 99% cpu 0.897 total

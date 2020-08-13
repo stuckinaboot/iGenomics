@@ -177,7 +177,7 @@ for dataPoint in dataPoints:
     data["f-scores"][dataPoint["seq_error_rate"]] = fScore
 # 4) Generate plot
 
-SHOW_LEGEND = True
+SHOW_LEGEND = False
 
 # a) Recall Plot
 cm = plt.get_cmap("rainbow")

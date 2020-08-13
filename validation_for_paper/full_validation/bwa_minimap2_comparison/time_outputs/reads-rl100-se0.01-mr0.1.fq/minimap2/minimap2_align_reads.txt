@@ -1,0 +1,9 @@
+[M::main::0.008*1.51] loaded/built the index for 8 target sequence(s)
+[M::mm_mapopt_update::0.008*1.48] mid_occ = 3
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 8
+[M::mm_idx_stat::0.009*1.46] distinct minimizers: 2492 (99.96% are singletons); average occurrences: 1.000; average spacing: 5.442; total length: 13568
+[M::worker_pipeline::0.427*0.49] mapped 13568 sequences
+[M::main] Version: 2.17-r974-dirty
+[M::main] CMD: ../full_validation_utilities/minimap2/minimap2 -a flu.H1N1.fa.mmi reads/reads-rl100-se0.01-mr0.1.fq
+[M::main] Real time: 0.429 sec; CPU: 0.209 sec; Peak RSS: 0.007 GB
+../full_validation_utilities/minimap2/minimap2 -a flu.H1N1.fa.mmi   0.17s user 0.04s system 47% cpu 0.438 total

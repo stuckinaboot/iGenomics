@@ -1,0 +1,10 @@
+[bwa_index] Pack FASTA... 0.00 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.00 seconds elapse.
+[bwa_index] Update BWT... 0.00 sec
+[bwa_index] Pack forward-only FASTA... 0.00 sec
+[bwa_index] Construct SA from BWT and Occ... 0.00 sec
+[main] Version: 0.7.12-r1039
+[main] CMD: ../full_validation_utilities/bwa index flu.H1N1.fa
+[main] Real time: 0.010 sec; CPU: 0.011 sec
+../full_validation_utilities/bwa index flu.H1N1.fa  0.01s user 0.01s system 69% cpu 0.016 total
