@@ -95,16 +95,25 @@ plot_data_points["iG"] = get_runtimes(IG_FILES_PATH, "iG")
 # Draw a single vertical line for each reference length
 
 # a) Plot bwa runtime
-COLORS_FOR_VERTICAL_LINES = ["red", "orange", "green", "blue", "indigo"]
-LABELS_FOR_VERTICAL_LINES = [
-    "PhiX174 (5386bp)",
-    "Zika (10807bp)",
-    "H3N2 (13382bp)",
-    "H1N1 (13568bp)",
-    "Ebola (18957bp)",
-]
+# COLORS_FOR_VERTICAL_LINES = ["red", "orange", "green", "blue", "indigo"]
+COLORS_FOR_VERTICAL_LINES = {
+    "phix174": "red",
+    "zika": "orange",
+    "H3N2": "green",
+    "H1N1": "blue",
+    "ebola": "indigo",
+}
+LABELS_FOR_VERTICAL_LINES = {
+    "phix174": "PhiX174 (5386bp)",
+    "zika": "Zika (10807bp)",
+    "H3N2": "H3N2 (13382bp)",
+    "H1N1": "H1N1 (13568bp)",
+    "ebola": "Ebola (18957bp)",
+}
+
 ref_lines_already_showing = False
 sorted_genome_lengths = sorted(list(genome_lengths.values()))
+sorted_genomes = sorted([(k, v) for k, v in genome_lengths.items()], key=lambda x: x[1])
 for analysis_tool in plot_data_points:
     for readLen in plot_data_points[analysis_tool]:
         plotDataPt = plot_data_points[analysis_tool][readLen]
@@ -113,12 +122,12 @@ for analysis_tool in plot_data_points:
         )
         # refLens = [singlePt['reference length'] for singlePt in sortedPlotDataPt]
         if ref_lines_already_showing == False:
-            for i, ref in enumerate(genome_lengths):
+            for ref, genome_len in sorted_genomes:
                 plt.axvline(
                     genome_lengths[ref],
-                    color=COLORS_FOR_VERTICAL_LINES[i],
+                    color=COLORS_FOR_VERTICAL_LINES[ref],
                     linestyle="dashed",
-                    label=LABELS_FOR_VERTICAL_LINES[i],
+                    label=LABELS_FOR_VERTICAL_LINES[ref],
                 )
             ref_lines_already_showing = True
         runtimes = [singlePt["runtime"] for singlePt in sortedPlotDataPt]
@@ -128,6 +137,7 @@ for analysis_tool in plot_data_points:
         # print(sorted_genome_lengths)
         # print('----------------------------')
         plt.plot(sorted_genome_lengths, runtimes, label=label, linewidth=LINE_WIDTH)
+
 
 plt.legend(loc=0, prop={"size": 8})
 plt.savefig(PLOT_PATH)
@@ -154,4 +164,3 @@ plt.gcf().clear()
 # plt.legend(loc=0,prop={'size':6})
 # plt.savefig(PLOT_PATH)
 # plt.gcf().clear()
-
