@@ -1,2 +1,5 @@
 Pods
 Pods/*
+
+.DS_STORE
+.vscode
