@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A133E306394417FFB4BD9260 /* Pods_iGenomics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F923AC50C28654D6F38231 /* Pods_iGenomics.framework */; };
+		3A2BBBA17386A80101F03922 /* libPods-iGenomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00873EA032EEF29921A03E1B /* libPods-iGenomics.a */; };
 		A3007EE01961AF2A0094FFF9 /* FileExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3007EDF1961AF2A0094FFF9 /* FileExporter.m */; };
 		A310AF4F158A5F7200E892AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF4E158A5F7200E892AA /* UIKit.framework */; };
 		A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A310AF50158A5F7200E892AA /* Foundation.framework */; };
@@ -154,7 +154,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04F923AC50C28654D6F38231 /* Pods_iGenomics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iGenomics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00873EA032EEF29921A03E1B /* libPods-iGenomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iGenomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC22D3987ACCA0523BA4003 /* Pods-iGenomics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGenomics.release.xcconfig"; path = "Target Support Files/Pods-iGenomics/Pods-iGenomics.release.xcconfig"; sourceTree = "<group>"; };
 		A3007EDE1961AF2A0094FFF9 /* FileExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileExporter.h; sourceTree = "<group>"; };
 		A3007EDF1961AF2A0094FFF9 /* FileExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileExporter.m; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 				A310AF51158A5F7200E892AA /* Foundation.framework in Frameworks */,
 				A310AF53158A5F7200E892AA /* CoreGraphics.framework in Frameworks */,
 				A321162F177BA493002A1678 /* MessageUI.framework in Frameworks */,
-				A133E306394417FFB4BD9260 /* Pods_iGenomics.framework in Frameworks */,
+				3A2BBBA17386A80101F03922 /* libPods-iGenomics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +440,7 @@
 				A310AF4E158A5F7200E892AA /* UIKit.framework */,
 				A310AF50158A5F7200E892AA /* Foundation.framework */,
 				A310AF52158A5F7200E892AA /* CoreGraphics.framework */,
-				04F923AC50C28654D6F38231 /* Pods_iGenomics.framework */,
+				00873EA032EEF29921A03E1B /* libPods-iGenomics.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1119,7 +1119,6 @@
 				A310AF46158A5F7200E892AA /* Sources */,
 				A310AF48158A5F7200E892AA /* Resources */,
 				A310AF47158A5F7200E892AA /* Frameworks */,
-				A7C786A09EEE8979875361B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1250,24 +1249,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A7C786A09EEE8979875361B8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iGenomics/Pods-iGenomics-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectiveDropboxOfficial.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iGenomics/Pods-iGenomics-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F2B93E853734F0BA5BD08C78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

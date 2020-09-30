@@ -1,0 +1,9 @@
+[M::mm_idx_gen::0.002*2.80] collected minimizers
+[M::mm_idx_gen::0.004*2.80] sorted minimizers
+[M::main::0.008*1.96] loaded/built the index for 8 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 8
+[M::mm_idx_stat::0.008*1.92] distinct minimizers: 2492 (99.96% are singletons); average occurrences: 1.000; average spacing: 5.442; total length: 13568
+[M::main] Version: 2.17-r974-dirty
+[M::main] CMD: ../full_validation_utilities/minimap2/minimap2 -x map-ont -d flu.H1N1.fa.mmi flu.H1N1.fa
+[M::main] Real time: 0.011 sec; CPU: 0.018 sec; Peak RSS: 0.002 GB
+../full_validation_utilities/minimap2/minimap2 -x map-ont -d flu.H1N1.fa.mmi   0.01s user 0.00s system 100% cpu 0.018 total
