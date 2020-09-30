@@ -84,7 +84,6 @@
 		A36FD01E163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m in Sources */ = {isa = PBXBuildFile; fileRef = A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */; };
 		A3700F4917E3ADE7007C2CC7 /* QuickGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3700F4817E3A955007C2CC7 /* QuickGridView.m */; };
 		A3700F4A17E3ADF6007C2CC7 /* MutationsInfoPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3531EA516BEFF3800768A31 /* MutationsInfoPopover.m */; };
-		A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */ = {isa = PBXBuildFile; fileRef = A3704FB21D493E9000788D88 /* reads_fin.fq */; };
 		A375FBFB19391FB600F69E07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */; };
 		A375FBFD19391FB900F69E07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFC19391FB900F69E07 /* Security.framework */; };
 		A375FBFF19391FBD00F69E07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A375FBFE19391FBD00F69E07 /* QuartzCore.framework */; };
@@ -262,7 +261,6 @@
 		A36FD01D163F3DAD000C0D08 /* BWT_Matcher_InsertionDeletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWT_Matcher_InsertionDeletion.m; path = ../../../BWT_Matcher_InsertionDeletion.m; sourceTree = "<group>"; };
 		A3700F4717E3A955007C2CC7 /* QuickGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuickGridView.h; path = iGenomics/Analysis/Grid/QuickGridView.h; sourceTree = "<group>"; };
 		A3700F4817E3A955007C2CC7 /* QuickGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = QuickGridView.m; path = iGenomics/Analysis/Grid/QuickGridView.m; sourceTree = "<group>"; };
-		A3704FB21D493E9000788D88 /* reads_fin.fq */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reads_fin.fq; path = validation_for_paper/test_delete_eventually_nothing_important_stays_here/reads_fin.fq; sourceTree = SOURCE_ROOT; };
 		A375FBFA19391FB500F69E07 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A375FBFC19391FB900F69E07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A375FBFE19391FBD00F69E07 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -475,7 +473,6 @@
 				A35E39B51885FB7B00651C41 /* Reachability */,
 				A398B3D11889EFA700EC43B8 /* About.txt */,
 				A3A815DB1C3ED1CA0076E583 /* SuccessBox.png */,
-				A3704FB21D493E9000788D88 /* reads_fin.fq */,
 				A34E6BB316C4753C00753D7C /* CSHLabIcon.png */,
 				A3AC49C316979B1B00DD9266 /* REAL FILES */,
 				A3A3D9BE167E6EFD00CE98DC /* Chunk Class */,
@@ -1174,7 +1171,6 @@
 				A310AF65158A5F7200E892AA /* ViewController_iPhone.xib in Resources */,
 				A310AF68158A5F7200E892AA /* ViewController_iPad.xib in Resources */,
 				A32A91FC23CD5BF90073C60E /* Icon.xcassets in Resources */,
-				A3704FB31D493E9000788D88 /* reads_fin.fq in Resources */,
 				A3EE882318FC7DC000F9D682 /* IconIdea2.png in Resources */,
 				A3BE511B1D837EDB0054941B /* flu.H1N1.important.mpl in Resources */,
 				A3167433199915A9009C8EC8 /* iGenomicsLogoDNAIcon.png in Resources */,
