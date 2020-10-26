@@ -288,34 +288,4 @@ if SHOW_LEGEND:
 plt.savefig(os.path.join(outputDir, "auto_plot_output.fscore.vseqerrorrate.pdf"))
 plt.gcf().clear()
 
-# e) Runtimes
-plt.axes().set_prop_cycle(color=[cm(1.0 * i / NUM_COLORS) for i in range(NUM_COLORS)])
-plt.title("iGenomics Runtime vs. BWA Runtime")
-plt.xlabel("BWA Runtime (s)")
-plt.ylabel("iGenomics Runtime (s)")
-
-for plotDataPoint in plotDataPoints:
-    runtimesDict = plotDataPoint["runtimes"]
-    readLens = []
-    runtimesIGenomics = []
-    runtimesBWA = []
-    for readLen in runtimesDict:
-        readLens.append(int(readLen))
-        runtimesIGenomics.append(float(runtimesDict[readLen]["iG"]))
-        runtimesBWA.append(float(runtimesDict[readLen]["BWA"]))
-    label = (
-        plotDataPoint["seq_error_rate"]
-        + " seq err rate | "
-        + plotDataPoint["mut_rate"]
-        + " mut rate"
-    )
-    stdPrint("Read Lens: " + json.dumps(readLens) + "\n")
-    stdPrint("runtimes iG: " + json.dumps(runtimesIGenomics) + "\n")
-    stdPrint("runtimes bwa: " + json.dumps(runtimesBWA) + "\n")
-    stdPrint("label: " + label + "\n\n")
-    plt.plot(runtimesBWA, runtimesIGenomics, label=label, linewidth=LINE_WIDTH)
-if SHOW_LEGEND:
-    plt.legend(loc=0, prop={"size": 6})
-plt.savefig(os.path.join(outputDir, "auto_plot_output.runtimes.pdf"))
-plt.gcf().clear()
 
