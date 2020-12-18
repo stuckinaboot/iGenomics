@@ -37,7 +37,7 @@ If you notice any room for improvement, create a GitHub issue with the title bei
 
 Thank you for deciding to contribute! Pick a GitHub issue that you would like to address (or add your own), and then assign yourself to that issue. Then, fork the repo and add any changes you would like to make to that fork. When you would like to submit your changes for review, create a pull request, list the specific changes that you made, and I will review/test it myself as soon as possible. 
 
-Note: the core alignment and mutations identification logic has been validated extensively against BWA-MEM/SAMtools alignments and mutations as well as against nucmer calls (where applicable). That said, I'm aware that the alignment and mutation identification code isn't the cleanest (I wrote the core of it when I ~15) so feel free to submit improvements to that code but please be aware that pull requests related to that code could take a while to review/validate.
+Note: the core alignment and mutations identification logic has been validated extensively against BWA-MEM/SAMtools alignments and mutations as well as against nucmer calls (where applicable). That said, I'm aware that the alignment and mutation identification code isn't the cleanest (I wrote the core of it when I was ~15) so feel free to submit improvements to that code but please be aware that pull requests related to that code could take a while to review/validate.
 
 If you have any questions at all, please feel free to contact me on [linkedin](https://www.linkedin.com/in/aspyn-palatnick-577270131/) and I'll get back to you as soon as possible.
 
